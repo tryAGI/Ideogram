@@ -99,7 +99,7 @@ namespace Ideogram
             }
 
             return
-                global::System.Text.Json.JsonSerializer.Deserialize(__content, global::Ideogram.SourceGenerationContext.Default.DescribeResponse) ??
+                global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::Ideogram.DescribeResponse), JsonSerializerContext) as global::Ideogram.DescribeResponse ??
                 throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
         }
 
