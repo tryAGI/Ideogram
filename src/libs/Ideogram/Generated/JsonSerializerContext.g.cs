@@ -13,16 +13,16 @@ namespace Ideogram
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         Converters = new global::System.Type[] 
         { 
-            typeof(global::AutoSDK.JsonConverters.AspectRatioJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.AspectRatioNullableJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.ModelEnumJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.ModelEnumNullableJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.MagicPromptOptionJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.MagicPromptOptionNullableJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.StyleTypeJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.StyleTypeNullableJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.ResolutionJsonConverter),
-            typeof(global::AutoSDK.JsonConverters.ResolutionNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.AspectRatioJsonConverter),
+            typeof(global::Ideogram.JsonConverters.AspectRatioNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.ModelEnumJsonConverter),
+            typeof(global::Ideogram.JsonConverters.ModelEnumNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter),
+            typeof(global::Ideogram.JsonConverters.MagicPromptOptionNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.StyleTypeJsonConverter),
+            typeof(global::Ideogram.JsonConverters.StyleTypeNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter),
+            typeof(global::Ideogram.JsonConverters.ResolutionNullableJsonConverter),
         })]
 
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.JsonSerializerContextTypes))]

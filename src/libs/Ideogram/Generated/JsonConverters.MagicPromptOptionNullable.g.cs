@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace AutoSDK.JsonConverters
+namespace Ideogram.JsonConverters
 {
     /// <inheritdoc />
     public sealed class MagicPromptOptionNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.MagicPromptOption?>

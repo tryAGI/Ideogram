@@ -21,7 +21,7 @@ namespace Ideogram
         /// Example: ASPECT_10_16
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::AutoSDK.JsonConverters.AspectRatioJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioJsonConverter))]
         public global::Ideogram.AspectRatio? AspectRatio { get; set; }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace Ideogram
         /// Example: V_2_TURBO
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("model")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::AutoSDK.JsonConverters.ModelEnumJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ModelEnumJsonConverter))]
         public global::Ideogram.ModelEnum? Model { get; set; } = global::Ideogram.ModelEnum.V2;
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Ideogram
         /// Example: ON
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_option")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::AutoSDK.JsonConverters.MagicPromptOptionJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; } = global::Ideogram.MagicPromptOption.AUTO;
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Ideogram
         /// Example: REALISTIC
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::AutoSDK.JsonConverters.StyleTypeJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeJsonConverter))]
         public global::Ideogram.StyleType? StyleType { get; set; }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Ideogram
         /// Example: RESOLUTION_1024_1024
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::AutoSDK.JsonConverters.ResolutionJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter))]
         public global::Ideogram.Resolution? Resolution { get; set; }
 
         /// <summary>
