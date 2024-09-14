@@ -17,21 +17,35 @@ namespace Ideogram
 
         private readonly global::System.Net.Http.HttpClient _httpClient;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Ideogram.SourceGenerationContext.Default;
+
 
         /// <summary>
         /// All things related to generating content.
         /// </summary>
-        public GenerateClient Generate => new GenerateClient(_httpClient);
+        public GenerateClient Generate => new GenerateClient(_httpClient)
+        {
+            JsonSerializerContext = JsonSerializerContext,
+        };
 
         /// <summary>
         /// Content related to managing API account and API access
         /// </summary>
-        public ManageClient Manage => new ManageClient(_httpClient);
+        public ManageClient Manage => new ManageClient(_httpClient)
+        {
+            JsonSerializerContext = JsonSerializerContext,
+        };
 
         /// <summary>
         /// Operations related to understanding visual content
         /// </summary>
-        public VisionClient Vision => new VisionClient(_httpClient);
+        public VisionClient Vision => new VisionClient(_httpClient)
+        {
+            JsonSerializerContext = JsonSerializerContext,
+        };
 
         /// <summary>
         /// Creates a new instance of the IdeogramApi.
@@ -42,8 +56,7 @@ namespace Ideogram
         /// <param name="baseUri"></param> 
         public IdeogramApi(
             global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null 
-            )
+            global::System.Uri? baseUri = null)
         {
             _httpClient = httpClient ?? new global::System.Net.Http.HttpClient();
             _httpClient.BaseAddress ??= baseUri ?? new global::System.Uri(BaseUrl);
