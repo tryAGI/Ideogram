@@ -35,7 +35,7 @@ namespace Ideogram
         /// Example: ON
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_option")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::AutoSDK.JsonConverters.MagicPromptOptionJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; } = global::Ideogram.MagicPromptOption.AUTO;
 
         /// <summary>

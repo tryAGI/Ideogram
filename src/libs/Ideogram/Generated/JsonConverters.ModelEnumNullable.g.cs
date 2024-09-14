@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace AutoSDK.JsonConverters
+namespace Ideogram.JsonConverters
 {
     /// <inheritdoc />
     public sealed class ModelEnumNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.ModelEnum?>
