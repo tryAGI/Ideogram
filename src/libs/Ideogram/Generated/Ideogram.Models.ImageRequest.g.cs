@@ -46,7 +46,7 @@ namespace Ideogram
         /// Example: 12345
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int Seed { get; set; }
+        public int? Seed { get; set; }
 
         /// <summary>
         /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
