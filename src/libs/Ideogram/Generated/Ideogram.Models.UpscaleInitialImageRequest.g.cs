@@ -20,14 +20,14 @@ namespace Ideogram
         /// Example: 50
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resemblance")]
-        public int Resemblance { get; set; } = 50;
+        public int? Resemblance { get; set; } = 50;
 
         /// <summary>
         /// Default Value: 50<br/>
         /// Example: 50
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("detail")]
-        public int Detail { get; set; } = 50;
+        public int? Detail { get; set; } = 50;
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
@@ -42,7 +42,7 @@ namespace Ideogram
         /// Example: 12345
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int Seed { get; set; }
+        public int? Seed { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

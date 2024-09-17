@@ -7,11 +7,11 @@ namespace Ideogram
     {
         partial void PrepareGetApiStripeSubscriptionArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref bool isBusiness);
+            ref bool? isBusiness);
         partial void PrepareGetApiStripeSubscriptionRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            bool isBusiness);
+            bool? isBusiness);
         partial void ProcessGetApiStripeSubscriptionResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -28,7 +28,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ManageApiStripeSubscriptionResponse> GetApiStripeSubscriptionAsync(
-            bool isBusiness = default,
+            bool? isBusiness = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
