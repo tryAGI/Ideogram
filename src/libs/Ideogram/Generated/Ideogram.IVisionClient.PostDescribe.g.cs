@@ -22,8 +22,8 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
-            byte[]? imageFile = default,
-            string? imageFilename = default,
+            byte[] imageFile,
+            string imageFilename,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

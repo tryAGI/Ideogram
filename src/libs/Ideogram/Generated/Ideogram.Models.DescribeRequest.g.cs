@@ -12,13 +12,15 @@ namespace Ideogram
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
-        public byte[]? ImageFile { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required byte[] ImageFile { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
-        public string? ImageFilename { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string ImageFilename { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
