@@ -12,6 +12,10 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        AUTO,
+        /// <summary>
+        /// 
+        /// </summary>
         GENERAL,
         /// <summary>
         /// 
@@ -43,6 +47,7 @@ namespace Ideogram
         {
             return value switch
             {
+                StyleType.AUTO => "AUTO",
                 StyleType.GENERAL => "GENERAL",
                 StyleType.REALISTIC => "REALISTIC",
                 StyleType.DESIGN => "DESIGN",
@@ -58,6 +63,7 @@ namespace Ideogram
         {
             return value switch
             {
+                "AUTO" => StyleType.AUTO,
                 "GENERAL" => StyleType.GENERAL,
                 "REALISTIC" => StyleType.REALISTIC,
                 "DESIGN" => StyleType.DESIGN,

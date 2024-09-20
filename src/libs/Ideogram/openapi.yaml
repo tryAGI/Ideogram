@@ -151,6 +151,8 @@ paths:
           description: Not authorized
         '402':
           description: Payment is required; is your payment method setup?
+        '404':
+          description: User does not have a subscription to reactivate.
       security:
         - BearerAuth: [ ]
       x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
@@ -374,6 +376,8 @@ components:
           - text: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
           - text: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
     DescribeRequest:
+      required:
+        - image_file
       type: object
       properties:
         image_file:
@@ -943,6 +947,7 @@ components:
     StyleType:
       title: StyleType
       enum:
+        - AUTO
         - GENERAL
         - REALISTIC
         - DESIGN

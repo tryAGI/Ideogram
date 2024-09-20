@@ -43,19 +43,16 @@ namespace Ideogram
                 method: global::System.Net.Http.HttpMethod.Post,
                 requestUri: new global::System.Uri(_httpClient.BaseAddress?.AbsoluteUri.TrimEnd('/') + "/describe", global::System.UriKind.RelativeOrAbsolute));
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-            if (request.ImageFile != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>())
+            __httpRequestContent.Add(
+                content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>())
+                {
+                    Headers =
                     {
-                        Headers =
-                        {
-                            ContentType = global::System.Net.Http.Headers.MediaTypeHeaderValue.Parse("multipart/form-data"),
-                        },
+                        ContentType = global::System.Net.Http.Headers.MediaTypeHeaderValue.Parse("multipart/form-data"),
                     },
-                    name: "image_file",
-                    fileName: request.ImageFilename ?? string.Empty);
-            }
+                },
+                name: "image_file",
+                fileName: request.ImageFilename ?? string.Empty);
             httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
@@ -111,8 +108,8 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
-            byte[]? imageFile = default,
-            string? imageFilename = default,
+            byte[] imageFile,
+            string imageFilename,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var request = new global::Ideogram.DescribeRequest
