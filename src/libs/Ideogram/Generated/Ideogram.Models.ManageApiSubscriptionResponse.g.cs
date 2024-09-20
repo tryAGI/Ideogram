@@ -43,10 +43,10 @@ namespace Ideogram
         public global::Ideogram.MetronomeLinks? MetronomeLinks { get; set; }
 
         /// <summary>
-        /// 
+        /// The current recharge settings for the API subscription.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("recharge_settings")]
-        public global::Ideogram.RechargeSettingsResponse? RechargeSettings { get; set; }
+        public global::Ideogram.RechargeSettings? RechargeSettings { get; set; }
 
         /// <summary>
         /// The URL for the user to manage the existing Stripe subscription plan.

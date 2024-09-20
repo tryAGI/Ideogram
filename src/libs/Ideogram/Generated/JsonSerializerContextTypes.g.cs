@@ -73,15 +73,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.InitialImageRequest? Type15 { get; set; }
+        public global::Ideogram.UpscaleImageRequest? Type15 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.UpscaleImageRequest? Type16 { get; set; }
+        public global::Ideogram.UpscaleInitialImageRequest? Type16 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.UpscaleInitialImageRequest? Type17 { get; set; }
+        public global::Ideogram.InitialImageRequest? Type17 { get; set; }
         /// <summary>
         /// 
         /// </summary>
@@ -121,19 +121,19 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.RechargeSettingsResponse? Type27 { get; set; }
+        public global::Ideogram.RechargeSettings? Type27 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.RechargeSettings? Type28 { get; set; }
+        public global::Ideogram.Price? Type28 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.Price? Type29 { get; set; }
+        public double? Type29 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public double? Type30 { get; set; }
+        public global::Ideogram.RechargeSettingsResponse? Type30 { get; set; }
         /// <summary>
         /// 
         /// </summary>

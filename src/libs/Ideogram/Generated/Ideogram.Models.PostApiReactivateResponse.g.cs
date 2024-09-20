@@ -9,10 +9,10 @@ namespace Ideogram
     public sealed partial class PostApiReactivateResponse
     {
         /// <summary>
-        /// 
+        /// The current recharge settings for the API subscription.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("recharge_settings")]
-        public global::Ideogram.RechargeSettingsResponse? RechargeSettings { get; set; }
+        public global::Ideogram.RechargeSettings? RechargeSettings { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
