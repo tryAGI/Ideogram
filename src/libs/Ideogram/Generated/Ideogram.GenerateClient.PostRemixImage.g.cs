@@ -116,9 +116,7 @@ namespace Ideogram
         /// are cropped to the chosen aspect ratio before being remixed.<br/>
         /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
-        /// <param name="imageRequest">
-        /// A request to generate a new image using a provided image and a prompt.
-        /// </param>
+        /// <param name="imageRequest"></param>
         /// <param name="imageFile">
         /// An image binary; only JPEG, WEBPs and PNGs are supported at this time
         /// </param>
@@ -128,7 +126,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostRemixImageAsync(
-            global::Ideogram.InitialImageRequest imageRequest,
+            global::Ideogram.ImageRequest imageRequest,
             byte[] imageFile,
             string imageFilename,
             global::System.Threading.CancellationToken cancellationToken = default)
