@@ -72,6 +72,13 @@ namespace Ideogram
         public global::Ideogram.Resolution? Resolution { get; set; }
 
         /// <summary>
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter))]
+        public global::Ideogram.ColorPaletteWithPresetNameOrMembers? ColorPalette { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
