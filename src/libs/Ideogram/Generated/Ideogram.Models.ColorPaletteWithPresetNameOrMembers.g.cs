@@ -14,18 +14,18 @@ namespace Ideogram
         /// 
         /// </summary>
 #if NET6_0_OR_GREATER
-        public global::Ideogram.ColorPaletteWithPresetName?  { get; init; }
+        public global::Ideogram.ColorPaletteWithPresetName? Value1 { get; init; }
 #else
-        public global::Ideogram.ColorPaletteWithPresetName?  { get; }
+        public global::Ideogram.ColorPaletteWithPresetName? Value1 { get; }
 #endif
 
         /// <summary>
         /// 
         /// </summary>
 #if NET6_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof())]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Value1))]
 #endif
-        public bool Is =>  != null;
+        public bool IsValue1 => Value1 != null;
 
         /// <summary>
         /// 
@@ -35,32 +35,32 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public static implicit operator global::Ideogram.ColorPaletteWithPresetName?(ColorPaletteWithPresetNameOrMembers @this) => @this.;
+        public static implicit operator global::Ideogram.ColorPaletteWithPresetName?(ColorPaletteWithPresetNameOrMembers @this) => @this.Value1;
 
         /// <summary>
         /// 
         /// </summary>
         public ColorPaletteWithPresetNameOrMembers(global::Ideogram.ColorPaletteWithPresetName? value)
         {
-             = value;
+            Value1 = value;
         }
 
         /// <summary>
         /// A color palette represented only via its members
         /// </summary>
 #if NET6_0_OR_GREATER
-        public global::Ideogram.ColorPaletteWithMembers?  { get; init; }
+        public global::Ideogram.ColorPaletteWithMembers? Value2 { get; init; }
 #else
-        public global::Ideogram.ColorPaletteWithMembers?  { get; }
+        public global::Ideogram.ColorPaletteWithMembers? Value2 { get; }
 #endif
 
         /// <summary>
         /// 
         /// </summary>
 #if NET6_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof())]
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(Value2))]
 #endif
-        public bool Is =>  != null;
+        public bool IsValue2 => Value2 != null;
 
         /// <summary>
         /// 
@@ -70,34 +70,34 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public static implicit operator global::Ideogram.ColorPaletteWithMembers?(ColorPaletteWithPresetNameOrMembers @this) => @this.;
+        public static implicit operator global::Ideogram.ColorPaletteWithMembers?(ColorPaletteWithPresetNameOrMembers @this) => @this.Value2;
 
         /// <summary>
         /// 
         /// </summary>
         public ColorPaletteWithPresetNameOrMembers(global::Ideogram.ColorPaletteWithMembers? value)
         {
-             = value;
+            Value2 = value;
         }
 
         /// <summary>
         /// 
         /// </summary>
         public ColorPaletteWithPresetNameOrMembers(
-            global::Ideogram.ColorPaletteWithPresetName? ,
-            global::Ideogram.ColorPaletteWithMembers? 
+            global::Ideogram.ColorPaletteWithPresetName? value1,
+            global::Ideogram.ColorPaletteWithMembers? value2
             )
         {
-             = ;
-             = ;
+            Value1 = value1;
+            Value2 = value2;
         }
 
         /// <summary>
         /// 
         /// </summary>
         public object? Object =>
-             as object ??
-             as object 
+            Value2 as object ??
+            Value1 as object 
             ;
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Ideogram
         /// </summary>
         public bool Validate()
         {
-            return Is && !Is || !Is && Is;
+            return IsValue1 && !IsValue2 || !IsValue1 && IsValue2;
         }
 
         /// <summary>
@@ -115,9 +115,9 @@ namespace Ideogram
         {
             var fields = new object?[]
             {
-                ,
+                Value1,
                 typeof(global::Ideogram.ColorPaletteWithPresetName),
-                ,
+                Value2,
                 typeof(global::Ideogram.ColorPaletteWithMembers),
             };
             const int offset = unchecked((int)2166136261);
@@ -134,8 +134,8 @@ namespace Ideogram
         public bool Equals(ColorPaletteWithPresetNameOrMembers other)
         {
             return
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.ColorPaletteWithPresetName?>.Default.Equals(, other.) &&
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.ColorPaletteWithMembers?>.Default.Equals(, other.) 
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.ColorPaletteWithPresetName?>.Default.Equals(Value1, other.Value1) &&
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.ColorPaletteWithMembers?>.Default.Equals(Value2, other.Value2) 
                 ;
         }
 
