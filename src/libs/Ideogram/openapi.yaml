@@ -453,6 +453,8 @@ components:
           example: 'brush strokes, painting'
         resolution:
           $ref: '#/components/schemas/Resolution'
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
       example:
         aspect_ratio: ASPECT_10_16
         magic_prompt_option: AUTO
@@ -1040,6 +1042,78 @@ components:
       type: string
       description: '(For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.'
       example: RESOLUTION_1024_1024
+    ColorPaletteWithPresetNameOrMembers:
+      title: ColorPaletteWithPresetNameOrMembers
+      oneOf:
+        - $ref: '#/components/schemas/ColorPaletteWithPresetName'
+        - $ref: '#/components/schemas/ColorPaletteWithMembers'
+      description: 'A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).'
+    ColorPaletteWithPresetName:
+      title: ColorPaletteWithPresetName
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/ColorPalettePresetName'
+    ColorPalettePresetName:
+      title: ColorPalettePresetName
+      enum:
+        - EMBER
+        - FRESH
+        - JUNGLE
+        - MAGIC
+        - MELON
+        - MOSAIC
+        - PASTEL
+        - ULTRAMARINE
+      type: string
+      description: A color palette preset value
+      example: PASTEL
+    ColorPaletteWithMembers:
+      title: ColorPaletteWithMembers
+      required:
+        - members
+      type: object
+      properties:
+        members:
+          title: ColorPaletteMembers
+          maxItems: 10
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ColorPaletteMember'
+          description: A list of ColorPaletteMembers that define the color palette.
+      description: A color palette represented only via its members
+    ColorPaletteMembers:
+      title: ColorPaletteMembers
+      maxItems: 10
+      minItems: 1
+      type: array
+      items:
+        $ref: '#/components/schemas/ColorPaletteMember'
+      description: A list of ColorPaletteMembers that define the color palette.
+    ColorPaletteMember:
+      title: ColorPaletteMember
+      required:
+        - color_hex
+        - color_weight
+      type: object
+      properties:
+        color_hex:
+          title: color_hex
+          pattern: '^#(?:[0-9a-fA-F]{3}){1,2}$'
+          type: string
+          description: The hexadecimal representation of the color with an optional chosen weight
+          example: '#FFFFFF'
+        color_weight:
+          title: color_weight
+          maximum: 1.0
+          minimum: 0.05
+          type: number
+          description: The weight of the color in the color palette.
+          example: 0.25
+      description: A member of a color palette.
     Price:
       title: Price
       required:
