@@ -23,6 +23,9 @@ namespace Ideogram
             typeof(global::Ideogram.JsonConverters.StyleTypeNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter),
             typeof(global::Ideogram.JsonConverters.ResolutionNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.ColorPalettePresetNameJsonConverter),
+            typeof(global::Ideogram.JsonConverters.ColorPalettePresetNameNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter),
         })]
 
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.JsonSerializerContextTypes))]
