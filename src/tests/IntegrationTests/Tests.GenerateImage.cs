@@ -13,7 +13,7 @@ public partial class Tests
             AspectRatio = AspectRatio.ASPECT169,
             Seed = Random.Shared.Next(),
             StyleType = StyleType.REALISTIC,
-            Resolution = Resolution.RESOLUTION1024768,
+            Resolution = Resolution.x1024768,
         });
         
         Console.WriteLine($"Generated image: {image.Data[0].Url}");
