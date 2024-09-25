@@ -46,6 +46,14 @@ namespace Ideogram
         public required int Seed { get; set; }
 
         /// <summary>
+        /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
+        /// Example: REALISTIC
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeJsonConverter))]
+        public global::Ideogram.StyleType? StyleType { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
