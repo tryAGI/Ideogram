@@ -21,8 +21,7 @@ namespace Ideogram
         /// Example: 0.25
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_weight")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required double ColorWeight { get; set; }
+        public double? ColorWeight { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
