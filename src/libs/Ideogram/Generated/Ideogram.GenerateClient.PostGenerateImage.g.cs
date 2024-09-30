@@ -22,8 +22,8 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Generates images synchronously based on a given prompt and optional parameters.<br/>
-        /// A request to generate an image with Ideogram.
+        /// Generate<br/>
+        /// Generates images synchronously based on a given prompt and optional parameters.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -100,8 +100,8 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Generates images synchronously based on a given prompt and optional parameters.<br/>
-        /// A request to generate an image with Ideogram.
+        /// Generate<br/>
+        /// Generates images synchronously based on a given prompt and optional parameters.
         /// </summary>
         /// <param name="imageRequest"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

@@ -22,8 +22,8 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
+        /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// A request to upscale a provided image with Ideogram.<br/>
         /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="request"></param>
@@ -110,8 +110,8 @@ namespace Ideogram
         }
 
         /// <summary>
+        /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// A request to upscale a provided image with Ideogram.<br/>
         /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="imageRequest">

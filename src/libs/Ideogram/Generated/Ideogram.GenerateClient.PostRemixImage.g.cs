@@ -22,9 +22,9 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
+        /// Remix<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters<br/>
-        /// A request to remix a provided image with Ideogram. Input images<br/>
-        /// are cropped to the chosen aspect ratio before being remixed.<br/>
+        /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
         /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="request"></param>
@@ -111,9 +111,9 @@ namespace Ideogram
         }
 
         /// <summary>
+        /// Remix<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters<br/>
-        /// A request to remix a provided image with Ideogram. Input images<br/>
-        /// are cropped to the chosen aspect ratio before being remixed.<br/>
+        /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
         /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="imageRequest">
