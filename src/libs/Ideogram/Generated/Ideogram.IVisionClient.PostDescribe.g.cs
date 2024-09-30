@@ -5,7 +5,9 @@ namespace Ideogram
     public partial interface IVisionClient
     {
         /// <summary>
-        /// Describe an image
+        /// Describe<br/>
+        /// Describe an image<br/>
+        /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -15,7 +17,9 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Describe an image
+        /// Describe<br/>
+        /// Describe an image<br/>
+        /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="imageFile"></param>
         /// <param name="imageFilename"></param>

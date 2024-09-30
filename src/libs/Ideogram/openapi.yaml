@@ -10,7 +10,8 @@ paths:
     post:
       tags:
         - vision
-      summary: Describe an image
+      summary: Describe
+      description: "Describe an image\n\nSupported image formats include JPEG, PNG, and WEBP\n"
       operationId: post_describe
       requestBody:
         content:
@@ -40,8 +41,8 @@ paths:
     post:
       tags:
         - generate
-      summary: Generates images synchronously based on a given prompt and optional parameters.
-      description: "A request to generate an image with Ideogram.\n"
+      summary: Generate
+      description: "Generates images synchronously based on a given prompt and optional parameters.\n"
       operationId: post_generate_image
       requestBody:
         description: A request to generate an image with Ideogram.
@@ -284,8 +285,8 @@ paths:
     post:
       tags:
         - generate
-      summary: Remix provided images synchronously based on a given prompt and optional parameters
-      description: "A request to remix a provided image with Ideogram. Input images\nare cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WEBP\n"
+      summary: Remix
+      description: "Remix provided images synchronously based on a given prompt and optional parameters\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WEBP\n"
       operationId: post_remix_image
       requestBody:
         description: A request to remix a provided image with Ideogram. Input images are cropped to the chosen aspect ratio before being remixed.
@@ -323,8 +324,8 @@ paths:
     post:
       tags:
         - generate
-      summary: Upscale provided images synchronously with an optional prompt.
-      description: "A request to upscale a provided image with Ideogram.\n\nSupported image formats include JPEG, PNG, and WEBP\n"
+      summary: Upscale
+      description: "Upscale provided images synchronously with an optional prompt.\n\nSupported image formats include JPEG, PNG, and WEBP\n"
       operationId: post_upscale_image
       requestBody:
         description: A request to upscale a provided image with Ideogram.

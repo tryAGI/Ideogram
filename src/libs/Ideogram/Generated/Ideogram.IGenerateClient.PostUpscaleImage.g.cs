@@ -5,8 +5,8 @@ namespace Ideogram
     public partial interface IGenerateClient
     {
         /// <summary>
+        /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// A request to upscale a provided image with Ideogram.<br/>
         /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="request"></param>
@@ -17,8 +17,8 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// A request to upscale a provided image with Ideogram.<br/>
         /// Supported image formats include JPEG, PNG, and WEBP
         /// </summary>
         /// <param name="imageRequest">
