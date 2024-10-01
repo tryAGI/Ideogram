@@ -14,11 +14,14 @@ namespace Ideogram
         {
             apiKey = apiKey ?? throw new global::System.ArgumentNullException(nameof(apiKey));
 
-            _authorization = new global::Ideogram.EndPointAuthorization
+            _authorizations.Clear();
+            _authorizations.Add(new global::Ideogram.EndPointAuthorization
             {
+                Type = "ApiKey",
+                Location = "Header",
                 Name = "Api-Key",
                 Value = apiKey,
-            };
+            });
         }
     }
 }

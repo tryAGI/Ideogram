@@ -13,6 +13,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        public global::System.Collections.Generic.Dictionary<string, string>? StringStringDictionary { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public global::Ideogram.DescribeResponse? Type0 { get; set; }
         /// <summary>
         /// 
