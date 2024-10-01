@@ -5,15 +5,16 @@ namespace Ideogram
 {
     public sealed partial class IdeogramApi
     {
-        /// <inheritdoc cref="IdeogramApi(global::System.Net.Http.HttpClient?, global::System.Uri?)"/>
+        /// <inheritdoc cref="IdeogramApi(global::System.Net.Http.HttpClient?, global::System.Uri?, global::Ideogram.EndPointAuthorization?)"/>
         public IdeogramApi(
             string apiKey,
             global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null) : this(httpClient, baseUri)
+            global::System.Uri? baseUri = null,
+            global::Ideogram.EndPointAuthorization? authorization = null) : this(httpClient, baseUri, authorization)
         {
             Authorizing(_httpClient, ref apiKey);
 
-            AuthorizeUsingApiKey(apiKey);
+            AuthorizeUsingApiKeyInHeader(apiKey);
 
             Authorized(_httpClient);
         }

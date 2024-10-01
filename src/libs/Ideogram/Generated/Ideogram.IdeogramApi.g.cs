@@ -16,6 +16,7 @@ namespace Ideogram
         public const string BaseUrl = "";
 
         private readonly global::System.Net.Http.HttpClient _httpClient;
+        private global::Ideogram.EndPointAuthorization? _authorization;
 
         /// <summary>
         /// 
@@ -26,7 +27,7 @@ namespace Ideogram
         /// <summary>
         /// All things related to generating content.
         /// </summary>
-        public GenerateClient Generate => new GenerateClient(_httpClient)
+        public GenerateClient Generate => new GenerateClient(_httpClient, authorization: _authorization)
         {
             JsonSerializerContext = JsonSerializerContext,
         };
@@ -34,7 +35,7 @@ namespace Ideogram
         /// <summary>
         /// Content related to managing API account and API access
         /// </summary>
-        public ManageClient Manage => new ManageClient(_httpClient)
+        public ManageClient Manage => new ManageClient(_httpClient, authorization: _authorization)
         {
             JsonSerializerContext = JsonSerializerContext,
         };
@@ -42,7 +43,7 @@ namespace Ideogram
         /// <summary>
         /// Operations related to understanding visual content
         /// </summary>
-        public VisionClient Vision => new VisionClient(_httpClient)
+        public VisionClient Vision => new VisionClient(_httpClient, authorization: _authorization)
         {
             JsonSerializerContext = JsonSerializerContext,
         };
@@ -53,13 +54,16 @@ namespace Ideogram
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
         /// <param name="httpClient"></param>
-        /// <param name="baseUri"></param> 
+        /// <param name="baseUri"></param>
+        /// <param name="authorization"></param>
         public IdeogramApi(
             global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null)
+            global::System.Uri? baseUri = null,
+            global::Ideogram.EndPointAuthorization? authorization = null)
         {
             _httpClient = httpClient ?? new global::System.Net.Http.HttpClient();
             _httpClient.BaseAddress ??= baseUri ?? new global::System.Uri(BaseUrl);
+            _authorization = authorization;
 
             Initialized(_httpClient);
         }
