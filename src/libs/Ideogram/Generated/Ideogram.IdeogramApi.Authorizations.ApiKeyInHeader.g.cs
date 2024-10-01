@@ -9,12 +9,16 @@ namespace Ideogram
         /// Authorize using ApiKey authentication.
         /// </summary>
         /// <param name="apiKey"></param>
-        public void AuthorizeUsingApiKey(
+        public void AuthorizeUsingApiKeyInHeader(
             string apiKey)
         {
             apiKey = apiKey ?? throw new global::System.ArgumentNullException(nameof(apiKey));
 
-            _httpClient.DefaultRequestHeaders.Add("Api-Key", apiKey);
+            _authorization = new global::Ideogram.EndPointAuthorization
+            {
+                Name = "Api-Key",
+                Value = apiKey,
+            };
         }
     }
 }
