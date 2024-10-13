@@ -105,7 +105,7 @@ namespace Ideogram
             }
 
             return
-                global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::Ideogram.ManageApiStripeSubscriptionResponse), JsonSerializerContext) as global::Ideogram.ManageApiStripeSubscriptionResponse ??
+                global::Ideogram.ManageApiStripeSubscriptionResponse.FromJson(__content, JsonSerializerContext) ??
                 throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
         }
     }

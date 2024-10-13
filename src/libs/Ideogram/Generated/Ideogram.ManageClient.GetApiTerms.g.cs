@@ -96,7 +96,7 @@ namespace Ideogram
             }
 
             return
-                global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::Ideogram.GetApiTermsResponse), JsonSerializerContext) as global::Ideogram.GetApiTermsResponse ??
+                global::Ideogram.GetApiTermsResponse.FromJson(__content, JsonSerializerContext) ??
                 throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
         }
     }
