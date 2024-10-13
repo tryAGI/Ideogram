@@ -121,7 +121,7 @@ namespace Ideogram
             }
 
             return
-                global::System.Text.Json.JsonSerializer.Deserialize(__content, typeof(global::Ideogram.GenerateImageResponse), JsonSerializerContext) as global::Ideogram.GenerateImageResponse ??
+                global::Ideogram.GenerateImageResponse.FromJson(__content, JsonSerializerContext) ??
                 throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
         }
 
