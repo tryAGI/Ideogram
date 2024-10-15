@@ -72,6 +72,38 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /internal-testing:
+    post:
+      tags:
+        - internal-testing
+      summary: Testing
+      description: "Just a testing endpoint\n"
+      operationId: post_internal_testing
+      requestBody:
+        description: A request for testing.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InternalTestingRequest'
+            encoding:
+              x_position:
+                contentType: text/plain
+                style: form
+              some_text:
+                contentType: text/plain
+                style: form
+              nested_object:
+                contentType: application/json
+                style: form
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/postInternalTesting_200_response'
+      x-openapi-router-controller: external_api.generated.openapi.controllers.internal_testing_controller
   /manage/api/api_keys:
     get:
       tags:
@@ -299,7 +331,6 @@ paths:
                 contentType: application/json
                 style: form
         required: true
-        x-body-name: image_request
       responses:
         '200':
           description: Image(s) generated successfully
@@ -338,7 +369,6 @@ paths:
                 contentType: application/json
                 style: form
         required: true
-        x-body-name: image_request
       responses:
         '200':
           description: Image(s) generated successfully
@@ -399,6 +429,57 @@ components:
           magic_prompt_option: AUTO
           model: V_2
           prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
+    InternalTestingRequest:
+      required:
+        - required_date_type_field
+      type: object
+      properties:
+        x_position:
+          type: integer
+        image_file:
+          type: string
+          format: binary
+        another_image_file:
+          type: string
+          format: binary
+        some_text:
+          type: string
+        nested_object:
+          $ref: '#/components/schemas/InternalTestingNestedObject'
+        nested_object_required_fields:
+          $ref: '#/components/schemas/InternalTestingNestedObjectRequiredFields'
+        date_type_field:
+          type: string
+          format: date
+        required_date_type_field:
+          type: string
+          format: date
+        date_time_type_field:
+          type: string
+          format: date-time
+    InternalTestingNestedObject:
+      title: InternalTestingNestedObject
+      type: object
+      properties:
+        prop_one:
+          title: prop_one
+          type: string
+        prop_two:
+          title: prop_two
+          type: string
+    InternalTestingNestedObjectRequiredFields:
+      title: InternalTestingNestedObjectRequiredFields
+      required:
+        - prop_one
+        - prop_two
+      type: object
+      properties:
+        prop_one:
+          title: prop_one
+          type: string
+        prop_two:
+          title: prop_two
+          type: string
     RemixImageRequest:
       required:
         - image_file
@@ -1140,6 +1221,15 @@ components:
       example:
         amount: 1050
         currency_code: USD
+    postInternalTesting_200_response:
+      title: postInternalTesting_200_response
+      type: object
+      properties:
+        response_content:
+          title: response_content
+          type: string
+      example:
+        response_content: response_content
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
@@ -1167,6 +1257,11 @@ tags:
       url: https://docs.ideogram.ai
   - name: vision
     description: Operations related to understanding visual content
+    externalDocs:
+      description: Find out more
+      url: https://docs.ideogram.ai
+  - name: internal-testing
+    description: Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
     externalDocs:
       description: Find out more
       url: https://docs.ideogram.ai

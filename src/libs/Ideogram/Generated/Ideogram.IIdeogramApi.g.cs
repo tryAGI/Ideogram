@@ -31,5 +31,10 @@ namespace Ideogram
         /// </summary>
         public VisionClient Vision { get; }
 
+        /// <summary>
+        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
+        /// </summary>
+        public InternalTestingClient InternalTesting { get; }
+
     }
 }
