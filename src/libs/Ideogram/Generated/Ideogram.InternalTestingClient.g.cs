@@ -4,11 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// This is the API definition for Ideogram AI.<br/>
+    /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public sealed partial class IdeogramApi : global::Ideogram.IIdeogramApi, global::System.IDisposable
+    public sealed partial class InternalTestingClient : global::Ideogram.IInternalTestingClient, global::System.IDisposable
     {
         /// <summary>
         /// 
@@ -25,46 +25,14 @@ namespace Ideogram
 
 
         /// <summary>
-        /// All things related to generating content.
-        /// </summary>
-        public GenerateClient Generate => new GenerateClient(_httpClient, authorizations: _authorizations)
-        {
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Content related to managing API account and API access
-        /// </summary>
-        public ManageClient Manage => new ManageClient(_httpClient, authorizations: _authorizations)
-        {
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations related to understanding visual content
-        /// </summary>
-        public VisionClient Vision => new VisionClient(_httpClient, authorizations: _authorizations)
-        {
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
-        /// </summary>
-        public InternalTestingClient InternalTesting => new InternalTestingClient(_httpClient, authorizations: _authorizations)
-        {
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Creates a new instance of the IdeogramApi.
+        /// Creates a new instance of the InternalTestingClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
         /// <param name="httpClient"></param>
         /// <param name="baseUri"></param>
         /// <param name="authorizations"></param>
-        public IdeogramApi(
+        public InternalTestingClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations = null)
