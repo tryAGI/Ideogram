@@ -30,6 +30,9 @@ namespace Ideogram
         /// <param name="dateTypeField"></param>
         /// <param name="requiredDateTypeField"></param>
         /// <param name="dateTimeTypeField"></param>
+        /// <param name="repeatedPrimitiveField"></param>
+        /// <param name="repeatedComplexField"></param>
+        /// <param name="enumTypeField"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
@@ -44,6 +47,9 @@ namespace Ideogram
             global::Ideogram.InternalTestingNestedObjectRequiredFields? nestedObjectRequiredFields = default,
             global::System.DateTime? dateTypeField = default,
             global::System.DateTime? dateTimeTypeField = default,
+            global::System.Collections.Generic.IList<string>? repeatedPrimitiveField = default,
+            global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? repeatedComplexField = default,
+            global::Ideogram.InternalTestingEnumField? enumTypeField = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

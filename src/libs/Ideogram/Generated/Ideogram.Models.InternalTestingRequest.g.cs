@@ -76,6 +76,25 @@ namespace Ideogram
         public global::System.DateTime? DateTimeTypeField { get; set; }
 
         /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("repeated_primitive_field")]
+        public global::System.Collections.Generic.IList<string>? RepeatedPrimitiveField { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("repeated_complex_field")]
+        public global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? RepeatedComplexField { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("enum_type_field")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldJsonConverter))]
+        public global::Ideogram.InternalTestingEnumField? EnumTypeField { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
