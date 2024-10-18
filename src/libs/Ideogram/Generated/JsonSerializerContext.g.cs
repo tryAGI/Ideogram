@@ -25,6 +25,8 @@ namespace Ideogram
             typeof(global::Ideogram.JsonConverters.ResolutionNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPalettePresetNameJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPalettePresetNameNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldJsonConverter),
+            typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter),
         })]
 

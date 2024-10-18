@@ -95,6 +95,9 @@ paths:
               nested_object:
                 contentType: application/json
                 style: form
+              repeated_complex_field:
+                contentType: application/json
+                style: form
         required: true
       responses:
         '200':
@@ -457,6 +460,23 @@ components:
         date_time_type_field:
           type: string
           format: date-time
+        repeated_primitive_field:
+          type: array
+          items:
+            type: string
+        repeated_complex_field:
+          type: array
+          items:
+            $ref: '#/components/schemas/InternalTestingNestedObject'
+        enum_type_field:
+          $ref: '#/components/schemas/InternalTestingEnumField'
+    InternalTestingEnumField:
+      title: InternalTestingEnumField
+      enum:
+        - EIN
+        - ZWEI
+        - DREI
+      type: string
     InternalTestingNestedObject:
       title: InternalTestingNestedObject
       type: object
