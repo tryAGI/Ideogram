@@ -13,14 +13,14 @@ namespace Ideogram
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
         Converters = new global::System.Type[] 
         { 
-            typeof(global::Ideogram.JsonConverters.AspectRatioJsonConverter),
-            typeof(global::Ideogram.JsonConverters.AspectRatioNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ModelEnumJsonConverter),
             typeof(global::Ideogram.JsonConverters.ModelEnumNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter),
             typeof(global::Ideogram.JsonConverters.MagicPromptOptionNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.StyleTypeJsonConverter),
             typeof(global::Ideogram.JsonConverters.StyleTypeNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.AspectRatioJsonConverter),
+            typeof(global::Ideogram.JsonConverters.AspectRatioNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter),
             typeof(global::Ideogram.JsonConverters.ResolutionNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPalettePresetNameJsonConverter),
