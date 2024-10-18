@@ -37,6 +37,57 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.vision_controller
+  /edit:
+    post:
+      tags:
+        - generate
+      summary: Edit
+      description: "Edit given images synchronously using the provided mask, prompt and optional parameters\n\nSupported image formats include JPEG, PNG, and WEBP\n"
+      operationId: post_edit_image
+      requestBody:
+        description: A request to edit an image with Ideogram.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EditImageRequest'
+            encoding:
+              prompt:
+                contentType: text/plain
+                style: form
+              model:
+                contentType: text/plain
+                style: form
+              magic_prompt_option:
+                contentType: text/plain
+                style: form
+              seed:
+                contentType: text/plain
+                style: form
+              style_type:
+                contentType: text/plain
+                style: form
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Image edits generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageResponse'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt or Initial Image failed the safety checks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /generate:
     post:
       tags:
@@ -418,6 +469,34 @@ components:
           type: string
           format: binary
       description: 'An image binary; only JPEG, WEBPs and PNGs are supported at this time'
+    EditImageRequest:
+      required:
+        - image_file
+        - mask
+        - model
+        - prompt
+      type: object
+      properties:
+        image_file:
+          type: string
+          description: 'The image being edited; only JPEG, WEBPs and PNGs are supported at this time'
+          format: binary
+        mask:
+          type: string
+          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WEBPs and PNGs are supported at this time'
+          format: binary
+        prompt:
+          type: string
+          description: The prompt used to describe the edited result.
+          example: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
+        model:
+          $ref: '#/components/schemas/ModelEnum'
+        magic_prompt_option:
+          $ref: '#/components/schemas/MagicPromptOption'
+        seed:
+          $ref: '#/components/schemas/Seed'
+        style_type:
+          $ref: '#/components/schemas/StyleType'
     GenerateImageRequest:
       title: GenerateImageRequest
       required:
@@ -1016,25 +1095,6 @@ components:
           example: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
       example:
         text: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
-    AspectRatio:
-      title: AspectRatio
-      enum:
-        - ASPECT_10_16
-        - ASPECT_16_10
-        - ASPECT_9_16
-        - ASPECT_16_9
-        - ASPECT_3_2
-        - ASPECT_2_3
-        - ASPECT_4_3
-        - ASPECT_3_4
-        - ASPECT_1_1
-        - ASPECT_1_3
-        - ASPECT_3_1
-      type: string
-      description: '(Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image''s resolution. Defaults to ASPECT_1_1.'
-      externalDocs:
-        url: https://docs.ideogram.ai/usage/advanced-prompting/aspect-ratios
-      example: ASPECT_10_16
     MagicPromptOption:
       title: MagicPromptOption
       enum:
@@ -1065,6 +1125,25 @@ components:
       type: string
       description: The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.
       example: REALISTIC
+    AspectRatio:
+      title: AspectRatio
+      enum:
+        - ASPECT_10_16
+        - ASPECT_16_10
+        - ASPECT_9_16
+        - ASPECT_16_9
+        - ASPECT_3_2
+        - ASPECT_2_3
+        - ASPECT_4_3
+        - ASPECT_3_4
+        - ASPECT_1_1
+        - ASPECT_1_3
+        - ASPECT_3_1
+      type: string
+      description: '(Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image''s resolution. Defaults to ASPECT_1_1.'
+      externalDocs:
+        url: https://docs.ideogram.ai/usage/advanced-prompting/aspect-ratios
+      example: ASPECT_10_16
     Resolution:
       title: Resolution
       enum:
