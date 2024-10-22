@@ -45,7 +45,7 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The model used to generate. Defaults to V_2.<br/>
+        /// The model used to generate an image or edit one. /generate supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
         /// Default Value: V_2<br/>
         /// Example: V_2_TURBO
         /// </summary>
