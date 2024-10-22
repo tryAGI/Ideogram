@@ -1264,7 +1264,7 @@ components:
       properties:
         members:
           title: ColorPaletteMembers
-          maxItems: 10
+          maxItems: 8
           minItems: 1
           type: array
           items:
@@ -1273,7 +1273,7 @@ components:
       description: A color palette represented only via its members
     ColorPaletteMembers:
       title: ColorPaletteMembers
-      maxItems: 10
+      maxItems: 8
       minItems: 1
       type: array
       items:
