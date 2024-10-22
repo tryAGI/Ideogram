@@ -42,7 +42,7 @@ paths:
       tags:
         - generate
       summary: Edit
-      description: "Edit given images synchronously using the provided mask, prompt and optional parameters\n\nSupported image formats include JPEG, PNG, and WEBP\n"
+      description: "Edit a given image synchronously using the provided mask. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style type can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WEBP\n"
       operationId: post_edit_image
       requestBody:
         description: A request to edit an image with Ideogram.
@@ -778,7 +778,7 @@ components:
         - V_2
         - V_2_TURBO
       type: string
-      description: The model used to generate. Defaults to V_2.
+      description: 'The model used to generate an image or edit one. /generate supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.'
       default: V_2
       example: V_2_TURBO
     GenerateImageSafetyError:
