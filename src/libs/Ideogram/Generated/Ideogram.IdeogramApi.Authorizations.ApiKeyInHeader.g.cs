@@ -14,8 +14,8 @@ namespace Ideogram
         {
             apiKey = apiKey ?? throw new global::System.ArgumentNullException(nameof(apiKey));
 
-            _authorizations.Clear();
-            _authorizations.Add(new global::Ideogram.EndPointAuthorization
+            Authorizations.Clear();
+            Authorizations.Add(new global::Ideogram.EndPointAuthorization
             {
                 Type = "ApiKey",
                 Location = "Header",
