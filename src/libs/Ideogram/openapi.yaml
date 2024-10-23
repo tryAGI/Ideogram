@@ -518,6 +518,7 @@ components:
       properties:
         x_position:
           type: integer
+          nullable: true
         image_file:
           type: string
           format: binary
