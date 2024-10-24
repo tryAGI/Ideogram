@@ -65,7 +65,7 @@ namespace Ideogram
             string maskname,
             string prompt,
             global::Ideogram.ModelEnum model,
-            global::Ideogram.MagicPromptOption? magicPromptOption = global::Ideogram.MagicPromptOption.AUTO,
+            global::Ideogram.MagicPromptOption? magicPromptOption = default,
             int? seed = default,
             global::Ideogram.StyleType? styleType = default,
             global::System.Threading.CancellationToken cancellationToken = default);

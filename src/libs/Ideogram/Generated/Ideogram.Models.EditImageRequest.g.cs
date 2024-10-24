@@ -52,7 +52,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("model")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ModelEnumJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.ModelEnum Model { get; set; }
+        public required global::Ideogram.ModelEnum Model { get; set; } = global::Ideogram.ModelEnum.V2;
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
@@ -61,7 +61,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_option")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; } = global::Ideogram.MagicPromptOption.AUTO;
+        public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
         /// Example: 12345

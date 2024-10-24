@@ -92,7 +92,7 @@ namespace Ideogram
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Model.ToValueString()}"),
                 name: "model");
-            if (request.MagicPromptOption != global::Ideogram.MagicPromptOption.AUTO)
+            if (request.MagicPromptOption != default)
             {
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.MagicPromptOption?.ToValueString()}"),
@@ -205,7 +205,7 @@ namespace Ideogram
             string maskname,
             string prompt,
             global::Ideogram.ModelEnum model,
-            global::Ideogram.MagicPromptOption? magicPromptOption = global::Ideogram.MagicPromptOption.AUTO,
+            global::Ideogram.MagicPromptOption? magicPromptOption = default,
             int? seed = default,
             global::Ideogram.StyleType? styleType = default,
             global::System.Threading.CancellationToken cancellationToken = default)

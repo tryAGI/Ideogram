@@ -20,14 +20,14 @@ namespace Ideogram
         /// Example: 50
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resemblance")]
-        public int? Resemblance { get; set; } = 50;
+        public int? Resemblance { get; set; }
 
         /// <summary>
         /// Default Value: 50<br/>
         /// Example: 50
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("detail")]
-        public int? Detail { get; set; } = 50;
+        public int? Detail { get; set; }
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
@@ -36,7 +36,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_option")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; } = global::Ideogram.MagicPromptOption.AUTO;
+        public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
         /// Example: 12345
