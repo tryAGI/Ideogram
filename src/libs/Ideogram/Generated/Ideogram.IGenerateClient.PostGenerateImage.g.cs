@@ -6,7 +6,8 @@ namespace Ideogram
     {
         /// <summary>
         /// Generate<br/>
-        /// Generates images synchronously based on a given prompt and optional parameters.
+        /// Generates images synchronously based on a given prompt and optional parameters.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -17,7 +18,8 @@ namespace Ideogram
 
         /// <summary>
         /// Generate<br/>
-        /// Generates images synchronously based on a given prompt and optional parameters.
+        /// Generates images synchronously based on a given prompt and optional parameters.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageRequest"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

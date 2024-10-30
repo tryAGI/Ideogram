@@ -24,7 +24,8 @@ namespace Ideogram
         /// <summary>
         /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WEBP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -128,7 +129,8 @@ namespace Ideogram
         /// <summary>
         /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WEBP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageRequest">
         /// A request to upscale a provided image with the help of an optional prompt.

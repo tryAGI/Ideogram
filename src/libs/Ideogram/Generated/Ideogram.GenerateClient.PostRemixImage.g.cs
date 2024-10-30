@@ -25,7 +25,8 @@ namespace Ideogram
         /// Remix<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters<br/>
         /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WEBP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -130,7 +131,8 @@ namespace Ideogram
         /// Remix<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters<br/>
         /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WEBP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageRequest">
         /// A request to generate a new image using a provided image and a prompt.
