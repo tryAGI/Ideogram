@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// The response which contains information about the generated image, including the download link.<br/>
+    /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
     /// </summary>
     public sealed partial class GenerateImageResponse
     {

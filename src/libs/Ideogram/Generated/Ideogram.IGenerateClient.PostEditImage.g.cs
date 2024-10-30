@@ -8,7 +8,8 @@ namespace Ideogram
         /// Edit<br/>
         /// Edit a given image synchronously using the provided mask. The mask indicates which part of the image<br/>
         /// should be edited, while the prompt and chosen style type can further guide the edit.<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WEBP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -21,7 +22,8 @@ namespace Ideogram
         /// Edit<br/>
         /// Edit a given image synchronously using the provided mask. The mask indicates which part of the image<br/>
         /// should be edited, while the prompt and chosen style type can further guide the edit.<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WEBP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageFile">
         /// The image being edited; only JPEG, WEBPs and PNGs are supported at this time
