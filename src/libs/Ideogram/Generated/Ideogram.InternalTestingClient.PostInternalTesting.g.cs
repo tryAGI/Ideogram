@@ -73,26 +73,14 @@ namespace Ideogram
             if (request.ImageFile != default)
             {
                 __httpRequestContent.Add(
-                    content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>())
-                    {
-                        Headers =
-                        {
-                            ContentType = global::System.Net.Http.Headers.MediaTypeHeaderValue.Parse("multipart/form-data"),
-                        },
-                    },
+                    content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
                     name: "image_file",
                     fileName: request.ImageFilename ?? string.Empty);
             } 
             if (request.AnotherImageFile != default)
             {
                 __httpRequestContent.Add(
-                    content: new global::System.Net.Http.ByteArrayContent(request.AnotherImageFile ?? global::System.Array.Empty<byte>())
-                    {
-                        Headers =
-                        {
-                            ContentType = global::System.Net.Http.Headers.MediaTypeHeaderValue.Parse("multipart/form-data"),
-                        },
-                    },
+                    content: new global::System.Net.Http.ByteArrayContent(request.AnotherImageFile ?? global::System.Array.Empty<byte>()),
                     name: "another_image_file",
                     fileName: request.AnotherImageFilename ?? string.Empty);
             } 
