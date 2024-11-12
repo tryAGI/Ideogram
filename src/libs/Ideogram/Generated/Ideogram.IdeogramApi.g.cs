@@ -26,6 +26,11 @@ namespace Ideogram
         /// <inheritdoc/>
         public global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization> Authorizations { get; }
 
+        /// <inheritdoc/>
+        public bool ReadResponseAsString { get; set; }
+#if DEBUG
+            = true;
+#endif
         /// <summary>
         /// 
         /// </summary>
@@ -37,6 +42,7 @@ namespace Ideogram
         /// </summary>
         public GenerateClient Generate => new GenerateClient(HttpClient, authorizations: Authorizations)
         {
+            ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
         };
 
@@ -45,6 +51,7 @@ namespace Ideogram
         /// </summary>
         public ManageClient Manage => new ManageClient(HttpClient, authorizations: Authorizations)
         {
+            ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
         };
 
@@ -53,6 +60,7 @@ namespace Ideogram
         /// </summary>
         public VisionClient Vision => new VisionClient(HttpClient, authorizations: Authorizations)
         {
+            ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
         };
 
@@ -61,6 +69,7 @@ namespace Ideogram
         /// </summary>
         public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, authorizations: Authorizations)
         {
+            ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
         };
 
