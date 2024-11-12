@@ -12,6 +12,7 @@ namespace Ideogram
         /// The prompt to use to generate the image.<br/>
         /// Example: A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.
         /// </summary>
+        /// <example>A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Prompt { get; set; }
@@ -20,6 +21,7 @@ namespace Ideogram
         /// (Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image's resolution. Defaults to ASPECT_1_1.<br/>
         /// Example: ASPECT_10_16
         /// </summary>
+        /// <example>ASPECT_10_16</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioJsonConverter))]
         public global::Ideogram.AspectRatio? AspectRatio { get; set; }
@@ -29,6 +31,7 @@ namespace Ideogram
         /// Default Value: V_2<br/>
         /// Example: V_2_TURBO
         /// </summary>
+        /// <example>V_2_TURBO</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("model")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ModelEnumJsonConverter))]
         public global::Ideogram.ModelEnum? Model { get; set; }
@@ -38,6 +41,7 @@ namespace Ideogram
         /// Default Value: AUTO<br/>
         /// Example: ON
         /// </summary>
+        /// <example>ON</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_option")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
@@ -45,6 +49,7 @@ namespace Ideogram
         /// <summary>
         /// Example: 12345
         /// </summary>
+        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         public int? Seed { get; set; }
 
@@ -52,6 +57,7 @@ namespace Ideogram
         /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
         /// Example: REALISTIC
         /// </summary>
+        /// <example>REALISTIC</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeJsonConverter))]
         public global::Ideogram.StyleType? StyleType { get; set; }
@@ -60,6 +66,7 @@ namespace Ideogram
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
         /// </summary>
+        /// <example>brush strokes, painting</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("negative_prompt")]
         public string? NegativePrompt { get; set; }
 
@@ -67,6 +74,7 @@ namespace Ideogram
         /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
         /// Example: RESOLUTION_1024_1024
         /// </summary>
+        /// <example>RESOLUTION_1024_1024</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter))]
         public global::Ideogram.Resolution? Resolution { get; set; }
@@ -84,91 +92,73 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonExtensionData]
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
-
         /// <summary>
-        /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
+        /// Initializes a new instance of the <see cref="ImageRequest" /> class.
         /// </summary>
-        public string ToJson(
-            global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
+        /// <param name="prompt">
+        /// The prompt to use to generate the image.<br/>
+        /// Example: A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.
+        /// </param>
+        /// <param name="aspectRatio">
+        /// (Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image's resolution. Defaults to ASPECT_1_1.<br/>
+        /// Example: ASPECT_10_16
+        /// </param>
+        /// <param name="model">
+        /// The model used to generate an image or edit one. /generate supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
+        /// Default Value: V_2<br/>
+        /// Example: V_2_TURBO
+        /// </param>
+        /// <param name="magicPromptOption">
+        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Default Value: AUTO<br/>
+        /// Example: ON
+        /// </param>
+        /// <param name="seed">
+        /// Example: 12345
+        /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
+        /// Example: REALISTIC
+        /// </param>
+        /// <param name="negativePrompt">
+        /// Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
+        /// Example: brush strokes, painting
+        /// </param>
+        /// <param name="resolution">
+        /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
+        /// Example: RESOLUTION_1024_1024
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// </param>
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+        public ImageRequest(
+            string prompt,
+            global::Ideogram.AspectRatio? aspectRatio,
+            global::Ideogram.ModelEnum? model,
+            global::Ideogram.MagicPromptOption? magicPromptOption,
+            int? seed,
+            global::Ideogram.StyleType? styleType,
+            string? negativePrompt,
+            global::Ideogram.Resolution? resolution,
+            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette)
         {
-            return global::System.Text.Json.JsonSerializer.Serialize(
-                this,
-                this.GetType(),
-                jsonSerializerContext);
+            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.AspectRatio = aspectRatio;
+            this.Model = model;
+            this.MagicPromptOption = magicPromptOption;
+            this.Seed = seed;
+            this.StyleType = styleType;
+            this.NegativePrompt = negativePrompt;
+            this.Resolution = resolution;
+            this.ColorPalette = colorPalette;
         }
 
         /// <summary>
-        /// Serializes the current instance to a JSON string using the provided JsonSerializerOptions.
+        /// Initializes a new instance of the <see cref="ImageRequest" /> class.
         /// </summary>
-#if NET8_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-        [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-#endif
-        public string ToJson(
-            global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
+        public ImageRequest()
         {
-            return global::System.Text.Json.JsonSerializer.Serialize(
-                this,
-                jsonSerializerOptions);
         }
-
-        /// <summary>
-        /// Deserializes a JSON string using the provided JsonSerializerContext.
-        /// </summary>
-        public static global::Ideogram.ImageRequest? FromJson(
-            string json,
-            global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
-        {
-            return global::System.Text.Json.JsonSerializer.Deserialize(
-                json,
-                typeof(global::Ideogram.ImageRequest),
-                jsonSerializerContext) as global::Ideogram.ImageRequest;
-        }
-
-        /// <summary>
-        /// Deserializes a JSON string using the provided JsonSerializerOptions.
-        /// </summary>
-#if NET8_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-        [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-#endif
-        public static global::Ideogram.ImageRequest? FromJson(
-            string json,
-            global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
-        {
-            return global::System.Text.Json.JsonSerializer.Deserialize<global::Ideogram.ImageRequest>(
-                json,
-                jsonSerializerOptions);
-        }
-
-        /// <summary>
-        /// Deserializes a JSON stream using the provided JsonSerializerContext.
-        /// </summary>
-        public static async global::System.Threading.Tasks.ValueTask<global::Ideogram.ImageRequest?> FromJsonStream(
-            global::System.IO.Stream jsonStream,
-            global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
-        {
-            return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
-                jsonStream,
-                typeof(global::Ideogram.ImageRequest),
-                jsonSerializerContext).ConfigureAwait(false)) as global::Ideogram.ImageRequest;
-        }
-
-        /// <summary>
-        /// Deserializes a JSON stream using the provided JsonSerializerOptions.
-        /// </summary>
-#if NET8_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-        [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-#endif
-        public static global::System.Threading.Tasks.ValueTask<global::Ideogram.ImageRequest?> FromJsonStream(
-            global::System.IO.Stream jsonStream,
-            global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
-        {
-            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Ideogram.ImageRequest?>(
-                jsonStream,
-                jsonSerializerOptions);
-        }
-
     }
 }

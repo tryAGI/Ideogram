@@ -100,91 +100,61 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonExtensionData]
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
-
         /// <summary>
-        /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
+        /// Initializes a new instance of the <see cref="InternalTestingRequest" /> class.
         /// </summary>
-        public string ToJson(
-            global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
+        /// <param name="xPosition"></param>
+        /// <param name="imageFile"></param>
+        /// <param name="imageFilename"></param>
+        /// <param name="anotherImageFile"></param>
+        /// <param name="anotherImageFilename"></param>
+        /// <param name="someText"></param>
+        /// <param name="nestedObject"></param>
+        /// <param name="nestedObjectRequiredFields"></param>
+        /// <param name="dateTypeField"></param>
+        /// <param name="requiredDateTypeField"></param>
+        /// <param name="dateTimeTypeField"></param>
+        /// <param name="repeatedPrimitiveField"></param>
+        /// <param name="repeatedComplexField"></param>
+        /// <param name="enumTypeField"></param>
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+        public InternalTestingRequest(
+            global::System.DateTime requiredDateTypeField,
+            int? xPosition,
+            byte[]? imageFile,
+            string? imageFilename,
+            byte[]? anotherImageFile,
+            string? anotherImageFilename,
+            string? someText,
+            global::Ideogram.InternalTestingNestedObject? nestedObject,
+            global::Ideogram.InternalTestingNestedObjectRequiredFields? nestedObjectRequiredFields,
+            global::System.DateTime? dateTypeField,
+            global::System.DateTime? dateTimeTypeField,
+            global::System.Collections.Generic.IList<string>? repeatedPrimitiveField,
+            global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? repeatedComplexField,
+            global::Ideogram.InternalTestingEnumField? enumTypeField)
         {
-            return global::System.Text.Json.JsonSerializer.Serialize(
-                this,
-                this.GetType(),
-                jsonSerializerContext);
+            this.RequiredDateTypeField = requiredDateTypeField;
+            this.XPosition = xPosition;
+            this.ImageFile = imageFile;
+            this.ImageFilename = imageFilename;
+            this.AnotherImageFile = anotherImageFile;
+            this.AnotherImageFilename = anotherImageFilename;
+            this.SomeText = someText;
+            this.NestedObject = nestedObject;
+            this.NestedObjectRequiredFields = nestedObjectRequiredFields;
+            this.DateTypeField = dateTypeField;
+            this.DateTimeTypeField = dateTimeTypeField;
+            this.RepeatedPrimitiveField = repeatedPrimitiveField;
+            this.RepeatedComplexField = repeatedComplexField;
+            this.EnumTypeField = enumTypeField;
         }
 
         /// <summary>
-        /// Serializes the current instance to a JSON string using the provided JsonSerializerOptions.
+        /// Initializes a new instance of the <see cref="InternalTestingRequest" /> class.
         /// </summary>
-#if NET8_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-        [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-#endif
-        public string ToJson(
-            global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
+        public InternalTestingRequest()
         {
-            return global::System.Text.Json.JsonSerializer.Serialize(
-                this,
-                jsonSerializerOptions);
         }
-
-        /// <summary>
-        /// Deserializes a JSON string using the provided JsonSerializerContext.
-        /// </summary>
-        public static global::Ideogram.InternalTestingRequest? FromJson(
-            string json,
-            global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
-        {
-            return global::System.Text.Json.JsonSerializer.Deserialize(
-                json,
-                typeof(global::Ideogram.InternalTestingRequest),
-                jsonSerializerContext) as global::Ideogram.InternalTestingRequest;
-        }
-
-        /// <summary>
-        /// Deserializes a JSON string using the provided JsonSerializerOptions.
-        /// </summary>
-#if NET8_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-        [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-#endif
-        public static global::Ideogram.InternalTestingRequest? FromJson(
-            string json,
-            global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
-        {
-            return global::System.Text.Json.JsonSerializer.Deserialize<global::Ideogram.InternalTestingRequest>(
-                json,
-                jsonSerializerOptions);
-        }
-
-        /// <summary>
-        /// Deserializes a JSON stream using the provided JsonSerializerContext.
-        /// </summary>
-        public static async global::System.Threading.Tasks.ValueTask<global::Ideogram.InternalTestingRequest?> FromJsonStream(
-            global::System.IO.Stream jsonStream,
-            global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
-        {
-            return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
-                jsonStream,
-                typeof(global::Ideogram.InternalTestingRequest),
-                jsonSerializerContext).ConfigureAwait(false)) as global::Ideogram.InternalTestingRequest;
-        }
-
-        /// <summary>
-        /// Deserializes a JSON stream using the provided JsonSerializerOptions.
-        /// </summary>
-#if NET8_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
-        [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
-#endif
-        public static global::System.Threading.Tasks.ValueTask<global::Ideogram.InternalTestingRequest?> FromJsonStream(
-            global::System.IO.Stream jsonStream,
-            global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
-        {
-            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Ideogram.InternalTestingRequest?>(
-                jsonStream,
-                jsonSerializerOptions);
-        }
-
     }
 }
