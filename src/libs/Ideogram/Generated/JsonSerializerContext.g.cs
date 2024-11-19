@@ -28,6 +28,7 @@ namespace Ideogram
             typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldJsonConverter),
             typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter),
+            typeof(global::Ideogram.JsonConverters.UnixTimestampJsonConverter),
         })]
 
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.JsonSerializerContextTypes))]
