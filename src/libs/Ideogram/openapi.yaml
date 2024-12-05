@@ -130,6 +130,19 @@ paths:
       summary: Testing
       description: "Just a testing endpoint\n"
       operationId: post_internal_testing
+      parameters:
+        - name: X-Test-Header
+          in: header
+          description: Test header
+          style: simple
+          schema:
+            type: string
+        - name: X-Test-Header-2
+          in: header
+          description: Test header
+          style: simple
+          schema:
+            type: string
       requestBody:
         description: A request for testing.
         content:
@@ -1105,7 +1118,6 @@ components:
         - OFF
       type: string
       description: Determine if MagicPrompt should be used in generating the request or not
-      default: AUTO
       externalDocs:
         url: https://docs.ideogram.ai/using-ideogram/ideogram-features/magic-prompt
       example: ON

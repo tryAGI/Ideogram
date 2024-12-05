@@ -7,10 +7,14 @@ namespace Ideogram
     {
         partial void PreparePostInternalTestingArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref string? xTestHeader,
+            ref string? xTestHeader2,
             global::Ideogram.InternalTestingRequest request);
         partial void PreparePostInternalTestingRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            string? xTestHeader,
+            string? xTestHeader2,
             global::Ideogram.InternalTestingRequest request);
         partial void ProcessPostInternalTestingResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -25,11 +29,15 @@ namespace Ideogram
         /// Testing<br/>
         /// Just a testing endpoint
         /// </summary>
+        /// <param name="xTestHeader"></param>
+        /// <param name="xTestHeader2"></param>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
             global::Ideogram.InternalTestingRequest request,
+            string? xTestHeader = default,
+            string? xTestHeader2 = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
@@ -38,6 +46,8 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostInternalTestingArguments(
                 httpClient: HttpClient,
+                xTestHeader: ref xTestHeader,
+                xTestHeader2: ref xTestHeader2,
                 request: request);
 
             var __pathBuilder = new PathBuilder(
@@ -67,7 +77,29 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
+
+            if (xTestHeader != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header", xTestHeader.ToString());
+            }
+            if (xTestHeader2 != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header-2", xTestHeader2.ToString());
+            }
+
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+            if (xTestHeader != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{xTestHeader}"),
+                    name: "X-Test-Header");
+            } 
+            if (xTestHeader2 != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{xTestHeader2}"),
+                    name: "X-Test-Header-2");
+            } 
             if (request.XPosition != default)
             {
                 __httpRequestContent.Add(
@@ -147,6 +179,8 @@ namespace Ideogram
             PreparePostInternalTestingRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
+                xTestHeader: xTestHeader,
+                xTestHeader2: xTestHeader2,
                 request: request);
 
             using var __response = await HttpClient.SendAsync(
@@ -229,6 +263,8 @@ namespace Ideogram
         /// Testing<br/>
         /// Just a testing endpoint
         /// </summary>
+        /// <param name="xTestHeader"></param>
+        /// <param name="xTestHeader2"></param>
         /// <param name="xPosition"></param>
         /// <param name="imageFile"></param>
         /// <param name="imageFilename"></param>
@@ -247,6 +283,8 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
             global::System.DateTime requiredDateTypeField,
+            string? xTestHeader = default,
+            string? xTestHeader2 = default,
             int? xPosition = default,
             byte[]? imageFile = default,
             string? imageFilename = default,
@@ -281,6 +319,8 @@ namespace Ideogram
             };
 
             return await PostInternalTestingAsync(
+                xTestHeader: xTestHeader,
+                xTestHeader2: xTestHeader2,
                 request: __request,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
         }

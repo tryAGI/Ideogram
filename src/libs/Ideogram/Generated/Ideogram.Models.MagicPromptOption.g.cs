@@ -5,7 +5,6 @@ namespace Ideogram
 {
     /// <summary>
     /// Determine if MagicPrompt should be used in generating the request or not<br/>
-    /// Default Value: AUTO<br/>
     /// Example: ON
     /// </summary>
     public enum MagicPromptOption
