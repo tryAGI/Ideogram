@@ -34,7 +34,6 @@ namespace Ideogram
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
-        /// Default Value: AUTO<br/>
         /// Example: ON
         /// </summary>
         /// <example>ON</example>
@@ -72,7 +71,6 @@ namespace Ideogram
         /// </param>
         /// <param name="magicPromptOption">
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
-        /// Default Value: AUTO<br/>
         /// Example: ON
         /// </param>
         /// <param name="seed">
