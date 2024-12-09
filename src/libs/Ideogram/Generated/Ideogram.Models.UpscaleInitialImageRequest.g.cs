@@ -42,6 +42,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
+        /// Default Value: 1
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
+        public int? NumImages { get; set; }
+
+        /// <summary>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -73,6 +79,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
         /// Example: ON
         /// </param>
+        /// <param name="numImages">
+        /// Default Value: 1
+        /// </param>
         /// <param name="seed">
         /// Example: 12345
         /// </param>
@@ -82,12 +91,14 @@ namespace Ideogram
             int? resemblance,
             int? detail,
             global::Ideogram.MagicPromptOption? magicPromptOption,
+            int? numImages,
             int? seed)
         {
             this.Prompt = prompt;
             this.Resemblance = resemblance;
             this.Detail = detail;
             this.MagicPromptOption = magicPromptOption;
+            this.NumImages = numImages;
             this.Seed = seed;
         }
 

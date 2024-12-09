@@ -27,7 +27,7 @@ namespace Ideogram
         public global::Ideogram.AspectRatio? AspectRatio { get; set; }
 
         /// <summary>
-        /// The model used to generate an image or edit one. /generate supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
+        /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
         /// Default Value: V_2<br/>
         /// Example: V_2_TURBO
         /// </summary>
@@ -70,6 +70,12 @@ namespace Ideogram
         public string? NegativePrompt { get; set; }
 
         /// <summary>
+        /// Default Value: 1
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
+        public int? NumImages { get; set; }
+
+        /// <summary>
         /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
         /// Example: RESOLUTION_1024_1024
         /// </summary>
@@ -103,7 +109,7 @@ namespace Ideogram
         /// Example: ASPECT_10_16
         /// </param>
         /// <param name="model">
-        /// The model used to generate an image or edit one. /generate supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
+        /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
         /// Default Value: V_2<br/>
         /// Example: V_2_TURBO
         /// </param>
@@ -122,6 +128,9 @@ namespace Ideogram
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
         /// </param>
+        /// <param name="numImages">
+        /// Default Value: 1
+        /// </param>
         /// <param name="resolution">
         /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
         /// Example: RESOLUTION_1024_1024
@@ -138,6 +147,7 @@ namespace Ideogram
             int? seed,
             global::Ideogram.StyleType? styleType,
             string? negativePrompt,
+            int? numImages,
             global::Ideogram.Resolution? resolution,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette)
         {
@@ -148,6 +158,7 @@ namespace Ideogram
             this.Seed = seed;
             this.StyleType = styleType;
             this.NegativePrompt = negativePrompt;
+            this.NumImages = numImages;
             this.Resolution = resolution;
             this.ColorPalette = colorPalette;
         }
