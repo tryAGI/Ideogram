@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The model used to generate an image or edit one. /generate supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
+    /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
     /// Default Value: V_2<br/>
     /// Example: V_2_TURBO
     /// </summary>
@@ -26,6 +26,14 @@ namespace Ideogram
         /// 
         /// </summary>
         V2TURBO,
+        /// <summary>
+        /// 
+        /// </summary>
+        V21,
+        /// <summary>
+        /// 
+        /// </summary>
+        V21TURBO,
     }
 
     /// <summary>
@@ -44,6 +52,8 @@ namespace Ideogram
                 ModelEnum.V1TURBO => "V_1_TURBO",
                 ModelEnum.V2 => "V_2",
                 ModelEnum.V2TURBO => "V_2_TURBO",
+                ModelEnum.V21 => "V_2_1",
+                ModelEnum.V21TURBO => "V_2_1_TURBO",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -58,6 +68,8 @@ namespace Ideogram
                 "V_1_TURBO" => ModelEnum.V1TURBO,
                 "V_2" => ModelEnum.V2,
                 "V_2_TURBO" => ModelEnum.V2TURBO,
+                "V_2_1" => ModelEnum.V21,
+                "V_2_1_TURBO" => ModelEnum.V21TURBO,
                 _ => null,
             };
         }
