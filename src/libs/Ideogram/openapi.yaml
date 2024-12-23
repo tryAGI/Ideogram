@@ -636,6 +636,8 @@ components:
           $ref: '#/components/schemas/ModelEnum'
         magic_prompt_option:
           $ref: '#/components/schemas/MagicPromptOption'
+        magic_prompt_version:
+          $ref: '#/components/schemas/MagicPromptVersionEnum'
         seed:
           title: Seed
           maximum: 2147483647
@@ -707,6 +709,8 @@ components:
           example: 50
         magic_prompt_option:
           $ref: '#/components/schemas/MagicPromptOption'
+        magic_prompt_version:
+          $ref: '#/components/schemas/MagicPromptVersionEnum'
         num_images:
           title: num_images
           maximum: 8
@@ -799,6 +803,15 @@ components:
         resolution: 1024x1024
         url: https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g
         is_image_safe: true
+    MagicPromptVersionEnum:
+      title: MagicPromptVersionEnum
+      enum:
+        - V_0
+        - V_0_1
+        - V_0_2
+      type: string
+      description: The magic prompt version to use when magic prompt option is set to AUTO or ON
+      example: V_0
     ModelEnum:
       title: ModelEnum
       enum:
@@ -806,8 +819,8 @@ components:
         - V_1_TURBO
         - V_2
         - V_2_TURBO
-        - V_2_1
-        - V_2_1_TURBO
+        - V_2a
+        - V_2a_TURBO
       type: string
       description: 'The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.'
       default: V_2

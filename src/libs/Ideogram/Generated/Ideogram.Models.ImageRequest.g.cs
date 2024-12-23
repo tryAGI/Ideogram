@@ -46,6 +46,15 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
+        /// The magic prompt version to use when magic prompt option is set to AUTO or ON<br/>
+        /// Example: V_0
+        /// </summary>
+        /// <example>V_0</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_version")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptVersionEnumJsonConverter))]
+        public global::Ideogram.MagicPromptVersionEnum? MagicPromptVersion { get; set; }
+
+        /// <summary>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -117,6 +126,10 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptVersion">
+        /// The magic prompt version to use when magic prompt option is set to AUTO or ON<br/>
+        /// Example: V_0
+        /// </param>
         /// <param name="seed">
         /// Example: 12345
         /// </param>
@@ -144,6 +157,7 @@ namespace Ideogram
             global::Ideogram.AspectRatio? aspectRatio,
             global::Ideogram.ModelEnum? model,
             global::Ideogram.MagicPromptOption? magicPromptOption,
+            global::Ideogram.MagicPromptVersionEnum? magicPromptVersion,
             int? seed,
             global::Ideogram.StyleType? styleType,
             string? negativePrompt,
@@ -155,6 +169,7 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.Model = model;
             this.MagicPromptOption = magicPromptOption;
+            this.MagicPromptVersion = magicPromptVersion;
             this.Seed = seed;
             this.StyleType = styleType;
             this.NegativePrompt = negativePrompt;

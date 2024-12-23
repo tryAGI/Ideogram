@@ -29,11 +29,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        V21,
+        V2a,
         /// <summary>
         /// 
         /// </summary>
-        V21TURBO,
+        V2aTURBO,
     }
 
     /// <summary>
@@ -52,8 +52,8 @@ namespace Ideogram
                 ModelEnum.V1TURBO => "V_1_TURBO",
                 ModelEnum.V2 => "V_2",
                 ModelEnum.V2TURBO => "V_2_TURBO",
-                ModelEnum.V21 => "V_2_1",
-                ModelEnum.V21TURBO => "V_2_1_TURBO",
+                ModelEnum.V2a => "V_2a",
+                ModelEnum.V2aTURBO => "V_2a_TURBO",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -68,8 +68,8 @@ namespace Ideogram
                 "V_1_TURBO" => ModelEnum.V1TURBO,
                 "V_2" => ModelEnum.V2,
                 "V_2_TURBO" => ModelEnum.V2TURBO,
-                "V_2_1" => ModelEnum.V21,
-                "V_2_1_TURBO" => ModelEnum.V21TURBO,
+                "V_2a" => ModelEnum.V2a,
+                "V_2a_TURBO" => ModelEnum.V2aTURBO,
                 _ => null,
             };
         }

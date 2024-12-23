@@ -21,6 +21,8 @@ namespace Ideogram
             typeof(global::Ideogram.JsonConverters.StyleTypeNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.AspectRatioJsonConverter),
             typeof(global::Ideogram.JsonConverters.AspectRatioNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.MagicPromptVersionEnumJsonConverter),
+            typeof(global::Ideogram.JsonConverters.MagicPromptVersionEnumNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter),
             typeof(global::Ideogram.JsonConverters.ResolutionNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPalettePresetNameJsonConverter),
