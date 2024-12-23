@@ -42,6 +42,15 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
+        /// The magic prompt version to use when magic prompt option is set to AUTO or ON<br/>
+        /// Example: V_0
+        /// </summary>
+        /// <example>V_0</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_version")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptVersionEnumJsonConverter))]
+        public global::Ideogram.MagicPromptVersionEnum? MagicPromptVersion { get; set; }
+
+        /// <summary>
         /// Default Value: 1
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
@@ -79,6 +88,10 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptVersion">
+        /// The magic prompt version to use when magic prompt option is set to AUTO or ON<br/>
+        /// Example: V_0
+        /// </param>
         /// <param name="numImages">
         /// Default Value: 1
         /// </param>
@@ -91,6 +104,7 @@ namespace Ideogram
             int? resemblance,
             int? detail,
             global::Ideogram.MagicPromptOption? magicPromptOption,
+            global::Ideogram.MagicPromptVersionEnum? magicPromptVersion,
             int? numImages,
             int? seed)
         {
@@ -98,6 +112,7 @@ namespace Ideogram
             this.Resemblance = resemblance;
             this.Detail = detail;
             this.MagicPromptOption = magicPromptOption;
+            this.MagicPromptVersion = magicPromptVersion;
             this.NumImages = numImages;
             this.Seed = seed;
         }
