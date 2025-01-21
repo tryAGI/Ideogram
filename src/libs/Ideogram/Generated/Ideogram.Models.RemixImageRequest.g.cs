@@ -16,14 +16,14 @@ namespace Ideogram
         public required global::Ideogram.InitialImageRequest ImageRequest { get; set; }
 
         /// <summary>
-        /// An image binary; only JPEG, WEBPs and PNGs are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// An image binary; only JPEG, WEBPs and PNGs are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -42,10 +42,10 @@ namespace Ideogram
         /// A request to generate a new image using a provided image and a prompt.
         /// </param>
         /// <param name="imageFile">
-        /// An image binary; only JPEG, WEBPs and PNGs are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary; only JPEG, WEBPs and PNGs are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
         /// </param>
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
         public RemixImageRequest(

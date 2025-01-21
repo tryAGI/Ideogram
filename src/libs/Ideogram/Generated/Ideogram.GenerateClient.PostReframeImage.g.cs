@@ -5,45 +5,44 @@ namespace Ideogram
 {
     public partial class GenerateClient
     {
-        partial void PreparePostUpscaleImageArguments(
+        partial void PreparePostReframeImageArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.UpscaleImageRequest request);
-        partial void PreparePostUpscaleImageRequest(
+            global::Ideogram.ReframeImageRequest request);
+        partial void PreparePostReframeImageRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.UpscaleImageRequest request);
-        partial void ProcessPostUpscaleImageResponse(
+            global::Ideogram.ReframeImageRequest request);
+        partial void ProcessPostReframeImageResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostUpscaleImageResponseContent(
+        partial void ProcessPostReframeImageResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Upscale<br/>
-        /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// Reframe<br/>
+        /// Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostUpscaleImageAsync(
-            global::Ideogram.UpscaleImageRequest request,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostReframeImageAsync(
+            global::Ideogram.ReframeImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostUpscaleImageArguments(
+            PreparePostReframeImageArguments(
                 httpClient: HttpClient,
                 request: request);
 
             var __pathBuilder = new PathBuilder(
-                path: "/upscale",
+                path: "/reframe",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -71,18 +70,39 @@ namespace Ideogram
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.StringContent($"{request.ImageRequest}"),
-                name: "image_request");
-            __httpRequestContent.Add(
                 content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
                 name: "image_file",
                 fileName: request.ImageFilename ?? string.Empty);
+            __httpRequestContent.Add(
+                content: new global::System.Net.Http.StringContent($"{request.Resolution.ToValueString()}"),
+                name: "resolution");
+            __httpRequestContent.Add(
+                content: new global::System.Net.Http.StringContent($"{request.Model.ToValueString()}"),
+                name: "model");
+            if (request.NumImages != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
+                    name: "num_images");
+            } 
+            if (request.Seed != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                    name: "seed");
+            } 
+            if (request.StyleType != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
+                    name: "style_type");
+            }
             __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PreparePostUpscaleImageRequest(
+            PreparePostReframeImageRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 request: request);
@@ -95,7 +115,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessPostUpscaleImageResponse(
+            ProcessPostReframeImageResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -123,30 +143,30 @@ namespace Ideogram
                 };
             }
             // 
-            if ((int)__response.StatusCode == 403)
+            if ((int)__response.StatusCode == 401)
             {
-                string? __content_403 = null;
+                string? __content_401 = null;
                 if (ReadResponseAsString)
                 {
-                    __content_403 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    __content_401 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                 }
                 else
                 {
-                    var __contentStream_403 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    var __contentStream_401 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
                 }
 
                 throw new global::Ideogram.ApiException(
                     message: __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
-                    ResponseBody = __content_403,
+                    ResponseBody = __content_401,
                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                         __response.Headers,
                         h => h.Key,
                         h => h.Value),
                 };
             }
-            // Prompt or provided image failed safety check.
+            // Prompt or Image failed the safety checks.
             if ((int)__response.StatusCode == 422)
             {
                 string? __content_422 = null;
@@ -207,7 +227,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessPostUpscaleImageResponseContent(
+                ProcessPostReframeImageResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -264,36 +284,59 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Upscale<br/>
-        /// Upscale provided images synchronously with an optional prompt.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// Reframe<br/>
+        /// Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it
         /// </summary>
-        /// <param name="imageRequest">
-        /// A request to upscale a provided image with the help of an optional prompt.
-        /// </param>
         /// <param name="imageFile">
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="resolution">
+        /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
+        /// Example: RESOLUTION_1024_1024
+        /// </param>
+        /// <param name="model">
+        /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
+        /// Default Value: V_2<br/>
+        /// Example: V_2_TURBO
+        /// </param>
+        /// <param name="numImages">
+        /// Default Value: 1
+        /// </param>
+        /// <param name="seed">
+        /// Example: 12345
+        /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
+        /// Example: REALISTIC
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostUpscaleImageAsync(
-            global::Ideogram.UpscaleInitialImageRequest imageRequest,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostReframeImageAsync(
             byte[] imageFile,
             string imageFilename,
+            global::Ideogram.Resolution resolution,
+            global::Ideogram.ModelEnum model,
+            int? numImages = default,
+            int? seed = default,
+            global::Ideogram.StyleType? styleType = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.UpscaleImageRequest
+            var __request = new global::Ideogram.ReframeImageRequest
             {
-                ImageRequest = imageRequest,
                 ImageFile = imageFile,
                 ImageFilename = imageFilename,
+                Resolution = resolution,
+                Model = model,
+                NumImages = numImages,
+                Seed = seed,
+                StyleType = styleType,
             };
 
-            return await PostUpscaleImageAsync(
+            return await PostReframeImageAsync(
                 request: __request,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
         }

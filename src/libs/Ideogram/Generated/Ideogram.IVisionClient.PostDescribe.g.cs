@@ -7,7 +7,7 @@ namespace Ideogram
         /// <summary>
         /// Describe<br/>
         /// Describe an image<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WebP
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -19,7 +19,7 @@ namespace Ideogram
         /// <summary>
         /// Describe<br/>
         /// Describe an image<br/>
-        /// Supported image formats include JPEG, PNG, and WEBP
+        /// Supported image formats include JPEG, PNG, and WebP
         /// </summary>
         /// <param name="imageFile"></param>
         /// <param name="imageFilename"></param>
