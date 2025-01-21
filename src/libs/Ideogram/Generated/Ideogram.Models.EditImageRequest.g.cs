@@ -9,28 +9,28 @@ namespace Ideogram
     public sealed partial class EditImageRequest
     {
         /// <summary>
-        /// The image being edited; only JPEG, WEBPs and PNGs are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// The image being edited; only JPEG, WEBPs and PNGs are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ImageFilename { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WEBPs and PNGs are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Mask { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WEBPs and PNGs are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -98,16 +98,16 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="EditImageRequest" /> class.
         /// </summary>
         /// <param name="imageFile">
-        /// The image being edited; only JPEG, WEBPs and PNGs are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
         /// </param>
         /// <param name="imageFilename">
-        /// The image being edited; only JPEG, WEBPs and PNGs are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WEBPs and PNGs are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WEBPs and PNGs are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>

@@ -11,7 +11,7 @@ paths:
       tags:
         - vision
       summary: Describe
-      description: "Describe an image\n\nSupported image formats include JPEG, PNG, and WEBP\n"
+      description: "Describe an image\n\nSupported image formats include JPEG, PNG, and WebP\n"
       operationId: post_describe
       requestBody:
         content:
@@ -42,7 +42,7 @@ paths:
       tags:
         - generate
       summary: Edit
-      description: "Edit a given image synchronously using the provided mask. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style type can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WEBP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      description: "Edit a given image synchronously using the provided mask. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style type can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_edit_image
       requestBody:
         description: A request to edit an image with Ideogram.
@@ -380,12 +380,47 @@ paths:
       security:
         - BearerAuth: [ ]
       x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /reframe:
+    post:
+      tags:
+        - generate
+      summary: Reframe
+      description: "Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it\n"
+      operationId: post_reframe_image
+      requestBody:
+        description: A request to reframe an image in a new resolution
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReframeImageRequest'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Image re-frames generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageResponse'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt or Image failed the safety checks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /remix:
     post:
       tags:
         - generate
       summary: Remix
-      description: "Remix provided images synchronously based on a given prompt and optional parameters\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WEBP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      description: "Remix provided images synchronously based on a given prompt and optional parameters\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_remix_image
       requestBody:
         description: A request to remix a provided image with Ideogram. Input images are cropped to the chosen aspect ratio before being remixed.
@@ -423,7 +458,7 @@ paths:
       tags:
         - generate
       summary: Upscale
-      description: "Upscale provided images synchronously with an optional prompt.\n\nSupported image formats include JPEG, PNG, and WEBP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      description: "Upscale provided images synchronously with an optional prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_upscale_image
       requestBody:
         description: A request to upscale a provided image with Ideogram.
@@ -481,7 +516,7 @@ components:
         image_file:
           type: string
           format: binary
-      description: 'An image binary; only JPEG, WEBPs and PNGs are supported at this time'
+      description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time'
     EditImageRequest:
       required:
         - image_file
@@ -492,11 +527,11 @@ components:
       properties:
         image_file:
           type: string
-          description: 'The image being edited; only JPEG, WEBPs and PNGs are supported at this time'
+          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time'
           format: binary
         mask:
           type: string
-          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WEBPs and PNGs are supported at this time'
+          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time'
           format: binary
         prompt:
           type: string
@@ -605,9 +640,30 @@ components:
           $ref: '#/components/schemas/InitialImageRequest'
         image_file:
           type: string
-          description: 'An image binary; only JPEG, WEBPs and PNGs are supported at this time'
+          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time'
           format: binary
       description: 'A request to generate an image from a source image and a provided caption, provided images are cropped to match the chosen output aspect ratio'
+    ReframeImageRequest:
+      required:
+        - image_file
+        - model
+        - resolution
+      type: object
+      properties:
+        image_file:
+          type: string
+          description: 'The image being reframed; only JPEG, WebP and PNG formats are supported at this time.'
+          format: binary
+        resolution:
+          $ref: '#/components/schemas/Resolution'
+        model:
+          $ref: '#/components/schemas/ModelEnum'
+        num_images:
+          $ref: '#/components/schemas/NumImages'
+        seed:
+          $ref: '#/components/schemas/Seed'
+        style_type:
+          $ref: '#/components/schemas/StyleType'
     UpscaleImageRequest:
       required:
         - image_file
@@ -618,7 +674,7 @@ components:
           $ref: '#/components/schemas/UpscaleInitialImageRequest'
         image_file:
           type: string
-          description: 'An image binary; only JPEG, WEBPs and PNGs are supported at this time'
+          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time'
           format: binary
     ImageRequest:
       title: ImageRequest
@@ -1174,25 +1230,6 @@ components:
       type: string
       description: The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.
       example: REALISTIC
-    AspectRatio:
-      title: AspectRatio
-      enum:
-        - ASPECT_10_16
-        - ASPECT_16_10
-        - ASPECT_9_16
-        - ASPECT_16_9
-        - ASPECT_3_2
-        - ASPECT_2_3
-        - ASPECT_4_3
-        - ASPECT_3_4
-        - ASPECT_1_1
-        - ASPECT_1_3
-        - ASPECT_3_1
-      type: string
-      description: '(Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image''s resolution. Defaults to ASPECT_1_1.'
-      externalDocs:
-        url: https://docs.ideogram.ai/usage/advanced-prompting/aspect-ratios
-      example: ASPECT_10_16
     Resolution:
       title: Resolution
       enum:
@@ -1277,6 +1314,25 @@ components:
       type: string
       description: '(For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.'
       example: RESOLUTION_1024_1024
+    AspectRatio:
+      title: AspectRatio
+      enum:
+        - ASPECT_10_16
+        - ASPECT_16_10
+        - ASPECT_9_16
+        - ASPECT_16_9
+        - ASPECT_3_2
+        - ASPECT_2_3
+        - ASPECT_4_3
+        - ASPECT_3_4
+        - ASPECT_1_1
+        - ASPECT_1_3
+        - ASPECT_3_1
+      type: string
+      description: '(Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image''s resolution. Defaults to ASPECT_1_1.'
+      externalDocs:
+        url: https://docs.ideogram.ai/usage/advanced-prompting/aspect-ratios
+      example: ASPECT_10_16
     ColorPaletteWithPresetNameOrMembers:
       title: ColorPaletteWithPresetNameOrMembers
       oneOf:
