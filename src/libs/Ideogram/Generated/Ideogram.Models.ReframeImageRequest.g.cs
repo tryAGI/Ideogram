@@ -100,7 +100,9 @@ namespace Ideogram
         /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
         /// Example: REALISTIC
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public ReframeImageRequest(
             byte[] imageFile,
             string imageFilename,

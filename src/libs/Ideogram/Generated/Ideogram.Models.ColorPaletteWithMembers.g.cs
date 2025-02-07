@@ -34,7 +34,9 @@ namespace Ideogram
         /// It is recommended that these weights descend from highest to lowest for the color hexes provided.<br/>
         /// Example: [, , , , ]
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public ColorPaletteWithMembers(
             global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember> members)
         {

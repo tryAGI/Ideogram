@@ -24,7 +24,9 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="PostInternalTesting200Response" /> class.
         /// </summary>
         /// <param name="responseContent"></param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public PostInternalTesting200Response(
             string? responseContent)
         {

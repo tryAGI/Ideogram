@@ -33,7 +33,9 @@ namespace Ideogram
         /// </summary>
         /// <param name="propOne"></param>
         /// <param name="propTwo"></param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public InternalTestingNestedObjectRequiredFields(
             string propOne,
             string propTwo)
