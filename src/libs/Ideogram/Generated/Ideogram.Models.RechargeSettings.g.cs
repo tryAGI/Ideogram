@@ -37,7 +37,9 @@ namespace Ideogram
         /// <param name="minimumBalanceThreshold">
         /// Represents a price.
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public RechargeSettings(
             global::Ideogram.Price topUpBalance,
             global::Ideogram.Price minimumBalanceThreshold)

@@ -47,7 +47,9 @@ namespace Ideogram
         /// <param name="imageFilename">
         /// An image binary; only JPEG, WebP and PNG formats are supported at this time
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public RemixImageRequest(
             global::Ideogram.InitialImageRequest imageRequest,
             byte[] imageFile,

@@ -117,7 +117,9 @@ namespace Ideogram
         /// <param name="repeatedPrimitiveField"></param>
         /// <param name="repeatedComplexField"></param>
         /// <param name="enumTypeField"></param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public InternalTestingRequest(
             global::System.DateTime requiredDateTypeField,
             int? xPosition,

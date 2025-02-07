@@ -74,7 +74,9 @@ namespace Ideogram
         /// <param name="stripeBillingUrl">
         /// The URL for the user to manage the existing Stripe subscription plan.
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public ManageApiSubscriptionResponse(
             bool hasAcceptedTerms,
             bool hasStripeSetup,

@@ -26,7 +26,9 @@ namespace Ideogram
         /// <param name="messages">
         /// Error messages about what the error could be.
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public PostApiSubscriptionError(
             global::System.Collections.Generic.IList<string>? messages)
         {

@@ -42,7 +42,9 @@ namespace Ideogram
         /// The weight of the color in the color palette.<br/>
         /// Example: 0.25
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public ColorPaletteMember(
             string colorHex,
             double? colorWeight)

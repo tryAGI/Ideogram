@@ -33,7 +33,9 @@ namespace Ideogram
         /// <param name="stripeSubscriptionUrl">
         /// The URL for the user to checkout the Stripe subscription plan.
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public ManageApiStripeSubscriptionResponse(
             string? stripeSubscriptionUrl)
         {

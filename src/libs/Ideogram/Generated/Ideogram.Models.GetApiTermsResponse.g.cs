@@ -25,7 +25,9 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GetApiTermsResponse" /> class.
         /// </summary>
         /// <param name="apiTerms"></param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public GetApiTermsResponse(
             global::Ideogram.ApiTerms apiTerms)
         {

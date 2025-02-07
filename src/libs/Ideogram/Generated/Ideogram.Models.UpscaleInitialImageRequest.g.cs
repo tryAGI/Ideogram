@@ -98,7 +98,9 @@ namespace Ideogram
         /// <param name="seed">
         /// Example: 12345
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public UpscaleInitialImageRequest(
             string? prompt,
             int? resemblance,

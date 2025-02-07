@@ -26,7 +26,9 @@ namespace Ideogram
         /// <param name="descriptions">
         /// A collection of descriptions for given content
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public DescribeResponse(
             global::System.Collections.Generic.IList<global::Ideogram.Description>? descriptions)
         {

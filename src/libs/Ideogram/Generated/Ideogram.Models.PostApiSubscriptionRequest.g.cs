@@ -26,7 +26,9 @@ namespace Ideogram
         /// <param name="rechargeSettings">
         /// The current recharge settings for the API subscription.
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public PostApiSubscriptionRequest(
             global::Ideogram.RechargeSettings? rechargeSettings)
         {

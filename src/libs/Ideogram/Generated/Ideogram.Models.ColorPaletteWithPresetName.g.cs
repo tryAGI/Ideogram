@@ -31,7 +31,9 @@ namespace Ideogram
         /// A color palette preset value<br/>
         /// Example: PASTEL
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public ColorPaletteWithPresetName(
             global::Ideogram.ColorPalettePresetName name)
         {

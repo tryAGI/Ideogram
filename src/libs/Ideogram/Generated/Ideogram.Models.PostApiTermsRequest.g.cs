@@ -30,7 +30,9 @@ namespace Ideogram
         /// The ID of the terms which are being accepted.<br/>
         /// Example: TOS_2024_04_20
         /// </param>
+#if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
         public PostApiTermsRequest(
             string termsId)
         {
