@@ -144,7 +144,7 @@ namespace Ideogram
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __response.ReasonPhrase ?? string.Empty,
+                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_400,
@@ -168,7 +168,7 @@ namespace Ideogram
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __response.ReasonPhrase ?? string.Empty,
+                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_401,
@@ -195,7 +195,7 @@ namespace Ideogram
                 }
 
                 throw new global::Ideogram.ApiException<global::Ideogram.GenerateImageSafetyError>(
-                    message: __response.ReasonPhrase ?? string.Empty,
+                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_422,
@@ -220,7 +220,7 @@ namespace Ideogram
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __response.ReasonPhrase ?? string.Empty,
+                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_429,
