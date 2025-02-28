@@ -92,7 +92,7 @@ namespace Ideogram
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __response.ReasonPhrase ?? string.Empty,
+                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_401,
@@ -116,7 +116,7 @@ namespace Ideogram
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __response.ReasonPhrase ?? string.Empty,
+                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_403,
