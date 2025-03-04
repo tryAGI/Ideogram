@@ -71,7 +71,7 @@ namespace Ideogram
         public global::Ideogram.StyleType? StyleType { get; set; }
 
         /// <summary>
-        /// Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
+        /// Only available for model versions V_1, V_1_TURBO, V_2 and V_2_TURBO. Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
         /// </summary>
         /// <example>brush strokes, painting</example>
@@ -94,7 +94,7 @@ namespace Ideogram
         public global::Ideogram.Resolution? Resolution { get; set; }
 
         /// <summary>
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter))]
@@ -138,7 +138,7 @@ namespace Ideogram
         /// Example: REALISTIC
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
+        /// Only available for model versions V_1, V_1_TURBO, V_2 and V_2_TURBO. Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
         /// </param>
         /// <param name="numImages">
@@ -149,7 +149,7 @@ namespace Ideogram
         /// Example: RESOLUTION_1024_1024
         /// </param>
         /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

@@ -704,7 +704,7 @@ components:
           $ref: '#/components/schemas/StyleType'
         negative_prompt:
           type: string
-          description: Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.
+          description: 'Only available for model versions V_1, V_1_TURBO, V_2 and V_2_TURBO. Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.'
           example: 'brush strokes, painting'
         num_images:
           title: num_images
@@ -1338,7 +1338,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/ColorPaletteWithPresetName'
         - $ref: '#/components/schemas/ColorPaletteWithMembers'
-      description: 'A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).'
+      description: 'Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).'
     ColorPaletteWithPresetName:
       title: ColorPaletteWithPresetName
       required:
