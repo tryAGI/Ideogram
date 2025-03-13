@@ -118,23 +118,23 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.InternalTestingRequest? Type23 { get; set; }
+        public global::System.Collections.Generic.IList<string>? Type23 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.InternalTestingNestedObject? Type24 { get; set; }
+        public global::Ideogram.InternalTestingRequest? Type24 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.InternalTestingNestedObjectRequiredFields? Type25 { get; set; }
+        public global::Ideogram.InternalTestingNestedObject? Type25 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.DateTime? Type26 { get; set; }
+        public global::Ideogram.InternalTestingNestedObjectRequiredFields? Type26 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<string>? Type27 { get; set; }
+        public global::System.DateTime? Type27 { get; set; }
         /// <summary>
         /// 
         /// </summary>
