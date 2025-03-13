@@ -555,7 +555,16 @@ components:
       properties:
         image_request:
           $ref: '#/components/schemas/ImageRequest'
+        style_ref_embeddings:
+          title: style_ref_embeddings
+          type: array
+          items:
+            type: string
+          description: A list of base64 encoded binary embeddings
       example:
+        style_ref_embeddings:
+          - style_ref_embeddings
+          - style_ref_embeddings
         image_request:
           aspect_ratio: ASPECT_10_16
           magic_prompt_option: AUTO
@@ -877,6 +886,7 @@ components:
         - V_2_TURBO
         - V_2A
         - V_2A_TURBO
+        - V_3
       type: string
       description: 'The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.'
       default: V_2

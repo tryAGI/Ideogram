@@ -34,6 +34,10 @@ namespace Ideogram
         /// 
         /// </summary>
         V2ATURBO,
+        /// <summary>
+        /// 
+        /// </summary>
+        V3,
     }
 
     /// <summary>
@@ -54,6 +58,7 @@ namespace Ideogram
                 ModelEnum.V2TURBO => "V_2_TURBO",
                 ModelEnum.V2A => "V_2A",
                 ModelEnum.V2ATURBO => "V_2A_TURBO",
+                ModelEnum.V3 => "V_3",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -70,6 +75,7 @@ namespace Ideogram
                 "V_2_TURBO" => ModelEnum.V2TURBO,
                 "V_2A" => ModelEnum.V2A,
                 "V_2A_TURBO" => ModelEnum.V2ATURBO,
+                "V_3" => ModelEnum.V3,
                 _ => null,
             };
         }
