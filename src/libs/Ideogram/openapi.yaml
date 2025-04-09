@@ -1172,16 +1172,16 @@ components:
       description: "The response which contains information about the generated image, including the download link.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it."
       example:
         data:
-          - style_type: REALISTIC
+          - style_type: GENERAL
             seed: 12345
             prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
-            resolution: 1024x1024
+            resolution: 1280x800
             url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
             is_image_safe: true
-          - style_type: REALISTIC
+          - style_type: GENERAL
             seed: 12345
             prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
-            resolution: 1024x1024
+            resolution: 1280x800
             url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
             is_image_safe: true
         created: '2000-01-23T04:56:07.0000000+00:00'
@@ -1221,10 +1221,10 @@ components:
         style_type:
           $ref: '#/components/schemas/StyleTypeV3'
       example:
-        style_type: REALISTIC
+        style_type: GENERAL
         seed: 12345
         prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
-        resolution: 1024x1024
+        resolution: 1280x800
         url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
         is_image_safe: true
     ImageObject:
@@ -1718,7 +1718,7 @@ components:
         - 1536x640
       type: string
       description: The resolutions supported for model version V_3.
-      example: 1024x1024
+      example: 1280x800
     AspectRatioV3:
       title: AspectRatioV3
       enum:
@@ -1753,7 +1753,7 @@ components:
       oneOf:
         - $ref: '#/components/schemas/ColorPaletteWithPresetName'
         - $ref: '#/components/schemas/ColorPaletteWithMembers'
-      description: 'Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).'
+      description: 'A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.'
     ColorPaletteWithPresetName:
       title: ColorPaletteWithPresetName
       required:
@@ -1874,7 +1874,7 @@ components:
         - DESIGN
       type: string
       description: The style type to generate with.
-      example: REALISTIC
+      example: GENERAL
     Resolution:
       title: Resolution
       enum:

@@ -27,9 +27,9 @@ namespace Ideogram
 
         /// <summary>
         /// The resolutions supported for model version V_3.<br/>
-        /// Example: 1024x1024
+        /// Example: 1280x800
         /// </summary>
-        /// <example>1024x1024</example>
+        /// <example>1280x800</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV3JsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -52,9 +52,9 @@ namespace Ideogram
 
         /// <summary>
         /// The style type to generate with.<br/>
-        /// Example: REALISTIC
+        /// Example: GENERAL
         /// </summary>
-        /// <example>REALISTIC</example>
+        /// <example>GENERAL</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
         public global::Ideogram.StyleTypeV3? StyleType { get; set; }
@@ -78,7 +78,7 @@ namespace Ideogram
         /// </param>
         /// <param name="resolution">
         /// The resolutions supported for model version V_3.<br/>
-        /// Example: 1024x1024
+        /// Example: 1280x800
         /// </param>
         /// <param name="isImageSafe">
         /// Whether this request passes safety checks. If false, the url field will be empty.
@@ -88,7 +88,7 @@ namespace Ideogram
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
-        /// Example: REALISTIC
+        /// Example: GENERAL
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

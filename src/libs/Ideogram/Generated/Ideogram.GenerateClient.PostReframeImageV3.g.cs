@@ -319,7 +319,7 @@ namespace Ideogram
         /// </param>
         /// <param name="resolution">
         /// The resolutions supported for model version V_3.<br/>
-        /// Example: 1024x1024
+        /// Example: 1280x800
         /// </param>
         /// <param name="numImages">
         /// Default Value: 1
@@ -332,7 +332,7 @@ namespace Ideogram
         /// Default Value: BALANCED
         /// </param>
         /// <param name="colorPalette">
-        /// Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.<br/>

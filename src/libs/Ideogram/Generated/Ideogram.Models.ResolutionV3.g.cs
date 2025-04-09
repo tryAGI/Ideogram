@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// The resolutions supported for model version V_3.<br/>
-    /// Example: 1024x1024
+    /// Example: 1280x800
     /// </summary>
     public enum ResolutionV3
     {
