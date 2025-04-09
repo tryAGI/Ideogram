@@ -26,9 +26,9 @@ namespace Ideogram
 
         /// <summary>
         /// The resolutions supported for model version V_3.<br/>
-        /// Example: 1024x1024
+        /// Example: 1280x800
         /// </summary>
-        /// <example>1024x1024</example>
+        /// <example>1280x800</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV3JsonConverter))]
         public global::Ideogram.ResolutionV3? Resolution { get; set; }
@@ -74,7 +74,7 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter))]
@@ -90,9 +90,9 @@ namespace Ideogram
 
         /// <summary>
         /// The style type to generate with.<br/>
-        /// Example: REALISTIC
+        /// Example: GENERAL
         /// </summary>
-        /// <example>REALISTIC</example>
+        /// <example>GENERAL</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
         public global::Ideogram.StyleTypeV3? StyleType { get; set; }
@@ -121,7 +121,7 @@ namespace Ideogram
         /// </param>
         /// <param name="resolution">
         /// The resolutions supported for model version V_3.<br/>
-        /// Example: 1024x1024
+        /// Example: 1280x800
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.
@@ -144,7 +144,7 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="colorPalette">
-        /// Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.<br/>
@@ -152,7 +152,7 @@ namespace Ideogram
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
-        /// Example: REALISTIC
+        /// Example: GENERAL
         /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
