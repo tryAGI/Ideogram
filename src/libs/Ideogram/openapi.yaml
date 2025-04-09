@@ -491,6 +491,165 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/edit/ideogram-v3:
+    post:
+      tags:
+        - generate
+      summary: Edit with Ideogram 3.0
+      description: "Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_edit_image_v3
+      requestBody:
+        description: A request to edit an image with Ideogram 3.0.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/EditImageRequestV3'
+            encoding:
+              color_palette:
+                contentType: application/json
+                style: form
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Image edits generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt or Initial Image failed the safety checks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/generate/ideogram-v3:
+    post:
+      tags:
+        - generate
+      summary: Generate with Ideogram 3.0
+      description: "Generates images synchronously based on a given prompt and optional parameters using the Ideogram 3.0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_generate_image_v3
+      requestBody:
+        description: A request to generate an image with Ideogram 3.0.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GenerateImageRequestV3'
+            encoding:
+              color_palette:
+                contentType: application/json
+                style: form
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateImageRequestV3'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Image(s) generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt failed the safety check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/reframe/ideogram-v3:
+    post:
+      tags:
+        - generate
+      summary: Reframe with Ideogram 3.0
+      description: "Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it\n"
+      operationId: post_reframe_image_v3
+      requestBody:
+        description: A request to reframe an image in a new resolution
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReframeImageRequestV3'
+            encoding:
+              color_palette:
+                contentType: application/json
+                style: form
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Image re-frames generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt or Image failed the safety checks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/remix/ideogram-v3:
+    post:
+      tags:
+        - generate
+      summary: Remix with Ideogram 3.0
+      description: "Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_remix_image_v3
+      requestBody:
+        description: A request to remix an image with Ideogram 3.0.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RemixImageRequestV3'
+            encoding:
+              color_palette:
+                contentType: application/json
+                style: form
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Image(s) generated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided
+        '403':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt or provided image failed safety check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
 components:
   schemas:
     DescribeResponse:
@@ -570,6 +729,175 @@ components:
           magic_prompt_option: AUTO
           model: V_2
           prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
+    GenerateImageRequestV3:
+      required:
+        - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt to use to generate the image.
+          example: A photo of a cat
+        seed:
+          title: Seed
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          example: 12345
+        resolution:
+          $ref: '#/components/schemas/ResolutionV3'
+        aspect_ratio:
+          $ref: '#/components/schemas/AspectRatioV3'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
+        negative_prompt:
+          type: string
+          description: "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n"
+          example: 'brush strokes, painting'
+        num_images:
+          maximum: 8
+          minimum: 1
+          type: integer
+          description: Number of images to generate.
+          default: 1
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+        style_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StyleCode'
+          description: A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.
+          example:
+            - AAFF5733
+            - 0133FF57
+            - DE3357FF
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
+        style_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
+    RemixImageRequestV3:
+      required:
+        - image_file
+        - prompt
+      type: object
+      properties:
+        image_file:
+          type: string
+          description: 'The image to remix binary; only JPEG, WebP and PNG formats are supported at this time'
+          format: binary
+        prompt:
+          type: string
+          description: The prompt to use to generate the image.
+          example: A photo of a cat
+        image_weight:
+          maximum: 100
+          minimum: 1
+          type: integer
+          default: 50
+          example: 50
+        seed:
+          $ref: '#/components/schemas/Seed'
+        resolution:
+          $ref: '#/components/schemas/ResolutionV3'
+        aspect_ratio:
+          $ref: '#/components/schemas/AspectRatioV3'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
+        negative_prompt:
+          type: string
+          description: "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n"
+          example: 'brush strokes, painting'
+        num_images:
+          maximum: 8
+          minimum: 1
+          type: integer
+          description: Number of images to generate.
+          default: 1
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+        style_codes:
+          $ref: '#/components/schemas/StyleCodes'
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
+        style_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
+    EditImageRequestV3:
+      required:
+        - image_file
+        - mask
+        - prompt
+      type: object
+      properties:
+        image_file:
+          type: string
+          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time'
+          format: binary
+        mask:
+          type: string
+          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time'
+          format: binary
+        prompt:
+          type: string
+          description: The prompt used to describe the edited result.
+          example: A photo of a cat.
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
+        num_images:
+          $ref: '#/components/schemas/NumImages'
+        seed:
+          $ref: '#/components/schemas/Seed'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+        style_codes:
+          $ref: '#/components/schemas/StyleCodes'
+        style_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
+    ReframeImageRequestV3:
+      required:
+        - image_file
+        - resolution
+      type: object
+      properties:
+        image_file:
+          type: string
+          description: 'The image being reframed; only JPEG, WebP and PNG formats are supported at this time.'
+          format: binary
+        resolution:
+          $ref: '#/components/schemas/ResolutionV3'
+        num_images:
+          $ref: '#/components/schemas/NumImages'
+        seed:
+          $ref: '#/components/schemas/Seed'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+        style_codes:
+          $ref: '#/components/schemas/StyleCodes'
+        style_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
     InternalTestingRequest:
       required:
         - required_date_type_field
@@ -823,6 +1151,82 @@ components:
             url: https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g
             is_image_safe: true
         created: '2000-01-23T04:56:07.0000000+00:00'
+    ImageGenerationResponseV3:
+      title: ImageGenerationResponseV3
+      required:
+        - created
+        - data
+      type: object
+      properties:
+        created:
+          title: created
+          type: string
+          description: The time the request was created.
+          format: date-time
+        data:
+          title: data
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageGenerationObjectV3'
+          description: A list of ImageObjects that contain the generated image(s).
+      description: "The response which contains information about the generated image, including the download link.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it."
+      example:
+        data:
+          - style_type: REALISTIC
+            seed: 12345
+            prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
+            resolution: 1024x1024
+            url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+            is_image_safe: true
+          - style_type: REALISTIC
+            seed: 12345
+            prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
+            resolution: 1024x1024
+            url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+            is_image_safe: true
+        created: '2000-01-23T04:56:07.0000000+00:00'
+    ImageGenerationObjectV3:
+      title: ImageGenerationObjectV3
+      required:
+        - is_image_safe
+        - prompt
+        - resolution
+        - seed
+      type: object
+      properties:
+        url:
+          title: url
+          type: string
+          description: The direct link to the image generated.
+          format: uri
+          nullable: true
+          example: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+        prompt:
+          title: prompt
+          type: string
+          description: The prompt used for the generation. This may be different from the original prompt.
+          example: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
+        resolution:
+          $ref: '#/components/schemas/ResolutionV3'
+        is_image_safe:
+          title: is_image_safe
+          type: boolean
+          description: 'Whether this request passes safety checks. If false, the url field will be empty.'
+        seed:
+          title: Seed
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          example: 12345
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
+      example:
+        style_type: REALISTIC
+        seed: 12345
+        prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
+        resolution: 1024x1024
+        url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+        is_image_safe: true
     ImageObject:
       title: ImageObject
       required:
@@ -1240,6 +1644,237 @@ components:
       type: string
       description: The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.
       example: REALISTIC
+    ResolutionV3:
+      title: ResolutionV3
+      enum:
+        - 512x1536
+        - 576x1408
+        - 576x1472
+        - 576x1536
+        - 640x1344
+        - 640x1408
+        - 640x1472
+        - 640x1536
+        - 704x1152
+        - 704x1216
+        - 704x1280
+        - 704x1344
+        - 704x1408
+        - 704x1472
+        - 736x1312
+        - 768x1088
+        - 768x1216
+        - 768x1280
+        - 768x1344
+        - 800x1280
+        - 832x960
+        - 832x1024
+        - 832x1088
+        - 832x1152
+        - 832x1216
+        - 832x1248
+        - 864x1152
+        - 896x960
+        - 896x1024
+        - 896x1088
+        - 896x1120
+        - 896x1152
+        - 960x832
+        - 960x896
+        - 960x1024
+        - 960x1088
+        - 1024x832
+        - 1024x896
+        - 1024x960
+        - 1024x1024
+        - 1088x768
+        - 1088x832
+        - 1088x896
+        - 1088x960
+        - 1120x896
+        - 1152x704
+        - 1152x832
+        - 1152x864
+        - 1152x896
+        - 1216x704
+        - 1216x768
+        - 1216x832
+        - 1248x832
+        - 1280x704
+        - 1280x768
+        - 1280x800
+        - 1312x736
+        - 1344x640
+        - 1344x704
+        - 1344x768
+        - 1408x576
+        - 1408x640
+        - 1408x704
+        - 1472x576
+        - 1472x640
+        - 1472x704
+        - 1536x512
+        - 1536x576
+        - 1536x640
+      type: string
+      description: The resolutions supported for model version V_3.
+      example: 1024x1024
+    AspectRatioV3:
+      title: AspectRatioV3
+      enum:
+        - 1x3
+        - 3x1
+        - 1x2
+        - 2x1
+        - 9x16
+        - 16x9
+        - 10x16
+        - 16x10
+        - 2x3
+        - 3x2
+        - 3x4
+        - 4x3
+        - 4x5
+        - 5x4
+        - 1x1
+      type: string
+      description: 'The aspect ratio to use for image generation, which determines the image''s resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.'
+    RenderingSpeed:
+      title: RenderingSpeed
+      enum:
+        - TURBO
+        - BALANCED
+        - QUALITY
+      type: string
+      description: The rendering speed to use.
+      default: BALANCED
+    ColorPaletteWithPresetNameOrMembers:
+      title: ColorPaletteWithPresetNameOrMembers
+      oneOf:
+        - $ref: '#/components/schemas/ColorPaletteWithPresetName'
+        - $ref: '#/components/schemas/ColorPaletteWithMembers'
+      description: 'Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).'
+    ColorPaletteWithPresetName:
+      title: ColorPaletteWithPresetName
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          $ref: '#/components/schemas/ColorPalettePresetName'
+    ColorPalettePresetName:
+      title: ColorPalettePresetName
+      enum:
+        - EMBER
+        - FRESH
+        - JUNGLE
+        - MAGIC
+        - MELON
+        - MOSAIC
+        - PASTEL
+        - ULTRAMARINE
+      type: string
+      description: A color palette preset value
+      example: PASTEL
+    ColorPaletteWithMembers:
+      title: ColorPaletteWithMembers
+      required:
+        - members
+      type: object
+      properties:
+        members:
+          title: ColorPaletteMembers
+          maxItems: 8
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/ColorPaletteMember'
+          description: "A list of ColorPaletteMembers that define the color palette. Each color palette member\nconsists of a required color hex and an optional weight between 0.05 and 1.0 (inclusive).\nIt is recommended that these weights descend from highest to lowest for the color hexes provided.\n"
+          example:
+            - ColorPaletteMember:
+                color_hex: '#b470b3'
+                color_weight: 0.49
+            - ColorPaletteMember:
+                color_hex: '#7a79e3'
+                color_weight: 0.16
+            - ColorPaletteMember:
+                color_hex: '#a26563'
+                color_weight: 0.1
+            - ColorPaletteMember:
+                color_hex: '#5c7d76'
+                color_weight: 0.07
+            - ColorPaletteMember:
+                color_hex: '#642a9c'
+                color_weight: 0.05
+      description: A color palette represented only via its members. Cannot be used in conjunction with preset name.
+    ColorPaletteMembers:
+      title: ColorPaletteMembers
+      maxItems: 8
+      minItems: 1
+      type: array
+      items:
+        $ref: '#/components/schemas/ColorPaletteMember'
+      description: "A list of ColorPaletteMembers that define the color palette. Each color palette member\nconsists of a required color hex and an optional weight between 0.05 and 1.0 (inclusive).\nIt is recommended that these weights descend from highest to lowest for the color hexes provided.\n"
+      example:
+        - ColorPaletteMember:
+            color_hex: '#b470b3'
+            color_weight: 0.49
+        - ColorPaletteMember:
+            color_hex: '#7a79e3'
+            color_weight: 0.16
+        - ColorPaletteMember:
+            color_hex: '#a26563'
+            color_weight: 0.1
+        - ColorPaletteMember:
+            color_hex: '#5c7d76'
+            color_weight: 0.07
+        - ColorPaletteMember:
+            color_hex: '#642a9c'
+            color_weight: 0.05
+    ColorPaletteMember:
+      title: ColorPaletteMember
+      required:
+        - color_hex
+      type: object
+      properties:
+        color_hex:
+          title: color_hex
+          pattern: '^#(?:[0-9a-fA-F]{3}){1,2}$'
+          type: string
+          description: The hexadecimal representation of the color with an optional chosen weight
+          example: '#FFFFFF'
+        color_weight:
+          title: color_weight
+          maximum: 1.0
+          minimum: 0.05
+          type: number
+          description: The weight of the color in the color palette.
+          example: 0.25
+      description: A member of a color palette.
+    StyleCodes:
+      type: array
+      items:
+        $ref: '#/components/schemas/StyleCode'
+      description: A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.
+      example:
+        - AAFF5733
+        - 0133FF57
+        - DE3357FF
+    StyleCode:
+      pattern: '^[0-9a-fA-F]{8}$'
+      type: string
+      description: The 8 character hexadecimal representation of the style code.
+      example: ABCD1234
+    StyleTypeV3:
+      title: StyleTypeV3
+      enum:
+        - AUTO
+        - GENERAL
+        - REALISTIC
+        - DESIGN
+      type: string
+      description: The style type to generate with.
+      example: REALISTIC
     Resolution:
       title: Resolution
       enum:
@@ -1343,109 +1978,6 @@ components:
       externalDocs:
         url: https://docs.ideogram.ai/usage/advanced-prompting/aspect-ratios
       example: ASPECT_10_16
-    ColorPaletteWithPresetNameOrMembers:
-      title: ColorPaletteWithPresetNameOrMembers
-      oneOf:
-        - $ref: '#/components/schemas/ColorPaletteWithPresetName'
-        - $ref: '#/components/schemas/ColorPaletteWithMembers'
-      description: 'Only available for model version V_2 and V_2_TURBO. A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).'
-    ColorPaletteWithPresetName:
-      title: ColorPaletteWithPresetName
-      required:
-        - name
-      type: object
-      properties:
-        name:
-          $ref: '#/components/schemas/ColorPalettePresetName'
-    ColorPalettePresetName:
-      title: ColorPalettePresetName
-      enum:
-        - EMBER
-        - FRESH
-        - JUNGLE
-        - MAGIC
-        - MELON
-        - MOSAIC
-        - PASTEL
-        - ULTRAMARINE
-      type: string
-      description: A color palette preset value
-      example: PASTEL
-    ColorPaletteWithMembers:
-      title: ColorPaletteWithMembers
-      required:
-        - members
-      type: object
-      properties:
-        members:
-          title: ColorPaletteMembers
-          maxItems: 8
-          minItems: 1
-          type: array
-          items:
-            $ref: '#/components/schemas/ColorPaletteMember'
-          description: "A list of ColorPaletteMembers that define the color palette. Each color palette member\nconsists of a required color hex and an optional weight between 0.05 and 1.0 (inclusive).\nIt is recommended that these weights descend from highest to lowest for the color hexes provided.\n"
-          example:
-            - ColorPaletteMember:
-                color_hex: '#b470b3'
-                color_weight: 0.49
-            - ColorPaletteMember:
-                color_hex: '#7a79e3'
-                color_weight: 0.16
-            - ColorPaletteMember:
-                color_hex: '#a26563'
-                color_weight: 0.1
-            - ColorPaletteMember:
-                color_hex: '#5c7d76'
-                color_weight: 0.07
-            - ColorPaletteMember:
-                color_hex: '#642a9c'
-                color_weight: 0.05
-      description: A color palette represented only via its members
-    ColorPaletteMembers:
-      title: ColorPaletteMembers
-      maxItems: 8
-      minItems: 1
-      type: array
-      items:
-        $ref: '#/components/schemas/ColorPaletteMember'
-      description: "A list of ColorPaletteMembers that define the color palette. Each color palette member\nconsists of a required color hex and an optional weight between 0.05 and 1.0 (inclusive).\nIt is recommended that these weights descend from highest to lowest for the color hexes provided.\n"
-      example:
-        - ColorPaletteMember:
-            color_hex: '#b470b3'
-            color_weight: 0.49
-        - ColorPaletteMember:
-            color_hex: '#7a79e3'
-            color_weight: 0.16
-        - ColorPaletteMember:
-            color_hex: '#a26563'
-            color_weight: 0.1
-        - ColorPaletteMember:
-            color_hex: '#5c7d76'
-            color_weight: 0.07
-        - ColorPaletteMember:
-            color_hex: '#642a9c'
-            color_weight: 0.05
-    ColorPaletteMember:
-      title: ColorPaletteMember
-      required:
-        - color_hex
-      type: object
-      properties:
-        color_hex:
-          title: color_hex
-          pattern: '^#(?:[0-9a-fA-F]{3}){1,2}$'
-          type: string
-          description: The hexadecimal representation of the color with an optional chosen weight
-          example: '#FFFFFF'
-        color_weight:
-          title: color_weight
-          maximum: 1.0
-          minimum: 0.05
-          type: number
-          description: The weight of the color in the color palette.
-          example: 0.25
-      description: A member of a color palette.
     Price:
       title: Price
       required:
