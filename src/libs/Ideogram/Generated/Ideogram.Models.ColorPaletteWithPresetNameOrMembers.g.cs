@@ -45,7 +45,7 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// A color palette represented only via its members
+        /// A color palette represented only via its members. Cannot be used in conjunction with preset name.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Ideogram.ColorPaletteWithMembers? Value2 { get; init; }
