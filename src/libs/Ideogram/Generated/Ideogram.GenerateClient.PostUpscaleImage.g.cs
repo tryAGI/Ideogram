@@ -281,10 +281,10 @@ namespace Ideogram
         /// A request to upscale a provided image with the help of an optional prompt.
         /// </param>
         /// <param name="imageFile">
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

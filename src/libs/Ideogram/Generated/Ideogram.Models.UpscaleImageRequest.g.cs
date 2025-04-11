@@ -16,14 +16,14 @@ namespace Ideogram
         public required global::Ideogram.UpscaleInitialImageRequest ImageRequest { get; set; }
 
         /// <summary>
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -42,10 +42,10 @@ namespace Ideogram
         /// A request to upscale a provided image with the help of an optional prompt.
         /// </param>
         /// <param name="imageFile">
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+        /// An image binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

@@ -9,28 +9,28 @@ namespace Ideogram
     public sealed partial class EditImageRequest
     {
         /// <summary>
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ImageFilename { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Mask { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -58,7 +58,7 @@ namespace Ideogram
         public required global::Ideogram.ModelEnum Model { get; set; } = global::Ideogram.ModelEnum.V2;
 
         /// <summary>
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </summary>
         /// <example>ON</example>
@@ -67,12 +67,14 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
         public int? NumImages { get; set; }
 
         /// <summary>
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -98,16 +100,16 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="EditImageRequest" /> class.
         /// </summary>
         /// <param name="imageFile">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>
@@ -119,13 +121,15 @@ namespace Ideogram
         /// Example: V_2_TURBO
         /// </param>
         /// <param name="magicPromptOption">
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
         /// <param name="numImages">
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="styleType">

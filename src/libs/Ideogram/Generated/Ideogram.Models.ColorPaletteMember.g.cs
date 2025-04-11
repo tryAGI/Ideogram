@@ -9,7 +9,7 @@ namespace Ideogram
     public sealed partial class ColorPaletteMember
     {
         /// <summary>
-        /// The hexadecimal representation of the color with an optional chosen weight<br/>
+        /// The hexadecimal representation of the color with an optional chosen weight.<br/>
         /// Example: #FFFFFF
         /// </summary>
         /// <example>#FFFFFF</example>
@@ -35,7 +35,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ColorPaletteMember" /> class.
         /// </summary>
         /// <param name="colorHex">
-        /// The hexadecimal representation of the color with an optional chosen weight<br/>
+        /// The hexadecimal representation of the color with an optional chosen weight.<br/>
         /// Example: #FFFFFF
         /// </param>
         /// <param name="colorWeight">

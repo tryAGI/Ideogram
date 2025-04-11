@@ -16,7 +16,7 @@ namespace Ideogram
         public required global::Ideogram.ImageRequest ImageRequest { get; set; }
 
         /// <summary>
-        /// A list of base64 encoded binary embeddings
+        /// A list of base64 encoded binary embeddings.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_ref_embeddings")]
         public global::System.Collections.Generic.IList<string>? StyleRefEmbeddings { get; set; }
@@ -32,7 +32,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="imageRequest"></param>
         /// <param name="styleRefEmbeddings">
-        /// A list of base64 encoded binary embeddings
+        /// A list of base64 encoded binary embeddings.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

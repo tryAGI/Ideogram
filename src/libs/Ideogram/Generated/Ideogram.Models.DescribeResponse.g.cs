@@ -4,12 +4,12 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The response for a describe request encapsulates a list of descriptions
+    /// The response for a describe request encapsulates a list of descriptions.
     /// </summary>
     public sealed partial class DescribeResponse
     {
         /// <summary>
-        /// A collection of descriptions for given content
+        /// A collection of descriptions for given content.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("descriptions")]
         public global::System.Collections.Generic.IList<global::Ideogram.Description>? Descriptions { get; set; }
@@ -24,7 +24,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="DescribeResponse" /> class.
         /// </summary>
         /// <param name="descriptions">
-        /// A collection of descriptions for given content
+        /// A collection of descriptions for given content.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

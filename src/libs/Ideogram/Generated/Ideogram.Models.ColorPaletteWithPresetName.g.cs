@@ -9,7 +9,7 @@ namespace Ideogram
     public sealed partial class ColorPaletteWithPresetName
     {
         /// <summary>
-        /// A color palette preset value<br/>
+        /// A color palette preset value.<br/>
         /// Example: PASTEL
         /// </summary>
         /// <example>PASTEL</example>
@@ -28,7 +28,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ColorPaletteWithPresetName" /> class.
         /// </summary>
         /// <param name="name">
-        /// A color palette preset value<br/>
+        /// A color palette preset value.<br/>
         /// Example: PASTEL
         /// </param>
 #if NET7_0_OR_GREATER

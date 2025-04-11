@@ -9,18 +9,18 @@ namespace Ideogram
     public sealed partial class RemixImageRequestV3
     {
         /// <summary>
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time
+        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required byte[] ImageFile { get; set; }
+        public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time
+        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string ImageFilename { get; set; }
+        public required string Imagename { get; set; }
 
         /// <summary>
         /// The prompt to use to generate the image.<br/>
@@ -40,6 +40,7 @@ namespace Ideogram
         public int? ImageWeight { get; set; }
 
         /// <summary>
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -56,7 +57,7 @@ namespace Ideogram
         public global::Ideogram.ResolutionV3? Resolution { get; set; }
 
         /// <summary>
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter))]
@@ -71,7 +72,7 @@ namespace Ideogram
         public global::Ideogram.RenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </summary>
         /// <example>ON</example>
@@ -134,11 +135,11 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="RemixImageRequestV3" /> class.
         /// </summary>
-        /// <param name="imageFile">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time
+        /// <param name="image">
+        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
-        /// <param name="imageFilename">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time
+        /// <param name="imagename">
+        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt to use to generate the image.<br/>
@@ -149,6 +150,7 @@ namespace Ideogram
         /// Example: 50
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="resolution">
@@ -156,14 +158,14 @@ namespace Ideogram
         /// Example: 1280x800
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
         /// Default Value: BALANCED
         /// </param>
         /// <param name="magicPrompt">
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
         /// <param name="negativePrompt">
@@ -193,8 +195,8 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public RemixImageRequestV3(
-            byte[] imageFile,
-            string imageFilename,
+            byte[] image,
+            string imagename,
             string prompt,
             int? imageWeight,
             int? seed,
@@ -209,8 +211,8 @@ namespace Ideogram
             global::Ideogram.StyleTypeV3? styleType,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages)
         {
-            this.ImageFile = imageFile ?? throw new global::System.ArgumentNullException(nameof(imageFile));
-            this.ImageFilename = imageFilename ?? throw new global::System.ArgumentNullException(nameof(imageFilename));
+            this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
+            this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.ImageWeight = imageWeight;
             this.Seed = seed;

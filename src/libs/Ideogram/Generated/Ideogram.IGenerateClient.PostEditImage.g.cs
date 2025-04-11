@@ -26,16 +26,16 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageFile">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>
@@ -47,13 +47,15 @@ namespace Ideogram
         /// Example: V_2_TURBO
         /// </param>
         /// <param name="magicPromptOption">
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
         /// <param name="numImages">
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="styleType">

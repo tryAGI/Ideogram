@@ -7,7 +7,7 @@ namespace Ideogram
         /// <summary>
         /// Reframe<br/>
         /// Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it
+        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -19,7 +19,7 @@ namespace Ideogram
         /// <summary>
         /// Reframe<br/>
         /// Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it
+        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageFile">
         /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
@@ -37,9 +37,11 @@ namespace Ideogram
         /// Example: V_2_TURBO
         /// </param>
         /// <param name="numImages">
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="styleType">

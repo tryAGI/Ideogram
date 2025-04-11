@@ -42,7 +42,7 @@ namespace Ideogram
                 request: request);
 
             var __pathBuilder = new PathBuilder(
-                path: "/v1/generate/ideogram-v3",
+                path: "/v1/ideogram-v3/generate",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -342,6 +342,7 @@ namespace Ideogram
         /// Example: A photo of a cat
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="resolution">
@@ -349,14 +350,14 @@ namespace Ideogram
         /// Example: 1280x800
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
         /// Default Value: BALANCED
         /// </param>
         /// <param name="magicPrompt">
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
         /// <param name="negativePrompt">

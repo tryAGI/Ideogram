@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The magic prompt version to use when magic prompt option is set to AUTO or ON<br/>
+    /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
     /// Example: V_0
     /// </summary>
     public enum MagicPromptVersionEnum

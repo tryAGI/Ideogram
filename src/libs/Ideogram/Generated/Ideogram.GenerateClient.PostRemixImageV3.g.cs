@@ -44,7 +44,7 @@ namespace Ideogram
                 request: request);
 
             var __pathBuilder = new PathBuilder(
-                path: "/v1/remix/ideogram-v3",
+                path: "/v1/ideogram-v3/remix",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -72,9 +72,9 @@ namespace Ideogram
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
-                name: "image_file",
-                fileName: request.ImageFilename ?? string.Empty);
+                content: new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>()),
+                name: "image",
+                fileName: request.Imagename ?? string.Empty);
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
                 name: "prompt");
@@ -351,11 +351,11 @@ namespace Ideogram
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
-        /// <param name="imageFile">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time
+        /// <param name="image">
+        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
-        /// <param name="imageFilename">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time
+        /// <param name="imagename">
+        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt to use to generate the image.<br/>
@@ -366,6 +366,7 @@ namespace Ideogram
         /// Example: 50
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="resolution">
@@ -373,14 +374,14 @@ namespace Ideogram
         /// Example: 1280x800
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
         /// Default Value: BALANCED
         /// </param>
         /// <param name="magicPrompt">
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
         /// <param name="negativePrompt">
@@ -409,8 +410,8 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostRemixImageV3Async(
-            byte[] imageFile,
-            string imageFilename,
+            byte[] image,
+            string imagename,
             string prompt,
             int? imageWeight = default,
             int? seed = default,
@@ -428,8 +429,8 @@ namespace Ideogram
         {
             var __request = new global::Ideogram.RemixImageRequestV3
             {
-                ImageFile = imageFile,
-                ImageFilename = imageFilename,
+                Image = image,
+                Imagename = imagename,
                 Prompt = prompt,
                 ImageWeight = imageWeight,
                 Seed = seed,

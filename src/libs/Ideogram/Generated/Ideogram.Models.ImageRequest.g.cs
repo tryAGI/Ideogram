@@ -37,7 +37,7 @@ namespace Ideogram
         public global::Ideogram.ModelEnum? Model { get; set; }
 
         /// <summary>
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </summary>
         /// <example>ON</example>
@@ -46,7 +46,7 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
-        /// The magic prompt version to use when magic prompt option is set to AUTO or ON<br/>
+        /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
         /// Example: V_0
         /// </summary>
         /// <example>V_0</example>
@@ -55,6 +55,7 @@ namespace Ideogram
         public global::Ideogram.MagicPromptVersionEnum? MagicPromptVersion { get; set; }
 
         /// <summary>
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -79,6 +80,7 @@ namespace Ideogram
         public string? NegativePrompt { get; set; }
 
         /// <summary>
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
@@ -123,14 +125,15 @@ namespace Ideogram
         /// Example: V_2_TURBO
         /// </param>
         /// <param name="magicPromptOption">
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
         /// <param name="magicPromptVersion">
-        /// The magic prompt version to use when magic prompt option is set to AUTO or ON<br/>
+        /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
         /// Example: V_0
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="styleType">
@@ -142,6 +145,7 @@ namespace Ideogram
         /// Example: brush strokes, painting
         /// </param>
         /// <param name="numImages">
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="resolution">
