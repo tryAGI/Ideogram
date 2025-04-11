@@ -11,7 +11,7 @@ paths:
       tags:
         - vision
       summary: Describe
-      description: "Describe an image\n\nSupported image formats include JPEG, PNG, and WebP\n"
+      description: "Describe an image.\n\nSupported image formats include JPEG, PNG, and WebP.\n"
       operationId: post_describe
       requestBody:
         content:
@@ -385,10 +385,10 @@ paths:
       tags:
         - generate
       summary: Reframe
-      description: "Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it\n"
+      description: "Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_reframe_image
       requestBody:
-        description: A request to reframe an image in a new resolution
+        description: A request to reframe an image in a new resolution.
         content:
           multipart/form-data:
             schema:
@@ -420,7 +420,7 @@ paths:
       tags:
         - generate
       summary: Remix
-      description: "Remix provided images synchronously based on a given prompt and optional parameters\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      description: "Remix provided images synchronously based on a given prompt and optional parameters.\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_remix_image
       requestBody:
         description: A request to remix a provided image with Ideogram. Input images are cropped to the chosen aspect ratio before being remixed.
@@ -435,13 +435,13 @@ paths:
         required: true
       responses:
         '200':
-          description: Image(s) generated successfully
+          description: Image(s) generated successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GenerateImageResponse'
         '400':
-          description: Invalid input provided
+          description: Invalid input provided.
         '403':
           description: Not authorized to generate an image.
         '422':
@@ -473,13 +473,13 @@ paths:
         required: true
       responses:
         '200':
-          description: Image(s) generated successfully
+          description: Image(s) generated successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/GenerateImageResponse'
         '400':
-          description: Invalid input provided
+          description: Invalid input provided.
         '403':
           description: Not authorized to generate an image.
         '422':
@@ -491,7 +491,7 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
-  /v1/edit/ideogram-v3:
+  /v1/ideogram-v3/edit:
     post:
       tags:
         - generate
@@ -530,7 +530,7 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
-  /v1/generate/ideogram-v3:
+  /v1/ideogram-v3/generate:
     post:
       tags:
         - generate
@@ -572,15 +572,15 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
-  /v1/reframe/ideogram-v3:
+  /v1/ideogram-v3/reframe:
     post:
       tags:
         - generate
       summary: Reframe with Ideogram 3.0
-      description: "Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it\n"
+      description: "Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_reframe_image_v3
       requestBody:
-        description: A request to reframe an image in a new resolution
+        description: A request to reframe an image in a new resolution.
         content:
           multipart/form-data:
             schema:
@@ -611,7 +611,7 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
-  /v1/remix/ideogram-v3:
+  /v1/ideogram-v3/remix:
     post:
       tags:
         - generate
@@ -632,13 +632,13 @@ paths:
         x-body-name: body
       responses:
         '200':
-          description: Image(s) generated successfully
+          description: Image(s) generated successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageGenerationResponseV3'
         '400':
-          description: Invalid input provided
+          description: Invalid input provided.
         '403':
           description: Not authorized to generate an image.
         '422':
@@ -661,8 +661,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Description'
-          description: A collection of descriptions for given content
-      description: The response for a describe request encapsulates a list of descriptions
+          description: A collection of descriptions for given content.
+      description: The response for a describe request encapsulates a list of descriptions.
       example:
         descriptions:
           - text: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
@@ -675,7 +675,7 @@ components:
         image_file:
           type: string
           format: binary
-      description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time'
+      description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time.'
     EditImageRequest:
       required:
         - image_file
@@ -686,11 +686,11 @@ components:
       properties:
         image_file:
           type: string
-          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time'
+          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         mask:
           type: string
-          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time'
+          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         prompt:
           type: string
@@ -719,7 +719,7 @@ components:
           type: array
           items:
             type: string
-          description: A list of base64 encoded binary embeddings
+          description: A list of base64 encoded binary embeddings.
       example:
         style_ref_embeddings:
           - style_ref_embeddings
@@ -743,6 +743,7 @@ components:
           maximum: 2147483647
           minimum: 0
           type: integer
+          description: Random seed. Set for reproducible generation.
           example: 12345
         resolution:
           $ref: '#/components/schemas/ResolutionV3'
@@ -783,13 +784,13 @@ components:
           description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
     RemixImageRequestV3:
       required:
-        - image_file
+        - image
         - prompt
       type: object
       properties:
-        image_file:
+        image:
           type: string
-          description: 'The image to remix binary; only JPEG, WebP and PNG formats are supported at this time'
+          description: 'The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         prompt:
           type: string
@@ -835,18 +836,18 @@ components:
           description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
     EditImageRequestV3:
       required:
-        - image_file
+        - image
         - mask
         - prompt
       type: object
       properties:
-        image_file:
+        image:
           type: string
-          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time'
+          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         mask:
           type: string
-          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time'
+          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         prompt:
           type: string
@@ -872,11 +873,11 @@ components:
           description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
     ReframeImageRequestV3:
       required:
-        - image_file
+        - image
         - resolution
       type: object
       properties:
-        image_file:
+        image:
           type: string
           description: 'The image being reframed; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
@@ -977,9 +978,9 @@ components:
           $ref: '#/components/schemas/InitialImageRequest'
         image_file:
           type: string
-          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time'
+          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
-      description: 'A request to generate an image from a source image and a provided caption, provided images are cropped to match the chosen output aspect ratio'
+      description: 'A request to generate an image from a source image and a provided caption, provided images are cropped to match the chosen output aspect ratio.'
     ReframeImageRequest:
       required:
         - image_file
@@ -1011,7 +1012,7 @@ components:
           $ref: '#/components/schemas/UpscaleInitialImageRequest'
         image_file:
           type: string
-          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time'
+          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
     ImageRequest:
       title: ImageRequest
@@ -1036,6 +1037,7 @@ components:
           maximum: 2147483647
           minimum: 0
           type: integer
+          description: Random seed. Set for reproducible generation.
           example: 12345
         style_type:
           $ref: '#/components/schemas/StyleType'
@@ -1048,6 +1050,7 @@ components:
           maximum: 8
           minimum: 1
           type: integer
+          description: The number of images to generate.
           default: 1
         resolution:
           $ref: '#/components/schemas/Resolution'
@@ -1109,12 +1112,14 @@ components:
           maximum: 8
           minimum: 1
           type: integer
+          description: The number of images to generate.
           default: 1
         seed:
           title: Seed
           maximum: 2147483647
           minimum: 0
           type: integer
+          description: Random seed. Set for reproducible generation.
           example: 12345
       description: A request to upscale a provided image with the help of an optional prompt.
     GenerateImageResponse:
@@ -1217,6 +1222,7 @@ components:
           maximum: 2147483647
           minimum: 0
           type: integer
+          description: Random seed. Set for reproducible generation.
           example: 12345
         style_type:
           $ref: '#/components/schemas/StyleTypeV3'
@@ -1262,6 +1268,7 @@ components:
           maximum: 2147483647
           minimum: 0
           type: integer
+          description: Random seed. Set for reproducible generation.
           example: 12345
         style_type:
           $ref: '#/components/schemas/StyleType'
@@ -1279,7 +1286,7 @@ components:
         - V_0_1
         - V_0_2
       type: string
-      description: The magic prompt version to use when magic prompt option is set to AUTO or ON
+      description: The magic prompt version to use when magic prompt option is set to AUTO or ON.
       example: V_0
     ModelEnum:
       title: ModelEnum
@@ -1616,7 +1623,7 @@ components:
         - ON
         - OFF
       type: string
-      description: Determine if MagicPrompt should be used in generating the request or not
+      description: Determine if MagicPrompt should be used in generating the request or not.
       externalDocs:
         url: https://docs.ideogram.ai/using-ideogram/ideogram-features/magic-prompt
       example: ON
@@ -1625,12 +1632,14 @@ components:
       maximum: 8
       minimum: 1
       type: integer
+      description: The number of images to generate.
       default: 1
     Seed:
       title: Seed
       maximum: 2147483647
       minimum: 0
       type: integer
+      description: Random seed. Set for reproducible generation.
       example: 12345
     StyleType:
       title: StyleType
@@ -1738,7 +1747,7 @@ components:
         - 5x4
         - 1x1
       type: string
-      description: 'The aspect ratio to use for image generation, which determines the image''s resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.'
+      description: 'The aspect ratio to use for image generation, which determines the image''s resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.'
     RenderingSpeed:
       title: RenderingSpeed
       enum:
@@ -1774,7 +1783,7 @@ components:
         - PASTEL
         - ULTRAMARINE
       type: string
-      description: A color palette preset value
+      description: A color palette preset value.
       example: PASTEL
     ColorPaletteWithMembers:
       title: ColorPaletteWithMembers
@@ -1841,7 +1850,7 @@ components:
           title: color_hex
           pattern: '^#(?:[0-9a-fA-F]{3}){1,2}$'
           type: string
-          description: The hexadecimal representation of the color with an optional chosen weight
+          description: The hexadecimal representation of the color with an optional chosen weight.
           example: '#FFFFFF'
         color_weight:
           title: color_weight

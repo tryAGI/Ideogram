@@ -44,7 +44,7 @@ namespace Ideogram
                 request: request);
 
             var __pathBuilder = new PathBuilder(
-                path: "/v1/edit/ideogram-v3",
+                path: "/v1/ideogram-v3/edit",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -72,9 +72,9 @@ namespace Ideogram
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
-                name: "image_file",
-                fileName: request.ImageFilename ?? string.Empty);
+                content: new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>()),
+                name: "image",
+                fileName: request.Imagename ?? string.Empty);
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>()),
                 name: "mask",
@@ -325,30 +325,32 @@ namespace Ideogram
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
-        /// <param name="imageFile">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// <param name="image">
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
-        /// <param name="imageFilename">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time
+        /// <param name="imagename">
+        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time
+        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>
         /// Example: A photo of a cat.
         /// </param>
         /// <param name="magicPrompt">
-        /// Determine if MagicPrompt should be used in generating the request or not<br/>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
         /// <param name="numImages">
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="renderingSpeed">
@@ -368,8 +370,8 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostEditImageV3Async(
-            byte[] imageFile,
-            string imageFilename,
+            byte[] image,
+            string imagename,
             byte[] mask,
             string maskname,
             string prompt,
@@ -384,8 +386,8 @@ namespace Ideogram
         {
             var __request = new global::Ideogram.EditImageRequestV3
             {
-                ImageFile = imageFile,
-                ImageFilename = imageFilename,
+                Image = image,
+                Imagename = imagename,
                 Mask = mask,
                 Maskname = maskname,
                 Prompt = prompt,

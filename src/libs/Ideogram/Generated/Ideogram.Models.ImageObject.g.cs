@@ -42,6 +42,7 @@ namespace Ideogram
         public required bool IsImageSafe { get; set; }
 
         /// <summary>
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -83,6 +84,7 @@ namespace Ideogram
         /// Whether this request passes safety checks. If false, the url field will be empty.
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="styleType">

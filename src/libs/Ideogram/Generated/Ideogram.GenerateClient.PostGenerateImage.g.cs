@@ -274,7 +274,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="imageRequest"></param>
         /// <param name="styleRefEmbeddings">
-        /// A list of base64 encoded binary embeddings
+        /// A list of base64 encoded binary embeddings.
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

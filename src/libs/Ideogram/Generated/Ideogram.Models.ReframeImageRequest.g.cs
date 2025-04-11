@@ -45,12 +45,14 @@ namespace Ideogram
         public required global::Ideogram.ModelEnum Model { get; set; } = global::Ideogram.ModelEnum.V2;
 
         /// <summary>
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
         public int? NumImages { get; set; }
 
         /// <summary>
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -91,9 +93,11 @@ namespace Ideogram
         /// Example: V_2_TURBO
         /// </param>
         /// <param name="numImages">
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="styleType">

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// An image binary; only JPEG, WebP and PNG formats are supported at this time
+    /// An image binary; only JPEG, WebP and PNG formats are supported at this time.
     /// </summary>
     public sealed partial class DescribeRequest
     {

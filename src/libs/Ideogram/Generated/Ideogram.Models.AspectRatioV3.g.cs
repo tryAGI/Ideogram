@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1:1.
+    /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
     /// </summary>
     public enum AspectRatioV3
     {

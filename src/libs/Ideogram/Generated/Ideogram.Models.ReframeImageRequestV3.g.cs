@@ -11,16 +11,16 @@ namespace Ideogram
         /// <summary>
         /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required byte[] ImageFile { get; set; }
+        public required byte[] Image { get; set; }
 
         /// <summary>
         /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string ImageFilename { get; set; }
+        public required string Imagename { get; set; }
 
         /// <summary>
         /// The resolutions supported for model version V_3.<br/>
@@ -33,12 +33,14 @@ namespace Ideogram
         public required global::Ideogram.ResolutionV3 Resolution { get; set; }
 
         /// <summary>
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
         public int? NumImages { get; set; }
 
         /// <summary>
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -83,10 +85,10 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="ReframeImageRequestV3" /> class.
         /// </summary>
-        /// <param name="imageFile">
+        /// <param name="image">
         /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
-        /// <param name="imageFilename">
+        /// <param name="imagename">
         /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="resolution">
@@ -94,9 +96,11 @@ namespace Ideogram
         /// Example: 1280x800
         /// </param>
         /// <param name="numImages">
+        /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="renderingSpeed">
@@ -117,8 +121,8 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ReframeImageRequestV3(
-            byte[] imageFile,
-            string imageFilename,
+            byte[] image,
+            string imagename,
             global::Ideogram.ResolutionV3 resolution,
             int? numImages,
             int? seed,
@@ -127,8 +131,8 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages)
         {
-            this.ImageFile = imageFile ?? throw new global::System.ArgumentNullException(nameof(imageFile));
-            this.ImageFilename = imageFilename ?? throw new global::System.ArgumentNullException(nameof(imageFilename));
+            this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
+            this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
             this.Resolution = resolution;
             this.NumImages = numImages;
             this.Seed = seed;
