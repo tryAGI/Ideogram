@@ -26,10 +26,18 @@ namespace Ideogram
         /// <param name="xTestHeader"></param>
         /// <param name="xTestHeader2"></param>
         /// <param name="xPosition"></param>
-        /// <param name="imageFile"></param>
-        /// <param name="imageFilename"></param>
-        /// <param name="anotherImageFile"></param>
-        /// <param name="anotherImageFilename"></param>
+        /// <param name="imageFile">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imageFilename">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="anotherImageFile">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="anotherImageFilename">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
         /// <param name="someText"></param>
         /// <param name="nestedObject"></param>
         /// <param name="nestedObjectRequiredFields"></param>

@@ -674,8 +674,8 @@ components:
       properties:
         image_file:
           type: string
+          description: 'An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
-      description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time.'
     EditImageRequest:
       required:
         - image_file
@@ -686,11 +686,11 @@ components:
       properties:
         image_file:
           type: string
-          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         mask:
           type: string
-          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         prompt:
           type: string
@@ -781,7 +781,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
+          description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
     RemixImageRequestV3:
       required:
         - image
@@ -790,7 +790,7 @@ components:
       properties:
         image:
           type: string
-          description: 'The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         prompt:
           type: string
@@ -833,7 +833,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
+          description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
     EditImageRequestV3:
       required:
         - image
@@ -843,11 +843,11 @@ components:
       properties:
         image:
           type: string
-          description: 'The image being edited; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         mask:
           type: string
-          description: 'A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         prompt:
           type: string
@@ -870,7 +870,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
+          description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
     ReframeImageRequestV3:
       required:
         - image
@@ -879,7 +879,7 @@ components:
       properties:
         image:
           type: string
-          description: 'The image being reframed; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         resolution:
           $ref: '#/components/schemas/ResolutionV3'
@@ -898,7 +898,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as style references. The images should be in JPEG, PNG or WebP format.'
+          description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
     InternalTestingRequest:
       required:
         - required_date_type_field
@@ -909,9 +909,11 @@ components:
           nullable: true
         image_file:
           type: string
+          description: 'An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         another_image_file:
           type: string
+          description: 'An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         some_text:
           type: string
@@ -978,7 +980,7 @@ components:
           $ref: '#/components/schemas/InitialImageRequest'
         image_file:
           type: string
-          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
       description: 'A request to generate an image from a source image and a provided caption, provided images are cropped to match the chosen output aspect ratio.'
     ReframeImageRequest:
@@ -990,7 +992,7 @@ components:
       properties:
         image_file:
           type: string
-          description: 'The image being reframed; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
         resolution:
           $ref: '#/components/schemas/Resolution'
@@ -1012,7 +1014,7 @@ components:
           $ref: '#/components/schemas/UpscaleInitialImageRequest'
         image_file:
           type: string
-          description: 'An image binary; only JPEG, WebP and PNG formats are supported at this time.'
+          description: 'An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
           format: binary
     ImageRequest:
       title: ImageRequest

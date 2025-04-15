@@ -248,8 +248,12 @@ namespace Ideogram
         /// Describe an image.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.
         /// </summary>
-        /// <param name="imageFile"></param>
-        /// <param name="imageFilename"></param>
+        /// <param name="imageFile">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imageFilename">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(

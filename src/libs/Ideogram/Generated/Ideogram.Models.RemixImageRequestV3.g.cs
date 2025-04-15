@@ -9,14 +9,14 @@ namespace Ideogram
     public sealed partial class RemixImageRequestV3
     {
         /// <summary>
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -121,7 +121,7 @@ namespace Ideogram
         public global::Ideogram.StyleTypeV3? StyleType { get; set; }
 
         /// <summary>
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -136,10 +136,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="RemixImageRequestV3" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt to use to generate the image.<br/>
@@ -189,7 +189,7 @@ namespace Ideogram
         /// Example: GENERAL
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

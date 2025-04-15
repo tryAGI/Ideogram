@@ -26,16 +26,16 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="image">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>
@@ -65,7 +65,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

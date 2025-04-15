@@ -26,10 +26,10 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="image">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image to remix binary; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt to use to generate the image.<br/>
@@ -79,7 +79,7 @@ namespace Ideogram
         /// Example: GENERAL
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

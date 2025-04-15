@@ -9,28 +9,28 @@ namespace Ideogram
     public sealed partial class EditImageRequestV3
     {
         /// <summary>
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Imagename { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Mask { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -93,7 +93,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -108,16 +108,16 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="EditImageRequestV3" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image being edited; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited. Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>
@@ -147,7 +147,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
