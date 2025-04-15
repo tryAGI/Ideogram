@@ -99,7 +99,7 @@ namespace Ideogram
         public global::Ideogram.StyleTypeV3? StyleType { get; set; }
 
         /// <summary>
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -157,7 +157,7 @@ namespace Ideogram
         /// Example: GENERAL
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

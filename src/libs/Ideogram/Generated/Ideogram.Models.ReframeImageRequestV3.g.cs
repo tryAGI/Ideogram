@@ -9,14 +9,14 @@ namespace Ideogram
     public sealed partial class ReframeImageRequestV3
     {
         /// <summary>
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -71,7 +71,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -86,10 +86,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ReframeImageRequestV3" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="resolution">
         /// The resolutions supported for model version V_3.<br/>
@@ -115,7 +115,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references. The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

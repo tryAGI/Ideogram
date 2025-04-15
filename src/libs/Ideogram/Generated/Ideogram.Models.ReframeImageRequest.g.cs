@@ -9,14 +9,14 @@ namespace Ideogram
     public sealed partial class ReframeImageRequest
     {
         /// <summary>
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -78,10 +78,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ReframeImageRequest" /> class.
         /// </summary>
         /// <param name="imageFile">
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="resolution">
         /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>

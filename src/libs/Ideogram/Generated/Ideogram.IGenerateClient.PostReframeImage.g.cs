@@ -22,10 +22,10 @@ namespace Ideogram
         /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageFile">
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// The image being reframed; only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="resolution">
         /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
