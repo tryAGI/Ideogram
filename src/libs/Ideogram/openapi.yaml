@@ -171,6 +171,40 @@ paths:
               schema:
                 $ref: '#/components/schemas/postInternalTesting_200_response'
       x-openapi-router-controller: external_api.generated.openapi.controllers.internal_testing_controller
+  /manage/api/add_credits:
+    post:
+      tags:
+        - manage
+      summary: Add credits to an API user's account.
+      operationId: post_add_credits_for_api
+      requestBody:
+        description: A request to add credits to an API user's account.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostAddCreditsRequest'
+        required: true
+        x-body-name: post_add_credits_request
+      responses:
+        '200':
+          description: API subscription content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAddCreditsResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostAddCreditsError'
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
   /manage/api/api_keys:
     get:
       tags:
@@ -1607,6 +1641,46 @@ components:
           example: TOS_2024_04_20
       example:
         terms_id: TOS_2024_04_20
+    PostAddCreditsResponse:
+      title: PostAddCreditsResponse
+      required:
+        - amount
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Price'
+      example:
+        amount:
+          amount: 1050
+          currency_code: USD
+    PostAddCreditsError:
+      title: PostAddCreditsError
+      type: object
+      properties:
+        messages:
+          title: messages
+          type: array
+          items:
+            type: string
+            description: 'An error message, indicating what went wrong.'
+          description: Error messages about what the error could be.
+      description: Represents an error when attempting to add credits to an API user's account.
+      example:
+        messages:
+          - messages
+          - messages
+    PostAddCreditsRequest:
+      title: PostAddCreditsRequest
+      required:
+        - amount
+      type: object
+      properties:
+        amount:
+          $ref: '#/components/schemas/Price'
+      example:
+        amount:
+          amount: 1050
+          currency_code: USD
     Description:
       title: Description
       type: object
