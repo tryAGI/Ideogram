@@ -306,6 +306,18 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.PostInternalTesting200Response? Type70 { get; set; }
+        public global::Ideogram.PostAddCreditsResponse? Type70 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.PostAddCreditsError? Type71 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.PostAddCreditsRequest? Type72 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.PostInternalTesting200Response? Type73 { get; set; }
     }
 }
