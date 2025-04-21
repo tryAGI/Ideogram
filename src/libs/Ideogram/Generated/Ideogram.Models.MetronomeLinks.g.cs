@@ -33,6 +33,18 @@ namespace Ideogram
         public string? CreditsIframeDarkModeUrl { get; set; }
 
         /// <summary>
+        /// The URL to display the customer usage dashboard.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("usage_iframe_url")]
+        public string? UsageIframeUrl { get; set; }
+
+        /// <summary>
+        /// The URL to display the customer usage dashboard, in dark mode.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("usage_iframe_dark_mode_url")]
+        public string? UsageIframeDarkModeUrl { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -53,6 +65,12 @@ namespace Ideogram
         /// <param name="creditsIframeDarkModeUrl">
         /// The URL to display the customer invoice and API usage.
         /// </param>
+        /// <param name="usageIframeUrl">
+        /// The URL to display the customer usage dashboard.
+        /// </param>
+        /// <param name="usageIframeDarkModeUrl">
+        /// The URL to display the customer usage dashboard, in dark mode.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -60,12 +78,16 @@ namespace Ideogram
             string? invoicesIframeUrl,
             string? invoicesIframeDarkModeUrl,
             string? creditsIframeUrl,
-            string? creditsIframeDarkModeUrl)
+            string? creditsIframeDarkModeUrl,
+            string? usageIframeUrl,
+            string? usageIframeDarkModeUrl)
         {
             this.InvoicesIframeUrl = invoicesIframeUrl;
             this.InvoicesIframeDarkModeUrl = invoicesIframeDarkModeUrl;
             this.CreditsIframeUrl = creditsIframeUrl;
             this.CreditsIframeDarkModeUrl = creditsIframeDarkModeUrl;
+            this.UsageIframeUrl = usageIframeUrl;
+            this.UsageIframeDarkModeUrl = usageIframeDarkModeUrl;
         }
 
         /// <summary>
