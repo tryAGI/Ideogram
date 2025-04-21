@@ -1404,6 +1404,8 @@ components:
         has_accepted_terms: true
         metronome_dashboard_url: metronome_dashboard_url
         metronome_links:
+          usage_iframe_url: usage_iframe_url
+          usage_iframe_dark_mode_url: usage_iframe_dark_mode_url
           credits_iframe_dark_mode_url: credits_iframe_dark_mode_url
           invoices_iframe_dark_mode_url: invoices_iframe_dark_mode_url
           invoices_iframe_url: invoices_iframe_url
@@ -1428,7 +1430,17 @@ components:
           title: credits_iframe_dark_mode_url
           type: string
           description: The URL to display the customer invoice and API usage.
+        usage_iframe_url:
+          title: usage_iframe_url
+          type: string
+          description: The URL to display the customer usage dashboard.
+        usage_iframe_dark_mode_url:
+          title: usage_iframe_dark_mode_url
+          type: string
+          description: 'The URL to display the customer usage dashboard, in dark mode.'
       example:
+        usage_iframe_url: usage_iframe_url
+        usage_iframe_dark_mode_url: usage_iframe_dark_mode_url
         credits_iframe_dark_mode_url: credits_iframe_dark_mode_url
         invoices_iframe_dark_mode_url: invoices_iframe_dark_mode_url
         invoices_iframe_url: invoices_iframe_url
