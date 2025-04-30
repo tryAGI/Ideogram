@@ -6,31 +6,39 @@ namespace Ideogram
     /// <summary>
     /// 
     /// </summary>
-    public sealed partial class ReframeImageRequestV3
+    public sealed partial class ReplaceBackgroundRequestV3
     {
         /// <summary>
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Imagename { get; set; }
 
         /// <summary>
-        /// The resolutions supported for Ideogram 3.0.<br/>
-        /// Example: 1280x800
+        /// The prompt describing the desired new background.<br/>
+        /// Example: A vibrant cityscape at night.
         /// </summary>
-        /// <example>1280x800</example>
-        [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV3JsonConverter))]
+        /// <example>A vibrant cityscape at night.</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.ResolutionV3 Resolution { get; set; }
+        public required string Prompt { get; set; }
+
+        /// <summary>
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
+        /// </summary>
+        /// <example>ON</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
+        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -83,17 +91,21 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageRequestV3" /> class.
+        /// Initializes a new instance of the <see cref="ReplaceBackgroundRequestV3" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
-        /// <param name="resolution">
-        /// The resolutions supported for Ideogram 3.0.<br/>
-        /// Example: 1280x800
+        /// <param name="prompt">
+        /// The prompt describing the desired new background.<br/>
+        /// Example: A vibrant cityscape at night.
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -120,10 +132,11 @@ namespace Ideogram
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ReframeImageRequestV3(
+        public ReplaceBackgroundRequestV3(
             byte[] image,
             string imagename,
-            global::Ideogram.ResolutionV3 resolution,
+            string prompt,
+            global::Ideogram.MagicPromptOption? magicPrompt,
             int? numImages,
             int? seed,
             global::Ideogram.RenderingSpeed? renderingSpeed,
@@ -133,7 +146,8 @@ namespace Ideogram
         {
             this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
-            this.Resolution = resolution;
+            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.MagicPrompt = magicPrompt;
             this.NumImages = numImages;
             this.Seed = seed;
             this.RenderingSpeed = renderingSpeed;
@@ -143,9 +157,9 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageRequestV3" /> class.
+        /// Initializes a new instance of the <see cref="ReplaceBackgroundRequestV3" /> class.
         /// </summary>
-        public ReframeImageRequestV3()
+        public ReplaceBackgroundRequestV3()
         {
         }
     }

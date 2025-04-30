@@ -684,6 +684,45 @@ paths:
         '429':
           description: Too many requests.
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/ideogram-v3/replace-background:
+    post:
+      tags:
+        - generate
+      summary: Replace Background with Ideogram 3.0
+      description: "Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject\nwill be identified and kept, while the background is replaced based on the prompt and chosen style.\nSupported image formats include JPEG, PNG, and WebP.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_replace_background_v3
+      requestBody:
+        description: A request to replace the background of an image with Ideogram 3.0.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ReplaceBackgroundRequestV3'
+            encoding:
+              color_palette:
+                contentType: application/json
+                style: form
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Background replacement generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt or Initial Image failed the safety checks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
 components:
   schemas:
     DescribeResponse:
@@ -917,6 +956,38 @@ components:
           format: binary
         resolution:
           $ref: '#/components/schemas/ResolutionV3'
+        num_images:
+          $ref: '#/components/schemas/NumImages'
+        seed:
+          $ref: '#/components/schemas/Seed'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+        style_codes:
+          $ref: '#/components/schemas/StyleCodes'
+        style_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
+    ReplaceBackgroundRequestV3:
+      required:
+        - image
+        - prompt
+      type: object
+      properties:
+        image:
+          type: string
+          description: 'The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
+          format: binary
+        prompt:
+          type: string
+          description: The prompt describing the desired new background.
+          example: A vibrant cityscape at night.
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
         num_images:
           $ref: '#/components/schemas/NumImages'
         seed:
@@ -1814,7 +1885,7 @@ components:
         - 1536x576
         - 1536x640
       type: string
-      description: The resolutions supported for model version V_3.
+      description: The resolutions supported for Ideogram 3.0.
       example: 1280x800
     AspectRatioV3:
       title: AspectRatioV3

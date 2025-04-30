@@ -318,7 +318,7 @@ namespace Ideogram
         /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="resolution">
-        /// The resolutions supported for model version V_3.<br/>
+        /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
         /// </param>
         /// <param name="numImages">
