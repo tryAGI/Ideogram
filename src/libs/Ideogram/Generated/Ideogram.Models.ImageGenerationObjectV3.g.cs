@@ -26,7 +26,7 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The resolutions supported for model version V_3.<br/>
+        /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
         /// </summary>
         /// <example>1280x800</example>
@@ -78,7 +78,7 @@ namespace Ideogram
         /// Example: A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.
         /// </param>
         /// <param name="resolution">
-        /// The resolutions supported for model version V_3.<br/>
+        /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
         /// </param>
         /// <param name="isImageSafe">

@@ -5,31 +5,39 @@ namespace Ideogram
     public partial interface IGenerateClient
     {
         /// <summary>
-        /// Reframe with Ideogram 3.0<br/>
-        /// Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// Replace Background with Ideogram 3.0<br/>
+        /// Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject<br/>
+        /// will be identified and kept, while the background is replaced based on the prompt and chosen style.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReframeImageV3Async(
-            global::Ideogram.ReframeImageRequestV3 request,
+        global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReplaceBackgroundV3Async(
+            global::Ideogram.ReplaceBackgroundRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Reframe with Ideogram 3.0<br/>
-        /// Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// Replace Background with Ideogram 3.0<br/>
+        /// Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject<br/>
+        /// will be identified and kept, while the background is replaced based on the prompt and chosen style.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="image">
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
-        /// <param name="resolution">
-        /// The resolutions supported for Ideogram 3.0.<br/>
-        /// Example: 1280x800
+        /// <param name="prompt">
+        /// The prompt describing the desired new background.<br/>
+        /// Example: A vibrant cityscape at night.
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -55,10 +63,11 @@ namespace Ideogram
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReframeImageV3Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReplaceBackgroundV3Async(
             byte[] image,
             string imagename,
-            global::Ideogram.ResolutionV3 resolution,
+            string prompt,
+            global::Ideogram.MagicPromptOption? magicPrompt = default,
             int? numImages = default,
             int? seed = default,
             global::Ideogram.RenderingSpeed? renderingSpeed = default,

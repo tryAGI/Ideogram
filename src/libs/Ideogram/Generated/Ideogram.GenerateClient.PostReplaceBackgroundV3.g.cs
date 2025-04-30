@@ -5,46 +5,46 @@ namespace Ideogram
 {
     public partial class GenerateClient
     {
-        partial void PreparePostRemixImageV3Arguments(
+        partial void PreparePostReplaceBackgroundV3Arguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.RemixImageRequestV3 request);
-        partial void PreparePostRemixImageV3Request(
+            global::Ideogram.ReplaceBackgroundRequestV3 request);
+        partial void PreparePostReplaceBackgroundV3Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.RemixImageRequestV3 request);
-        partial void ProcessPostRemixImageV3Response(
+            global::Ideogram.ReplaceBackgroundRequestV3 request);
+        partial void ProcessPostReplaceBackgroundV3Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostRemixImageV3ResponseContent(
+        partial void ProcessPostReplaceBackgroundV3ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Remix with Ideogram 3.0<br/>
-        /// Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.<br/>
-        /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
+        /// Replace Background with Ideogram 3.0<br/>
+        /// Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject<br/>
+        /// will be identified and kept, while the background is replaced based on the prompt and chosen style.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostRemixImageV3Async(
-            global::Ideogram.RemixImageRequestV3 request,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReplaceBackgroundV3Async(
+            global::Ideogram.ReplaceBackgroundRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostRemixImageV3Arguments(
+            PreparePostReplaceBackgroundV3Arguments(
                 httpClient: HttpClient,
                 request: request);
 
             var __pathBuilder = new PathBuilder(
-                path: "/v1/ideogram-v3/remix",
+                path: "/v1/ideogram-v3/replace-background",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -78,11 +78,17 @@ namespace Ideogram
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
                 name: "prompt");
-            if (request.ImageWeight != default)
+            if (request.MagicPrompt != default)
             {
                 __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.ImageWeight}"),
-                    name: "image_weight");
+                    content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
+                    name: "magic_prompt");
+            } 
+            if (request.NumImages != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
+                    name: "num_images");
             } 
             if (request.Seed != default)
             {
@@ -90,41 +96,11 @@ namespace Ideogram
                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
                     name: "seed");
             } 
-            if (request.Resolution != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.Resolution?.ToValueString()}"),
-                    name: "resolution");
-            } 
-            if (request.AspectRatio != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.AspectRatio?.ToValueString()}"),
-                    name: "aspect_ratio");
-            } 
             if (request.RenderingSpeed != default)
             {
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
                     name: "rendering_speed");
-            } 
-            if (request.MagicPrompt != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
-                    name: "magic_prompt");
-            } 
-            if (request.NegativePrompt != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.NegativePrompt}"),
-                    name: "negative_prompt");
-            } 
-            if (request.NumImages != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
-                    name: "num_images");
             } 
             if (request.ColorPalette != default)
             {
@@ -138,12 +114,6 @@ namespace Ideogram
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes, x => x))}]"),
                     name: "style_codes");
             } 
-            if (request.StyleType != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
-                    name: "style_type");
-            } 
             if (request.StyleReferenceImages != default)
             {
                 __httpRequestContent.Add(
@@ -155,7 +125,7 @@ namespace Ideogram
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PreparePostRemixImageV3Request(
+            PreparePostReplaceBackgroundV3Request(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 request: request);
@@ -168,7 +138,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessPostRemixImageV3Response(
+            ProcessPostReplaceBackgroundV3Response(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -196,30 +166,30 @@ namespace Ideogram
                 };
             }
             // 
-            if ((int)__response.StatusCode == 403)
+            if ((int)__response.StatusCode == 401)
             {
-                string? __content_403 = null;
+                string? __content_401 = null;
                 if (ReadResponseAsString)
                 {
-                    __content_403 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    __content_401 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                 }
                 else
                 {
-                    var __contentStream_403 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    var __contentStream_401 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
                     statusCode: __response.StatusCode)
                 {
-                    ResponseBody = __content_403,
+                    ResponseBody = __content_401,
                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                         __response.Headers,
                         h => h.Key,
                         h => h.Value),
                 };
             }
-            // Prompt or provided image failed safety check.
+            // Prompt or Initial Image failed the safety checks.
             if ((int)__response.StatusCode == 422)
             {
                 string? __content_422 = null;
@@ -284,7 +254,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessPostRemixImageV3ResponseContent(
+                ProcessPostReplaceBackgroundV3ResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -345,53 +315,37 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Remix with Ideogram 3.0<br/>
-        /// Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.<br/>
-        /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
+        /// Replace Background with Ideogram 3.0<br/>
+        /// Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject<br/>
+        /// will be identified and kept, while the background is replaced based on the prompt and chosen style.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="image">
-        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image whose background is being replaced (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
-        /// The prompt to use to generate the image.<br/>
-        /// Example: A photo of a cat
-        /// </param>
-        /// <param name="imageWeight">
-        /// Default Value: 50<br/>
-        /// Example: 50
-        /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
-        /// </param>
-        /// <param name="resolution">
-        /// The resolutions supported for Ideogram 3.0.<br/>
-        /// Example: 1280x800
-        /// </param>
-        /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
-        /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: BALANCED
+        /// The prompt describing the desired new background.<br/>
+        /// Example: A vibrant cityscape at night.
         /// </param>
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
-        /// <param name="negativePrompt">
-        /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
-        /// to descriptions in the negative prompt.<br/>
-        /// Example: brush strokes, painting
-        /// </param>
         /// <param name="numImages">
-        /// Number of images to generate.<br/>
+        /// The number of images to generate.<br/>
         /// Default Value: 1
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
+        /// Example: 12345
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use.<br/>
+        /// Default Value: BALANCED
         /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
@@ -400,53 +354,39 @@ namespace Ideogram
         /// A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.<br/>
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
-        /// <param name="styleType">
-        /// The style type to generate with.<br/>
-        /// Example: GENERAL
-        /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostRemixImageV3Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReplaceBackgroundV3Async(
             byte[] image,
             string imagename,
             string prompt,
-            int? imageWeight = default,
-            int? seed = default,
-            global::Ideogram.ResolutionV3? resolution = default,
-            global::Ideogram.AspectRatioV3? aspectRatio = default,
-            global::Ideogram.RenderingSpeed? renderingSpeed = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
-            string? negativePrompt = default,
             int? numImages = default,
+            int? seed = default,
+            global::Ideogram.RenderingSpeed? renderingSpeed = default,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::Ideogram.StyleTypeV3? styleType = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.RemixImageRequestV3
+            var __request = new global::Ideogram.ReplaceBackgroundRequestV3
             {
                 Image = image,
                 Imagename = imagename,
                 Prompt = prompt,
-                ImageWeight = imageWeight,
-                Seed = seed,
-                Resolution = resolution,
-                AspectRatio = aspectRatio,
-                RenderingSpeed = renderingSpeed,
                 MagicPrompt = magicPrompt,
-                NegativePrompt = negativePrompt,
                 NumImages = numImages,
+                Seed = seed,
+                RenderingSpeed = renderingSpeed,
                 ColorPalette = colorPalette,
                 StyleCodes = styleCodes,
-                StyleType = styleType,
                 StyleReferenceImages = styleReferenceImages,
             };
 
-            return await PostRemixImageV3Async(
+            return await PostReplaceBackgroundV3Async(
                 request: __request,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
         }
