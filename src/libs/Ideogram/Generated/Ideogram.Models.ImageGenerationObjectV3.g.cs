@@ -53,6 +53,7 @@ namespace Ideogram
 
         /// <summary>
         /// The style type to generate with.<br/>
+        /// Default Value: AUTO<br/>
         /// Example: GENERAL
         /// </summary>
         /// <example>GENERAL</example>
@@ -90,6 +91,7 @@ namespace Ideogram
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
+        /// Default Value: AUTO<br/>
         /// Example: GENERAL
         /// </param>
 #if NET7_0_OR_GREATER
