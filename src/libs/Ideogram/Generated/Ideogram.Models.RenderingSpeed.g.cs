@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// The rendering speed to use.<br/>
-    /// Default Value: BALANCED
+    /// Default Value: DEFAULT
     /// </summary>
     public enum RenderingSpeed
     {
@@ -17,6 +17,10 @@ namespace Ideogram
         /// 
         /// </summary>
         BALANCED,
+        /// <summary>
+        /// 
+        /// </summary>
+        DEFAULT,
         /// <summary>
         /// 
         /// </summary>
@@ -37,6 +41,7 @@ namespace Ideogram
             {
                 RenderingSpeed.TURBO => "TURBO",
                 RenderingSpeed.BALANCED => "BALANCED",
+                RenderingSpeed.DEFAULT => "DEFAULT",
                 RenderingSpeed.QUALITY => "QUALITY",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -50,6 +55,7 @@ namespace Ideogram
             {
                 "TURBO" => RenderingSpeed.TURBO,
                 "BALANCED" => RenderingSpeed.BALANCED,
+                "DEFAULT" => RenderingSpeed.DEFAULT,
                 "QUALITY" => RenderingSpeed.QUALITY,
                 _ => null,
             };

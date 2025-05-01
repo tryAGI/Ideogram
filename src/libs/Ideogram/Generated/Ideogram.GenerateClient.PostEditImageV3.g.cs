@@ -355,7 +355,7 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: BALANCED
+        /// Default Value: DEFAULT
         /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.

@@ -1912,10 +1912,11 @@ components:
       enum:
         - TURBO
         - BALANCED
+        - DEFAULT
         - QUALITY
       type: string
       description: The rendering speed to use.
-      default: BALANCED
+      default: DEFAULT
     ColorPaletteWithPresetNameOrMembers:
       title: ColorPaletteWithPresetNameOrMembers
       oneOf:
@@ -2042,6 +2043,7 @@ components:
         - DESIGN
       type: string
       description: The style type to generate with.
+      default: AUTO
       example: GENERAL
     Resolution:
       title: Resolution

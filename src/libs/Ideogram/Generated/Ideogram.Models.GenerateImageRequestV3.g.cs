@@ -43,7 +43,7 @@ namespace Ideogram
 
         /// <summary>
         /// The rendering speed to use.<br/>
-        /// Default Value: BALANCED
+        /// Default Value: DEFAULT
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RenderingSpeedJsonConverter))]
@@ -91,6 +91,7 @@ namespace Ideogram
 
         /// <summary>
         /// The style type to generate with.<br/>
+        /// Default Value: AUTO<br/>
         /// Example: GENERAL
         /// </summary>
         /// <example>GENERAL</example>
@@ -130,7 +131,7 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: BALANCED
+        /// Default Value: DEFAULT
         /// </param>
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
@@ -154,6 +155,7 @@ namespace Ideogram
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
+        /// Default Value: AUTO<br/>
         /// Example: GENERAL
         /// </param>
         /// <param name="styleReferenceImages">
