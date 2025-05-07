@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IGenerateClient
     {
         /// <summary>
-        /// Generate<br/>
+        /// Generate (legacy)<br/>
         /// Generates images synchronously based on a given prompt and optional parameters.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
@@ -17,19 +17,15 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Generate<br/>
+        /// Generate (legacy)<br/>
         /// Generates images synchronously based on a given prompt and optional parameters.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageRequest"></param>
-        /// <param name="styleRefEmbeddings">
-        /// A list of base64 encoded binary embeddings.
-        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostGenerateImageAsync(
             global::Ideogram.ImageRequest imageRequest,
-            global::System.Collections.Generic.IList<string>? styleRefEmbeddings = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

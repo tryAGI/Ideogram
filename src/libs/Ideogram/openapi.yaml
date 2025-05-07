@@ -36,12 +36,16 @@ paths:
                 $ref: '#/components/schemas/ImageSafetyError'
         '429':
           description: Too many requests.
+      x-fern-examples:
+        - code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/describe \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image_file=@<file1>\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.vision_controller
   /edit:
     post:
       tags:
         - generate
-      summary: Edit
+      summary: Edit (legacy)
       description: "Edit a given image synchronously using the provided mask. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style type can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_edit_image
       requestBody:
@@ -92,7 +96,7 @@ paths:
     post:
       tags:
         - generate
-      summary: Generate
+      summary: Generate (legacy)
       description: "Generates images synchronously based on a given prompt and optional parameters.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_generate_image
       requestBody:
@@ -418,7 +422,7 @@ paths:
     post:
       tags:
         - generate
-      summary: Reframe
+      summary: Reframe (legacy)
       description: "Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_reframe_image
       requestBody:
@@ -453,7 +457,7 @@ paths:
     post:
       tags:
         - generate
-      summary: Remix
+      summary: Remix (legacy)
       description: "Remix provided images synchronously based on a given prompt and optional parameters.\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_remix_image
       requestBody:
@@ -524,6 +528,28 @@ paths:
                 $ref: '#/components/schemas/GenerateImageSafetyError'
         '429':
           description: Too many requests.
+      x-fern-examples:
+        - request:
+            image_request:
+              resemblance: 55
+              detail: 90
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: A photo of a cat
+                  resolution: 1280x800
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: GENERAL
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/upscale \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image_file=@<file1> \\\n  -F image_request='{\n      \"resemblance\": 55,\n      \"detail\": 90\n    }'\n"
+            - sdk: python
+              code: "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/upscale\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"image_request\": {\n      \"resemblance\": 55,\n      \"detail\": 90\n    }\n  },\n  files={\n    \"image_file\": open(\"<file1>\", \"rb\")\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('image_request', JSON.stringify({\n  resemblance: 55,\n  detail: 90\n}));\nformData.append('image_file', new Blob([fs.readFileSync(\"<file1>\")], {\n  type: 'image/png'\n}));\nconst response = await fetch('https://api.ideogram.ai/upscale', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /v1/ideogram-v3/edit:
     post:
@@ -563,6 +589,26 @@ paths:
                 $ref: '#/components/schemas/GenerateImageSafetyError'
         '429':
           description: Too many requests.
+      x-fern-examples:
+        - request:
+            prompt: A photo of a cat wearing a hat.
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: A photo of a cat wearing a hat.
+                  resolution: 1024x1024
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: GENERAL
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/edit \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F mask=@<file1> \\\n  -F prompt=\"A photo of a cat wearing a hat.\" \\\n  -F rendering_speed=\"DEFAULT\"\n"
+            - sdk: python
+              code: "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/edit\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"prompt\": \"A photo of a cat wearing a hat.\",\n    \"rendering_speed\": \"DEFAULT\"\n  },\n  files={\n    \"image\": open(\"<file1>\", \"rb\"),\n    \"mask\": open(\"<file1>\", \"rb\"),\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('prompt', 'A photo of a cat');\nformData.append('rendering_speed', 'TURBO');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/edit', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /v1/ideogram-v3/generate:
     post:
@@ -605,6 +651,28 @@ paths:
                 $ref: '#/components/schemas/GenerateImageSafetyError'
         '429':
           description: Too many requests.
+      x-fern-examples:
+        - request:
+            prompt: A photo of a cat sleeping on a couch.
+            rendering_speed: TURBO
+            aspect_ratio: 1x1
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: A photo of a cat sleeping on a couch.
+                  resolution: 1024x1024
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: GENERAL
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/generate \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F prompt=\"A photo of a cat sleeping on a couch.\" \\\n  -F rendering_speed=\"TURBO\"\n"
+            - sdk: python
+              code: "import requests\n\n# Generate with Ideogram 3.0 (POST /v1/ideogram-v3/generate)\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/generate\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  json={\n    \"prompt\": \"A picture of a cat\",\n    \"rendering_speed\": \"TURBO\"\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n\n# Generate with style reference images\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/generate\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"prompt\": \"A picture of a cat\",\n    \"aspect_ratio\": \"3x1\"\n  },\n  files=[\n    (\"style_reference_images\", open(\"style_reference_image_1.png\", \"rb\")),\n    (\"style_reference_images\", open(\"style_reference_image_2.png\", \"rb\")),\n  ]\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('prompt', 'A photo of a cat');\nformData.append('rendering_speed', 'TURBO');\n// To add style reference images, uncomment the following lines\n// formData.append('style_reference_images', '<style_reference_image_1>');\n// formData.append('style_reference_images', '<style_reference_image_2>');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/generate', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /v1/ideogram-v3/reframe:
     post:
@@ -644,6 +712,26 @@ paths:
                 $ref: '#/components/schemas/GenerateImageSafetyError'
         '429':
           description: Too many requests.
+      x-fern-examples:
+        - request:
+            resolution: 512x1536
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: A photo of a cat
+                  resolution: 1280x800
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: GENERAL
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/reframe \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F resolution=\"512x1536\"\n"
+            - sdk: python
+              code: "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/reframe\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"resolution\": \"512x1536\"\n  },\n  files={\n    \"image\": open(\"<file1>\", \"rb\"),\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('resolution', '512x1536');\nformData.append('image', '<file1>');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/reframe', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /v1/ideogram-v3/remix:
     post:
@@ -683,6 +771,29 @@ paths:
                 $ref: '#/components/schemas/GenerateImageSafetyError'
         '429':
           description: Too many requests.
+      x-fern-examples:
+        - request:
+            prompt: A photo of a cat
+            rendering_speed: DEFAULT
+            image_weight: 50
+            aspect_ratio: 1x2
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: A photo of a cat
+                  resolution: 1280x800
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: GENERAL
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/remix \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F prompt=\"A photo of a cat\" \\\n  -F rendering_speed=\"TURBO\"\n"
+            - sdk: python
+              code: "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/remix\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"prompt\": \"A photo of a cat\",\n    \"rendering_speed\": \"TURBO\"\n  },\n  files={\n    \"image\": open(\"<file1>\", \"rb\"),\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('prompt', 'A photo of a cat');\nformData.append('rendering_speed', 'TURBO');\nformData.append('image', '<file1>');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/remix', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /v1/ideogram-v3/replace-background:
     post:
@@ -722,6 +833,28 @@ paths:
                 $ref: '#/components/schemas/GenerateImageSafetyError'
         '429':
           description: Too many requests.
+      x-fern-examples:
+        - request:
+            prompt: Add a forest in the background
+            magic_prompt: ON
+            rendering_speed: QUALITY
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: Add a forest in the background
+                  resolution: 1280x800
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: GENERAL
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/replace-background \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F prompt=\"Add a forest in the background\"\n"
+            - sdk: python
+              code: "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/replace-background\",\n  headers={\n    \"Api-Key\": \"<apiKey>\" \n  },\n  data={\n    \"prompt\": \"Add a forest in the background\",\n    \"magic_prompt\": \"ON\"\n  },\n  files={\n    \"image\": open(\"<file1>\", \"rb\"),\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('prompt', 'Add a forest in the background');\nformData.append('image', '<file1>');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/replace-background', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
 components:
   schemas:
@@ -787,16 +920,7 @@ components:
       properties:
         image_request:
           $ref: '#/components/schemas/ImageRequest'
-        style_ref_embeddings:
-          title: style_ref_embeddings
-          type: array
-          items:
-            type: string
-          description: A list of base64 encoded binary embeddings.
       example:
-        style_ref_embeddings:
-          - style_ref_embeddings
-          - style_ref_embeddings
         image_request:
           aspect_ratio: ASPECT_10_16
           magic_prompt_option: AUTO
@@ -1809,6 +1933,7 @@ components:
         - DESIGN
         - RENDER_3D
         - ANIME
+        - CUSTOM
       type: string
       description: The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.
       example: REALISTIC
@@ -2043,7 +2168,7 @@ components:
         - DESIGN
       type: string
       description: The style type to generate with.
-      default: AUTO
+      default: GENERAL
       example: GENERAL
     Resolution:
       title: Resolution

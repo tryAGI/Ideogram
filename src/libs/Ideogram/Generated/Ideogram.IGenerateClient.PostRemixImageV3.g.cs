@@ -76,7 +76,7 @@ namespace Ideogram
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
-        /// Default Value: AUTO<br/>
+        /// Default Value: GENERAL<br/>
         /// Example: GENERAL
         /// </param>
         /// <param name="styleReferenceImages">

@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IGenerateClient
     {
         /// <summary>
-        /// Reframe<br/>
+        /// Reframe (legacy)<br/>
         /// Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.<br/>
         /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
@@ -17,7 +17,7 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Reframe<br/>
+        /// Reframe (legacy)<br/>
         /// Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.<br/>
         /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>

@@ -22,7 +22,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Edit<br/>
+        /// Edit (legacy)<br/>
         /// Edit a given image synchronously using the provided mask. The mask indicates which part of the image<br/>
         /// should be edited, while the prompt and chosen style type can further guide the edit.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
@@ -304,7 +304,7 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Edit<br/>
+        /// Edit (legacy)<br/>
         /// Edit a given image synchronously using the provided mask. The mask indicates which part of the image<br/>
         /// should be edited, while the prompt and chosen style type can further guide the edit.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
