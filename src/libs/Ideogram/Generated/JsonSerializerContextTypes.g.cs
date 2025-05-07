@@ -118,23 +118,23 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<string>? Type23 { get; set; }
+        public global::Ideogram.GenerateImageRequestV3? Type23 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV3? Type24 { get; set; }
+        public global::Ideogram.ResolutionV3? Type24 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ResolutionV3? Type25 { get; set; }
+        public global::Ideogram.AspectRatioV3? Type25 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.AspectRatioV3? Type26 { get; set; }
+        public global::Ideogram.RenderingSpeed? Type26 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.RenderingSpeed? Type27 { get; set; }
+        public global::System.Collections.Generic.IList<string>? Type27 { get; set; }
         /// <summary>
         /// 
         /// </summary>

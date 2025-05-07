@@ -22,7 +22,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Remix<br/>
+        /// Remix (legacy)<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters.<br/>
         /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
@@ -273,7 +273,7 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Remix<br/>
+        /// Remix (legacy)<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters.<br/>
         /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
