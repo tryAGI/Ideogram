@@ -29,7 +29,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public static implicit operator ColorPaletteWithPresetNameOrMembers(global::Ideogram.ColorPaletteWithPresetName value) => new ColorPaletteWithPresetNameOrMembers(value);
+        public static implicit operator ColorPaletteWithPresetNameOrMembers(global::Ideogram.ColorPaletteWithPresetName value) => new ColorPaletteWithPresetNameOrMembers((global::Ideogram.ColorPaletteWithPresetName?)value);
 
         /// <summary>
         /// 
@@ -64,7 +64,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public static implicit operator ColorPaletteWithPresetNameOrMembers(global::Ideogram.ColorPaletteWithMembers value) => new ColorPaletteWithPresetNameOrMembers(value);
+        public static implicit operator ColorPaletteWithPresetNameOrMembers(global::Ideogram.ColorPaletteWithMembers value) => new ColorPaletteWithPresetNameOrMembers((global::Ideogram.ColorPaletteWithMembers?)value);
 
         /// <summary>
         /// 
