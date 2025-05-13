@@ -28,6 +28,10 @@ namespace Ideogram.JsonConverters
                     var numValue = reader.GetInt32();
                     return (global::Ideogram.Resolution)numValue;
                 }
+                case global::System.Text.Json.JsonTokenType.Null:
+                {
+                    return default(global::Ideogram.Resolution);
+                }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
             }

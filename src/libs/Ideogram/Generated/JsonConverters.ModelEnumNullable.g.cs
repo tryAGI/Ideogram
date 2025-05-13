@@ -28,6 +28,10 @@ namespace Ideogram.JsonConverters
                     var numValue = reader.GetInt32();
                     return (global::Ideogram.ModelEnum)numValue;
                 }
+                case global::System.Text.Json.JsonTokenType.Null:
+                {
+                    return default(global::Ideogram.ModelEnum?);
+                }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
             }
