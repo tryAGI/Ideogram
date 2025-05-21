@@ -2166,6 +2166,7 @@ components:
         - GENERAL
         - REALISTIC
         - DESIGN
+        - CUSTOM
       type: string
       description: The style type to generate with.
       default: GENERAL
