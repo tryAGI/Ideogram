@@ -12,6 +12,10 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        FLASH,
+        /// <summary>
+        /// 
+        /// </summary>
         TURBO,
         /// <summary>
         /// 
@@ -39,6 +43,7 @@ namespace Ideogram
         {
             return value switch
             {
+                RenderingSpeed.FLASH => "FLASH",
                 RenderingSpeed.TURBO => "TURBO",
                 RenderingSpeed.BALANCED => "BALANCED",
                 RenderingSpeed.DEFAULT => "DEFAULT",
@@ -53,6 +58,7 @@ namespace Ideogram
         {
             return value switch
             {
+                "FLASH" => RenderingSpeed.FLASH,
                 "TURBO" => RenderingSpeed.TURBO,
                 "BALANCED" => RenderingSpeed.BALANCED,
                 "DEFAULT" => RenderingSpeed.DEFAULT,

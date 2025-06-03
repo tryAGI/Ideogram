@@ -73,6 +73,12 @@ namespace Ideogram
                 content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
                 name: "image_file",
                 fileName: request.ImageFilename ?? string.Empty);
+            if (request.DescribeModelVersion != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.DescribeModelVersion?.ToValueString()}"),
+                    name: "describe_model_version");
+            }
             __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
@@ -254,17 +260,22 @@ namespace Ideogram
         /// <param name="imageFilename">
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
+        /// <param name="describeModelVersion">
+        /// The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
             byte[] imageFile,
             string imageFilename,
+            global::Ideogram.DescribeModelVersion? describeModelVersion = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Ideogram.DescribeRequest
             {
                 ImageFile = imageFile,
                 ImageFilename = imageFilename,
+                DescribeModelVersion = describeModelVersion,
             };
 
             return await PostDescribeAsync(

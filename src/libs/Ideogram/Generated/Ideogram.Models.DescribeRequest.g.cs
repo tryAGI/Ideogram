@@ -23,6 +23,13 @@ namespace Ideogram
         public required string ImageFilename { get; set; }
 
         /// <summary>
+        /// The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("describe_model_version")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.DescribeModelVersionJsonConverter))]
+        public global::Ideogram.DescribeModelVersion? DescribeModelVersion { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -37,15 +44,20 @@ namespace Ideogram
         /// <param name="imageFilename">
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
+        /// <param name="describeModelVersion">
+        /// The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public DescribeRequest(
             byte[] imageFile,
-            string imageFilename)
+            string imageFilename,
+            global::Ideogram.DescribeModelVersion? describeModelVersion)
         {
             this.ImageFile = imageFile ?? throw new global::System.ArgumentNullException(nameof(imageFile));
             this.ImageFilename = imageFilename ?? throw new global::System.ArgumentNullException(nameof(imageFilename));
+            this.DescribeModelVersion = describeModelVersion;
         }
 
         /// <summary>
