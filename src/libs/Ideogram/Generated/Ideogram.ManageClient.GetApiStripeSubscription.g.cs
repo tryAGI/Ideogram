@@ -37,7 +37,7 @@ namespace Ideogram
                 httpClient: HttpClient,
                 isBusiness: ref isBusiness);
 
-            var __pathBuilder = new PathBuilder(
+            var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/stripe_subscription",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder 

@@ -43,7 +43,7 @@ namespace Ideogram
                 httpClient: HttpClient,
                 request: request);
 
-            var __pathBuilder = new PathBuilder(
+            var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/v1/ideogram-v3/remix",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
