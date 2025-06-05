@@ -32,7 +32,7 @@ namespace Ideogram
             PrepareCreateApiKeyArguments(
                 httpClient: HttpClient);
 
-            var __pathBuilder = new PathBuilder(
+            var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/api_keys",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();

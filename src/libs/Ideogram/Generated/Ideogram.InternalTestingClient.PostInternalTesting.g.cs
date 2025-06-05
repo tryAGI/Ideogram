@@ -50,7 +50,7 @@ namespace Ideogram
                 xTestHeader2: ref xTestHeader2,
                 request: request);
 
-            var __pathBuilder = new PathBuilder(
+            var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/internal-testing",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();

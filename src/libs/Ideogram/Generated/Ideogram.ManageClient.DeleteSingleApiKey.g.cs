@@ -32,7 +32,7 @@ namespace Ideogram
                 httpClient: HttpClient,
                 apiKeyId: ref apiKeyId);
 
-            var __pathBuilder = new PathBuilder(
+            var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: $"/manage/api/api_keys/{apiKeyId}",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
