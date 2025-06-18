@@ -82,17 +82,26 @@ namespace Ideogram
             if ((int)__response.StatusCode == 401)
             {
                 string? __content_401 = null;
-                if (ReadResponseAsString)
+                global::System.Exception? __exception_401 = null;
+                try
                 {
-                    __content_401 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    if (ReadResponseAsString)
+                    {
+                        __content_401 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        var __contentStream_401 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    }
                 }
-                else
+                catch (global::System.Exception __ex)
                 {
-                    var __contentStream_401 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    __exception_401 = __ex;
                 }
 
                 throw new global::Ideogram.ApiException(
                     message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_401,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_401,
@@ -106,17 +115,26 @@ namespace Ideogram
             if ((int)__response.StatusCode == 402)
             {
                 string? __content_402 = null;
-                if (ReadResponseAsString)
+                global::System.Exception? __exception_402 = null;
+                try
                 {
-                    __content_402 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    if (ReadResponseAsString)
+                    {
+                        __content_402 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        var __contentStream_402 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    }
                 }
-                else
+                catch (global::System.Exception __ex)
                 {
-                    var __contentStream_402 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    __exception_402 = __ex;
                 }
 
                 throw new global::Ideogram.ApiException(
                     message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_402,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_402,
@@ -130,17 +148,26 @@ namespace Ideogram
             if ((int)__response.StatusCode == 404)
             {
                 string? __content_404 = null;
-                if (ReadResponseAsString)
+                global::System.Exception? __exception_404 = null;
+                try
                 {
-                    __content_404 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    if (ReadResponseAsString)
+                    {
+                        __content_404 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        var __contentStream_404 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    }
                 }
-                else
+                catch (global::System.Exception __ex)
                 {
-                    var __contentStream_404 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    __exception_404 = __ex;
                 }
 
                 throw new global::Ideogram.ApiException(
                     message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_404,
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_404,
@@ -171,8 +198,12 @@ namespace Ideogram
                 try
                 {
                     __response.EnsureSuccessStatusCode();
+
+                    return
+                        global::Ideogram.PostApiReactivateResponse.FromJson(__content, JsonSerializerContext) ??
+                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
-                catch (global::System.Net.Http.HttpRequestException __ex)
+                catch (global::System.Exception __ex)
                 {
                     throw new global::Ideogram.ApiException(
                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
@@ -186,18 +217,24 @@ namespace Ideogram
                             h => h.Value),
                     };
                 }
-
-                return
-                    global::Ideogram.PostApiReactivateResponse.FromJson(__content, JsonSerializerContext) ??
-                    throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
             }
             else
             {
                 try
                 {
                     __response.EnsureSuccessStatusCode();
+
+                    using var __content = await __response.Content.ReadAsStreamAsync(
+#if NET5_0_OR_GREATER
+                        cancellationToken
+#endif
+                    ).ConfigureAwait(false);
+
+                    return
+                        await global::Ideogram.PostApiReactivateResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
-                catch (global::System.Net.Http.HttpRequestException __ex)
+                catch (global::System.Exception __ex)
                 {
                     throw new global::Ideogram.ApiException(
                         message: __response.ReasonPhrase ?? string.Empty,
@@ -210,16 +247,6 @@ namespace Ideogram
                             h => h.Value),
                     };
                 }
-
-                using var __content = await __response.Content.ReadAsStreamAsync(
-#if NET5_0_OR_GREATER
-                    cancellationToken
-#endif
-                ).ConfigureAwait(false);
-
-                return
-                    await global::Ideogram.PostApiReactivateResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                    throw new global::System.InvalidOperationException("Response deserialization failed.");
             }
         }
     }
