@@ -175,6 +175,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/postInternalTesting_200_response'
       x-openapi-router-controller: external_api.generated.openapi.controllers.internal_testing_controller
+  /magic-prompt:
+    post:
+      tags:
+        - prompt
+      summary: Generate Magic Prompt
+      description: "Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.\n"
+      operationId: post_magic_prompt
+      requestBody:
+        description: A request to generate a magic prompt
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MagicPromptRequest'
+        required: true
+        x-body-name: magic_prompt_request
+      responses:
+        '200':
+          description: Magic prompt generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MagicPromptResponse'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate magic prompts.
+        '429':
+          description: Too many requests.
+        '500':
+          description: Internal server error.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.prompt_controller
   /manage/api/add_credits:
     post:
       tags:
@@ -1518,6 +1549,11 @@ components:
         - V_0
         - V_0_1
         - V_0_2
+        - V_0_3
+        - V_0_4
+        - V_0_5
+        - V_0_6
+        - V_0_7
       type: string
       description: The magic prompt version to use when magic prompt option is set to AUTO or ON.
       example: V_0
@@ -1547,6 +1583,50 @@ components:
           example: Prompt provided failed safety check due to the inclusion of prohibited content.
       example:
         error: Prompt provided failed safety check due to the inclusion of prohibited content.
+    MagicPromptRequest:
+      title: MagicPromptRequest
+      required:
+        - classify_prompt_category
+        - magic_prompt_version
+        - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt to enhance with a magic prompt
+          example: a cat
+        magic_prompt_version:
+          $ref: '#/components/schemas/MagicPromptVersionEnum'
+        classify_prompt_category:
+          type: boolean
+          description: Whether to classify the prompt into a use case category.
+          default: true
+          example: false
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
+        seed:
+          type: integer
+          description: Random seed for reproducible generation
+          example: 12345
+      description: A request to generate a magic prompt
+      example:
+        prompt: a cat
+        magic_prompt_version: V_0_4
+        classify_prompt_category: true
+        style_type: AUTO
+        seed: 12345
+    MagicPromptResponse:
+      title: MagicPromptResponse
+      required:
+        - magic_prompt
+      type: object
+      properties:
+        magic_prompt:
+          type: string
+          description: The generated magic prompt
+      description: The response containing generated magic prompt
+      example:
+        magic_prompt: 'A photorealistic cat with striking green eyes, sitting gracefully on a vintage wooden chair. The cat''s fur has beautiful orange and white markings, and soft natural lighting illuminates the scene from a nearby window.'
     ImageSafetyError:
       title: ImageSafetyError
       required:
@@ -1906,6 +1986,7 @@ components:
       enum:
         - V_2
         - V_3
+        - CUSTOM
       type: string
       description: 'The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.'
     MagicPromptOption:
