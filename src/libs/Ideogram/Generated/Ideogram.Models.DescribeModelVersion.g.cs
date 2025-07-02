@@ -16,6 +16,10 @@ namespace Ideogram
         /// 
         /// </summary>
         V3,
+        /// <summary>
+        /// 
+        /// </summary>
+        CUSTOM,
     }
 
     /// <summary>
@@ -32,6 +36,7 @@ namespace Ideogram
             {
                 DescribeModelVersion.V2 => "V_2",
                 DescribeModelVersion.V3 => "V_3",
+                DescribeModelVersion.CUSTOM => "CUSTOM",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -44,6 +49,7 @@ namespace Ideogram
             {
                 "V_2" => DescribeModelVersion.V2,
                 "V_3" => DescribeModelVersion.V3,
+                "CUSTOM" => DescribeModelVersion.CUSTOM,
                 _ => null,
             };
         }

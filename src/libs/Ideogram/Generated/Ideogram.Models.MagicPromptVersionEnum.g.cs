@@ -21,6 +21,26 @@ namespace Ideogram
         /// 
         /// </summary>
         V02,
+        /// <summary>
+        /// 
+        /// </summary>
+        V03,
+        /// <summary>
+        /// 
+        /// </summary>
+        V04,
+        /// <summary>
+        /// 
+        /// </summary>
+        V05,
+        /// <summary>
+        /// 
+        /// </summary>
+        V06,
+        /// <summary>
+        /// 
+        /// </summary>
+        V07,
     }
 
     /// <summary>
@@ -38,6 +58,11 @@ namespace Ideogram
                 MagicPromptVersionEnum.V0 => "V_0",
                 MagicPromptVersionEnum.V01 => "V_0_1",
                 MagicPromptVersionEnum.V02 => "V_0_2",
+                MagicPromptVersionEnum.V03 => "V_0_3",
+                MagicPromptVersionEnum.V04 => "V_0_4",
+                MagicPromptVersionEnum.V05 => "V_0_5",
+                MagicPromptVersionEnum.V06 => "V_0_6",
+                MagicPromptVersionEnum.V07 => "V_0_7",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -51,6 +76,11 @@ namespace Ideogram
                 "V_0" => MagicPromptVersionEnum.V0,
                 "V_0_1" => MagicPromptVersionEnum.V01,
                 "V_0_2" => MagicPromptVersionEnum.V02,
+                "V_0_3" => MagicPromptVersionEnum.V03,
+                "V_0_4" => MagicPromptVersionEnum.V04,
+                "V_0_5" => MagicPromptVersionEnum.V05,
+                "V_0_6" => MagicPromptVersionEnum.V06,
+                "V_0_7" => MagicPromptVersionEnum.V07,
                 _ => null,
             };
         }
