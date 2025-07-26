@@ -41,6 +41,13 @@ namespace Ideogram
         /// Random seed for reproducible generation<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references. The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="systemPrompt">
+        /// A system prompt to use for the magic prompt.<br/>
+        /// Example: You are a helpful assistant that generates magic prompts for images.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.MagicPromptResponse> PostMagicPromptAsync(
@@ -49,6 +56,8 @@ namespace Ideogram
             bool classifyPromptCategory,
             global::Ideogram.StyleTypeV3? styleType = default,
             int? seed = default,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
+            string? systemPrompt = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

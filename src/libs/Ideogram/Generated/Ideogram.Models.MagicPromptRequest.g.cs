@@ -57,6 +57,20 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
+        /// A set of images to use as character references. The images should be in JPEG, PNG or WebP format.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_images")]
+        public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
+
+        /// <summary>
+        /// A system prompt to use for the magic prompt.<br/>
+        /// Example: You are a helpful assistant that generates magic prompts for images.
+        /// </summary>
+        /// <example>You are a helpful assistant that generates magic prompts for images.</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("system_prompt")]
+        public string? SystemPrompt { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -87,6 +101,13 @@ namespace Ideogram
         /// Random seed for reproducible generation<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references. The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="systemPrompt">
+        /// A system prompt to use for the magic prompt.<br/>
+        /// Example: You are a helpful assistant that generates magic prompts for images.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -95,13 +116,17 @@ namespace Ideogram
             global::Ideogram.MagicPromptVersionEnum magicPromptVersion,
             bool classifyPromptCategory,
             global::Ideogram.StyleTypeV3? styleType,
-            int? seed)
+            int? seed,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages,
+            string? systemPrompt)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.MagicPromptVersion = magicPromptVersion;
             this.ClassifyPromptCategory = classifyPromptCategory;
             this.StyleType = styleType;
             this.Seed = seed;
+            this.CharacterReferenceImages = characterReferenceImages;
+            this.SystemPrompt = systemPrompt;
         }
 
         /// <summary>
