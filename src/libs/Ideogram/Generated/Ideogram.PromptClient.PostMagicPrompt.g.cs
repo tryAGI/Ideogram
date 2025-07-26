@@ -67,11 +67,40 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                content: __httpRequestContentBody,
-                encoding: global::System.Text.Encoding.UTF8,
-                mediaType: "application/json");
+            using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+            __httpRequestContent.Add(
+                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                name: "prompt");
+            __httpRequestContent.Add(
+                content: new global::System.Net.Http.StringContent($"{request.MagicPromptVersion.ToValueString()}"),
+                name: "magic_prompt_version");
+            __httpRequestContent.Add(
+                content: new global::System.Net.Http.StringContent($"{request.ClassifyPromptCategory}"),
+                name: "classify_prompt_category");
+            if (request.StyleType != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
+                    name: "style_type");
+            } 
+            if (request.Seed != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                    name: "seed");
+            } 
+            if (request.CharacterReferenceImages != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImages, x => x))}]"),
+                    name: "character_reference_images");
+            } 
+            if (request.SystemPrompt != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.SystemPrompt}"),
+                    name: "system_prompt");
+            }
             __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
@@ -324,6 +353,13 @@ namespace Ideogram
         /// Random seed for reproducible generation<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references. The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="systemPrompt">
+        /// A system prompt to use for the magic prompt.<br/>
+        /// Example: You are a helpful assistant that generates magic prompts for images.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.MagicPromptResponse> PostMagicPromptAsync(
@@ -332,6 +368,8 @@ namespace Ideogram
             bool classifyPromptCategory,
             global::Ideogram.StyleTypeV3? styleType = default,
             int? seed = default,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
+            string? systemPrompt = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Ideogram.MagicPromptRequest
@@ -341,6 +379,8 @@ namespace Ideogram
                 ClassifyPromptCategory = classifyPromptCategory,
                 StyleType = styleType,
                 Seed = seed,
+                CharacterReferenceImages = characterReferenceImages,
+                SystemPrompt = systemPrompt,
             };
 
             return await PostMagicPromptAsync(

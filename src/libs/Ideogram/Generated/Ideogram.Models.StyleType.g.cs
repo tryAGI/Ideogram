@@ -20,6 +20,10 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        FICTION,
+        /// <summary>
+        /// 
+        /// </summary>
         REALISTIC,
         /// <summary>
         /// 
@@ -53,6 +57,7 @@ namespace Ideogram
             {
                 StyleType.AUTO => "AUTO",
                 StyleType.GENERAL => "GENERAL",
+                StyleType.FICTION => "FICTION",
                 StyleType.REALISTIC => "REALISTIC",
                 StyleType.DESIGN => "DESIGN",
                 StyleType.RENDER3D => "RENDER_3D",
@@ -70,6 +75,7 @@ namespace Ideogram
             {
                 "AUTO" => StyleType.AUTO,
                 "GENERAL" => StyleType.GENERAL,
+                "FICTION" => StyleType.FICTION,
                 "REALISTIC" => StyleType.REALISTIC,
                 "DESIGN" => StyleType.DESIGN,
                 "RENDER_3D" => StyleType.RENDER3D,

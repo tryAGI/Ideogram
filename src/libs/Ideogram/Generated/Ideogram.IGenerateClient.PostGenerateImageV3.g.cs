@@ -68,6 +68,9 @@ namespace Ideogram
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostGenerateImageV3Async(
@@ -83,6 +86,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

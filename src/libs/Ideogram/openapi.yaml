@@ -185,11 +185,14 @@ paths:
       requestBody:
         description: A request to generate a magic prompt
         content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/MagicPromptRequest'
           application/json:
             schema:
               $ref: '#/components/schemas/MagicPromptRequest'
         required: true
-        x-body-name: magic_prompt_request
+        x-body-name: body
       responses:
         '200':
           description: Magic prompt generated successfully.
@@ -1012,6 +1015,12 @@ components:
             type: string
             format: binary
           description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
+        character_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
     RemixImageRequestV3:
       required:
         - image
@@ -1608,6 +1617,16 @@ components:
           type: integer
           description: Random seed for reproducible generation
           example: 12345
+        character_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as character references. The images should be in JPEG, PNG or WebP format.'
+        system_prompt:
+          type: string
+          description: A system prompt to use for the magic prompt.
+          example: You are a helpful assistant that generates magic prompts for images.
       description: A request to generate a magic prompt
       example:
         prompt: a cat
@@ -2019,6 +2038,7 @@ components:
       enum:
         - AUTO
         - GENERAL
+        - FICTION
         - REALISTIC
         - DESIGN
         - RENDER_3D
@@ -2258,6 +2278,7 @@ components:
         - REALISTIC
         - DESIGN
         - CUSTOM
+        - FICTION
       type: string
       description: The style type to generate with.
       default: GENERAL
