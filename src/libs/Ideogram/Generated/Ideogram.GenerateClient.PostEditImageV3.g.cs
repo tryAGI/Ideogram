@@ -106,6 +106,12 @@ namespace Ideogram
                     content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
                     name: "rendering_speed");
             } 
+            if (request.StyleType != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
+                    name: "style_type");
+            } 
             if (request.ColorPalette != default)
             {
                 __httpRequestContent.Add(
@@ -123,6 +129,12 @@ namespace Ideogram
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleReferenceImages, x => x))}]"),
                     name: "style_reference_images");
+            } 
+            if (request.CharacterReferenceImages != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImages, x => x))}]"),
+                    name: "character_reference_images");
             }
             __httpRequest.Content = __httpRequestContent;
 
@@ -393,6 +405,11 @@ namespace Ideogram
         /// The rendering speed to use.<br/>
         /// Default Value: DEFAULT
         /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
+        /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </param>
@@ -402,6 +419,9 @@ namespace Ideogram
         /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -415,9 +435,11 @@ namespace Ideogram
             int? numImages = default,
             int? seed = default,
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Ideogram.EditImageRequestV3
@@ -431,9 +453,11 @@ namespace Ideogram
                 NumImages = numImages,
                 Seed = seed,
                 RenderingSpeed = renderingSpeed,
+                StyleType = styleType,
                 ColorPalette = colorPalette,
                 StyleCodes = styleCodes,
                 StyleReferenceImages = styleReferenceImages,
+                CharacterReferenceImages = characterReferenceImages,
             };
 
             return await PostEditImageV3Async(
