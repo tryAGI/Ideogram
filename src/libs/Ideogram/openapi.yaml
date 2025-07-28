@@ -1073,6 +1073,12 @@ components:
             type: string
             format: binary
           description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
+        character_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
     EditImageRequestV3:
       required:
         - image
@@ -1100,6 +1106,8 @@ components:
           $ref: '#/components/schemas/Seed'
         rendering_speed:
           $ref: '#/components/schemas/RenderingSpeed'
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
         style_codes:
@@ -1110,6 +1118,12 @@ components:
             type: string
             format: binary
           description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
+        character_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
     ReframeImageRequestV3:
       required:
         - image

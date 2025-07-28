@@ -128,6 +128,12 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
 
         /// <summary>
+        /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_images")]
+        public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -193,6 +199,9 @@ namespace Ideogram
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -211,7 +220,8 @@ namespace Ideogram
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
             global::Ideogram.StyleTypeV3? styleType,
-            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages)
+            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages)
         {
             this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
@@ -228,6 +238,7 @@ namespace Ideogram
             this.StyleCodes = styleCodes;
             this.StyleType = styleType;
             this.StyleReferenceImages = styleReferenceImages;
+            this.CharacterReferenceImages = characterReferenceImages;
         }
 
         /// <summary>

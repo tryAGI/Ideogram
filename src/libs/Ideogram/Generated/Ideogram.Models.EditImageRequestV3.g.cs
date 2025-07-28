@@ -78,6 +78,16 @@ namespace Ideogram
         public global::Ideogram.RenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
+        /// </summary>
+        /// <example>GENERAL</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
+        public global::Ideogram.StyleTypeV3? StyleType { get; set; }
+
+        /// <summary>
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
@@ -97,6 +107,12 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
+
+        /// <summary>
+        /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_images")]
+        public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -139,6 +155,11 @@ namespace Ideogram
         /// The rendering speed to use.<br/>
         /// Default Value: DEFAULT
         /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
+        /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </param>
@@ -148,6 +169,9 @@ namespace Ideogram
         /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -162,9 +186,11 @@ namespace Ideogram
             int? numImages,
             int? seed,
             global::Ideogram.RenderingSpeed? renderingSpeed,
+            global::Ideogram.StyleTypeV3? styleType,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
-            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages)
+            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages)
         {
             this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
@@ -175,9 +201,11 @@ namespace Ideogram
             this.NumImages = numImages;
             this.Seed = seed;
             this.RenderingSpeed = renderingSpeed;
+            this.StyleType = styleType;
             this.ColorPalette = colorPalette;
             this.StyleCodes = styleCodes;
             this.StyleReferenceImages = styleReferenceImages;
+            this.CharacterReferenceImages = characterReferenceImages;
         }
 
         /// <summary>

@@ -149,6 +149,12 @@ namespace Ideogram
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleReferenceImages, x => x))}]"),
                     name: "style_reference_images");
+            } 
+            if (request.CharacterReferenceImages != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImages, x => x))}]"),
+                    name: "character_reference_images");
             }
             __httpRequest.Content = __httpRequestContent;
 
@@ -444,6 +450,9 @@ namespace Ideogram
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="characterReferenceImages">
+        /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostRemixImageV3Async(
@@ -462,6 +471,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Ideogram.RemixImageRequestV3
@@ -481,6 +491,7 @@ namespace Ideogram
                 StyleCodes = styleCodes,
                 StyleType = styleType,
                 StyleReferenceImages = styleReferenceImages,
+                CharacterReferenceImages = characterReferenceImages,
             };
 
             return await PostRemixImageV3Async(
