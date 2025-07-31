@@ -23,7 +23,8 @@ namespace Ideogram
         public required string ImageFilename { get; set; }
 
         /// <summary>
-        /// The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.
+        /// The model version to use for describing images. Defaults to V_3.<br/>
+        /// Default Value: V_3
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("describe_model_version")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.DescribeModelVersionJsonConverter))]
@@ -45,7 +46,8 @@ namespace Ideogram
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="describeModelVersion">
-        /// The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.
+        /// The model version to use for describing images. Defaults to V_3.<br/>
+        /// Default Value: V_3
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
