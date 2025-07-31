@@ -2021,7 +2021,8 @@ components:
         - V_3
         - CUSTOM
       type: string
-      description: 'The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.'
+      description: The model version to use for describing images. Defaults to V_3.
+      default: V_3
     MagicPromptOption:
       title: MagicPromptOption
       enum:

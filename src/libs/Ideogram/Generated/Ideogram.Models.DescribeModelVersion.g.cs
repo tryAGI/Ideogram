@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.
+    /// The model version to use for describing images. Defaults to V_3.<br/>
+    /// Default Value: V_3
     /// </summary>
     public enum DescribeModelVersion
     {

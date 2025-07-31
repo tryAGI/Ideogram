@@ -288,7 +288,8 @@ namespace Ideogram
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="describeModelVersion">
-        /// The model version to use for describing images. V_2 uses the current describe model, V_3 uses the new captioner model.
+        /// The model version to use for describing images. Defaults to V_3.<br/>
+        /// Default Value: V_3
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
