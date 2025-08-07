@@ -75,6 +75,9 @@ namespace Ideogram
         /// <param name="characterReferenceImages">
         /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="characterReferenceImagesMask">
+        /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostEditImageV3Async(
@@ -92,6 +95,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

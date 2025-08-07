@@ -897,7 +897,6 @@ components:
       type: object
       properties:
         descriptions:
-          title: descriptions
           type: array
           items:
             $ref: '#/components/schemas/Description'
@@ -905,7 +904,6 @@ components:
       description: The response for a describe request encapsulates a list of descriptions.
       example:
         descriptions:
-          - text: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
           - text: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
     DescribeRequest:
       required:
@@ -1021,6 +1019,12 @@ components:
             type: string
             format: binary
           description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
+        character_reference_images_mask:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.'
     RemixImageRequestV3:
       required:
         - image
@@ -1079,6 +1083,12 @@ components:
             type: string
             format: binary
           description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
+        character_reference_images_mask:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.'
     EditImageRequestV3:
       required:
         - image
@@ -1124,6 +1134,12 @@ components:
             type: string
             format: binary
           description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
+        character_reference_images_mask:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.'
     ReframeImageRequestV3:
       required:
         - image
@@ -2012,8 +2028,6 @@ components:
           type: string
           description: The generated description for the provided image.
           example: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
-      example:
-        text: 'A meticulously illustrated cat with striped patterns, sitting upright. The cat''s eyes are a captivating shade of yellow, and it appears to be gazing intently at something. The background consists of abstract, swirling patterns in shades of black, white, and beige, creating an almost fluid or wavy appearance. The cat is positioned in the foreground, with the background elements fading into the distance, giving a sense of depth to the image.'
     DescribeModelVersion:
       title: DescribeModelVersion
       enum:
