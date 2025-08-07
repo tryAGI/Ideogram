@@ -626,6 +626,7 @@ paths:
       x-fern-examples:
         - request:
             prompt: A photo of a cat wearing a hat.
+            style_type: AUTO
           response:
             body:
               created: '2000-01-23T04:56:07.0000000+00:00'
@@ -635,7 +636,7 @@ paths:
                   is_image_safe: true
                   seed: 12345
                   url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
-                  style_type: GENERAL
+                  style_type: AUTO
           code-samples:
             - sdk: curl
               code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/edit \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F mask=@<file1> \\\n  -F prompt=\"A photo of a cat wearing a hat.\" \\\n  -F rendering_speed=\"DEFAULT\"\n"
@@ -690,6 +691,7 @@ paths:
             prompt: A photo of a cat sleeping on a couch.
             rendering_speed: TURBO
             aspect_ratio: 1x1
+            style_type: AUTO
           response:
             body:
               created: '2000-01-23T04:56:07.0000000+00:00'
@@ -811,6 +813,7 @@ paths:
             rendering_speed: DEFAULT
             image_weight: 50
             aspect_ratio: 1x2
+            style_type: AUTO
           response:
             body:
               created: '2000-01-23T04:56:07.0000000+00:00'
@@ -1018,7 +1021,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
+          description: 'Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.'
         character_reference_images_mask:
           type: array
           items:
@@ -1082,7 +1085,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
+          description: 'Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.'
         character_reference_images_mask:
           type: array
           items:
@@ -1133,7 +1136,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.'
+          description: 'Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.'
         character_reference_images_mask:
           type: array
           items:
@@ -1652,7 +1655,7 @@ components:
           items:
             type: string
             format: binary
-          description: 'A set of images to use as character references. The images should be in JPEG, PNG or WebP format.'
+          description: 'Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.'
         system_prompt:
           type: string
           description: A system prompt to use for the magic prompt.
