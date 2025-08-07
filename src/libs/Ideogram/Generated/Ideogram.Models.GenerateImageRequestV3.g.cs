@@ -112,6 +112,12 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
 
         /// <summary>
+        /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_images_mask")]
+        public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImagesMask { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -170,6 +176,9 @@ namespace Ideogram
         /// <param name="characterReferenceImages">
         /// A set of images to use as character references (maximum total size 10MB across all character references). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="characterReferenceImagesMask">
+        /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -186,7 +195,8 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes,
             global::Ideogram.StyleTypeV3? styleType,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
-            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages)
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Seed = seed;
@@ -201,6 +211,7 @@ namespace Ideogram
             this.StyleType = styleType;
             this.StyleReferenceImages = styleReferenceImages;
             this.CharacterReferenceImages = characterReferenceImages;
+            this.CharacterReferenceImagesMask = characterReferenceImagesMask;
         }
 
         /// <summary>
