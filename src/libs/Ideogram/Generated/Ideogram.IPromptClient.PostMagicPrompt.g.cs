@@ -42,7 +42,7 @@ namespace Ideogram
         /// Example: 12345
         /// </param>
         /// <param name="characterReferenceImages">
-        /// A set of images to use as character references. The images should be in JPEG, PNG or WebP format.
+        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="systemPrompt">
         /// A system prompt to use for the magic prompt.<br/>
