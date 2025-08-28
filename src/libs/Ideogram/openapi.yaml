@@ -1838,6 +1838,10 @@ components:
       properties:
         recharge_settings:
           $ref: '#/components/schemas/RechargeSettings'
+        is_active:
+          title: is_active
+          type: boolean
+          description: Whether to enable or disable auto recharge.
       description: Request to update API settings. Fields which are omitted will be ignored.
       example:
         recharge_settings:
@@ -1847,6 +1851,7 @@ components:
           top_up_balance:
             amount: 1050
             currency_code: USD
+        is_active: true
     PostApiReactivateResponse:
       title: PostApiReactivateResponse
       type: object

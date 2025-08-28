@@ -15,6 +15,12 @@ namespace Ideogram
         public global::Ideogram.RechargeSettings? RechargeSettings { get; set; }
 
         /// <summary>
+        /// Whether to enable or disable auto recharge.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("is_active")]
+        public bool? IsActive { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -26,13 +32,18 @@ namespace Ideogram
         /// <param name="rechargeSettings">
         /// The current recharge settings for the API subscription.
         /// </param>
+        /// <param name="isActive">
+        /// Whether to enable or disable auto recharge.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public PostApiSubscriptionRequest(
-            global::Ideogram.RechargeSettings? rechargeSettings)
+            global::Ideogram.RechargeSettings? rechargeSettings,
+            bool? isActive)
         {
             this.RechargeSettings = rechargeSettings;
+            this.IsActive = isActive;
         }
 
         /// <summary>

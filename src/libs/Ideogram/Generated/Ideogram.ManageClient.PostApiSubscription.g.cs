@@ -274,15 +274,20 @@ namespace Ideogram
         /// <param name="rechargeSettings">
         /// The current recharge settings for the API subscription.
         /// </param>
+        /// <param name="isActive">
+        /// Whether to enable or disable auto recharge.
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.PostApiSubscriptionResponse> PostApiSubscriptionAsync(
             global::Ideogram.RechargeSettings? rechargeSettings = default,
+            bool? isActive = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Ideogram.PostApiSubscriptionRequest
             {
                 RechargeSettings = rechargeSettings,
+                IsActive = isActive,
             };
 
             return await PostApiSubscriptionAsync(
