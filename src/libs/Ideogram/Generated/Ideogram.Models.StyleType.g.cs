@@ -41,6 +41,10 @@ namespace Ideogram
         /// 
         /// </summary>
         CUSTOM,
+        /// <summary>
+        /// 
+        /// </summary>
+        STYLIZED,
     }
 
     /// <summary>
@@ -63,6 +67,7 @@ namespace Ideogram
                 StyleType.RENDER3D => "RENDER_3D",
                 StyleType.ANIME => "ANIME",
                 StyleType.CUSTOM => "CUSTOM",
+                StyleType.STYLIZED => "STYLIZED",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -81,6 +86,7 @@ namespace Ideogram
                 "RENDER_3D" => StyleType.RENDER3D,
                 "ANIME" => StyleType.ANIME,
                 "CUSTOM" => StyleType.CUSTOM,
+                "STYLIZED" => StyleType.STYLIZED,
                 _ => null,
             };
         }

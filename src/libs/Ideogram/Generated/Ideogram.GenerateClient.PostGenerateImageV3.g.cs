@@ -132,6 +132,12 @@ namespace Ideogram
                     content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
                     name: "style_type");
             } 
+            if (request.StylePreset != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
+                    name: "style_preset");
+            } 
             if (request.StyleReferenceImages != default)
             {
                 __httpRequestContent.Add(
@@ -429,6 +435,10 @@ namespace Ideogram
         /// Default Value: GENERAL<br/>
         /// Example: GENERAL
         /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
@@ -452,6 +462,7 @@ namespace Ideogram
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::Ideogram.StyleTypeV3? styleType = default,
+            global::Ideogram.StylePresetV3? stylePreset = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask = default,
@@ -470,6 +481,7 @@ namespace Ideogram
                 ColorPalette = colorPalette,
                 StyleCodes = styleCodes,
                 StyleType = styleType,
+                StylePreset = stylePreset,
                 StyleReferenceImages = styleReferenceImages,
                 CharacterReferenceImages = characterReferenceImages,
                 CharacterReferenceImagesMask = characterReferenceImagesMask,

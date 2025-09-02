@@ -34,6 +34,10 @@ namespace Ideogram
         /// 
         /// </summary>
         FICTION,
+        /// <summary>
+        /// 
+        /// </summary>
+        STYLIZED,
     }
 
     /// <summary>
@@ -54,6 +58,7 @@ namespace Ideogram
                 StyleTypeV3.DESIGN => "DESIGN",
                 StyleTypeV3.CUSTOM => "CUSTOM",
                 StyleTypeV3.FICTION => "FICTION",
+                StyleTypeV3.STYLIZED => "STYLIZED",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -70,6 +75,7 @@ namespace Ideogram
                 "DESIGN" => StyleTypeV3.DESIGN,
                 "CUSTOM" => StyleTypeV3.CUSTOM,
                 "FICTION" => StyleTypeV3.FICTION,
+                "STYLIZED" => StyleTypeV3.STYLIZED,
                 _ => null,
             };
         }
