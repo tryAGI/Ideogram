@@ -100,6 +100,15 @@ namespace Ideogram
         public global::Ideogram.StyleTypeV3? StyleType { get; set; }
 
         /// <summary>
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </summary>
+        /// <example>BRIGHT_ART</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
+        public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+
+        /// <summary>
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
@@ -170,6 +179,10 @@ namespace Ideogram
         /// Default Value: GENERAL<br/>
         /// Example: GENERAL
         /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
@@ -194,6 +207,7 @@ namespace Ideogram
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
             global::Ideogram.StyleTypeV3? styleType,
+            global::Ideogram.StylePresetV3? stylePreset,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask)
@@ -209,6 +223,7 @@ namespace Ideogram
             this.ColorPalette = colorPalette;
             this.StyleCodes = styleCodes;
             this.StyleType = styleType;
+            this.StylePreset = stylePreset;
             this.StyleReferenceImages = styleReferenceImages;
             this.CharacterReferenceImages = characterReferenceImages;
             this.CharacterReferenceImagesMask = characterReferenceImagesMask;

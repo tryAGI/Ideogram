@@ -4,11 +4,10 @@
 namespace Ideogram
 {
     /// <summary>
-    /// This is the API definition for Ideogram AI.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public sealed partial class IdeogramApi : global::Ideogram.IIdeogramApi, global::System.IDisposable
+    public sealed partial class BatchClient : global::Ideogram.IBatchClient, global::System.IDisposable
     {
         /// <summary>
         /// 
@@ -38,61 +37,7 @@ namespace Ideogram
 
 
         /// <summary>
-        /// All things related to generating content.
-        /// </summary>
-        public GenerateClient Generate => new GenerateClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Content related to managing API account and API access
-        /// </summary>
-        public ManageClient Manage => new ManageClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations related to understanding visual content
-        /// </summary>
-        public VisionClient Vision => new VisionClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
-        /// </summary>
-        public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public BatchClient Batch => new BatchClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public PromptClient Prompt => new PromptClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Creates a new instance of the IdeogramApi.
+        /// Creates a new instance of the BatchClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -100,7 +45,7 @@ namespace Ideogram
         /// <param name="baseUri">The base URL for the API. If not provided, the default baseUri from OpenAPI spec will be used.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public IdeogramApi(
+        public BatchClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations = null,

@@ -3,46 +3,46 @@
 
 namespace Ideogram
 {
-    public partial class GenerateClient
+    public partial class BatchClient
     {
-        partial void PreparePostReframeImageV3Arguments(
+        partial void PreparePostBatchArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.ReframeImageRequestV3 request);
-        partial void PreparePostReframeImageV3Request(
+            global::Ideogram.InternalBatchRequest request);
+        partial void PreparePostBatchRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.ReframeImageRequestV3 request);
-        partial void ProcessPostReframeImageV3Response(
+            global::Ideogram.InternalBatchRequest request);
+        partial void ProcessPostBatchResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostReframeImageV3ResponseContent(
+        partial void ProcessPostBatchResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Reframe with Ideogram 3.0<br/>
-        /// Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// Initiate Batch Magic Prompt Evalution<br/>
+        /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
+        /// Generates images using large batches of user prompt inputs and creates TFRecord format for side-by-side service upload. Internal use only (feature flagged).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReframeImageV3Async(
-            global::Ideogram.ReframeImageRequestV3 request,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(
+            global::Ideogram.InternalBatchRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostReframeImageV3Arguments(
+            PreparePostBatchArguments(
                 httpClient: HttpClient,
                 request: request);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/v1/ideogram-v3/reframe",
+                path: "/internal/batch",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -68,62 +68,17 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-            using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-            __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>()),
-                name: "image",
-                fileName: request.Imagename ?? string.Empty);
-            __httpRequestContent.Add(
-                content: new global::System.Net.Http.StringContent($"{request.Resolution.ToValueString()}"),
-                name: "resolution");
-            if (request.NumImages != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
-                    name: "num_images");
-            } 
-            if (request.Seed != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
-                    name: "seed");
-            } 
-            if (request.RenderingSpeed != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
-                    name: "rendering_speed");
-            } 
-            if (request.StylePreset != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
-                    name: "style_preset");
-            } 
-            if (request.ColorPalette != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent(request.ColorPalette?.ToString() ?? string.Empty),
-                    name: "color_palette");
-            } 
-            if (request.StyleCodes != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes, x => x))}]"),
-                    name: "style_codes");
-            } 
-            if (request.StyleReferenceImages != default)
-            {
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleReferenceImages, x => x))}]"),
-                    name: "style_reference_images");
-            }
+            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                content: __httpRequestContentBody,
+                encoding: global::System.Text.Encoding.UTF8,
+                mediaType: "application/json");
             __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PreparePostReframeImageV3Request(
+            PreparePostBatchRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 request: request);
@@ -136,7 +91,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessPostReframeImageV3Response(
+            ProcessPostBatchResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -205,43 +160,6 @@ namespace Ideogram
                         h => h.Value),
                 };
             }
-            // Prompt or Image failed the safety checks.
-            if ((int)__response.StatusCode == 422)
-            {
-                string? __content_422 = null;
-                global::System.Exception? __exception_422 = null;
-                global::Ideogram.GenerateImageSafetyError? __value_422 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_422 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                        __value_422 = global::Ideogram.GenerateImageSafetyError.FromJson(__content_422, JsonSerializerContext);
-                    }
-                    else
-                    {
-                        var __contentStream_422 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-                        __value_422 = await global::Ideogram.GenerateImageSafetyError.FromJsonStreamAsync(__contentStream_422, JsonSerializerContext).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_422 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException<global::Ideogram.GenerateImageSafetyError>(
-                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_422,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_422,
-                    ResponseObject = __value_422,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
             // 
             if ((int)__response.StatusCode == 429)
             {
@@ -275,6 +193,39 @@ namespace Ideogram
                         h => h.Value),
                 };
             }
+            // 
+            if ((int)__response.StatusCode == 500)
+            {
+                string? __content_500 = null;
+                global::System.Exception? __exception_500 = null;
+                try
+                {
+                    if (ReadResponseAsString)
+                    {
+                        __content_500 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        var __contentStream_500 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                }
+                catch (global::System.Exception __ex)
+                {
+                    __exception_500 = __ex;
+                }
+
+                throw new global::Ideogram.ApiException(
+                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_500,
+                    statusCode: __response.StatusCode)
+                {
+                    ResponseBody = __content_500,
+                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                        __response.Headers,
+                        h => h.Key,
+                        h => h.Value),
+                };
+            }
 
             if (ReadResponseAsString)
             {
@@ -288,7 +239,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessPostReframeImageV3ResponseContent(
+                ProcessPostBatchResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -298,7 +249,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.ImageGenerationResponseV3.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.InternalBatchResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -329,7 +280,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.ImageGenerationResponseV3.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.InternalBatchResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
@@ -349,76 +300,35 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Reframe with Ideogram 3.0<br/>
-        /// Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.<br/>
-        /// Image links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// Initiate Batch Magic Prompt Evalution<br/>
+        /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
+        /// Generates images using large batches of user prompt inputs and creates TFRecord format for side-by-side service upload. Internal use only (feature flagged).
         /// </summary>
-        /// <param name="image">
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// <param name="userPrompts">
+        /// The prompts to enhance with a magic prompt.<br/>
+        /// Example: [a cat, a dog]
         /// </param>
-        /// <param name="imagename">
-        /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// <param name="experimentVariant">
+        /// The experiment variant used for template selection for the magic prompts.<br/>
+        /// Example: MAGIC_PROMPT_NO_TEXT
         /// </param>
-        /// <param name="resolution">
-        /// The resolutions supported for Ideogram 3.0.<br/>
-        /// Example: 1280x800
-        /// </param>
-        /// <param name="numImages">
-        /// The number of images to generate.<br/>
-        /// Default Value: 1
-        /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
-        /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
-        /// </param>
-        /// <param name="stylePreset">
-        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
-        /// Example: BRIGHT_ART
-        /// </param>
-        /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
-        /// </param>
-        /// <param name="styleCodes">
-        /// A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.<br/>
-        /// Example: [AAFF5733, 0133FF57, DE3357FF]
-        /// </param>
-        /// <param name="styleReferenceImages">
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
-        /// </param>
+        /// <param name="samplingRequestParams"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReframeImageV3Async(
-            byte[] image,
-            string imagename,
-            global::Ideogram.ResolutionV3 resolution,
-            int? numImages = default,
-            int? seed = default,
-            global::Ideogram.RenderingSpeed? renderingSpeed = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
-            global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(
+            global::System.Collections.Generic.IList<string> userPrompts,
+            string? experimentVariant = default,
+            global::Ideogram.SamplingRequestParams? samplingRequestParams = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.ReframeImageRequestV3
+            var __request = new global::Ideogram.InternalBatchRequest
             {
-                Image = image,
-                Imagename = imagename,
-                Resolution = resolution,
-                NumImages = numImages,
-                Seed = seed,
-                RenderingSpeed = renderingSpeed,
-                StylePreset = stylePreset,
-                ColorPalette = colorPalette,
-                StyleCodes = styleCodes,
-                StyleReferenceImages = styleReferenceImages,
+                UserPrompts = userPrompts,
+                ExperimentVariant = experimentVariant,
+                SamplingRequestParams = samplingRequestParams,
             };
 
-            return await PostReframeImageV3Async(
+            return await PostBatchAsync(
                 request: __request,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
         }

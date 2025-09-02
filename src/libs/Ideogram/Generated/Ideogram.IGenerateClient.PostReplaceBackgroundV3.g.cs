@@ -51,6 +51,10 @@ namespace Ideogram
         /// The rendering speed to use.<br/>
         /// Default Value: DEFAULT
         /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </param>
@@ -71,6 +75,7 @@ namespace Ideogram
             int? numImages = default,
             int? seed = default,
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.StylePresetV3? stylePreset = default,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,

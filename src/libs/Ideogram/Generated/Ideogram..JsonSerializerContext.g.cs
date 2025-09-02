@@ -37,6 +37,8 @@ namespace Ideogram
             typeof(global::Ideogram.JsonConverters.RenderingSpeedNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter),
             typeof(global::Ideogram.JsonConverters.StyleTypeV3NullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter),
+            typeof(global::Ideogram.JsonConverters.StylePresetV3NullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldJsonConverter),
             typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter),

@@ -64,6 +64,15 @@ namespace Ideogram
         public global::Ideogram.RenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </summary>
+        /// <example>BRIGHT_ART</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
+        public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+
+        /// <summary>
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
@@ -119,6 +128,10 @@ namespace Ideogram
         /// The rendering speed to use.<br/>
         /// Default Value: DEFAULT
         /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </param>
@@ -140,6 +153,7 @@ namespace Ideogram
             int? numImages,
             int? seed,
             global::Ideogram.RenderingSpeed? renderingSpeed,
+            global::Ideogram.StylePresetV3? stylePreset,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages)
@@ -151,6 +165,7 @@ namespace Ideogram
             this.NumImages = numImages;
             this.Seed = seed;
             this.RenderingSpeed = renderingSpeed;
+            this.StylePreset = stylePreset;
             this.ColorPalette = colorPalette;
             this.StyleCodes = styleCodes;
             this.StyleReferenceImages = styleReferenceImages;

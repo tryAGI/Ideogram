@@ -175,6 +175,68 @@ paths:
               schema:
                 $ref: '#/components/schemas/postInternalTesting_200_response'
       x-openapi-router-controller: external_api.generated.openapi.controllers.internal_testing_controller
+  /internal/batch:
+    post:
+      tags:
+        - batch
+      summary: Initiate Batch Magic Prompt Evalution
+      description: "Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. \nGenerates images using large batches of user prompt inputs and creates TFRecord format for side-by-side service upload. Internal use only (feature flagged).\n"
+      operationId: post_batch
+      requestBody:
+        description: A request for batch magic prompt evalution.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InternalBatchRequest'
+        required: true
+        x-body-name: internal_batch_request
+      responses:
+        '200':
+          description: Batch magic prompt evalution completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalBatchResponse'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized for batch magic prompt evalution.
+        '429':
+          description: Too many requests.
+        '500':
+          description: Internal server error.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.batch_controller
+  '/internal/batch/status/{job_id}':
+    get:
+      tags:
+        - batch
+      summary: Get Batch Magic Prompt Job Status and TFRecord URL if available
+      description: "Gets the status of a batch magic prompt job and the TFRecord URL if available.\n"
+      operationId: get_batch_status
+      parameters:
+        - name: job_id
+          in: path
+          description: The ID of the batch job to check status for
+          required: true
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Batch magic prompt job status and TFRecord URL if available.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalBatchStatusResponse'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized for batch magic prompt job status request.
+        '429':
+          description: Too many requests.
+        '500':
+          description: Internal server error.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.batch_controller
   /magic-prompt:
     post:
       tags:
@@ -1010,6 +1072,8 @@ components:
             - DE3357FF
         style_type:
           $ref: '#/components/schemas/StyleTypeV3'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
         style_reference_images:
           type: array
           items:
@@ -1074,6 +1138,8 @@ components:
           $ref: '#/components/schemas/StyleCodes'
         style_type:
           $ref: '#/components/schemas/StyleTypeV3'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
         style_reference_images:
           type: array
           items:
@@ -1121,6 +1187,8 @@ components:
           $ref: '#/components/schemas/RenderingSpeed'
         style_type:
           $ref: '#/components/schemas/StyleTypeV3'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
         style_codes:
@@ -1161,6 +1229,8 @@ components:
           $ref: '#/components/schemas/Seed'
         rendering_speed:
           $ref: '#/components/schemas/RenderingSpeed'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
         style_codes:
@@ -1193,6 +1263,8 @@ components:
           $ref: '#/components/schemas/Seed'
         rendering_speed:
           $ref: '#/components/schemas/RenderingSpeed'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
         style_codes:
@@ -1352,7 +1424,7 @@ components:
           description: 'Only available for model versions V_1, V_1_TURBO, V_2 and V_2_TURBO. Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.'
           example: 'brush strokes, painting'
         num_images:
-          title: num_images
+          title: NumImages
           maximum: 8
           minimum: 1
           type: integer
@@ -1414,7 +1486,7 @@ components:
         magic_prompt_version:
           $ref: '#/components/schemas/MagicPromptVersionEnum'
         num_images:
-          title: num_images
+          title: NumImages
           maximum: 8
           minimum: 1
           type: integer
@@ -1679,6 +1751,127 @@ components:
       description: The response containing generated magic prompt
       example:
         magic_prompt: 'A photorealistic cat with striking green eyes, sitting gracefully on a vintage wooden chair. The cat''s fur has beautiful orange and white markings, and soft natural lighting illuminates the scene from a nearby window.'
+    InternalBatchRequest:
+      title: InternalBatchRequest
+      required:
+        - user_prompts
+      type: object
+      properties:
+        user_prompts:
+          title: user_prompts
+          type: array
+          items:
+            type: string
+          description: The prompts to enhance with a magic prompt.
+          example:
+            - a cat
+            - a dog
+        experiment_variant:
+          title: experiment_variant
+          type: string
+          description: The experiment variant used for template selection for the magic prompts.
+          example: MAGIC_PROMPT_NO_TEXT
+        sampling_request_params:
+          $ref: '#/components/schemas/SamplingRequestParams'
+      description: A request for batch magic prompt evalution.
+      example:
+        user_prompts:
+          - a cat
+          - a dog
+        sampling_request_params:
+          aspect_ratio: ASPECT_10_16
+          style_type: REALISTIC
+          magic_prompt_version: V_0
+          seed: 12345
+          negative_prompt: 'brush strokes, painting'
+          magic_prompt_option: ON
+          model: V_2_TURBO
+          resolution: RESOLUTION_1024_1024
+          num_images: 1
+          color_palette:
+            name: PASTEL
+        experiment_variant: MAGIC_PROMPT_NO_TEXT
+    InternalBatchResponse:
+      title: InternalBatchResponse
+      required:
+        - job_id
+      type: object
+      properties:
+        job_id:
+          title: job_id
+          type: string
+          description: The job id for the batch generation.
+      description: A response for batch magic prompt evalution containing relavent information for /internal/batch/status GET request to find out if the batch generation has completed.
+      example:
+        job_id: job_id
+    SamplingRequestParams:
+      title: SamplingRequestParams
+      type: object
+      properties:
+        aspect_ratio:
+          $ref: '#/components/schemas/AspectRatio'
+        model:
+          $ref: '#/components/schemas/ModelEnum'
+        magic_prompt_option:
+          $ref: '#/components/schemas/MagicPromptOption'
+        magic_prompt_version:
+          $ref: '#/components/schemas/MagicPromptVersionEnum'
+        seed:
+          title: Seed
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Random seed. Set for reproducible generation.
+          example: 12345
+        style_type:
+          $ref: '#/components/schemas/StyleType'
+        negative_prompt:
+          title: negative_prompt
+          type: string
+          description: 'Only available for model versions V_1, V_1_TURBO, V_2 and V_2_TURBO. Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.'
+          example: 'brush strokes, painting'
+        num_images:
+          title: NumImages
+          maximum: 8
+          minimum: 1
+          type: integer
+          description: The number of images to generate.
+          default: 1
+        resolution:
+          $ref: '#/components/schemas/Resolution'
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+      example:
+        aspect_ratio: ASPECT_10_16
+        style_type: REALISTIC
+        magic_prompt_version: V_0
+        seed: 12345
+        negative_prompt: 'brush strokes, painting'
+        magic_prompt_option: ON
+        model: V_2_TURBO
+        resolution: RESOLUTION_1024_1024
+        num_images: 1
+        color_palette:
+          name: PASTEL
+    InternalBatchStatusResponse:
+      title: InternalBatchStatusResponse
+      required:
+        - job_status
+      type: object
+      properties:
+        job_status:
+          title: job_status
+          type: string
+          description: The status of the batch generation job.
+          example: COMPLETE
+        tfrecord_url:
+          title: tfrecord_url
+          type: string
+          description: The URL to the TFRecord file in Google Cloud Storage.
+      description: A response for batch magic prompt job status.
+      example:
+        job_status: COMPLETE
+        tfrecord_url: tfrecord_url
     ImageSafetyError:
       title: ImageSafetyError
       required:
@@ -2057,7 +2250,7 @@ components:
         url: https://docs.ideogram.ai/using-ideogram/ideogram-features/magic-prompt
       example: ON
     NumImages:
-      title: num_images
+      title: NumImages
       maximum: 8
       minimum: 1
       type: integer
@@ -2081,6 +2274,7 @@ components:
         - RENDER_3D
         - ANIME
         - CUSTOM
+        - STYLIZED
       type: string
       description: The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.
       example: REALISTIC
@@ -2204,6 +2398,8 @@ components:
       properties:
         name:
           $ref: '#/components/schemas/ColorPalettePresetName'
+      example:
+        name: PASTEL
     ColorPalettePresetName:
       title: ColorPalettePresetName
       enum:
@@ -2316,10 +2512,79 @@ components:
         - DESIGN
         - CUSTOM
         - FICTION
+        - STYLIZED
       type: string
       description: The style type to generate with.
       default: GENERAL
       example: GENERAL
+    StylePresetV3:
+      title: StylePresetV3
+      enum:
+        - 80S_ILLUSTRATION
+        - 90S_NOSTALGIA
+        - ABSTRACT_ORGANIC
+        - ANALOG_NOSTALGIA
+        - ART_BRUT
+        - ART_DECO
+        - ART_POSTER
+        - AURA
+        - AVANT_GARDE
+        - BAUHAUS
+        - BLUEPRINT
+        - BLURRY_MOTION
+        - BRIGHT_ART
+        - C4D_CARTOON
+        - CHILDRENS_BOOK
+        - COLLAGE
+        - COLORING_BOOK_I
+        - COLORING_BOOK_II
+        - CUBISM
+        - DARK_AURA
+        - DOODLE
+        - DOUBLE_EXPOSURE
+        - DRAMATIC_CINEMA
+        - EDITORIAL
+        - EMOTIONAL_MINIMAL
+        - ETHEREAL_PARTY
+        - EXPIRED_FILM
+        - FLAT_ART
+        - FLAT_VECTOR
+        - FOREST_REVERIE
+        - GEO_MINIMALIST
+        - GLASS_PRISM
+        - GOLDEN_HOUR
+        - GRAFFITI_I
+        - GRAFFITI_II
+        - HALFTONE_PRINT
+        - HIGH_CONTRAST
+        - HIPPIE_ERA
+        - ICONIC
+        - JAPANDI_FUSION
+        - JAZZY
+        - LONG_EXPOSURE
+        - MAGAZINE_EDITORIAL
+        - MINIMAL_ILLUSTRATION
+        - MIXED_MEDIA
+        - MONOCHROME
+        - NIGHTLIFE
+        - OIL_PAINTING
+        - OLD_CARTOONS
+        - PAINT_GESTURE
+        - POP_ART
+        - RETRO_ETCHING
+        - RIVIERA_POP
+        - SPOTLIGHT_80S
+        - STYLIZED_RED
+        - SURREAL_COLLAGE
+        - TRAVEL_POSTER
+        - VINTAGE_GEO
+        - VINTAGE_POSTER
+        - WATERCOLOR
+        - WEIRD
+        - WOODBLOCK_PRINT
+      type: string
+      description: A predefined style preset that applies a specific artistic style to the generated image.
+      example: BRIGHT_ART
     Resolution:
       title: Resolution
       enum:
