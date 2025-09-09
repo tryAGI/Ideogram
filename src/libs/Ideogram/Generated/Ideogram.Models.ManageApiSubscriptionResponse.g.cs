@@ -55,6 +55,13 @@ namespace Ideogram
         public string? StripeBillingUrl { get; set; }
 
         /// <summary>
+        /// Represents a price.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("current_balance")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Ideogram.Price CurrentBalance { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -74,18 +81,23 @@ namespace Ideogram
         /// <param name="stripeBillingUrl">
         /// The URL for the user to manage the existing Stripe subscription plan.
         /// </param>
+        /// <param name="currentBalance">
+        /// Represents a price.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ManageApiSubscriptionResponse(
             bool hasAcceptedTerms,
             bool hasStripeSetup,
+            global::Ideogram.Price currentBalance,
             global::Ideogram.MetronomeLinks? metronomeLinks,
             global::Ideogram.RechargeSettingsResponse? rechargeSettings,
             string? stripeBillingUrl)
         {
             this.HasAcceptedTerms = hasAcceptedTerms;
             this.HasStripeSetup = hasStripeSetup;
+            this.CurrentBalance = currentBalance ?? throw new global::System.ArgumentNullException(nameof(currentBalance));
             this.MetronomeLinks = metronomeLinks;
             this.RechargeSettings = rechargeSettings;
             this.StripeBillingUrl = stripeBillingUrl;

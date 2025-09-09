@@ -9,13 +9,11 @@ namespace Ideogram
     public sealed partial class SamplingRequestParams
     {
         /// <summary>
-        /// (Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image's resolution. Defaults to ASPECT_1_1.<br/>
-        /// Example: ASPECT_10_16
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </summary>
-        /// <example>ASPECT_10_16</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioJsonConverter))]
-        public global::Ideogram.AspectRatio? AspectRatio { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter))]
+        public global::Ideogram.AspectRatioV3? AspectRatio { get; set; }
 
         /// <summary>
         /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
@@ -54,13 +52,14 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
-        /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
-        /// Example: REALISTIC
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
         /// </summary>
-        /// <example>REALISTIC</example>
+        /// <example>GENERAL</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeJsonConverter))]
-        public global::Ideogram.StyleType? StyleType { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
+        public global::Ideogram.StyleTypeV3? StyleType { get; set; }
 
         /// <summary>
         /// Only available for model versions V_1, V_1_TURBO, V_2 and V_2_TURBO. Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
@@ -78,13 +77,13 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
-        /// Example: RESOLUTION_1024_1024
+        /// The resolutions supported for Ideogram 3.0.<br/>
+        /// Example: 1280x800
         /// </summary>
-        /// <example>RESOLUTION_1024_1024</example>
+        /// <example>1280x800</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter))]
-        public global::Ideogram.Resolution? Resolution { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV3JsonConverter))]
+        public global::Ideogram.ResolutionV3? Resolution { get; set; }
 
         /// <summary>
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
@@ -103,8 +102,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="SamplingRequestParams" /> class.
         /// </summary>
         /// <param name="aspectRatio">
-        /// (Cannot be used in conjunction with resolution) The aspect ratio to use for image generation, which determines the image's resolution. Defaults to ASPECT_1_1.<br/>
-        /// Example: ASPECT_10_16
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="model">
         /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
@@ -124,8 +122,9 @@ namespace Ideogram
         /// Example: 12345
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>
-        /// Example: REALISTIC
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
         /// </param>
         /// <param name="negativePrompt">
         /// Only available for model versions V_1, V_1_TURBO, V_2 and V_2_TURBO. Description of what to exclude from an image. Descriptions in the prompt take precedence to descriptions in the negative prompt.<br/>
@@ -136,8 +135,8 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="resolution">
-        /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
-        /// Example: RESOLUTION_1024_1024
+        /// The resolutions supported for Ideogram 3.0.<br/>
+        /// Example: 1280x800
         /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
@@ -146,15 +145,15 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public SamplingRequestParams(
-            global::Ideogram.AspectRatio? aspectRatio,
+            global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.ModelEnum? model,
             global::Ideogram.MagicPromptOption? magicPromptOption,
             global::Ideogram.MagicPromptVersionEnum? magicPromptVersion,
             int? seed,
-            global::Ideogram.StyleType? styleType,
+            global::Ideogram.StyleTypeV3? styleType,
             string? negativePrompt,
             int? numImages,
-            global::Ideogram.Resolution? resolution,
+            global::Ideogram.ResolutionV3? resolution,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette)
         {
             this.AspectRatio = aspectRatio;
