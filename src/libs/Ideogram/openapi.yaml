@@ -1779,14 +1779,14 @@ components:
           - a cat
           - a dog
         sampling_request_params:
-          aspect_ratio: ASPECT_10_16
-          style_type: REALISTIC
+          aspect_ratio: 
+          style_type: GENERAL
           magic_prompt_version: V_0
           seed: 12345
           negative_prompt: 'brush strokes, painting'
           magic_prompt_option: ON
           model: V_2_TURBO
-          resolution: RESOLUTION_1024_1024
+          resolution: 1280x800
           num_images: 1
           color_palette:
             name: PASTEL
@@ -1809,7 +1809,7 @@ components:
       type: object
       properties:
         aspect_ratio:
-          $ref: '#/components/schemas/AspectRatio'
+          $ref: '#/components/schemas/AspectRatioV3'
         model:
           $ref: '#/components/schemas/ModelEnum'
         magic_prompt_option:
@@ -1824,7 +1824,7 @@ components:
           description: Random seed. Set for reproducible generation.
           example: 12345
         style_type:
-          $ref: '#/components/schemas/StyleType'
+          $ref: '#/components/schemas/StyleTypeV3'
         negative_prompt:
           title: negative_prompt
           type: string
@@ -1838,18 +1838,18 @@ components:
           description: The number of images to generate.
           default: 1
         resolution:
-          $ref: '#/components/schemas/Resolution'
+          $ref: '#/components/schemas/ResolutionV3'
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
       example:
-        aspect_ratio: ASPECT_10_16
-        style_type: REALISTIC
+        aspect_ratio: 
+        style_type: GENERAL
         magic_prompt_version: V_0
         seed: 12345
         negative_prompt: 'brush strokes, painting'
         magic_prompt_option: ON
         model: V_2_TURBO
-        resolution: RESOLUTION_1024_1024
+        resolution: 1280x800
         num_images: 1
         color_palette:
           name: PASTEL
@@ -1887,6 +1887,7 @@ components:
     ManageApiSubscriptionResponse:
       title: ManageApiSubscriptionResponse
       required:
+        - current_balance
         - has_accepted_terms
         - has_stripe_setup
       type: object
@@ -1917,12 +1918,17 @@ components:
           title: stripe_billing_url
           type: string
           description: The URL for the user to manage the existing Stripe subscription plan.
+        current_balance:
+          $ref: '#/components/schemas/Price'
       example:
         recharge_settings:
           is_active: true
         has_stripe_setup: true
         metronome_dashboard_dark_mode_url: metronome_dashboard_dark_mode_url
         stripe_billing_url: stripe_billing_url
+        current_balance:
+          amount: 1050
+          currency_code: USD
         has_accepted_terms: true
         metronome_dashboard_url: metronome_dashboard_url
         metronome_links:
