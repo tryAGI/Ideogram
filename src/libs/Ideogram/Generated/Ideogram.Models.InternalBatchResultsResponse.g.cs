@@ -4,9 +4,9 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A response for batch magic prompt job status.
+    /// A response for batch magic prompt job results.
     /// </summary>
-    public sealed partial class InternalBatchStatusResponse
+    public sealed partial class InternalBatchResultsResponse
     {
         /// <summary>
         /// The status of the batch generation job.<br/>
@@ -18,10 +18,10 @@ namespace Ideogram
         public required string JobStatus { get; set; }
 
         /// <summary>
-        /// The URL to the TFRecord file in Google Cloud Storage.
+        /// The batch generation results, with each entry containing a prompt and its corresponding image URL.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tfrecord_url")]
-        public string? TfrecordUrl { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("results")]
+        public global::System.Collections.Generic.IList<global::Ideogram.InternalBatchResultsResponseResultsInner>? Results { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -30,30 +30,30 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InternalBatchStatusResponse" /> class.
+        /// Initializes a new instance of the <see cref="InternalBatchResultsResponse" /> class.
         /// </summary>
         /// <param name="jobStatus">
         /// The status of the batch generation job.<br/>
         /// Example: COMPLETE
         /// </param>
-        /// <param name="tfrecordUrl">
-        /// The URL to the TFRecord file in Google Cloud Storage.
+        /// <param name="results">
+        /// The batch generation results, with each entry containing a prompt and its corresponding image URL.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public InternalBatchStatusResponse(
+        public InternalBatchResultsResponse(
             string jobStatus,
-            string? tfrecordUrl)
+            global::System.Collections.Generic.IList<global::Ideogram.InternalBatchResultsResponseResultsInner>? results)
         {
             this.JobStatus = jobStatus ?? throw new global::System.ArgumentNullException(nameof(jobStatus));
-            this.TfrecordUrl = tfrecordUrl;
+            this.Results = results;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="InternalBatchStatusResponse" /> class.
+        /// Initializes a new instance of the <see cref="InternalBatchResultsResponse" /> class.
         /// </summary>
-        public InternalBatchStatusResponse()
+        public InternalBatchResultsResponse()
         {
         }
     }

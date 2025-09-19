@@ -5,48 +5,45 @@ namespace Ideogram
 {
     public partial class BatchClient
     {
-        partial void PreparePostBatchArguments(
+        partial void PrepareGetMaybeBatchResultsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.InternalBatchRequest request);
-        partial void PreparePostBatchRequest(
+            ref string jobId);
+        partial void PrepareGetMaybeBatchResultsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.InternalBatchRequest request);
-        partial void ProcessPostBatchResponse(
+            string jobId);
+        partial void ProcessGetMaybeBatchResultsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostBatchResponseContent(
+        partial void ProcessGetMaybeBatchResultsResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Initiate Batch Magic Prompt Evalution<br/>
-        /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
-        /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
+        /// Get Batch Magic Prompt Job Results if available.<br/>
+        /// Gets the results of a batch magic prompt job if available.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="jobId"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(
-            global::Ideogram.InternalBatchRequest request,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResultsResponse> GetMaybeBatchResultsAsync(
+            string jobId,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PreparePostBatchArguments(
+            PrepareGetMaybeBatchResultsArguments(
                 httpClient: HttpClient,
-                request: request);
+                jobId: ref jobId);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/internal/batch",
+                path: $"/internal/batch/get-maybe-batch-results/{jobId}",
                 baseUri: HttpClient.BaseAddress); 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                method: global::System.Net.Http.HttpMethod.Post,
+                method: global::System.Net.Http.HttpMethod.Get,
                 requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
             __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -68,20 +65,14 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                content: __httpRequestContentBody,
-                encoding: global::System.Text.Encoding.UTF8,
-                mediaType: "application/json");
-            __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PreparePostBatchRequest(
+            PrepareGetMaybeBatchResultsRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                request: request);
+                jobId: jobId);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -91,7 +82,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessPostBatchResponse(
+            ProcessGetMaybeBatchResultsResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -239,7 +230,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessPostBatchResponseContent(
+                ProcessGetMaybeBatchResultsResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -249,7 +240,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.InternalBatchResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.InternalBatchResultsResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -280,7 +271,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.InternalBatchResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.InternalBatchResultsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
@@ -297,40 +288,6 @@ namespace Ideogram
                     };
                 }
             }
-        }
-
-        /// <summary>
-        /// Initiate Batch Magic Prompt Evalution<br/>
-        /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
-        /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
-        /// </summary>
-        /// <param name="userPrompts">
-        /// The prompts to enhance with a magic prompt.<br/>
-        /// Example: [a cat, a dog]
-        /// </param>
-        /// <param name="experimentVariant">
-        /// The experiment variant used for template selection for the magic prompts.<br/>
-        /// Example: MAGIC_PROMPT_NO_TEXT
-        /// </param>
-        /// <param name="samplingRequestParams"></param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(
-            global::System.Collections.Generic.IList<string> userPrompts,
-            string? experimentVariant = default,
-            global::Ideogram.SamplingRequestParams? samplingRequestParams = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Ideogram.InternalBatchRequest
-            {
-                UserPrompts = userPrompts,
-                ExperimentVariant = experimentVariant,
-                SamplingRequestParams = samplingRequestParams,
-            };
-
-            return await PostBatchAsync(
-                request: __request,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

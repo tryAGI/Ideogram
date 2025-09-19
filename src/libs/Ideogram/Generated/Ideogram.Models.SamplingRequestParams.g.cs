@@ -9,8 +9,9 @@ namespace Ideogram
     public sealed partial class SamplingRequestParams
     {
         /// <summary>
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// Example: 1x1
         /// </summary>
+        /// <example>1x1</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter))]
         public global::Ideogram.AspectRatioV3? AspectRatio { get; set; }
@@ -102,7 +103,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="SamplingRequestParams" /> class.
         /// </summary>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// Example: 1x1
         /// </param>
         /// <param name="model">
         /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>

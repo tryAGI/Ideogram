@@ -7,7 +7,7 @@ namespace Ideogram
         /// <summary>
         /// Initiate Batch Magic Prompt Evalution<br/>
         /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
-        /// Generates images using large batches of user prompt inputs and creates TFRecord format for side-by-side service upload. Internal use only (feature flagged).
+        /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -19,7 +19,7 @@ namespace Ideogram
         /// <summary>
         /// Initiate Batch Magic Prompt Evalution<br/>
         /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
-        /// Generates images using large batches of user prompt inputs and creates TFRecord format for side-by-side service upload. Internal use only (feature flagged).
+        /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
         /// </summary>
         /// <param name="userPrompts">
         /// The prompts to enhance with a magic prompt.<br/>
