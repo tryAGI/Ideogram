@@ -3,50 +3,61 @@
 
 namespace Ideogram
 {
-    public partial class BatchClient
+    public partial class ManageClient
     {
-        partial void PreparePostBatchArguments(
+        partial void PrepareGetUserCreditsArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.InternalBatchRequest request);
-        partial void PreparePostBatchRequest(
+            ref string organizationId,
+            ref global::System.DateTime startDate,
+            ref global::System.DateTime? endDate);
+        partial void PrepareGetUserCreditsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.InternalBatchRequest request);
-        partial void ProcessPostBatchResponse(
+            string organizationId,
+            global::System.DateTime startDate,
+            global::System.DateTime? endDate);
+        partial void ProcessGetUserCreditsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostBatchResponseContent(
+        partial void ProcessGetUserCreditsResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Initiate Batch Magic Prompt Evalution<br/>
-        /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
-        /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
+        /// Retrieve user credit information and spending metrics
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="organizationId"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(
-            global::Ideogram.InternalBatchRequest request,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GetUserCreditsResponse> GetUserCreditsAsync(
+            string organizationId,
+            global::System.DateTime startDate,
+            global::System.DateTime? endDate = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PreparePostBatchArguments(
+            PrepareGetUserCreditsArguments(
                 httpClient: HttpClient,
-                request: request);
+                organizationId: ref organizationId,
+                startDate: ref startDate,
+                endDate: ref endDate);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/internal/batch",
+                path: "/manage/api/credits",
                 baseUri: HttpClient.BaseAddress); 
+            __pathBuilder 
+                .AddRequiredParameter("organization_id", organizationId) 
+                .AddRequiredParameter("start_date", startDate.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
+                .AddOptionalParameter("end_date", endDate?.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
+                ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                method: global::System.Net.Http.HttpMethod.Post,
+                method: global::System.Net.Http.HttpMethod.Get,
                 requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
             __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -68,20 +79,16 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                content: __httpRequestContentBody,
-                encoding: global::System.Text.Encoding.UTF8,
-                mediaType: "application/json");
-            __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PreparePostBatchRequest(
+            PrepareGetUserCreditsRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                request: request);
+                organizationId: organizationId,
+                startDate: startDate,
+                endDate: endDate);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -91,42 +98,9 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessPostBatchResponse(
+            ProcessGetUserCreditsResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
-            // 
-            if ((int)__response.StatusCode == 400)
-            {
-                string? __content_400 = null;
-                global::System.Exception? __exception_400 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_400 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        var __contentStream_400 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_400 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException(
-                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_400,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_400,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
             // 
             if ((int)__response.StatusCode == 401)
             {
@@ -161,65 +135,32 @@ namespace Ideogram
                 };
             }
             // 
-            if ((int)__response.StatusCode == 429)
+            if ((int)__response.StatusCode == 403)
             {
-                string? __content_429 = null;
-                global::System.Exception? __exception_429 = null;
+                string? __content_403 = null;
+                global::System.Exception? __exception_403 = null;
                 try
                 {
                     if (ReadResponseAsString)
                     {
-                        __content_429 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                        __content_403 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                     }
                     else
                     {
-                        var __contentStream_429 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                        var __contentStream_403 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
                     }
                 }
                 catch (global::System.Exception __ex)
                 {
-                    __exception_429 = __ex;
+                    __exception_403 = __ex;
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_429,
+                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_403,
                     statusCode: __response.StatusCode)
                 {
-                    ResponseBody = __content_429,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
-            // 
-            if ((int)__response.StatusCode == 500)
-            {
-                string? __content_500 = null;
-                global::System.Exception? __exception_500 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_500 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        var __contentStream_500 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_500 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException(
-                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_500,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_500,
+                    ResponseBody = __content_403,
                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                         __response.Headers,
                         h => h.Key,
@@ -239,7 +180,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessPostBatchResponseContent(
+                ProcessGetUserCreditsResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -249,7 +190,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.InternalBatchResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.GetUserCreditsResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -280,7 +221,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.InternalBatchResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.GetUserCreditsResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
@@ -297,40 +238,6 @@ namespace Ideogram
                     };
                 }
             }
-        }
-
-        /// <summary>
-        /// Initiate Batch Magic Prompt Evalution<br/>
-        /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
-        /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
-        /// </summary>
-        /// <param name="userPrompts">
-        /// The prompts to enhance with a magic prompt.<br/>
-        /// Example: [a cat, a dog]
-        /// </param>
-        /// <param name="experimentVariant">
-        /// The experiment variant used for template selection for the magic prompts.<br/>
-        /// Example: MAGIC_PROMPT_NO_TEXT
-        /// </param>
-        /// <param name="samplingRequestParams"></param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(
-            global::System.Collections.Generic.IList<string> userPrompts,
-            string? experimentVariant = default,
-            global::Ideogram.SamplingRequestParams? samplingRequestParams = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Ideogram.InternalBatchRequest
-            {
-                UserPrompts = userPrompts,
-                ExperimentVariant = experimentVariant,
-                SamplingRequestParams = samplingRequestParams,
-            };
-
-            return await PostBatchAsync(
-                request: __request,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

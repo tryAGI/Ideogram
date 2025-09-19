@@ -3,44 +3,46 @@
 
 namespace Ideogram
 {
-    public partial class BatchClient
+    public partial class ManageClient
     {
-        partial void PrepareGetBatchStatusArguments(
+        partial void PrepareGetUserSpendCommitInfoArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string jobId);
-        partial void PrepareGetBatchStatusRequest(
+            ref string organizationId);
+        partial void PrepareGetUserSpendCommitInfoRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string jobId);
-        partial void ProcessGetBatchStatusResponse(
+            string organizationId);
+        partial void ProcessGetUserSpendCommitInfoResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetBatchStatusResponseContent(
+        partial void ProcessGetUserSpendCommitInfoResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Get Batch Magic Prompt Job Status and TFRecord URL if available<br/>
-        /// Gets the status of a batch magic prompt job and the TFRecord URL if available.
+        /// Retrieve user spend commit information
         /// </summary>
-        /// <param name="jobId"></param>
+        /// <param name="organizationId"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchStatusResponse> GetBatchStatusAsync(
-            string jobId,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.SpendCommitInfoResponse> GetUserSpendCommitInfoAsync(
+            string organizationId,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetBatchStatusArguments(
+            PrepareGetUserSpendCommitInfoArguments(
                 httpClient: HttpClient,
-                jobId: ref jobId);
+                organizationId: ref organizationId);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: $"/internal/batch/status/{jobId}",
+                path: "/manage/api/spend_commit",
                 baseUri: HttpClient.BaseAddress); 
+            __pathBuilder 
+                .AddRequiredParameter("organization_id", organizationId) 
+                ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -69,10 +71,10 @@ namespace Ideogram
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetBatchStatusRequest(
+            PrepareGetUserSpendCommitInfoRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                jobId: jobId);
+                organizationId: organizationId);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -82,42 +84,9 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetBatchStatusResponse(
+            ProcessGetUserSpendCommitInfoResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
-            // 
-            if ((int)__response.StatusCode == 400)
-            {
-                string? __content_400 = null;
-                global::System.Exception? __exception_400 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_400 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        var __contentStream_400 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_400 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException(
-                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_400,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_400,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
             // 
             if ((int)__response.StatusCode == 401)
             {
@@ -152,65 +121,32 @@ namespace Ideogram
                 };
             }
             // 
-            if ((int)__response.StatusCode == 429)
+            if ((int)__response.StatusCode == 403)
             {
-                string? __content_429 = null;
-                global::System.Exception? __exception_429 = null;
+                string? __content_403 = null;
+                global::System.Exception? __exception_403 = null;
                 try
                 {
                     if (ReadResponseAsString)
                     {
-                        __content_429 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                        __content_403 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
                     }
                     else
                     {
-                        var __contentStream_429 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                        var __contentStream_403 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
                     }
                 }
                 catch (global::System.Exception __ex)
                 {
-                    __exception_429 = __ex;
+                    __exception_403 = __ex;
                 }
 
                 throw new global::Ideogram.ApiException(
-                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_429,
+                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_403,
                     statusCode: __response.StatusCode)
                 {
-                    ResponseBody = __content_429,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
-            // 
-            if ((int)__response.StatusCode == 500)
-            {
-                string? __content_500 = null;
-                global::System.Exception? __exception_500 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_500 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        var __contentStream_500 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_500 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException(
-                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_500,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_500,
+                    ResponseBody = __content_403,
                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                         __response.Headers,
                         h => h.Key,
@@ -230,7 +166,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetBatchStatusResponseContent(
+                ProcessGetUserSpendCommitInfoResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -240,7 +176,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.InternalBatchStatusResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.SpendCommitInfoResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -271,7 +207,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.InternalBatchStatusResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.SpendCommitInfoResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

@@ -180,7 +180,7 @@ paths:
       tags:
         - batch
       summary: Initiate Batch Magic Prompt Evalution
-      description: "Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. \nGenerates images using large batches of user prompt inputs and creates TFRecord format for side-by-side service upload. Internal use only (feature flagged).\n"
+      description: "Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. \nGenerates images using large batches of user prompt inputs. Internal use only (feature flagged).\n"
       operationId: post_batch
       requestBody:
         description: A request for batch magic prompt evalution.
@@ -206,32 +206,32 @@ paths:
         '500':
           description: Internal server error.
       x-openapi-router-controller: external_api.generated.openapi.controllers.batch_controller
-  '/internal/batch/status/{job_id}':
+  '/internal/batch/get-maybe-batch-results/{job_id}':
     get:
       tags:
         - batch
-      summary: Get Batch Magic Prompt Job Status and TFRecord URL if available
-      description: "Gets the status of a batch magic prompt job and the TFRecord URL if available.\n"
-      operationId: get_batch_status
+      summary: Get Batch Magic Prompt Job Results if available.
+      description: "Gets the results of a batch magic prompt job if available.\n"
+      operationId: get_maybe_batch_results
       parameters:
         - name: job_id
           in: path
-          description: The ID of the batch job to check status for
+          description: The ID of the batch job to check results for
           required: true
           style: simple
           schema:
             type: string
       responses:
         '200':
-          description: Batch magic prompt job status and TFRecord URL if available.
+          description: Batch magic prompt job results if available.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InternalBatchStatusResponse'
+                $ref: '#/components/schemas/InternalBatchResultsResponse'
         '400':
           description: Invalid input provided.
         '401':
-          description: Not authorized for batch magic prompt job status request.
+          description: Not authorized for batch magic prompt job results request.
         '429':
           description: Too many requests.
         '500':
@@ -368,6 +368,46 @@ paths:
       security:
         - BearerAuth: [ ]
       x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/credits:
+    get:
+      tags:
+        - manage
+      summary: Retrieve user credit information and spending metrics
+      operationId: get_user_credits
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to filter credit information for a specific organization
+          required: true
+          schema:
+            type: string
+        - name: start_date
+          in: query
+          description: Start date to look back for calculating average daily spend and other metrics
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: end_date
+          in: query
+          description: 'Inclusive end date to look back for calculating average daily spend and other metrics. If not provided, the current date will be used.'
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: User credit information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserCreditsResponse'
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
   /manage/api/reactivate:
     post:
       tags:
@@ -387,6 +427,43 @@ paths:
           description: Payment is required; is your payment method setup?
         '404':
           description: User does not have a subscription to reactivate.
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/spend_commit:
+    get:
+      tags:
+        - manage
+      summary: Retrieve user spend commit information
+      operationId: get_user_spend_commit_info
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to filter spend commit information for a specific organization
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User spend commit information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpendCommitInfoResponse'
+              example:
+                commits:
+                  - commit_spend_balance:
+                      currency_code: USD
+                      amount: 7500
+                    commit_amount:
+                      currency_code: USD
+                      amount: 10000
+                    commit_start_date: '2025-01-01'
+                    commit_end_date: '2025-12-31T23:59:59.0000000+00:00'
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
       security:
         - BearerAuth: [ ]
       x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
@@ -1668,6 +1745,7 @@ components:
         - V_0_5
         - V_0_6
         - V_0_7
+        - V_0_8
       type: string
       description: The magic prompt version to use when magic prompt option is set to AUTO or ON.
       example: V_0
@@ -1779,7 +1857,7 @@ components:
           - a cat
           - a dog
         sampling_request_params:
-          aspect_ratio: 
+          aspect_ratio: 1x1
           style_type: GENERAL
           magic_prompt_version: V_0
           seed: 12345
@@ -1809,7 +1887,10 @@ components:
       type: object
       properties:
         aspect_ratio:
-          $ref: '#/components/schemas/AspectRatioV3'
+          title: aspect_ratio
+          allOf:
+            - $ref: '#/components/schemas/AspectRatioV3'
+          example: 1x1
         model:
           $ref: '#/components/schemas/ModelEnum'
         magic_prompt_option:
@@ -1842,7 +1923,7 @@ components:
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
       example:
-        aspect_ratio: 
+        aspect_ratio: 1x1
         style_type: GENERAL
         magic_prompt_version: V_0
         seed: 12345
@@ -1853,8 +1934,8 @@ components:
         num_images: 1
         color_palette:
           name: PASTEL
-    InternalBatchStatusResponse:
-      title: InternalBatchStatusResponse
+    InternalBatchResultsResponse:
+      title: InternalBatchResultsResponse
       required:
         - job_status
       type: object
@@ -1864,14 +1945,20 @@ components:
           type: string
           description: The status of the batch generation job.
           example: COMPLETE
-        tfrecord_url:
-          title: tfrecord_url
-          type: string
-          description: The URL to the TFRecord file in Google Cloud Storage.
-      description: A response for batch magic prompt job status.
+        results:
+          title: results
+          type: array
+          items:
+            $ref: '#/components/schemas/InternalBatchResultsResponse_results_inner'
+          description: 'The batch generation results, with each entry containing a prompt and its corresponding image URL.'
+      description: A response for batch magic prompt job results.
       example:
         job_status: COMPLETE
-        tfrecord_url: tfrecord_url
+        results:
+          - image_url: image_url
+            prompt: a cat
+          - image_url: image_url
+            prompt: a cat
     ImageSafetyError:
       title: ImageSafetyError
       required:
@@ -2224,6 +2311,86 @@ components:
           $ref: '#/components/schemas/Price'
       example:
         amount:
+          amount: 1050
+          currency_code: USD
+    GetUserCreditsResponse:
+      title: GetUserCreditsResponse
+      required:
+        - average_daily_spend
+        - total_spend
+      type: object
+      properties:
+        available_credits:
+          $ref: '#/components/schemas/Price'
+        total_spend:
+          $ref: '#/components/schemas/Price'
+        average_daily_spend:
+          $ref: '#/components/schemas/Price'
+      example:
+        total_spend:
+          amount: 1050
+          currency_code: USD
+        average_daily_spend:
+          amount: 1050
+          currency_code: USD
+        available_credits:
+          amount: 1050
+          currency_code: USD
+    SpendCommitInfoResponse:
+      title: SpendCommitInfoResponse
+      required:
+        - commits
+      type: object
+      properties:
+        commits:
+          title: commits
+          type: array
+          items:
+            $ref: '#/components/schemas/SpendCommitInfo'
+          description: A list of spend commit information
+      example:
+        commits:
+          - commit_spend_balance:
+              amount: 1050
+              currency_code: USD
+            commit_end_date: '2000-01-23T04:56:07.0000000+00:00'
+            commit_start_date: '2000-01-23T04:56:07.0000000+00:00'
+            commit_amount:
+              amount: 1050
+              currency_code: USD
+          - commit_spend_balance:
+              amount: 1050
+              currency_code: USD
+            commit_end_date: '2000-01-23T04:56:07.0000000+00:00'
+            commit_start_date: '2000-01-23T04:56:07.0000000+00:00'
+            commit_amount:
+              amount: 1050
+              currency_code: USD
+    SpendCommitInfo:
+      title: SpendCommitInfo
+      type: object
+      properties:
+        commit_spend_balance:
+          $ref: '#/components/schemas/Price'
+        commit_amount:
+          $ref: '#/components/schemas/Price'
+        commit_start_date:
+          title: commit_start_date
+          type: string
+          description: The start date of the commit period
+          format: date-time
+        commit_end_date:
+          title: commit_end_date
+          type: string
+          description: The end date of the commit period
+          format: date-time
+      example:
+        commit_spend_balance:
+          amount: 1050
+          currency_code: USD
+        commit_end_date: '2000-01-23T04:56:07.0000000+00:00'
+        commit_start_date: '2000-01-23T04:56:07.0000000+00:00'
+        commit_amount:
           amount: 1050
           currency_code: USD
     Description:
@@ -2724,6 +2891,25 @@ components:
           type: string
       example:
         response_content: response_content
+    InternalBatchResultsResponse_results_inner:
+      title: InternalBatchResultsResponse_results_inner
+      required:
+        - image_url
+        - prompt
+      type: object
+      properties:
+        prompt:
+          title: prompt
+          type: string
+          description: The prompt used for generation.
+          example: a cat
+        image_url:
+          title: image_url
+          type: string
+          description: The URL of the generated image.
+      example:
+        image_url: image_url
+        prompt: a cat
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

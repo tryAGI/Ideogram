@@ -41,6 +41,10 @@ namespace Ideogram
         /// 
         /// </summary>
         V07,
+        /// <summary>
+        /// 
+        /// </summary>
+        V08,
     }
 
     /// <summary>
@@ -63,6 +67,7 @@ namespace Ideogram
                 MagicPromptVersionEnum.V05 => "V_0_5",
                 MagicPromptVersionEnum.V06 => "V_0_6",
                 MagicPromptVersionEnum.V07 => "V_0_7",
+                MagicPromptVersionEnum.V08 => "V_0_8",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -81,6 +86,7 @@ namespace Ideogram
                 "V_0_5" => MagicPromptVersionEnum.V05,
                 "V_0_6" => MagicPromptVersionEnum.V06,
                 "V_0_7" => MagicPromptVersionEnum.V07,
+                "V_0_8" => MagicPromptVersionEnum.V08,
                 _ => null,
             };
         }
