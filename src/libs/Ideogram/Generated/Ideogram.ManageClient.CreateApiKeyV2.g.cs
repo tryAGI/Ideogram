@@ -5,53 +5,47 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
-        partial void PrepareGetUserSpendCommitInfoArguments(
+        partial void PrepareCreateApiKeyV2Arguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string organizationId,
-            ref bool? postpaidOnly);
-        partial void PrepareGetUserSpendCommitInfoRequest(
+            ref string organizationId);
+        partial void PrepareCreateApiKeyV2Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string organizationId,
-            bool? postpaidOnly);
-        partial void ProcessGetUserSpendCommitInfoResponse(
+            string organizationId);
+        partial void ProcessCreateApiKeyV2Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetUserSpendCommitInfoResponseContent(
+        partial void ProcessCreateApiKeyV2ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Retrieve user spend commit information
+        /// Create an API key for a specific organization
         /// </summary>
         /// <param name="organizationId"></param>
-        /// <param name="postpaidOnly"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.SpendCommitInfoResponse> GetUserSpendCommitInfoAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.CreateApiKeyResponse> CreateApiKeyV2Async(
             string organizationId,
-            bool? postpaidOnly = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetUserSpendCommitInfoArguments(
+            PrepareCreateApiKeyV2Arguments(
                 httpClient: HttpClient,
-                organizationId: ref organizationId,
-                postpaidOnly: ref postpaidOnly);
+                organizationId: ref organizationId);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/manage/api/spend_commit",
+                path: "/manage/api/api_keys_v2",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder 
                 .AddRequiredParameter("organization_id", organizationId) 
-                .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString()) 
                 ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                method: global::System.Net.Http.HttpMethod.Get,
+                method: global::System.Net.Http.HttpMethod.Post,
                 requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
             __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -77,11 +71,10 @@ namespace Ideogram
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetUserSpendCommitInfoRequest(
+            PrepareCreateApiKeyV2Request(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                organizationId: organizationId,
-                postpaidOnly: postpaidOnly);
+                organizationId: organizationId);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -91,7 +84,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetUserSpendCommitInfoResponse(
+            ProcessCreateApiKeyV2Response(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -121,6 +114,39 @@ namespace Ideogram
                     statusCode: __response.StatusCode)
                 {
                     ResponseBody = __content_401,
+                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                        __response.Headers,
+                        h => h.Key,
+                        h => h.Value),
+                };
+            }
+            // 
+            if ((int)__response.StatusCode == 402)
+            {
+                string? __content_402 = null;
+                global::System.Exception? __exception_402 = null;
+                try
+                {
+                    if (ReadResponseAsString)
+                    {
+                        __content_402 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        var __contentStream_402 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                }
+                catch (global::System.Exception __ex)
+                {
+                    __exception_402 = __ex;
+                }
+
+                throw new global::Ideogram.ApiException(
+                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_402,
+                    statusCode: __response.StatusCode)
+                {
+                    ResponseBody = __content_402,
                     ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
                         __response.Headers,
                         h => h.Key,
@@ -173,7 +199,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetUserSpendCommitInfoResponseContent(
+                ProcessCreateApiKeyV2ResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -183,7 +209,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.SpendCommitInfoResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.CreateApiKeyResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -214,7 +240,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.SpendCommitInfoResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.CreateApiKeyResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

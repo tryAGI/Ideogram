@@ -368,6 +368,35 @@ paths:
       security:
         - BearerAuth: [ ]
       x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/api_keys_v2:
+    post:
+      tags:
+        - manage
+      summary: Create an API key for a specific organization
+      operationId: create_api_key_v2
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to create the API key for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: API key created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateApiKeyResponse'
+        '401':
+          description: Not authorized
+        '402':
+          description: Payment is required before creating an API key.
+        '403':
+          description: Not authorized
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
   /manage/api/credits:
     get:
       tags:
@@ -381,16 +410,16 @@ paths:
           required: true
           schema:
             type: string
-        - name: start_date
+        - name: start_time
           in: query
-          description: Start date to look back for calculating average daily spend and other metrics
+          description: Start time to look back for calculating average daily spend and other metrics
           required: true
           schema:
             type: string
             format: date-time
-        - name: end_date
+        - name: end_time
           in: query
-          description: 'Inclusive end date to look back for calculating average daily spend and other metrics. If not provided, the current date will be used.'
+          description: 'Inclusive end time to look back for calculating average daily spend and other metrics. If not provided, the current time will be used.'
           schema:
             type: string
             format: date-time
@@ -401,6 +430,187 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetUserCreditsResponse'
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/add_members:
+    post:
+      tags:
+        - manage
+      summary: Add members to a specific organization
+      operationId: add_organization_members
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to add members to
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A request to add members to an organization.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddOrganizationMembersRequest'
+        required: true
+        x-body-name: add_organization_members_request
+      responses:
+        '204':
+          description: Success; no content.
+        '400':
+          description: Bad Request
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized - must be an organization owner
+        '404':
+          description: Organization not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/deactivate_api_key:
+    post:
+      tags:
+        - manage
+      summary: Deactivate an API key for a specific organization
+      operationId: deactivate_organization_api_key
+      parameters:
+        - name: api_key_id
+          in: query
+          description: Base64 encoded API key ID to deactivate
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Success; no content.
+        '400':
+          description: Bad Request
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized - must be an organization owner
+        '404':
+          description: API key not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/members:
+    get:
+      tags:
+        - manage
+      summary: Retrieve members of a specific organization
+      operationId: get_organization_members
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to retrieve members for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Organization members retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrganizationMembersResponse'
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
+        '404':
+          description: Organization not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/promote_members:
+    post:
+      tags:
+        - manage
+      summary: Promote members to OWNER role in a specific organization
+      operationId: promote_organization_members
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to promote members in
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A request to promote members to OWNER role in an organization.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromoteOrganizationMembersRequest'
+        required: true
+        x-body-name: promote_organization_members_request
+      responses:
+        '204':
+          description: Success; no content.
+        '400':
+          description: Bad Request
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized - must be an organization owner
+        '404':
+          description: Organization not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/remove_members:
+    post:
+      tags:
+        - manage
+      summary: Remove members from a specific organization
+      operationId: remove_organization_members
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to remove members from
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: A request to remove members from an organization.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RemoveOrganizationMembersRequest'
+        required: true
+        x-body-name: remove_organization_members_request
+      responses:
+        '204':
+          description: Success; no content.
+        '400':
+          description: Bad Request
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized - must be an organization owner
+        '404':
+          description: Organization not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/profiles:
+    get:
+      tags:
+        - manage
+      summary: Retrieve the user's current API profiles
+      operationId: get_api_profiles
+      responses:
+        '200':
+          description: User API profiles retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApiProfilesResponse'
         '401':
           description: Not authorized
         '403':
@@ -443,6 +653,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: postpaid_only
+          in: query
+          description: Whether to only return postpaid commits. Defaults to true.
+          schema:
+            type: boolean
       responses:
         '200':
           description: User spend commit information retrieved successfully
@@ -458,8 +673,8 @@ paths:
                     commit_amount:
                       currency_code: USD
                       amount: 10000
-                    commit_start_date: '2025-01-01'
-                    commit_end_date: '2025-12-31T23:59:59.0000000+00:00'
+                    commit_start_time: '2025-01-01'
+                    commit_end_time: '2025-12-31T23:59:59.0000000+00:00'
         '401':
           description: Not authorized
         '403':
@@ -584,6 +799,101 @@ paths:
           description: Success; no content.
         '400':
           description: Bad Request
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/usage:
+    get:
+      tags:
+        - manage
+      summary: Retrieve usage information segmented by time period with tool-specific breakdowns
+      operationId: get_usage_info
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to filter usage information for a specific organization
+          required: true
+          schema:
+            type: string
+        - name: segment_by
+          in: query
+          description: Time segment granularity for usage breakdown
+          required: true
+          schema:
+            $ref: '#/components/schemas/SegmentBy'
+        - name: start_time
+          in: query
+          description: Start time for usage information
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: end_time
+          in: query
+          description: 'Inclusive end time for usage information. If not provided, the current time will be used.'
+          schema:
+            type: string
+            format: date-time
+        - name: model_versions
+          in: query
+          description: Filter usage information by specific model versions
+          style: form
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ModelVersion'
+        - name: tools
+          in: query
+          description: Filter usage information by specific tool types
+          style: form
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/ToolType'
+        - name: api_key_ids
+          in: query
+          description: Filter usage information by specific API key IDs
+          style: form
+          schema:
+            type: array
+            items:
+              type: string
+              description: Base64 encoded API key ID
+      responses:
+        '200':
+          description: Usage information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsageInfoResponse'
+              example:
+                usage_segments:
+                  - segment_start: '2023-08-09'
+                    segment_end: '2023-08-09T23:59:59.0000000+00:00'
+                    tool_usage:
+                      - full_tool_name: Turbo Image Generation V3
+                        amount:
+                          currency_code: USD
+                          amount: 1250
+                      - full_tool_name: Upscale Image V1
+                        amount:
+                          currency_code: USD
+                          amount: 750
+                      - full_tool_name: Balanced Edit Image V2
+                        amount:
+                          currency_code: USD
+                          amount: 500
+                  - segment_start: '2023-08-10'
+                    segment_end: '2023-08-10T23:59:59.0000000+00:00'
+                    tool_usage:
+                      - full_tool_name: generate
+                        amount:
+                          currency_code: USD
+                          amount: 2000
         '401':
           description: Not authorized
         '403':
@@ -2350,49 +2660,562 @@ components:
           description: A list of spend commit information
       example:
         commits:
-          - commit_spend_balance:
+          - commit_start_time: '2000-01-23T04:56:07.0000000+00:00'
+            is_postpaid_commit: true
+            commit_amount_spent:
               amount: 1050
               currency_code: USD
-            commit_end_date: '2000-01-23T04:56:07.0000000+00:00'
-            commit_start_date: '2000-01-23T04:56:07.0000000+00:00'
             commit_amount:
               amount: 1050
               currency_code: USD
-          - commit_spend_balance:
+            commit_end_time: '2000-01-23T04:56:07.0000000+00:00'
+          - commit_start_time: '2000-01-23T04:56:07.0000000+00:00'
+            is_postpaid_commit: true
+            commit_amount_spent:
               amount: 1050
               currency_code: USD
-            commit_end_date: '2000-01-23T04:56:07.0000000+00:00'
-            commit_start_date: '2000-01-23T04:56:07.0000000+00:00'
             commit_amount:
               amount: 1050
               currency_code: USD
+            commit_end_time: '2000-01-23T04:56:07.0000000+00:00'
     SpendCommitInfo:
       title: SpendCommitInfo
+      required:
+        - commit_amount
+        - commit_amount_spent
+        - commit_end_time
+        - commit_start_time
+        - is_postpaid_commit
       type: object
       properties:
-        commit_spend_balance:
+        commit_amount_spent:
           $ref: '#/components/schemas/Price'
         commit_amount:
           $ref: '#/components/schemas/Price'
-        commit_start_date:
-          title: commit_start_date
+        commit_start_time:
+          title: commit_start_time
           type: string
-          description: The start date of the commit period
+          description: The start time of the commit period
           format: date-time
-        commit_end_date:
-          title: commit_end_date
+        commit_end_time:
+          title: commit_end_time
           type: string
-          description: The end date of the commit period
+          description: The end time of the commit period
           format: date-time
+        is_postpaid_commit:
+          title: is_postpaid_commit
+          type: boolean
+          description: Whether the commit is postpaid (true) or prepaid (false)
       example:
-        commit_spend_balance:
+        commit_start_time: '2000-01-23T04:56:07.0000000+00:00'
+        is_postpaid_commit: true
+        commit_amount_spent:
           amount: 1050
           currency_code: USD
-        commit_end_date: '2000-01-23T04:56:07.0000000+00:00'
-        commit_start_date: '2000-01-23T04:56:07.0000000+00:00'
         commit_amount:
           amount: 1050
           currency_code: USD
+        commit_end_time: '2000-01-23T04:56:07.0000000+00:00'
+    GetUsageInfoResponse:
+      title: GetUsageInfoResponse
+      required:
+        - usage_segments
+      type: object
+      properties:
+        usage_segments:
+          title: usage_segments
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageSegment'
+          description: List of usage segments with tool-specific breakdowns
+      example:
+        usage_segments:
+          - segment_start: '2023-08-09'
+            tool_usage:
+              - model_version: V_0_3
+                full_tool_name: Turbo Image Generation V3
+                amount:
+                  amount: 1050
+                  currency_code: USD
+                tool_type: GENERATE
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+              - model_version: V_0_3
+                full_tool_name: Turbo Image Generation V3
+                amount:
+                  amount: 1050
+                  currency_code: USD
+                tool_type: GENERATE
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+            segment_end: '2023-08-09T23:59:59.0000000+00:00'
+          - segment_start: '2023-08-09'
+            tool_usage:
+              - model_version: V_0_3
+                full_tool_name: Turbo Image Generation V3
+                amount:
+                  amount: 1050
+                  currency_code: USD
+                tool_type: GENERATE
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+              - model_version: V_0_3
+                full_tool_name: Turbo Image Generation V3
+                amount:
+                  amount: 1050
+                  currency_code: USD
+                tool_type: GENERATE
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+            segment_end: '2023-08-09T23:59:59.0000000+00:00'
+    UsageSegment:
+      title: UsageSegment
+      required:
+        - segment_end
+        - segment_start
+        - tool_usage
+      type: object
+      properties:
+        segment_start:
+          title: segment_start
+          type: string
+          description: Start time of the usage segment
+          format: date-time
+          example: '2023-08-09T00:00:00.0000000+00:00'
+        segment_end:
+          title: segment_end
+          type: string
+          description: End time of the usage segment
+          format: date-time
+          example: '2023-08-09T23:59:59.0000000+00:00'
+        tool_usage:
+          title: tool_usage
+          type: array
+          items:
+            $ref: '#/components/schemas/ToolUsage'
+          description: Tool-specific usage breakdown within this segment
+      example:
+        segment_start: '2023-08-09T00:00:00.0000000+00:00'
+        tool_usage:
+          - model_version: V_0_3
+            full_tool_name: Turbo Image Generation V3
+            amount:
+              amount: 1050
+              currency_code: USD
+            tool_type: GENERATE
+            api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+          - model_version: V_0_3
+            full_tool_name: Turbo Image Generation V3
+            amount:
+              amount: 1050
+              currency_code: USD
+            tool_type: GENERATE
+            api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+        segment_end: '2023-08-09T23:59:59.0000000+00:00'
+    ToolUsage:
+      title: ToolUsage
+      required:
+        - amount
+        - api_key_id
+        - full_tool_name
+        - tool_type
+      type: object
+      properties:
+        full_tool_name:
+          title: full_tool_name
+          type: string
+          description: Name of the tool used
+          example: Turbo Image Generation V3
+        amount:
+          $ref: '#/components/schemas/Price'
+        api_key_id:
+          title: api_key_id
+          type: string
+          description: Base64 encoded API key ID
+          example: JRPVD7jWR1aTBYiJ0UFVOg
+        tool_type:
+          $ref: '#/components/schemas/ToolType'
+        model_version:
+          $ref: '#/components/schemas/ModelVersion'
+      example:
+        model_version: V_0_3
+        full_tool_name: Turbo Image Generation V3
+        amount:
+          amount: 1050
+          currency_code: USD
+        tool_type: GENERATE
+        api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+    ToolType:
+      title: ToolType
+      enum:
+        - GENERATE
+        - REMIX
+        - EDIT
+        - UPSCALE
+        - DESCRIBE
+      type: string
+      description: Tool type for filtering usage information
+      example: GENERATE
+    SegmentBy:
+      title: SegmentBy
+      enum:
+        - DAY
+        - HOUR
+      type: string
+      description: Time segment granularity for usage breakdown
+      example: DAY
+    ModelVersion:
+      title: ModelVersion
+      enum:
+        - V_0_1
+        - V_0_2
+        - V_0_3
+        - V_1_1
+        - V_1_5
+        - V_2_1
+        - V_3_0
+        - V_3_1
+        - EXTERNAL_GOOGLE_VEO_3_0
+        - EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO
+        - EXTERNAL_MINIMAX_HAILUO_02
+      type: string
+      description: "The model_version to use.\n- V_0_3: Model 1.0\n- V_1_1: Model 1.1\n- V_1_5: Model 2.0\n- V_2_1: Model 2a\n- V_3_0: Model 3.0 March 26\n- V_3_1: Model 3.0 Latest\n"
+      example: V_0_3
+    GetApiProfilesResponse:
+      title: GetApiProfilesResponse
+      required:
+        - profiles
+      type: object
+      properties:
+        profiles:
+          title: profiles
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiProfile'
+          description: List of user's API profiles
+      example:
+        profiles:
+          - is_metronome_2_user: true
+            role: OWNER
+            avatar_url: https://example.com/avatar.jpg
+            organization_id: b3JnYW5pemF0aW9uXzEyMw
+            name: Gamma
+            type: INDIVIDUAL
+            api_keys:
+              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+                redacted_api_key: ATG56•••••••••••••
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+                status: 
+              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+                redacted_api_key: ATG56•••••••••••••
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+                status: 
+            max_num_inflight_requests_permitted: 10
+          - is_metronome_2_user: true
+            role: OWNER
+            avatar_url: https://example.com/avatar.jpg
+            organization_id: b3JnYW5pemF0aW9uXzEyMw
+            name: Gamma
+            type: INDIVIDUAL
+            api_keys:
+              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+                redacted_api_key: ATG56•••••••••••••
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+                status: 
+              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+                redacted_api_key: ATG56•••••••••••••
+                api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+                status: 
+            max_num_inflight_requests_permitted: 10
+    ApiProfile:
+      title: ApiProfile
+      required:
+        - api_keys
+        - avatar_url
+        - is_metronome_2_user
+        - max_num_inflight_requests_permitted
+        - name
+        - organization_id
+        - role
+        - type
+      type: object
+      properties:
+        type:
+          $ref: '#/components/schemas/ApiProfileType'
+        name:
+          title: name
+          type: string
+          description: The display name of the profile
+          example: Gamma
+        avatar_url:
+          title: avatar_url
+          type: string
+          description: URL to the profile avatar
+          example: https://example.com/avatar.jpg
+        organization_id:
+          title: organization_id
+          type: string
+          description: Base64 encoded organization ID (only for ENTERPRISE profiles)
+          example: b3JnYW5pemF0aW9uXzEyMw
+        role:
+          $ref: '#/components/schemas/ApiProfileRole'
+        api_keys:
+          title: api_keys
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiProfileApiKey'
+          description: List of API keys associated with this profile
+        is_metronome_2_user:
+          title: is_metronome_2_user
+          type: boolean
+          description: Whether the user is on Metronome 2.0
+        max_num_inflight_requests_permitted:
+          title: max_num_inflight_requests_permitted
+          type: integer
+          description: The maximum number of inflight requests permitted for the profile
+          example: 10
+      example:
+        is_metronome_2_user: true
+        role: OWNER
+        avatar_url: https://example.com/avatar.jpg
+        organization_id: b3JnYW5pemF0aW9uXzEyMw
+        name: Gamma
+        type: INDIVIDUAL
+        api_keys:
+          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+            redacted_api_key: ATG56•••••••••••••
+            api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+            status: 
+          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+            redacted_api_key: ATG56•••••••••••••
+            api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+            status: 
+        max_num_inflight_requests_permitted: 10
+    ApiProfileType:
+      title: ApiProfileType
+      enum:
+        - INDIVIDUAL
+        - ENTERPRISE
+      type: string
+      description: Type of API profile
+      example: INDIVIDUAL
+    ApiProfileRole:
+      title: ApiProfileRole
+      enum:
+        - OWNER
+        - MEMBER
+      type: string
+      description: Role within an enterprise organization profile
+      example: OWNER
+    ApiProfileApiKey:
+      title: ApiProfileApiKey
+      required:
+        - api_key_id
+        - creation_time
+        - redacted_api_key
+        - status
+      type: object
+      properties:
+        api_key_id:
+          title: api_key_id
+          type: string
+          description: Base64 encoded API key ID
+          example: JRPVD7jWR1aTBYiJ0UFVOg
+        redacted_api_key:
+          title: redacted_api_key
+          type: string
+          description: A redacted text snippet of the API key. Contains the first 4 characters of the API key
+          example: ATG56•••••••••••••
+        creation_time:
+          title: creation_time
+          type: string
+          description: The date at which the API key was created
+          format: date-time
+        status:
+          $ref: '#/components/schemas/ApiKeyStatus'
+      example:
+        creation_time: '2000-01-23T04:56:07.0000000+00:00'
+        redacted_api_key: ATG56•••••••••••••
+        api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+        status: 
+    ApiKeyStatus:
+      title: ApiKeyStatus
+      enum:
+        - ACTIVE
+        - DISABLED
+      type: string
+      description: Status of the API key
+    GetOrganizationMembersResponse:
+      title: GetOrganizationMembersResponse
+      required:
+        - members
+      type: object
+      properties:
+        members:
+          title: members
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationMember'
+          description: List of organization members
+      example:
+        members:
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            role: OWNER
+            avatar_url: https://example.com/avatars/user123.jpg
+            user_id: dXNlcl8xMjM
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            role: OWNER
+            avatar_url: https://example.com/avatars/user123.jpg
+            user_id: dXNlcl8xMjM
+    OrganizationMember:
+      title: OrganizationMember
+      required:
+        - avatar_url
+        - display_handle
+        - email_address
+        - role
+        - user_id
+      type: object
+      properties:
+        user_id:
+          title: user_id
+          type: string
+          description: Base64 encoded user ID
+          example: dXNlcl8xMjM
+        display_handle:
+          title: display_handle
+          type: string
+          description: The display handle/username of the member
+          example: john_doe
+        email_address:
+          title: email_address
+          type: string
+          description: The email address of the member
+          example: john.doe@example.com
+        avatar_url:
+          title: avatar_url
+          type: string
+          description: URL to the member's avatar image
+          format: uri
+          example: https://example.com/avatars/user123.jpg
+        role:
+          $ref: '#/components/schemas/ApiProfileRole'
+      example:
+        display_handle: john_doe
+        email_address: john.doe@example.com
+        role: OWNER
+        avatar_url: https://example.com/avatars/user123.jpg
+        user_id: dXNlcl8xMjM
+    CreateApiKeyResponse:
+      title: CreateApiKeyResponse
+      required:
+        - api_key
+        - api_key_id
+        - creation_time
+      type: object
+      properties:
+        api_key:
+          title: api_key
+          type: string
+          description: The API key to use when making authenticated requests with the API. This key will only be shown once.
+          example: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+        api_key_id:
+          title: api_key_id
+          type: string
+          description: The ID of the API key. A URL safe base64 encoded UUID
+          example: JRPVD7jWR1aTBYiJ0UFVOg==
+        creation_time:
+          title: creation_time
+          type: string
+          description: The time at which the API key was created
+          format: date-time
+          example: '2024-05-25T02:00:30.0000000+00:00'
+      example:
+        creation_time: '2024-05-25T02:00:30.0000000+00:00'
+        api_key: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+        api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
+    AddOrganizationMembersRequest:
+      title: AddOrganizationMembersRequest
+      required:
+        - members
+      type: object
+      properties:
+        members:
+          title: members
+          type: array
+          items:
+            $ref: '#/components/schemas/LiteOrganizationMember'
+          description: List of organization members to add
+      example:
+        members:
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            user_id: dXNlcl8xMjM
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            user_id: dXNlcl8xMjM
+    LiteOrganizationMember:
+      title: LiteOrganizationMember
+      type: object
+      properties:
+        user_id:
+          title: user_id
+          type: string
+          description: Base64 encoded user ID
+          example: dXNlcl8xMjM
+        display_handle:
+          title: display_handle
+          type: string
+          description: The display handle/username of the member
+          example: john_doe
+        email_address:
+          title: email_address
+          type: string
+          description: The email address of the member
+          example: john.doe@example.com
+      description: A lite representation of an organization member with optional fields for identification
+      example:
+        display_handle: john_doe
+        email_address: john.doe@example.com
+        user_id: dXNlcl8xMjM
+    RemoveOrganizationMembersRequest:
+      title: RemoveOrganizationMembersRequest
+      required:
+        - members
+      type: object
+      properties:
+        members:
+          title: members
+          type: array
+          items:
+            $ref: '#/components/schemas/LiteOrganizationMember'
+          description: List of organization members to remove
+      example:
+        members:
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            user_id: dXNlcl8xMjM
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            user_id: dXNlcl8xMjM
+    PromoteOrganizationMembersRequest:
+      title: PromoteOrganizationMembersRequest
+      required:
+        - members
+      type: object
+      properties:
+        members:
+          title: members
+          type: array
+          items:
+            $ref: '#/components/schemas/LiteOrganizationMember'
+          description: List of organization members to promote to OWNER role
+      example:
+        members:
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            user_id: dXNlcl8xMjM
+          - display_handle: john_doe
+            email_address: john.doe@example.com
+            user_id: dXNlcl8xMjM
     Description:
       title: Description
       type: object

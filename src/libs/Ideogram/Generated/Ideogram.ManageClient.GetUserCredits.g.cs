@@ -8,14 +8,14 @@ namespace Ideogram
         partial void PrepareGetUserCreditsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string organizationId,
-            ref global::System.DateTime startDate,
-            ref global::System.DateTime? endDate);
+            ref global::System.DateTime startTime,
+            ref global::System.DateTime? endTime);
         partial void PrepareGetUserCreditsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string organizationId,
-            global::System.DateTime startDate,
-            global::System.DateTime? endDate);
+            global::System.DateTime startTime,
+            global::System.DateTime? endTime);
         partial void ProcessGetUserCreditsResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -29,14 +29,14 @@ namespace Ideogram
         /// Retrieve user credit information and spending metrics
         /// </summary>
         /// <param name="organizationId"></param>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GetUserCreditsResponse> GetUserCreditsAsync(
             string organizationId,
-            global::System.DateTime startDate,
-            global::System.DateTime? endDate = default,
+            global::System.DateTime startTime,
+            global::System.DateTime? endTime = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
@@ -44,16 +44,16 @@ namespace Ideogram
             PrepareGetUserCreditsArguments(
                 httpClient: HttpClient,
                 organizationId: ref organizationId,
-                startDate: ref startDate,
-                endDate: ref endDate);
+                startTime: ref startTime,
+                endTime: ref endTime);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/credits",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder 
                 .AddRequiredParameter("organization_id", organizationId) 
-                .AddRequiredParameter("start_date", startDate.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
-                .AddOptionalParameter("end_date", endDate?.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
+                .AddRequiredParameter("start_time", startTime.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
+                .AddOptionalParameter("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
                 ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -87,8 +87,8 @@ namespace Ideogram
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 organizationId: organizationId,
-                startDate: startDate,
-                endDate: endDate);
+                startTime: startTime,
+                endTime: endTime);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,

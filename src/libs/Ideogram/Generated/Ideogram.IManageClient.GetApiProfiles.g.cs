@@ -5,15 +5,11 @@ namespace Ideogram
     public partial interface IManageClient
     {
         /// <summary>
-        /// Retrieve user spend commit information
+        /// Retrieve the user's current API profiles
         /// </summary>
-        /// <param name="organizationId"></param>
-        /// <param name="postpaidOnly"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.SpendCommitInfoResponse> GetUserSpendCommitInfoAsync(
-            string organizationId,
-            bool? postpaidOnly = default,
+        global::System.Threading.Tasks.Task<global::Ideogram.GetApiProfilesResponse> GetApiProfilesAsync(
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
