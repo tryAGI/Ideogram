@@ -5,49 +5,82 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
-        partial void PrepareGetUserSpendCommitInfoArguments(
+        partial void PrepareGetUsageInfoArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string organizationId,
-            ref bool? postpaidOnly);
-        partial void PrepareGetUserSpendCommitInfoRequest(
+            ref global::Ideogram.SegmentBy segmentBy,
+            ref global::System.DateTime startTime,
+            ref global::System.DateTime? endTime,
+            global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? modelVersions,
+            global::System.Collections.Generic.IList<global::Ideogram.ToolType>? tools,
+            global::System.Collections.Generic.IList<string>? apiKeyIds);
+        partial void PrepareGetUsageInfoRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             string organizationId,
-            bool? postpaidOnly);
-        partial void ProcessGetUserSpendCommitInfoResponse(
+            global::Ideogram.SegmentBy segmentBy,
+            global::System.DateTime startTime,
+            global::System.DateTime? endTime,
+            global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? modelVersions,
+            global::System.Collections.Generic.IList<global::Ideogram.ToolType>? tools,
+            global::System.Collections.Generic.IList<string>? apiKeyIds);
+        partial void ProcessGetUsageInfoResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetUserSpendCommitInfoResponseContent(
+        partial void ProcessGetUsageInfoResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Retrieve user spend commit information
+        /// Retrieve usage information segmented by time period with tool-specific breakdowns
         /// </summary>
         /// <param name="organizationId"></param>
-        /// <param name="postpaidOnly"></param>
+        /// <param name="segmentBy">
+        /// Time segment granularity for usage breakdown<br/>
+        /// Example: DAY
+        /// </param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="modelVersions"></param>
+        /// <param name="tools"></param>
+        /// <param name="apiKeyIds"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.SpendCommitInfoResponse> GetUserSpendCommitInfoAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GetUsageInfoResponse> GetUsageInfoAsync(
             string organizationId,
-            bool? postpaidOnly = default,
+            global::Ideogram.SegmentBy segmentBy,
+            global::System.DateTime startTime,
+            global::System.DateTime? endTime = default,
+            global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? modelVersions = default,
+            global::System.Collections.Generic.IList<global::Ideogram.ToolType>? tools = default,
+            global::System.Collections.Generic.IList<string>? apiKeyIds = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetUserSpendCommitInfoArguments(
+            PrepareGetUsageInfoArguments(
                 httpClient: HttpClient,
                 organizationId: ref organizationId,
-                postpaidOnly: ref postpaidOnly);
+                segmentBy: ref segmentBy,
+                startTime: ref startTime,
+                endTime: ref endTime,
+                modelVersions: modelVersions,
+                tools: tools,
+                apiKeyIds: apiKeyIds);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/manage/api/spend_commit",
+                path: "/manage/api/usage",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder 
                 .AddRequiredParameter("organization_id", organizationId) 
-                .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString()) 
+                .AddRequiredParameter("segment_by", segmentBy.ToValueString()) 
+                .AddRequiredParameter("start_time", startTime.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
+                .AddOptionalParameter("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
+                .AddOptionalParameter("model_versions", modelVersions, selector: static x => x.ToValueString(), delimiter: ",", explode: true) 
+                .AddOptionalParameter("tools", tools, selector: static x => x.ToValueString(), delimiter: ",", explode: true) 
+                .AddOptionalParameter("api_key_ids", apiKeyIds, delimiter: ",", explode: true) 
                 ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -77,11 +110,16 @@ namespace Ideogram
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetUserSpendCommitInfoRequest(
+            PrepareGetUsageInfoRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
                 organizationId: organizationId,
-                postpaidOnly: postpaidOnly);
+                segmentBy: segmentBy,
+                startTime: startTime,
+                endTime: endTime,
+                modelVersions: modelVersions,
+                tools: tools,
+                apiKeyIds: apiKeyIds);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -91,7 +129,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetUserSpendCommitInfoResponse(
+            ProcessGetUsageInfoResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -173,7 +211,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetUserSpendCommitInfoResponseContent(
+                ProcessGetUsageInfoResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -183,7 +221,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.SpendCommitInfoResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.GetUsageInfoResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -214,7 +252,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.SpendCommitInfoResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.GetUsageInfoResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

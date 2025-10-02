@@ -5,50 +5,36 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
-        partial void PrepareGetUserSpendCommitInfoArguments(
+        partial void PrepareGetApiProfilesArguments(
+            global::System.Net.Http.HttpClient httpClient);
+        partial void PrepareGetApiProfilesRequest(
             global::System.Net.Http.HttpClient httpClient,
-            ref string organizationId,
-            ref bool? postpaidOnly);
-        partial void PrepareGetUserSpendCommitInfoRequest(
-            global::System.Net.Http.HttpClient httpClient,
-            global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string organizationId,
-            bool? postpaidOnly);
-        partial void ProcessGetUserSpendCommitInfoResponse(
+            global::System.Net.Http.HttpRequestMessage httpRequestMessage);
+        partial void ProcessGetApiProfilesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetUserSpendCommitInfoResponseContent(
+        partial void ProcessGetApiProfilesResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Retrieve user spend commit information
+        /// Retrieve the user's current API profiles
         /// </summary>
-        /// <param name="organizationId"></param>
-        /// <param name="postpaidOnly"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.SpendCommitInfoResponse> GetUserSpendCommitInfoAsync(
-            string organizationId,
-            bool? postpaidOnly = default,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GetApiProfilesResponse> GetApiProfilesAsync(
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetUserSpendCommitInfoArguments(
-                httpClient: HttpClient,
-                organizationId: ref organizationId,
-                postpaidOnly: ref postpaidOnly);
+            PrepareGetApiProfilesArguments(
+                httpClient: HttpClient);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/manage/api/spend_commit",
+                path: "/manage/api/profiles",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
-                .AddRequiredParameter("organization_id", organizationId) 
-                .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString()) 
-                ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -77,11 +63,9 @@ namespace Ideogram
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetUserSpendCommitInfoRequest(
+            PrepareGetApiProfilesRequest(
                 httpClient: HttpClient,
-                httpRequestMessage: __httpRequest,
-                organizationId: organizationId,
-                postpaidOnly: postpaidOnly);
+                httpRequestMessage: __httpRequest);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -91,7 +75,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetUserSpendCommitInfoResponse(
+            ProcessGetApiProfilesResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -173,7 +157,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetUserSpendCommitInfoResponseContent(
+                ProcessGetApiProfilesResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -183,7 +167,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.SpendCommitInfoResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.GetApiProfilesResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -214,7 +198,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.SpendCommitInfoResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.GetApiProfilesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)

@@ -378,6 +378,114 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.PostInternalTesting200Response? Type88 { get; set; }
+        public global::Ideogram.GetUsageInfoResponse? Type88 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.UsageSegment>? Type89 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.UsageSegment? Type90 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ToolUsage>? Type91 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ToolUsage? Type92 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ToolType? Type93 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ModelVersion? Type94 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.SegmentBy? Type95 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.GetApiProfilesResponse? Type96 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ApiProfile>? Type97 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ApiProfile? Type98 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ApiProfileType? Type99 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ApiProfileRole? Type100 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey>? Type101 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ApiProfileApiKey? Type102 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.ApiKeyStatus? Type103 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.GetOrganizationMembersResponse? Type104 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.OrganizationMember>? Type105 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.OrganizationMember? Type106 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.CreateApiKeyResponse? Type107 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.AddOrganizationMembersRequest? Type108 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember>? Type109 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.LiteOrganizationMember? Type110 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.RemoveOrganizationMembersRequest? Type111 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.PromoteOrganizationMembersRequest? Type112 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::Ideogram.PostInternalTesting200Response? Type113 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? Type114 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ToolType>? Type115 { get; set; }
     }
 }

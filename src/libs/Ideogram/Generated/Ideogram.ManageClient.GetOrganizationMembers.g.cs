@@ -5,49 +5,43 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
-        partial void PrepareGetUserSpendCommitInfoArguments(
+        partial void PrepareGetOrganizationMembersArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string organizationId,
-            ref bool? postpaidOnly);
-        partial void PrepareGetUserSpendCommitInfoRequest(
+            ref string organizationId);
+        partial void PrepareGetOrganizationMembersRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string organizationId,
-            bool? postpaidOnly);
-        partial void ProcessGetUserSpendCommitInfoResponse(
+            string organizationId);
+        partial void ProcessGetOrganizationMembersResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessGetUserSpendCommitInfoResponseContent(
+        partial void ProcessGetOrganizationMembersResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Retrieve user spend commit information
+        /// Retrieve members of a specific organization
         /// </summary>
         /// <param name="organizationId"></param>
-        /// <param name="postpaidOnly"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.SpendCommitInfoResponse> GetUserSpendCommitInfoAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GetOrganizationMembersResponse> GetOrganizationMembersAsync(
             string organizationId,
-            bool? postpaidOnly = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
                 client: HttpClient);
-            PrepareGetUserSpendCommitInfoArguments(
+            PrepareGetOrganizationMembersArguments(
                 httpClient: HttpClient,
-                organizationId: ref organizationId,
-                postpaidOnly: ref postpaidOnly);
+                organizationId: ref organizationId);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/manage/api/spend_commit",
+                path: "/manage/api/organization/members",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder 
                 .AddRequiredParameter("organization_id", organizationId) 
-                .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString()) 
                 ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -77,11 +71,10 @@ namespace Ideogram
             PrepareRequest(
                 client: HttpClient,
                 request: __httpRequest);
-            PrepareGetUserSpendCommitInfoRequest(
+            PrepareGetOrganizationMembersRequest(
                 httpClient: HttpClient,
                 httpRequestMessage: __httpRequest,
-                organizationId: organizationId,
-                postpaidOnly: postpaidOnly);
+                organizationId: organizationId);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,
@@ -91,7 +84,7 @@ namespace Ideogram
             ProcessResponse(
                 client: HttpClient,
                 response: __response);
-            ProcessGetUserSpendCommitInfoResponse(
+            ProcessGetOrganizationMembersResponse(
                 httpClient: HttpClient,
                 httpResponseMessage: __response);
             // 
@@ -160,6 +153,39 @@ namespace Ideogram
                         h => h.Value),
                 };
             }
+            // 
+            if ((int)__response.StatusCode == 404)
+            {
+                string? __content_404 = null;
+                global::System.Exception? __exception_404 = null;
+                try
+                {
+                    if (ReadResponseAsString)
+                    {
+                        __content_404 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        var __contentStream_404 = await __response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+                    }
+                }
+                catch (global::System.Exception __ex)
+                {
+                    __exception_404 = __ex;
+                }
+
+                throw new global::Ideogram.ApiException(
+                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                    innerException: __exception_404,
+                    statusCode: __response.StatusCode)
+                {
+                    ResponseBody = __content_404,
+                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                        __response.Headers,
+                        h => h.Key,
+                        h => h.Value),
+                };
+            }
 
             if (ReadResponseAsString)
             {
@@ -173,7 +199,7 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
-                ProcessGetUserSpendCommitInfoResponseContent(
+                ProcessGetOrganizationMembersResponseContent(
                     httpClient: HttpClient,
                     httpResponseMessage: __response,
                     content: ref __content);
@@ -183,7 +209,7 @@ namespace Ideogram
                     __response.EnsureSuccessStatusCode();
 
                     return
-                        global::Ideogram.SpendCommitInfoResponse.FromJson(__content, JsonSerializerContext) ??
+                        global::Ideogram.GetOrganizationMembersResponse.FromJson(__content, JsonSerializerContext) ??
                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
@@ -214,7 +240,7 @@ namespace Ideogram
                     ).ConfigureAwait(false);
 
                     return
-                        await global::Ideogram.SpendCommitInfoResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        await global::Ideogram.GetOrganizationMembersResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
