@@ -11,7 +11,7 @@ namespace Ideogram
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task AddOrganizationMembersAsync(
+        global::System.Threading.Tasks.Task<global::Ideogram.OrganizationMemberOperationResponse> AddOrganizationMembersAsync(
             string organizationId,
             global::Ideogram.AddOrganizationMembersRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
@@ -25,7 +25,7 @@ namespace Ideogram
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task AddOrganizationMembersAsync(
+        global::System.Threading.Tasks.Task<global::Ideogram.OrganizationMemberOperationResponse> AddOrganizationMembersAsync(
             string organizationId,
             global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember> members,
             global::System.Threading.CancellationToken cancellationToken = default);
