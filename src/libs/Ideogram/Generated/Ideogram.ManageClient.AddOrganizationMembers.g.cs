@@ -18,6 +18,11 @@ namespace Ideogram
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
+        partial void ProcessAddOrganizationMembersResponseContent(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpResponseMessage httpResponseMessage,
+            ref string content);
+
         /// <summary>
         /// Add members to a specific organization
         /// </summary>
@@ -25,7 +30,7 @@ namespace Ideogram
         /// <param name="request"></param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task AddOrganizationMembersAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.OrganizationMemberOperationResponse> AddOrganizationMembersAsync(
             string organizationId,
             global::Ideogram.AddOrganizationMembersRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -241,11 +246,18 @@ namespace Ideogram
                     client: HttpClient,
                     response: __response,
                     content: ref __content);
+                ProcessAddOrganizationMembersResponseContent(
+                    httpClient: HttpClient,
+                    httpResponseMessage: __response,
+                    content: ref __content);
 
                 try
                 {
                     __response.EnsureSuccessStatusCode();
 
+                    return
+                        global::Ideogram.OrganizationMemberOperationResponse.FromJson(__content, JsonSerializerContext) ??
+                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                 }
                 catch (global::System.Exception __ex)
                 {
@@ -274,6 +286,9 @@ namespace Ideogram
 #endif
                     ).ConfigureAwait(false);
 
+                    return
+                        await global::Ideogram.OrganizationMemberOperationResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                        throw new global::System.InvalidOperationException("Response deserialization failed.");
                 }
                 catch (global::System.Exception __ex)
                 {
@@ -300,7 +315,7 @@ namespace Ideogram
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task AddOrganizationMembersAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.OrganizationMemberOperationResponse> AddOrganizationMembersAsync(
             string organizationId,
             global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember> members,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -310,7 +325,7 @@ namespace Ideogram
                 Members = members,
             };
 
-            await AddOrganizationMembersAsync(
+            return await AddOrganizationMembersAsync(
                 organizationId: organizationId,
                 request: __request,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

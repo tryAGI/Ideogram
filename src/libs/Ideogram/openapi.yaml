@@ -459,14 +459,47 @@ paths:
         required: true
         x-body-name: add_organization_members_request
       responses:
-        '204':
-          description: Success; no content.
+        '200':
+          description: Results of adding members to the organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationMemberOperationResponse'
         '400':
           description: Bad Request
         '401':
           description: Not authorized
         '403':
           description: Not authorized - must be an organization owner
+        '404':
+          description: Organization not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/api_keys:
+    get:
+      tags:
+        - manage
+      summary: Retrieve API keys for a specific organization
+      operationId: get_api_keys_v2
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to retrieve API keys for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: API keys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApiKeysV2Response'
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
         '404':
           description: Organization not found
       security:
@@ -496,6 +529,60 @@ paths:
           description: Not authorized - must be an organization owner
         '404':
           description: API key not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/list_invoices:
+    get:
+      tags:
+        - manage
+      summary: Retrieve invoices for a specific organization
+      operationId: list_organization_invoices
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to retrieve invoices for
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invoices retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListOrganizationInvoicesResponse'
+              example:
+                invoices:
+                  - start_time: '2024-01-01'
+                    end_time: '2024-01-31T23:59:59.0000000+00:00'
+                    total_spend:
+                      currency_code: USD
+                      amount: 15000
+                    invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+                    line_items:
+                      - charge_name: Image Generation - V3
+                        quantity: 1000
+                        unit_price:
+                          currency_code: USD
+                          amount: 10
+                        total:
+                          currency_code: USD
+                          amount: 10000
+                      - charge_name: Upscale Image - V1
+                        quantity: 500
+                        unit_price:
+                          currency_code: USD
+                          amount: 10
+                        total:
+                          currency_code: USD
+                          amount: 5000
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
+        '404':
+          description: Organization not found
       security:
         - BearerAuth: [ ]
       x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
@@ -550,8 +637,12 @@ paths:
         required: true
         x-body-name: promote_organization_members_request
       responses:
-        '204':
-          description: Success; no content.
+        '200':
+          description: Results of promoting members in the organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationMemberOperationResponse'
         '400':
           description: Bad Request
         '401':
@@ -585,8 +676,12 @@ paths:
         required: true
         x-body-name: remove_organization_members_request
       responses:
-        '204':
-          description: Success; no content.
+        '200':
+          description: Results of removing members from the organization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationMemberOperationResponse'
         '400':
           description: Bad Request
         '401':
@@ -3132,6 +3227,63 @@ components:
         creation_time: '2024-05-25T02:00:30.0000000+00:00'
         api_key: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
         api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
+    GetApiKeysV2Response:
+      title: GetApiKeysV2Response
+      required:
+        - api_keys
+      type: object
+      properties:
+        api_keys:
+          title: api_keys
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiProfileApiKey'
+          description: List of API keys associated with the organization
+      example:
+        api_keys:
+          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+            redacted_api_key: ATG56•••••••••••••
+            api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+            status: 
+          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+            redacted_api_key: ATG56•••••••••••••
+            api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
+            status: 
+    OrganizationMemberOperationResponse:
+      title: OrganizationMemberOperationResponse
+      required:
+        - results
+      type: object
+      properties:
+        results:
+          title: results
+          type: array
+          items:
+            $ref: '#/components/schemas/OrganizationMemberOperationResult'
+          description: List of results for each member operation
+      example:
+        results:
+          - success: true
+            message: message
+          - success: true
+            message: message
+    OrganizationMemberOperationResult:
+      title: OrganizationMemberOperationResult
+      required:
+        - success
+      type: object
+      properties:
+        success:
+          title: success
+          type: boolean
+          description: Whether the operation was successful for this member
+        message:
+          title: message
+          type: string
+          description: A message describing the outcome of the operation for this member
+      example:
+        success: true
+        message: message
     AddOrganizationMembersRequest:
       title: AddOrganizationMembersRequest
       required:
@@ -3216,6 +3368,157 @@ components:
           - display_handle: john_doe
             email_address: john.doe@example.com
             user_id: dXNlcl8xMjM
+    ListOrganizationInvoicesResponse:
+      title: ListOrganizationInvoicesResponse
+      required:
+        - invoices
+      type: object
+      properties:
+        invoices:
+          title: invoices
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+          description: List of invoices
+      example:
+        invoices:
+          - total_spend:
+              amount: 1050
+              currency_code: USD
+            start_time: '2024-01-01'
+            end_time: '2024-01-31T23:59:59.0000000+00:00'
+            line_items:
+              - charge_name: Image Generation - V3
+                total:
+                  amount: 1050
+                  currency_code: USD
+                quantity: 1000
+                unit_price:
+                  amount: 1050
+                  currency_code: USD
+              - charge_name: Image Generation - V3
+                total:
+                  amount: 1050
+                  currency_code: USD
+                quantity: 1000
+                unit_price:
+                  amount: 1050
+                  currency_code: USD
+            invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+          - total_spend:
+              amount: 1050
+              currency_code: USD
+            start_time: '2024-01-01'
+            end_time: '2024-01-31T23:59:59.0000000+00:00'
+            line_items:
+              - charge_name: Image Generation - V3
+                total:
+                  amount: 1050
+                  currency_code: USD
+                quantity: 1000
+                unit_price:
+                  amount: 1050
+                  currency_code: USD
+              - charge_name: Image Generation - V3
+                total:
+                  amount: 1050
+                  currency_code: USD
+                quantity: 1000
+                unit_price:
+                  amount: 1050
+                  currency_code: USD
+            invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+    Invoice:
+      title: Invoice
+      required:
+        - end_time
+        - line_items
+        - start_time
+        - total_spend
+      type: object
+      properties:
+        start_time:
+          title: start_time
+          type: string
+          description: The start time of the invoice period
+          format: date-time
+          example: '2024-01-01T00:00:00.0000000+00:00'
+        end_time:
+          title: end_time
+          type: string
+          description: The end time of the invoice period
+          format: date-time
+          example: '2024-01-31T23:59:59.0000000+00:00'
+        total_spend:
+          $ref: '#/components/schemas/Price'
+        invoice_paid_date:
+          title: invoice_paid_date
+          type: string
+          description: 'The date when the invoice was paid (optional, may be null if unpaid)'
+          format: date-time
+          example: '2024-02-05T10:30:00.0000000+00:00'
+        line_items:
+          title: line_items
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLineItem'
+          description: A list of line items within the invoice
+      example:
+        total_spend:
+          amount: 1050
+          currency_code: USD
+        start_time: '2024-01-01T00:00:00.0000000+00:00'
+        end_time: '2024-01-31T23:59:59.0000000+00:00'
+        line_items:
+          - charge_name: Image Generation - V3
+            total:
+              amount: 1050
+              currency_code: USD
+            quantity: 1000
+            unit_price:
+              amount: 1050
+              currency_code: USD
+          - charge_name: Image Generation - V3
+            total:
+              amount: 1050
+              currency_code: USD
+            quantity: 1000
+            unit_price:
+              amount: 1050
+              currency_code: USD
+        invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+    InvoiceLineItem:
+      title: InvoiceLineItem
+      required:
+        - charge_name
+        - quantity
+        - total
+        - unit_price
+      type: object
+      properties:
+        charge_name:
+          title: charge_name
+          type: string
+          description: The name of the charge
+          example: Image Generation - V3
+        quantity:
+          title: quantity
+          type: integer
+          description: The quantity of the charge
+          example: 1000
+        unit_price:
+          $ref: '#/components/schemas/Price'
+        total:
+          $ref: '#/components/schemas/Price'
+      example:
+        charge_name: Image Generation - V3
+        total:
+          amount: 1050
+          currency_code: USD
+        quantity: 1000
+        unit_price:
+          amount: 1050
+          currency_code: USD
     Description:
       title: Description
       type: object
