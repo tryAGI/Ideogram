@@ -559,6 +559,8 @@ paths:
                     total_spend:
                       currency_code: USD
                       amount: 15000
+                    status: PAID
+                    issued_time: '2024-02-01'
                     invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
                     line_items:
                       - charge_name: Image Generation - V3
@@ -688,6 +690,47 @@ paths:
           description: Not authorized
         '403':
           description: Not authorized - must be an organization owner
+        '404':
+          description: Organization not found
+      security:
+        - BearerAuth: [ ]
+      x-openapi-router-controller: external_api.generated.openapi.controllers.manage_controller
+  /manage/api/organization/user_suggestions:
+    get:
+      tags:
+        - manage
+      summary: Get search results for user handles with suggestions for a particular organization.
+      operationId: get_api_organization_user_suggestions
+      parameters:
+        - name: organization_id
+          in: query
+          description: Base64 encoded organization ID to get user suggestions for
+          required: true
+          schema:
+            type: string
+        - name: user_handle_prefix
+          in: query
+          description: The prefix of the user handle to search for
+          schema:
+            type: string
+          example: sar
+        - name: maxItems
+          in: query
+          description: The maximum number of items to return
+          schema:
+            type: integer
+            default: 3
+      responses:
+        '200':
+          description: A list of the top responses in alphabetical order by user handle + whether the user has joined the current organization already.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetApiOrganizationUserSuggestionsResponse'
+        '401':
+          description: Not authorized
+        '403':
+          description: Not authorized
         '404':
           description: Organization not found
       security:
@@ -3136,6 +3179,61 @@ components:
         - DISABLED
       type: string
       description: Status of the API key
+    GetApiOrganizationUserSuggestionsResponse:
+      title: GetApiOrganizationUserSuggestionsResponse
+      required:
+        - user_suggestions
+      type: object
+      properties:
+        user_suggestions:
+          title: user_suggestions
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiOrganizationUserSuggestion'
+          description: List of user suggestions for the organization
+      example:
+        user_suggestions:
+          - display_handle: john_doe
+            joined: false
+            profile_pic: https://example.com/avatars/user123.jpg
+            name: John Doe
+          - display_handle: john_doe
+            joined: false
+            profile_pic: https://example.com/avatars/user123.jpg
+            name: John Doe
+    ApiOrganizationUserSuggestion:
+      title: ApiOrganizationUserSuggestion
+      required:
+        - display_handle
+        - joined
+      type: object
+      properties:
+        display_handle:
+          title: display_handle
+          type: string
+          description: The display handle of the user
+          example: john_doe
+        joined:
+          title: joined
+          type: boolean
+          description: Whether the user has already joined the organization
+          example: false
+        profile_pic:
+          title: profile_pic
+          type: string
+          description: URL to the user's profile picture
+          format: uri
+          example: https://example.com/avatars/user123.jpg
+        name:
+          title: name
+          type: string
+          description: The full name of the user
+          example: John Doe
+      example:
+        display_handle: john_doe
+        joined: false
+        profile_pic: https://example.com/avatars/user123.jpg
+        name: John Doe
     GetOrganizationMembersResponse:
       title: GetOrganizationMembersResponse
       required:
@@ -3404,7 +3502,8 @@ components:
                 unit_price:
                   amount: 1050
                   currency_code: USD
-            invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+            issued_time: '2024-01-01'
+            invoice_status: PAID
           - total_spend:
               amount: 1050
               currency_code: USD
@@ -3427,11 +3526,14 @@ components:
                 unit_price:
                   amount: 1050
                   currency_code: USD
-            invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+            issued_time: '2024-01-01'
+            invoice_status: PAID
     Invoice:
       title: Invoice
       required:
         - end_time
+        - invoice_status
+        - issued_time
         - line_items
         - start_time
         - total_spend
@@ -3449,14 +3551,16 @@ components:
           description: The end time of the invoice period
           format: date-time
           example: '2024-01-31T23:59:59.0000000+00:00'
+        issued_time:
+          title: issued_time
+          type: string
+          description: The date when the invoice was issued
+          format: date-time
+          example: '2024-01-01T00:00:00.0000000+00:00'
         total_spend:
           $ref: '#/components/schemas/Price'
-        invoice_paid_date:
-          title: invoice_paid_date
-          type: string
-          description: 'The date when the invoice was paid (optional, may be null if unpaid)'
-          format: date-time
-          example: '2024-02-05T10:30:00.0000000+00:00'
+        invoice_status:
+          $ref: '#/components/schemas/InvoiceStatus'
         line_items:
           title: line_items
           type: array
@@ -3486,7 +3590,17 @@ components:
             unit_price:
               amount: 1050
               currency_code: USD
-        invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+        issued_time: '2024-01-01T00:00:00.0000000+00:00'
+        invoice_status: PAID
+    InvoiceStatus:
+      title: InvoiceStatus
+      enum:
+        - DRAFT
+        - PENDING_PAYMENT
+        - PAID
+      type: string
+      description: Status of the invoice
+      example: PAID
     InvoiceLineItem:
       title: InvoiceLineItem
       required:

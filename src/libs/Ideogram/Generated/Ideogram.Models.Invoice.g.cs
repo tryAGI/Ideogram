@@ -23,6 +23,13 @@ namespace Ideogram
         public required global::System.DateTime EndTime { get; set; }
 
         /// <summary>
+        /// The date when the invoice was issued
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("issued_time")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.DateTime IssuedTime { get; set; }
+
+        /// <summary>
         /// Represents a price.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_spend")]
@@ -30,10 +37,14 @@ namespace Ideogram
         public required global::Ideogram.Price TotalSpend { get; set; }
 
         /// <summary>
-        /// The date when the invoice was paid (optional, may be null if unpaid)
+        /// Status of the invoice<br/>
+        /// Example: PAID
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("invoice_paid_date")]
-        public global::System.DateTime? InvoicePaidDate { get; set; }
+        /// <example>PAID</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("invoice_status")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.InvoiceStatusJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Ideogram.InvoiceStatus InvoiceStatus { get; set; }
 
         /// <summary>
         /// A list of line items within the invoice
@@ -57,11 +68,15 @@ namespace Ideogram
         /// <param name="endTime">
         /// The end time of the invoice period
         /// </param>
+        /// <param name="issuedTime">
+        /// The date when the invoice was issued
+        /// </param>
         /// <param name="totalSpend">
         /// Represents a price.
         /// </param>
-        /// <param name="invoicePaidDate">
-        /// The date when the invoice was paid (optional, may be null if unpaid)
+        /// <param name="invoiceStatus">
+        /// Status of the invoice<br/>
+        /// Example: PAID
         /// </param>
         /// <param name="lineItems">
         /// A list of line items within the invoice
@@ -72,15 +87,17 @@ namespace Ideogram
         public Invoice(
             global::System.DateTime startTime,
             global::System.DateTime endTime,
+            global::System.DateTime issuedTime,
             global::Ideogram.Price totalSpend,
-            global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem> lineItems,
-            global::System.DateTime? invoicePaidDate)
+            global::Ideogram.InvoiceStatus invoiceStatus,
+            global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem> lineItems)
         {
             this.StartTime = startTime;
             this.EndTime = endTime;
+            this.IssuedTime = issuedTime;
             this.TotalSpend = totalSpend ?? throw new global::System.ArgumentNullException(nameof(totalSpend));
+            this.InvoiceStatus = invoiceStatus;
             this.LineItems = lineItems ?? throw new global::System.ArgumentNullException(nameof(lineItems));
-            this.InvoicePaidDate = invoicePaidDate;
         }
 
         /// <summary>

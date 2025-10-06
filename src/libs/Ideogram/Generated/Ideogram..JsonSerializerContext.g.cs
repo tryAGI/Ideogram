@@ -53,6 +53,8 @@ namespace Ideogram
             typeof(global::Ideogram.JsonConverters.ApiProfileRoleNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ApiKeyStatusJsonConverter),
             typeof(global::Ideogram.JsonConverters.ApiKeyStatusNullableJsonConverter),
+            typeof(global::Ideogram.JsonConverters.InvoiceStatusJsonConverter),
+            typeof(global::Ideogram.JsonConverters.InvoiceStatusNullableJsonConverter),
             typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter),
             typeof(global::Ideogram.JsonConverters.UnixTimestampJsonConverter),
         })]
