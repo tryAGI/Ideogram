@@ -3065,7 +3065,6 @@ components:
       title: ApiProfile
       required:
         - api_keys
-        - avatar_url
         - is_metronome_2_user
         - max_num_inflight_requests_permitted
         - name
