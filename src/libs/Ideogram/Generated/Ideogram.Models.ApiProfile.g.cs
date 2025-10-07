@@ -33,8 +33,7 @@ namespace Ideogram
         /// </summary>
         /// <example>https://example.com/avatar.jpg</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("avatar_url")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string AvatarUrl { get; set; }
+        public string? AvatarUrl { get; set; }
 
         /// <summary>
         /// Base64 encoded organization ID (only for ENTERPRISE profiles)<br/>
@@ -123,21 +122,21 @@ namespace Ideogram
         public ApiProfile(
             global::Ideogram.ApiProfileType type,
             string name,
-            string avatarUrl,
             string organizationId,
             global::Ideogram.ApiProfileRole role,
             global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey> apiKeys,
             bool isMetronome2User,
-            int maxNumInflightRequestsPermitted)
+            int maxNumInflightRequestsPermitted,
+            string? avatarUrl)
         {
             this.Type = type;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
-            this.AvatarUrl = avatarUrl ?? throw new global::System.ArgumentNullException(nameof(avatarUrl));
             this.OrganizationId = organizationId ?? throw new global::System.ArgumentNullException(nameof(organizationId));
             this.Role = role;
             this.ApiKeys = apiKeys ?? throw new global::System.ArgumentNullException(nameof(apiKeys));
             this.IsMetronome2User = isMetronome2User;
             this.MaxNumInflightRequestsPermitted = maxNumInflightRequestsPermitted;
+            this.AvatarUrl = avatarUrl;
         }
 
         /// <summary>
