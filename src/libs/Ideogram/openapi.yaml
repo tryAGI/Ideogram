@@ -3250,11 +3250,13 @@ components:
           - display_handle: john_doe
             email_address: john.doe@example.com
             role: OWNER
+            full_name: full_name
             avatar_url: https://example.com/avatars/user123.jpg
             user_id: dXNlcl8xMjM
           - display_handle: john_doe
             email_address: john.doe@example.com
             role: OWNER
+            full_name: full_name
             avatar_url: https://example.com/avatars/user123.jpg
             user_id: dXNlcl8xMjM
     OrganizationMember:
@@ -3290,10 +3292,16 @@ components:
           example: https://example.com/avatars/user123.jpg
         role:
           $ref: '#/components/schemas/ApiProfileRole'
+        full_name:
+          title: full_name
+          type: string
+          description: User's full name if entered through user profile.
+          nullable: true
       example:
         display_handle: john_doe
         email_address: john.doe@example.com
         role: OWNER
+        full_name: full_name
         avatar_url: https://example.com/avatars/user123.jpg
         user_id: dXNlcl8xMjM
     CreateApiKeyResponse:
