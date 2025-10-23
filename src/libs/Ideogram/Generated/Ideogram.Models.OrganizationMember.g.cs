@@ -55,6 +55,12 @@ namespace Ideogram
         public required global::Ideogram.ApiProfileRole Role { get; set; }
 
         /// <summary>
+        /// User's full name if entered through user profile.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("full_name")]
+        public string? FullName { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -83,6 +89,9 @@ namespace Ideogram
         /// Role within an enterprise organization profile<br/>
         /// Example: OWNER
         /// </param>
+        /// <param name="fullName">
+        /// User's full name if entered through user profile.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -91,13 +100,15 @@ namespace Ideogram
             string displayHandle,
             string emailAddress,
             string avatarUrl,
-            global::Ideogram.ApiProfileRole role)
+            global::Ideogram.ApiProfileRole role,
+            string? fullName)
         {
             this.UserId = userId ?? throw new global::System.ArgumentNullException(nameof(userId));
             this.DisplayHandle = displayHandle ?? throw new global::System.ArgumentNullException(nameof(displayHandle));
             this.EmailAddress = emailAddress ?? throw new global::System.ArgumentNullException(nameof(emailAddress));
             this.AvatarUrl = avatarUrl ?? throw new global::System.ArgumentNullException(nameof(avatarUrl));
             this.Role = role;
+            this.FullName = fullName;
         }
 
         /// <summary>
