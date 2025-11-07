@@ -118,6 +118,12 @@ namespace Ideogram
                     content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
                     name: "style_preset");
             } 
+            if (request.CustomModelUri != default)
+            {
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                    name: "custom_model_uri");
+            } 
             if (request.ColorPalette != default)
             {
                 __httpRequestContent.Add(
@@ -426,6 +432,11 @@ namespace Ideogram
         /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
         /// Example: BRIGHT_ART
         /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;. <br/>
+        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </param>
         /// <param name="colorPalette">
         /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
         /// </param>
@@ -456,6 +467,7 @@ namespace Ideogram
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            string? customModelUri = default,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
@@ -476,6 +488,7 @@ namespace Ideogram
                 RenderingSpeed = renderingSpeed,
                 StyleType = styleType,
                 StylePreset = stylePreset,
+                CustomModelUri = customModelUri,
                 ColorPalette = colorPalette,
                 StyleCodes = styleCodes,
                 StyleReferenceImages = styleReferenceImages,
