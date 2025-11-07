@@ -83,6 +83,11 @@ namespace Ideogram
         /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
         /// Example: BRIGHT_ART
         /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;. <br/>
+        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
@@ -110,6 +115,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            string? customModelUri = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask = default,
