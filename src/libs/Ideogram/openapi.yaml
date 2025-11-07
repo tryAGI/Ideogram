@@ -1599,6 +1599,10 @@ components:
           $ref: '#/components/schemas/StyleTypeV3'
         style_preset:
           $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
         style_reference_images:
           type: array
           items:
@@ -1665,6 +1669,10 @@ components:
           $ref: '#/components/schemas/StyleTypeV3'
         style_preset:
           $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
         style_reference_images:
           type: array
           items:
@@ -1714,6 +1722,10 @@ components:
           $ref: '#/components/schemas/StyleTypeV3'
         style_preset:
           $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
         style_codes:
