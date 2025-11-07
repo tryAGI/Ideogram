@@ -109,6 +109,15 @@ namespace Ideogram
         public global::Ideogram.StylePresetV3? StylePreset { get; set; }
 
         /// <summary>
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;. <br/>
+        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </summary>
+        /// <example>model/my-custom-model/version/1</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_uri")]
+        public string? CustomModelUri { get; set; }
+
+        /// <summary>
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
@@ -183,6 +192,11 @@ namespace Ideogram
         /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
         /// Example: BRIGHT_ART
         /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;. <br/>
+        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
@@ -208,6 +222,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes,
             global::Ideogram.StyleTypeV3? styleType,
             global::Ideogram.StylePresetV3? stylePreset,
+            string? customModelUri,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask)
@@ -224,6 +239,7 @@ namespace Ideogram
             this.StyleCodes = styleCodes;
             this.StyleType = styleType;
             this.StylePreset = stylePreset;
+            this.CustomModelUri = customModelUri;
             this.StyleReferenceImages = styleReferenceImages;
             this.CharacterReferenceImages = characterReferenceImages;
             this.CharacterReferenceImagesMask = characterReferenceImagesMask;
