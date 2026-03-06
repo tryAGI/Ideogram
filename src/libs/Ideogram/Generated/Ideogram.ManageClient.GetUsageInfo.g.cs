@@ -13,7 +13,9 @@ namespace Ideogram
             ref global::System.DateTime? endTime,
             global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? modelVersions,
             global::System.Collections.Generic.IList<global::Ideogram.ToolType>? tools,
-            global::System.Collections.Generic.IList<string>? apiKeyIds);
+            global::System.Collections.Generic.IList<string>? apiKeyIds,
+            global::System.Collections.Generic.IList<string>? userEmails,
+            ref global::Ideogram.UsageSource? source);
         partial void PrepareGetUsageInfoRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
@@ -23,7 +25,9 @@ namespace Ideogram
             global::System.DateTime? endTime,
             global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? modelVersions,
             global::System.Collections.Generic.IList<global::Ideogram.ToolType>? tools,
-            global::System.Collections.Generic.IList<string>? apiKeyIds);
+            global::System.Collections.Generic.IList<string>? apiKeyIds,
+            global::System.Collections.Generic.IList<string>? userEmails,
+            global::Ideogram.UsageSource? source);
         partial void ProcessGetUsageInfoResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
@@ -46,6 +50,11 @@ namespace Ideogram
         /// <param name="modelVersions"></param>
         /// <param name="tools"></param>
         /// <param name="apiKeyIds"></param>
+        /// <param name="userEmails"></param>
+        /// <param name="source">
+        /// Filter usage by source - API for programmatic API usage, APP for web application usage<br/>
+        /// Default Value: API
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GetUsageInfoResponse> GetUsageInfoAsync(
@@ -56,6 +65,8 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? modelVersions = default,
             global::System.Collections.Generic.IList<global::Ideogram.ToolType>? tools = default,
             global::System.Collections.Generic.IList<string>? apiKeyIds = default,
+            global::System.Collections.Generic.IList<string>? userEmails = default,
+            global::Ideogram.UsageSource? source = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             PrepareArguments(
@@ -68,19 +79,23 @@ namespace Ideogram
                 endTime: ref endTime,
                 modelVersions: modelVersions,
                 tools: tools,
-                apiKeyIds: apiKeyIds);
+                apiKeyIds: apiKeyIds,
+                userEmails: userEmails,
+                source: ref source);
 
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/usage",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
-                .AddRequiredParameter("organization_id", organizationId) 
-                .AddRequiredParameter("segment_by", segmentBy.ToValueString()) 
-                .AddRequiredParameter("start_time", startTime.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
-                .AddOptionalParameter("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
-                .AddOptionalParameter("model_versions", modelVersions, selector: static x => x.ToValueString(), delimiter: ",", explode: true) 
-                .AddOptionalParameter("tools", tools, selector: static x => x.ToValueString(), delimiter: ",", explode: true) 
-                .AddOptionalParameter("api_key_ids", apiKeyIds, delimiter: ",", explode: true) 
+            __pathBuilder
+                .AddRequiredParameter("organization_id", organizationId)
+                .AddRequiredParameter("segment_by", segmentBy.ToValueString())
+                .AddRequiredParameter("start_time", startTime.ToString("yyyy-MM-ddTHH:mm:ssZ"))
+                .AddOptionalParameter("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ"))
+                .AddOptionalParameter("model_versions", modelVersions, selector: static x => x.ToValueString(), delimiter: ",", explode: true)
+                .AddOptionalParameter("tools", tools, selector: static x => x.ToValueString(), delimiter: ",", explode: true)
+                .AddOptionalParameter("api_key_ids", apiKeyIds, delimiter: ",", explode: true)
+                .AddOptionalParameter("user_emails", userEmails, delimiter: ",", explode: true)
+                .AddOptionalParameter("source", source?.ToValueString()) 
                 ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
@@ -119,7 +134,9 @@ namespace Ideogram
                 endTime: endTime,
                 modelVersions: modelVersions,
                 tools: tools,
-                apiKeyIds: apiKeyIds);
+                apiKeyIds: apiKeyIds,
+                userEmails: userEmails,
+                source: source);
 
             using var __response = await HttpClient.SendAsync(
                 request: __httpRequest,

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"is_active":true}
     /// </summary>
     public sealed partial class RechargeSettingsResponse
     {

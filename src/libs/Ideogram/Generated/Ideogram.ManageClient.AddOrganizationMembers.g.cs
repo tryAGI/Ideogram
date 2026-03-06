@@ -32,6 +32,7 @@ namespace Ideogram
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.OrganizationMemberOperationResponse> AddOrganizationMembersAsync(
             string organizationId,
+
             global::Ideogram.AddOrganizationMembersRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -47,7 +48,7 @@ namespace Ideogram
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/organization/add_members",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
+            __pathBuilder
                 .AddRequiredParameter("organization_id", organizationId) 
                 ; 
             var __path = __pathBuilder.ToString();

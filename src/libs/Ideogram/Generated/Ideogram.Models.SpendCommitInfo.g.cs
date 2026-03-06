@@ -4,20 +4,24 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"commit_start_time":"2000-01-23T04:56:07.0000000\u002B00:00","is_postpaid_commit":true,"commit_amount_spent":{"amount":1050,"currency_code":"USD"},"commit_amount":{"amount":1050,"currency_code":"USD"},"commit_end_time":"2000-01-23T04:56:07.0000000\u002B00:00"}
     /// </summary>
     public sealed partial class SpendCommitInfo
     {
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("commit_amount_spent")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price CommitAmountSpent { get; set; }
 
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("commit_amount")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price CommitAmount { get; set; }
@@ -53,10 +57,12 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="SpendCommitInfo" /> class.
         /// </summary>
         /// <param name="commitAmountSpent">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
         /// <param name="commitAmount">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
         /// <param name="commitStartTime">
         /// The start time of the commit period

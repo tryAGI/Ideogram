@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"stripe_subscription_url":"stripe_subscription_url","stripe_billing_url":"stripe_billing_url"}
     /// </summary>
     public sealed partial class ManageApiStripeSubscriptionResponse
     {

@@ -32,6 +32,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostRemixImageV3Async(
+
             global::Ideogram.RemixImageRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -71,102 +72,129 @@ namespace Ideogram
                 }
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+            var __contentImage = new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>());
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>()),
-                name: "image",
-                fileName: request.Imagename ?? string.Empty);
+                content: __contentImage,
+                name: "\"image\"",
+                fileName: request.Imagename != null ? $"\"{request.Imagename}\"" : string.Empty);
+            if (__contentImage.Headers.ContentDisposition != null)
+            {
+                __contentImage.Headers.ContentDisposition.FileNameStar = null;
+            }
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
-                name: "prompt");
+                name: "\"prompt\"");
             if (request.ImageWeight != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.ImageWeight}"),
-                    name: "image_weight");
+                    name: "\"image_weight\"");
             } 
             if (request.Seed != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
-                    name: "seed");
+                    name: "\"seed\"");
             } 
             if (request.Resolution != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.Resolution?.ToValueString()}"),
-                    name: "resolution");
+                    name: "\"resolution\"");
             } 
             if (request.AspectRatio != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.AspectRatio?.ToValueString()}"),
-                    name: "aspect_ratio");
+                    name: "\"aspect_ratio\"");
             } 
             if (request.RenderingSpeed != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
-                    name: "rendering_speed");
+                    name: "\"rendering_speed\"");
             } 
             if (request.MagicPrompt != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
-                    name: "magic_prompt");
+                    name: "\"magic_prompt\"");
             } 
             if (request.NegativePrompt != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.NegativePrompt}"),
-                    name: "negative_prompt");
+                    name: "\"negative_prompt\"");
             } 
             if (request.NumImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
-                    name: "num_images");
+                    name: "\"num_images\"");
             } 
             if (request.ColorPalette != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent(request.ColorPalette?.ToString() ?? string.Empty),
-                    name: "color_palette");
+                    name: "\"color_palette\"");
             } 
             if (request.StyleCodes != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes, x => x))}]"),
-                    name: "style_codes");
+                    name: "\"style_codes\"");
             } 
             if (request.StyleType != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
-                    name: "style_type");
+                    name: "\"style_type\"");
             } 
             if (request.StylePreset != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
-                    name: "style_preset");
+                    name: "\"style_preset\"");
+            } 
+            if (request.CustomModelUri != default)
+            {
+
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                    name: "\"custom_model_uri\"");
             } 
             if (request.StyleReferenceImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleReferenceImages, x => x))}]"),
-                    name: "style_reference_images");
+                    name: "\"style_reference_images\"");
             } 
             if (request.CharacterReferenceImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImages, x => x))}]"),
-                    name: "character_reference_images");
+                    name: "\"character_reference_images\"");
             } 
             if (request.CharacterReferenceImagesMask != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImagesMask, x => x))}]"),
-                    name: "character_reference_images_mask");
+                    name: "\"character_reference_images_mask\"");
             }
             __httpRequest.Content = __httpRequestContent;
 
@@ -463,6 +491,11 @@ namespace Ideogram
         /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
         /// Example: BRIGHT_ART
         /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;. <br/>
+        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
@@ -490,6 +523,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            string? customModelUri = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask = default,
@@ -512,6 +546,7 @@ namespace Ideogram
                 StyleCodes = styleCodes,
                 StyleType = styleType,
                 StylePreset = stylePreset,
+                CustomModelUri = customModelUri,
                 StyleReferenceImages = styleReferenceImages,
                 CharacterReferenceImages = characterReferenceImages,
                 CharacterReferenceImagesMask = characterReferenceImagesMask,

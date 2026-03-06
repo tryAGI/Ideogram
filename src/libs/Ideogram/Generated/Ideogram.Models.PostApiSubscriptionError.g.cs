@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Represents an error when attempting to update the API subscription.
+    /// Represents an error when attempting to update the API subscription.<br/>
+    /// Example: {"messages":["messages","messages"]}
     /// </summary>
     public sealed partial class PostApiSubscriptionError
     {

@@ -11,15 +11,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        EIN,
+        Ein,
         /// <summary>
         /// 
         /// </summary>
-        ZWEI,
+        Zwei,
         /// <summary>
         /// 
         /// </summary>
-        DREI,
+        Drei,
     }
 
     /// <summary>
@@ -34,9 +34,9 @@ namespace Ideogram
         {
             return value switch
             {
-                InternalTestingEnumField.EIN => "EIN",
-                InternalTestingEnumField.ZWEI => "ZWEI",
-                InternalTestingEnumField.DREI => "DREI",
+                InternalTestingEnumField.Ein => "EIN",
+                InternalTestingEnumField.Zwei => "ZWEI",
+                InternalTestingEnumField.Drei => "DREI",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "EIN" => InternalTestingEnumField.EIN,
-                "ZWEI" => InternalTestingEnumField.ZWEI,
-                "DREI" => InternalTestingEnumField.DREI,
+                "EIN" => InternalTestingEnumField.Ein,
+                "ZWEI" => InternalTestingEnumField.Zwei,
+                "DREI" => InternalTestingEnumField.Drei,
                 _ => null,
             };
         }

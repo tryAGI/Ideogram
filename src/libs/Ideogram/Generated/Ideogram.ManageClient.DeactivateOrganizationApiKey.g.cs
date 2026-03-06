@@ -35,7 +35,7 @@ namespace Ideogram
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/organization/deactivate_api_key",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
+            __pathBuilder
                 .AddRequiredParameter("api_key_id", apiKeyId) 
                 ; 
             var __path = __pathBuilder.ToString();

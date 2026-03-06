@@ -45,8 +45,8 @@ namespace Ideogram
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/spend_commit",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
-                .AddRequiredParameter("organization_id", organizationId) 
+            __pathBuilder
+                .AddRequiredParameter("organization_id", organizationId)
                 .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString()) 
                 ; 
             var __path = __pathBuilder.ToString();

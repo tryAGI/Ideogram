@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"success":true,"message":"message"}
     /// </summary>
     public sealed partial class OrganizationMemberOperationResult
     {

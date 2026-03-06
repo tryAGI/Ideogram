@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"style_type":"REALISTIC","seed":12345,"upscaled_resolution":"4096x4096","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","resolution":"1024x1024","url":"https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g","is_image_safe":true}
     /// </summary>
     public sealed partial class ImageObject
     {
@@ -33,6 +33,14 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Resolution { get; set; }
+
+        /// <summary>
+        /// Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.<br/>
+        /// Example: 4096x4096
+        /// </summary>
+        /// <example>4096x4096</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("upscaled_resolution")]
+        public string? UpscaledResolution { get; set; }
 
         /// <summary>
         /// Whether this request passes safety checks. If false, the url field will be empty.
@@ -80,6 +88,10 @@ namespace Ideogram
         /// The resolution of the final image.<br/>
         /// Example: 1024x1024
         /// </param>
+        /// <param name="upscaledResolution">
+        /// Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.<br/>
+        /// Example: 4096x4096
+        /// </param>
         /// <param name="isImageSafe">
         /// Whether this request passes safety checks. If false, the url field will be empty.
         /// </param>
@@ -100,6 +112,7 @@ namespace Ideogram
             bool isImageSafe,
             int seed,
             string? url,
+            string? upscaledResolution,
             global::Ideogram.StyleType? styleType)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
@@ -107,6 +120,7 @@ namespace Ideogram
             this.IsImageSafe = isImageSafe;
             this.Seed = seed;
             this.Url = url;
+            this.UpscaledResolution = upscaledResolution;
             this.StyleType = styleType;
         }
 

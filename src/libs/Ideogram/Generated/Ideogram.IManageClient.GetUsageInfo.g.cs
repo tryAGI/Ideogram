@@ -17,6 +17,11 @@ namespace Ideogram
         /// <param name="modelVersions"></param>
         /// <param name="tools"></param>
         /// <param name="apiKeyIds"></param>
+        /// <param name="userEmails"></param>
+        /// <param name="source">
+        /// Filter usage by source - API for programmatic API usage, APP for web application usage<br/>
+        /// Default Value: API
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GetUsageInfoResponse> GetUsageInfoAsync(
@@ -27,6 +32,8 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? modelVersions = default,
             global::System.Collections.Generic.IList<global::Ideogram.ToolType>? tools = default,
             global::System.Collections.Generic.IList<string>? apiKeyIds = default,
+            global::System.Collections.Generic.IList<string>? userEmails = default,
+            global::Ideogram.UsageSource? source = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

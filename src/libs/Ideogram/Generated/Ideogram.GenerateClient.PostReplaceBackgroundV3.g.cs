@@ -32,6 +32,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReplaceBackgroundV3Async(
+
             global::Ideogram.ReplaceBackgroundRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -71,60 +72,73 @@ namespace Ideogram
                 }
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+            var __contentImage = new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>());
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>()),
-                name: "image",
-                fileName: request.Imagename ?? string.Empty);
+                content: __contentImage,
+                name: "\"image\"",
+                fileName: request.Imagename != null ? $"\"{request.Imagename}\"" : string.Empty);
+            if (__contentImage.Headers.ContentDisposition != null)
+            {
+                __contentImage.Headers.ContentDisposition.FileNameStar = null;
+            }
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
-                name: "prompt");
+                name: "\"prompt\"");
             if (request.MagicPrompt != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
-                    name: "magic_prompt");
+                    name: "\"magic_prompt\"");
             } 
             if (request.NumImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
-                    name: "num_images");
+                    name: "\"num_images\"");
             } 
             if (request.Seed != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
-                    name: "seed");
+                    name: "\"seed\"");
             } 
             if (request.RenderingSpeed != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
-                    name: "rendering_speed");
+                    name: "\"rendering_speed\"");
             } 
             if (request.StylePreset != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
-                    name: "style_preset");
+                    name: "\"style_preset\"");
             } 
             if (request.ColorPalette != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent(request.ColorPalette?.ToString() ?? string.Empty),
-                    name: "color_palette");
+                    name: "\"color_palette\"");
             } 
             if (request.StyleCodes != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes, x => x))}]"),
-                    name: "style_codes");
+                    name: "\"style_codes\"");
             } 
             if (request.StyleReferenceImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleReferenceImages, x => x))}]"),
-                    name: "style_reference_images");
+                    name: "\"style_reference_images\"");
             }
             __httpRequest.Content = __httpRequestContent;
 

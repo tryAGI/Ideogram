@@ -30,6 +30,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostReframeImageAsync(
+
             global::Ideogram.ReframeImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -69,33 +70,41 @@ namespace Ideogram
                 }
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+            var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
-                name: "image_file",
-                fileName: request.ImageFilename ?? string.Empty);
+                content: __contentImageFile,
+                name: "\"image_file\"",
+                fileName: request.ImageFilename != null ? $"\"{request.ImageFilename}\"" : string.Empty);
+            if (__contentImageFile.Headers.ContentDisposition != null)
+            {
+                __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
+            }
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Resolution.ToValueString()}"),
-                name: "resolution");
+                name: "\"resolution\"");
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Model.ToValueString()}"),
-                name: "model");
+                name: "\"model\"");
             if (request.NumImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
-                    name: "num_images");
+                    name: "\"num_images\"");
             } 
             if (request.Seed != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
-                    name: "seed");
+                    name: "\"seed\"");
             } 
             if (request.StyleType != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
-                    name: "style_type");
+                    name: "\"style_type\"");
             }
             __httpRequest.Content = __httpRequestContent;
 
@@ -365,7 +374,7 @@ namespace Ideogram
             byte[] imageFile,
             string imageFilename,
             global::Ideogram.Resolution resolution,
-            global::Ideogram.ModelEnum model,
+            global::Ideogram.ModelEnum model = global::Ideogram.ModelEnum.V2,
             int? numImages = default,
             int? seed = default,
             global::Ideogram.StyleType? styleType = default,

@@ -12,23 +12,27 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        GENERATE,
+        Generate,
         /// <summary>
         /// 
         /// </summary>
-        REMIX,
+        Remix,
         /// <summary>
         /// 
         /// </summary>
-        EDIT,
+        Edit,
         /// <summary>
         /// 
         /// </summary>
-        UPSCALE,
+        Upscale,
         /// <summary>
         /// 
         /// </summary>
-        DESCRIBE,
+        Describe,
+        /// <summary>
+        /// 
+        /// </summary>
+        Other,
     }
 
     /// <summary>
@@ -43,11 +47,12 @@ namespace Ideogram
         {
             return value switch
             {
-                ToolType.GENERATE => "GENERATE",
-                ToolType.REMIX => "REMIX",
-                ToolType.EDIT => "EDIT",
-                ToolType.UPSCALE => "UPSCALE",
-                ToolType.DESCRIBE => "DESCRIBE",
+                ToolType.Generate => "GENERATE",
+                ToolType.Remix => "REMIX",
+                ToolType.Edit => "EDIT",
+                ToolType.Upscale => "UPSCALE",
+                ToolType.Describe => "DESCRIBE",
+                ToolType.Other => "OTHER",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -58,11 +63,12 @@ namespace Ideogram
         {
             return value switch
             {
-                "GENERATE" => ToolType.GENERATE,
-                "REMIX" => ToolType.REMIX,
-                "EDIT" => ToolType.EDIT,
-                "UPSCALE" => ToolType.UPSCALE,
-                "DESCRIBE" => ToolType.DESCRIBE,
+                "GENERATE" => ToolType.Generate,
+                "REMIX" => ToolType.Remix,
+                "EDIT" => ToolType.Edit,
+                "UPSCALE" => ToolType.Upscale,
+                "DESCRIBE" => ToolType.Describe,
+                "OTHER" => ToolType.Other,
                 _ => null,
             };
         }

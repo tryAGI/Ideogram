@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A request for batch magic prompt evalution.
+    /// A request for batch magic prompt evalution.<br/>
+    /// Example: {"user_prompts":["a cat","a dog"],"sampling_request_params":{"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}},"experiment_variant":"MAGIC_PROMPT_NO_TEXT"}
     /// </summary>
     public sealed partial class InternalBatchRequest
     {
@@ -26,8 +27,9 @@ namespace Ideogram
         public string? ExperimentVariant { get; set; }
 
         /// <summary>
-        /// 
+        /// Example: {"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
         /// </summary>
+        /// <example>{"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("sampling_request_params")]
         public global::Ideogram.SamplingRequestParams? SamplingRequestParams { get; set; }
 
@@ -48,7 +50,9 @@ namespace Ideogram
         /// The experiment variant used for template selection for the magic prompts.<br/>
         /// Example: MAGIC_PROMPT_NO_TEXT
         /// </param>
-        /// <param name="samplingRequestParams"></param>
+        /// <param name="samplingRequestParams">
+        /// Example: {"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif

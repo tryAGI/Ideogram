@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"name":"PASTEL"}
     /// </summary>
     public sealed partial class ColorPaletteWithPresetName
     {

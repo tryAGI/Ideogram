@@ -30,6 +30,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
+
             global::Ideogram.DescribeRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -69,15 +70,21 @@ namespace Ideogram
                 }
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+            var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
-                name: "image_file",
-                fileName: request.ImageFilename ?? string.Empty);
+                content: __contentImageFile,
+                name: "\"image_file\"",
+                fileName: request.ImageFilename != null ? $"\"{request.ImageFilename}\"" : string.Empty);
+            if (__contentImageFile.Headers.ContentDisposition != null)
+            {
+                __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
+            }
             if (request.DescribeModelVersion != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.DescribeModelVersion?.ToValueString()}"),
-                    name: "describe_model_version");
+                    name: "\"describe_model_version\"");
             }
             __httpRequest.Content = __httpRequestContent;
 

@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A response for batch magic prompt evalution containing relavent information for /internal/batch/status GET request to find out if the batch generation has completed.
+    /// A response for batch magic prompt evalution containing relavent information for /internal/batch/status GET request to find out if the batch generation has completed.<br/>
+    /// Example: {"job_id":"job_id"}
     /// </summary>
     public sealed partial class InternalBatchResponse
     {

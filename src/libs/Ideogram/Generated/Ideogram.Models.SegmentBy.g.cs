@@ -12,11 +12,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        DAY,
+        Day,
         /// <summary>
         /// 
         /// </summary>
-        HOUR,
+        Hour,
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ namespace Ideogram
         {
             return value switch
             {
-                SegmentBy.DAY => "DAY",
-                SegmentBy.HOUR => "HOUR",
+                SegmentBy.Day => "DAY",
+                SegmentBy.Hour => "HOUR",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -43,8 +43,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "DAY" => SegmentBy.DAY,
-                "HOUR" => SegmentBy.HOUR,
+                "DAY" => SegmentBy.Day,
+                "HOUR" => SegmentBy.Hour,
                 _ => null,
             };
         }

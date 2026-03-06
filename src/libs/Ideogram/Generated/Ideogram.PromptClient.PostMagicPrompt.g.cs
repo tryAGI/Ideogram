@@ -29,6 +29,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.MagicPromptResponse> PostMagicPromptAsync(
+
             global::Ideogram.MagicPromptRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -70,36 +71,40 @@ namespace Ideogram
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
-                name: "prompt");
+                name: "\"prompt\"");
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.MagicPromptVersion.ToValueString()}"),
-                name: "magic_prompt_version");
+                name: "\"magic_prompt_version\"");
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.ClassifyPromptCategory}"),
-                name: "classify_prompt_category");
+                name: "\"classify_prompt_category\"");
             if (request.StyleType != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
-                    name: "style_type");
+                    name: "\"style_type\"");
             } 
             if (request.Seed != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
-                    name: "seed");
+                    name: "\"seed\"");
             } 
             if (request.CharacterReferenceImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImages, x => x))}]"),
-                    name: "character_reference_images");
+                    name: "\"character_reference_images\"");
             } 
             if (request.SystemPrompt != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.SystemPrompt}"),
-                    name: "system_prompt");
+                    name: "\"system_prompt\"");
             }
             __httpRequest.Content = __httpRequestContent;
 

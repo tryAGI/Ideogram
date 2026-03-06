@@ -4,13 +4,15 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"amount":{"amount":1050,"currency_code":"USD"}}
     /// </summary>
     public sealed partial class PostAddCreditsResponse
     {
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("amount")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price Amount { get; set; }
@@ -25,7 +27,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="PostAddCreditsResponse" /> class.
         /// </summary>
         /// <param name="amount">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

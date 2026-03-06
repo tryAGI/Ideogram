@@ -40,7 +40,7 @@ namespace Ideogram
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/api_keys_v2",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
+            __pathBuilder
                 .AddRequiredParameter("organization_id", organizationId) 
                 ; 
             var __path = __pathBuilder.ToString();

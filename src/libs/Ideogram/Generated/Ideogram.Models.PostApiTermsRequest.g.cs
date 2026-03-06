@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"terms_id":"TOS_2024_04_20"}
     /// </summary>
     public sealed partial class PostApiTermsRequest
     {

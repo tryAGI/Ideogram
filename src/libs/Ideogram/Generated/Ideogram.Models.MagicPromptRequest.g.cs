@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A request to generate a magic prompt
+    /// A request to generate a magic prompt<br/>
+    /// Example: {"prompt":"a cat","magic_prompt_version":"V_0_4","classify_prompt_category":true,"style_type":"AUTO","seed":12345}
     /// </summary>
     public sealed partial class MagicPromptRequest
     {
@@ -32,11 +33,10 @@ namespace Ideogram
         /// Default Value: true<br/>
         /// Example: false
         /// </summary>
-        /// <default>true</default>
         /// <example>false</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("classify_prompt_category")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool ClassifyPromptCategory { get; set; } = true;
+        public required bool ClassifyPromptCategory { get; set; }
 
         /// <summary>
         /// The style type to generate with.<br/>

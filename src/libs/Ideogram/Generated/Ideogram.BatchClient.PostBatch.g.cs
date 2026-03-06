@@ -30,6 +30,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(
+
             global::Ideogram.InternalBatchRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -312,7 +313,9 @@ namespace Ideogram
         /// The experiment variant used for template selection for the magic prompts.<br/>
         /// Example: MAGIC_PROMPT_NO_TEXT
         /// </param>
-        /// <param name="samplingRequestParams"></param>
+        /// <param name="samplingRequestParams">
+        /// Example: {"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
+        /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.InternalBatchResponse> PostBatchAsync(

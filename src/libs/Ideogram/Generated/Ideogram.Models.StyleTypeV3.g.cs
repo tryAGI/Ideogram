@@ -13,31 +13,31 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        AUTO,
+        Auto,
         /// <summary>
         /// 
         /// </summary>
-        GENERAL,
+        General,
         /// <summary>
         /// 
         /// </summary>
-        REALISTIC,
+        Realistic,
         /// <summary>
         /// 
         /// </summary>
-        DESIGN,
+        Design,
         /// <summary>
         /// 
         /// </summary>
-        CUSTOM,
+        Custom,
         /// <summary>
         /// 
         /// </summary>
-        FICTION,
+        Fiction,
         /// <summary>
         /// 
         /// </summary>
-        STYLIZED,
+        Stylized,
     }
 
     /// <summary>
@@ -52,13 +52,13 @@ namespace Ideogram
         {
             return value switch
             {
-                StyleTypeV3.AUTO => "AUTO",
-                StyleTypeV3.GENERAL => "GENERAL",
-                StyleTypeV3.REALISTIC => "REALISTIC",
-                StyleTypeV3.DESIGN => "DESIGN",
-                StyleTypeV3.CUSTOM => "CUSTOM",
-                StyleTypeV3.FICTION => "FICTION",
-                StyleTypeV3.STYLIZED => "STYLIZED",
+                StyleTypeV3.Auto => "AUTO",
+                StyleTypeV3.General => "GENERAL",
+                StyleTypeV3.Realistic => "REALISTIC",
+                StyleTypeV3.Design => "DESIGN",
+                StyleTypeV3.Custom => "CUSTOM",
+                StyleTypeV3.Fiction => "FICTION",
+                StyleTypeV3.Stylized => "STYLIZED",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -69,13 +69,13 @@ namespace Ideogram
         {
             return value switch
             {
-                "AUTO" => StyleTypeV3.AUTO,
-                "GENERAL" => StyleTypeV3.GENERAL,
-                "REALISTIC" => StyleTypeV3.REALISTIC,
-                "DESIGN" => StyleTypeV3.DESIGN,
-                "CUSTOM" => StyleTypeV3.CUSTOM,
-                "FICTION" => StyleTypeV3.FICTION,
-                "STYLIZED" => StyleTypeV3.STYLIZED,
+                "AUTO" => StyleTypeV3.Auto,
+                "GENERAL" => StyleTypeV3.General,
+                "REALISTIC" => StyleTypeV3.Realistic,
+                "DESIGN" => StyleTypeV3.Design,
+                "CUSTOM" => StyleTypeV3.Custom,
+                "FICTION" => StyleTypeV3.Fiction,
+                "STYLIZED" => StyleTypeV3.Stylized,
                 _ => null,
             };
         }

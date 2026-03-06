@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"invoices":[{"total_spend":{"amount":1050,"currency_code":"USD"},"start_time":"2024-01-01","end_time":"2024-01-31T23:59:59.0000000\u002B00:00","line_items":[{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}},{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}}],"issued_time":"2024-01-01","invoice_status":"PAID"},{"total_spend":{"amount":1050,"currency_code":"USD"},"start_time":"2024-01-01","end_time":"2024-01-31T23:59:59.0000000\u002B00:00","line_items":[{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}},{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}}],"issued_time":"2024-01-01","invoice_status":"PAID"}]}
     /// </summary>
     public sealed partial class ListOrganizationInvoicesResponse
     {

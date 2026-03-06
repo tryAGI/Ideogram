@@ -13,6 +13,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostReframeImageAsync(
+
             global::Ideogram.ReframeImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
 
@@ -54,7 +55,7 @@ namespace Ideogram
             byte[] imageFile,
             string imageFilename,
             global::Ideogram.Resolution resolution,
-            global::Ideogram.ModelEnum model,
+            global::Ideogram.ModelEnum model = global::Ideogram.ModelEnum.V2,
             int? numImages = default,
             int? seed = default,
             global::Ideogram.StyleType? styleType = default,

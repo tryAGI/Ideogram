@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A response for batch magic prompt job results.
+    /// A response for batch magic prompt job results.<br/>
+    /// Example: {"job_status":"COMPLETE","results":[{"image_url":"image_url","prompt":"a cat"},{"image_url":"image_url","prompt":"a cat"}]}
     /// </summary>
     public sealed partial class InternalBatchResultsResponse
     {

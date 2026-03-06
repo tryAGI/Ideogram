@@ -32,6 +32,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostRemixImageAsync(
+
             global::Ideogram.RemixImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -73,11 +74,16 @@ namespace Ideogram
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.ImageRequest}"),
-                name: "image_request");
+                name: "\"image_request\"");
+            var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
-                name: "image_file",
-                fileName: request.ImageFilename ?? string.Empty);
+                content: __contentImageFile,
+                name: "\"image_file\"",
+                fileName: request.ImageFilename != null ? $"\"{request.ImageFilename}\"" : string.Empty);
+            if (__contentImageFile.Headers.ContentDisposition != null)
+            {
+                __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
+            }
             __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
@@ -316,7 +322,8 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="imageRequest">
-        /// A request to generate a new image using a provided image and a prompt.
+        /// A request to generate a new image using a provided image and a prompt.<br/>
+        /// Example: {"aspect_ratio":"ASPECT_10_16","magic_prompt_option":"ON","model":"V_2","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","image_weight":50}
         /// </param>
         /// <param name="imageFile">
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.

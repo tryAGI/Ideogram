@@ -12,251 +12,251 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x80SILLUSTRATION,
+        x80sIllustration,
         /// <summary>
         /// 
         /// </summary>
-        x90SNOSTALGIA,
+        x90sNostalgia,
         /// <summary>
         /// 
         /// </summary>
-        ABSTRACTORGANIC,
+        AbstractOrganic,
         /// <summary>
         /// 
         /// </summary>
-        ANALOGNOSTALGIA,
+        AnalogNostalgia,
         /// <summary>
         /// 
         /// </summary>
-        ARTBRUT,
+        ArtBrut,
         /// <summary>
         /// 
         /// </summary>
-        ARTDECO,
+        ArtDeco,
         /// <summary>
         /// 
         /// </summary>
-        ARTPOSTER,
+        ArtPoster,
         /// <summary>
         /// 
         /// </summary>
-        AURA,
+        Aura,
         /// <summary>
         /// 
         /// </summary>
-        AVANTGARDE,
+        AvantGarde,
         /// <summary>
         /// 
         /// </summary>
-        BAUHAUS,
+        Bauhaus,
         /// <summary>
         /// 
         /// </summary>
-        BLUEPRINT,
+        Blueprint,
         /// <summary>
         /// 
         /// </summary>
-        BLURRYMOTION,
+        BlurryMotion,
         /// <summary>
         /// 
         /// </summary>
-        BRIGHTART,
+        BrightArt,
         /// <summary>
         /// 
         /// </summary>
-        C4DCARTOON,
+        C4dCartoon,
         /// <summary>
         /// 
         /// </summary>
-        CHILDRENSBOOK,
+        ChildrensBook,
         /// <summary>
         /// 
         /// </summary>
-        COLLAGE,
+        Collage,
         /// <summary>
         /// 
         /// </summary>
-        COLORINGBOOKI,
+        ColoringBookI,
         /// <summary>
         /// 
         /// </summary>
-        COLORINGBOOKII,
+        ColoringBookIi,
         /// <summary>
         /// 
         /// </summary>
-        CUBISM,
+        Cubism,
         /// <summary>
         /// 
         /// </summary>
-        DARKAURA,
+        DarkAura,
         /// <summary>
         /// 
         /// </summary>
-        DOODLE,
+        Doodle,
         /// <summary>
         /// 
         /// </summary>
-        DOUBLEEXPOSURE,
+        DoubleExposure,
         /// <summary>
         /// 
         /// </summary>
-        DRAMATICCINEMA,
+        DramaticCinema,
         /// <summary>
         /// 
         /// </summary>
-        EDITORIAL,
+        Editorial,
         /// <summary>
         /// 
         /// </summary>
-        EMOTIONALMINIMAL,
+        EmotionalMinimal,
         /// <summary>
         /// 
         /// </summary>
-        ETHEREALPARTY,
+        EtherealParty,
         /// <summary>
         /// 
         /// </summary>
-        EXPIREDFILM,
+        ExpiredFilm,
         /// <summary>
         /// 
         /// </summary>
-        FLATART,
+        FlatArt,
         /// <summary>
         /// 
         /// </summary>
-        FLATVECTOR,
+        FlatVector,
         /// <summary>
         /// 
         /// </summary>
-        FORESTREVERIE,
+        ForestReverie,
         /// <summary>
         /// 
         /// </summary>
-        GEOMINIMALIST,
+        GeoMinimalist,
         /// <summary>
         /// 
         /// </summary>
-        GLASSPRISM,
+        GlassPrism,
         /// <summary>
         /// 
         /// </summary>
-        GOLDENHOUR,
+        GoldenHour,
         /// <summary>
         /// 
         /// </summary>
-        GRAFFITII,
+        GraffitiI,
         /// <summary>
         /// 
         /// </summary>
-        GRAFFITIII,
+        GraffitiIi,
         /// <summary>
         /// 
         /// </summary>
-        HALFTONEPRINT,
+        HalftonePrint,
         /// <summary>
         /// 
         /// </summary>
-        HIGHCONTRAST,
+        HighContrast,
         /// <summary>
         /// 
         /// </summary>
-        HIPPIEERA,
+        HippieEra,
         /// <summary>
         /// 
         /// </summary>
-        ICONIC,
+        Iconic,
         /// <summary>
         /// 
         /// </summary>
-        JAPANDIFUSION,
+        JapandiFusion,
         /// <summary>
         /// 
         /// </summary>
-        JAZZY,
+        Jazzy,
         /// <summary>
         /// 
         /// </summary>
-        LONGEXPOSURE,
+        LongExposure,
         /// <summary>
         /// 
         /// </summary>
-        MAGAZINEEDITORIAL,
+        MagazineEditorial,
         /// <summary>
         /// 
         /// </summary>
-        MINIMALILLUSTRATION,
+        MinimalIllustration,
         /// <summary>
         /// 
         /// </summary>
-        MIXEDMEDIA,
+        MixedMedia,
         /// <summary>
         /// 
         /// </summary>
-        MONOCHROME,
+        Monochrome,
         /// <summary>
         /// 
         /// </summary>
-        NIGHTLIFE,
+        Nightlife,
         /// <summary>
         /// 
         /// </summary>
-        OILPAINTING,
+        OilPainting,
         /// <summary>
         /// 
         /// </summary>
-        OLDCARTOONS,
+        OldCartoons,
         /// <summary>
         /// 
         /// </summary>
-        PAINTGESTURE,
+        PaintGesture,
         /// <summary>
         /// 
         /// </summary>
-        POPART,
+        PopArt,
         /// <summary>
         /// 
         /// </summary>
-        RETROETCHING,
+        RetroEtching,
         /// <summary>
         /// 
         /// </summary>
-        RIVIERAPOP,
+        RivieraPop,
         /// <summary>
         /// 
         /// </summary>
-        SPOTLIGHT80S,
+        Spotlight80s,
         /// <summary>
         /// 
         /// </summary>
-        STYLIZEDRED,
+        StylizedRed,
         /// <summary>
         /// 
         /// </summary>
-        SURREALCOLLAGE,
+        SurrealCollage,
         /// <summary>
         /// 
         /// </summary>
-        TRAVELPOSTER,
+        TravelPoster,
         /// <summary>
         /// 
         /// </summary>
-        VINTAGEGEO,
+        VintageGeo,
         /// <summary>
         /// 
         /// </summary>
-        VINTAGEPOSTER,
+        VintagePoster,
         /// <summary>
         /// 
         /// </summary>
-        WATERCOLOR,
+        Watercolor,
         /// <summary>
         /// 
         /// </summary>
-        WEIRD,
+        Weird,
         /// <summary>
         /// 
         /// </summary>
-        WOODBLOCKPRINT,
+        WoodblockPrint,
     }
 
     /// <summary>
@@ -271,68 +271,68 @@ namespace Ideogram
         {
             return value switch
             {
-                StylePresetV3.x80SILLUSTRATION => "80S_ILLUSTRATION",
-                StylePresetV3.x90SNOSTALGIA => "90S_NOSTALGIA",
-                StylePresetV3.ABSTRACTORGANIC => "ABSTRACT_ORGANIC",
-                StylePresetV3.ANALOGNOSTALGIA => "ANALOG_NOSTALGIA",
-                StylePresetV3.ARTBRUT => "ART_BRUT",
-                StylePresetV3.ARTDECO => "ART_DECO",
-                StylePresetV3.ARTPOSTER => "ART_POSTER",
-                StylePresetV3.AURA => "AURA",
-                StylePresetV3.AVANTGARDE => "AVANT_GARDE",
-                StylePresetV3.BAUHAUS => "BAUHAUS",
-                StylePresetV3.BLUEPRINT => "BLUEPRINT",
-                StylePresetV3.BLURRYMOTION => "BLURRY_MOTION",
-                StylePresetV3.BRIGHTART => "BRIGHT_ART",
-                StylePresetV3.C4DCARTOON => "C4D_CARTOON",
-                StylePresetV3.CHILDRENSBOOK => "CHILDRENS_BOOK",
-                StylePresetV3.COLLAGE => "COLLAGE",
-                StylePresetV3.COLORINGBOOKI => "COLORING_BOOK_I",
-                StylePresetV3.COLORINGBOOKII => "COLORING_BOOK_II",
-                StylePresetV3.CUBISM => "CUBISM",
-                StylePresetV3.DARKAURA => "DARK_AURA",
-                StylePresetV3.DOODLE => "DOODLE",
-                StylePresetV3.DOUBLEEXPOSURE => "DOUBLE_EXPOSURE",
-                StylePresetV3.DRAMATICCINEMA => "DRAMATIC_CINEMA",
-                StylePresetV3.EDITORIAL => "EDITORIAL",
-                StylePresetV3.EMOTIONALMINIMAL => "EMOTIONAL_MINIMAL",
-                StylePresetV3.ETHEREALPARTY => "ETHEREAL_PARTY",
-                StylePresetV3.EXPIREDFILM => "EXPIRED_FILM",
-                StylePresetV3.FLATART => "FLAT_ART",
-                StylePresetV3.FLATVECTOR => "FLAT_VECTOR",
-                StylePresetV3.FORESTREVERIE => "FOREST_REVERIE",
-                StylePresetV3.GEOMINIMALIST => "GEO_MINIMALIST",
-                StylePresetV3.GLASSPRISM => "GLASS_PRISM",
-                StylePresetV3.GOLDENHOUR => "GOLDEN_HOUR",
-                StylePresetV3.GRAFFITII => "GRAFFITI_I",
-                StylePresetV3.GRAFFITIII => "GRAFFITI_II",
-                StylePresetV3.HALFTONEPRINT => "HALFTONE_PRINT",
-                StylePresetV3.HIGHCONTRAST => "HIGH_CONTRAST",
-                StylePresetV3.HIPPIEERA => "HIPPIE_ERA",
-                StylePresetV3.ICONIC => "ICONIC",
-                StylePresetV3.JAPANDIFUSION => "JAPANDI_FUSION",
-                StylePresetV3.JAZZY => "JAZZY",
-                StylePresetV3.LONGEXPOSURE => "LONG_EXPOSURE",
-                StylePresetV3.MAGAZINEEDITORIAL => "MAGAZINE_EDITORIAL",
-                StylePresetV3.MINIMALILLUSTRATION => "MINIMAL_ILLUSTRATION",
-                StylePresetV3.MIXEDMEDIA => "MIXED_MEDIA",
-                StylePresetV3.MONOCHROME => "MONOCHROME",
-                StylePresetV3.NIGHTLIFE => "NIGHTLIFE",
-                StylePresetV3.OILPAINTING => "OIL_PAINTING",
-                StylePresetV3.OLDCARTOONS => "OLD_CARTOONS",
-                StylePresetV3.PAINTGESTURE => "PAINT_GESTURE",
-                StylePresetV3.POPART => "POP_ART",
-                StylePresetV3.RETROETCHING => "RETRO_ETCHING",
-                StylePresetV3.RIVIERAPOP => "RIVIERA_POP",
-                StylePresetV3.SPOTLIGHT80S => "SPOTLIGHT_80S",
-                StylePresetV3.STYLIZEDRED => "STYLIZED_RED",
-                StylePresetV3.SURREALCOLLAGE => "SURREAL_COLLAGE",
-                StylePresetV3.TRAVELPOSTER => "TRAVEL_POSTER",
-                StylePresetV3.VINTAGEGEO => "VINTAGE_GEO",
-                StylePresetV3.VINTAGEPOSTER => "VINTAGE_POSTER",
-                StylePresetV3.WATERCOLOR => "WATERCOLOR",
-                StylePresetV3.WEIRD => "WEIRD",
-                StylePresetV3.WOODBLOCKPRINT => "WOODBLOCK_PRINT",
+                StylePresetV3.x80sIllustration => "80S_ILLUSTRATION",
+                StylePresetV3.x90sNostalgia => "90S_NOSTALGIA",
+                StylePresetV3.AbstractOrganic => "ABSTRACT_ORGANIC",
+                StylePresetV3.AnalogNostalgia => "ANALOG_NOSTALGIA",
+                StylePresetV3.ArtBrut => "ART_BRUT",
+                StylePresetV3.ArtDeco => "ART_DECO",
+                StylePresetV3.ArtPoster => "ART_POSTER",
+                StylePresetV3.Aura => "AURA",
+                StylePresetV3.AvantGarde => "AVANT_GARDE",
+                StylePresetV3.Bauhaus => "BAUHAUS",
+                StylePresetV3.Blueprint => "BLUEPRINT",
+                StylePresetV3.BlurryMotion => "BLURRY_MOTION",
+                StylePresetV3.BrightArt => "BRIGHT_ART",
+                StylePresetV3.C4dCartoon => "C4D_CARTOON",
+                StylePresetV3.ChildrensBook => "CHILDRENS_BOOK",
+                StylePresetV3.Collage => "COLLAGE",
+                StylePresetV3.ColoringBookI => "COLORING_BOOK_I",
+                StylePresetV3.ColoringBookIi => "COLORING_BOOK_II",
+                StylePresetV3.Cubism => "CUBISM",
+                StylePresetV3.DarkAura => "DARK_AURA",
+                StylePresetV3.Doodle => "DOODLE",
+                StylePresetV3.DoubleExposure => "DOUBLE_EXPOSURE",
+                StylePresetV3.DramaticCinema => "DRAMATIC_CINEMA",
+                StylePresetV3.Editorial => "EDITORIAL",
+                StylePresetV3.EmotionalMinimal => "EMOTIONAL_MINIMAL",
+                StylePresetV3.EtherealParty => "ETHEREAL_PARTY",
+                StylePresetV3.ExpiredFilm => "EXPIRED_FILM",
+                StylePresetV3.FlatArt => "FLAT_ART",
+                StylePresetV3.FlatVector => "FLAT_VECTOR",
+                StylePresetV3.ForestReverie => "FOREST_REVERIE",
+                StylePresetV3.GeoMinimalist => "GEO_MINIMALIST",
+                StylePresetV3.GlassPrism => "GLASS_PRISM",
+                StylePresetV3.GoldenHour => "GOLDEN_HOUR",
+                StylePresetV3.GraffitiI => "GRAFFITI_I",
+                StylePresetV3.GraffitiIi => "GRAFFITI_II",
+                StylePresetV3.HalftonePrint => "HALFTONE_PRINT",
+                StylePresetV3.HighContrast => "HIGH_CONTRAST",
+                StylePresetV3.HippieEra => "HIPPIE_ERA",
+                StylePresetV3.Iconic => "ICONIC",
+                StylePresetV3.JapandiFusion => "JAPANDI_FUSION",
+                StylePresetV3.Jazzy => "JAZZY",
+                StylePresetV3.LongExposure => "LONG_EXPOSURE",
+                StylePresetV3.MagazineEditorial => "MAGAZINE_EDITORIAL",
+                StylePresetV3.MinimalIllustration => "MINIMAL_ILLUSTRATION",
+                StylePresetV3.MixedMedia => "MIXED_MEDIA",
+                StylePresetV3.Monochrome => "MONOCHROME",
+                StylePresetV3.Nightlife => "NIGHTLIFE",
+                StylePresetV3.OilPainting => "OIL_PAINTING",
+                StylePresetV3.OldCartoons => "OLD_CARTOONS",
+                StylePresetV3.PaintGesture => "PAINT_GESTURE",
+                StylePresetV3.PopArt => "POP_ART",
+                StylePresetV3.RetroEtching => "RETRO_ETCHING",
+                StylePresetV3.RivieraPop => "RIVIERA_POP",
+                StylePresetV3.Spotlight80s => "SPOTLIGHT_80S",
+                StylePresetV3.StylizedRed => "STYLIZED_RED",
+                StylePresetV3.SurrealCollage => "SURREAL_COLLAGE",
+                StylePresetV3.TravelPoster => "TRAVEL_POSTER",
+                StylePresetV3.VintageGeo => "VINTAGE_GEO",
+                StylePresetV3.VintagePoster => "VINTAGE_POSTER",
+                StylePresetV3.Watercolor => "WATERCOLOR",
+                StylePresetV3.Weird => "WEIRD",
+                StylePresetV3.WoodblockPrint => "WOODBLOCK_PRINT",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -343,68 +343,68 @@ namespace Ideogram
         {
             return value switch
             {
-                "80S_ILLUSTRATION" => StylePresetV3.x80SILLUSTRATION,
-                "90S_NOSTALGIA" => StylePresetV3.x90SNOSTALGIA,
-                "ABSTRACT_ORGANIC" => StylePresetV3.ABSTRACTORGANIC,
-                "ANALOG_NOSTALGIA" => StylePresetV3.ANALOGNOSTALGIA,
-                "ART_BRUT" => StylePresetV3.ARTBRUT,
-                "ART_DECO" => StylePresetV3.ARTDECO,
-                "ART_POSTER" => StylePresetV3.ARTPOSTER,
-                "AURA" => StylePresetV3.AURA,
-                "AVANT_GARDE" => StylePresetV3.AVANTGARDE,
-                "BAUHAUS" => StylePresetV3.BAUHAUS,
-                "BLUEPRINT" => StylePresetV3.BLUEPRINT,
-                "BLURRY_MOTION" => StylePresetV3.BLURRYMOTION,
-                "BRIGHT_ART" => StylePresetV3.BRIGHTART,
-                "C4D_CARTOON" => StylePresetV3.C4DCARTOON,
-                "CHILDRENS_BOOK" => StylePresetV3.CHILDRENSBOOK,
-                "COLLAGE" => StylePresetV3.COLLAGE,
-                "COLORING_BOOK_I" => StylePresetV3.COLORINGBOOKI,
-                "COLORING_BOOK_II" => StylePresetV3.COLORINGBOOKII,
-                "CUBISM" => StylePresetV3.CUBISM,
-                "DARK_AURA" => StylePresetV3.DARKAURA,
-                "DOODLE" => StylePresetV3.DOODLE,
-                "DOUBLE_EXPOSURE" => StylePresetV3.DOUBLEEXPOSURE,
-                "DRAMATIC_CINEMA" => StylePresetV3.DRAMATICCINEMA,
-                "EDITORIAL" => StylePresetV3.EDITORIAL,
-                "EMOTIONAL_MINIMAL" => StylePresetV3.EMOTIONALMINIMAL,
-                "ETHEREAL_PARTY" => StylePresetV3.ETHEREALPARTY,
-                "EXPIRED_FILM" => StylePresetV3.EXPIREDFILM,
-                "FLAT_ART" => StylePresetV3.FLATART,
-                "FLAT_VECTOR" => StylePresetV3.FLATVECTOR,
-                "FOREST_REVERIE" => StylePresetV3.FORESTREVERIE,
-                "GEO_MINIMALIST" => StylePresetV3.GEOMINIMALIST,
-                "GLASS_PRISM" => StylePresetV3.GLASSPRISM,
-                "GOLDEN_HOUR" => StylePresetV3.GOLDENHOUR,
-                "GRAFFITI_I" => StylePresetV3.GRAFFITII,
-                "GRAFFITI_II" => StylePresetV3.GRAFFITIII,
-                "HALFTONE_PRINT" => StylePresetV3.HALFTONEPRINT,
-                "HIGH_CONTRAST" => StylePresetV3.HIGHCONTRAST,
-                "HIPPIE_ERA" => StylePresetV3.HIPPIEERA,
-                "ICONIC" => StylePresetV3.ICONIC,
-                "JAPANDI_FUSION" => StylePresetV3.JAPANDIFUSION,
-                "JAZZY" => StylePresetV3.JAZZY,
-                "LONG_EXPOSURE" => StylePresetV3.LONGEXPOSURE,
-                "MAGAZINE_EDITORIAL" => StylePresetV3.MAGAZINEEDITORIAL,
-                "MINIMAL_ILLUSTRATION" => StylePresetV3.MINIMALILLUSTRATION,
-                "MIXED_MEDIA" => StylePresetV3.MIXEDMEDIA,
-                "MONOCHROME" => StylePresetV3.MONOCHROME,
-                "NIGHTLIFE" => StylePresetV3.NIGHTLIFE,
-                "OIL_PAINTING" => StylePresetV3.OILPAINTING,
-                "OLD_CARTOONS" => StylePresetV3.OLDCARTOONS,
-                "PAINT_GESTURE" => StylePresetV3.PAINTGESTURE,
-                "POP_ART" => StylePresetV3.POPART,
-                "RETRO_ETCHING" => StylePresetV3.RETROETCHING,
-                "RIVIERA_POP" => StylePresetV3.RIVIERAPOP,
-                "SPOTLIGHT_80S" => StylePresetV3.SPOTLIGHT80S,
-                "STYLIZED_RED" => StylePresetV3.STYLIZEDRED,
-                "SURREAL_COLLAGE" => StylePresetV3.SURREALCOLLAGE,
-                "TRAVEL_POSTER" => StylePresetV3.TRAVELPOSTER,
-                "VINTAGE_GEO" => StylePresetV3.VINTAGEGEO,
-                "VINTAGE_POSTER" => StylePresetV3.VINTAGEPOSTER,
-                "WATERCOLOR" => StylePresetV3.WATERCOLOR,
-                "WEIRD" => StylePresetV3.WEIRD,
-                "WOODBLOCK_PRINT" => StylePresetV3.WOODBLOCKPRINT,
+                "80S_ILLUSTRATION" => StylePresetV3.x80sIllustration,
+                "90S_NOSTALGIA" => StylePresetV3.x90sNostalgia,
+                "ABSTRACT_ORGANIC" => StylePresetV3.AbstractOrganic,
+                "ANALOG_NOSTALGIA" => StylePresetV3.AnalogNostalgia,
+                "ART_BRUT" => StylePresetV3.ArtBrut,
+                "ART_DECO" => StylePresetV3.ArtDeco,
+                "ART_POSTER" => StylePresetV3.ArtPoster,
+                "AURA" => StylePresetV3.Aura,
+                "AVANT_GARDE" => StylePresetV3.AvantGarde,
+                "BAUHAUS" => StylePresetV3.Bauhaus,
+                "BLUEPRINT" => StylePresetV3.Blueprint,
+                "BLURRY_MOTION" => StylePresetV3.BlurryMotion,
+                "BRIGHT_ART" => StylePresetV3.BrightArt,
+                "C4D_CARTOON" => StylePresetV3.C4dCartoon,
+                "CHILDRENS_BOOK" => StylePresetV3.ChildrensBook,
+                "COLLAGE" => StylePresetV3.Collage,
+                "COLORING_BOOK_I" => StylePresetV3.ColoringBookI,
+                "COLORING_BOOK_II" => StylePresetV3.ColoringBookIi,
+                "CUBISM" => StylePresetV3.Cubism,
+                "DARK_AURA" => StylePresetV3.DarkAura,
+                "DOODLE" => StylePresetV3.Doodle,
+                "DOUBLE_EXPOSURE" => StylePresetV3.DoubleExposure,
+                "DRAMATIC_CINEMA" => StylePresetV3.DramaticCinema,
+                "EDITORIAL" => StylePresetV3.Editorial,
+                "EMOTIONAL_MINIMAL" => StylePresetV3.EmotionalMinimal,
+                "ETHEREAL_PARTY" => StylePresetV3.EtherealParty,
+                "EXPIRED_FILM" => StylePresetV3.ExpiredFilm,
+                "FLAT_ART" => StylePresetV3.FlatArt,
+                "FLAT_VECTOR" => StylePresetV3.FlatVector,
+                "FOREST_REVERIE" => StylePresetV3.ForestReverie,
+                "GEO_MINIMALIST" => StylePresetV3.GeoMinimalist,
+                "GLASS_PRISM" => StylePresetV3.GlassPrism,
+                "GOLDEN_HOUR" => StylePresetV3.GoldenHour,
+                "GRAFFITI_I" => StylePresetV3.GraffitiI,
+                "GRAFFITI_II" => StylePresetV3.GraffitiIi,
+                "HALFTONE_PRINT" => StylePresetV3.HalftonePrint,
+                "HIGH_CONTRAST" => StylePresetV3.HighContrast,
+                "HIPPIE_ERA" => StylePresetV3.HippieEra,
+                "ICONIC" => StylePresetV3.Iconic,
+                "JAPANDI_FUSION" => StylePresetV3.JapandiFusion,
+                "JAZZY" => StylePresetV3.Jazzy,
+                "LONG_EXPOSURE" => StylePresetV3.LongExposure,
+                "MAGAZINE_EDITORIAL" => StylePresetV3.MagazineEditorial,
+                "MINIMAL_ILLUSTRATION" => StylePresetV3.MinimalIllustration,
+                "MIXED_MEDIA" => StylePresetV3.MixedMedia,
+                "MONOCHROME" => StylePresetV3.Monochrome,
+                "NIGHTLIFE" => StylePresetV3.Nightlife,
+                "OIL_PAINTING" => StylePresetV3.OilPainting,
+                "OLD_CARTOONS" => StylePresetV3.OldCartoons,
+                "PAINT_GESTURE" => StylePresetV3.PaintGesture,
+                "POP_ART" => StylePresetV3.PopArt,
+                "RETRO_ETCHING" => StylePresetV3.RetroEtching,
+                "RIVIERA_POP" => StylePresetV3.RivieraPop,
+                "SPOTLIGHT_80S" => StylePresetV3.Spotlight80s,
+                "STYLIZED_RED" => StylePresetV3.StylizedRed,
+                "SURREAL_COLLAGE" => StylePresetV3.SurrealCollage,
+                "TRAVEL_POSTER" => StylePresetV3.TravelPoster,
+                "VINTAGE_GEO" => StylePresetV3.VintageGeo,
+                "VINTAGE_POSTER" => StylePresetV3.VintagePoster,
+                "WATERCOLOR" => StylePresetV3.Watercolor,
+                "WEIRD" => StylePresetV3.Weird,
+                "WOODBLOCK_PRINT" => StylePresetV3.WoodblockPrint,
                 _ => null,
             };
         }

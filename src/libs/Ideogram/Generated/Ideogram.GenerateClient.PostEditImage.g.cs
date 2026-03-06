@@ -32,6 +32,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostEditImageAsync(
+
             global::Ideogram.EditImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -71,43 +72,57 @@ namespace Ideogram
                 }
             }
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+            var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
-                name: "image_file",
-                fileName: request.ImageFilename ?? string.Empty);
+                content: __contentImageFile,
+                name: "\"image_file\"",
+                fileName: request.ImageFilename != null ? $"\"{request.ImageFilename}\"" : string.Empty);
+            if (__contentImageFile.Headers.ContentDisposition != null)
+            {
+                __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
+            }
+            var __contentMask = new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>());
             __httpRequestContent.Add(
-                content: new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>()),
-                name: "mask",
-                fileName: request.Maskname ?? string.Empty);
+                content: __contentMask,
+                name: "\"mask\"",
+                fileName: request.Maskname != null ? $"\"{request.Maskname}\"" : string.Empty);
+            if (__contentMask.Headers.ContentDisposition != null)
+            {
+                __contentMask.Headers.ContentDisposition.FileNameStar = null;
+            }
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
-                name: "prompt");
+                name: "\"prompt\"");
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.Model.ToValueString()}"),
-                name: "model");
+                name: "\"model\"");
             if (request.MagicPromptOption != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.MagicPromptOption?.ToValueString()}"),
-                    name: "magic_prompt_option");
+                    name: "\"magic_prompt_option\"");
             } 
             if (request.NumImages != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
-                    name: "num_images");
+                    name: "\"num_images\"");
             } 
             if (request.Seed != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
-                    name: "seed");
+                    name: "\"seed\"");
             } 
             if (request.StyleType != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
-                    name: "style_type");
+                    name: "\"style_type\"");
             }
             __httpRequest.Content = __httpRequestContent;
 
@@ -391,7 +406,7 @@ namespace Ideogram
             byte[] mask,
             string maskname,
             string prompt,
-            global::Ideogram.ModelEnum model,
+            global::Ideogram.ModelEnum model = global::Ideogram.ModelEnum.V2,
             global::Ideogram.MagicPromptOption? magicPromptOption = default,
             int? numImages = default,
             int? seed = default,

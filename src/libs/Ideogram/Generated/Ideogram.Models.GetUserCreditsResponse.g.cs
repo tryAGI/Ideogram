@@ -4,26 +4,32 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"total_spend":{"amount":1050,"currency_code":"USD"},"average_daily_spend":{"amount":1050,"currency_code":"USD"},"available_credits":{"amount":1050,"currency_code":"USD"}}
     /// </summary>
     public sealed partial class GetUserCreditsResponse
     {
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("available_credits")]
         public global::Ideogram.Price? AvailableCredits { get; set; }
 
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_spend")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price TotalSpend { get; set; }
 
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("average_daily_spend")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price AverageDailySpend { get; set; }
@@ -38,13 +44,16 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GetUserCreditsResponse" /> class.
         /// </summary>
         /// <param name="availableCredits">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
         /// <param name="totalSpend">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
         /// <param name="averageDailySpend">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

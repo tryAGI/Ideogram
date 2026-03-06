@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
     /// </summary>
     public sealed partial class SamplingRequestParams
     {
