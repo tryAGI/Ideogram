@@ -4,13 +4,16 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Request to update API settings. Fields which are omitted will be ignored.
+    /// Request to update API settings. Fields which are omitted will be ignored.<br/>
+    /// Example: {"recharge_settings":{"minimum_balance_threshold":{"amount":1050,"currency_code":"USD"},"top_up_balance":{"amount":1050,"currency_code":"USD"}},"is_active":true}
     /// </summary>
     public sealed partial class PostApiSubscriptionRequest
     {
         /// <summary>
-        /// The current recharge settings for the API subscription.
+        /// The current recharge settings for the API subscription.<br/>
+        /// Example: {"minimum_balance_threshold":{"amount":1050,"currency_code":"USD"},"top_up_balance":{"amount":1050,"currency_code":"USD"}}
         /// </summary>
+        /// <example>{"minimum_balance_threshold":{"amount":1050,"currency_code":"USD"},"top_up_balance":{"amount":1050,"currency_code":"USD"}}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("recharge_settings")]
         public global::Ideogram.RechargeSettings? RechargeSettings { get; set; }
 
@@ -30,7 +33,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="PostApiSubscriptionRequest" /> class.
         /// </summary>
         /// <param name="rechargeSettings">
-        /// The current recharge settings for the API subscription.
+        /// The current recharge settings for the API subscription.<br/>
+        /// Example: {"minimum_balance_threshold":{"amount":1050,"currency_code":"USD"},"top_up_balance":{"amount":1050,"currency_code":"USD"}}
         /// </param>
         /// <param name="isActive">
         /// Whether to enable or disable auto recharge.

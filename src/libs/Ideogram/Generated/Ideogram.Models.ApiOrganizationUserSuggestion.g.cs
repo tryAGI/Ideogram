@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"display_handle":"john_doe","joined":false,"profile_pic":"https://example.com/avatars/user123.jpg","name":"John Doe"}
     /// </summary>
     public sealed partial class ApiOrganizationUserSuggestion
     {

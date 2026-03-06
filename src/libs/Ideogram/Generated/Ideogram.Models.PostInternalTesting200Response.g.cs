@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"response_content":"response_content"}
     /// </summary>
     public sealed partial class PostInternalTesting200Response
     {

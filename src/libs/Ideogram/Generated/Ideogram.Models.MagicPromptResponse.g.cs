@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The response containing generated magic prompt
+    /// The response containing generated magic prompt<br/>
+    /// Example: {"magic_prompt":"A photorealistic cat with striking green eyes, sitting gracefully on a vintage wooden chair. The cat\u0027s fur has beautiful orange and white markings, and soft natural lighting illuminates the scene from a nearby window."}
     /// </summary>
     public sealed partial class MagicPromptResponse
     {

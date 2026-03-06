@@ -12,11 +12,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        INDIVIDUAL,
+        Individual,
         /// <summary>
         /// 
         /// </summary>
-        ENTERPRISE,
+        Enterprise,
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ namespace Ideogram
         {
             return value switch
             {
-                ApiProfileType.INDIVIDUAL => "INDIVIDUAL",
-                ApiProfileType.ENTERPRISE => "ENTERPRISE",
+                ApiProfileType.Individual => "INDIVIDUAL",
+                ApiProfileType.Enterprise => "ENTERPRISE",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -43,8 +43,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "INDIVIDUAL" => ApiProfileType.INDIVIDUAL,
-                "ENTERPRISE" => ApiProfileType.ENTERPRISE,
+                "INDIVIDUAL" => ApiProfileType.Individual,
+                "ENTERPRISE" => ApiProfileType.Enterprise,
                 _ => null,
             };
         }

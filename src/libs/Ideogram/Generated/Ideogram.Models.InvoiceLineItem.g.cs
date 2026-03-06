@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}}
     /// </summary>
     public sealed partial class InvoiceLineItem
     {
@@ -27,15 +27,19 @@ namespace Ideogram
         public required int Quantity { get; set; }
 
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("unit_price")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price UnitPrice { get; set; }
 
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("total")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price Total { get; set; }
@@ -58,10 +62,12 @@ namespace Ideogram
         /// Example: 1000
         /// </param>
         /// <param name="unitPrice">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
         /// <param name="total">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

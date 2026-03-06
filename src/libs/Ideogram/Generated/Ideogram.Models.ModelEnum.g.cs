@@ -17,7 +17,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        V1TURBO,
+        V1Turbo,
         /// <summary>
         /// 
         /// </summary>
@@ -25,19 +25,23 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        V2TURBO,
+        V2Turbo,
         /// <summary>
         /// 
         /// </summary>
-        V2A,
+        V2a,
         /// <summary>
         /// 
         /// </summary>
-        V2ATURBO,
+        V2aTurbo,
         /// <summary>
         /// 
         /// </summary>
         V3,
+        /// <summary>
+        /// 
+        /// </summary>
+        Auto,
     }
 
     /// <summary>
@@ -53,12 +57,13 @@ namespace Ideogram
             return value switch
             {
                 ModelEnum.V1 => "V_1",
-                ModelEnum.V1TURBO => "V_1_TURBO",
+                ModelEnum.V1Turbo => "V_1_TURBO",
                 ModelEnum.V2 => "V_2",
-                ModelEnum.V2TURBO => "V_2_TURBO",
-                ModelEnum.V2A => "V_2A",
-                ModelEnum.V2ATURBO => "V_2A_TURBO",
+                ModelEnum.V2Turbo => "V_2_TURBO",
+                ModelEnum.V2a => "V_2A",
+                ModelEnum.V2aTurbo => "V_2A_TURBO",
                 ModelEnum.V3 => "V_3",
+                ModelEnum.Auto => "AUTO",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -70,12 +75,13 @@ namespace Ideogram
             return value switch
             {
                 "V_1" => ModelEnum.V1,
-                "V_1_TURBO" => ModelEnum.V1TURBO,
+                "V_1_TURBO" => ModelEnum.V1Turbo,
                 "V_2" => ModelEnum.V2,
-                "V_2_TURBO" => ModelEnum.V2TURBO,
-                "V_2A" => ModelEnum.V2A,
-                "V_2A_TURBO" => ModelEnum.V2ATURBO,
+                "V_2_TURBO" => ModelEnum.V2Turbo,
+                "V_2A" => ModelEnum.V2a,
+                "V_2A_TURBO" => ModelEnum.V2aTurbo,
                 "V_3" => ModelEnum.V3,
+                "AUTO" => ModelEnum.Auto,
                 _ => null,
             };
         }

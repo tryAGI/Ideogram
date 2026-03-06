@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"usage_iframe_url":"usage_iframe_url","usage_iframe_dark_mode_url":"usage_iframe_dark_mode_url","credits_iframe_dark_mode_url":"credits_iframe_dark_mode_url","invoices_iframe_dark_mode_url":"invoices_iframe_dark_mode_url","invoices_iframe_url":"invoices_iframe_url","credits_iframe_url":"credits_iframe_url"}
     /// </summary>
     public sealed partial class MetronomeLinks
     {

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"usage_segments":[{"segment_start":"2023-08-09","tool_usage":[{"user_email_address":"user@company.com","model_version":"V_0_3","full_tool_name":"Turbo Image Generation V3","amount":{"amount":1050,"currency_code":"USD"},"tool_type":"GENERATE","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg"},{"user_email_address":"user@company.com","model_version":"V_0_3","full_tool_name":"Turbo Image Generation V3","amount":{"amount":1050,"currency_code":"USD"},"tool_type":"GENERATE","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg"}],"segment_end":"2023-08-09T23:59:59.0000000\u002B00:00"},{"segment_start":"2023-08-09","tool_usage":[{"user_email_address":"user@company.com","model_version":"V_0_3","full_tool_name":"Turbo Image Generation V3","amount":{"amount":1050,"currency_code":"USD"},"tool_type":"GENERATE","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg"},{"user_email_address":"user@company.com","model_version":"V_0_3","full_tool_name":"Turbo Image Generation V3","amount":{"amount":1050,"currency_code":"USD"},"tool_type":"GENERATE","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg"}],"segment_end":"2023-08-09T23:59:59.0000000\u002B00:00"}]}
     /// </summary>
     public sealed partial class GetUsageInfoResponse
     {

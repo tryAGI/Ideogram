@@ -9,8 +9,10 @@ namespace Ideogram
     public sealed partial class RemixImageRequest
     {
         /// <summary>
-        /// A request to generate a new image using a provided image and a prompt.
+        /// A request to generate a new image using a provided image and a prompt.<br/>
+        /// Example: {"aspect_ratio":"ASPECT_10_16","magic_prompt_option":"ON","model":"V_2","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","image_weight":50}
         /// </summary>
+        /// <example>{"aspect_ratio":"ASPECT_10_16","magic_prompt_option":"ON","model":"V_2","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","image_weight":50}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_request")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.InitialImageRequest ImageRequest { get; set; }
@@ -39,7 +41,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="RemixImageRequest" /> class.
         /// </summary>
         /// <param name="imageRequest">
-        /// A request to generate a new image using a provided image and a prompt.
+        /// A request to generate a new image using a provided image and a prompt.<br/>
+        /// Example: {"aspect_ratio":"ASPECT_10_16","magic_prompt_option":"ON","model":"V_2","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","image_weight":50}
         /// </param>
         /// <param name="imageFile">
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.

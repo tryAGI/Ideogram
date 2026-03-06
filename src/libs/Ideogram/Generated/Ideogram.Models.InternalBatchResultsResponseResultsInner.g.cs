@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"image_url":"image_url","prompt":"a cat"}
     /// </summary>
     public sealed partial class InternalBatchResultsResponseResultsInner
     {

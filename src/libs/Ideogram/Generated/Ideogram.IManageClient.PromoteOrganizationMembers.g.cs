@@ -13,6 +13,7 @@ namespace Ideogram
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.OrganizationMemberOperationResponse> PromoteOrganizationMembersAsync(
             string organizationId,
+
             global::Ideogram.PromoteOrganizationMembersRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
 

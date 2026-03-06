@@ -40,7 +40,7 @@ namespace Ideogram
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/stripe_subscription",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
+            __pathBuilder
                 .AddOptionalParameter("isBusiness", isBusiness?.ToString()) 
                 ; 
             var __path = __pathBuilder.ToString();

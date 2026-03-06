@@ -13,6 +13,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
+
             global::Ideogram.DescribeRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
 

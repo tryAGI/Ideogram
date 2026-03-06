@@ -28,6 +28,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.PostApiSubscriptionResponse> PostApiSubscriptionAsync(
+
             global::Ideogram.PostApiSubscriptionRequest request,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -272,7 +273,8 @@ namespace Ideogram
         /// Update API subscription settings
         /// </summary>
         /// <param name="rechargeSettings">
-        /// The current recharge settings for the API subscription.
+        /// The current recharge settings for the API subscription.<br/>
+        /// Example: {"minimum_balance_threshold":{"amount":1050,"currency_code":"USD"},"top_up_balance":{"amount":1050,"currency_code":"USD"}}
         /// </param>
         /// <param name="isActive">
         /// Whether to enable or disable auto recharge.

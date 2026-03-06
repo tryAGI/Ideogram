@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"user_email_address":"user@company.com","model_version":"V_0_3","full_tool_name":"Turbo Image Generation V3","amount":{"amount":1050,"currency_code":"USD"},"tool_type":"GENERATE","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg"}
     /// </summary>
     public sealed partial class ToolUsage
     {
@@ -18,20 +18,29 @@ namespace Ideogram
         public required string FullToolName { get; set; }
 
         /// <summary>
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </summary>
+        /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("amount")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Price Amount { get; set; }
 
         /// <summary>
-        /// Base64 encoded API key ID<br/>
+        /// Base64 encoded API key ID (for API usage)<br/>
         /// Example: JRPVD7jWR1aTBYiJ0UFVOg
         /// </summary>
         /// <example>JRPVD7jWR1aTBYiJ0UFVOg</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key_id")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string ApiKeyId { get; set; }
+        public string? ApiKeyId { get; set; }
+
+        /// <summary>
+        /// User email address (for web app usage)<br/>
+        /// Example: user@company.com
+        /// </summary>
+        /// <example>user@company.com</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("user_email_address")]
+        public string? UserEmailAddress { get; set; }
 
         /// <summary>
         /// Tool type for filtering usage information<br/>
@@ -51,6 +60,7 @@ namespace Ideogram
         /// - V_2_1: Model 2a<br/>
         /// - V_3_0: Model 3.0 March 26<br/>
         /// - V_3_1: Model 3.0 Latest<br/>
+        /// - AUTO: Automatically select the best model version based on the request.<br/>
         /// Example: V_0_3
         /// </summary>
         /// <example>V_0_3</example>
@@ -72,11 +82,16 @@ namespace Ideogram
         /// Example: Turbo Image Generation V3
         /// </param>
         /// <param name="amount">
-        /// Represents a price.
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
         /// <param name="apiKeyId">
-        /// Base64 encoded API key ID<br/>
+        /// Base64 encoded API key ID (for API usage)<br/>
         /// Example: JRPVD7jWR1aTBYiJ0UFVOg
+        /// </param>
+        /// <param name="userEmailAddress">
+        /// User email address (for web app usage)<br/>
+        /// Example: user@company.com
         /// </param>
         /// <param name="toolType">
         /// Tool type for filtering usage information<br/>
@@ -90,6 +105,7 @@ namespace Ideogram
         /// - V_2_1: Model 2a<br/>
         /// - V_3_0: Model 3.0 March 26<br/>
         /// - V_3_1: Model 3.0 Latest<br/>
+        /// - AUTO: Automatically select the best model version based on the request.<br/>
         /// Example: V_0_3
         /// </param>
 #if NET7_0_OR_GREATER
@@ -98,14 +114,16 @@ namespace Ideogram
         public ToolUsage(
             string fullToolName,
             global::Ideogram.Price amount,
-            string apiKeyId,
             global::Ideogram.ToolType toolType,
+            string? apiKeyId,
+            string? userEmailAddress,
             global::Ideogram.ModelVersion? modelVersion)
         {
             this.FullToolName = fullToolName ?? throw new global::System.ArgumentNullException(nameof(fullToolName));
             this.Amount = amount ?? throw new global::System.ArgumentNullException(nameof(amount));
-            this.ApiKeyId = apiKeyId ?? throw new global::System.ArgumentNullException(nameof(apiKeyId));
             this.ToolType = toolType;
+            this.ApiKeyId = apiKeyId;
+            this.UserEmailAddress = userEmailAddress;
             this.ModelVersion = modelVersion;
         }
 

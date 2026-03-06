@@ -14,6 +14,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
+
             global::Ideogram.InternalTestingRequest request,
             string? xTestHeader = default,
             string? xTestHeader2 = default,

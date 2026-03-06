@@ -12,9 +12,9 @@ namespace Ideogram
         /// A list of ColorPaletteMembers that define the color palette. Each color palette member<br/>
         /// consists of a required color hex and an optional weight between 0.05 and 1.0 (inclusive).<br/>
         /// It is recommended that these weights descend from highest to lowest for the color hexes provided.<br/>
-        /// Example: [, , , , ]
+        /// Example: [{"ColorPaletteMember":{"color_hex":"#b470b3","color_weight":0.49}}, {"ColorPaletteMember":{"color_hex":"#7a79e3","color_weight":0.16}}, {"ColorPaletteMember":{"color_hex":"#a26563","color_weight":0.1}}, {"ColorPaletteMember":{"color_hex":"#5c7d76","color_weight":0.07}}, {"ColorPaletteMember":{"color_hex":"#642a9c","color_weight":0.05}}]
         /// </summary>
-        /// <example>[, , , , ]</example>
+        /// <example>[{"ColorPaletteMember":{"color_hex":"#b470b3","color_weight":0.49}}, {"ColorPaletteMember":{"color_hex":"#7a79e3","color_weight":0.16}}, {"ColorPaletteMember":{"color_hex":"#a26563","color_weight":0.1}}, {"ColorPaletteMember":{"color_hex":"#5c7d76","color_weight":0.07}}, {"ColorPaletteMember":{"color_hex":"#642a9c","color_weight":0.05}}]</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("members")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember> Members { get; set; }
@@ -32,7 +32,7 @@ namespace Ideogram
         /// A list of ColorPaletteMembers that define the color palette. Each color palette member<br/>
         /// consists of a required color hex and an optional weight between 0.05 and 1.0 (inclusive).<br/>
         /// It is recommended that these weights descend from highest to lowest for the color hexes provided.<br/>
-        /// Example: [, , , , ]
+        /// Example: [{"ColorPaletteMember":{"color_hex":"#b470b3","color_weight":0.49}}, {"ColorPaletteMember":{"color_hex":"#7a79e3","color_weight":0.16}}, {"ColorPaletteMember":{"color_hex":"#a26563","color_weight":0.1}}, {"ColorPaletteMember":{"color_hex":"#5c7d76","color_weight":0.07}}, {"ColorPaletteMember":{"color_hex":"#642a9c","color_weight":0.05}}]
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

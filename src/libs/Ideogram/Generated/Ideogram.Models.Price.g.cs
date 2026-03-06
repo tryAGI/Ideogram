@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Represents a price.
+    /// Represents a price.<br/>
+    /// Example: {"amount":1050,"currency_code":"USD"}
     /// </summary>
     public sealed partial class Price
     {

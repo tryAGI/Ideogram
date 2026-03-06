@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"display_handle":"john_doe","email_address":"john.doe@example.com","role":"OWNER","full_name":"full_name","avatar_url":"https://example.com/avatars/user123.jpg","user_id":"dXNlcl8xMjM"}
     /// </summary>
     public sealed partial class OrganizationMember
     {

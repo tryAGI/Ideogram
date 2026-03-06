@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Represents an error when attempting to add credits to an API user's account.
+    /// Represents an error when attempting to add credits to an API user's account.<br/>
+    /// Example: {"messages":["messages","messages"]}
     /// </summary>
     public sealed partial class PostAddCreditsError
     {

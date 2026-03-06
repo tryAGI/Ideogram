@@ -52,9 +52,9 @@ namespace Ideogram
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/organization/user_suggestions",
                 baseUri: HttpClient.BaseAddress); 
-            __pathBuilder 
-                .AddRequiredParameter("organization_id", organizationId) 
-                .AddOptionalParameter("user_handle_prefix", userHandlePrefix) 
+            __pathBuilder
+                .AddRequiredParameter("organization_id", organizationId)
+                .AddOptionalParameter("user_handle_prefix", userHandlePrefix)
                 .AddOptionalParameter("maxItems", maxItems?.ToString()) 
                 ; 
             var __path = __pathBuilder.ToString();

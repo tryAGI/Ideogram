@@ -35,6 +35,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
+
             global::Ideogram.InternalTestingRequest request,
             string? xTestHeader = default,
             string? xTestHeader2 = default,
@@ -90,86 +91,109 @@ namespace Ideogram
             using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
             if (xTestHeader != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{xTestHeader}"),
-                    name: "X-Test-Header");
+                    name: "\"X-Test-Header\"");
             } 
             if (xTestHeader2 != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{xTestHeader2}"),
-                    name: "X-Test-Header-2");
+                    name: "\"X-Test-Header-2\"");
             } 
             if (request.XPosition != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.XPosition}"),
-                    name: "x_position");
+                    name: "\"x_position\"");
             } 
             if (request.ImageFile != default)
             {
+
+                var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
                 __httpRequestContent.Add(
-                    content: new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>()),
-                    name: "image_file",
-                    fileName: request.ImageFilename ?? string.Empty);
+                    content: __contentImageFile,
+                    name: "\"image_file\"",
+                    fileName: request.ImageFilename != null ? $"\"{request.ImageFilename}\"" : string.Empty);
+                if (__contentImageFile.Headers.ContentDisposition != null)
+                {
+                    __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
+                }
             } 
             if (request.AnotherImageFile != default)
             {
+
+                var __contentAnotherImageFile = new global::System.Net.Http.ByteArrayContent(request.AnotherImageFile ?? global::System.Array.Empty<byte>());
                 __httpRequestContent.Add(
-                    content: new global::System.Net.Http.ByteArrayContent(request.AnotherImageFile ?? global::System.Array.Empty<byte>()),
-                    name: "another_image_file",
-                    fileName: request.AnotherImageFilename ?? string.Empty);
+                    content: __contentAnotherImageFile,
+                    name: "\"another_image_file\"",
+                    fileName: request.AnotherImageFilename != null ? $"\"{request.AnotherImageFilename}\"" : string.Empty);
+                if (__contentAnotherImageFile.Headers.ContentDisposition != null)
+                {
+                    __contentAnotherImageFile.Headers.ContentDisposition.FileNameStar = null;
+                }
             } 
             if (request.SomeText != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.SomeText}"),
-                    name: "some_text");
+                    name: "\"some_text\"");
             } 
             if (request.NestedObject != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.NestedObject}"),
-                    name: "nested_object");
+                    name: "\"nested_object\"");
             } 
             if (request.NestedObjectRequiredFields != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.NestedObjectRequiredFields}"),
-                    name: "nested_object_required_fields");
+                    name: "\"nested_object_required_fields\"");
             } 
             if (request.DateTypeField != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.DateTypeField}"),
-                    name: "date_type_field");
-            } 
+                    name: "\"date_type_field\"");
+            }
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{request.RequiredDateTypeField}"),
-                name: "required_date_type_field");
+                name: "\"required_date_type_field\"");
             if (request.DateTimeTypeField != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.DateTimeTypeField}"),
-                    name: "date_time_type_field");
+                    name: "\"date_time_type_field\"");
             } 
             if (request.RepeatedPrimitiveField != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedPrimitiveField, x => x))}]"),
-                    name: "repeated_primitive_field");
+                    name: "\"repeated_primitive_field\"");
             } 
             if (request.RepeatedComplexField != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedComplexField, x => x))}]"),
-                    name: "repeated_complex_field");
+                    name: "\"repeated_complex_field\"");
             } 
             if (request.EnumTypeField != default)
             {
+
                 __httpRequestContent.Add(
                     content: new global::System.Net.Http.StringContent($"{request.EnumTypeField?.ToValueString()}"),
-                    name: "enum_type_field");
+                    name: "\"enum_type_field\"");
             }
             __httpRequest.Content = __httpRequestContent;
 

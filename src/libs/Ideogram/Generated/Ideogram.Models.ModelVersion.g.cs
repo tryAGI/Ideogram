@@ -11,6 +11,7 @@ namespace Ideogram
     /// - V_2_1: Model 2a<br/>
     /// - V_3_0: Model 3.0 March 26<br/>
     /// - V_3_1: Model 3.0 Latest<br/>
+    /// - AUTO: Automatically select the best model version based on the request.<br/>
     /// Example: V_0_3
     /// </summary>
     public enum ModelVersion
@@ -50,15 +51,23 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        EXTERNALGOOGLEVEO30,
+        ExternalGoogleVeo30,
         /// <summary>
         /// 
         /// </summary>
-        EXTERNALBYTEDANCESEEDANCE10PRO,
+        ExternalBytedanceSeedance10Pro,
         /// <summary>
         /// 
         /// </summary>
-        EXTERNALMINIMAXHAILUO02,
+        ExternalMinimaxHailuo02,
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalModel,
+        /// <summary>
+        /// Automatically select the best model version based on the request.
+        /// </summary>
+        Auto,
     }
 
     /// <summary>
@@ -81,9 +90,11 @@ namespace Ideogram
                 ModelVersion.V21 => "V_2_1",
                 ModelVersion.V30 => "V_3_0",
                 ModelVersion.V31 => "V_3_1",
-                ModelVersion.EXTERNALGOOGLEVEO30 => "EXTERNAL_GOOGLE_VEO_3_0",
-                ModelVersion.EXTERNALBYTEDANCESEEDANCE10PRO => "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO",
-                ModelVersion.EXTERNALMINIMAXHAILUO02 => "EXTERNAL_MINIMAX_HAILUO_02",
+                ModelVersion.ExternalGoogleVeo30 => "EXTERNAL_GOOGLE_VEO_3_0",
+                ModelVersion.ExternalBytedanceSeedance10Pro => "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO",
+                ModelVersion.ExternalMinimaxHailuo02 => "EXTERNAL_MINIMAX_HAILUO_02",
+                ModelVersion.ExternalModel => "EXTERNAL_MODEL",
+                ModelVersion.Auto => "AUTO",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -102,9 +113,11 @@ namespace Ideogram
                 "V_2_1" => ModelVersion.V21,
                 "V_3_0" => ModelVersion.V30,
                 "V_3_1" => ModelVersion.V31,
-                "EXTERNAL_GOOGLE_VEO_3_0" => ModelVersion.EXTERNALGOOGLEVEO30,
-                "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO" => ModelVersion.EXTERNALBYTEDANCESEEDANCE10PRO,
-                "EXTERNAL_MINIMAX_HAILUO_02" => ModelVersion.EXTERNALMINIMAXHAILUO02,
+                "EXTERNAL_GOOGLE_VEO_3_0" => ModelVersion.ExternalGoogleVeo30,
+                "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO" => ModelVersion.ExternalBytedanceSeedance10Pro,
+                "EXTERNAL_MINIMAX_HAILUO_02" => ModelVersion.ExternalMinimaxHailuo02,
+                "EXTERNAL_MODEL" => ModelVersion.ExternalModel,
+                "AUTO" => ModelVersion.Auto,
                 _ => null,
             };
         }

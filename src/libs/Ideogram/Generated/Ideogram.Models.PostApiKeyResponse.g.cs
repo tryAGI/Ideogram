@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"api_key":"vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
     /// </summary>
     public sealed partial class PostApiKeyResponse
     {

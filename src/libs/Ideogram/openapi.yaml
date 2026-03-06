@@ -1001,6 +1001,20 @@ paths:
             items:
               type: string
               description: Base64 encoded API key ID
+        - name: user_emails
+          in: query
+          description: Filter usage information by specific user email addresses (for web app usage)
+          style: form
+          schema:
+            type: array
+            items:
+              type: string
+              description: User email address
+        - name: source
+          in: query
+          description: 'Filter usage by source - API for programmatic API usage, APP for web application usage. Defaults to API.'
+          schema:
+            $ref: '#/components/schemas/UsageSource'
       responses:
         '200':
           description: Usage information retrieved successfully
@@ -1297,6 +1311,204 @@ paths:
             - sdk: typescript
               code: "const formData = new FormData();\nformData.append('prompt', 'A photo of a cat');\nformData.append('rendering_speed', 'TURBO');\n// To add style reference images, uncomment the following lines\n// formData.append('style_reference_images', '<style_reference_image_1>');\n// formData.append('style_reference_images', '<style_reference_image_2>');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/generate', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/ideogram-v3/generate-design:
+    post:
+      tags:
+        - generate
+      summary: Generate a design from a text prompt with text detection and correction
+      description: "Generates a design synchronously from a text prompt using the Ideogram 3.0 model, then detects and corrects text layers within the generated image.\n\nThe response includes the generated image URL along with detected text layers (with font, size, color, position) and image asset layers.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_generate_design_v3
+      requestBody:
+        description: A request to generate a design with Ideogram 3.0.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GenerateDesignRequestV3'
+            encoding:
+              color_palette:
+                contentType: application/json
+                style: form
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateDesignRequestV3'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Design(s) generated successfully with text correction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayeredImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt failed the safety check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/ideogram-v3/generate-transparent:
+    post:
+      tags:
+        - generate
+      summary: Generate with Ideogram 3.0 (Transparent Background)
+      description: "Generates images with transparent background synchronously based on a given prompt and optional parameters using\nthe Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio\nto allow best results with upscaler. The selected resolution is written to the response, not the upscaled final\nresolution.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_generate_image_v3_transparent
+      requestBody:
+        description: 'A request to generate an image with transparent background using Ideogram 3.0, with optional upscaling.'
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GenerateTransparentImageRequestV3'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateTransparentImageRequestV3'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Image(s) generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt failed the safety check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-fern-examples:
+        - request:
+            prompt: A logo for Ideogram Coffee.
+            rendering_speed: TURBO
+            aspect_ratio: 1x1
+            upscale_factor: X2
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: A logo for Ideogram Coffee.
+                  resolution: 1024x1024
+                  upscaled_resolution: 2048x2028
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/generate-transparent \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F prompt=\"A logo for Ideogram Coffee.\" \\\n  -F rendering_speed=\"TURBO\"\n"
+            - sdk: python
+              code: "import requests\n\n# Generate with Ideogram 3.0 (POST /v1/ideogram-v3/generate-transparent)\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/generate-transparent\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  json={\n    \"prompt\": \"A logo for Ideogram Coffee.\",\n    \"rendering_speed\": \"TURBO\"\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('prompt', 'A logo for Ideogram Coffee.');\nformData.append('rendering_speed', 'TURBO');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/generate-transparent', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/ideogram-v3/graphic:
+    post:
+      tags:
+        - generate
+      summary: Generate graphics with Ideogram 3.0 and text correction
+      description: "Deprecated: Use /v1/ideogram-v3/generate-design for text-to-design or /v1/ideogram-v3/layerize-design for image-to-design.\n\nGenerates graphics synchronously based on a given prompt and optional parameters using the Ideogram 3.0 model, with text detection and correction capabilities.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_generate_graphic_v3
+      requestBody:
+        description: A request to generate a graphic with Ideogram 3.0.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GenerateGraphicRequestV3'
+            encoding:
+              color_palette:
+                contentType: application/json
+                style: form
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateGraphicRequestV3'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Graphic(s) generated successfully with text correction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayeredImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: Prompt failed the safety check.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      deprecated: true
+      x-fern-examples:
+        - request:
+            prompt: A birthday card saying 'Happy Birthday'
+            rendering_speed: TURBO
+            aspect_ratio: 1x1
+            style_type: AUTO
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: A birthday card saying 'Happy Birthday'
+                  resolution: 1024x1024
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: GENERAL
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/graphic \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F prompt=\"A birthday card saying 'Happy Birthday'\" \\\n  -F rendering_speed=\"TURBO\"\n"
+            - sdk: python
+              code: "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/graphic\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  json={\n    \"prompt\": \"A birthday card saying 'Happy Birthday'\",\n    \"rendering_speed\": \"TURBO\"\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('prompt', 'A birthday card saying Happy Birthday');\nformData.append('rendering_speed', 'TURBO');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/graphic', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/ideogram-v3/layerize-design:
+    post:
+      tags:
+        - generate
+      summary: Layerize an existing flat graphic image with text detection and correction
+      description: "Processes an existing flat graphic image to detect and correct text layers without generating a new image from scratch.\n\nThe uploaded image is analyzed for text content, which is then removed and returned as structured text layers with font matching, sizing, and color information.\n\nSupported image formats include JPEG, PNG, and WebP (max size 10MB).\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_layerize_design_v3
+      requestBody:
+        description: A request to layerize an existing flat graphic image.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LayerizeDesignRequestV3'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Design layerized successfully with text correction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LayeredImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '429':
+          description: Too many requests.
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
   /v1/ideogram-v3/reframe:
     post:
       tags:
@@ -1480,6 +1692,62 @@ paths:
             - sdk: typescript
               code: "const formData = new FormData();\nformData.append('prompt', 'Add a forest in the background');\nformData.append('image', '<file1>');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/replace-background', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
       x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
+  /v1/ideogram-v3/try-on:
+    post:
+      tags:
+        - generate
+      summary: Virtual Try-On with Ideogram 3.0
+      description: "Performs virtual clothing try-on by automatically segmenting the clothing in the provided image\nand replacing it based on the prompt. The user provides an image and a prompt describing the\ndesired clothing change (e.g., \"change his shirt to a pink shirt\").\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      operationId: post_try_on_v3
+      requestBody:
+        description: A request to perform virtual try-on with Ideogram 3.0.
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TryOnRequestV3'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Try-on completed successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageGenerationResponseV3'
+        '400':
+          description: Invalid input provided.
+        '401':
+          description: Not authorized to generate an image.
+        '422':
+          description: 'Prompt or provided image failed safety check, or clothing segmentation failed.'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenerateImageSafetyError'
+        '429':
+          description: Too many requests.
+      x-fern-examples:
+        - request:
+            prompt: Change his shirt to a pink shirt
+            rendering_speed: DEFAULT
+          response:
+            body:
+              created: '2000-01-23T04:56:07.0000000+00:00'
+              data:
+                - prompt: Change his shirt to a pink shirt
+                  resolution: 1024x1024
+                  is_image_safe: true
+                  seed: 12345
+                  url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+                  style_type: AUTO
+          code-samples:
+            - sdk: curl
+              code: "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/try-on \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F prompt=\"Change his shirt to a pink shirt\" \\\n  -F rendering_speed=\"DEFAULT\"\n"
+            - sdk: python
+              code: "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/try-on\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"prompt\": \"Change his shirt to a pink shirt\",\n    \"rendering_speed\": \"DEFAULT\"\n  },\n  files={\n    \"image\": open(\"<file1>\", \"rb\"),\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+            - sdk: typescript
+              code: "const formData = new FormData();\nformData.append('prompt', 'Change his shirt to a pink shirt');\nformData.append('rendering_speed', 'DEFAULT');\nformData.append('image', '<file1>');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/try-on', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
+      x-openapi-router-controller: external_api.generated.openapi.controllers.generate_controller
 components:
   schemas:
     DescribeResponse:
@@ -1599,6 +1867,10 @@ components:
           $ref: '#/components/schemas/StyleTypeV3'
         style_preset:
           $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
         style_reference_images:
           type: array
           items:
@@ -1617,6 +1889,220 @@ components:
             type: string
             format: binary
           description: 'Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.'
+    GenerateGraphicRequestV3:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt to use to generate the graphic.
+          example: A birthday card saying 'Happy Birthday'
+        seed:
+          title: Seed
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Random seed. Set for reproducible generation.
+          example: 12345
+        resolution:
+          $ref: '#/components/schemas/ResolutionV3'
+        aspect_ratio:
+          $ref: '#/components/schemas/AspectRatioV3'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
+        negative_prompt:
+          type: string
+          description: "Description of what to exclude from a graphic. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n"
+          example: 'brush strokes, painting'
+        num_images:
+          maximum: 8
+          minimum: 1
+          type: integer
+          description: Number of graphics to generate.
+          default: 1
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+        style_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StyleCode'
+          description: A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.
+          example:
+            - AAFF5733
+            - 0133FF57
+            - DE3357FF
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
+        flat_graphic_image:
+          type: string
+          description: 'An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 10MB).'
+          format: binary
+        requested_font_file:
+          type: string
+          description: A font name from the available font library to use for text rendering. Cannot be used together with uploaded_font_file.
+          example: Ubuntu-Regular.ttf
+        uploaded_font_file:
+          type: string
+          description: 'A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). Cannot be used together with requested_font_file.'
+          format: binary
+        style_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
+        reference_asset_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.'
+    GenerateDesignRequestV3:
+      required:
+        - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt to use to generate the design.
+          example: A birthday card saying 'Happy Birthday'
+        seed:
+          title: Seed
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Random seed. Set for reproducible generation.
+          example: 12345
+        resolution:
+          $ref: '#/components/schemas/ResolutionV3'
+        aspect_ratio:
+          $ref: '#/components/schemas/AspectRatioV3'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
+        negative_prompt:
+          type: string
+          description: "Description of what to exclude from a design. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n"
+          example: 'brush strokes, painting'
+        num_images:
+          maximum: 8
+          minimum: 1
+          type: integer
+          description: Number of designs to generate.
+          default: 1
+        color_palette:
+          $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
+        style_codes:
+          type: array
+          items:
+            $ref: '#/components/schemas/StyleCode'
+          description: A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.
+          example:
+            - AAFF5733
+            - 0133FF57
+            - DE3357FF
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
+        requested_font_file:
+          type: string
+          description: 'A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.'
+          example: Ubuntu-Regular.ttf
+        uploaded_font_file:
+          type: string
+          description: 'A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.'
+          format: binary
+        style_reference_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.'
+        reference_asset_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.'
+    LayerizeDesignRequestV3:
+      required:
+        - flat_graphic_image
+      type: object
+      properties:
+        flat_graphic_image:
+          type: string
+          description: 'The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 10MB).'
+          format: binary
+        prompt:
+          type: string
+          description: 'An optional prompt to describe the image. If not provided, a prompt will be auto-generated from the image via captioning.'
+        seed:
+          $ref: '#/components/schemas/Seed'
+        requested_font_file:
+          type: string
+          description: 'A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.'
+          example: Ubuntu-Regular.ttf
+        uploaded_font_file:
+          type: string
+          description: 'A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.'
+          format: binary
+        reference_asset_images:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.'
+    GenerateTransparentImageRequestV3:
+      required:
+        - prompt
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: The prompt to use to generate the image.
+          example: A photo of a cat
+        seed:
+          title: Seed
+          maximum: 2147483647
+          minimum: 0
+          type: integer
+          description: Random seed. Set for reproducible generation.
+          example: 12345
+        upscale_factor:
+          $ref: '#/components/schemas/UpscaleFactor'
+        aspect_ratio:
+          $ref: '#/components/schemas/AspectRatioV3'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
+        negative_prompt:
+          type: string
+          description: "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n"
+          example: 'brush strokes, painting'
+        num_images:
+          maximum: 8
+          minimum: 1
+          type: integer
+          description: Number of images to generate.
+          default: 1
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\nA model must be able to generate transparent background to be used for this endpoint.\n"
+          example: model/my-custom-model/version/1
     RemixImageRequestV3:
       required:
         - image
@@ -1665,6 +2151,10 @@ components:
           $ref: '#/components/schemas/StyleTypeV3'
         style_preset:
           $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
         style_reference_images:
           type: array
           items:
@@ -1714,6 +2204,10 @@ components:
           $ref: '#/components/schemas/StyleTypeV3'
         style_preset:
           $ref: '#/components/schemas/StylePresetV3'
+        custom_model_uri:
+          type: string
+          description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
+          example: model/my-custom-model/version/1
         color_palette:
           $ref: '#/components/schemas/ColorPaletteWithPresetNameOrMembers'
         style_codes:
@@ -1736,6 +2230,41 @@ components:
             type: string
             format: binary
           description: 'Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.'
+    TryOnRequestV3:
+      required:
+        - image
+        - product_reference_images
+        - prompt
+      type: object
+      properties:
+        image:
+          type: string
+          description: 'The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
+          format: binary
+        prompt:
+          type: string
+          description: The prompt describing the desired clothing change.
+          example: Change his shirt to a pink shirt
+        magic_prompt:
+          $ref: '#/components/schemas/MagicPromptOption'
+        num_images:
+          $ref: '#/components/schemas/NumImages'
+        seed:
+          $ref: '#/components/schemas/Seed'
+        rendering_speed:
+          $ref: '#/components/schemas/RenderingSpeed'
+        style_type:
+          $ref: '#/components/schemas/StyleTypeV3'
+        style_preset:
+          $ref: '#/components/schemas/StylePresetV3'
+        product_reference_images:
+          maxItems: 1
+          minItems: 1
+          type: array
+          items:
+            type: string
+            format: binary
+          description: 'An image to use as the product reference for the try-on (exactly 1 image required). The image should be in JPEG, PNG or WebP format.'
     ReframeImageRequestV3:
       required:
         - image
@@ -2048,12 +2577,14 @@ components:
         data:
           - style_type: REALISTIC
             seed: 12345
+            upscaled_resolution: 4096x4096
             prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
             resolution: 1024x1024
             url: https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g
             is_image_safe: true
           - style_type: REALISTIC
             seed: 12345
+            upscaled_resolution: 4096x4096
             prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
             resolution: 1024x1024
             url: https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g
@@ -2082,12 +2613,14 @@ components:
         data:
           - style_type: GENERAL
             seed: 12345
+            upscaled_resolution: 4096x4096
             prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
             resolution: 1280x800
             url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
             is_image_safe: true
           - style_type: GENERAL
             seed: 12345
+            upscaled_resolution: 4096x4096
             prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
             resolution: 1280x800
             url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
@@ -2116,6 +2649,12 @@ components:
           example: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
         resolution:
           $ref: '#/components/schemas/ResolutionV3'
+        upscaled_resolution:
+          title: FreeformResolution
+          pattern: '^\d{2,5}x\d{2,5}$'
+          type: string
+          description: 'Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.'
+          example: 4096x4096
         is_image_safe:
           title: is_image_safe
           type: boolean
@@ -2132,6 +2671,7 @@ components:
       example:
         style_type: GENERAL
         seed: 12345
+        upscaled_resolution: 4096x4096
         prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
         resolution: 1280x800
         url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
@@ -2162,6 +2702,12 @@ components:
           type: string
           description: The resolution of the final image.
           example: 1024x1024
+        upscaled_resolution:
+          title: FreeformResolution
+          pattern: '^\d{2,5}x\d{2,5}$'
+          type: string
+          description: 'Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.'
+          example: 4096x4096
         is_image_safe:
           title: is_image_safe
           type: boolean
@@ -2178,10 +2724,170 @@ components:
       example:
         style_type: REALISTIC
         seed: 12345
+        upscaled_resolution: 4096x4096
         prompt: 'A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there''s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.'
         resolution: 1024x1024
         url: https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g
         is_image_safe: true
+    LayeredImageGenerationObjectV3:
+      title: LayeredImageGenerationObjectV3
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/ImageGenerationObjectV3'
+      properties:
+        text_layers:
+          title: text_layers
+          type: array
+          items:
+            $ref: '#/components/schemas/TextLayerV3'
+        image_layers:
+          title: image_layers
+          type: array
+          items:
+            $ref: '#/components/schemas/ImageLayerV3'
+      example:
+        text_layers:
+          - font_candidates:
+              - font_candidates
+              - font_candidates
+            line_height: 2.302136
+            color: '#FF0000'
+            font_size: 5
+            x: 0
+            width: 1
+            y: 6
+            angle: 0
+            text: text
+            font_file: font_file
+            alignment: center
+            height: 5
+          - font_candidates:
+              - font_candidates
+              - font_candidates
+            line_height: 2.302136
+            color: '#FF0000'
+            font_size: 5
+            x: 0
+            width: 1
+            y: 6
+            angle: 0
+            text: text
+            font_file: font_file
+            alignment: center
+            height: 5
+        image_layers:
+          - ref_id: REF_0
+            x: 7
+            width: 3
+            y: 9
+            height: 2
+          - ref_id: REF_0
+            x: 7
+            width: 3
+            y: 9
+            height: 2
+    LayeredImageGenerationResponseV3:
+      title: LayeredImageGenerationResponseV3
+      required:
+        - created
+        - data
+      type: object
+      properties:
+        created:
+          title: created
+          type: string
+          description: The time the request was created.
+          format: date-time
+        data:
+          title: data
+          type: array
+          items:
+            $ref: '#/components/schemas/LayeredImageGenerationObjectV3'
+          description: A list of ImageObjects that contain the generated image(s).
+      description: "The response which contains information about the generated image, including the download link and other text layeres.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it."
+      example:
+        data:
+          - text_layers:
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                line_height: 2.302136
+                color: '#FF0000'
+                font_size: 5
+                x: 0
+                width: 1
+                y: 6
+                angle: 0
+                text: text
+                font_file: font_file
+                alignment: center
+                height: 5
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                line_height: 2.302136
+                color: '#FF0000'
+                font_size: 5
+                x: 0
+                width: 1
+                y: 6
+                angle: 0
+                text: text
+                font_file: font_file
+                alignment: center
+                height: 5
+            image_layers:
+              - ref_id: REF_0
+                x: 7
+                width: 3
+                y: 9
+                height: 2
+              - ref_id: REF_0
+                x: 7
+                width: 3
+                y: 9
+                height: 2
+          - text_layers:
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                line_height: 2.302136
+                color: '#FF0000'
+                font_size: 5
+                x: 0
+                width: 1
+                y: 6
+                angle: 0
+                text: text
+                font_file: font_file
+                alignment: center
+                height: 5
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                line_height: 2.302136
+                color: '#FF0000'
+                font_size: 5
+                x: 0
+                width: 1
+                y: 6
+                angle: 0
+                text: text
+                font_file: font_file
+                alignment: center
+                height: 5
+            image_layers:
+              - ref_id: REF_0
+                x: 7
+                width: 3
+                y: 9
+                height: 2
+              - ref_id: REF_0
+                x: 7
+                width: 3
+                y: 9
+                height: 2
+        created: '2000-01-23T04:56:07.0000000+00:00'
     MagicPromptVersionEnum:
       title: MagicPromptVersionEnum
       enum:
@@ -2207,6 +2913,7 @@ components:
         - V_2A
         - V_2A_TURBO
         - V_3
+        - AUTO
       type: string
       description: 'The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.'
       default: V_2
@@ -2382,6 +3089,130 @@ components:
         num_images: 1
         color_palette:
           name: PASTEL
+    TextLayerV3:
+      title: TextLayerV3
+      required:
+        - font_file
+        - height
+        - text
+        - width
+        - x
+        - y
+      type: object
+      properties:
+        text:
+          title: text
+          type: string
+          description: The text of the layer.
+        x:
+          title: x
+          type: integer
+          description: The x coordinate of the layer.
+        y:
+          title: y
+          type: integer
+          description: The y coordinate of the layer.
+        width:
+          title: width
+          type: integer
+          description: The width of the layer.
+        height:
+          title: height
+          type: integer
+          description: The height of the layer.
+        font_file:
+          title: font_file
+          type: string
+          description: The font file of the layer.
+        font_candidates:
+          title: font_candidates
+          type: array
+          items:
+            type: string
+          description: A list of alternate matching font files for the layer.
+        font_size:
+          title: font_size
+          type: integer
+          description: The font size in points.
+        line_height:
+          title: line_height
+          type: number
+          description: 'The line height multiplier (e.g., 1.2).'
+          format: float
+        color:
+          title: color
+          pattern: '^#[0-9A-Fa-f]{6}$'
+          type: string
+          description: The hex color of the text in the layer (e.g. "#FF0000" for red).
+          example: '#FF0000'
+        alignment:
+          title: alignment
+          enum:
+            - left
+            - center
+            - right
+          type: string
+          description: The text alignment of the layer.
+          example: center
+        angle:
+          title: angle
+          type: number
+          description: 'The angle rotation of the text in the layer, measured clockwise.'
+          format: float
+          example: 0
+      description: A text layer for a layered image generation.
+      example:
+        font_candidates:
+          - font_candidates
+          - font_candidates
+        line_height: 2.302136
+        color: '#FF0000'
+        font_size: 5
+        x: 0
+        width: 1
+        y: 6
+        angle: 0
+        text: text
+        font_file: font_file
+        alignment: center
+        height: 5
+    ImageLayerV3:
+      title: ImageLayerV3
+      required:
+        - height
+        - width
+        - x
+        - y
+      type: object
+      properties:
+        x:
+          title: x
+          type: integer
+          description: The x coordinate of the layer.
+        y:
+          title: y
+          type: integer
+          description: The y coordinate of the layer.
+        width:
+          title: width
+          type: integer
+          description: The width of the layer.
+        height:
+          title: height
+          type: integer
+          description: The height of the layer.
+        ref_id:
+          title: ref_id
+          type: string
+          description: 'Reference ID matching a provided reference image (e.g., "REF_0"), or -1 if no match.'
+          example: REF_0
+      description: 'An image layer (logo, brand asset, icon) for a layered image generation.'
+      example:
+        ref_id: REF_0
+        x: 7
+        width: 3
+        y: 9
+        height: 2
     InternalBatchResultsResponse:
       title: InternalBatchResultsResponse
       required:
@@ -2870,14 +3701,16 @@ components:
         usage_segments:
           - segment_start: '2023-08-09'
             tool_usage:
-              - model_version: V_0_3
+              - user_email_address: user@company.com
+                model_version: V_0_3
                 full_tool_name: Turbo Image Generation V3
                 amount:
                   amount: 1050
                   currency_code: USD
                 tool_type: GENERATE
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-              - model_version: V_0_3
+              - user_email_address: user@company.com
+                model_version: V_0_3
                 full_tool_name: Turbo Image Generation V3
                 amount:
                   amount: 1050
@@ -2887,14 +3720,16 @@ components:
             segment_end: '2023-08-09T23:59:59.0000000+00:00'
           - segment_start: '2023-08-09'
             tool_usage:
-              - model_version: V_0_3
+              - user_email_address: user@company.com
+                model_version: V_0_3
                 full_tool_name: Turbo Image Generation V3
                 amount:
                   amount: 1050
                   currency_code: USD
                 tool_type: GENERATE
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-              - model_version: V_0_3
+              - user_email_address: user@company.com
+                model_version: V_0_3
                 full_tool_name: Turbo Image Generation V3
                 amount:
                   amount: 1050
@@ -2931,14 +3766,16 @@ components:
       example:
         segment_start: '2023-08-09T00:00:00.0000000+00:00'
         tool_usage:
-          - model_version: V_0_3
+          - user_email_address: user@company.com
+            model_version: V_0_3
             full_tool_name: Turbo Image Generation V3
             amount:
               amount: 1050
               currency_code: USD
             tool_type: GENERATE
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-          - model_version: V_0_3
+          - user_email_address: user@company.com
+            model_version: V_0_3
             full_tool_name: Turbo Image Generation V3
             amount:
               amount: 1050
@@ -2950,7 +3787,6 @@ components:
       title: ToolUsage
       required:
         - amount
-        - api_key_id
         - full_tool_name
         - tool_type
       type: object
@@ -2965,13 +3801,19 @@ components:
         api_key_id:
           title: api_key_id
           type: string
-          description: Base64 encoded API key ID
+          description: Base64 encoded API key ID (for API usage)
           example: JRPVD7jWR1aTBYiJ0UFVOg
+        user_email_address:
+          title: user_email_address
+          type: string
+          description: User email address (for web app usage)
+          example: user@company.com
         tool_type:
           $ref: '#/components/schemas/ToolType'
         model_version:
           $ref: '#/components/schemas/ModelVersion'
       example:
+        user_email_address: user@company.com
         model_version: V_0_3
         full_tool_name: Turbo Image Generation V3
         amount:
@@ -2987,6 +3829,7 @@ components:
         - EDIT
         - UPSCALE
         - DESCRIBE
+        - OTHER
       type: string
       description: Tool type for filtering usage information
       example: GENERATE
@@ -2998,6 +3841,14 @@ components:
       type: string
       description: Time segment granularity for usage breakdown
       example: DAY
+    UsageSource:
+      title: UsageSource
+      enum:
+        - API
+        - APP
+      type: string
+      description: 'Filter usage by source - API for programmatic API usage, APP for web application usage'
+      default: API
     ModelVersion:
       title: ModelVersion
       enum:
@@ -3012,8 +3863,10 @@ components:
         - EXTERNAL_GOOGLE_VEO_3_0
         - EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO
         - EXTERNAL_MINIMAX_HAILUO_02
+        - EXTERNAL_MODEL
+        - AUTO
       type: string
-      description: "The model_version to use.\n- V_0_3: Model 1.0\n- V_1_1: Model 1.1\n- V_1_5: Model 2.0\n- V_2_1: Model 2a\n- V_3_0: Model 3.0 March 26\n- V_3_1: Model 3.0 Latest\n"
+      description: "The model_version to use.\n- V_0_3: Model 1.0\n- V_1_1: Model 1.1\n- V_1_5: Model 2.0\n- V_2_1: Model 2a\n- V_3_0: Model 3.0 March 26\n- V_3_1: Model 3.0 Latest\n- AUTO: Automatically select the best model version based on the request.\n"
       example: V_0_3
     GetApiProfilesResponse:
       title: GetApiProfilesResponse
@@ -4005,6 +4858,16 @@ components:
       type: string
       description: A predefined style preset that applies a specific artistic style to the generated image.
       example: BRIGHT_ART
+    UpscaleFactor:
+      title: UpscaleFactor
+      enum:
+        - X1
+        - X2
+        - X4
+      type: string
+      description: Upscale the initially generated image by the given factor. Upscale factors other than X1 will incur additional cost.
+      default: X1
+      example: X2
     Resolution:
       title: Resolution
       enum:
@@ -4108,6 +4971,12 @@ components:
       externalDocs:
         url: https://docs.ideogram.ai/usage/advanced-prompting/aspect-ratios
       example: ASPECT_10_16
+    FreeformResolution:
+      title: FreeformResolution
+      pattern: '^\d{2,5}x\d{2,5}$'
+      type: string
+      description: 'Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.'
+      example: 4096x4096
     Price:
       title: Price
       required:

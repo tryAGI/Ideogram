@@ -11,11 +11,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        ACTIVE,
+        Active,
         /// <summary>
         /// 
         /// </summary>
-        DISABLED,
+        Disabled,
     }
 
     /// <summary>
@@ -30,8 +30,8 @@ namespace Ideogram
         {
             return value switch
             {
-                ApiKeyStatus.ACTIVE => "ACTIVE",
-                ApiKeyStatus.DISABLED => "DISABLED",
+                ApiKeyStatus.Active => "ACTIVE",
+                ApiKeyStatus.Disabled => "DISABLED",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "ACTIVE" => ApiKeyStatus.ACTIVE,
-                "DISABLED" => ApiKeyStatus.DISABLED,
+                "ACTIVE" => ApiKeyStatus.Active,
+                "DISABLED" => ApiKeyStatus.Disabled,
                 _ => null,
             };
         }

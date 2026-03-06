@@ -15,6 +15,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageResponse> PostEditImageAsync(
+
             global::Ideogram.EditImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
 
@@ -70,7 +71,7 @@ namespace Ideogram
             byte[] mask,
             string maskname,
             string prompt,
-            global::Ideogram.ModelEnum model,
+            global::Ideogram.ModelEnum model = global::Ideogram.ModelEnum.V2,
             global::Ideogram.MagicPromptOption? magicPromptOption = default,
             int? numImages = default,
             int? seed = default,

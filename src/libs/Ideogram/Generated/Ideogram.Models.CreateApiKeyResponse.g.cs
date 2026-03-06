@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Example: {"creation_time":"2024-05-25T02:00:30.0000000\u002B00:00","api_key":"vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
     /// </summary>
     public sealed partial class CreateApiKeyResponse
     {
@@ -27,8 +27,10 @@ namespace Ideogram
         public required string ApiKeyId { get; set; }
 
         /// <summary>
-        /// The time at which the API key was created
+        /// The time at which the API key was created<br/>
+        /// Example: 2024-05-25T02:00:30.0000000+00:00
         /// </summary>
+        /// <example>2024-05-25T02:00:30.0000000+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("creation_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime CreationTime { get; set; }
@@ -51,7 +53,8 @@ namespace Ideogram
         /// Example: JRPVD7jWR1aTBYiJ0UFVOg==
         /// </param>
         /// <param name="creationTime">
-        /// The time at which the API key was created
+        /// The time at which the API key was created<br/>
+        /// Example: 2024-05-25T02:00:30.0000000+00:00
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
