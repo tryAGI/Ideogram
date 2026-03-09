@@ -3,7 +3,6 @@ namespace Ideogram.IntegrationTests;
 [TestClass]
 public partial class Tests
 {
-    [TestMethod]
     public IdeogramApi GetAuthenticatedApi()
     {
         var apiKey =
