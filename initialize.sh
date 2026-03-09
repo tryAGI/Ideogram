@@ -2,7 +2,7 @@ dotnet tool install --global autosdk.cli --prerelease
 
 autosdk init \
   Ideogram \
-  IdeogramApi \
+  IdeogramClient \
   https://api.ideogram.ai/openapi.json \
   tryAGI \
   --output .

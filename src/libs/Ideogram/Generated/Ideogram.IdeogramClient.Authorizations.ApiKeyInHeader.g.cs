@@ -3,7 +3,7 @@
 
 namespace Ideogram
 {
-    public sealed partial class IdeogramApi
+    public sealed partial class IdeogramClient
     {
         /// <inheritdoc/>
         public void AuthorizeUsingApiKeyInHeader(

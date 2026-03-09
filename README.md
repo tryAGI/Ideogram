@@ -16,7 +16,7 @@
 ```csharp
 using Ideogram;
 
-using var api = new IdeogramApi(apiKey);
+using var api = new IdeogramClient(apiKey);
 GenerateImageResponse image = await api.Generate.PostGenerateImageAsync(new ImageRequest
 {
     Prompt = "A beautiful sunset",

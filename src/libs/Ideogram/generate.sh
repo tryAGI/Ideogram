@@ -8,7 +8,7 @@ if [ $? -ne 0 ]; then
 fi
 autosdk generate openapi.yaml \
   --namespace Ideogram \
-  --clientClassName IdeogramApi \
+  --clientClassName IdeogramClient \
   --targetFramework net8.0 \
   --output Generated \
   --exclude-deprecated-operations

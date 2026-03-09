@@ -3,10 +3,10 @@
 
 namespace Ideogram
 {
-    public sealed partial class IdeogramApi
+    public sealed partial class IdeogramClient
     {
-        /// <inheritdoc cref="IdeogramApi(global::System.Net.Http.HttpClient?, global::System.Uri?, global::System.Collections.Generic.List{global::Ideogram.EndPointAuthorization}?, bool)"/>
-        public IdeogramApi(
+        /// <inheritdoc cref="IdeogramClient(global::System.Net.Http.HttpClient?, global::System.Uri?, global::System.Collections.Generic.List{global::Ideogram.EndPointAuthorization}?, bool)"/>
+        public IdeogramClient(
             string apiKey,
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,

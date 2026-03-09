@@ -37,7 +37,7 @@ The SDK code is **entirely auto-generated** — do not manually edit files in `s
 
 | Project | Purpose |
 |---------|---------|
-| `src/libs/Ideogram/` | Main SDK library (`IdeogramApi`) |
+| `src/libs/Ideogram/` | Main SDK library (`IdeogramClient`) |
 | `src/tests/IntegrationTests/` | Integration tests against real Ideogram API |
 | `src/helpers/FixOpenApiSpec/` | OpenAPI spec fixer tool |
 | `src/helpers/GenerateDocs/` | Documentation generator from integration tests |

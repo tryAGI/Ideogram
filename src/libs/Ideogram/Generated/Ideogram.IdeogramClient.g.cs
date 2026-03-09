@@ -8,7 +8,7 @@ namespace Ideogram
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public sealed partial class IdeogramApi : global::Ideogram.IIdeogramApi, global::System.IDisposable
+    public sealed partial class IdeogramClient : global::Ideogram.IIdeogramClient, global::System.IDisposable
     {
         /// <summary>
         /// 
@@ -92,7 +92,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Creates a new instance of the IdeogramApi.
+        /// Creates a new instance of the IdeogramClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -100,7 +100,7 @@ namespace Ideogram
         /// <param name="baseUri">The base URL for the API. If not provided, the default baseUri from OpenAPI spec will be used.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public IdeogramApi(
+        public IdeogramClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations = null,

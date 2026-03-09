@@ -5,7 +5,7 @@ public partial class Tests
     [TestMethod]
     public async Task GenerateImage()
     {
-        using var api = GetAuthenticatedApi();
+        using var api = GetAuthenticatedClient();
 
         GenerateImageResponse image = await api.Generate.PostGenerateImageAsync(new ImageRequest
         {

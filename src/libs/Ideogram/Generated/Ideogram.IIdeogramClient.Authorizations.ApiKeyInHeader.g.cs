@@ -3,7 +3,7 @@
 
 namespace Ideogram
 {
-    public partial interface IIdeogramApi
+    public partial interface IIdeogramClient
     {
         /// <summary>
         /// Authorize using ApiKey authentication.
