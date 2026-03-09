@@ -22,7 +22,8 @@ namespace Ideogram
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="members">
-        /// List of organization members to promote to OWNER role
+        /// List of organization members to promote to OWNER role<br/>
+        /// Default Value: []
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

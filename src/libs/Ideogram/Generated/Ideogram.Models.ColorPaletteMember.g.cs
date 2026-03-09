@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>#FFFFFF</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_hex")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ColorHex { get; set; } = default!;
+        public required string ColorHex { get; set; }
 
         /// <summary>
         /// The weight of the color in the color palette.<br/>

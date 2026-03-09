@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"commits":[{"commit_start_time":"2000-01-23T04:56:07.0000000\u002B00:00","is_postpaid_commit":true,"commit_amount_spent":{"amount":1050,"currency_code":"USD"},"commit_amount":{"amount":1050,"currency_code":"USD"},"commit_end_time":"2000-01-23T04:56:07.0000000\u002B00:00"},{"commit_start_time":"2000-01-23T04:56:07.0000000\u002B00:00","is_postpaid_commit":true,"commit_amount_spent":{"amount":1050,"currency_code":"USD"},"commit_amount":{"amount":1050,"currency_code":"USD"},"commit_end_time":"2000-01-23T04:56:07.0000000\u002B00:00"}]}
+    /// Example: {"commits":[{"commit_start_time":"2000-01-23T04:56:07\u002B00:00","is_postpaid_commit":true,"commit_amount_spent":{"amount":1050,"currency_code":"USD"},"commit_amount":{"amount":1050,"currency_code":"USD"},"commit_end_time":"2000-01-23T04:56:07\u002B00:00"},{"commit_start_time":"2000-01-23T04:56:07\u002B00:00","is_postpaid_commit":true,"commit_amount_spent":{"amount":1050,"currency_code":"USD"},"commit_amount":{"amount":1050,"currency_code":"USD"},"commit_end_time":"2000-01-23T04:56:07\u002B00:00"}]}
     /// </summary>
     public sealed partial class SpendCommitInfoResponse
     {
@@ -13,7 +13,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("commits")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.SpendCommitInfo> Commits { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.SpendCommitInfo> Commits { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

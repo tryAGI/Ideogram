@@ -312,7 +312,8 @@ namespace Ideogram
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="members">
-        /// List of organization members to add
+        /// List of organization members to add<br/>
+        /// Default Value: []
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

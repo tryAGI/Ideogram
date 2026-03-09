@@ -9,11 +9,12 @@ namespace Ideogram
     public sealed partial class GetApiOrganizationUserSuggestionsResponse
     {
         /// <summary>
-        /// List of user suggestions for the organization
+        /// List of user suggestions for the organization<br/>
+        /// Default Value: []
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_suggestions")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.ApiOrganizationUserSuggestion> UserSuggestions { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.ApiOrganizationUserSuggestion> UserSuggestions { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -25,7 +26,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GetApiOrganizationUserSuggestionsResponse" /> class.
         /// </summary>
         /// <param name="userSuggestions">
-        /// List of user suggestions for the organization
+        /// List of user suggestions for the organization<br/>
+        /// Default Value: []
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

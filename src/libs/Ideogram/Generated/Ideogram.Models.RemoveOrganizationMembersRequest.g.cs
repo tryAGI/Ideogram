@@ -9,11 +9,12 @@ namespace Ideogram
     public sealed partial class RemoveOrganizationMembersRequest
     {
         /// <summary>
-        /// List of organization members to remove
+        /// List of organization members to remove<br/>
+        /// Default Value: []
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("members")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember> Members { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember> Members { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -25,7 +26,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="RemoveOrganizationMembersRequest" /> class.
         /// </summary>
         /// <param name="members">
-        /// List of organization members to remove
+        /// List of organization members to remove<br/>
+        /// Default Value: []
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

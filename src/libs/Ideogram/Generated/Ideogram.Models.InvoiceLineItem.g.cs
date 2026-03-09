@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>Image Generation - V3</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("charge_name")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ChargeName { get; set; } = default!;
+        public required string ChargeName { get; set; }
 
         /// <summary>
         /// The quantity of the charge<br/>
@@ -24,7 +24,7 @@ namespace Ideogram
         /// <example>1000</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("quantity")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public int Quantity { get; set; } = default!;
+        public required int Quantity { get; set; }
 
         /// <summary>
         /// Represents a price.<br/>
@@ -33,7 +33,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("unit_price")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.Price UnitPrice { get; set; } = default!;
+        public required global::Ideogram.Price UnitPrice { get; set; }
 
         /// <summary>
         /// Represents a price.<br/>
@@ -42,7 +42,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("total")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.Price Total { get; set; } = default!;
+        public required global::Ideogram.Price Total { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
