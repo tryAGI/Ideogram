@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>2023-08-09T00:00:00.0000000+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("segment_start")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime SegmentStart { get; set; }
+        public global::System.DateTime SegmentStart { get; set; } = default!;
 
         /// <summary>
         /// End time of the usage segment<br/>
@@ -24,14 +24,14 @@ namespace Ideogram
         /// <example>2023-08-09T23:59:59.0000000+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("segment_end")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime SegmentEnd { get; set; }
+        public global::System.DateTime SegmentEnd { get; set; } = default!;
 
         /// <summary>
         /// Tool-specific usage breakdown within this segment
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("tool_usage")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Ideogram.ToolUsage> ToolUsage { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ToolUsage> ToolUsage { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

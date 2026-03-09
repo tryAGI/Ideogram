@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>TOS_2024_04_20</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("terms_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string TermsId { get; set; }
+        public string TermsId { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

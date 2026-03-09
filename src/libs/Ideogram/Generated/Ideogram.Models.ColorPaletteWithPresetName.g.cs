@@ -16,7 +16,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorPalettePresetNameJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.ColorPalettePresetName Name { get; set; }
+        public global::Ideogram.ColorPalettePresetName Name { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

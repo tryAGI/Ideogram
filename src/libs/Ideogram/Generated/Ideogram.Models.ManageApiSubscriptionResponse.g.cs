@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("has_accepted_terms")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool HasAcceptedTerms { get; set; }
+        public bool HasAcceptedTerms { get; set; } = default!;
 
         /// <summary>
         /// Whether or not Stripe is setup for API usage.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("has_stripe_setup")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool HasStripeSetup { get; set; }
+        public bool HasStripeSetup { get; set; } = default!;
 
         /// <summary>
         /// The URL to display the customer usage dashboard.
@@ -63,7 +63,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("current_balance")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.Price CurrentBalance { get; set; }
+        public global::Ideogram.Price CurrentBalance { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

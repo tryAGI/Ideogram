@@ -14,7 +14,7 @@ namespace Ideogram
         /// <example>{"terms_url":"terms_url","terms_id":"terms_id"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_terms")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.ApiTerms ApiTerms { get; set; }
+        public global::Ideogram.ApiTerms ApiTerms { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required byte[] Image { get; set; }
+        public byte[] Image { get; set; } = default!;
 
         /// <summary>
         /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Imagename { get; set; }
+        public string Imagename { get; set; } = default!;
 
         /// <summary>
         /// The resolutions supported for Ideogram 3.0.<br/>
@@ -30,7 +30,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV3JsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.ResolutionV3 Resolution { get; set; }
+        public global::Ideogram.ResolutionV3 Resolution { get; set; } = default!;
 
         /// <summary>
         /// The number of images to generate.<br/>

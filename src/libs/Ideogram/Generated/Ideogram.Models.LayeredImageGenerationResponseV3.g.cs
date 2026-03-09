@@ -15,14 +15,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("created")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime Created { get; set; }
+        public global::System.DateTime Created { get; set; } = default!;
 
         /// <summary>
         /// A list of ImageObjects that contain the generated image(s).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("data")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Ideogram.LayeredImageGenerationObjectV3> Data { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.LayeredImageGenerationObjectV3> Data { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

@@ -1,32 +1,57 @@
+using AutoSDK.Extensions;
+using AutoSDK.Models;
 using Microsoft.OpenApi;
-using Microsoft.OpenApi.Any;
-using Microsoft.OpenApi.Extensions;
-using Microsoft.OpenApi.Models;
-using Microsoft.OpenApi.Readers;
 
 var path = args[0];
-var text = await File.ReadAllTextAsync(path);
+var yamlOrJson = await File.ReadAllTextAsync(path);
 
-text = text
-        .Replace("openapi: 3.1.0", "openapi: 3.0.1")
+yamlOrJson = yamlOrJson
+        .Replace("  v1beta", "  ")
+        .Replace("#/definitions/v1beta", "#/definitions/")
+        .Replace("MgmtPublicService_", string.Empty)
+        .Replace("mgmtv1beta", string.Empty)
+        .Replace("  v1alpha", "  ")
+        .Replace("#/definitions/v1alpha", "#/definitions/")
+        .Replace("  ArtifactPublicService", "  ")
+        .Replace("#/definitions/ArtifactPublicService", "#/definitions/")
+        .Replace("ArtifactPublicService_", string.Empty)
+        .Replace("artifactv1alpha", string.Empty)
+
+        // Fixing the Task schema because it conflicts with the Task class in C#
+        .Replace("#/definitions/Task", "#/definitions/AITask")
+        .Replace("  Task:", "  AITask:")
+
+        // Fixing the Object schema because it conflicts with the Object class in C#
+        .Replace("'#/definitions/Object'", "'#/definitions/AIObject'")
+        .Replace("  Object:", "  AIObject:")
     ;
 
-var openApiDocument = new OpenApiStringReader().Read(text, out var diagnostics);
+var openApiDocument = yamlOrJson.GetOpenApiDocument(Settings.Default);
 
-//openApiDocument.Components.Schemas["GenerateCompletionRequest"]!.Properties["stream"]!.Default = new OpenApiBoolean(true);
+var schemas = openApiDocument.Components?.Schemas;
+var securitySchemes = openApiDocument.Components?.SecuritySchemes;
 
-text = openApiDocument.SerializeAsYaml(OpenApiSpecVersion.OpenApi3_0);
-_ = new OpenApiStringReader().Read(text, out diagnostics);
-
-if (diagnostics.Errors.Count > 0)
+if (securitySchemes?.ContainsKey("Bearer") == true)
 {
-    foreach (var error in diagnostics.Errors)
-    {
-        Console.WriteLine(error.Message);
-    }
-    // Return Exit code 1
-    Environment.Exit(1);
+    ((OpenApiSecurityScheme)securitySchemes["Bearer"]!).Type = SecuritySchemeType.Http;
+    ((OpenApiSecurityScheme)securitySchemes["Bearer"]!).Scheme = "bearer";
 }
 
-await File.WriteAllTextAsync(path, text);
-return;
+if (schemas?.ContainsKey("CreateCatalogResponse") == true)
+    ((OpenApiSchema)schemas["CreateCatalogResponse"]!).Required!.Add("catalog");
+
+if (schemas?.ContainsKey("UploadCatalogFileResponse") == true)
+    ((OpenApiSchema)schemas["UploadCatalogFileResponse"]!).Required!.Add("file");
+
+if (schemas?.ContainsKey("File") == true)
+    ((OpenApiSchema)schemas["File"]!).Required!.Add("fileUid");
+
+if (schemas?.ContainsKey("ProcessCatalogFilesResponse") == true)
+    ((OpenApiSchema)schemas["ProcessCatalogFilesResponse"]!).Required!.Add("files");
+
+if (schemas?.ContainsKey("ListCatalogFilesResponse") == true)
+    ((OpenApiSchema)schemas["ListCatalogFilesResponse"]!).Required!.Add("files");
+
+yamlOrJson = await openApiDocument.SerializeAsYamlAsync(OpenApiSpecVersion.OpenApi3_2);
+
+await File.WriteAllTextAsync(path, yamlOrJson);

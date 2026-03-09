@@ -1,4 +1,4 @@
-openapi: 3.0.4
+openapi: '3.2.0'
 info:
   title: Ideogram - OpenAPI 3.0
   description: This is the API definition for Ideogram AI.
@@ -138,13 +138,11 @@ paths:
         - name: X-Test-Header
           in: header
           description: Test header
-          style: simple
           schema:
             type: string
         - name: X-Test-Header-2
           in: header
           description: Test header
-          style: simple
           schema:
             type: string
       requestBody:
@@ -218,7 +216,6 @@ paths:
           in: path
           description: The ID of the batch job to check results for
           required: true
-          style: simple
           schema:
             type: string
       responses:
@@ -979,7 +976,6 @@ paths:
         - name: model_versions
           in: query
           description: Filter usage information by specific model versions
-          style: form
           schema:
             type: array
             items:
@@ -987,7 +983,6 @@ paths:
         - name: tools
           in: query
           description: Filter usage information by specific tool types
-          style: form
           schema:
             type: array
             items:
@@ -995,7 +990,6 @@ paths:
         - name: api_key_ids
           in: query
           description: Filter usage information by specific API key IDs
-          style: form
           schema:
             type: array
             items:
@@ -1004,7 +998,6 @@ paths:
         - name: user_emails
           in: query
           description: Filter usage information by specific user email addresses (for web app usage)
-          style: form
           schema:
             type: array
             items:
@@ -2335,8 +2328,9 @@ components:
       type: object
       properties:
         x_position:
-          type: integer
-          nullable: true
+          type:
+            - 'null'
+            - integer
         image_file:
           type: string
           description: 'An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.'
@@ -2637,10 +2631,11 @@ components:
       properties:
         url:
           title: url
-          type: string
+          type:
+            - 'null'
+            - string
           description: The direct link to the image generated.
           format: uri
-          nullable: true
           example: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
         prompt:
           title: prompt
@@ -2687,10 +2682,11 @@ components:
       properties:
         url:
           title: url
-          type: string
+          type:
+            - 'null'
+            - string
           description: The direct link to the image generated.
           format: uri
-          nullable: true
           example: https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g
         prompt:
           title: prompt
@@ -3892,11 +3888,11 @@ components:
               - creation_time: '2000-01-23T04:56:07.0000000+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: 
+                status: ''
               - creation_time: '2000-01-23T04:56:07.0000000+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: 
+                status: ''
             max_num_inflight_requests_permitted: 10
           - is_metronome_2_user: true
             role: OWNER
@@ -3908,11 +3904,11 @@ components:
               - creation_time: '2000-01-23T04:56:07.0000000+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: 
+                status: ''
               - creation_time: '2000-01-23T04:56:07.0000000+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: 
+                status: ''
             max_num_inflight_requests_permitted: 10
     ApiProfile:
       title: ApiProfile
@@ -3971,11 +3967,11 @@ components:
           - creation_time: '2000-01-23T04:56:07.0000000+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: 
+            status: ''
           - creation_time: '2000-01-23T04:56:07.0000000+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: 
+            status: ''
         max_num_inflight_requests_permitted: 10
     ApiProfileType:
       title: ApiProfileType
@@ -4023,7 +4019,7 @@ components:
         creation_time: '2000-01-23T04:56:07.0000000+00:00'
         redacted_api_key: ATG56•••••••••••••
         api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-        status: 
+        status: ''
     ApiKeyStatus:
       title: ApiKeyStatus
       enum:
@@ -4147,9 +4143,10 @@ components:
           $ref: '#/components/schemas/ApiProfileRole'
         full_name:
           title: full_name
-          type: string
+          type:
+            - 'null'
+            - string
           description: User's full name if entered through user profile.
-          nullable: true
       example:
         display_handle: john_doe
         email_address: john.doe@example.com
@@ -4202,11 +4199,11 @@ components:
           - creation_time: '2000-01-23T04:56:07.0000000+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: 
+            status: ''
           - creation_time: '2000-01-23T04:56:07.0000000+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: 
+            status: ''
     OrganizationMemberOperationResponse:
       title: OrganizationMemberOperationResponse
       required:

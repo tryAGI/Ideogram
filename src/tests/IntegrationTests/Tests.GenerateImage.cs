@@ -10,9 +10,9 @@ public partial class Tests
         GenerateImageResponse image = await api.Generate.PostGenerateImageAsync(new ImageRequest
         {
             Prompt = "A beautiful sunset",
-            AspectRatio = AspectRatio.ASPECT169,
+            AspectRatio = AspectRatio.Aspect169,
             Seed = Random.Shared.Next(),
-            StyleType = StyleType.REALISTIC,
+            StyleType = StyleType.Realistic,
             Resolution = Resolution.x1024768,
         });
         

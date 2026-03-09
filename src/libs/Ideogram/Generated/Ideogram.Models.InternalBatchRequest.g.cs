@@ -16,7 +16,7 @@ namespace Ideogram
         /// <example>[a cat, a dog]</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_prompts")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<string> UserPrompts { get; set; }
+        public global::System.Collections.Generic.IList<string> UserPrompts { get; set; } = default!;
 
         /// <summary>
         /// The experiment variant used for template selection for the magic prompts.<br/>
