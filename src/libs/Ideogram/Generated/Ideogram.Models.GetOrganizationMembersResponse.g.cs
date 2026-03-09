@@ -9,11 +9,12 @@ namespace Ideogram
     public sealed partial class GetOrganizationMembersResponse
     {
         /// <summary>
-        /// List of organization members
+        /// List of organization members<br/>
+        /// Default Value: []
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("members")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.OrganizationMember> Members { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.OrganizationMember> Members { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -25,7 +26,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GetOrganizationMembersResponse" /> class.
         /// </summary>
         /// <param name="members">
-        /// List of organization members
+        /// List of organization members<br/>
+        /// Default Value: []
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

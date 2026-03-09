@@ -4,12 +4,13 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"current_api_keys":[{"creation_time":"2000-01-23T04:56:07.0000000\u002B00:00","redacted_api_key":"vkpDja","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="},{"creation_time":"2000-01-23T04:56:07.0000000\u002B00:00","redacted_api_key":"vkpDja","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}]}
+    /// Example: {"current_api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"vkpDja","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="},{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"vkpDja","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}]}
     /// </summary>
     public sealed partial class GetApiKeysResponse
     {
         /// <summary>
-        /// The current API keys that are active. Only returns redacted keys.
+        /// The current API keys that are active. Only returns redacted keys.<br/>
+        /// Default Value: []
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("current_api_keys")]
         public global::System.Collections.Generic.IList<global::Ideogram.RedactedApiKey>? CurrentApiKeys { get; set; }
@@ -24,7 +25,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GetApiKeysResponse" /> class.
         /// </summary>
         /// <param name="currentApiKeys">
-        /// The current API keys that are active. Only returns redacted keys.
+        /// The current API keys that are active. Only returns redacted keys.<br/>
+        /// Default Value: []
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

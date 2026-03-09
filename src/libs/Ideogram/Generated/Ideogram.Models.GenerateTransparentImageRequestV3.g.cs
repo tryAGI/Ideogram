@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>A photo of a cat</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Prompt { get; set; } = default!;
+        public required string Prompt { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>

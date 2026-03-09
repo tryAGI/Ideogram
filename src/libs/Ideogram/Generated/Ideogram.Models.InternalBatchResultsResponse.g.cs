@@ -16,7 +16,7 @@ namespace Ideogram
         /// <example>COMPLETE</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("job_status")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string JobStatus { get; set; } = default!;
+        public required string JobStatus { get; set; }
 
         /// <summary>
         /// The batch generation results, with each entry containing a prompt and its corresponding image URL.

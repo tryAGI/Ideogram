@@ -14,7 +14,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("job_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string JobId { get; set; } = default!;
+        public required string JobId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

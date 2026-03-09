@@ -47,10 +47,18 @@ namespace Ideogram
         /// </param>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
-        /// <param name="modelVersions"></param>
-        /// <param name="tools"></param>
-        /// <param name="apiKeyIds"></param>
-        /// <param name="userEmails"></param>
+        /// <param name="modelVersions">
+        /// Default Value: []
+        /// </param>
+        /// <param name="tools">
+        /// Default Value: []
+        /// </param>
+        /// <param name="apiKeyIds">
+        /// Default Value: []
+        /// </param>
+        /// <param name="userEmails">
+        /// Default Value: []
+        /// </param>
         /// <param name="source">
         /// Filter usage by source - API for programmatic API usage, APP for web application usage<br/>
         /// Default Value: API

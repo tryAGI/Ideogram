@@ -172,6 +172,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/postInternalTesting_200_response'
+      security: [ ]
       x-openapi-router-controller: external_api.generated.openapi.controllers.internal_testing_controller
   /internal/batch:
     post:
@@ -551,14 +552,14 @@ paths:
                 $ref: '#/components/schemas/ListOrganizationInvoicesResponse'
               example:
                 invoices:
-                  - start_time: '2024-01-01'
-                    end_time: '2024-01-31T23:59:59.0000000+00:00'
+                  - start_time: '2024-01-01T00:00:00+00:00'
+                    end_time: '2024-01-31T23:59:59+00:00'
                     total_spend:
                       currency_code: USD
                       amount: 15000
                     status: PAID
-                    issued_time: '2024-02-01'
-                    invoice_paid_date: '2024-02-05T10:30:00.0000000+00:00'
+                    issued_time: '2024-02-01T00:00:00+00:00'
+                    invoice_paid_date: '2024-02-05T10:30:00+00:00'
                     line_items:
                       - charge_name: Image Generation - V3
                         quantity: 1000
@@ -808,8 +809,8 @@ paths:
                     commit_amount:
                       currency_code: USD
                       amount: 10000
-                    commit_start_time: '2025-01-01'
-                    commit_end_time: '2025-12-31T23:59:59.0000000+00:00'
+                    commit_start_time: '2025-01-01T00:00:00+00:00'
+                    commit_end_time: '2025-12-31T23:59:59+00:00'
         '401':
           description: Not authorized
         '403':
@@ -980,6 +981,7 @@ paths:
             type: array
             items:
               $ref: '#/components/schemas/ModelVersion'
+            default: [ ]
         - name: tools
           in: query
           description: Filter usage information by specific tool types
@@ -987,6 +989,7 @@ paths:
             type: array
             items:
               $ref: '#/components/schemas/ToolType'
+            default: [ ]
         - name: api_key_ids
           in: query
           description: Filter usage information by specific API key IDs
@@ -995,6 +998,7 @@ paths:
             items:
               type: string
               description: Base64 encoded API key ID
+            default: [ ]
         - name: user_emails
           in: query
           description: Filter usage information by specific user email addresses (for web app usage)
@@ -1003,6 +1007,7 @@ paths:
             items:
               type: string
               description: User email address
+            default: [ ]
         - name: source
           in: query
           description: 'Filter usage by source - API for programmatic API usage, APP for web application usage. Defaults to API.'
@@ -1017,8 +1022,8 @@ paths:
                 $ref: '#/components/schemas/GetUsageInfoResponse'
               example:
                 usage_segments:
-                  - segment_start: '2023-08-09'
-                    segment_end: '2023-08-09T23:59:59.0000000+00:00'
+                  - segment_start: '2023-08-09T00:00:00+00:00'
+                    segment_end: '2023-08-09T23:59:59+00:00'
                     tool_usage:
                       - full_tool_name: Turbo Image Generation V3
                         amount:
@@ -1032,8 +1037,8 @@ paths:
                         amount:
                           currency_code: USD
                           amount: 500
-                  - segment_start: '2023-08-10'
-                    segment_end: '2023-08-10T23:59:59.0000000+00:00'
+                  - segment_start: '2023-08-10T00:00:00+00:00'
+                    segment_end: '2023-08-10T23:59:59+00:00'
                     tool_usage:
                       - full_tool_name: generate
                         amount:
@@ -1163,7 +1168,7 @@ paths:
               detail: 90
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: A photo of a cat
                   resolution: 1280x800
@@ -1223,7 +1228,7 @@ paths:
             style_type: AUTO
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: A photo of a cat wearing a hat.
                   resolution: 1024x1024
@@ -1288,7 +1293,7 @@ paths:
             style_type: AUTO
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: A photo of a cat sleeping on a couch.
                   resolution: 1024x1024
@@ -1391,7 +1396,7 @@ paths:
             upscale_factor: X2
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: A logo for Ideogram Coffee.
                   resolution: 1024x1024
@@ -1457,7 +1462,7 @@ paths:
             style_type: AUTO
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: A birthday card saying 'Happy Birthday'
                   resolution: 1024x1024
@@ -1545,7 +1550,7 @@ paths:
             resolution: 512x1536
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: A photo of a cat
                   resolution: 1280x800
@@ -1608,7 +1613,7 @@ paths:
             style_type: AUTO
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: A photo of a cat
                   resolution: 1280x800
@@ -1669,7 +1674,7 @@ paths:
             rendering_speed: QUALITY
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: Add a forest in the background
                   resolution: 1280x800
@@ -1725,7 +1730,7 @@ paths:
             rendering_speed: DEFAULT
           response:
             body:
-              created: '2000-01-23T04:56:07.0000000+00:00'
+              created: '2000-01-23T04:56:07+00:00'
               data:
                 - prompt: Change his shirt to a pink shirt
                   resolution: 1024x1024
@@ -2583,7 +2588,7 @@ components:
             resolution: 1024x1024
             url: https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g
             is_image_safe: true
-        created: '2000-01-23T04:56:07.0000000+00:00'
+        created: '2000-01-23T04:56:07+00:00'
     ImageGenerationResponseV3:
       title: ImageGenerationResponseV3
       required:
@@ -2619,7 +2624,7 @@ components:
             resolution: 1280x800
             url: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
             is_image_safe: true
-        created: '2000-01-23T04:56:07.0000000+00:00'
+        created: '2000-01-23T04:56:07+00:00'
     ImageGenerationObjectV3:
       title: ImageGenerationObjectV3
       required:
@@ -2883,7 +2888,7 @@ components:
                 width: 3
                 y: 9
                 height: 2
-        created: '2000-01-23T04:56:07.0000000+00:00'
+        created: '2000-01-23T04:56:07+00:00'
     MagicPromptVersionEnum:
       title: MagicPromptVersionEnum
       enum:
@@ -3433,12 +3438,13 @@ components:
           items:
             $ref: '#/components/schemas/RedactedApiKey'
           description: The current API keys that are active. Only returns redacted keys.
+          default: [ ]
       example:
         current_api_keys:
-          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+          - creation_time: '2000-01-23T04:56:07+00:00'
             redacted_api_key: vkpDja
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
-          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+          - creation_time: '2000-01-23T04:56:07+00:00'
             redacted_api_key: vkpDja
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
     RedactedApiKey:
@@ -3466,7 +3472,7 @@ components:
           example: JRPVD7jWR1aTBYiJ0UFVOg==
       description: A representation of an API key that does not contain the full key.
       example:
-        creation_time: '2000-01-23T04:56:07.0000000+00:00'
+        creation_time: '2000-01-23T04:56:07+00:00'
         redacted_api_key: vkpDja
         api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
     PostApiKeyResponse:
@@ -3625,7 +3631,7 @@ components:
           description: A list of spend commit information
       example:
         commits:
-          - commit_start_time: '2000-01-23T04:56:07.0000000+00:00'
+          - commit_start_time: '2000-01-23T04:56:07+00:00'
             is_postpaid_commit: true
             commit_amount_spent:
               amount: 1050
@@ -3633,8 +3639,8 @@ components:
             commit_amount:
               amount: 1050
               currency_code: USD
-            commit_end_time: '2000-01-23T04:56:07.0000000+00:00'
-          - commit_start_time: '2000-01-23T04:56:07.0000000+00:00'
+            commit_end_time: '2000-01-23T04:56:07+00:00'
+          - commit_start_time: '2000-01-23T04:56:07+00:00'
             is_postpaid_commit: true
             commit_amount_spent:
               amount: 1050
@@ -3642,7 +3648,7 @@ components:
             commit_amount:
               amount: 1050
               currency_code: USD
-            commit_end_time: '2000-01-23T04:56:07.0000000+00:00'
+            commit_end_time: '2000-01-23T04:56:07+00:00'
     SpendCommitInfo:
       title: SpendCommitInfo
       required:
@@ -3672,7 +3678,7 @@ components:
           type: boolean
           description: Whether the commit is postpaid (true) or prepaid (false)
       example:
-        commit_start_time: '2000-01-23T04:56:07.0000000+00:00'
+        commit_start_time: '2000-01-23T04:56:07+00:00'
         is_postpaid_commit: true
         commit_amount_spent:
           amount: 1050
@@ -3680,7 +3686,7 @@ components:
         commit_amount:
           amount: 1050
           currency_code: USD
-        commit_end_time: '2000-01-23T04:56:07.0000000+00:00'
+        commit_end_time: '2000-01-23T04:56:07+00:00'
     GetUsageInfoResponse:
       title: GetUsageInfoResponse
       required:
@@ -3695,7 +3701,7 @@ components:
           description: List of usage segments with tool-specific breakdowns
       example:
         usage_segments:
-          - segment_start: '2023-08-09'
+          - segment_start: '2023-08-09T00:00:00+00:00'
             tool_usage:
               - user_email_address: user@company.com
                 model_version: V_0_3
@@ -3713,8 +3719,8 @@ components:
                   currency_code: USD
                 tool_type: GENERATE
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            segment_end: '2023-08-09T23:59:59.0000000+00:00'
-          - segment_start: '2023-08-09'
+            segment_end: '2023-08-09T23:59:59+00:00'
+          - segment_start: '2023-08-09T00:00:00+00:00'
             tool_usage:
               - user_email_address: user@company.com
                 model_version: V_0_3
@@ -3732,7 +3738,7 @@ components:
                   currency_code: USD
                 tool_type: GENERATE
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            segment_end: '2023-08-09T23:59:59.0000000+00:00'
+            segment_end: '2023-08-09T23:59:59+00:00'
     UsageSegment:
       title: UsageSegment
       required:
@@ -3746,13 +3752,13 @@ components:
           type: string
           description: Start time of the usage segment
           format: date-time
-          example: '2023-08-09T00:00:00.0000000+00:00'
+          example: '2023-08-09T00:00:00+00:00'
         segment_end:
           title: segment_end
           type: string
           description: End time of the usage segment
           format: date-time
-          example: '2023-08-09T23:59:59.0000000+00:00'
+          example: '2023-08-09T23:59:59+00:00'
         tool_usage:
           title: tool_usage
           type: array
@@ -3760,7 +3766,7 @@ components:
             $ref: '#/components/schemas/ToolUsage'
           description: Tool-specific usage breakdown within this segment
       example:
-        segment_start: '2023-08-09T00:00:00.0000000+00:00'
+        segment_start: '2023-08-09T00:00:00+00:00'
         tool_usage:
           - user_email_address: user@company.com
             model_version: V_0_3
@@ -3778,7 +3784,7 @@ components:
               currency_code: USD
             tool_type: GENERATE
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-        segment_end: '2023-08-09T23:59:59.0000000+00:00'
+        segment_end: '2023-08-09T23:59:59+00:00'
     ToolUsage:
       title: ToolUsage
       required:
@@ -3876,6 +3882,7 @@ components:
           items:
             $ref: '#/components/schemas/ApiProfile'
           description: List of user's API profiles
+          default: [ ]
       example:
         profiles:
           - is_metronome_2_user: true
@@ -3885,14 +3892,14 @@ components:
             name: Gamma
             type: INDIVIDUAL
             api_keys:
-              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+              - creation_time: '2000-01-23T04:56:07+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: ''
-              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+                status: null
+              - creation_time: '2000-01-23T04:56:07+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: ''
+                status: null
             max_num_inflight_requests_permitted: 10
           - is_metronome_2_user: true
             role: OWNER
@@ -3901,14 +3908,14 @@ components:
             name: Gamma
             type: INDIVIDUAL
             api_keys:
-              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+              - creation_time: '2000-01-23T04:56:07+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: ''
-              - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+                status: null
+              - creation_time: '2000-01-23T04:56:07+00:00'
                 redacted_api_key: ATG56•••••••••••••
                 api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-                status: ''
+                status: null
             max_num_inflight_requests_permitted: 10
     ApiProfile:
       title: ApiProfile
@@ -3947,6 +3954,7 @@ components:
           items:
             $ref: '#/components/schemas/ApiProfileApiKey'
           description: List of API keys associated with this profile
+          default: [ ]
         is_metronome_2_user:
           title: is_metronome_2_user
           type: boolean
@@ -3964,14 +3972,14 @@ components:
         name: Gamma
         type: INDIVIDUAL
         api_keys:
-          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+          - creation_time: '2000-01-23T04:56:07+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: ''
-          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+            status: null
+          - creation_time: '2000-01-23T04:56:07+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: ''
+            status: null
         max_num_inflight_requests_permitted: 10
     ApiProfileType:
       title: ApiProfileType
@@ -4016,10 +4024,10 @@ components:
         status:
           $ref: '#/components/schemas/ApiKeyStatus'
       example:
-        creation_time: '2000-01-23T04:56:07.0000000+00:00'
+        creation_time: '2000-01-23T04:56:07+00:00'
         redacted_api_key: ATG56•••••••••••••
         api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-        status: ''
+        status: null
     ApiKeyStatus:
       title: ApiKeyStatus
       enum:
@@ -4039,6 +4047,7 @@ components:
           items:
             $ref: '#/components/schemas/ApiOrganizationUserSuggestion'
           description: List of user suggestions for the organization
+          default: [ ]
       example:
         user_suggestions:
           - display_handle: john_doe
@@ -4094,6 +4103,7 @@ components:
           items:
             $ref: '#/components/schemas/OrganizationMember'
           description: List of organization members
+          default: [ ]
       example:
         members:
           - display_handle: john_doe
@@ -4177,9 +4187,9 @@ components:
           type: string
           description: The time at which the API key was created
           format: date-time
-          example: '2024-05-25T02:00:30.0000000+00:00'
+          example: '2024-05-25T02:00:30+00:00'
       example:
-        creation_time: '2024-05-25T02:00:30.0000000+00:00'
+        creation_time: '2024-05-25T02:00:30+00:00'
         api_key: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
         api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
     GetApiKeysV2Response:
@@ -4194,16 +4204,17 @@ components:
           items:
             $ref: '#/components/schemas/ApiProfileApiKey'
           description: List of API keys associated with the organization
+          default: [ ]
       example:
         api_keys:
-          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+          - creation_time: '2000-01-23T04:56:07+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: ''
-          - creation_time: '2000-01-23T04:56:07.0000000+00:00'
+            status: null
+          - creation_time: '2000-01-23T04:56:07+00:00'
             redacted_api_key: ATG56•••••••••••••
             api_key_id: JRPVD7jWR1aTBYiJ0UFVOg
-            status: ''
+            status: null
     OrganizationMemberOperationResponse:
       title: OrganizationMemberOperationResponse
       required:
@@ -4251,6 +4262,7 @@ components:
           items:
             $ref: '#/components/schemas/LiteOrganizationMember'
           description: List of organization members to add
+          default: [ ]
       example:
         members:
           - display_handle: john_doe
@@ -4295,6 +4307,7 @@ components:
           items:
             $ref: '#/components/schemas/LiteOrganizationMember'
           description: List of organization members to remove
+          default: [ ]
       example:
         members:
           - display_handle: john_doe
@@ -4315,6 +4328,7 @@ components:
           items:
             $ref: '#/components/schemas/LiteOrganizationMember'
           description: List of organization members to promote to OWNER role
+          default: [ ]
       example:
         members:
           - display_handle: john_doe
@@ -4335,13 +4349,14 @@ components:
           items:
             $ref: '#/components/schemas/Invoice'
           description: List of invoices
+          default: [ ]
       example:
         invoices:
           - total_spend:
               amount: 1050
               currency_code: USD
-            start_time: '2024-01-01'
-            end_time: '2024-01-31T23:59:59.0000000+00:00'
+            start_time: '2024-01-01T00:00:00+00:00'
+            end_time: '2024-01-31T23:59:59+00:00'
             line_items:
               - charge_name: Image Generation - V3
                 total:
@@ -4359,13 +4374,13 @@ components:
                 unit_price:
                   amount: 1050
                   currency_code: USD
-            issued_time: '2024-01-01'
+            issued_time: '2024-01-01T00:00:00+00:00'
             invoice_status: PAID
           - total_spend:
               amount: 1050
               currency_code: USD
-            start_time: '2024-01-01'
-            end_time: '2024-01-31T23:59:59.0000000+00:00'
+            start_time: '2024-01-01T00:00:00+00:00'
+            end_time: '2024-01-31T23:59:59+00:00'
             line_items:
               - charge_name: Image Generation - V3
                 total:
@@ -4383,7 +4398,7 @@ components:
                 unit_price:
                   amount: 1050
                   currency_code: USD
-            issued_time: '2024-01-01'
+            issued_time: '2024-01-01T00:00:00+00:00'
             invoice_status: PAID
     Invoice:
       title: Invoice
@@ -4401,19 +4416,19 @@ components:
           type: string
           description: The start time of the invoice period
           format: date-time
-          example: '2024-01-01T00:00:00.0000000+00:00'
+          example: '2024-01-01T00:00:00+00:00'
         end_time:
           title: end_time
           type: string
           description: The end time of the invoice period
           format: date-time
-          example: '2024-01-31T23:59:59.0000000+00:00'
+          example: '2024-01-31T23:59:59+00:00'
         issued_time:
           title: issued_time
           type: string
           description: The date when the invoice was issued
           format: date-time
-          example: '2024-01-01T00:00:00.0000000+00:00'
+          example: '2024-01-01T00:00:00+00:00'
         total_spend:
           $ref: '#/components/schemas/Price'
         invoice_status:
@@ -4424,12 +4439,13 @@ components:
           items:
             $ref: '#/components/schemas/InvoiceLineItem'
           description: A list of line items within the invoice
+          default: [ ]
       example:
         total_spend:
           amount: 1050
           currency_code: USD
-        start_time: '2024-01-01T00:00:00.0000000+00:00'
-        end_time: '2024-01-31T23:59:59.0000000+00:00'
+        start_time: '2024-01-01T00:00:00+00:00'
+        end_time: '2024-01-31T23:59:59+00:00'
         line_items:
           - charge_name: Image Generation - V3
             total:
@@ -4447,7 +4463,7 @@ components:
             unit_price:
               amount: 1050
               currency_code: USD
-        issued_time: '2024-01-01T00:00:00.0000000+00:00'
+        issued_time: '2024-01-01T00:00:00+00:00'
         invoice_status: PAID
     InvoiceStatus:
       title: InvoiceStatus

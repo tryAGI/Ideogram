@@ -13,28 +13,28 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public byte[] ImageFile { get; set; } = default!;
+        public required byte[] ImageFile { get; set; }
 
         /// <summary>
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ImageFilename { get; set; } = default!;
+        public required string ImageFilename { get; set; }
 
         /// <summary>
         /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public byte[] Mask { get; set; } = default!;
+        public required byte[] Mask { get; set; }
 
         /// <summary>
         /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Maskname { get; set; } = default!;
+        public required string Maskname { get; set; }
 
         /// <summary>
         /// The prompt used to describe the edited result.<br/>
@@ -43,7 +43,7 @@ namespace Ideogram
         /// <example>A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Prompt { get; set; } = default!;
+        public required string Prompt { get; set; }
 
         /// <summary>
         /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
@@ -55,7 +55,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("model")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ModelEnumJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.ModelEnum Model { get; set; } = default!;
+        public required global::Ideogram.ModelEnum Model { get; set; } = global::Ideogram.ModelEnum.V2;
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>

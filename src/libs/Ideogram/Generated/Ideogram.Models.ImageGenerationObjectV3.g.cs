@@ -23,7 +23,7 @@ namespace Ideogram
         /// <example>A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Prompt { get; set; } = default!;
+        public required string Prompt { get; set; }
 
         /// <summary>
         /// The resolutions supported for Ideogram 3.0.<br/>
@@ -33,7 +33,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV3JsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.ResolutionV3 Resolution { get; set; } = default!;
+        public required global::Ideogram.ResolutionV3 Resolution { get; set; }
 
         /// <summary>
         /// Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.<br/>
@@ -48,7 +48,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("is_image_safe")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public bool IsImageSafe { get; set; } = default!;
+        public required bool IsImageSafe { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -57,7 +57,7 @@ namespace Ideogram
         /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public int Seed { get; set; } = default!;
+        public required int Seed { get; set; }
 
         /// <summary>
         /// The style type to generate with.<br/>

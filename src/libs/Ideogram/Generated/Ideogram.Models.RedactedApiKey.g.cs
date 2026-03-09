@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// A representation of an API key that does not contain the full key.<br/>
-    /// Example: {"creation_time":"2000-01-23T04:56:07.0000000\u002B00:00","redacted_api_key":"vkpDja","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
+    /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"vkpDja","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
     /// </summary>
     public sealed partial class RedactedApiKey
     {
@@ -16,14 +16,14 @@ namespace Ideogram
         /// <example>vkpDja</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("redacted_api_key")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string RedactedApiKey1 { get; set; } = default!;
+        public required string RedactedApiKey1 { get; set; }
 
         /// <summary>
         /// The time at which the key was created
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("creation_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.DateTime CreationTime { get; set; } = default!;
+        public required global::System.DateTime CreationTime { get; set; }
 
         /// <summary>
         /// A URL safe base64 encoded UUID<br/>
@@ -32,7 +32,7 @@ namespace Ideogram
         /// <example>JRPVD7jWR1aTBYiJ0UFVOg==</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ApiKeyId { get; set; } = default!;
+        public required string ApiKeyId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

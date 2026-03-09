@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>john_doe</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("display_handle")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string DisplayHandle { get; set; } = default!;
+        public required string DisplayHandle { get; set; }
 
         /// <summary>
         /// Whether the user has already joined the organization<br/>
@@ -24,7 +24,7 @@ namespace Ideogram
         /// <example>false</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("joined")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public bool Joined { get; set; } = default!;
+        public required bool Joined { get; set; }
 
         /// <summary>
         /// URL to the user's profile picture<br/>

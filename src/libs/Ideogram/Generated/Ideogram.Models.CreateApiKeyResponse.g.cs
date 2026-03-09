@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"creation_time":"2024-05-25T02:00:30.0000000\u002B00:00","api_key":"vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
+    /// Example: {"creation_time":"2024-05-25T02:00:30\u002B00:00","api_key":"vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
     /// </summary>
     public sealed partial class CreateApiKeyResponse
     {
@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ApiKey { get; set; } = default!;
+        public required string ApiKey { get; set; }
 
         /// <summary>
         /// The ID of the API key. A URL safe base64 encoded UUID<br/>
@@ -24,16 +24,16 @@ namespace Ideogram
         /// <example>JRPVD7jWR1aTBYiJ0UFVOg==</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ApiKeyId { get; set; } = default!;
+        public required string ApiKeyId { get; set; }
 
         /// <summary>
         /// The time at which the API key was created<br/>
-        /// Example: 2024-05-25T02:00:30.0000000+00:00
+        /// Example: 2024-05-25T02:00:30+00:00
         /// </summary>
-        /// <example>2024-05-25T02:00:30.0000000+00:00</example>
+        /// <example>2024-05-25T02:00:30+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("creation_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.DateTime CreationTime { get; set; } = default!;
+        public required global::System.DateTime CreationTime { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -54,7 +54,7 @@ namespace Ideogram
         /// </param>
         /// <param name="creationTime">
         /// The time at which the API key was created<br/>
-        /// Example: 2024-05-25T02:00:30.0000000+00:00
+        /// Example: 2024-05-25T02:00:30+00:00
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
