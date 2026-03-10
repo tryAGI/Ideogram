@@ -40,8 +40,9 @@ namespace Ideogram.JsonConverters
             {
             }
 
-            var result = new global::Ideogram.ColorPaletteWithPresetNameOrMembers(
+            var __value = new global::Ideogram.ColorPaletteWithPresetNameOrMembers(
                 colorPaletteWithPresetName,
+
                 colorPaletteWithMembers
                 );
 
@@ -58,7 +59,7 @@ namespace Ideogram.JsonConverters
                 _ = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
 
-            return result;
+            return __value;
         }
 
         /// <inheritdoc />
