@@ -10,10 +10,10 @@ C# SDK for the [Ideogram](https://ideogram.ai/) AI image generation platform, au
 
 ```bash
 # Build the solution
-dotnet build Ideogram.sln
+dotnet build Ideogram.slnx
 
 # Build for release (also produces NuGet package)
-dotnet build Ideogram.sln -c Release
+dotnet build Ideogram.slnx -c Release
 
 # Run integration tests (requires IDEOGRAM_API_KEY env var)
 dotnet test src/tests/IntegrationTests/Ideogram.IntegrationTests.csproj
