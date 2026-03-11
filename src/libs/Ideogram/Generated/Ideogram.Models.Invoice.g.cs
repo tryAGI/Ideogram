@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>2024-01-01T00:00:00+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("start_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.DateTime StartTime { get; set; } = default!;
+        public required global::System.DateTime StartTime { get; set; }
 
         /// <summary>
         /// The end time of the invoice period<br/>
@@ -24,7 +24,7 @@ namespace Ideogram
         /// <example>2024-01-31T23:59:59+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("end_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.DateTime EndTime { get; set; } = default!;
+        public required global::System.DateTime EndTime { get; set; }
 
         /// <summary>
         /// The date when the invoice was issued<br/>
@@ -33,7 +33,7 @@ namespace Ideogram
         /// <example>2024-01-01T00:00:00+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("issued_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.DateTime IssuedTime { get; set; } = default!;
+        public required global::System.DateTime IssuedTime { get; set; }
 
         /// <summary>
         /// Represents a price.<br/>
@@ -42,7 +42,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_spend")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.Price TotalSpend { get; set; } = default!;
+        public required global::Ideogram.Price TotalSpend { get; set; }
 
         /// <summary>
         /// Status of the invoice<br/>
@@ -52,7 +52,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("invoice_status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.InvoiceStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.InvoiceStatus InvoiceStatus { get; set; } = default!;
+        public required global::Ideogram.InvoiceStatus InvoiceStatus { get; set; }
 
         /// <summary>
         /// A list of line items within the invoice<br/>
@@ -60,7 +60,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("line_items")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem> LineItems { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem> LineItems { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

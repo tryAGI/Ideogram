@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public byte[] Image { get; set; } = default!;
+        public required byte[] Image { get; set; }
 
         /// <summary>
         /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Imagename { get; set; } = default!;
+        public required string Imagename { get; set; }
 
         /// <summary>
         /// The prompt to use to generate the image.<br/>
@@ -29,7 +29,7 @@ namespace Ideogram
         /// <example>A photo of a cat</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Prompt { get; set; } = default!;
+        public required string Prompt { get; set; }
 
         /// <summary>
         /// Default Value: 50<br/>

@@ -14,7 +14,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string MagicPrompt { get; set; } = default!;
+        public required string MagicPrompt { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

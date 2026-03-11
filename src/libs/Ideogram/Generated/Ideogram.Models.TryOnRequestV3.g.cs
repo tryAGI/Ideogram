@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public byte[] Image { get; set; } = default!;
+        public required byte[] Image { get; set; }
 
         /// <summary>
         /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Imagename { get; set; } = default!;
+        public required string Imagename { get; set; }
 
         /// <summary>
         /// The prompt describing the desired clothing change.<br/>
@@ -29,7 +29,7 @@ namespace Ideogram
         /// <example>Change his shirt to a pink shirt</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Prompt { get; set; } = default!;
+        public required string Prompt { get; set; }
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
@@ -87,7 +87,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("product_reference_images")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<byte[]> ProductReferenceImages { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<byte[]> ProductReferenceImages { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

@@ -13,21 +13,21 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_request")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.UpscaleInitialImageRequest ImageRequest { get; set; } = default!;
+        public required global::Ideogram.UpscaleInitialImageRequest ImageRequest { get; set; }
 
         /// <summary>
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public byte[] ImageFile { get; set; } = default!;
+        public required byte[] ImageFile { get; set; }
 
         /// <summary>
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ImageFilename { get; set; } = default!;
+        public required string ImageFilename { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

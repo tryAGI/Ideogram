@@ -14,42 +14,42 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("text")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Text { get; set; } = default!;
+        public required string Text { get; set; }
 
         /// <summary>
         /// The x coordinate of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("x")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public int X { get; set; } = default!;
+        public required int X { get; set; }
 
         /// <summary>
         /// The y coordinate of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("y")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public int Y { get; set; } = default!;
+        public required int Y { get; set; }
 
         /// <summary>
         /// The width of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("width")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public int Width { get; set; } = default!;
+        public required int Width { get; set; }
 
         /// <summary>
         /// The height of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("height")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public int Height { get; set; } = default!;
+        public required int Height { get; set; }
 
         /// <summary>
         /// The font file of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("font_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string FontFile { get; set; } = default!;
+        public required string FontFile { get; set; }
 
         /// <summary>
         /// A list of alternate matching font files for the layer.

@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>JRPVD7jWR1aTBYiJ0UFVOg</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ApiKeyId { get; set; } = default!;
+        public required string ApiKeyId { get; set; }
 
         /// <summary>
         /// A redacted text snippet of the API key. Contains the first 4 characters of the API key<br/>
@@ -24,14 +24,14 @@ namespace Ideogram
         /// <example>ATG56•••••••••••••</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("redacted_api_key")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string RedactedApiKey { get; set; } = default!;
+        public required string RedactedApiKey { get; set; }
 
         /// <summary>
         /// The date at which the API key was created
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("creation_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.DateTime CreationTime { get; set; } = default!;
+        public required global::System.DateTime CreationTime { get; set; }
 
         /// <summary>
         /// Status of the API key
@@ -39,7 +39,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ApiKeyStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.ApiKeyStatus Status { get; set; } = default!;
+        public required global::Ideogram.ApiKeyStatus Status { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("terms_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string TermsId { get; set; } = default!;
+        public required string TermsId { get; set; }
 
         /// <summary>
         /// The URL where the terms are hosted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("terms_url")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string TermsUrl { get; set; } = default!;
+        public required string TermsUrl { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

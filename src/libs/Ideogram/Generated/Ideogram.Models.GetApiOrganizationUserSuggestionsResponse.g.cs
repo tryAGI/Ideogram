@@ -14,7 +14,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_suggestions")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.ApiOrganizationUserSuggestion> UserSuggestions { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.ApiOrganizationUserSuggestion> UserSuggestions { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
