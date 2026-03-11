@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("commit_amount_spent")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.Price CommitAmountSpent { get; set; }
+        public global::Ideogram.Price CommitAmountSpent { get; set; } = default!;
 
         /// <summary>
         /// Represents a price.<br/>
@@ -24,28 +24,28 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("commit_amount")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.Price CommitAmount { get; set; }
+        public global::Ideogram.Price CommitAmount { get; set; } = default!;
 
         /// <summary>
         /// The start time of the commit period
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("commit_start_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime CommitStartTime { get; set; }
+        public global::System.DateTime CommitStartTime { get; set; } = default!;
 
         /// <summary>
         /// The end time of the commit period
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("commit_end_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime CommitEndTime { get; set; }
+        public global::System.DateTime CommitEndTime { get; set; } = default!;
 
         /// <summary>
         /// Whether the commit is postpaid (true) or prepaid (false)
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("is_postpaid_commit")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool IsPostpaidCommit { get; set; }
+        public bool IsPostpaidCommit { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

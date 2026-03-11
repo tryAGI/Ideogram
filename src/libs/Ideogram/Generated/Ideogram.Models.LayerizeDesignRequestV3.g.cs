@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flat_graphic_image")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required byte[] FlatGraphicImage { get; set; }
+        public byte[] FlatGraphicImage { get; set; } = default!;
 
         /// <summary>
         /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 10MB).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flat_graphic_imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string FlatGraphicImagename { get; set; }
+        public string FlatGraphicImagename { get; set; } = default!;
 
         /// <summary>
         /// An optional prompt to describe the image. If not provided, a prompt will be auto-generated from the image via captioning.

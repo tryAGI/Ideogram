@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prop_one")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string PropOne { get; set; }
+        public string PropOne { get; set; } = default!;
 
         /// <summary>
         /// 
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prop_two")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string PropTwo { get; set; }
+        public string PropTwo { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

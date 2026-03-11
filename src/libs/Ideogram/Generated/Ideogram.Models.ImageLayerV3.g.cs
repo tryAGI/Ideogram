@@ -14,28 +14,28 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("x")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int X { get; set; }
+        public int X { get; set; } = default!;
 
         /// <summary>
         /// The y coordinate of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("y")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int Y { get; set; }
+        public int Y { get; set; } = default!;
 
         /// <summary>
         /// The width of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("width")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int Width { get; set; }
+        public int Width { get; set; } = default!;
 
         /// <summary>
         /// The height of the layer.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("height")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int Height { get; set; }
+        public int Height { get; set; } = default!;
 
         /// <summary>
         /// Reference ID matching a provided reference image (e.g., "REF_0"), or -1 if no match.<br/>

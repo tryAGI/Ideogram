@@ -16,7 +16,7 @@ namespace Ideogram
         /// <example>a cat</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Prompt { get; set; }
+        public string Prompt { get; set; } = default!;
 
         /// <summary>
         /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
@@ -26,7 +26,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_version")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptVersionEnumJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.MagicPromptVersionEnum MagicPromptVersion { get; set; }
+        public global::Ideogram.MagicPromptVersionEnum MagicPromptVersion { get; set; } = default!;
 
         /// <summary>
         /// Whether to classify the prompt into a use case category.<br/>
@@ -36,7 +36,7 @@ namespace Ideogram
         /// <example>false</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("classify_prompt_category")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool ClassifyPromptCategory { get; set; }
+        public bool ClassifyPromptCategory { get; set; } = default!;
 
         /// <summary>
         /// The style type to generate with.<br/>

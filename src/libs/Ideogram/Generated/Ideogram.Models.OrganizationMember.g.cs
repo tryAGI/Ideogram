@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>dXNlcl8xMjM</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("user_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string UserId { get; set; }
+        public string UserId { get; set; } = default!;
 
         /// <summary>
         /// The display handle/username of the member<br/>
@@ -24,7 +24,7 @@ namespace Ideogram
         /// <example>john_doe</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("display_handle")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string DisplayHandle { get; set; }
+        public string DisplayHandle { get; set; } = default!;
 
         /// <summary>
         /// The email address of the member<br/>
@@ -33,7 +33,7 @@ namespace Ideogram
         /// <example>john.doe@example.com</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("email_address")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string EmailAddress { get; set; }
+        public string EmailAddress { get; set; } = default!;
 
         /// <summary>
         /// URL to the member's avatar image<br/>
@@ -42,7 +42,7 @@ namespace Ideogram
         /// <example>https://example.com/avatars/user123.jpg</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("avatar_url")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string AvatarUrl { get; set; }
+        public string AvatarUrl { get; set; } = default!;
 
         /// <summary>
         /// Role within an enterprise organization profile<br/>
@@ -52,7 +52,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("role")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ApiProfileRoleJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.ApiProfileRole Role { get; set; }
+        public global::Ideogram.ApiProfileRole Role { get; set; } = default!;
 
         /// <summary>
         /// User's full name if entered through user profile.

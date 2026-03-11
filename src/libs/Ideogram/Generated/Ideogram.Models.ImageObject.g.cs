@@ -23,7 +23,7 @@ namespace Ideogram
         /// <example>A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Prompt { get; set; }
+        public string Prompt { get; set; } = default!;
 
         /// <summary>
         /// The resolution of the final image.<br/>
@@ -32,7 +32,7 @@ namespace Ideogram
         /// <example>1024x1024</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Resolution { get; set; }
+        public string Resolution { get; set; } = default!;
 
         /// <summary>
         /// Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.<br/>
@@ -47,7 +47,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("is_image_safe")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required bool IsImageSafe { get; set; }
+        public bool IsImageSafe { get; set; } = default!;
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -56,7 +56,7 @@ namespace Ideogram
         /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required int Seed { get; set; }
+        public int Seed { get; set; } = default!;
 
         /// <summary>
         /// The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.<br/>

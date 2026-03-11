@@ -13,28 +13,28 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required byte[] Image { get; set; }
+        public byte[] Image { get; set; } = default!;
 
         /// <summary>
         /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Imagename { get; set; }
+        public string Imagename { get; set; } = default!;
 
         /// <summary>
         /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required byte[] Mask { get; set; }
+        public byte[] Mask { get; set; } = default!;
 
         /// <summary>
         /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Maskname { get; set; }
+        public string Maskname { get; set; } = default!;
 
         /// <summary>
         /// The prompt used to describe the edited result.<br/>
@@ -43,7 +43,7 @@ namespace Ideogram
         /// <example>A photo of a cat.</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Prompt { get; set; }
+        public string Prompt { get; set; } = default!;
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>

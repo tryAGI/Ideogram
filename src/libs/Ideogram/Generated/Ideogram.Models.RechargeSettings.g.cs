@@ -16,7 +16,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("top_up_balance")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.Price TopUpBalance { get; set; }
+        public global::Ideogram.Price TopUpBalance { get; set; } = default!;
 
         /// <summary>
         /// Represents a price.<br/>
@@ -25,7 +25,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("minimum_balance_threshold")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.Price MinimumBalanceThreshold { get; set; }
+        public global::Ideogram.Price MinimumBalanceThreshold { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

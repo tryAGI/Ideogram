@@ -16,7 +16,7 @@ namespace Ideogram
         /// <example>USD</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("currency_code")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; } = default!;
 
         /// <summary>
         /// The amount of the currency in the common denomination. For example, in USD this is cents.<br/>
@@ -25,7 +25,7 @@ namespace Ideogram
         /// <example>1050</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("amount")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required double Amount { get; set; }
+        public double Amount { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

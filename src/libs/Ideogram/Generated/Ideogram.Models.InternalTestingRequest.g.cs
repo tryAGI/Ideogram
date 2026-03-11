@@ -67,7 +67,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("required_date_type_field")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime RequiredDateTypeField { get; set; }
+        public global::System.DateTime RequiredDateTypeField { get; set; } = default!;
 
         /// <summary>
         /// 

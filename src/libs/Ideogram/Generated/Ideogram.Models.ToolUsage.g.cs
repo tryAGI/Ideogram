@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>Turbo Image Generation V3</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("full_tool_name")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string FullToolName { get; set; }
+        public string FullToolName { get; set; } = default!;
 
         /// <summary>
         /// Represents a price.<br/>
@@ -24,7 +24,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("amount")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.Price Amount { get; set; }
+        public global::Ideogram.Price Amount { get; set; } = default!;
 
         /// <summary>
         /// Base64 encoded API key ID (for API usage)<br/>
@@ -50,7 +50,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("tool_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ToolTypeJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.ToolType ToolType { get; set; }
+        public global::Ideogram.ToolType ToolType { get; set; } = default!;
 
         /// <summary>
         /// The model_version to use.<br/>

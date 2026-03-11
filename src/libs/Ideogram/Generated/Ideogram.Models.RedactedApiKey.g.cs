@@ -16,14 +16,14 @@ namespace Ideogram
         /// <example>vkpDja</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("redacted_api_key")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string RedactedApiKey1 { get; set; }
+        public string RedactedApiKey1 { get; set; } = default!;
 
         /// <summary>
         /// The time at which the key was created
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("creation_time")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime CreationTime { get; set; }
+        public global::System.DateTime CreationTime { get; set; } = default!;
 
         /// <summary>
         /// A URL safe base64 encoded UUID<br/>
@@ -32,7 +32,7 @@ namespace Ideogram
         /// <example>JRPVD7jWR1aTBYiJ0UFVOg==</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string ApiKeyId { get; set; }
+        public string ApiKeyId { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

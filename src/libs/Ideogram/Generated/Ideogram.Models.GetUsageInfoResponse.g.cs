@@ -13,7 +13,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("usage_segments")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Ideogram.UsageSegment> UsageSegments { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.UsageSegment> UsageSegments { get; set; } = default!;
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
