@@ -13,7 +13,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public const string DefaultBaseUrl = "";
+        public const string DefaultBaseUrl = "https://api.ideogram.ai";
 
         private bool _disposeHttpClient = true;
 

@@ -11,4 +11,6 @@ autosdk generate openapi.yaml \
   --clientClassName IdeogramClient \
   --targetFramework net8.0 \
   --output Generated \
-  --exclude-deprecated-operations
+  --exclude-deprecated-operations \
+  --base-url https://api.ideogram.ai \
+  --security-scheme Http:Header:Bearer
