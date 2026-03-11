@@ -23,7 +23,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("total_spend")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.Price TotalSpend { get; set; } = default!;
+        public required global::Ideogram.Price TotalSpend { get; set; }
 
         /// <summary>
         /// Represents a price.<br/>
@@ -32,7 +32,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("average_daily_spend")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.Price AverageDailySpend { get; set; } = default!;
+        public required global::Ideogram.Price AverageDailySpend { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

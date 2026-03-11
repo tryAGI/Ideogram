@@ -15,7 +15,7 @@ namespace Ideogram
         /// <example>{"amount":1050,"currency_code":"USD"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("amount")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.Price Amount { get; set; } = default!;
+        public required global::Ideogram.Price Amount { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

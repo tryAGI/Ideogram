@@ -13,14 +13,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public byte[] ImageFile { get; set; } = default!;
+        public required byte[] ImageFile { get; set; }
 
         /// <summary>
         /// The image being reframed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string ImageFilename { get; set; } = default!;
+        public required string ImageFilename { get; set; }
 
         /// <summary>
         /// (For model_version for 2.0 only, cannot be used in conjunction with aspect_ratio) The resolution to use for image generation, represented in width x height. If not specified, defaults to using aspect_ratio.<br/>
@@ -30,7 +30,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.Resolution Resolution { get; set; } = default!;
+        public required global::Ideogram.Resolution Resolution { get; set; }
 
         /// <summary>
         /// The model used to generate an image or edit one. /generate and /remix supports all model types, however, /edit is only supported for V_2 and V_2_TURBO.<br/>
@@ -42,7 +42,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("model")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ModelEnumJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.ModelEnum Model { get; set; } = default!;
+        public required global::Ideogram.ModelEnum Model { get; set; } = global::Ideogram.ModelEnum.V2;
 
         /// <summary>
         /// The number of images to generate.<br/>

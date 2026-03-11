@@ -13,7 +13,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("success")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public bool Success { get; set; } = default!;
+        public required bool Success { get; set; }
 
         /// <summary>
         /// A message describing the outcome of the operation for this member

@@ -13,7 +13,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("commits")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.SpendCommitInfo> Commits { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.SpendCommitInfo> Commits { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

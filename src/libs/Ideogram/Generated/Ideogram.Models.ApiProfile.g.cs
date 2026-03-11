@@ -16,7 +16,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ApiProfileTypeJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.ApiProfileType Type { get; set; } = default!;
+        public required global::Ideogram.ApiProfileType Type { get; set; }
 
         /// <summary>
         /// The display name of the profile<br/>
@@ -25,7 +25,7 @@ namespace Ideogram
         /// <example>Gamma</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string Name { get; set; } = default!;
+        public required string Name { get; set; }
 
         /// <summary>
         /// URL to the profile avatar<br/>
@@ -42,7 +42,7 @@ namespace Ideogram
         /// <example>b3JnYW5pemF0aW9uXzEyMw</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("organization_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public string OrganizationId { get; set; } = default!;
+        public required string OrganizationId { get; set; }
 
         /// <summary>
         /// Role within an enterprise organization profile<br/>
@@ -52,7 +52,7 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("role")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ApiProfileRoleJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::Ideogram.ApiProfileRole Role { get; set; } = default!;
+        public required global::Ideogram.ApiProfileRole Role { get; set; }
 
         /// <summary>
         /// List of API keys associated with this profile<br/>
@@ -60,14 +60,14 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_keys")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey> ApiKeys { get; set; } = default!;
+        public required global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey> ApiKeys { get; set; }
 
         /// <summary>
         /// Whether the user is on Metronome 2.0
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("is_metronome_2_user")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public bool IsMetronome2User { get; set; } = default!;
+        public required bool IsMetronome2User { get; set; }
 
         /// <summary>
         /// The maximum number of inflight requests permitted for the profile<br/>
@@ -76,7 +76,7 @@ namespace Ideogram
         /// <example>10</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_num_inflight_requests_permitted")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public int MaxNumInflightRequestsPermitted { get; set; } = default!;
+        public required int MaxNumInflightRequestsPermitted { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema

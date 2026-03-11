@@ -13,7 +13,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("is_active")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public bool IsActive { get; set; } = default!;
+        public required bool IsActive { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
