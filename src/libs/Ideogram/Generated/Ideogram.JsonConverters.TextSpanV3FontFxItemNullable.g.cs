@@ -3,10 +3,10 @@
 namespace Ideogram.JsonConverters
 {
     /// <inheritdoc />
-    public sealed class TextLayerV3AlignmentNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.TextLayerV3Alignment?>
+    public sealed class TextSpanV3FontFxItemNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.TextSpanV3FontFxItem?>
     {
         /// <inheritdoc />
-        public override global::Ideogram.TextLayerV3Alignment? Read(
+        public override global::Ideogram.TextSpanV3FontFxItem? Read(
             ref global::System.Text.Json.Utf8JsonReader reader,
             global::System.Type typeToConvert,
             global::System.Text.Json.JsonSerializerOptions options)
@@ -18,7 +18,7 @@ namespace Ideogram.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Ideogram.TextLayerV3AlignmentExtensions.ToEnum(stringValue);
+                        return global::Ideogram.TextSpanV3FontFxItemExtensions.ToEnum(stringValue);
                     }
                     
                     break;
@@ -26,11 +26,11 @@ namespace Ideogram.JsonConverters
                 case global::System.Text.Json.JsonTokenType.Number:
                 {
                     var numValue = reader.GetInt32();
-                    return (global::Ideogram.TextLayerV3Alignment)numValue;
+                    return (global::Ideogram.TextSpanV3FontFxItem)numValue;
                 }
                 case global::System.Text.Json.JsonTokenType.Null:
                 {
-                    return default(global::Ideogram.TextLayerV3Alignment?);
+                    return default(global::Ideogram.TextSpanV3FontFxItem?);
                 }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
@@ -42,7 +42,7 @@ namespace Ideogram.JsonConverters
         /// <inheritdoc />
         public override void Write(
             global::System.Text.Json.Utf8JsonWriter writer,
-            global::Ideogram.TextLayerV3Alignment? value,
+            global::Ideogram.TextSpanV3FontFxItem? value,
             global::System.Text.Json.JsonSerializerOptions options)
         {
             writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
@@ -53,7 +53,7 @@ namespace Ideogram.JsonConverters
             }
             else
             {
-                writer.WriteStringValue(global::Ideogram.TextLayerV3AlignmentExtensions.ToValueString(value.Value));
+                writer.WriteStringValue(global::Ideogram.TextSpanV3FontFxItemExtensions.ToValueString(value.Value));
             }
         }
     }

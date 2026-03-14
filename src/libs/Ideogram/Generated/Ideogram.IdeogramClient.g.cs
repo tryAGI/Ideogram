@@ -74,6 +74,15 @@ namespace Ideogram
         };
 
         /// <summary>
+        /// Operations related to managing datasets
+        /// </summary>
+        public DatasetsClient Datasets => new DatasetsClient(HttpClient, authorizations: Authorizations)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContext = JsonSerializerContext,
+        };
+
+        /// <summary>
         /// 
         /// </summary>
         public BatchClient Batch => new BatchClient(HttpClient, authorizations: Authorizations)

@@ -39,15 +39,42 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
-        /// <param name="requestedFontFile">
-        /// A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.<br/>
-        /// Example: Ubuntu-Regular.ttf
+        /// <param name="fontFileH1">
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </param>
-        /// <param name="uploadedFontFile">
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// <param name="fontFileH1name">
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </param>
-        /// <param name="uploadedFontFilename">
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// <param name="fontNameH1">
+        /// Font name from the available font library for H1 text. Ignored if font_file_h1 is provided.<br/>
+        /// Example: Ubuntu-Bold.ttf
+        /// </param>
+        /// <param name="fontFileH2">
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </param>
+        /// <param name="fontFileH2name">
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </param>
+        /// <param name="fontNameH2">
+        /// Font name from the available font library for H2 text. Ignored if font_file_h2 is provided.
+        /// </param>
+        /// <param name="fontFileBody">
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </param>
+        /// <param name="fontFileBodyname">
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </param>
+        /// <param name="fontNameBody">
+        /// Font name from the available font library for body text. Ignored if font_file_body is provided.
+        /// </param>
+        /// <param name="fontFileSmall">
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </param>
+        /// <param name="fontFileSmallname">
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </param>
+        /// <param name="fontNameSmall">
+        /// Font name from the available font library for small text. Ignored if font_file_small is provided.
         /// </param>
         /// <param name="referenceAssetImages">
         /// A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.
@@ -59,9 +86,18 @@ namespace Ideogram
             string flatGraphicImagename,
             string? prompt = default,
             int? seed = default,
-            string? requestedFontFile = default,
-            byte[]? uploadedFontFile = default,
-            string? uploadedFontFilename = default,
+            byte[]? fontFileH1 = default,
+            string? fontFileH1name = default,
+            string? fontNameH1 = default,
+            byte[]? fontFileH2 = default,
+            string? fontFileH2name = default,
+            string? fontNameH2 = default,
+            byte[]? fontFileBody = default,
+            string? fontFileBodyname = default,
+            string? fontNameBody = default,
+            byte[]? fontFileSmall = default,
+            string? fontFileSmallname = default,
+            string? fontNameSmall = default,
             global::System.Collections.Generic.IList<byte[]>? referenceAssetImages = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

@@ -3,10 +3,10 @@
 namespace Ideogram.JsonConverters
 {
     /// <inheritdoc />
-    public sealed class TextLayerV3AlignmentJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.TextLayerV3Alignment>
+    public sealed class OrganizationTypeJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.OrganizationType>
     {
         /// <inheritdoc />
-        public override global::Ideogram.TextLayerV3Alignment Read(
+        public override global::Ideogram.OrganizationType Read(
             ref global::System.Text.Json.Utf8JsonReader reader,
             global::System.Type typeToConvert,
             global::System.Text.Json.JsonSerializerOptions options)
@@ -18,7 +18,7 @@ namespace Ideogram.JsonConverters
                     var stringValue = reader.GetString();
                     if (stringValue != null)
                     {
-                        return global::Ideogram.TextLayerV3AlignmentExtensions.ToEnum(stringValue) ?? default;
+                        return global::Ideogram.OrganizationTypeExtensions.ToEnum(stringValue) ?? default;
                     }
                     
                     break;
@@ -26,11 +26,11 @@ namespace Ideogram.JsonConverters
                 case global::System.Text.Json.JsonTokenType.Number:
                 {
                     var numValue = reader.GetInt32();
-                    return (global::Ideogram.TextLayerV3Alignment)numValue;
+                    return (global::Ideogram.OrganizationType)numValue;
                 }
                 case global::System.Text.Json.JsonTokenType.Null:
                 {
-                    return default(global::Ideogram.TextLayerV3Alignment);
+                    return default(global::Ideogram.OrganizationType);
                 }
                 default:
                     throw new global::System.ArgumentOutOfRangeException(nameof(reader));
@@ -42,12 +42,12 @@ namespace Ideogram.JsonConverters
         /// <inheritdoc />
         public override void Write(
             global::System.Text.Json.Utf8JsonWriter writer,
-            global::Ideogram.TextLayerV3Alignment value,
+            global::Ideogram.OrganizationType value,
             global::System.Text.Json.JsonSerializerOptions options)
         {
             writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
 
-            writer.WriteStringValue(global::Ideogram.TextLayerV3AlignmentExtensions.ToValueString(value));
+            writer.WriteStringValue(global::Ideogram.OrganizationTypeExtensions.ToValueString(value));
         }
     }
 }

@@ -24,8 +24,8 @@ namespace Ideogram
         /// <summary>
         /// Virtual Try-On with Ideogram 3.0<br/>
         /// Performs virtual clothing try-on by automatically segmenting the clothing in the provided image<br/>
-        /// and replacing it based on the prompt. The user provides an image and a prompt describing the<br/>
-        /// desired clothing change (e.g., "change his shirt to a pink shirt").<br/>
+        /// and replacing it based on the prompt. The user provides an image and an optional prompt describing<br/>
+        /// the desired clothing change (e.g., "change his shirt to a pink shirt").<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
@@ -82,9 +82,13 @@ namespace Ideogram
             {
                 __contentImage.Headers.ContentDisposition.FileNameStar = null;
             }
-            __httpRequestContent.Add(
-                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
-                name: "\"prompt\"");
+            if (request.Prompt != default)
+            {
+
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                    name: "\"prompt\"");
+            } 
             if (request.MagicPrompt != default)
             {
 
@@ -363,8 +367,8 @@ namespace Ideogram
         /// <summary>
         /// Virtual Try-On with Ideogram 3.0<br/>
         /// Performs virtual clothing try-on by automatically segmenting the clothing in the provided image<br/>
-        /// and replacing it based on the prompt. The user provides an image and a prompt describing the<br/>
-        /// desired clothing change (e.g., "change his shirt to a pink shirt").<br/>
+        /// and replacing it based on the prompt. The user provides an image and an optional prompt describing<br/>
+        /// the desired clothing change (e.g., "change his shirt to a pink shirt").<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
@@ -375,7 +379,8 @@ namespace Ideogram
         /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
-        /// The prompt describing the desired clothing change.<br/>
+        /// The prompt describing the desired clothing change. Defaults to "Person wearing this piece of clothing" if omitted or empty.<br/>
+        /// Default Value: Person wearing this piece of clothing<br/>
         /// Example: Change his shirt to a pink shirt
         /// </param>
         /// <param name="magicPrompt">
@@ -411,8 +416,8 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostTryOnV3Async(
             byte[] image,
             string imagename,
-            string prompt,
             global::System.Collections.Generic.IList<byte[]> productReferenceImages,
+            string? prompt = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
             int? numImages = default,
             int? seed = default,

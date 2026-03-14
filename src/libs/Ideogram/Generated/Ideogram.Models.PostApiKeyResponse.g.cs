@@ -4,15 +4,15 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"api_key":"vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
+    /// Example: {"api_key":"example_api_key_replace_with_your_actual_key","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg=="}
     /// </summary>
     public sealed partial class PostApiKeyResponse
     {
         /// <summary>
         /// The API key to use when making authenticated requests with the API. This key will only be shown once.<br/>
-        /// Example: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+        /// Example: example_api_key_replace_with_your_actual_key
         /// </summary>
-        /// <example>vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA</example>
+        /// <example>example_api_key_replace_with_your_actual_key</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ApiKey { get; set; }
@@ -37,7 +37,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="apiKey">
         /// The API key to use when making authenticated requests with the API. This key will only be shown once.<br/>
-        /// Example: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+        /// Example: example_api_key_replace_with_your_actual_key
         /// </param>
         /// <param name="apiKeyId">
         /// The ID of the API key. A URL safe base64 encoded UUID<br/>
