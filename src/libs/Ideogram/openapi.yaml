@@ -6,6 +6,118 @@ info:
 servers:
   - url: ''
 paths:
+  /datasets:
+    get:
+      tags:
+        - datasets
+      summary: List datasets
+      description: Lists all datasets for the authenticated user
+      operationId: list_datasets
+      responses:
+        '200':
+          description: Datasets retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDatasetsResponse'
+        '401':
+          description: Unauthorized
+      x-openapi-router-controller: external_api.generated.openapi.controllers.datasets_controller
+    post:
+      tags:
+        - datasets
+      summary: Create a new dataset
+      description: Creates a new dataset
+      operationId: create_dataset
+      requestBody:
+        description: Request to create a new dataset
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetRequest'
+        required: true
+        x-body-name: create_dataset_request
+      responses:
+        '200':
+          description: Dataset created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dataset'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+      x-openapi-router-controller: external_api.generated.openapi.controllers.datasets_controller
+  '/datasets/{dataset_id}/train_model':
+    post:
+      tags:
+        - datasets
+      summary: Train a model from a dataset
+      description: "Start training a custom model from a dataset. The dataset must contain at least 5 images. Returns the model ID and training status.\n"
+      operationId: train_dataset_model
+      parameters:
+        - name: dataset_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Training configuration
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrainDatasetModelRequest'
+        required: true
+        x-body-name: train_dataset_model_request
+      responses:
+        '200':
+          description: Training started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainDatasetModelResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+      x-openapi-router-controller: external_api.generated.openapi.controllers.datasets_controller
+  '/datasets/{dataset_id}/upload_assets':
+    post:
+      tags:
+        - datasets
+      summary: Upload assets to a dataset
+      description: "Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions.\n"
+      operationId: upload_dataset_assets
+      parameters:
+        - name: dataset_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadDatasetAssetsRequest'
+        required: true
+        x-body-name: body
+      responses:
+        '200':
+          description: Upload summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadDatasetAssetsResponse'
+        '400':
+          description: Bad request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Dataset not found
+      x-openapi-router-controller: external_api.generated.openapi.controllers.datasets_controller
   /describe:
     post:
       tags:
@@ -1695,7 +1807,7 @@ paths:
       tags:
         - generate
       summary: Virtual Try-On with Ideogram 3.0
-      description: "Performs virtual clothing try-on by automatically segmenting the clothing in the provided image\nand replacing it based on the prompt. The user provides an image and a prompt describing the\ndesired clothing change (e.g., \"change his shirt to a pink shirt\").\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
+      description: "Performs virtual clothing try-on by automatically segmenting the clothing in the provided image\nand replacing it based on the prompt. The user provides an image and an optional prompt describing\nthe desired clothing change (e.g., \"change his shirt to a pink shirt\").\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n"
       operationId: post_try_on_v3
       requestBody:
         description: A request to perform virtual try-on with Ideogram 3.0.
@@ -1942,14 +2054,35 @@ components:
           type: string
           description: 'An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 10MB).'
           format: binary
-        requested_font_file:
+        font_file_h1:
           type: string
-          description: A font name from the available font library to use for text rendering. Cannot be used together with uploaded_font_file.
-          example: Ubuntu-Regular.ttf
-        uploaded_font_file:
-          type: string
-          description: 'A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). Cannot be used together with requested_font_file.'
+          description: 'Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.'
           format: binary
+        font_name_h1:
+          type: string
+          description: Font name from the available font library for H1 text. Ignored if font_file_h1 is provided.
+          example: Ubuntu-Bold.ttf
+        font_file_h2:
+          type: string
+          description: 'Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.'
+          format: binary
+        font_name_h2:
+          type: string
+          description: Font name from the available font library for H2 text. Ignored if font_file_h2 is provided.
+        font_file_body:
+          type: string
+          description: 'Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.'
+          format: binary
+        font_name_body:
+          type: string
+          description: Font name from the available font library for body text. Ignored if font_file_body is provided.
+        font_file_small:
+          type: string
+          description: 'Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.'
+          format: binary
+        font_name_small:
+          type: string
+          description: Font name from the available font library for small text. Ignored if font_file_small is provided.
         style_reference_images:
           type: array
           items:
@@ -2015,14 +2148,35 @@ components:
           type: string
           description: "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n"
           example: model/my-custom-model/version/1
-        requested_font_file:
+        font_file_h1:
           type: string
-          description: 'A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.'
-          example: Ubuntu-Regular.ttf
-        uploaded_font_file:
-          type: string
-          description: 'A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.'
+          description: 'Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.'
           format: binary
+        font_name_h1:
+          type: string
+          description: Font name from the available font library for H1 text. Ignored if font_file_h1 is provided.
+          example: Ubuntu-Bold.ttf
+        font_file_h2:
+          type: string
+          description: 'Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.'
+          format: binary
+        font_name_h2:
+          type: string
+          description: Font name from the available font library for H2 text. Ignored if font_file_h2 is provided.
+        font_file_body:
+          type: string
+          description: 'Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.'
+          format: binary
+        font_name_body:
+          type: string
+          description: Font name from the available font library for body text. Ignored if font_file_body is provided.
+        font_file_small:
+          type: string
+          description: 'Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.'
+          format: binary
+        font_name_small:
+          type: string
+          description: Font name from the available font library for small text. Ignored if font_file_small is provided.
         style_reference_images:
           type: array
           items:
@@ -2049,14 +2203,35 @@ components:
           description: 'An optional prompt to describe the image. If not provided, a prompt will be auto-generated from the image via captioning.'
         seed:
           $ref: '#/components/schemas/Seed'
-        requested_font_file:
+        font_file_h1:
           type: string
-          description: 'A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.'
-          example: Ubuntu-Regular.ttf
-        uploaded_font_file:
-          type: string
-          description: 'A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.'
+          description: 'Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.'
           format: binary
+        font_name_h1:
+          type: string
+          description: Font name from the available font library for H1 text. Ignored if font_file_h1 is provided.
+          example: Ubuntu-Bold.ttf
+        font_file_h2:
+          type: string
+          description: 'Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.'
+          format: binary
+        font_name_h2:
+          type: string
+          description: Font name from the available font library for H2 text. Ignored if font_file_h2 is provided.
+        font_file_body:
+          type: string
+          description: 'Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.'
+          format: binary
+        font_name_body:
+          type: string
+          description: Font name from the available font library for body text. Ignored if font_file_body is provided.
+        font_file_small:
+          type: string
+          description: 'Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.'
+          format: binary
+        font_name_small:
+          type: string
+          description: Font name from the available font library for small text. Ignored if font_file_small is provided.
         reference_asset_images:
           type: array
           items:
@@ -2232,7 +2407,6 @@ components:
       required:
         - image
         - product_reference_images
-        - prompt
       type: object
       properties:
         image:
@@ -2241,7 +2415,8 @@ components:
           format: binary
         prompt:
           type: string
-          description: The prompt describing the desired clothing change.
+          description: The prompt describing the desired clothing change. Defaults to "Person wearing this piece of clothing" if omitted or empty.
+          default: Person wearing this piece of clothing
           example: Change his shirt to a pink shirt
         magic_prompt:
           $ref: '#/components/schemas/MagicPromptOption'
@@ -2736,46 +2911,138 @@ components:
       allOf:
         - $ref: '#/components/schemas/ImageGenerationObjectV3'
       properties:
-        text_layers:
-          title: text_layers
-          type: array
+        url:
+          title: url
+          type:
+            - 'null'
+            - string
+          description: 'The direct link to the text-erased base image. This is the background image with text removed, suitable for re-compositing with the text layers. Falls back to the cover image if the text-erased image is unavailable.'
+          format: uri
+        text_containers:
+          title: text_containers
+          type:
+            - 'null'
+            - array
           items:
-            $ref: '#/components/schemas/TextLayerV3'
+            $ref: '#/components/schemas/TextContainerV3'
+          description: Hierarchical text container data as a list of TextContainerV3 objects.
+        text_html:
+          title: text_html
+          type:
+            - 'null'
+            - string
+          description: Rendered HTML string for text overlays with inline CSS for absolute positioning.
         image_layers:
           title: image_layers
           type: array
           items:
             $ref: '#/components/schemas/ImageLayerV3'
       example:
-        text_layers:
-          - font_candidates:
-              - font_candidates
-              - font_candidates
-            line_height: 2.302136
-            color: '#FF0000'
-            font_size: 5
-            x: 0
-            width: 1
-            y: 6
-            angle: 0
-            text: text
-            font_file: font_file
-            alignment: center
-            height: 5
-          - font_candidates:
-              - font_candidates
-              - font_candidates
-            line_height: 2.302136
-            color: '#FF0000'
-            font_size: 5
-            x: 0
-            width: 1
-            y: 6
-            angle: 0
-            text: text
-            font_file: font_file
-            alignment: center
-            height: 5
+        text_containers:
+          - id: id
+            items:
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                spans:
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                font_size: 5
+                glyph_type: bullet
+                line_height: 2.302136
+                x: 0
+                width: 1
+                style_class: body
+                y: 6
+                angle: 0
+                alignment: center
+                font_file: font_file
+                height: 5
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                spans:
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                font_size: 5
+                glyph_type: bullet
+                line_height: 2.302136
+                x: 0
+                width: 1
+                style_class: body
+                y: 6
+                angle: 0
+                alignment: center
+                font_file: font_file
+                height: 5
+          - id: id
+            items:
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                spans:
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                font_size: 5
+                glyph_type: bullet
+                line_height: 2.302136
+                x: 0
+                width: 1
+                style_class: body
+                y: 6
+                angle: 0
+                alignment: center
+                font_file: font_file
+                height: 5
+              - font_candidates:
+                  - font_candidates
+                  - font_candidates
+                spans:
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                  - color: '#212121'
+                    text: text
+                    font_fx:
+                      - bold
+                      - italic
+                font_size: 5
+                glyph_type: bullet
+                line_height: 2.302136
+                x: 0
+                width: 1
+                style_class: body
+                y: 6
+                angle: 0
+                alignment: center
+                font_file: font_file
+                height: 5
         image_layers:
           - ref_id: REF_0
             x: 7
@@ -2787,6 +3054,8 @@ components:
             width: 3
             y: 9
             height: 2
+        url: https://openapi-generator.tech
+        text_html: text_html
     LayeredImageGenerationResponseV3:
       title: LayeredImageGenerationResponseV3
       required:
@@ -2808,35 +3077,111 @@ components:
       description: "The response which contains information about the generated image, including the download link and other text layeres.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it."
       example:
         data:
-          - text_layers:
-              - font_candidates:
-                  - font_candidates
-                  - font_candidates
-                line_height: 2.302136
-                color: '#FF0000'
-                font_size: 5
-                x: 0
-                width: 1
-                y: 6
-                angle: 0
-                text: text
-                font_file: font_file
-                alignment: center
-                height: 5
-              - font_candidates:
-                  - font_candidates
-                  - font_candidates
-                line_height: 2.302136
-                color: '#FF0000'
-                font_size: 5
-                x: 0
-                width: 1
-                y: 6
-                angle: 0
-                text: text
-                font_file: font_file
-                alignment: center
-                height: 5
+          - text_containers:
+              - id: id
+                items:
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
+              - id: id
+                items:
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
             image_layers:
               - ref_id: REF_0
                 x: 7
@@ -2848,35 +3193,113 @@ components:
                 width: 3
                 y: 9
                 height: 2
-          - text_layers:
-              - font_candidates:
-                  - font_candidates
-                  - font_candidates
-                line_height: 2.302136
-                color: '#FF0000'
-                font_size: 5
-                x: 0
-                width: 1
-                y: 6
-                angle: 0
-                text: text
-                font_file: font_file
-                alignment: center
-                height: 5
-              - font_candidates:
-                  - font_candidates
-                  - font_candidates
-                line_height: 2.302136
-                color: '#FF0000'
-                font_size: 5
-                x: 0
-                width: 1
-                y: 6
-                angle: 0
-                text: text
-                font_file: font_file
-                alignment: center
-                height: 5
+            url: https://openapi-generator.tech
+            text_html: text_html
+          - text_containers:
+              - id: id
+                items:
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
+              - id: id
+                items:
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
+                  - font_candidates:
+                      - font_candidates
+                      - font_candidates
+                    spans:
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                      - color: '#212121'
+                        text: text
+                        font_fx:
+                          - bold
+                          - italic
+                    font_size: 5
+                    glyph_type: bullet
+                    line_height: 2.302136
+                    x: 0
+                    width: 1
+                    style_class: body
+                    y: 6
+                    angle: 0
+                    alignment: center
+                    font_file: font_file
+                    height: 5
             image_layers:
               - ref_id: REF_0
                 x: 7
@@ -2888,6 +3311,8 @@ components:
                 width: 3
                 y: 9
                 height: 2
+            url: https://openapi-generator.tech
+            text_html: text_html
         created: '2000-01-23T04:56:07+00:00'
     MagicPromptVersionEnum:
       title: MagicPromptVersionEnum
@@ -3090,62 +3515,77 @@ components:
         num_images: 1
         color_palette:
           name: PASTEL
-    TextLayerV3:
-      title: TextLayerV3
+    TextSpanV3:
+      title: TextSpanV3
       required:
-        - font_file
-        - height
+        - color
+        - font_fx
         - text
-        - width
-        - x
-        - y
       type: object
       properties:
         text:
           title: text
           type: string
-          description: The text of the layer.
-        x:
-          title: x
-          type: integer
-          description: The x coordinate of the layer.
-        y:
-          title: y
-          type: integer
-          description: The y coordinate of the layer.
-        width:
-          title: width
-          type: integer
-          description: The width of the layer.
-        height:
-          title: height
-          type: integer
-          description: The height of the layer.
-        font_file:
-          title: font_file
-          type: string
-          description: The font file of the layer.
-        font_candidates:
-          title: font_candidates
+          description: The text content for this segment. Line breaks within the span are represented as \n.
+        font_fx:
+          title: font_fx
           type: array
           items:
+            enum:
+              - bold
+              - italic
+              - underline
+              - strikethrough
+              - all_caps
+              - small_caps
+              - superscript
+              - subscript
             type: string
-          description: A list of alternate matching font files for the layer.
-        font_size:
-          title: font_size
-          type: integer
-          description: The font size in points.
-        line_height:
-          title: line_height
-          type: number
-          description: 'The line height multiplier (e.g., 1.2).'
-          format: float
+          description: "Ordered list of style effects applied to this text span.\nThis is the primary style field for layered text.\n"
+          example:
+            - bold
+            - italic
         color:
           title: color
           pattern: '^#[0-9A-Fa-f]{6}$'
           type: string
-          description: The hex color of the text in the layer (e.g. "#FF0000" for red).
-          example: '#FF0000'
+          description: The hex color of the text (e.g. "#FF0000" for red).
+          example: '#212121'
+      description: 'An atomic text segment within a text item, carrying text content and visual styling.'
+      example:
+        color: '#212121'
+        text: text
+        font_fx:
+          - bold
+          - italic
+    TextItemV3:
+      title: TextItemV3
+      required:
+        - alignment
+        - height
+        - spans
+        - style_class
+        - width
+        - x
+        - y
+      type: object
+      properties:
+        x:
+          title: x
+          type: integer
+          description: The x coordinate of the item in pixels.
+        y:
+          title: y
+          type: integer
+          description: The y coordinate of the item in pixels.
+        width:
+          title: width
+          type: integer
+          description: The width of the item in pixels.
+        height:
+          title: height
+          type: integer
+          description: The height of the item in pixels.
         alignment:
           title: alignment
           enum:
@@ -3153,30 +3593,165 @@ components:
             - center
             - right
           type: string
-          description: The text alignment of the layer.
+          description: The text alignment of the item.
           example: center
         angle:
           title: angle
           type: number
-          description: 'The angle rotation of the text in the layer, measured clockwise.'
+          description: 'The angle rotation of the text, measured clockwise in degrees.'
           format: float
           example: 0
-      description: A text layer for a layered image generation.
+        style_class:
+          title: style_class
+          enum:
+            - h1
+            - h2
+            - body
+            - small
+          type: string
+          description: Typographic classification of the text.
+          example: body
+        glyph_type:
+          title: glyph_type
+          enum:
+            - bullet
+            - number
+          type:
+            - 'null'
+            - string
+          description: 'The type of list marker glyph, if any. Null for non-list items.'
+          example: null
+        font_file:
+          title: font_file
+          type:
+            - 'null'
+            - string
+          description: The matched font file for this item.
+        font_candidates:
+          title: font_candidates
+          type:
+            - 'null'
+            - array
+          items:
+            type: string
+          description: A list of alternate matching font files for this item.
+        font_size:
+          title: font_size
+          type:
+            - 'null'
+            - integer
+          description: The font size in points. Null for non-editable items.
+        line_height:
+          title: line_height
+          type:
+            - 'null'
+            - number
+          description: 'The line height multiplier (e.g., 1.2). Null for non-editable items.'
+          format: float
+        spans:
+          title: spans
+          type: array
+          items:
+            $ref: '#/components/schemas/TextSpanV3'
+          description: Ordered list of text spans. Concatenating span text values produces the full item text.
+      description: 'A single text block within a container, representing one logical unit of text (e.g., a headline, a paragraph, a list entry).'
       example:
         font_candidates:
           - font_candidates
           - font_candidates
-        line_height: 2.302136
-        color: '#FF0000'
+        spans:
+          - color: '#212121'
+            text: text
+            font_fx:
+              - bold
+              - italic
+          - color: '#212121'
+            text: text
+            font_fx:
+              - bold
+              - italic
         font_size: 5
+        glyph_type: bullet
+        line_height: 2.302136
         x: 0
         width: 1
+        style_class: body
         y: 6
         angle: 0
-        text: text
-        font_file: font_file
         alignment: center
+        font_file: font_file
         height: 5
+    TextContainerV3:
+      title: TextContainerV3
+      required:
+        - id
+        - items
+      type: object
+      properties:
+        id:
+          title: id
+          type: string
+          description: 'Unique container identifier (e.g., "container_01").'
+        items:
+          title: items
+          type: array
+          items:
+            $ref: '#/components/schemas/TextItemV3'
+          description: Ordered list of text items in this container.
+      description: 'A spatial grouping of related text items that form a cohesive visual unit (e.g., a title group, a list, a card).'
+      example:
+        id: id
+        items:
+          - font_candidates:
+              - font_candidates
+              - font_candidates
+            spans:
+              - color: '#212121'
+                text: text
+                font_fx:
+                  - bold
+                  - italic
+              - color: '#212121'
+                text: text
+                font_fx:
+                  - bold
+                  - italic
+            font_size: 5
+            glyph_type: bullet
+            line_height: 2.302136
+            x: 0
+            width: 1
+            style_class: body
+            y: 6
+            angle: 0
+            alignment: center
+            font_file: font_file
+            height: 5
+          - font_candidates:
+              - font_candidates
+              - font_candidates
+            spans:
+              - color: '#212121'
+                text: text
+                font_fx:
+                  - bold
+                  - italic
+              - color: '#212121'
+                text: text
+                font_fx:
+                  - bold
+                  - italic
+            font_size: 5
+            glyph_type: bullet
+            line_height: 2.302136
+            x: 0
+            width: 1
+            style_class: body
+            y: 6
+            angle: 0
+            alignment: center
+            font_file: font_file
+            height: 5
     ImageLayerV3:
       title: ImageLayerV3
       required:
@@ -3486,14 +4061,14 @@ components:
           title: api_key
           type: string
           description: The API key to use when making authenticated requests with the API. This key will only be shown once.
-          example: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+          example: example_api_key_replace_with_your_actual_key
         api_key_id:
           title: api_key_id
           type: string
           description: The ID of the API key. A URL safe base64 encoded UUID
           example: JRPVD7jWR1aTBYiJ0UFVOg==
       example:
-        api_key: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+        api_key: example_api_key_replace_with_your_actual_key
         api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
     ManageApiStripeSubscriptionResponse:
       title: ManageApiStripeSubscriptionResponse
@@ -4176,7 +4751,7 @@ components:
           title: api_key
           type: string
           description: The API key to use when making authenticated requests with the API. This key will only be shown once.
-          example: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+          example: example_api_key_replace_with_your_actual_key
         api_key_id:
           title: api_key_id
           type: string
@@ -4190,7 +4765,7 @@ components:
           example: '2024-05-25T02:00:30+00:00'
       example:
         creation_time: '2024-05-25T02:00:30+00:00'
-        api_key: vkpDjaKdMNR8QJ83GjfNvFZJbnoi65XUp70MgZNtA2H9XE8yfDnmr_6BaRyQkF9hnJzu6mUPRLBmqlnZMwetJA
+        api_key: example_api_key_replace_with_your_actual_key
         api_key_id: JRPVD7jWR1aTBYiJ0UFVOg==
     GetApiKeysV2Response:
       title: GetApiKeysV2Response
@@ -4506,6 +5081,375 @@ components:
         unit_price:
           amount: 1050
           currency_code: USD
+    ListDatasetsResponse:
+      title: ListDatasetsResponse
+      required:
+        - datasets
+      type: object
+      properties:
+        datasets:
+          title: datasets
+          type: array
+          items:
+            $ref: '#/components/schemas/Dataset'
+          description: List of datasets for the authenticated user.
+          default: [ ]
+      example:
+        datasets:
+          - collection_id: collection_id
+            creation_time: '2000-01-23T04:56:07+00:00'
+            user_id: user_id
+            name: name
+            cover_asset_identifier:
+              asset_type: RESPONSE
+              asset_id: 7uS_VESkRI6O3-sVgHQp_A
+            sharing:
+              - updated_time: '2000-01-23T04:56:07+00:00'
+                organization:
+                  role: null
+                  publishing_disabled: true
+                  organization_id: organization_id
+                  name: name
+                  avatar:
+                    avatar_url: avatar_url
+                  type: null
+                permission: null
+                user:
+                  badge: badge
+                  subscription_plan_id: subscription_plan_id
+                  display_handle: display_handle
+                  user_id: user_id
+                  photo_url: photo_url
+              - updated_time: '2000-01-23T04:56:07+00:00'
+                organization:
+                  role: null
+                  publishing_disabled: true
+                  organization_id: organization_id
+                  name: name
+                  avatar:
+                    avatar_url: avatar_url
+                  type: null
+                permission: null
+                user:
+                  badge: badge
+                  subscription_plan_id: subscription_plan_id
+                  display_handle: display_handle
+                  user_id: user_id
+                  photo_url: photo_url
+          - collection_id: collection_id
+            creation_time: '2000-01-23T04:56:07+00:00'
+            user_id: user_id
+            name: name
+            cover_asset_identifier:
+              asset_type: RESPONSE
+              asset_id: 7uS_VESkRI6O3-sVgHQp_A
+            sharing:
+              - updated_time: '2000-01-23T04:56:07+00:00'
+                organization:
+                  role: null
+                  publishing_disabled: true
+                  organization_id: organization_id
+                  name: name
+                  avatar:
+                    avatar_url: avatar_url
+                  type: null
+                permission: null
+                user:
+                  badge: badge
+                  subscription_plan_id: subscription_plan_id
+                  display_handle: display_handle
+                  user_id: user_id
+                  photo_url: photo_url
+              - updated_time: '2000-01-23T04:56:07+00:00'
+                organization:
+                  role: null
+                  publishing_disabled: true
+                  organization_id: organization_id
+                  name: name
+                  avatar:
+                    avatar_url: avatar_url
+                  type: null
+                permission: null
+                user:
+                  badge: badge
+                  subscription_plan_id: subscription_plan_id
+                  display_handle: display_handle
+                  user_id: user_id
+                  photo_url: photo_url
+    Dataset:
+      title: Dataset
+      required:
+        - collection_id
+        - creation_time
+        - name
+        - user_id
+      type: object
+      properties:
+        collection_id:
+          title: collection_id
+          type: string
+          description: Unique identifier for the collection.
+        name:
+          title: name
+          type: string
+          description: Display name of the collection.
+        user_id:
+          title: user_id
+          type: string
+          description: ID of the user who owns this collection.
+        creation_time:
+          title: creation_time
+          type: string
+          description: When the collection was created.
+          format: date-time
+        cover_asset_identifier:
+          $ref: '#/components/schemas/AssetIdentifier'
+        sharing:
+          title: sharing
+          type:
+            - 'null'
+            - array
+          items:
+            $ref: '#/components/schemas/SharingInfo'
+          description: Sharing details for this collection including the owner entry.
+      description: A dataset for organizing assets.
+      example:
+        collection_id: collection_id
+        creation_time: '2000-01-23T04:56:07+00:00'
+        user_id: user_id
+        name: name
+        cover_asset_identifier:
+          asset_type: RESPONSE
+          asset_id: 7uS_VESkRI6O3-sVgHQp_A
+        sharing:
+          - updated_time: '2000-01-23T04:56:07+00:00'
+            organization:
+              role: null
+              publishing_disabled: true
+              organization_id: organization_id
+              name: name
+              avatar:
+                avatar_url: avatar_url
+              type: null
+            permission: null
+            user:
+              badge: badge
+              subscription_plan_id: subscription_plan_id
+              display_handle: display_handle
+              user_id: user_id
+              photo_url: photo_url
+          - updated_time: '2000-01-23T04:56:07+00:00'
+            organization:
+              role: null
+              publishing_disabled: true
+              organization_id: organization_id
+              name: name
+              avatar:
+                avatar_url: avatar_url
+              type: null
+            permission: null
+            user:
+              badge: badge
+              subscription_plan_id: subscription_plan_id
+              display_handle: display_handle
+              user_id: user_id
+              photo_url: photo_url
+    CreateDatasetRequest:
+      title: CreateDatasetRequest
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          title: name
+          type: string
+          description: Name of the dataset.
+      example:
+        name: name
+    UploadDatasetAssetsResponse:
+      title: UploadDatasetAssetsResponse
+      required:
+        - failure_count
+        - success_count
+        - total_count
+      type: object
+      properties:
+        total_count:
+          title: total_count
+          type: integer
+          description: Total number of images processed.
+        success_count:
+          title: success_count
+          type: integer
+          description: Number of images successfully uploaded.
+        failure_count:
+          title: failure_count
+          type: integer
+          description: Number of images that failed to upload.
+        successful_assets:
+          title: successful_assets
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetUploadSucceededAsset'
+          description: Details of successfully uploaded assets.
+          default: [ ]
+        failed_assets:
+          title: failed_assets
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetUploadFailedAsset'
+          description: Details of assets that failed to upload.
+          default: [ ]
+      example:
+        successful_assets:
+          - asset_identifier:
+              asset_type: RESPONSE
+              asset_id: 7uS_VESkRI6O3-sVgHQp_A
+            file_name: file_name
+          - asset_identifier:
+              asset_type: RESPONSE
+              asset_id: 7uS_VESkRI6O3-sVgHQp_A
+            file_name: file_name
+        total_count: 0
+        failed_assets:
+          - file_name: file_name
+            failure_reason: null
+          - file_name: file_name
+            failure_reason: null
+        success_count: 6
+        failure_count: 1
+    DatasetUploadSucceededAsset:
+      title: DatasetUploadSucceededAsset
+      required:
+        - asset_identifier
+      type: object
+      properties:
+        asset_identifier:
+          $ref: '#/components/schemas/AssetIdentifier'
+        file_name:
+          title: file_name
+          type:
+            - 'null'
+            - string
+          description: Original filename of the uploaded image.
+      example:
+        asset_identifier:
+          asset_type: RESPONSE
+          asset_id: 7uS_VESkRI6O3-sVgHQp_A
+        file_name: file_name
+    DatasetUploadFailedAsset:
+      title: DatasetUploadFailedAsset
+      required:
+        - failure_reason
+      type: object
+      properties:
+        file_name:
+          title: file_name
+          type:
+            - 'null'
+            - string
+          description: Original filename of the failed image.
+        failure_reason:
+          $ref: '#/components/schemas/DatasetAssetFailureReason'
+      example:
+        file_name: file_name
+        failure_reason: null
+    DatasetAssetFailureReason:
+      title: DatasetAssetFailureReason
+      enum:
+        - FAILED_SAFETY_CHECK
+        - FILE_TOO_LARGE
+        - INTERNAL_ERROR
+        - INVALID_CAPTION
+        - INVALID_IMAGE
+        - INVALID_ZIP
+        - TOO_MANY_IMAGES
+      type: string
+      description: Reason why an asset failed to upload.
+    UploadDatasetAssetsRequest:
+      required:
+        - files
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            type: string
+            format: binary
+          description: "Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg).\n"
+    TrainDatasetModelResponse:
+      title: TrainDatasetModelResponse
+      required:
+        - dataset_id
+        - model_id
+        - model_name
+        - training_status
+      type: object
+      properties:
+        model_id:
+          title: model_id
+          type: string
+          description: Unique identifier of the created model.
+        dataset_id:
+          title: dataset_id
+          type: string
+          description: Identifier of the dataset used for training.
+        training_status:
+          title: training_status
+          type: string
+          description: Current training status of the model.
+        model_name:
+          title: model_name
+          type: string
+          description: Name of the model.
+      example:
+        training_status: training_status
+        model_name: model_name
+        dataset_id: dataset_id
+        model_id: model_id
+    TrainDatasetModelRequest:
+      title: TrainDatasetModelRequest
+      required:
+        - model_name
+      type: object
+      properties:
+        model_name:
+          title: model_name
+          type: string
+          description: "Name for the trained model. Must be 5-30 characters, alphanumeric with spaces and hyphens allowed.\n"
+          example: my-custom-model
+        training_steps:
+          title: training_steps
+          type: integer
+          description: "Number of training steps. Must be between 100 and 20000 and a multiple of 100. Defaults to 1000.\n"
+          example: 1000
+        lora_rank:
+          title: lora_rank
+          type: integer
+          description: "LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank > 128 requires num_chips >= 32.\n"
+          example: 64
+        num_chips:
+          title: num_chips
+          type: integer
+          description: "Number of TPU chips to use. Must be one of 16 or 32.\n"
+          example: 16
+        ema:
+          title: ema
+          type: number
+          description: "Exponential moving average decay rate. Must be greater than 0.\n"
+          example: 0.999
+        learning_rate:
+          title: learning_rate
+          type: number
+          description: "Learning rate for the optimizer. Must be greater than 0.\n"
+          example: 0.0001
+      example:
+        model_name: my-custom-model
+        lora_rank: 64
+        num_chips: 16
+        ema: 0.999
+        training_steps: 1000
+        learning_rate: 0.0001
     Description:
       title: Description
       type: object
@@ -5011,6 +5955,162 @@ components:
       example:
         amount: 1050
         currency_code: USD
+    AssetIdentifier:
+      title: AssetIdentifier
+      required:
+        - asset_id
+        - asset_type
+      type: object
+      properties:
+        asset_type:
+          $ref: '#/components/schemas/AssetType'
+        asset_id:
+          type: string
+      description: An identifier for an ideogram asset.
+      example:
+        asset_type: RESPONSE
+        asset_id: 7uS_VESkRI6O3-sVgHQp_A
+    AssetType:
+      title: AssetType
+      enum:
+        - ASSET
+        - CANVAS_ASSET
+        - LAYERED_ASSET
+        - RESPONSE
+        - UPLOAD
+      type: string
+    SharingInfo:
+      title: SharingInfo
+      required:
+        - permission
+        - updated_time
+      type: object
+      properties:
+        permission:
+          $ref: '#/components/schemas/SharingPermission'
+        updated_time:
+          title: updated_time
+          type: string
+          description: When this sharing entry was last updated.
+          format: date-time
+        organization:
+          $ref: '#/components/schemas/OrganizationObject'
+        user:
+          $ref: '#/components/schemas/User'
+      example:
+        updated_time: '2000-01-23T04:56:07+00:00'
+        organization:
+          role: null
+          publishing_disabled: true
+          organization_id: organization_id
+          name: name
+          avatar:
+            avatar_url: avatar_url
+          type: null
+        permission: null
+        user:
+          badge: badge
+          subscription_plan_id: subscription_plan_id
+          display_handle: display_handle
+          user_id: user_id
+          photo_url: photo_url
+    SharingPermission:
+      title: SharingPermission
+      enum:
+        - OWNER
+        - EDITOR
+        - VIEWER
+      type: string
+      description: Permission level for the shared organization. OWNER is read-only and cannot be set via add/remove.
+    OrganizationObject:
+      title: OrganizationObject
+      required:
+        - name
+        - organization_id
+      type: object
+      properties:
+        organization_id:
+          title: organization_id
+          type: string
+          description: ID of the organization
+        name:
+          title: name
+          type: string
+          description: Name of the organization
+        type:
+          $ref: '#/components/schemas/OrganizationType'
+        role:
+          $ref: '#/components/schemas/OrganizationRoleEnum'
+        avatar:
+          $ref: '#/components/schemas/OrganizationAvatarObject'
+        publishing_disabled:
+          title: publishing_disabled
+          type: boolean
+          description: Whether publishing is disabled for this organization.
+      description: An organization object
+      example:
+        role: null
+        publishing_disabled: true
+        organization_id: organization_id
+        name: name
+        avatar:
+          avatar_url: avatar_url
+        type: null
+    OrganizationType:
+      title: OrganizationType
+      enum:
+        - PRIVATE
+        - TEAM
+        - ENTERPRISE
+      type: string
+      description: The type of organization
+    OrganizationRoleEnum:
+      title: OrganizationRoleEnum
+      enum:
+        - OWNER
+        - WRITER
+      type: string
+      description: Role of a user in an organization.
+    OrganizationAvatarObject:
+      title: OrganizationAvatarObject
+      required:
+        - avatar_url
+      type: object
+      properties:
+        avatar_url:
+          title: avatar_url
+          type: string
+      example:
+        avatar_url: avatar_url
+    User:
+      title: User
+      required:
+        - display_handle
+        - photo_url
+        - user_id
+      type: object
+      properties:
+        user_id:
+          title: user_id
+          type: string
+        display_handle:
+          title: display_handle
+          type: string
+        photo_url:
+          title: photo_url
+          type: string
+        subscription_plan_id:
+          title: subscription_plan_id
+          type: string
+        badge:
+          title: badge
+          type: string
+      example:
+        badge: badge
+        subscription_plan_id: subscription_plan_id
+        display_handle: display_handle
+        user_id: user_id
+        photo_url: photo_url
     postInternalTesting_200_response:
       title: postInternalTesting_200_response
       type: object
@@ -5071,6 +6171,11 @@ tags:
       url: https://docs.ideogram.ai
   - name: internal-testing
     description: Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
+    externalDocs:
+      description: Find out more
+      url: https://docs.ideogram.ai
+  - name: datasets
+    description: Operations related to managing datasets
     externalDocs:
       description: Find out more
       url: https://docs.ideogram.ai

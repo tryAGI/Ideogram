@@ -58,6 +58,11 @@ namespace Ideogram
         public InternalTestingClient InternalTesting { get; }
 
         /// <summary>
+        /// Operations related to managing datasets
+        /// </summary>
+        public DatasetsClient Datasets { get; }
+
+        /// <summary>
         /// 
         /// </summary>
         public BatchClient Batch { get; }

@@ -23,13 +23,13 @@ namespace Ideogram
         public required string Imagename { get; set; }
 
         /// <summary>
-        /// The prompt describing the desired clothing change.<br/>
+        /// The prompt describing the desired clothing change. Defaults to "Person wearing this piece of clothing" if omitted or empty.<br/>
+        /// Default Value: Person wearing this piece of clothing<br/>
         /// Example: Change his shirt to a pink shirt
         /// </summary>
         /// <example>Change his shirt to a pink shirt</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Prompt { get; set; }
+        public string? Prompt { get; set; }
 
         /// <summary>
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
@@ -105,7 +105,8 @@ namespace Ideogram
         /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
-        /// The prompt describing the desired clothing change.<br/>
+        /// The prompt describing the desired clothing change. Defaults to "Person wearing this piece of clothing" if omitted or empty.<br/>
+        /// Default Value: Person wearing this piece of clothing<br/>
         /// Example: Change his shirt to a pink shirt
         /// </param>
         /// <param name="magicPrompt">
@@ -142,8 +143,8 @@ namespace Ideogram
         public TryOnRequestV3(
             byte[] image,
             string imagename,
-            string prompt,
             global::System.Collections.Generic.IList<byte[]> productReferenceImages,
+            string? prompt,
             global::Ideogram.MagicPromptOption? magicPrompt,
             int? numImages,
             int? seed,
@@ -153,8 +154,8 @@ namespace Ideogram
         {
             this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
-            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.ProductReferenceImages = productReferenceImages ?? throw new global::System.ArgumentNullException(nameof(productReferenceImages));
+            this.Prompt = prompt;
             this.MagicPrompt = magicPrompt;
             this.NumImages = numImages;
             this.Seed = seed;

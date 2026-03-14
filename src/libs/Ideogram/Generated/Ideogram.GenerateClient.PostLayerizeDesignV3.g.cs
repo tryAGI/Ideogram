@@ -95,25 +95,85 @@ namespace Ideogram
                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
                     name: "\"seed\"");
             } 
-            if (request.RequestedFontFile != default)
+            if (request.FontFileH1 != default)
             {
 
+                var __contentFontFileH1 = new global::System.Net.Http.ByteArrayContent(request.FontFileH1 ?? global::System.Array.Empty<byte>());
                 __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.RequestedFontFile}"),
-                    name: "\"requested_font_file\"");
-            } 
-            if (request.UploadedFontFile != default)
-            {
-
-                var __contentUploadedFontFile = new global::System.Net.Http.ByteArrayContent(request.UploadedFontFile ?? global::System.Array.Empty<byte>());
-                __httpRequestContent.Add(
-                    content: __contentUploadedFontFile,
-                    name: "\"uploaded_font_file\"",
-                    fileName: request.UploadedFontFilename != null ? $"\"{request.UploadedFontFilename}\"" : string.Empty);
-                if (__contentUploadedFontFile.Headers.ContentDisposition != null)
+                    content: __contentFontFileH1,
+                    name: "\"font_file_h1\"",
+                    fileName: request.FontFileH1name != null ? $"\"{request.FontFileH1name}\"" : string.Empty);
+                if (__contentFontFileH1.Headers.ContentDisposition != null)
                 {
-                    __contentUploadedFontFile.Headers.ContentDisposition.FileNameStar = null;
+                    __contentFontFileH1.Headers.ContentDisposition.FileNameStar = null;
                 }
+            } 
+            if (request.FontNameH1 != default)
+            {
+
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.FontNameH1}"),
+                    name: "\"font_name_h1\"");
+            } 
+            if (request.FontFileH2 != default)
+            {
+
+                var __contentFontFileH2 = new global::System.Net.Http.ByteArrayContent(request.FontFileH2 ?? global::System.Array.Empty<byte>());
+                __httpRequestContent.Add(
+                    content: __contentFontFileH2,
+                    name: "\"font_file_h2\"",
+                    fileName: request.FontFileH2name != null ? $"\"{request.FontFileH2name}\"" : string.Empty);
+                if (__contentFontFileH2.Headers.ContentDisposition != null)
+                {
+                    __contentFontFileH2.Headers.ContentDisposition.FileNameStar = null;
+                }
+            } 
+            if (request.FontNameH2 != default)
+            {
+
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.FontNameH2}"),
+                    name: "\"font_name_h2\"");
+            } 
+            if (request.FontFileBody != default)
+            {
+
+                var __contentFontFileBody = new global::System.Net.Http.ByteArrayContent(request.FontFileBody ?? global::System.Array.Empty<byte>());
+                __httpRequestContent.Add(
+                    content: __contentFontFileBody,
+                    name: "\"font_file_body\"",
+                    fileName: request.FontFileBodyname != null ? $"\"{request.FontFileBodyname}\"" : string.Empty);
+                if (__contentFontFileBody.Headers.ContentDisposition != null)
+                {
+                    __contentFontFileBody.Headers.ContentDisposition.FileNameStar = null;
+                }
+            } 
+            if (request.FontNameBody != default)
+            {
+
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.FontNameBody}"),
+                    name: "\"font_name_body\"");
+            } 
+            if (request.FontFileSmall != default)
+            {
+
+                var __contentFontFileSmall = new global::System.Net.Http.ByteArrayContent(request.FontFileSmall ?? global::System.Array.Empty<byte>());
+                __httpRequestContent.Add(
+                    content: __contentFontFileSmall,
+                    name: "\"font_file_small\"",
+                    fileName: request.FontFileSmallname != null ? $"\"{request.FontFileSmallname}\"" : string.Empty);
+                if (__contentFontFileSmall.Headers.ContentDisposition != null)
+                {
+                    __contentFontFileSmall.Headers.ContentDisposition.FileNameStar = null;
+                }
+            } 
+            if (request.FontNameSmall != default)
+            {
+
+                __httpRequestContent.Add(
+                    content: new global::System.Net.Http.StringContent($"{request.FontNameSmall}"),
+                    name: "\"font_name_small\"");
             } 
             if (request.ReferenceAssetImages != default)
             {
@@ -335,15 +395,42 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
-        /// <param name="requestedFontFile">
-        /// A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.<br/>
-        /// Example: Ubuntu-Regular.ttf
+        /// <param name="fontFileH1">
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </param>
-        /// <param name="uploadedFontFile">
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// <param name="fontFileH1name">
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </param>
-        /// <param name="uploadedFontFilename">
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// <param name="fontNameH1">
+        /// Font name from the available font library for H1 text. Ignored if font_file_h1 is provided.<br/>
+        /// Example: Ubuntu-Bold.ttf
+        /// </param>
+        /// <param name="fontFileH2">
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </param>
+        /// <param name="fontFileH2name">
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </param>
+        /// <param name="fontNameH2">
+        /// Font name from the available font library for H2 text. Ignored if font_file_h2 is provided.
+        /// </param>
+        /// <param name="fontFileBody">
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </param>
+        /// <param name="fontFileBodyname">
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </param>
+        /// <param name="fontNameBody">
+        /// Font name from the available font library for body text. Ignored if font_file_body is provided.
+        /// </param>
+        /// <param name="fontFileSmall">
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </param>
+        /// <param name="fontFileSmallname">
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </param>
+        /// <param name="fontNameSmall">
+        /// Font name from the available font library for small text. Ignored if font_file_small is provided.
         /// </param>
         /// <param name="referenceAssetImages">
         /// A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.
@@ -355,9 +442,18 @@ namespace Ideogram
             string flatGraphicImagename,
             string? prompt = default,
             int? seed = default,
-            string? requestedFontFile = default,
-            byte[]? uploadedFontFile = default,
-            string? uploadedFontFilename = default,
+            byte[]? fontFileH1 = default,
+            string? fontFileH1name = default,
+            string? fontNameH1 = default,
+            byte[]? fontFileH2 = default,
+            string? fontFileH2name = default,
+            string? fontNameH2 = default,
+            byte[]? fontFileBody = default,
+            string? fontFileBodyname = default,
+            string? fontNameBody = default,
+            byte[]? fontFileSmall = default,
+            string? fontFileSmallname = default,
+            string? fontNameSmall = default,
             global::System.Collections.Generic.IList<byte[]>? referenceAssetImages = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -367,9 +463,18 @@ namespace Ideogram
                 FlatGraphicImagename = flatGraphicImagename,
                 Prompt = prompt,
                 Seed = seed,
-                RequestedFontFile = requestedFontFile,
-                UploadedFontFile = uploadedFontFile,
-                UploadedFontFilename = uploadedFontFilename,
+                FontFileH1 = fontFileH1,
+                FontFileH1name = fontFileH1name,
+                FontNameH1 = fontNameH1,
+                FontFileH2 = fontFileH2,
+                FontFileH2name = fontFileH2name,
+                FontNameH2 = fontNameH2,
+                FontFileBody = fontFileBody,
+                FontFileBodyname = fontFileBodyname,
+                FontNameBody = fontNameBody,
+                FontFileSmall = fontFileSmall,
+                FontFileSmallname = fontFileSmallname,
+                FontNameSmall = fontNameSmall,
                 ReferenceAssetImages = referenceAssetImages,
             };
 

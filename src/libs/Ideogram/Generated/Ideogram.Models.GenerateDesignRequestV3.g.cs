@@ -118,24 +118,78 @@ namespace Ideogram
         public string? CustomModelUri { get; set; }
 
         /// <summary>
-        /// A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.<br/>
-        /// Example: Ubuntu-Regular.ttf
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </summary>
-        /// <example>Ubuntu-Regular.ttf</example>
-        [global::System.Text.Json.Serialization.JsonPropertyName("requested_font_file")]
-        public string? RequestedFontFile { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_h1")]
+        public byte[]? FontFileH1 { get; set; }
 
         /// <summary>
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("uploaded_font_file")]
-        public byte[]? UploadedFontFile { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_h1name")]
+        public string? FontFileH1name { get; set; }
 
         /// <summary>
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// Font name from the available font library for H1 text. Ignored if font_file_h1 is provided.<br/>
+        /// Example: Ubuntu-Bold.ttf
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("uploaded_font_filename")]
-        public string? UploadedFontFilename { get; set; }
+        /// <example>Ubuntu-Bold.ttf</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_name_h1")]
+        public string? FontNameH1 { get; set; }
+
+        /// <summary>
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_h2")]
+        public byte[]? FontFileH2 { get; set; }
+
+        /// <summary>
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_h2name")]
+        public string? FontFileH2name { get; set; }
+
+        /// <summary>
+        /// Font name from the available font library for H2 text. Ignored if font_file_h2 is provided.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_name_h2")]
+        public string? FontNameH2 { get; set; }
+
+        /// <summary>
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_body")]
+        public byte[]? FontFileBody { get; set; }
+
+        /// <summary>
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_bodyname")]
+        public string? FontFileBodyname { get; set; }
+
+        /// <summary>
+        /// Font name from the available font library for body text. Ignored if font_file_body is provided.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_name_body")]
+        public string? FontNameBody { get; set; }
+
+        /// <summary>
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_small")]
+        public byte[]? FontFileSmall { get; set; }
+
+        /// <summary>
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_file_smallname")]
+        public string? FontFileSmallname { get; set; }
+
+        /// <summary>
+        /// Font name from the available font library for small text. Ignored if font_file_small is provided.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_name_small")]
+        public string? FontNameSmall { get; set; }
 
         /// <summary>
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
@@ -211,15 +265,42 @@ namespace Ideogram
         /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
         /// Example: model/my-custom-model/version/1
         /// </param>
-        /// <param name="requestedFontFile">
-        /// A font name from the available font library to use for text rendering. When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with uploaded_font_file.<br/>
-        /// Example: Ubuntu-Regular.ttf
+        /// <param name="fontFileH1">
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </param>
-        /// <param name="uploadedFontFile">
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// <param name="fontFileH1name">
+        /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
         /// </param>
-        /// <param name="uploadedFontFilename">
-        /// A custom font file to use for text rendering. Supported formats are .ttf, .otf, .woff, and .woff2 (max size 5MB). When provided, font matching is skipped and this font is used for all text layers. Cannot be used together with requested_font_file.
+        /// <param name="fontNameH1">
+        /// Font name from the available font library for H1 text. Ignored if font_file_h1 is provided.<br/>
+        /// Example: Ubuntu-Bold.ttf
+        /// </param>
+        /// <param name="fontFileH2">
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </param>
+        /// <param name="fontFileH2name">
+        /// Custom font file for H2 (subheading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h2.
+        /// </param>
+        /// <param name="fontNameH2">
+        /// Font name from the available font library for H2 text. Ignored if font_file_h2 is provided.
+        /// </param>
+        /// <param name="fontFileBody">
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </param>
+        /// <param name="fontFileBodyname">
+        /// Custom font file for body text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_body.
+        /// </param>
+        /// <param name="fontNameBody">
+        /// Font name from the available font library for body text. Ignored if font_file_body is provided.
+        /// </param>
+        /// <param name="fontFileSmall">
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </param>
+        /// <param name="fontFileSmallname">
+        /// Custom font file for small/caption text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_small.
+        /// </param>
+        /// <param name="fontNameSmall">
+        /// Font name from the available font library for small text. Ignored if font_file_small is provided.
         /// </param>
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
@@ -244,9 +325,18 @@ namespace Ideogram
             global::Ideogram.StyleTypeV3? styleType,
             global::Ideogram.StylePresetV3? stylePreset,
             string? customModelUri,
-            string? requestedFontFile,
-            byte[]? uploadedFontFile,
-            string? uploadedFontFilename,
+            byte[]? fontFileH1,
+            string? fontFileH1name,
+            string? fontNameH1,
+            byte[]? fontFileH2,
+            string? fontFileH2name,
+            string? fontNameH2,
+            byte[]? fontFileBody,
+            string? fontFileBodyname,
+            string? fontNameBody,
+            byte[]? fontFileSmall,
+            string? fontFileSmallname,
+            string? fontNameSmall,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             global::System.Collections.Generic.IList<byte[]>? referenceAssetImages)
         {
@@ -263,9 +353,18 @@ namespace Ideogram
             this.StyleType = styleType;
             this.StylePreset = stylePreset;
             this.CustomModelUri = customModelUri;
-            this.RequestedFontFile = requestedFontFile;
-            this.UploadedFontFile = uploadedFontFile;
-            this.UploadedFontFilename = uploadedFontFilename;
+            this.FontFileH1 = fontFileH1;
+            this.FontFileH1name = fontFileH1name;
+            this.FontNameH1 = fontNameH1;
+            this.FontFileH2 = fontFileH2;
+            this.FontFileH2name = fontFileH2name;
+            this.FontNameH2 = fontNameH2;
+            this.FontFileBody = fontFileBody;
+            this.FontFileBodyname = fontFileBodyname;
+            this.FontNameBody = fontNameBody;
+            this.FontFileSmall = fontFileSmall;
+            this.FontFileSmallname = fontFileSmallname;
+            this.FontNameSmall = fontNameSmall;
             this.StyleReferenceImages = styleReferenceImages;
             this.ReferenceAssetImages = referenceAssetImages;
         }
