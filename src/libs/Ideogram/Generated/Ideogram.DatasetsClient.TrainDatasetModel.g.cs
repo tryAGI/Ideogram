@@ -295,11 +295,11 @@ namespace Ideogram
         /// </param>
         /// <param name="ema">
         /// Exponential moving average decay rate. Must be greater than 0.<br/>
-        /// Example: 0.999
+        /// Example: 0.999F
         /// </param>
         /// <param name="learningRate">
         /// Learning rate for the optimizer. Must be greater than 0.<br/>
-        /// Example: 0.0001
+        /// Example: 0.0001F
         /// </param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>

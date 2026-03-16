@@ -19,9 +19,9 @@ namespace Ideogram
 
         /// <summary>
         /// The weight of the color in the color palette.<br/>
-        /// Example: 0.25
+        /// Example: 0.25F
         /// </summary>
-        /// <example>0.25</example>
+        /// <example>0.25F</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_weight")]
         public double? ColorWeight { get; set; }
 
@@ -40,7 +40,7 @@ namespace Ideogram
         /// </param>
         /// <param name="colorWeight">
         /// The weight of the color in the color palette.<br/>
-        /// Example: 0.25
+        /// Example: 0.25F
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

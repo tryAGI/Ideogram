@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"successful_assets":[{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name"},{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name"}],"total_count":0,"failed_assets":[{"file_name":"file_name","failure_reason":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"},{"file_name":"file_name","failure_reason":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"}],"success_count":6,"failure_count":1}
+    /// Example: {"successful_assets":[{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name"},{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name"}],"total_count":0,"failed_assets":[{"file_name":"file_name","failure_reason":null},{"file_name":"file_name","failure_reason":null}],"success_count":6,"failure_count":1}
     /// </summary>
     public sealed partial class UploadDatasetAssetsResponse
     {
