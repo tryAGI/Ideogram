@@ -1,7 +1,10 @@
 site_name: Ideogram .NET Documentation
 nav:
 - Overview: index.md
-# EXAMPLES #
+# EXAMPLES:START
+- Examples:
+  - GenerateImage: samples/GenerateImage.md
+# EXAMPLES:END
         
 theme:
   name: material
