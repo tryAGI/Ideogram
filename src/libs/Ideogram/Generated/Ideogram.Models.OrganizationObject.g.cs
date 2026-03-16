@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// An organization object<br/>
-    /// Example: {"role":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464","publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"}
+    /// Example: {"role":null,"publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":null}
     /// </summary>
     public sealed partial class OrganizationObject
     {

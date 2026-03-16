@@ -43,17 +43,17 @@ namespace Ideogram
 
         /// <summary>
         /// Exponential moving average decay rate. Must be greater than 0.<br/>
-        /// Example: 0.999
+        /// Example: 0.999F
         /// </summary>
-        /// <example>0.999</example>
+        /// <example>0.999F</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("ema")]
         public double? Ema { get; set; }
 
         /// <summary>
         /// Learning rate for the optimizer. Must be greater than 0.<br/>
-        /// Example: 0.0001
+        /// Example: 0.0001F
         /// </summary>
-        /// <example>0.0001</example>
+        /// <example>0.0001F</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("learning_rate")]
         public double? LearningRate { get; set; }
 
@@ -84,11 +84,11 @@ namespace Ideogram
         /// </param>
         /// <param name="ema">
         /// Exponential moving average decay rate. Must be greater than 0.<br/>
-        /// Example: 0.999
+        /// Example: 0.999F
         /// </param>
         /// <param name="learningRate">
         /// Learning rate for the optimizer. Must be greater than 0.<br/>
-        /// Example: 0.0001
+        /// Example: 0.0001F
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

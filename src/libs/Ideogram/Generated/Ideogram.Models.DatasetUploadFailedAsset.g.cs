@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"file_name":"file_name","failure_reason":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"}
+    /// Example: {"file_name":"file_name","failure_reason":null}
     /// </summary>
     public sealed partial class DatasetUploadFailedAsset
     {

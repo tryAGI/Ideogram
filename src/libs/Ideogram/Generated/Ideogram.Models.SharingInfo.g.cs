@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"updated_time":"2000-01-23T04:56:07\u002B00:00","organization":{"role":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464","publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"},"permission":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464","user":{"badge":"badge","subscription_plan_id":"subscription_plan_id","display_handle":"display_handle","user_id":"user_id","photo_url":"photo_url"}}
+    /// Example: {"updated_time":"2000-01-23T04:56:07\u002B00:00","organization":{"role":null,"publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":null},"permission":null,"user":{"badge":"badge","subscription_plan_id":"subscription_plan_id","display_handle":"display_handle","user_id":"user_id","photo_url":"photo_url"}}
     /// </summary>
     public sealed partial class SharingInfo
     {
@@ -25,9 +25,9 @@ namespace Ideogram
 
         /// <summary>
         /// An organization object<br/>
-        /// Example: {"role":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464","publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"}
+        /// Example: {"role":null,"publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":null}
         /// </summary>
-        /// <example>{"role":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464","publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"}</example>
+        /// <example>{"role":null,"publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":null}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("organization")]
         public global::Ideogram.OrganizationObject? Organization { get; set; }
 
@@ -55,7 +55,7 @@ namespace Ideogram
         /// </param>
         /// <param name="organization">
         /// An organization object<br/>
-        /// Example: {"role":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464","publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":"openapi-json-null-sentinel-value-2BF93600-0FE4-4250-987A-E5DDB203E464"}
+        /// Example: {"role":null,"publishing_disabled":true,"organization_id":"organization_id","name":"name","avatar":{"avatar_url":"avatar_url"},"type":null}
         /// </param>
         /// <param name="user">
         /// Example: {"badge":"badge","subscription_plan_id":"subscription_plan_id","display_handle":"display_handle","user_id":"user_id","photo_url":"photo_url"}
