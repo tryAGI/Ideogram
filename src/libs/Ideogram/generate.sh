@@ -1,7 +1,8 @@
+set -e
 dotnet tool install --global autosdk.cli --prerelease
 rm -rf Generated
-curl -o openapi.yaml https://api.ideogram.ai/openapi.json
-autosdk generate openapi.yaml \
+curl --fail --silent --show-error https://api.ideogram.ai/openapi.json | jq . > openapi.json
+autosdk generate openapi.json \
   --namespace Ideogram \
   --clientClassName IdeogramClient \
   --targetFramework net10.0 \
