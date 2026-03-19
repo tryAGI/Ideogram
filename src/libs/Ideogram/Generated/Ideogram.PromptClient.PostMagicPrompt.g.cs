@@ -95,9 +95,18 @@ namespace Ideogram
             if (request.CharacterReferenceImages != default)
             {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImages, x => x))}]"),
-                    name: "\"character_reference_images\"");
+                for (var __iCharacterReferenceImages = 0; __iCharacterReferenceImages < request.CharacterReferenceImages.Count; __iCharacterReferenceImages++)
+                {
+                    var __contentCharacterReferenceImages = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImages[__iCharacterReferenceImages]);
+                    __httpRequestContent.Add(
+                        content: __contentCharacterReferenceImages,
+                        name: "\"character_reference_images\"",
+                        fileName: $"\"file{__iCharacterReferenceImages}.bin\"");
+                    if (__contentCharacterReferenceImages.Headers.ContentDisposition != null)
+                    {
+                        __contentCharacterReferenceImages.Headers.ContentDisposition.FileNameStar = null;
+                    }
+                }
             } 
             if (request.SystemPrompt != default)
             {

@@ -178,9 +178,18 @@ namespace Ideogram
             if (request.ReferenceAssetImages != default)
             {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.ReferenceAssetImages, x => x))}]"),
-                    name: "\"reference_asset_images\"");
+                for (var __iReferenceAssetImages = 0; __iReferenceAssetImages < request.ReferenceAssetImages.Count; __iReferenceAssetImages++)
+                {
+                    var __contentReferenceAssetImages = new global::System.Net.Http.ByteArrayContent(request.ReferenceAssetImages[__iReferenceAssetImages]);
+                    __httpRequestContent.Add(
+                        content: __contentReferenceAssetImages,
+                        name: "\"reference_asset_images\"",
+                        fileName: $"\"file{__iReferenceAssetImages}.bin\"");
+                    if (__contentReferenceAssetImages.Headers.ContentDisposition != null)
+                    {
+                        __contentReferenceAssetImages.Headers.ContentDisposition.FileNameStar = null;
+                    }
+                }
             }
             __httpRequest.Content = __httpRequestContent;
 

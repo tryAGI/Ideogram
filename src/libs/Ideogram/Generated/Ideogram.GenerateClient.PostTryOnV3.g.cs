@@ -131,9 +131,18 @@ namespace Ideogram
                     content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
                     name: "\"style_preset\"");
             }
-            __httpRequestContent.Add(
-                content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.ProductReferenceImages, x => x))}]"),
-                name: "\"product_reference_images\"");
+            for (var __iProductReferenceImages = 0; __iProductReferenceImages < request.ProductReferenceImages.Count; __iProductReferenceImages++)
+            {
+                var __contentProductReferenceImages = new global::System.Net.Http.ByteArrayContent(request.ProductReferenceImages[__iProductReferenceImages]);
+                __httpRequestContent.Add(
+                    content: __contentProductReferenceImages,
+                    name: "\"product_reference_images\"",
+                    fileName: $"\"file{__iProductReferenceImages}.bin\"");
+                if (__contentProductReferenceImages.Headers.ContentDisposition != null)
+                {
+                    __contentProductReferenceImages.Headers.ContentDisposition.FileNameStar = null;
+                }
+            }
             __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(

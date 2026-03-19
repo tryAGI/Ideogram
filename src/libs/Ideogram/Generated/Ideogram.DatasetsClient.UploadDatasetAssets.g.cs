@@ -77,9 +77,18 @@ namespace Ideogram
             __httpRequestContent.Add(
                 content: new global::System.Net.Http.StringContent($"{datasetId}"),
                 name: "\"dataset_id\"");
-            __httpRequestContent.Add(
-                content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.Files, x => x))}]"),
-                name: "\"files\"");
+            for (var __iFiles = 0; __iFiles < request.Files.Count; __iFiles++)
+            {
+                var __contentFiles = new global::System.Net.Http.ByteArrayContent(request.Files[__iFiles]);
+                __httpRequestContent.Add(
+                    content: __contentFiles,
+                    name: "\"files\"",
+                    fileName: $"\"file{__iFiles}.bin\"");
+                if (__contentFiles.Headers.ContentDisposition != null)
+                {
+                    __contentFiles.Headers.ContentDisposition.FileNameStar = null;
+                }
+            }
             __httpRequest.Content = __httpRequestContent;
 
             PrepareRequest(
