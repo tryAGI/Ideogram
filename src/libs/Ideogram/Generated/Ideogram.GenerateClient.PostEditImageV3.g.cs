@@ -159,23 +159,50 @@ namespace Ideogram
             if (request.StyleReferenceImages != default)
             {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleReferenceImages, x => x))}]"),
-                    name: "\"style_reference_images\"");
+                for (var __iStyleReferenceImages = 0; __iStyleReferenceImages < request.StyleReferenceImages.Count; __iStyleReferenceImages++)
+                {
+                    var __contentStyleReferenceImages = new global::System.Net.Http.ByteArrayContent(request.StyleReferenceImages[__iStyleReferenceImages]);
+                    __httpRequestContent.Add(
+                        content: __contentStyleReferenceImages,
+                        name: "\"style_reference_images\"",
+                        fileName: $"\"file{__iStyleReferenceImages}.bin\"");
+                    if (__contentStyleReferenceImages.Headers.ContentDisposition != null)
+                    {
+                        __contentStyleReferenceImages.Headers.ContentDisposition.FileNameStar = null;
+                    }
+                }
             } 
             if (request.CharacterReferenceImages != default)
             {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImages, x => x))}]"),
-                    name: "\"character_reference_images\"");
+                for (var __iCharacterReferenceImages = 0; __iCharacterReferenceImages < request.CharacterReferenceImages.Count; __iCharacterReferenceImages++)
+                {
+                    var __contentCharacterReferenceImages = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImages[__iCharacterReferenceImages]);
+                    __httpRequestContent.Add(
+                        content: __contentCharacterReferenceImages,
+                        name: "\"character_reference_images\"",
+                        fileName: $"\"file{__iCharacterReferenceImages}.bin\"");
+                    if (__contentCharacterReferenceImages.Headers.ContentDisposition != null)
+                    {
+                        __contentCharacterReferenceImages.Headers.ContentDisposition.FileNameStar = null;
+                    }
+                }
             } 
             if (request.CharacterReferenceImagesMask != default)
             {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.CharacterReferenceImagesMask, x => x))}]"),
-                    name: "\"character_reference_images_mask\"");
+                for (var __iCharacterReferenceImagesMask = 0; __iCharacterReferenceImagesMask < request.CharacterReferenceImagesMask.Count; __iCharacterReferenceImagesMask++)
+                {
+                    var __contentCharacterReferenceImagesMask = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImagesMask[__iCharacterReferenceImagesMask]);
+                    __httpRequestContent.Add(
+                        content: __contentCharacterReferenceImagesMask,
+                        name: "\"character_reference_images_mask\"",
+                        fileName: $"\"file{__iCharacterReferenceImagesMask}.bin\"");
+                    if (__contentCharacterReferenceImagesMask.Headers.ContentDisposition != null)
+                    {
+                        __contentCharacterReferenceImagesMask.Headers.ContentDisposition.FileNameStar = null;
+                    }
+                }
             }
             __httpRequest.Content = __httpRequestContent;
 
