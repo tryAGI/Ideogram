@@ -6,8 +6,9 @@ public partial class Tests
     public IdeogramClient GetAuthenticatedClient()
     {
         var apiKey =
-            Environment.GetEnvironmentVariable("IDEOGRAM_API_KEY") ??
-            throw new AssertInconclusiveException("IDEOGRAM_API_KEY environment variable is not found.");
+            Environment.GetEnvironmentVariable("IDEOGRAM_API_KEY") is { Length: > 0 } apiKeyValue
+                ? apiKeyValue
+                : throw new AssertInconclusiveException("IDEOGRAM_API_KEY environment variable is not found.");
 
         var api = new IdeogramClient(apiKey);
         
