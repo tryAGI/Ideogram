@@ -23,8 +23,8 @@ public partial class Tests
             ClassifyPromptCategory = true,
         });
 
-        Console.WriteLine($"Enhanced prompt: {response.Prompt}");
+        Console.WriteLine($"Enhanced prompt: {response.MagicPrompt}");
 
-        response.Prompt.Should().NotBeNullOrEmpty();
+        response.MagicPrompt.Should().NotBeNullOrEmpty();
     }
 }
