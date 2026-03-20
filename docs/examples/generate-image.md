@@ -1,3 +1,9 @@
+# Generate Image
+
+
+
+This example assumes `using Ideogram;` is in scope and `apiKey` contains your Ideogram API key.
+
 ```csharp
 using var api = new IdeogramClient(apiKey);
 

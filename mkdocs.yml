@@ -3,7 +3,9 @@ nav:
 - Overview: index.md
 # EXAMPLES:START
 - Examples:
-  - GenerateImage: samples/GenerateImage.md
+  - Generate Image: examples/generate-image.md
+  - Magic Prompt: examples/magic-prompt.md
+  - Describe Image: examples/describe-image.md
 # EXAMPLES:END
         
 theme:
