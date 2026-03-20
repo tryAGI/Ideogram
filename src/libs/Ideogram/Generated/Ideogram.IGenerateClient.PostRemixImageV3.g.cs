@@ -18,7 +18,6 @@ namespace Ideogram
 
             global::Ideogram.RemixImageRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Remix with Ideogram 3.0<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.<br/>

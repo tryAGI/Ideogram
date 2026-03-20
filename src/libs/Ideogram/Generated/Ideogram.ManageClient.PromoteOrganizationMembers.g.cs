@@ -320,7 +320,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Promote members to OWNER role in a specific organization
         /// </summary>

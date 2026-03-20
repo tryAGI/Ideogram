@@ -318,7 +318,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Generate (legacy)<br/>
         /// Generates images synchronously based on a given prompt and optional parameters.<br/>

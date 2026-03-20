@@ -16,7 +16,6 @@ namespace Ideogram
 
             global::Ideogram.DescribeRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Describe<br/>
         /// Describe an image.<br/>

@@ -313,7 +313,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Initiate Batch Magic Prompt Evalution<br/>
         /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>

@@ -18,7 +18,6 @@ namespace Ideogram
 
             global::Ideogram.LayerizeDesignRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Layerize an existing flat graphic image with text detection and correction<br/>
         /// Processes an existing flat graphic image to detect and correct text layers without generating a new image from scratch.<br/>

@@ -320,7 +320,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Add members to a specific organization
         /// </summary>

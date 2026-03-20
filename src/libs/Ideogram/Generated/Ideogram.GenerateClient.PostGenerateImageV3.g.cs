@@ -449,7 +449,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Generate with Ideogram 3.0<br/>
         /// Generates images synchronously based on a given prompt and optional parameters using the Ideogram 3.0 model.<br/>

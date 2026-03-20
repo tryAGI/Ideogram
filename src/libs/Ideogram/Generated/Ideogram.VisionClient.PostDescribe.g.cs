@@ -297,7 +297,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Describe<br/>
         /// Describe an image.<br/>

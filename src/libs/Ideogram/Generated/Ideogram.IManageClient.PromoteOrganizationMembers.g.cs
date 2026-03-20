@@ -16,7 +16,6 @@ namespace Ideogram
 
             global::Ideogram.PromoteOrganizationMembersRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Promote members to OWNER role in a specific organization
         /// </summary>

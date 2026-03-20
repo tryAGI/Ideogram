@@ -18,7 +18,6 @@ namespace Ideogram
 
             global::Ideogram.EditImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Edit (legacy)<br/>
         /// Edit a given image synchronously using the provided mask. The mask indicates which part of the image<br/>

@@ -387,7 +387,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Virtual Try-On with Ideogram 3.0<br/>
         /// Performs virtual clothing try-on by automatically segmenting the clothing in the provided image<br/>

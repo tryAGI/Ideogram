@@ -16,7 +16,6 @@ namespace Ideogram
 
             global::Ideogram.GenerateImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Generate (legacy)<br/>
         /// Generates images synchronously based on a given prompt and optional parameters.<br/>

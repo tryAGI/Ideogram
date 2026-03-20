@@ -354,7 +354,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Generate Magic Prompt<br/>
         /// Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.

@@ -296,7 +296,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Upload assets to a dataset<br/>
         /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions.

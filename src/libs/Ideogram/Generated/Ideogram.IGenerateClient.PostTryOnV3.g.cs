@@ -19,7 +19,6 @@ namespace Ideogram
 
             global::Ideogram.TryOnRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Virtual Try-On with Ideogram 3.0<br/>
         /// Performs virtual clothing try-on by automatically segmenting the clothing in the provided image<br/>

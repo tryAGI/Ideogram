@@ -14,7 +14,6 @@ namespace Ideogram
 
             global::Ideogram.PostApiSubscriptionRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Update API subscription settings
         /// </summary>

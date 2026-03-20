@@ -328,7 +328,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Remix (legacy)<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters.<br/>

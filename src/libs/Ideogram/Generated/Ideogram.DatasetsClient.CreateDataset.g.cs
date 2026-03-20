@@ -246,7 +246,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Create a new dataset<br/>
         /// Creates a new dataset

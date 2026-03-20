@@ -18,7 +18,6 @@ namespace Ideogram
 
             global::Ideogram.RemixImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Remix (legacy)<br/>
         /// Remix provided images synchronously based on a given prompt and optional parameters.<br/>

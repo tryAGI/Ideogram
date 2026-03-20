@@ -327,7 +327,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>

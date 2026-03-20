@@ -368,7 +368,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Edit (legacy)<br/>
         /// Edit a given image synchronously using the provided mask. The mask indicates which part of the image<br/>

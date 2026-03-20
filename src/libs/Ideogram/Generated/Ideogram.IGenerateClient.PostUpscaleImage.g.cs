@@ -17,7 +17,6 @@ namespace Ideogram
 
             global::Ideogram.UpscaleImageRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Upscale<br/>
         /// Upscale provided images synchronously with an optional prompt.<br/>

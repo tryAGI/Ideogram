@@ -320,7 +320,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Remove members from a specific organization
         /// </summary>
