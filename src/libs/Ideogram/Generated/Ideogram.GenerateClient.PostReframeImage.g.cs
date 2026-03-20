@@ -350,7 +350,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Reframe (legacy)<br/>
         /// Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.<br/>

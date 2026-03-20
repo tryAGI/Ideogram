@@ -15,7 +15,6 @@ namespace Ideogram
 
             global::Ideogram.MagicPromptRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Generate Magic Prompt<br/>
         /// Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.

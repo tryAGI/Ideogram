@@ -393,7 +393,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Replace Background with Ideogram 3.0<br/>
         /// Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject<br/>

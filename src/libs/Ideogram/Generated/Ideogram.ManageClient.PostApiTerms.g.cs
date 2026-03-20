@@ -263,7 +263,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Accept terms
         /// </summary>

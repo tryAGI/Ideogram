@@ -283,7 +283,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Add credits to an API user's account.
         /// </summary>

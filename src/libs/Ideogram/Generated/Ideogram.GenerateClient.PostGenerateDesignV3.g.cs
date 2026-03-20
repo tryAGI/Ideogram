@@ -514,7 +514,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Generate a design from a text prompt with text detection and correction<br/>
         /// Generates a design synchronously from a text prompt using the Ideogram 3.0 model, then detects and corrects text layers within the generated image.<br/>

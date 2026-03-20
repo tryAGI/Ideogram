@@ -448,7 +448,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Edit with Ideogram 3.0<br/>
         /// Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image<br/>

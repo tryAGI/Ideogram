@@ -19,7 +19,6 @@ namespace Ideogram
             string? xTestHeader = default,
             string? xTestHeader2 = default,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Testing<br/>
         /// Just a testing endpoint

@@ -17,7 +17,6 @@ namespace Ideogram
 
             global::Ideogram.TrainDatasetModelRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Train a model from a dataset<br/>
         /// Start training a custom model from a dataset. The dataset must contain at least 5 images. Returns the model ID and training status.

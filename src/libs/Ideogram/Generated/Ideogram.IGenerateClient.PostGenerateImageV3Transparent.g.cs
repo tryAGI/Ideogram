@@ -19,7 +19,6 @@ namespace Ideogram
 
             global::Ideogram.GenerateTransparentImageRequestV3 request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Generate with Ideogram 3.0 (Transparent Background)<br/>
         /// Generates images with transparent background synchronously based on a given prompt and optional parameters using<br/>

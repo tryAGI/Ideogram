@@ -14,7 +14,6 @@ namespace Ideogram
 
             global::Ideogram.PostAddCreditsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Add credits to an API user's account.
         /// </summary>

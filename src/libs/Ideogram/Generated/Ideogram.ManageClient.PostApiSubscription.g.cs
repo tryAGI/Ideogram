@@ -283,7 +283,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Update API subscription settings
         /// </summary>

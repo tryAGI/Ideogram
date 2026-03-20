@@ -15,7 +15,6 @@ namespace Ideogram
 
             global::Ideogram.CreateDatasetRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Create a new dataset<br/>
         /// Creates a new dataset

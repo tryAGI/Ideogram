@@ -304,7 +304,6 @@ namespace Ideogram
                 }
             }
         }
-
         /// <summary>
         /// Testing<br/>
         /// Just a testing endpoint

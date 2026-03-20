@@ -16,7 +16,6 @@ namespace Ideogram
 
             global::Ideogram.InternalBatchRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Initiate Batch Magic Prompt Evalution<br/>
         /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>

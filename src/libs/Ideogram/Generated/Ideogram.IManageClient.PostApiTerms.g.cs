@@ -14,7 +14,6 @@ namespace Ideogram
 
             global::Ideogram.PostApiTermsRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Accept terms
         /// </summary>

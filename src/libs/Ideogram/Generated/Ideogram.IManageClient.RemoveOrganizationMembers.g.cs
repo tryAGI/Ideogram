@@ -16,7 +16,6 @@ namespace Ideogram
 
             global::Ideogram.RemoveOrganizationMembersRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Remove members from a specific organization
         /// </summary>

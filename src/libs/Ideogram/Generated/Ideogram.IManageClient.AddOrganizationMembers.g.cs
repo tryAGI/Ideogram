@@ -16,7 +16,6 @@ namespace Ideogram
 
             global::Ideogram.AddOrganizationMembersRequest request,
             global::System.Threading.CancellationToken cancellationToken = default);
-
         /// <summary>
         /// Add members to a specific organization
         /// </summary>
