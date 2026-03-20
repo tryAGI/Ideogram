@@ -6,6 +6,9 @@ nav:
   - Generate Image: examples/generate-image.md
   - Magic Prompt: examples/magic-prompt.md
   - Describe Image: examples/describe-image.md
+  - Remix Image: examples/remix-image.md
+  - Upscale Image: examples/upscale-image.md
+  - Edit Image: examples/edit-image.md
 # EXAMPLES:END
         
 theme:
