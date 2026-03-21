@@ -47,7 +47,7 @@ namespace Ideogram
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddRequiredParameter("organization_id", organizationId)
-                .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString()) 
+                .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString().ToLowerInvariant()) 
                 ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(

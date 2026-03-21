@@ -41,7 +41,7 @@ namespace Ideogram
                 path: "/manage/api/stripe_subscription",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
-                .AddOptionalParameter("isBusiness", isBusiness?.ToString()) 
+                .AddOptionalParameter("isBusiness", isBusiness?.ToString().ToLowerInvariant()) 
                 ; 
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
