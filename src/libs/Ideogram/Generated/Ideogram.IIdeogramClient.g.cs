@@ -41,24 +41,9 @@ namespace Ideogram
 
 
         /// <summary>
-        /// All things related to generating content.
+        /// 
         /// </summary>
-        public GenerateClient Generate { get; }
-
-        /// <summary>
-        /// Content related to managing API account and API access
-        /// </summary>
-        public ManageClient Manage { get; }
-
-        /// <summary>
-        /// Operations related to understanding visual content
-        /// </summary>
-        public VisionClient Vision { get; }
-
-        /// <summary>
-        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
-        /// </summary>
-        public InternalTestingClient InternalTesting { get; }
+        public BatchClient Batch { get; }
 
         /// <summary>
         /// Operations related to managing datasets
@@ -66,14 +51,29 @@ namespace Ideogram
         public DatasetsClient Datasets { get; }
 
         /// <summary>
-        /// 
+        /// All things related to generating content.
         /// </summary>
-        public BatchClient Batch { get; }
+        public GenerateClient Generate { get; }
+
+        /// <summary>
+        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
+        /// </summary>
+        public InternalTestingClient InternalTesting { get; }
+
+        /// <summary>
+        /// Content related to managing API account and API access
+        /// </summary>
+        public ManageClient Manage { get; }
 
         /// <summary>
         /// 
         /// </summary>
         public PromptClient Prompt { get; }
+
+        /// <summary>
+        /// Operations related to understanding visual content
+        /// </summary>
+        public VisionClient Vision { get; }
 
     }
 }
