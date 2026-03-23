@@ -11,6 +11,10 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        AllCaps,
+        /// <summary>
+        /// 
+        /// </summary>
         Bold,
         /// <summary>
         /// 
@@ -19,7 +23,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Underline,
+        SmallCaps,
         /// <summary>
         /// 
         /// </summary>
@@ -27,11 +31,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        AllCaps,
-        /// <summary>
-        /// 
-        /// </summary>
-        SmallCaps,
+        Subscript,
         /// <summary>
         /// 
         /// </summary>
@@ -39,7 +39,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Subscript,
+        Underline,
     }
 
     /// <summary>
@@ -54,14 +54,14 @@ namespace Ideogram
         {
             return value switch
             {
+                TextSpanV3FontFxItem.AllCaps => "all_caps",
                 TextSpanV3FontFxItem.Bold => "bold",
                 TextSpanV3FontFxItem.Italic => "italic",
-                TextSpanV3FontFxItem.Underline => "underline",
-                TextSpanV3FontFxItem.Strikethrough => "strikethrough",
-                TextSpanV3FontFxItem.AllCaps => "all_caps",
                 TextSpanV3FontFxItem.SmallCaps => "small_caps",
-                TextSpanV3FontFxItem.Superscript => "superscript",
+                TextSpanV3FontFxItem.Strikethrough => "strikethrough",
                 TextSpanV3FontFxItem.Subscript => "subscript",
+                TextSpanV3FontFxItem.Superscript => "superscript",
+                TextSpanV3FontFxItem.Underline => "underline",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -72,14 +72,14 @@ namespace Ideogram
         {
             return value switch
             {
+                "all_caps" => TextSpanV3FontFxItem.AllCaps,
                 "bold" => TextSpanV3FontFxItem.Bold,
                 "italic" => TextSpanV3FontFxItem.Italic,
-                "underline" => TextSpanV3FontFxItem.Underline,
-                "strikethrough" => TextSpanV3FontFxItem.Strikethrough,
-                "all_caps" => TextSpanV3FontFxItem.AllCaps,
                 "small_caps" => TextSpanV3FontFxItem.SmallCaps,
-                "superscript" => TextSpanV3FontFxItem.Superscript,
+                "strikethrough" => TextSpanV3FontFxItem.Strikethrough,
                 "subscript" => TextSpanV3FontFxItem.Subscript,
+                "superscript" => TextSpanV3FontFxItem.Superscript,
+                "underline" => TextSpanV3FontFxItem.Underline,
                 _ => null,
             };
         }

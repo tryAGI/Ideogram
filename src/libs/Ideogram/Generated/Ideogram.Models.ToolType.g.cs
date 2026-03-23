@@ -12,11 +12,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Generate,
-        /// <summary>
-        /// 
-        /// </summary>
-        Remix,
+        Describe,
         /// <summary>
         /// 
         /// </summary>
@@ -24,15 +20,19 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Upscale,
-        /// <summary>
-        /// 
-        /// </summary>
-        Describe,
+        Generate,
         /// <summary>
         /// 
         /// </summary>
         Other,
+        /// <summary>
+        /// 
+        /// </summary>
+        Remix,
+        /// <summary>
+        /// 
+        /// </summary>
+        Upscale,
     }
 
     /// <summary>
@@ -47,12 +47,12 @@ namespace Ideogram
         {
             return value switch
             {
-                ToolType.Generate => "GENERATE",
-                ToolType.Remix => "REMIX",
-                ToolType.Edit => "EDIT",
-                ToolType.Upscale => "UPSCALE",
                 ToolType.Describe => "DESCRIBE",
+                ToolType.Edit => "EDIT",
+                ToolType.Generate => "GENERATE",
                 ToolType.Other => "OTHER",
+                ToolType.Remix => "REMIX",
+                ToolType.Upscale => "UPSCALE",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -63,12 +63,12 @@ namespace Ideogram
         {
             return value switch
             {
-                "GENERATE" => ToolType.Generate,
-                "REMIX" => ToolType.Remix,
-                "EDIT" => ToolType.Edit,
-                "UPSCALE" => ToolType.Upscale,
                 "DESCRIBE" => ToolType.Describe,
+                "EDIT" => ToolType.Edit,
+                "GENERATE" => ToolType.Generate,
                 "OTHER" => ToolType.Other,
+                "REMIX" => ToolType.Remix,
+                "UPSCALE" => ToolType.Upscale,
                 _ => null,
             };
         }

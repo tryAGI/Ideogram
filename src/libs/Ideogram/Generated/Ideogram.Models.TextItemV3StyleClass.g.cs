@@ -12,15 +12,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Body,
+        /// <summary>
+        /// 
+        /// </summary>
         H1,
         /// <summary>
         /// 
         /// </summary>
         H2,
-        /// <summary>
-        /// 
-        /// </summary>
-        Body,
         /// <summary>
         /// 
         /// </summary>
@@ -39,9 +39,9 @@ namespace Ideogram
         {
             return value switch
             {
+                TextItemV3StyleClass.Body => "body",
                 TextItemV3StyleClass.H1 => "h1",
                 TextItemV3StyleClass.H2 => "h2",
-                TextItemV3StyleClass.Body => "body",
                 TextItemV3StyleClass.Small => "small",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -53,9 +53,9 @@ namespace Ideogram
         {
             return value switch
             {
+                "body" => TextItemV3StyleClass.Body,
                 "h1" => TextItemV3StyleClass.H1,
                 "h2" => TextItemV3StyleClass.H2,
-                "body" => TextItemV3StyleClass.Body,
                 "small" => TextItemV3StyleClass.Small,
                 _ => null,
             };

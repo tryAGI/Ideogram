@@ -12,11 +12,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Left,
+        Center,
         /// <summary>
         /// 
         /// </summary>
-        Center,
+        Left,
         /// <summary>
         /// 
         /// </summary>
@@ -35,8 +35,8 @@ namespace Ideogram
         {
             return value switch
             {
-                TextItemV3Alignment.Left => "left",
                 TextItemV3Alignment.Center => "center",
+                TextItemV3Alignment.Left => "left",
                 TextItemV3Alignment.Right => "right",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -48,8 +48,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "left" => TextItemV3Alignment.Left,
                 "center" => TextItemV3Alignment.Center,
+                "left" => TextItemV3Alignment.Left,
                 "right" => TextItemV3Alignment.Right,
                 _ => null,
             };

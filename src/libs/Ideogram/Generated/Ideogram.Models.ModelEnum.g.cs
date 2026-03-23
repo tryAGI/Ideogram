@@ -13,6 +13,10 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Auto,
+        /// <summary>
+        /// 
+        /// </summary>
         V1,
         /// <summary>
         /// 
@@ -25,10 +29,6 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        V2Turbo,
-        /// <summary>
-        /// 
-        /// </summary>
         V2a,
         /// <summary>
         /// 
@@ -37,11 +37,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        V3,
+        V2Turbo,
         /// <summary>
         /// 
         /// </summary>
-        Auto,
+        V3,
     }
 
     /// <summary>
@@ -56,14 +56,14 @@ namespace Ideogram
         {
             return value switch
             {
+                ModelEnum.Auto => "AUTO",
                 ModelEnum.V1 => "V_1",
                 ModelEnum.V1Turbo => "V_1_TURBO",
                 ModelEnum.V2 => "V_2",
-                ModelEnum.V2Turbo => "V_2_TURBO",
                 ModelEnum.V2a => "V_2A",
                 ModelEnum.V2aTurbo => "V_2A_TURBO",
+                ModelEnum.V2Turbo => "V_2_TURBO",
                 ModelEnum.V3 => "V_3",
-                ModelEnum.Auto => "AUTO",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -74,14 +74,14 @@ namespace Ideogram
         {
             return value switch
             {
+                "AUTO" => ModelEnum.Auto,
                 "V_1" => ModelEnum.V1,
                 "V_1_TURBO" => ModelEnum.V1Turbo,
                 "V_2" => ModelEnum.V2,
-                "V_2_TURBO" => ModelEnum.V2Turbo,
                 "V_2A" => ModelEnum.V2a,
                 "V_2A_TURBO" => ModelEnum.V2aTurbo,
+                "V_2_TURBO" => ModelEnum.V2Turbo,
                 "V_3" => ModelEnum.V3,
-                "AUTO" => ModelEnum.Auto,
                 _ => null,
             };
         }

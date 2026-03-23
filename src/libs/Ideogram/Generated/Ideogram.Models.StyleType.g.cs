@@ -12,19 +12,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Anime,
+        /// <summary>
+        /// 
+        /// </summary>
         Auto,
         /// <summary>
         /// 
         /// </summary>
-        General,
-        /// <summary>
-        /// 
-        /// </summary>
-        Fiction,
-        /// <summary>
-        /// 
-        /// </summary>
-        Realistic,
+        Custom,
         /// <summary>
         /// 
         /// </summary>
@@ -32,15 +28,19 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Fiction,
+        /// <summary>
+        /// 
+        /// </summary>
+        General,
+        /// <summary>
+        /// 
+        /// </summary>
+        Realistic,
+        /// <summary>
+        /// 
+        /// </summary>
         Render3d,
-        /// <summary>
-        /// 
-        /// </summary>
-        Anime,
-        /// <summary>
-        /// 
-        /// </summary>
-        Custom,
         /// <summary>
         /// 
         /// </summary>
@@ -59,14 +59,14 @@ namespace Ideogram
         {
             return value switch
             {
-                StyleType.Auto => "AUTO",
-                StyleType.General => "GENERAL",
-                StyleType.Fiction => "FICTION",
-                StyleType.Realistic => "REALISTIC",
-                StyleType.Design => "DESIGN",
-                StyleType.Render3d => "RENDER_3D",
                 StyleType.Anime => "ANIME",
+                StyleType.Auto => "AUTO",
                 StyleType.Custom => "CUSTOM",
+                StyleType.Design => "DESIGN",
+                StyleType.Fiction => "FICTION",
+                StyleType.General => "GENERAL",
+                StyleType.Realistic => "REALISTIC",
+                StyleType.Render3d => "RENDER_3D",
                 StyleType.Stylized => "STYLIZED",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -78,14 +78,14 @@ namespace Ideogram
         {
             return value switch
             {
-                "AUTO" => StyleType.Auto,
-                "GENERAL" => StyleType.General,
-                "FICTION" => StyleType.Fiction,
-                "REALISTIC" => StyleType.Realistic,
-                "DESIGN" => StyleType.Design,
-                "RENDER_3D" => StyleType.Render3d,
                 "ANIME" => StyleType.Anime,
+                "AUTO" => StyleType.Auto,
                 "CUSTOM" => StyleType.Custom,
+                "DESIGN" => StyleType.Design,
+                "FICTION" => StyleType.Fiction,
+                "GENERAL" => StyleType.General,
+                "REALISTIC" => StyleType.Realistic,
+                "RENDER_3D" => StyleType.Render3d,
                 "STYLIZED" => StyleType.Stylized,
                 _ => null,
             };

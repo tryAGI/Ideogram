@@ -11,15 +11,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Enterprise,
+        /// <summary>
+        /// 
+        /// </summary>
         Private,
         /// <summary>
         /// 
         /// </summary>
         Team,
-        /// <summary>
-        /// 
-        /// </summary>
-        Enterprise,
     }
 
     /// <summary>
@@ -34,9 +34,9 @@ namespace Ideogram
         {
             return value switch
             {
+                OrganizationType.Enterprise => "ENTERPRISE",
                 OrganizationType.Private => "PRIVATE",
                 OrganizationType.Team => "TEAM",
-                OrganizationType.Enterprise => "ENTERPRISE",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Ideogram
         {
             return value switch
             {
+                "ENTERPRISE" => OrganizationType.Enterprise,
                 "PRIVATE" => OrganizationType.Private,
                 "TEAM" => OrganizationType.Team,
-                "ENTERPRISE" => OrganizationType.Enterprise,
                 _ => null,
             };
         }

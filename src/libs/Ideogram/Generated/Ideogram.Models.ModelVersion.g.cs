@@ -17,6 +17,26 @@ namespace Ideogram
     public enum ModelVersion
     {
         /// <summary>
+        /// Automatically select the best model version based on the request.
+        /// </summary>
+        Auto,
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalBytedanceSeedance10Pro,
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalGoogleVeo30,
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalMinimaxHailuo02,
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalModel,
+        /// <summary>
         /// 
         /// </summary>
         V01,
@@ -48,26 +68,6 @@ namespace Ideogram
         /// Model 3.0 Latest
         /// </summary>
         V31,
-        /// <summary>
-        /// 
-        /// </summary>
-        ExternalGoogleVeo30,
-        /// <summary>
-        /// 
-        /// </summary>
-        ExternalBytedanceSeedance10Pro,
-        /// <summary>
-        /// 
-        /// </summary>
-        ExternalMinimaxHailuo02,
-        /// <summary>
-        /// 
-        /// </summary>
-        ExternalModel,
-        /// <summary>
-        /// Automatically select the best model version based on the request.
-        /// </summary>
-        Auto,
     }
 
     /// <summary>
@@ -82,6 +82,11 @@ namespace Ideogram
         {
             return value switch
             {
+                ModelVersion.Auto => "AUTO",
+                ModelVersion.ExternalBytedanceSeedance10Pro => "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO",
+                ModelVersion.ExternalGoogleVeo30 => "EXTERNAL_GOOGLE_VEO_3_0",
+                ModelVersion.ExternalMinimaxHailuo02 => "EXTERNAL_MINIMAX_HAILUO_02",
+                ModelVersion.ExternalModel => "EXTERNAL_MODEL",
                 ModelVersion.V01 => "V_0_1",
                 ModelVersion.V02 => "V_0_2",
                 ModelVersion.V03 => "V_0_3",
@@ -90,11 +95,6 @@ namespace Ideogram
                 ModelVersion.V21 => "V_2_1",
                 ModelVersion.V30 => "V_3_0",
                 ModelVersion.V31 => "V_3_1",
-                ModelVersion.ExternalGoogleVeo30 => "EXTERNAL_GOOGLE_VEO_3_0",
-                ModelVersion.ExternalBytedanceSeedance10Pro => "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO",
-                ModelVersion.ExternalMinimaxHailuo02 => "EXTERNAL_MINIMAX_HAILUO_02",
-                ModelVersion.ExternalModel => "EXTERNAL_MODEL",
-                ModelVersion.Auto => "AUTO",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -105,6 +105,11 @@ namespace Ideogram
         {
             return value switch
             {
+                "AUTO" => ModelVersion.Auto,
+                "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO" => ModelVersion.ExternalBytedanceSeedance10Pro,
+                "EXTERNAL_GOOGLE_VEO_3_0" => ModelVersion.ExternalGoogleVeo30,
+                "EXTERNAL_MINIMAX_HAILUO_02" => ModelVersion.ExternalMinimaxHailuo02,
+                "EXTERNAL_MODEL" => ModelVersion.ExternalModel,
                 "V_0_1" => ModelVersion.V01,
                 "V_0_2" => ModelVersion.V02,
                 "V_0_3" => ModelVersion.V03,
@@ -113,11 +118,6 @@ namespace Ideogram
                 "V_2_1" => ModelVersion.V21,
                 "V_3_0" => ModelVersion.V30,
                 "V_3_1" => ModelVersion.V31,
-                "EXTERNAL_GOOGLE_VEO_3_0" => ModelVersion.ExternalGoogleVeo30,
-                "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO" => ModelVersion.ExternalBytedanceSeedance10Pro,
-                "EXTERNAL_MINIMAX_HAILUO_02" => ModelVersion.ExternalMinimaxHailuo02,
-                "EXTERNAL_MODEL" => ModelVersion.ExternalModel,
-                "AUTO" => ModelVersion.Auto,
                 _ => null,
             };
         }
