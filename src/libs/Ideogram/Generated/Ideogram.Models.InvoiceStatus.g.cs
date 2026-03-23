@@ -16,11 +16,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        PendingPayment,
+        Paid,
         /// <summary>
         /// 
         /// </summary>
-        Paid,
+        PendingPayment,
     }
 
     /// <summary>
@@ -36,8 +36,8 @@ namespace Ideogram
             return value switch
             {
                 InvoiceStatus.Draft => "DRAFT",
-                InvoiceStatus.PendingPayment => "PENDING_PAYMENT",
                 InvoiceStatus.Paid => "PAID",
+                InvoiceStatus.PendingPayment => "PENDING_PAYMENT",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -49,8 +49,8 @@ namespace Ideogram
             return value switch
             {
                 "DRAFT" => InvoiceStatus.Draft,
-                "PENDING_PAYMENT" => InvoiceStatus.PendingPayment,
                 "PAID" => InvoiceStatus.Paid,
+                "PENDING_PAYMENT" => InvoiceStatus.PendingPayment,
                 _ => null,
             };
         }

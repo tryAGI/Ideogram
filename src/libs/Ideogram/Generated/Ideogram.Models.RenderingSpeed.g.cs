@@ -12,14 +12,6 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Flash,
-        /// <summary>
-        /// 
-        /// </summary>
-        Turbo,
-        /// <summary>
-        /// 
-        /// </summary>
         Balanced,
         /// <summary>
         /// 
@@ -28,7 +20,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Flash,
+        /// <summary>
+        /// 
+        /// </summary>
         Quality,
+        /// <summary>
+        /// 
+        /// </summary>
+        Turbo,
     }
 
     /// <summary>
@@ -43,11 +43,11 @@ namespace Ideogram
         {
             return value switch
             {
-                RenderingSpeed.Flash => "FLASH",
-                RenderingSpeed.Turbo => "TURBO",
                 RenderingSpeed.Balanced => "BALANCED",
                 RenderingSpeed.Default => "DEFAULT",
+                RenderingSpeed.Flash => "FLASH",
                 RenderingSpeed.Quality => "QUALITY",
+                RenderingSpeed.Turbo => "TURBO",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -58,11 +58,11 @@ namespace Ideogram
         {
             return value switch
             {
-                "FLASH" => RenderingSpeed.Flash,
-                "TURBO" => RenderingSpeed.Turbo,
                 "BALANCED" => RenderingSpeed.Balanced,
                 "DEFAULT" => RenderingSpeed.Default,
+                "FLASH" => RenderingSpeed.Flash,
                 "QUALITY" => RenderingSpeed.Quality,
+                "TURBO" => RenderingSpeed.Turbo,
                 _ => null,
             };
         }

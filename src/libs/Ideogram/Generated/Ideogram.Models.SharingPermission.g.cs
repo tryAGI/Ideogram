@@ -11,11 +11,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Owner,
+        Editor,
         /// <summary>
         /// 
         /// </summary>
-        Editor,
+        Owner,
         /// <summary>
         /// 
         /// </summary>
@@ -34,8 +34,8 @@ namespace Ideogram
         {
             return value switch
             {
-                SharingPermission.Owner => "OWNER",
                 SharingPermission.Editor => "EDITOR",
+                SharingPermission.Owner => "OWNER",
                 SharingPermission.Viewer => "VIEWER",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -47,8 +47,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "OWNER" => SharingPermission.Owner,
                 "EDITOR" => SharingPermission.Editor,
+                "OWNER" => SharingPermission.Owner,
                 "VIEWER" => SharingPermission.Viewer,
                 _ => null,
             };

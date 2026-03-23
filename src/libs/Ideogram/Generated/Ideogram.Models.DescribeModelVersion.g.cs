@@ -12,15 +12,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Custom,
+        /// <summary>
+        /// 
+        /// </summary>
         V2,
         /// <summary>
         /// 
         /// </summary>
         V3,
-        /// <summary>
-        /// 
-        /// </summary>
-        Custom,
     }
 
     /// <summary>
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
+                DescribeModelVersion.Custom => "CUSTOM",
                 DescribeModelVersion.V2 => "V_2",
                 DescribeModelVersion.V3 => "V_3",
-                DescribeModelVersion.Custom => "CUSTOM",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
+                "CUSTOM" => DescribeModelVersion.Custom,
                 "V_2" => DescribeModelVersion.V2,
                 "V_3" => DescribeModelVersion.V3,
-                "CUSTOM" => DescribeModelVersion.Custom,
                 _ => null,
             };
         }

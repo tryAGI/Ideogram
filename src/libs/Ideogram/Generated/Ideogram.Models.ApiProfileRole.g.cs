@@ -12,11 +12,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        Owner,
+        Member,
         /// <summary>
         /// 
         /// </summary>
-        Member,
+        Owner,
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ namespace Ideogram
         {
             return value switch
             {
-                ApiProfileRole.Owner => "OWNER",
                 ApiProfileRole.Member => "MEMBER",
+                ApiProfileRole.Owner => "OWNER",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -43,8 +43,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "OWNER" => ApiProfileRole.Owner,
                 "MEMBER" => ApiProfileRole.Member,
+                "OWNER" => ApiProfileRole.Owner,
                 _ => null,
             };
         }
