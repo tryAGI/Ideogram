@@ -2,7 +2,7 @@
 set -euo pipefail
 dotnet tool install --global autosdk.cli --prerelease
 rm -rf Generated
-curl --fail --silent --show-error https://api.ideogram.ai/openapi.json | jq . > openapi.json
+curl --fail --silent --show-error -L https://api.ideogram.ai/openapi.json | jq . > openapi.json
 autosdk generate openapi.json \
   --namespace Ideogram \
   --clientClassName IdeogramClient \
