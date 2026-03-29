@@ -78,10 +78,6 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageGenerationObjectV3" /> class.
         /// </summary>
-        /// <param name="url">
-        /// The direct link to the image generated.<br/>
-        /// Example: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&amp;sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
-        /// </param>
         /// <param name="prompt">
         /// The prompt used for the generation. This may be different from the original prompt.<br/>
         /// Example: A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.
@@ -90,16 +86,20 @@ namespace Ideogram
         /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
         /// </param>
-        /// <param name="upscaledResolution">
-        /// Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.<br/>
-        /// Example: 4096x4096
-        /// </param>
         /// <param name="isImageSafe">
         /// Whether this request passes safety checks. If false, the url field will be empty.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
+        /// </param>
+        /// <param name="url">
+        /// The direct link to the image generated.<br/>
+        /// Example: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&amp;sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
+        /// </param>
+        /// <param name="upscaledResolution">
+        /// Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.<br/>
+        /// Example: 4096x4096
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
@@ -118,12 +118,12 @@ namespace Ideogram
             string? upscaledResolution,
             global::Ideogram.StyleTypeV3? styleType)
         {
+            this.Url = url;
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Resolution = resolution;
+            this.UpscaledResolution = upscaledResolution;
             this.IsImageSafe = isImageSafe;
             this.Seed = seed;
-            this.Url = url;
-            this.UpscaledResolution = upscaledResolution;
             this.StyleType = styleType;
         }
 

@@ -43,15 +43,15 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="GetUserCreditsResponse" /> class.
         /// </summary>
-        /// <param name="availableCredits">
-        /// Represents a price.<br/>
-        /// Example: {"amount":1050,"currency_code":"USD"}
-        /// </param>
         /// <param name="totalSpend">
         /// Represents a price.<br/>
         /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
         /// <param name="averageDailySpend">
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
+        /// </param>
+        /// <param name="availableCredits">
         /// Represents a price.<br/>
         /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
@@ -63,9 +63,9 @@ namespace Ideogram
             global::Ideogram.Price averageDailySpend,
             global::Ideogram.Price? availableCredits)
         {
+            this.AvailableCredits = availableCredits;
             this.TotalSpend = totalSpend ?? throw new global::System.ArgumentNullException(nameof(totalSpend));
             this.AverageDailySpend = averageDailySpend ?? throw new global::System.ArgumentNullException(nameof(averageDailySpend));
-            this.AvailableCredits = availableCredits;
         }
 
         /// <summary>

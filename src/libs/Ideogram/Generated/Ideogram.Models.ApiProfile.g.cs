@@ -95,10 +95,6 @@ namespace Ideogram
         /// The display name of the profile<br/>
         /// Example: Gamma
         /// </param>
-        /// <param name="avatarUrl">
-        /// URL to the profile avatar<br/>
-        /// Example: https://example.com/avatar.jpg
-        /// </param>
         /// <param name="organizationId">
         /// Base64 encoded organization ID (only for ENTERPRISE profiles)<br/>
         /// Example: b3JnYW5pemF0aW9uXzEyMw
@@ -118,6 +114,10 @@ namespace Ideogram
         /// The maximum number of inflight requests permitted for the profile<br/>
         /// Example: 10
         /// </param>
+        /// <param name="avatarUrl">
+        /// URL to the profile avatar<br/>
+        /// Example: https://example.com/avatar.jpg
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -133,12 +133,12 @@ namespace Ideogram
         {
             this.Type = type;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
+            this.AvatarUrl = avatarUrl;
             this.OrganizationId = organizationId ?? throw new global::System.ArgumentNullException(nameof(organizationId));
             this.Role = role;
             this.ApiKeys = apiKeys ?? throw new global::System.ArgumentNullException(nameof(apiKeys));
             this.IsMetronome2User = isMetronome2User;
             this.MaxNumInflightRequestsPermitted = maxNumInflightRequestsPermitted;
-            this.AvatarUrl = avatarUrl;
         }
 
         /// <summary>
