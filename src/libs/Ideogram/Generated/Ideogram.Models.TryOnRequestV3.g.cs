@@ -104,6 +104,9 @@ namespace Ideogram
         /// <param name="imagename">
         /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
+        /// <param name="productReferenceImages">
+        /// An image to use as the product reference for the try-on (exactly 1 image required). The image should be in JPEG, PNG or WebP format.
+        /// </param>
         /// <param name="prompt">
         /// The prompt describing the desired clothing change. Defaults to "Person wearing this piece of clothing" if omitted or empty.<br/>
         /// Default Value: Person wearing this piece of clothing<br/>
@@ -134,9 +137,6 @@ namespace Ideogram
         /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
         /// Example: BRIGHT_ART
         /// </param>
-        /// <param name="productReferenceImages">
-        /// An image to use as the product reference for the try-on (exactly 1 image required). The image should be in JPEG, PNG or WebP format.
-        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -154,7 +154,6 @@ namespace Ideogram
         {
             this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
-            this.ProductReferenceImages = productReferenceImages ?? throw new global::System.ArgumentNullException(nameof(productReferenceImages));
             this.Prompt = prompt;
             this.MagicPrompt = magicPrompt;
             this.NumImages = numImages;
@@ -162,6 +161,7 @@ namespace Ideogram
             this.RenderingSpeed = renderingSpeed;
             this.StyleType = styleType;
             this.StylePreset = stylePreset;
+            this.ProductReferenceImages = productReferenceImages ?? throw new global::System.ArgumentNullException(nameof(productReferenceImages));
         }
 
         /// <summary>

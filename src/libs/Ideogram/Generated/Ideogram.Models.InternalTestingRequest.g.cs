@@ -103,6 +103,7 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="InternalTestingRequest" /> class.
         /// </summary>
+        /// <param name="requiredDateTypeField"></param>
         /// <param name="xPosition"></param>
         /// <param name="imageFile">
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
@@ -120,7 +121,6 @@ namespace Ideogram
         /// <param name="nestedObject"></param>
         /// <param name="nestedObjectRequiredFields"></param>
         /// <param name="dateTypeField"></param>
-        /// <param name="requiredDateTypeField"></param>
         /// <param name="dateTimeTypeField"></param>
         /// <param name="repeatedPrimitiveField"></param>
         /// <param name="repeatedComplexField"></param>
@@ -144,7 +144,6 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? repeatedComplexField,
             global::Ideogram.InternalTestingEnumField? enumTypeField)
         {
-            this.RequiredDateTypeField = requiredDateTypeField;
             this.XPosition = xPosition;
             this.ImageFile = imageFile;
             this.ImageFilename = imageFilename;
@@ -154,6 +153,7 @@ namespace Ideogram
             this.NestedObject = nestedObject;
             this.NestedObjectRequiredFields = nestedObjectRequiredFields;
             this.DateTypeField = dateTypeField;
+            this.RequiredDateTypeField = requiredDateTypeField;
             this.DateTimeTypeField = dateTimeTypeField;
             this.RepeatedPrimitiveField = repeatedPrimitiveField;
             this.RepeatedComplexField = repeatedComplexField;

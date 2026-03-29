@@ -82,6 +82,10 @@ namespace Ideogram
         /// <param name="hasStripeSetup">
         /// Whether or not Stripe is setup for API usage.
         /// </param>
+        /// <param name="currentBalance">
+        /// Represents a price.<br/>
+        /// Example: {"amount":1050,"currency_code":"USD"}
+        /// </param>
         /// <param name="metronomeLinks">
         /// Example: {"usage_iframe_url":"usage_iframe_url","usage_iframe_dark_mode_url":"usage_iframe_dark_mode_url","credits_iframe_dark_mode_url":"credits_iframe_dark_mode_url","invoices_iframe_dark_mode_url":"invoices_iframe_dark_mode_url","invoices_iframe_url":"invoices_iframe_url","credits_iframe_url":"credits_iframe_url"}
         /// </param>
@@ -90,10 +94,6 @@ namespace Ideogram
         /// </param>
         /// <param name="stripeBillingUrl">
         /// The URL for the user to manage the existing Stripe subscription plan.
-        /// </param>
-        /// <param name="currentBalance">
-        /// Represents a price.<br/>
-        /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -108,10 +108,10 @@ namespace Ideogram
         {
             this.HasAcceptedTerms = hasAcceptedTerms;
             this.HasStripeSetup = hasStripeSetup;
-            this.CurrentBalance = currentBalance ?? throw new global::System.ArgumentNullException(nameof(currentBalance));
             this.MetronomeLinks = metronomeLinks;
             this.RechargeSettings = rechargeSettings;
             this.StripeBillingUrl = stripeBillingUrl;
+            this.CurrentBalance = currentBalance ?? throw new global::System.ArgumentNullException(nameof(currentBalance));
         }
 
         /// <summary>

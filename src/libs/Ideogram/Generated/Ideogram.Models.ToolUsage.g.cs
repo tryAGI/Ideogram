@@ -85,6 +85,10 @@ namespace Ideogram
         /// Represents a price.<br/>
         /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
+        /// <param name="toolType">
+        /// Tool type for filtering usage information<br/>
+        /// Example: GENERATE
+        /// </param>
         /// <param name="apiKeyId">
         /// Base64 encoded API key ID (for API usage)<br/>
         /// Example: JRPVD7jWR1aTBYiJ0UFVOg
@@ -92,10 +96,6 @@ namespace Ideogram
         /// <param name="userEmailAddress">
         /// User email address (for web app usage)<br/>
         /// Example: user@company.com
-        /// </param>
-        /// <param name="toolType">
-        /// Tool type for filtering usage information<br/>
-        /// Example: GENERATE
         /// </param>
         /// <param name="modelVersion">
         /// The model_version to use.<br/>
@@ -121,9 +121,9 @@ namespace Ideogram
         {
             this.FullToolName = fullToolName ?? throw new global::System.ArgumentNullException(nameof(fullToolName));
             this.Amount = amount ?? throw new global::System.ArgumentNullException(nameof(amount));
-            this.ToolType = toolType;
             this.ApiKeyId = apiKeyId;
             this.UserEmailAddress = userEmailAddress;
+            this.ToolType = toolType;
             this.ModelVersion = modelVersion;
         }
 

@@ -130,13 +130,16 @@ namespace Ideogram
         /// The text alignment of the item.<br/>
         /// Example: center
         /// </param>
-        /// <param name="angle">
-        /// The angle rotation of the text, measured clockwise in degrees.<br/>
-        /// Example: 0
-        /// </param>
         /// <param name="styleClass">
         /// Typographic classification of the text.<br/>
         /// Example: body
+        /// </param>
+        /// <param name="spans">
+        /// Ordered list of text spans. Concatenating span text values produces the full item text.
+        /// </param>
+        /// <param name="angle">
+        /// The angle rotation of the text, measured clockwise in degrees.<br/>
+        /// Example: 0
         /// </param>
         /// <param name="glyphType">
         /// The type of list marker glyph, if any. Null for non-list items.<br/>
@@ -153,9 +156,6 @@ namespace Ideogram
         /// </param>
         /// <param name="lineHeight">
         /// The line height multiplier (e.g., 1.2). Null for non-editable items.
-        /// </param>
-        /// <param name="spans">
-        /// Ordered list of text spans. Concatenating span text values produces the full item text.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -180,14 +180,14 @@ namespace Ideogram
             this.Width = width;
             this.Height = height;
             this.Alignment = alignment;
-            this.StyleClass = styleClass;
-            this.Spans = spans ?? throw new global::System.ArgumentNullException(nameof(spans));
             this.Angle = angle;
+            this.StyleClass = styleClass;
             this.GlyphType = glyphType;
             this.FontFile = fontFile;
             this.FontCandidates = fontCandidates;
             this.FontSize = fontSize;
             this.LineHeight = lineHeight;
+            this.Spans = spans ?? throw new global::System.ArgumentNullException(nameof(spans));
         }
 
         /// <summary>

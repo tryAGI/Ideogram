@@ -31,11 +31,11 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="DatasetUploadFailedAsset" /> class.
         /// </summary>
-        /// <param name="fileName">
-        /// Original filename of the failed image.
-        /// </param>
         /// <param name="failureReason">
         /// Reason why an asset failed to upload.
+        /// </param>
+        /// <param name="fileName">
+        /// Original filename of the failed image.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -44,8 +44,8 @@ namespace Ideogram
             global::Ideogram.DatasetAssetFailureReason failureReason,
             string? fileName)
         {
-            this.FailureReason = failureReason;
             this.FileName = fileName;
+            this.FailureReason = failureReason;
         }
 
         /// <summary>
