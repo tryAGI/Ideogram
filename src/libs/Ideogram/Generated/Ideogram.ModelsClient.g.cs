@@ -4,11 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// This is the API definition for Ideogram AI.<br/>
+    /// Operations related to managing custom models<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public sealed partial class IdeogramClient : global::Ideogram.IIdeogramClient, global::System.IDisposable
+    public sealed partial class ModelsClient : global::Ideogram.IModelsClient, global::System.IDisposable
     {
         /// <summary>
         /// 
@@ -38,79 +38,7 @@ namespace Ideogram
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        public BatchClient Batch => new BatchClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations related to managing datasets
-        /// </summary>
-        public DatasetsClient Datasets => new DatasetsClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// All things related to generating content.
-        /// </summary>
-        public GenerateClient Generate => new GenerateClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
-        /// </summary>
-        public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Content related to managing API account and API access
-        /// </summary>
-        public ManageClient Manage => new ManageClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations related to managing custom models
-        /// </summary>
-        public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public PromptClient Prompt => new PromptClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Operations related to understanding visual content
-        /// </summary>
-        public VisionClient Vision => new VisionClient(HttpClient, authorizations: Authorizations)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
-        };
-
-        /// <summary>
-        /// Creates a new instance of the IdeogramClient.
+        /// Creates a new instance of the ModelsClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
         /// </summary>
@@ -118,7 +46,7 @@ namespace Ideogram
         /// <param name="baseUri">The base URL for the API. If not provided, the default baseUri from OpenAPI spec will be used.</param>
         /// <param name="authorizations">The authorizations to use for the requests.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
-        public IdeogramClient(
+        public ModelsClient(
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations = null,

@@ -60,6 +60,7 @@ namespace Ideogram
         /// - V_2_1: Model 2a<br/>
         /// - V_3_0: Model 3.0 March 26<br/>
         /// - V_3_1: Model 3.0 Latest<br/>
+        /// - V_4_0: Model 4.0<br/>
         /// - AUTO: Automatically select the best model version based on the request.<br/>
         /// Example: V_0_3
         /// </summary>
@@ -105,6 +106,7 @@ namespace Ideogram
         /// - V_2_1: Model 2a<br/>
         /// - V_3_0: Model 3.0 March 26<br/>
         /// - V_3_1: Model 3.0 Latest<br/>
+        /// - V_4_0: Model 4.0<br/>
         /// - AUTO: Automatically select the best model version based on the request.<br/>
         /// Example: V_0_3
         /// </param>

@@ -11,6 +11,7 @@ namespace Ideogram
     /// - V_2_1: Model 2a<br/>
     /// - V_3_0: Model 3.0 March 26<br/>
     /// - V_3_1: Model 3.0 Latest<br/>
+    /// - V_4_0: Model 4.0<br/>
     /// - AUTO: Automatically select the best model version based on the request.<br/>
     /// Example: V_0_3
     /// </summary>
@@ -68,6 +69,10 @@ namespace Ideogram
         /// Model 3.0 Latest
         /// </summary>
         V31,
+        /// <summary>
+        /// Model 4.0
+        /// </summary>
+        V40,
     }
 
     /// <summary>
@@ -95,6 +100,7 @@ namespace Ideogram
                 ModelVersion.V21 => "V_2_1",
                 ModelVersion.V30 => "V_3_0",
                 ModelVersion.V31 => "V_3_1",
+                ModelVersion.V40 => "V_4_0",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -118,6 +124,7 @@ namespace Ideogram
                 "V_2_1" => ModelVersion.V21,
                 "V_3_0" => ModelVersion.V30,
                 "V_3_1" => ModelVersion.V31,
+                "V_4_0" => ModelVersion.V40,
                 _ => null,
             };
         }

@@ -4,11 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// This is the API definition for Ideogram AI.<br/>
+    /// Operations related to managing custom models<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
-    public partial interface IIdeogramClient : global::System.IDisposable
+    public partial interface IModelsClient : global::System.IDisposable
     {
         /// <summary>
         /// The HttpClient instance.
@@ -39,46 +39,6 @@ namespace Ideogram
         /// </summary>
         global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; }
 
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public BatchClient Batch { get; }
-
-        /// <summary>
-        /// Operations related to managing datasets
-        /// </summary>
-        public DatasetsClient Datasets { get; }
-
-        /// <summary>
-        /// All things related to generating content.
-        /// </summary>
-        public GenerateClient Generate { get; }
-
-        /// <summary>
-        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
-        /// </summary>
-        public InternalTestingClient InternalTesting { get; }
-
-        /// <summary>
-        /// Content related to managing API account and API access
-        /// </summary>
-        public ManageClient Manage { get; }
-
-        /// <summary>
-        /// Operations related to managing custom models
-        /// </summary>
-        public ModelsClient Models { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public PromptClient Prompt { get; }
-
-        /// <summary>
-        /// Operations related to understanding visual content
-        /// </summary>
-        public VisionClient Vision { get; }
 
     }
 }

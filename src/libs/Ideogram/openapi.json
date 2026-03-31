@@ -55,6 +55,22 @@
         "url": "https://docs.ideogram.ai"
       },
       "name": "datasets"
+    },
+    {
+      "description": "Operations related to managing custom models",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://docs.ideogram.ai"
+      },
+      "name": "models"
+    },
+    {
+      "description": "Operations related to Ideogram 4.0 image generation",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://docs.ideogram.ai"
+      },
+      "name": "v4-generation"
     }
   ],
   "paths": {
@@ -1914,6 +1930,101 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
+    "/models": {
+      "get": {
+        "description": "Lists custom models for the authenticated user. Use the `scope` parameter to control which models are returned. `owned` (default) returns models created by the user. `shared` returns models shared with the user's organization via the model registry, excluding the user's own models.\n",
+        "operationId": "list_custom_models",
+        "parameters": [
+          {
+            "description": "Controls which models are returned. `owned` returns models created by the authenticated user. `shared` returns models shared with the user's organization via the model registry.\n",
+            "in": "query",
+            "name": "scope",
+            "required": false,
+            "schema": {
+              "default": "owned",
+              "enum": [
+                "owned",
+                "shared"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by model status. Only applies when scope is `owned`. Example: `?status=TRAINING&status=COMPLETED`\n",
+            "explode": true,
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/components/schemas/ModelStatus"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListModelsResponse"
+                }
+              }
+            },
+            "description": "Models retrieved successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "summary": "List models",
+        "tags": [
+          "models"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.models_controller"
+      }
+    },
+    "/models/{model_id}": {
+      "get": {
+        "description": "Get detailed information about a specific custom model, including training run history for owned models. The user must either own the model or the model must be shared with the user's organization via the model registry. Returns 404 if the model is not found or not accessible.\n",
+        "operationId": "get_custom_model",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "model_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetModelResponse"
+                }
+              }
+            },
+            "description": "Model retrieved successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Model not found"
+          }
+        },
+        "summary": "Get model details",
+        "tags": [
+          "models"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.models_controller"
+      }
+    },
     "/reframe": {
       "post": {
         "description": "Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
@@ -3022,10 +3133,86 @@
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
+    },
+    "/v1/ideogram-v4/generate": {
+      "post": {
+        "description": "Generates images synchronously using the Ideogram 4.0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_generate_image_v4",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequestV4"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequestV4"
+              }
+            }
+          },
+          "description": "A request to generate an image with Ideogram 4.0.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageGenerationResponseV4"
+                }
+              }
+            },
+            "description": "Image(s) generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt failed the safety check."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Generate with Ideogram 4.0",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
     }
   },
   "components": {
     "schemas": {
+      "GenerateImageRequestV4": {
+        "properties": {
+          "prompt": {
+            "description": "The text prompt for image generation.",
+            "type": "string"
+          },
+          "seed": {
+            "description": "Random seed for reproducibility.",
+            "nullable": true,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
       "DescribeResponse": {
         "description": "The response for a describe request encapsulates a list of descriptions.",
         "example": {
@@ -4419,6 +4606,98 @@
         "title": "ImageObject",
         "type": "object"
       },
+      "ImageGenerationResponseV4": {
+        "description": "The response which contains information about the generated image, including the download link.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1280x800",
+              "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1280x800",
+              "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+              "is_image_safe": true
+            }
+          ],
+          "created": "2000-01-23T04:56:07+00:00"
+        },
+        "properties": {
+          "created": {
+            "description": "The time the request was created.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          },
+          "data": {
+            "description": "A list of ImageObjects that contain the generated image(s).",
+            "items": {
+              "$ref": "#/components/schemas/ImageGenerationObjectV4"
+            },
+            "title": "data",
+            "type": "array"
+          }
+        },
+        "required": [
+          "created",
+          "data"
+        ],
+        "title": "ImageGenerationResponseV4",
+        "type": "object"
+      },
+      "ImageGenerationObjectV4": {
+        "example": {
+          "seed": 12345,
+          "prompt": "prompt",
+          "resolution": "1280x800",
+          "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+          "is_image_safe": true
+        },
+        "properties": {
+          "url": {
+            "description": "The direct link to the image generated.",
+            "example": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+            "format": "uri",
+            "nullable": true,
+            "title": "url",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "The prompt used for the generation. This may be different from the original prompt.",
+            "title": "prompt",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV4"
+          },
+          "is_image_safe": {
+            "description": "Whether this request passes safety checks. If false, the url field will be empty.",
+            "title": "is_image_safe",
+            "type": "boolean"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "is_image_safe",
+          "prompt",
+          "resolution",
+          "seed"
+        ],
+        "title": "ImageGenerationObjectV4",
+        "type": "object"
+      },
       "LayeredImageGenerationObjectV3": {
         "allOf": [
           {
@@ -5412,7 +5691,9 @@
             "description": "The type of list marker glyph, if any. Null for non-list items.",
             "enum": [
               "bullet",
-              "number"
+              "number",
+              "icon",
+              "other"
             ],
             "nullable": true,
             "title": "glyph_type",
@@ -6488,7 +6769,7 @@
         "type": "string"
       },
       "ModelVersion": {
-        "description": "The model_version to use.\n- V_0_3: Model 1.0\n- V_1_1: Model 1.1\n- V_1_5: Model 2.0\n- V_2_1: Model 2a\n- V_3_0: Model 3.0 March 26\n- V_3_1: Model 3.0 Latest\n- AUTO: Automatically select the best model version based on the request.\n",
+        "description": "The model_version to use.\n- V_0_3: Model 1.0\n- V_1_1: Model 1.1\n- V_1_5: Model 2.0\n- V_2_1: Model 2a\n- V_3_0: Model 3.0 March 26\n- V_3_1: Model 3.0 Latest\n- V_4_0: Model 4.0\n- AUTO: Automatically select the best model version based on the request.\n",
         "enum": [
           "V_0_1",
           "V_0_2",
@@ -6498,6 +6779,7 @@
           "V_2_1",
           "V_3_0",
           "V_3_1",
+          "V_4_0",
           "EXTERNAL_GOOGLE_VEO_3_0",
           "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO",
           "EXTERNAL_MINIMAX_HAILUO_02",
@@ -7291,6 +7573,7 @@
             "description": "The date when the invoice was issued",
             "example": "2024-01-01T00:00:00+00:00",
             "format": "date-time",
+            "nullable": true,
             "title": "issued_time",
             "type": "string"
           },
@@ -7313,7 +7596,6 @@
         "required": [
           "end_time",
           "invoice_status",
-          "issued_time",
           "line_items",
           "start_time",
           "total_spend"
@@ -7862,6 +8144,354 @@
           "model_name"
         ],
         "title": "TrainDatasetModelRequest",
+        "type": "object"
+      },
+      "ListModelsResponse": {
+        "example": {
+          "models": [
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "last_update_time": "2000-01-23T04:56:07+00:00",
+              "is_available_for_generation": true,
+              "dataset_id": "dataset_id",
+              "name": "name",
+              "is_owned": true,
+              "training_runs": [
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "last_update_time": "2000-01-23T04:56:07+00:00",
+                  "lora_rank": 6,
+                  "num_chips": 1,
+                  "training_run_id": "training_run_id",
+                  "ema": 5.962133916683182,
+                  "training_steps": 0,
+                  "learning_rate": 5.637376656633329,
+                  "status": null
+                },
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "last_update_time": "2000-01-23T04:56:07+00:00",
+                  "lora_rank": 6,
+                  "num_chips": 1,
+                  "training_run_id": "training_run_id",
+                  "ema": 5.962133916683182,
+                  "training_steps": 0,
+                  "learning_rate": 5.637376656633329,
+                  "status": null
+                }
+              ],
+              "model_id": "model_id",
+              "custom_model_uri": "model/my-custom-model/version/1",
+              "status": null
+            },
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "last_update_time": "2000-01-23T04:56:07+00:00",
+              "is_available_for_generation": true,
+              "dataset_id": "dataset_id",
+              "name": "name",
+              "is_owned": true,
+              "training_runs": [
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "last_update_time": "2000-01-23T04:56:07+00:00",
+                  "lora_rank": 6,
+                  "num_chips": 1,
+                  "training_run_id": "training_run_id",
+                  "ema": 5.962133916683182,
+                  "training_steps": 0,
+                  "learning_rate": 5.637376656633329,
+                  "status": null
+                },
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "last_update_time": "2000-01-23T04:56:07+00:00",
+                  "lora_rank": 6,
+                  "num_chips": 1,
+                  "training_run_id": "training_run_id",
+                  "ema": 5.962133916683182,
+                  "training_steps": 0,
+                  "learning_rate": 5.637376656633329,
+                  "status": null
+                }
+              ],
+              "model_id": "model_id",
+              "custom_model_uri": "model/my-custom-model/version/1",
+              "status": null
+            }
+          ]
+        },
+        "properties": {
+          "models": {
+            "default": [],
+            "description": "List of models.",
+            "items": {
+              "$ref": "#/components/schemas/CustomModel"
+            },
+            "title": "models",
+            "type": "array"
+          }
+        },
+        "required": [
+          "models"
+        ],
+        "title": "ListModelsResponse",
+        "type": "object"
+      },
+      "CustomModel": {
+        "description": "A custom model.",
+        "example": {
+          "creation_time": "2000-01-23T04:56:07+00:00",
+          "last_update_time": "2000-01-23T04:56:07+00:00",
+          "is_available_for_generation": true,
+          "dataset_id": "dataset_id",
+          "name": "name",
+          "is_owned": true,
+          "training_runs": [
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "last_update_time": "2000-01-23T04:56:07+00:00",
+              "lora_rank": 6,
+              "num_chips": 1,
+              "training_run_id": "training_run_id",
+              "ema": 5.962133916683182,
+              "training_steps": 0,
+              "learning_rate": 5.637376656633329,
+              "status": null
+            },
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "last_update_time": "2000-01-23T04:56:07+00:00",
+              "lora_rank": 6,
+              "num_chips": 1,
+              "training_run_id": "training_run_id",
+              "ema": 5.962133916683182,
+              "training_steps": 0,
+              "learning_rate": 5.637376656633329,
+              "status": null
+            }
+          ],
+          "model_id": "model_id",
+          "custom_model_uri": "model/my-custom-model/version/1",
+          "status": null
+        },
+        "properties": {
+          "model_id": {
+            "description": "Unique identifier for the model (base64 URL-safe encoded UUID).",
+            "title": "model_id",
+            "type": "string"
+          },
+          "custom_model_uri": {
+            "description": "A custom model URI in the format model/<model_name>/version/<version_name>.\nUse this URI when generating images with this model. Only present for models\nthat have been registered in the model registry.\n",
+            "example": "model/my-custom-model/version/1",
+            "nullable": true,
+            "title": "custom_model_uri",
+            "type": "string"
+          },
+          "name": {
+            "description": "Display name of the model.",
+            "title": "name",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ModelStatus"
+          },
+          "dataset_id": {
+            "description": "ID of the dataset (collection) the model was trained from.",
+            "nullable": true,
+            "title": "dataset_id",
+            "type": "string"
+          },
+          "creation_time": {
+            "description": "When the model was created.",
+            "format": "date-time",
+            "title": "creation_time",
+            "type": "string"
+          },
+          "last_update_time": {
+            "description": "When the model was last updated.",
+            "format": "date-time",
+            "nullable": true,
+            "title": "last_update_time",
+            "type": "string"
+          },
+          "is_available_for_generation": {
+            "description": "Whether the model is available for image generation.",
+            "title": "is_available_for_generation",
+            "type": "boolean"
+          },
+          "is_owned": {
+            "description": "Whether the authenticated user owns this model.",
+            "title": "is_owned",
+            "type": "boolean"
+          },
+          "training_runs": {
+            "default": [],
+            "description": "Training run history. Only populated on the get-by-ID endpoint and only for owned models.\n",
+            "items": {
+              "$ref": "#/components/schemas/TrainingRun"
+            },
+            "title": "training_runs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "creation_time",
+          "is_available_for_generation",
+          "is_owned",
+          "model_id",
+          "name",
+          "status"
+        ],
+        "title": "CustomModel",
+        "type": "object"
+      },
+      "ModelStatus": {
+        "description": "The status of a custom model.",
+        "enum": [
+          "CREATING",
+          "DRAFT",
+          "TRAINING",
+          "COMPLETED",
+          "ERRORED",
+          "ARCHIVED"
+        ],
+        "title": "ModelStatus",
+        "type": "string"
+      },
+      "TrainingRun": {
+        "description": "A training run for a custom model.",
+        "example": {
+          "creation_time": "2000-01-23T04:56:07+00:00",
+          "last_update_time": "2000-01-23T04:56:07+00:00",
+          "lora_rank": 6,
+          "num_chips": 1,
+          "training_run_id": "training_run_id",
+          "ema": 5.962133916683182,
+          "training_steps": 0,
+          "learning_rate": 5.637376656633329,
+          "status": null
+        },
+        "properties": {
+          "training_run_id": {
+            "description": "Unique identifier for the training run.",
+            "title": "training_run_id",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TrainingRunStatus"
+          },
+          "training_steps": {
+            "description": "Number of training steps configured.",
+            "nullable": true,
+            "title": "training_steps",
+            "type": "integer"
+          },
+          "lora_rank": {
+            "description": "LoRA rank used for training.",
+            "nullable": true,
+            "title": "lora_rank",
+            "type": "integer"
+          },
+          "num_chips": {
+            "description": "Number of TPU chips used.",
+            "nullable": true,
+            "title": "num_chips",
+            "type": "integer"
+          },
+          "ema": {
+            "description": "Exponential moving average decay rate.",
+            "nullable": true,
+            "title": "ema",
+            "type": "number"
+          },
+          "learning_rate": {
+            "description": "Learning rate for the optimizer.",
+            "nullable": true,
+            "title": "learning_rate",
+            "type": "number"
+          },
+          "creation_time": {
+            "description": "When the training run was created.",
+            "format": "date-time",
+            "title": "creation_time",
+            "type": "string"
+          },
+          "last_update_time": {
+            "description": "When the training run was last updated.",
+            "format": "date-time",
+            "nullable": true,
+            "title": "last_update_time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "creation_time",
+          "status",
+          "training_run_id"
+        ],
+        "title": "TrainingRun",
+        "type": "object"
+      },
+      "TrainingRunStatus": {
+        "description": "The status of a training run.",
+        "enum": [
+          "PREPARING_DATA",
+          "QUEUED",
+          "TRAINING",
+          "FINALIZING",
+          "COMPLETED"
+        ],
+        "title": "TrainingRunStatus",
+        "type": "string"
+      },
+      "GetModelResponse": {
+        "example": {
+          "model": {
+            "creation_time": "2000-01-23T04:56:07+00:00",
+            "last_update_time": "2000-01-23T04:56:07+00:00",
+            "is_available_for_generation": true,
+            "dataset_id": "dataset_id",
+            "name": "name",
+            "is_owned": true,
+            "training_runs": [
+              {
+                "creation_time": "2000-01-23T04:56:07+00:00",
+                "last_update_time": "2000-01-23T04:56:07+00:00",
+                "lora_rank": 6,
+                "num_chips": 1,
+                "training_run_id": "training_run_id",
+                "ema": 5.962133916683182,
+                "training_steps": 0,
+                "learning_rate": 5.637376656633329,
+                "status": null
+              },
+              {
+                "creation_time": "2000-01-23T04:56:07+00:00",
+                "last_update_time": "2000-01-23T04:56:07+00:00",
+                "lora_rank": 6,
+                "num_chips": 1,
+                "training_run_id": "training_run_id",
+                "ema": 5.962133916683182,
+                "training_steps": 0,
+                "learning_rate": 5.637376656633329,
+                "status": null
+              }
+            ],
+            "model_id": "model_id",
+            "custom_model_uri": "model/my-custom-model/version/1",
+            "status": null
+          }
+        },
+        "properties": {
+          "model": {
+            "$ref": "#/components/schemas/CustomModel"
+          }
+        },
+        "required": [
+          "model"
+        ],
+        "title": "GetModelResponse",
         "type": "object"
       },
       "Description": {
@@ -8437,6 +9067,84 @@
         "example": "4096x4096",
         "pattern": "^\\d{2,5}x\\d{2,5}$",
         "title": "FreeformResolution",
+        "type": "string"
+      },
+      "ResolutionV4": {
+        "description": "The resolutions supported for Ideogram 4.0.",
+        "enum": [
+          "512x512",
+          "512x1536",
+          "576x1408",
+          "576x1472",
+          "576x1536",
+          "640x1344",
+          "640x1408",
+          "640x1472",
+          "640x1536",
+          "704x1152",
+          "704x1216",
+          "704x1280",
+          "704x1344",
+          "704x1408",
+          "704x1472",
+          "736x1312",
+          "768x1088",
+          "768x1216",
+          "768x1280",
+          "768x1344",
+          "800x1280",
+          "832x960",
+          "832x1024",
+          "832x1088",
+          "832x1152",
+          "832x1216",
+          "832x1248",
+          "864x1152",
+          "896x960",
+          "896x1024",
+          "896x1088",
+          "896x1120",
+          "896x1152",
+          "960x832",
+          "960x896",
+          "960x1024",
+          "960x1088",
+          "1024x832",
+          "1024x896",
+          "1024x960",
+          "1024x1024",
+          "1088x768",
+          "1088x832",
+          "1088x896",
+          "1088x960",
+          "1120x896",
+          "1152x704",
+          "1152x832",
+          "1152x864",
+          "1152x896",
+          "1216x704",
+          "1216x768",
+          "1216x832",
+          "1248x832",
+          "1280x704",
+          "1280x768",
+          "1280x800",
+          "1312x736",
+          "1344x640",
+          "1344x704",
+          "1344x768",
+          "1408x576",
+          "1408x640",
+          "1408x704",
+          "1472x576",
+          "1472x640",
+          "1472x704",
+          "1536x512",
+          "1536x576",
+          "1536x640"
+        ],
+        "example": "1280x800",
+        "title": "ResolutionV4",
         "type": "string"
       },
       "Price": {
