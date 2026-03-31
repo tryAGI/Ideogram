@@ -16,7 +16,15 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        Icon,
+        /// <summary>
+        /// 
+        /// </summary>
         Number,
+        /// <summary>
+        /// 
+        /// </summary>
+        Other,
     }
 
     /// <summary>
@@ -32,7 +40,9 @@ namespace Ideogram
             return value switch
             {
                 TextItemV3GlyphType.Bullet => "bullet",
+                TextItemV3GlyphType.Icon => "icon",
                 TextItemV3GlyphType.Number => "number",
+                TextItemV3GlyphType.Other => "other",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -44,7 +54,9 @@ namespace Ideogram
             return value switch
             {
                 "bullet" => TextItemV3GlyphType.Bullet,
+                "icon" => TextItemV3GlyphType.Icon,
                 "number" => TextItemV3GlyphType.Number,
+                "other" => TextItemV3GlyphType.Other,
                 _ => null,
             };
         }

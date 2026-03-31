@@ -32,8 +32,7 @@ namespace Ideogram
         /// </summary>
         /// <example>2024-01-01T00:00:00+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("issued_time")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.DateTime IssuedTime { get; set; }
+        public global::System.DateTime? IssuedTime { get; set; }
 
         /// <summary>
         /// Represents a price.<br/>
@@ -79,10 +78,6 @@ namespace Ideogram
         /// The end time of the invoice period<br/>
         /// Example: 2024-01-31T23:59:59+00:00
         /// </param>
-        /// <param name="issuedTime">
-        /// The date when the invoice was issued<br/>
-        /// Example: 2024-01-01T00:00:00+00:00
-        /// </param>
         /// <param name="totalSpend">
         /// Represents a price.<br/>
         /// Example: {"amount":1050,"currency_code":"USD"}
@@ -95,16 +90,20 @@ namespace Ideogram
         /// A list of line items within the invoice<br/>
         /// Default Value: []
         /// </param>
+        /// <param name="issuedTime">
+        /// The date when the invoice was issued<br/>
+        /// Example: 2024-01-01T00:00:00+00:00
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public Invoice(
             global::System.DateTime startTime,
             global::System.DateTime endTime,
-            global::System.DateTime issuedTime,
             global::Ideogram.Price totalSpend,
             global::Ideogram.InvoiceStatus invoiceStatus,
-            global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem> lineItems)
+            global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem> lineItems,
+            global::System.DateTime? issuedTime)
         {
             this.StartTime = startTime;
             this.EndTime = endTime;
