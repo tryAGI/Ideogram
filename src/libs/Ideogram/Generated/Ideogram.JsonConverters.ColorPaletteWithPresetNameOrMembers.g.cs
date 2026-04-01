@@ -122,13 +122,13 @@ namespace Ideogram.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ColorPaletteWithPresetName), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ColorPaletteWithPresetName?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ColorPaletteWithPresetName).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ColorPaletteWithPresetName, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ColorPaletteWithPresetName!, typeInfo);
             }
             else if (value.IsColorPaletteWithMembers)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ColorPaletteWithMembers), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ColorPaletteWithMembers?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ColorPaletteWithMembers).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ColorPaletteWithMembers, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ColorPaletteWithMembers!, typeInfo);
             }
         }
     }

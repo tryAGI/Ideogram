@@ -449,6 +449,7 @@ namespace Ideogram
             global::Ideogram.StylePresetV3? stylePreset = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.TryOnRequestV3
             {
                 Image = image,

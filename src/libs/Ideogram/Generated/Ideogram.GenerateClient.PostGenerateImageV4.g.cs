@@ -342,6 +342,7 @@ namespace Ideogram
             int? seed = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.GenerateImageRequestV4
             {
                 Prompt = prompt,

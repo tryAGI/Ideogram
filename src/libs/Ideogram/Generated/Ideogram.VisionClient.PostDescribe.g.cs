@@ -320,6 +320,7 @@ namespace Ideogram
             global::Ideogram.DescribeModelVersion? describeModelVersion = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.DescribeRequest
             {
                 ImageFile = imageFile,
