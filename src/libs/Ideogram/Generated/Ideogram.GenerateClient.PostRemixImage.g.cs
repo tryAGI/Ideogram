@@ -353,7 +353,6 @@ namespace Ideogram
             string imageFilename,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Ideogram.RemixImageRequest
             {
                 ImageRequest = imageRequest,

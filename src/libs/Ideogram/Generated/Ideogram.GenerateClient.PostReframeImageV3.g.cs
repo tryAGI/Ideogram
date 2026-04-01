@@ -440,7 +440,6 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Ideogram.ReframeImageRequestV3
             {
                 Image = image,
