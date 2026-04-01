@@ -332,6 +332,7 @@ namespace Ideogram
             global::Ideogram.ImageRequest imageRequest,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.GenerateImageRequest
             {
                 ImageRequest = imageRequest,

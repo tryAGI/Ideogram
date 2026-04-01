@@ -479,6 +479,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? referenceAssetImages = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.LayerizeDesignRequestV3
             {
                 FlatGraphicImage = flatGraphicImage,

@@ -300,6 +300,7 @@ namespace Ideogram
             bool? isActive = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.PostApiSubscriptionRequest
             {
                 RechargeSettings = rechargeSettings,

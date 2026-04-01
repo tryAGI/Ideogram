@@ -427,6 +427,7 @@ namespace Ideogram
             global::Ideogram.StyleType? styleType = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.EditImageRequest
             {
                 ImageFile = imageFile,

@@ -326,6 +326,7 @@ namespace Ideogram
             double? learningRate = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+
             var __request = new global::Ideogram.TrainDatasetModelRequest
             {
                 ModelName = modelName,
