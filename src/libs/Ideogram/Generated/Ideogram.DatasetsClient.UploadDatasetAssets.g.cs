@@ -311,7 +311,6 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]> files,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Ideogram.UploadDatasetAssetsRequest
             {
                 Files = files,

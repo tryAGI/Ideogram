@@ -337,7 +337,6 @@ namespace Ideogram
             global::Ideogram.SamplingRequestParams? samplingRequestParams = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Ideogram.InternalBatchRequest
             {
                 UserPrompts = userPrompts,

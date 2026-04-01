@@ -539,7 +539,6 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Ideogram.EditImageRequestV3
             {
                 Image = image,

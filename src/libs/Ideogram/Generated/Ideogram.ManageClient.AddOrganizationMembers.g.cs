@@ -335,7 +335,6 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember> members,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Ideogram.AddOrganizationMembersRequest
             {
                 Members = members,

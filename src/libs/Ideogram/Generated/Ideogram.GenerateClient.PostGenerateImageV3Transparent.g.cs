@@ -437,7 +437,6 @@ namespace Ideogram
             string? customModelUri = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-
             var __request = new global::Ideogram.GenerateTransparentImageRequestV3
             {
                 Prompt = prompt,
