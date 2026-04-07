@@ -2749,6 +2749,50 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
+    "/v1/ideogram-v3/layerize-text": {
+      "post": {
+        "description": "Analyzes an image to detect text regions, then returns each detected text block with its position, content, font information, and styling.\n\nThe response includes a text-erased base image (background with all text removed) and a flat list of detected text blocks.\n\nSupported image formats include JPEG, PNG, and WebP (max size 10MB).\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_layerize_text_v3",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/LayerizeTextRequest"
+              }
+            }
+          },
+          "description": "A request to detect and extract text layers from an image.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LayerizeTextResponse"
+                }
+              }
+            },
+            "description": "Text layers detected and extracted successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Detect and extract text layers from an image",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
     "/v1/ideogram-v3/reframe": {
       "post": {
         "description": "Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
@@ -5892,6 +5936,265 @@
           "y"
         ],
         "title": "ImageLayerV3",
+        "type": "object"
+      },
+      "LayerizeTextRequest": {
+        "properties": {
+          "image": {
+            "description": "The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 10MB).",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "An optional text description of the image. If not provided, a description will be auto-generated from the image.",
+            "type": "string"
+          },
+          "seed": {
+            "$ref": "#/components/schemas/Seed"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "type": "object"
+      },
+      "LayerizeTextResponse": {
+        "description": "The response containing detected text blocks and a text-erased base image.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "example": {
+          "original_image_url": "https://openapi-generator.tech",
+          "seed": 12345,
+          "base_image_url": "https://openapi-generator.tech",
+          "text_blocks": [
+            {
+              "role": "heading",
+              "color": "#212121",
+              "font_alternatives": [
+                "font_alternatives",
+                "font_alternatives"
+              ],
+              "font_size": 2,
+              "font_name": "font_name",
+              "line_height": 7.0614014,
+              "x": 0,
+              "width": 1,
+              "y": 6,
+              "angle": 5.637377,
+              "text": "Hello World",
+              "alignment": "left",
+              "formatting": [
+                "bold",
+                "bold"
+              ],
+              "height": 5
+            },
+            {
+              "role": "heading",
+              "color": "#212121",
+              "font_alternatives": [
+                "font_alternatives",
+                "font_alternatives"
+              ],
+              "font_size": 2,
+              "font_name": "font_name",
+              "line_height": 7.0614014,
+              "x": 0,
+              "width": 1,
+              "y": 6,
+              "angle": 5.637377,
+              "text": "Hello World",
+              "alignment": "left",
+              "formatting": [
+                "bold",
+                "bold"
+              ],
+              "height": 5
+            }
+          ]
+        },
+        "properties": {
+          "base_image_url": {
+            "description": "URL of the image with all detected text removed.",
+            "format": "uri",
+            "title": "base_image_url",
+            "type": "string"
+          },
+          "original_image_url": {
+            "description": "URL of the original image with text intact.",
+            "format": "uri",
+            "nullable": true,
+            "title": "original_image_url",
+            "type": "string"
+          },
+          "text_blocks": {
+            "description": "Flat list of detected text regions in the image.",
+            "items": {
+              "$ref": "#/components/schemas/DetectedTextBlock"
+            },
+            "title": "text_blocks",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "base_image_url",
+          "seed",
+          "text_blocks"
+        ],
+        "title": "LayerizeTextResponse",
+        "type": "object"
+      },
+      "DetectedTextBlock": {
+        "description": "A single detected text region with its position, content, font information, and styling.",
+        "example": {
+          "role": "heading",
+          "color": "#212121",
+          "font_alternatives": [
+            "font_alternatives",
+            "font_alternatives"
+          ],
+          "font_size": 2,
+          "font_name": "font_name",
+          "line_height": 7.0614014,
+          "x": 0,
+          "width": 1,
+          "y": 6,
+          "angle": 5.637377,
+          "text": "Hello World",
+          "alignment": "left",
+          "formatting": [
+            "bold",
+            "bold"
+          ],
+          "height": 5
+        },
+        "properties": {
+          "x": {
+            "description": "X coordinate in pixels from the top-left corner.",
+            "title": "x",
+            "type": "integer"
+          },
+          "y": {
+            "description": "Y coordinate in pixels from the top-left corner.",
+            "title": "y",
+            "type": "integer"
+          },
+          "width": {
+            "description": "Width of the text region in pixels.",
+            "title": "width",
+            "type": "integer"
+          },
+          "height": {
+            "description": "Height of the text region in pixels.",
+            "title": "height",
+            "type": "integer"
+          },
+          "text": {
+            "description": "The detected text content. Line breaks are represented as \\n.",
+            "example": "Hello World",
+            "title": "text",
+            "type": "string"
+          },
+          "alignment": {
+            "description": "Detected text alignment.",
+            "enum": [
+              "left",
+              "center",
+              "right"
+            ],
+            "title": "alignment",
+            "type": "string"
+          },
+          "angle": {
+            "default": 0,
+            "description": "Rotation angle in degrees (clockwise). Defaults to 0.",
+            "format": "float",
+            "title": "angle",
+            "type": "number"
+          },
+          "font_name": {
+            "description": "Best-matching font name from the font library.",
+            "nullable": true,
+            "title": "font_name",
+            "type": "string"
+          },
+          "font_alternatives": {
+            "description": "Alternative font matches, ranked by similarity.",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "title": "font_alternatives",
+            "type": "array"
+          },
+          "font_size": {
+            "description": "Detected font size in points.",
+            "nullable": true,
+            "title": "font_size",
+            "type": "integer"
+          },
+          "line_height": {
+            "description": "Line height multiplier (e.g., 1.2).",
+            "format": "float",
+            "nullable": true,
+            "title": "line_height",
+            "type": "number"
+          },
+          "color": {
+            "description": "Detected text color in hex format.",
+            "example": "#212121",
+            "nullable": true,
+            "pattern": "^#[0-9A-Fa-f]{6}$",
+            "title": "color",
+            "type": "string"
+          },
+          "formatting": {
+            "description": "Detected text formatting effects.",
+            "items": {
+              "enum": [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "all_caps",
+                "small_caps",
+                "superscript",
+                "subscript"
+              ],
+              "type": "string"
+            },
+            "title": "formatting",
+            "type": "array"
+          },
+          "role": {
+            "description": "Inferred typographic role of this text block.",
+            "enum": [
+              "heading",
+              "subheading",
+              "body",
+              "caption"
+            ],
+            "nullable": true,
+            "title": "role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "alignment",
+          "formatting",
+          "height",
+          "text",
+          "width",
+          "x",
+          "y"
+        ],
+        "title": "DetectedTextBlock",
         "type": "object"
       },
       "InternalBatchResultsResponse": {
