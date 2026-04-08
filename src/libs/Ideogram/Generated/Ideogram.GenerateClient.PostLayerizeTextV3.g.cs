@@ -22,7 +22,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Detect and extract text layers from an image<br/>
+        /// Layerize Text<br/>
         /// Analyzes an image to detect text regions, then returns each detected text block with its position, content, font information, and styling.<br/>
         /// The response includes a text-erased base image (background with all text removed) and a flat list of detected text blocks.<br/>
         /// Supported image formats include JPEG, PNG, and WebP (max size 10MB).<br/>
@@ -301,7 +301,7 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Detect and extract text layers from an image<br/>
+        /// Layerize Text<br/>
         /// Analyzes an image to detect text regions, then returns each detected text block with its position, content, font information, and styling.<br/>
         /// The response includes a text-erased base image (background with all text removed) and a flat list of detected text blocks.<br/>
         /// Supported image formats include JPEG, PNG, and WebP (max size 10MB).<br/>
