@@ -2786,7 +2786,7 @@
             "description": "Too many requests."
           }
         },
-        "summary": "Detect and extract text layers from an image",
+        "summary": "Layerize Text",
         "tags": [
           "generate"
         ],
