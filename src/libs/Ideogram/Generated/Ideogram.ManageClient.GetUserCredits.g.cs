@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_GetUserCreditsSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_GetUserCreditsSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_GetUserCreditsSecurityRequirement0,
+            };
         partial void PrepareGetUserCreditsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string organizationId,
@@ -47,6 +66,12 @@ namespace Ideogram
                 startTime: ref startTime,
                 endTime: ref endTime);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetUserCreditsSecurityRequirements,
+                operationName: "GetUserCreditsAsync");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/credits",
                 baseUri: HttpClient.BaseAddress); 
@@ -54,7 +79,7 @@ namespace Ideogram
                 .AddRequiredParameter("organization_id", organizationId)
                 .AddRequiredParameter("start_time", startTime.ToString("yyyy-MM-ddTHH:mm:ssZ"))
                 .AddOptionalParameter("end_time", endTime?.ToString("yyyy-MM-ddTHH:mm:ssZ")) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -64,7 +89,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

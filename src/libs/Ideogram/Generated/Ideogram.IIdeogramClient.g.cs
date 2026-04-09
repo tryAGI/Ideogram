@@ -46,7 +46,7 @@ namespace Ideogram
         public BatchClient Batch { get; }
 
         /// <summary>
-        /// Operations related to managing datasets
+        /// Operations related to managing datasets.
         /// </summary>
         public DatasetsClient Datasets { get; }
 
@@ -61,12 +61,12 @@ namespace Ideogram
         public InternalTestingClient InternalTesting { get; }
 
         /// <summary>
-        /// Content related to managing API account and API access
+        /// Content related to managing API account and API access.
         /// </summary>
         public ManageClient Manage { get; }
 
         /// <summary>
-        /// Operations related to managing custom models
+        /// Operations related to managing custom models.
         /// </summary>
         public ModelsClient Models { get; }
 
@@ -76,7 +76,7 @@ namespace Ideogram
         public PromptClient Prompt { get; }
 
         /// <summary>
-        /// Operations related to understanding visual content
+        /// Operations related to understanding visual content.
         /// </summary>
         public VisionClient Vision { get; }
 

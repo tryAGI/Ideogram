@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class DatasetsClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_CreateDatasetSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_CreateDatasetSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_CreateDatasetSecurityRequirement0,
+            };
         partial void PrepareCreateDatasetArguments(
             global::System.Net.Http.HttpClient httpClient,
             global::Ideogram.CreateDatasetRequest request);
@@ -41,9 +60,15 @@ namespace Ideogram
                 httpClient: HttpClient,
                 request: request);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_CreateDatasetSecurityRequirements,
+                operationName: "CreateDatasetAsync");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/datasets",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Post,
@@ -53,7 +78,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

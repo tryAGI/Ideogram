@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class GenerateClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostEditImageV3SecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostEditImageV3SecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_PostEditImageV3SecurityRequirement0,
+            };
         partial void PreparePostEditImageV3Arguments(
             global::System.Net.Http.HttpClient httpClient,
             global::Ideogram.EditImageRequestV3 request);
@@ -44,9 +63,15 @@ namespace Ideogram
                 httpClient: HttpClient,
                 request: request);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_PostEditImageV3SecurityRequirements,
+                operationName: "PostEditImageV3Async");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/v1/ideogram-v3/edit",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Post,
@@ -56,7 +81,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Operations related to understanding visual content<br/>
+    /// Operations related to understanding visual content.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
@@ -13,7 +13,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public const string DefaultBaseUrl = "https://api.ideogram.ai";
+        public const string DefaultBaseUrl = "https://api.ideogram.ai/";
 
         private bool _disposeHttpClient = true;
 
