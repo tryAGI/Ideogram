@@ -13,7 +13,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public const string DefaultBaseUrl = "https://api.ideogram.ai";
+        public const string DefaultBaseUrl = "https://api.ideogram.ai/";
 
         private bool _disposeHttpClient = true;
 
@@ -47,7 +47,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Operations related to managing datasets
+        /// Operations related to managing datasets.
         /// </summary>
         public DatasetsClient Datasets => new DatasetsClient(HttpClient, authorizations: Authorizations)
         {
@@ -74,7 +74,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Content related to managing API account and API access
+        /// Content related to managing API account and API access.
         /// </summary>
         public ManageClient Manage => new ManageClient(HttpClient, authorizations: Authorizations)
         {
@@ -83,7 +83,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Operations related to managing custom models
+        /// Operations related to managing custom models.
         /// </summary>
         public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations)
         {
@@ -101,7 +101,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Operations related to understanding visual content
+        /// Operations related to understanding visual content.
         /// </summary>
         public VisionClient Vision => new VisionClient(HttpClient, authorizations: Authorizations)
         {

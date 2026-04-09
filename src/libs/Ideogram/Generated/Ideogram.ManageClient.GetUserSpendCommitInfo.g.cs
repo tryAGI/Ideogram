@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_GetUserSpendCommitInfoSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_GetUserSpendCommitInfoSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_GetUserSpendCommitInfoSecurityRequirement0,
+            };
         partial void PrepareGetUserSpendCommitInfoArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string organizationId,
@@ -42,13 +61,19 @@ namespace Ideogram
                 organizationId: ref organizationId,
                 postpaidOnly: ref postpaidOnly);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetUserSpendCommitInfoSecurityRequirements,
+                operationName: "GetUserSpendCommitInfoAsync");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/spend_commit",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddRequiredParameter("organization_id", organizationId)
                 .AddOptionalParameter("postpaid_only", postpaidOnly?.ToString().ToLowerInvariant()) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -58,7 +83,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

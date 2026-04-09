@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostApiTermsSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostApiTermsSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_PostApiTermsSecurityRequirement0,
+            };
         partial void PreparePostApiTermsArguments(
             global::System.Net.Http.HttpClient httpClient,
             global::Ideogram.PostApiTermsRequest request);
@@ -35,9 +54,15 @@ namespace Ideogram
                 httpClient: HttpClient,
                 request: request);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_PostApiTermsSecurityRequirements,
+                operationName: "PostApiTermsAsync");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/terms",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Post,
@@ -47,7 +72,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

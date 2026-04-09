@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class BatchClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_GetMaybeBatchResultsSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_GetMaybeBatchResultsSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_GetMaybeBatchResultsSecurityRequirement0,
+            };
         partial void PrepareGetMaybeBatchResultsArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string jobId);
@@ -38,9 +57,15 @@ namespace Ideogram
                 httpClient: HttpClient,
                 jobId: ref jobId);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetMaybeBatchResultsSecurityRequirements,
+                operationName: "GetMaybeBatchResultsAsync");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: $"/internal/batch/get-maybe-batch-results/{jobId}",
-                baseUri: HttpClient.BaseAddress); 
+                baseUri: HttpClient.BaseAddress);
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -50,7 +75,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

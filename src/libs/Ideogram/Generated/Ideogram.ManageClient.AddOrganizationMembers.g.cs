@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_AddOrganizationMembersSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_AddOrganizationMembersSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_AddOrganizationMembersSecurityRequirement0,
+            };
         partial void PrepareAddOrganizationMembersArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string organizationId,
@@ -45,12 +64,18 @@ namespace Ideogram
                 organizationId: ref organizationId,
                 request: request);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_AddOrganizationMembersSecurityRequirements,
+                operationName: "AddOrganizationMembersAsync");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/organization/add_members",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddRequiredParameter("organization_id", organizationId) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Post,
@@ -60,7 +85,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

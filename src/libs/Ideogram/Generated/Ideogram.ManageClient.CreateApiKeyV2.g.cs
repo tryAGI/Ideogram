@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_CreateApiKeyV2SecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_CreateApiKeyV2SecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_CreateApiKeyV2SecurityRequirement0,
+            };
         partial void PrepareCreateApiKeyV2Arguments(
             global::System.Net.Http.HttpClient httpClient,
             ref string organizationId);
@@ -37,12 +56,18 @@ namespace Ideogram
                 httpClient: HttpClient,
                 organizationId: ref organizationId);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_CreateApiKeyV2SecurityRequirements,
+                operationName: "CreateApiKeyV2Async");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/api_keys_v2",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddRequiredParameter("organization_id", organizationId) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Post,
@@ -52,7 +77,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")

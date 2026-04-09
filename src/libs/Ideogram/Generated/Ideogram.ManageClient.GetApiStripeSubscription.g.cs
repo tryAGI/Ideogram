@@ -5,6 +5,25 @@ namespace Ideogram
 {
     public partial class ManageClient
     {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_GetApiStripeSubscriptionSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_GetApiStripeSubscriptionSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_GetApiStripeSubscriptionSecurityRequirement0,
+            };
         partial void PrepareGetApiStripeSubscriptionArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref bool? isBusiness);
@@ -37,12 +56,18 @@ namespace Ideogram
                 httpClient: HttpClient,
                 isBusiness: ref isBusiness);
 
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_GetApiStripeSubscriptionSecurityRequirements,
+                operationName: "GetApiStripeSubscriptionAsync");
+
             var __pathBuilder = new global::Ideogram.PathBuilder(
                 path: "/manage/api/stripe_subscription",
                 baseUri: HttpClient.BaseAddress); 
             __pathBuilder
                 .AddOptionalParameter("isBusiness", isBusiness?.ToString().ToLowerInvariant()) 
-                ; 
+                ;
             var __path = __pathBuilder.ToString();
             using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
                 method: global::System.Net.Http.HttpMethod.Get,
@@ -52,7 +77,7 @@ namespace Ideogram
             __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
-            foreach (var __authorization in Authorizations)
+            foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
                     __authorization.Type == "OAuth2")
