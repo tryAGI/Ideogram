@@ -12,11 +12,13 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReplaceBackgroundV3Async(
 
             global::Ideogram.ReplaceBackgroundRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Replace Background with Ideogram 3.0<br/>
@@ -65,6 +67,7 @@ namespace Ideogram
         /// <param name="styleReferenceImages">
         /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostReplaceBackgroundV3Async(
@@ -79,6 +82,7 @@ namespace Ideogram
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

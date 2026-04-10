@@ -9,11 +9,13 @@ namespace Ideogram
         /// Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.MagicPromptResponse> PostMagicPromptAsync(
 
             global::Ideogram.MagicPromptRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Generate Magic Prompt<br/>
@@ -48,6 +50,7 @@ namespace Ideogram
         /// A system prompt to use for the magic prompt.<br/>
         /// Example: You are a helpful assistant that generates magic prompts for images.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.MagicPromptResponse> PostMagicPromptAsync(
@@ -58,6 +61,7 @@ namespace Ideogram
             int? seed = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             string? systemPrompt = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

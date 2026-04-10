@@ -11,6 +11,7 @@ namespace Ideogram
         /// <param name="xTestHeader"></param>
         /// <param name="xTestHeader2"></param>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
@@ -18,6 +19,7 @@ namespace Ideogram
             global::Ideogram.InternalTestingRequest request,
             string? xTestHeader = default,
             string? xTestHeader2 = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Testing<br/>
@@ -47,6 +49,7 @@ namespace Ideogram
         /// <param name="repeatedPrimitiveField"></param>
         /// <param name="repeatedComplexField"></param>
         /// <param name="enumTypeField"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
@@ -66,6 +69,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? repeatedPrimitiveField = default,
             global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? repeatedComplexField = default,
             global::Ideogram.InternalTestingEnumField? enumTypeField = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

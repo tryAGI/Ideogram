@@ -31,6 +31,9 @@ namespace Ideogram
 #if DEBUG
             = true;
 #endif
+
+        /// <inheritdoc/>
+        public global::Ideogram.AutoSDKClientOptions Options { get; }
         /// <summary>
         /// 
         /// </summary>
@@ -40,7 +43,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public BatchClient Batch => new BatchClient(HttpClient, authorizations: Authorizations)
+        public BatchClient Batch => new BatchClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -49,7 +52,7 @@ namespace Ideogram
         /// <summary>
         /// Operations related to managing datasets.
         /// </summary>
-        public DatasetsClient Datasets => new DatasetsClient(HttpClient, authorizations: Authorizations)
+        public DatasetsClient Datasets => new DatasetsClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -58,7 +61,7 @@ namespace Ideogram
         /// <summary>
         /// All things related to generating content.
         /// </summary>
-        public GenerateClient Generate => new GenerateClient(HttpClient, authorizations: Authorizations)
+        public GenerateClient Generate => new GenerateClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -67,7 +70,7 @@ namespace Ideogram
         /// <summary>
         /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
         /// </summary>
-        public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, authorizations: Authorizations)
+        public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -76,7 +79,7 @@ namespace Ideogram
         /// <summary>
         /// Content related to managing API account and API access.
         /// </summary>
-        public ManageClient Manage => new ManageClient(HttpClient, authorizations: Authorizations)
+        public ManageClient Manage => new ManageClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -85,7 +88,7 @@ namespace Ideogram
         /// <summary>
         /// Operations related to managing custom models.
         /// </summary>
-        public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations)
+        public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -94,7 +97,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public PromptClient Prompt => new PromptClient(HttpClient, authorizations: Authorizations)
+        public PromptClient Prompt => new PromptClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -103,7 +106,7 @@ namespace Ideogram
         /// <summary>
         /// Operations related to understanding visual content.
         /// </summary>
-        public VisionClient Vision => new VisionClient(HttpClient, authorizations: Authorizations)
+        public VisionClient Vision => new VisionClient(HttpClient, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContext = JsonSerializerContext,
@@ -122,11 +125,37 @@ namespace Ideogram
             global::System.Net.Http.HttpClient? httpClient = null,
             global::System.Uri? baseUri = null,
             global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations = null,
+            bool disposeHttpClient = true) : this(
+                httpClient,
+                baseUri,
+                authorizations,
+                options: null,
+                disposeHttpClient: disposeHttpClient)
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of the IdeogramClient.
+        /// If no httpClient is provided, a new one will be created.
+        /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
+        /// </summary>
+        /// <param name="httpClient">The HttpClient instance. If not provided, a new one will be created.</param>
+        /// <param name="baseUri">The base URL for the API. If not provided, the default baseUri from OpenAPI spec will be used.</param>
+        /// <param name="authorizations">The authorizations to use for the requests.</param>
+        /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
+        /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
+        public IdeogramClient(
+            global::System.Net.Http.HttpClient? httpClient = null,
+            global::System.Uri? baseUri = null,
+            global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations = null,
+            global::Ideogram.AutoSDKClientOptions? options = null,
             bool disposeHttpClient = true)
         {
+
             HttpClient = httpClient ?? new global::System.Net.Http.HttpClient();
             HttpClient.BaseAddress ??= baseUri ?? new global::System.Uri(DefaultBaseUrl);
             Authorizations = authorizations ?? new global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>();
+            Options = options ?? new global::Ideogram.AutoSDKClientOptions();
             _disposeHttpClient = disposeHttpClient;
 
             Initialized(HttpClient);

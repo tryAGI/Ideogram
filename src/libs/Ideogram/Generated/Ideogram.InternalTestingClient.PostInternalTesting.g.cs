@@ -14,6 +14,7 @@ namespace Ideogram
                 {                    new global::Ideogram.EndPointAuthorizationRequirement
                     {
                         Type = "Http",
+                        SchemeId = "HttpBearer",
                         Location = "Header",
                         Name = "Bearer",
                         FriendlyName = "Bearer",
@@ -51,6 +52,7 @@ namespace Ideogram
         /// <param name="xTestHeader"></param>
         /// <param name="xTestHeader2"></param>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
@@ -58,6 +60,7 @@ namespace Ideogram
             global::Ideogram.InternalTestingRequest request,
             string? xTestHeader = default,
             string? xTestHeader2 = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
@@ -76,22 +79,43 @@ namespace Ideogram
                 securityRequirements: s_PostInternalTestingSecurityRequirements,
                 operationName: "PostInternalTestingAsync");
 
-            var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/internal-testing",
-                baseUri: HttpClient.BaseAddress);
-            var __path = __pathBuilder.ToString();
-            using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                method: global::System.Net.Http.HttpMethod.Post,
-                requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
+            using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken);
+            var __effectiveCancellationToken = __timeoutCancellationTokenSource?.Token ?? cancellationToken;
+            var __effectiveReadResponseAsString = global::Ideogram.AutoSDKRequestOptionsSupport.GetReadResponseAsString(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                fallbackValue: ReadResponseAsString);
+            var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                supportsRetry: true);
+
+            global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
+            {
+                            var __pathBuilder = new global::Ideogram.PathBuilder(
+                                path: "/internal-testing",
+                                baseUri: HttpClient.BaseAddress);
+                            var __path = __pathBuilder.ToString();
+                __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
+                    path: __path,
+                    clientParameters: Options.QueryParameters,
+                    requestParameters: requestOptions?.QueryParameters);
+                var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
+                    method: global::System.Net.Http.HttpMethod.Post,
+                    requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
-            __httpRequest.Version = global::System.Net.HttpVersion.Version11;
-            __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
+                __httpRequest.Version = global::System.Net.HttpVersion.Version11;
+                __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
             foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
-                    __authorization.Type == "OAuth2")
+                    __authorization.Type == "OAuth2" ||
+                    __authorization.Type == "OpenIdConnect")
                 {
                     __httpRequest.Headers.Authorization = new global::System.Net.Http.Headers.AuthenticationHeaderValue(
                         scheme: __authorization.Name,
@@ -101,231 +125,390 @@ namespace Ideogram
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                }
+                } 
             }
 
-            if (xTestHeader != default)
-            {
-                __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header", xTestHeader.ToString());
-            }
-            if (xTestHeader2 != default)
-            {
-                __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header-2", xTestHeader2.ToString());
-            }
-
-            using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-            if (xTestHeader != default)
-            {
-
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{xTestHeader}"),
-                    name: "\"X-Test-Header\"");
-            } 
-            if (xTestHeader2 != default)
-            {
-
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{xTestHeader2}"),
-                    name: "\"X-Test-Header-2\"");
-            } 
-            if (request.XPosition != default)
-            {
-
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.XPosition}"),
-                    name: "\"x_position\"");
-            } 
-            if (request.ImageFile != default)
-            {
-
-                var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
-                __httpRequestContent.Add(
-                    content: __contentImageFile,
-                    name: "\"image_file\"",
-                    fileName: request.ImageFilename != null ? $"\"{request.ImageFilename}\"" : string.Empty);
-                if (__contentImageFile.Headers.ContentDisposition != null)
+                if (xTestHeader != default)
                 {
-                    __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
+                    __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header", xTestHeader.ToString());
                 }
-            } 
-            if (request.AnotherImageFile != default)
-            {
-
-                var __contentAnotherImageFile = new global::System.Net.Http.ByteArrayContent(request.AnotherImageFile ?? global::System.Array.Empty<byte>());
-                __httpRequestContent.Add(
-                    content: __contentAnotherImageFile,
-                    name: "\"another_image_file\"",
-                    fileName: request.AnotherImageFilename != null ? $"\"{request.AnotherImageFilename}\"" : string.Empty);
-                if (__contentAnotherImageFile.Headers.ContentDisposition != null)
+                if (xTestHeader2 != default)
                 {
-                    __contentAnotherImageFile.Headers.ContentDisposition.FileNameStar = null;
+                    __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header-2", xTestHeader2.ToString());
                 }
-            } 
-            if (request.SomeText != default)
-            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.SomeText}"),
-                    name: "\"some_text\"");
-            } 
-            if (request.NestedObject != default)
-            {
+                            var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (xTestHeader != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.NestedObject}"),
-                    name: "\"nested_object\"");
-            } 
-            if (request.NestedObjectRequiredFields != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{xTestHeader}"),
+                                    name: "\"X-Test-Header\"");
+                            } 
+                            if (xTestHeader2 != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.NestedObjectRequiredFields}"),
-                    name: "\"nested_object_required_fields\"");
-            } 
-            if (request.DateTypeField != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{xTestHeader2}"),
+                                    name: "\"X-Test-Header-2\"");
+                            } 
+                            if (request.XPosition != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.DateTypeField}"),
-                    name: "\"date_type_field\"");
-            }
-            __httpRequestContent.Add(
-                content: new global::System.Net.Http.StringContent($"{request.RequiredDateTypeField}"),
-                name: "\"required_date_type_field\"");
-            if (request.DateTimeTypeField != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.XPosition}"),
+                                    name: "\"x_position\"");
+                            } 
+                            if (request.ImageFile != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.DateTimeTypeField}"),
-                    name: "\"date_time_type_field\"");
-            } 
-            if (request.RepeatedPrimitiveField != default)
-            {
+                                var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
+                                __httpRequestContent.Add(
+                                    content: __contentImageFile,
+                                    name: "\"image_file\"",
+                                    fileName: request.ImageFilename != null ? $"\"{request.ImageFilename}\"" : string.Empty);
+                                if (__contentImageFile.Headers.ContentDisposition != null)
+                                {
+                                    __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
+                                }
+                            } 
+                            if (request.AnotherImageFile != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedPrimitiveField, x => x))}]"),
-                    name: "\"repeated_primitive_field\"");
-            } 
-            if (request.RepeatedComplexField != default)
-            {
+                                var __contentAnotherImageFile = new global::System.Net.Http.ByteArrayContent(request.AnotherImageFile ?? global::System.Array.Empty<byte>());
+                                __httpRequestContent.Add(
+                                    content: __contentAnotherImageFile,
+                                    name: "\"another_image_file\"",
+                                    fileName: request.AnotherImageFilename != null ? $"\"{request.AnotherImageFilename}\"" : string.Empty);
+                                if (__contentAnotherImageFile.Headers.ContentDisposition != null)
+                                {
+                                    __contentAnotherImageFile.Headers.ContentDisposition.FileNameStar = null;
+                                }
+                            } 
+                            if (request.SomeText != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedComplexField, x => x))}]"),
-                    name: "\"repeated_complex_field\"");
-            } 
-            if (request.EnumTypeField != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.SomeText}"),
+                                    name: "\"some_text\"");
+                            } 
+                            if (request.NestedObject != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.EnumTypeField?.ToValueString()}"),
-                    name: "\"enum_type_field\"");
-            }
-            __httpRequest.Content = __httpRequestContent;
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.NestedObject}"),
+                                    name: "\"nested_object\"");
+                            } 
+                            if (request.NestedObjectRequiredFields != default)
+                            {
 
-            PrepareRequest(
-                client: HttpClient,
-                request: __httpRequest);
-            PreparePostInternalTestingRequest(
-                httpClient: HttpClient,
-                httpRequestMessage: __httpRequest,
-                xTestHeader: xTestHeader,
-                xTestHeader2: xTestHeader2,
-                request: request);
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.NestedObjectRequiredFields}"),
+                                    name: "\"nested_object_required_fields\"");
+                            } 
+                            if (request.DateTypeField != default)
+                            {
 
-            using var __response = await HttpClient.SendAsync(
-                request: __httpRequest,
-                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseContentRead,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.DateTypeField}"),
+                                    name: "\"date_type_field\"");
+                            }
+                            __httpRequestContent.Add(
+                                content: new global::System.Net.Http.StringContent($"{request.RequiredDateTypeField}"),
+                                name: "\"required_date_type_field\"");
+                            if (request.DateTimeTypeField != default)
+                            {
 
-            ProcessResponse(
-                client: HttpClient,
-                response: __response);
-            ProcessPostInternalTestingResponse(
-                httpClient: HttpClient,
-                httpResponseMessage: __response);
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.DateTimeTypeField}"),
+                                    name: "\"date_time_type_field\"");
+                            } 
+                            if (request.RepeatedPrimitiveField != default)
+                            {
 
-            if (ReadResponseAsString)
-            {
-                var __content = await __response.Content.ReadAsStringAsync(
-#if NET5_0_OR_GREATER
-                    cancellationToken
-#endif
-                ).ConfigureAwait(false);
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedPrimitiveField, x => x))}]"),
+                                    name: "\"repeated_primitive_field\"");
+                            } 
+                            if (request.RepeatedComplexField != default)
+                            {
 
-                ProcessResponseContent(
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedComplexField, x => x))}]"),
+                                    name: "\"repeated_complex_field\"");
+                            } 
+                            if (request.EnumTypeField != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.EnumTypeField?.ToValueString()}"),
+                                    name: "\"enum_type_field\"");
+                            }
+                            __httpRequest.Content = __httpRequestContent;
+                global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
+                    request: __httpRequest,
+                    clientHeaders: Options.Headers,
+                    requestHeaders: requestOptions?.Headers);
+
+                PrepareRequest(
                     client: HttpClient,
-                    response: __response,
-                    content: ref __content);
-                ProcessPostInternalTestingResponseContent(
+                    request: __httpRequest);
+                PreparePostInternalTestingRequest(
                     httpClient: HttpClient,
-                    httpResponseMessage: __response,
-                    content: ref __content);
+                    httpRequestMessage: __httpRequest,
+                    xTestHeader: xTestHeader,
+                    xTestHeader2: xTestHeader2,
+                    request: request);
 
-                try
-                {
-                    __response.EnsureSuccessStatusCode();
-
-                    return
-                        global::Ideogram.PostInternalTesting200Response.FromJson(__content, JsonSerializerContext) ??
-                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                }
-                catch (global::System.Exception __ex)
-                {
-                    throw new global::Ideogram.ApiException(
-                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                        innerException: __ex,
-                        statusCode: __response.StatusCode)
-                    {
-                        ResponseBody = __content,
-                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                            __response.Headers,
-                            h => h.Key,
-                            h => h.Value),
-                    };
-                }
+                return __httpRequest;
             }
-            else
-            {
-                try
-                {
-                    __response.EnsureSuccessStatusCode();
-                    using var __content = await __response.Content.ReadAsStreamAsync(
-#if NET5_0_OR_GREATER
-                        cancellationToken
-#endif
-                    ).ConfigureAwait(false);
 
-                    return
-                        await global::Ideogram.PostInternalTesting200Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                        throw new global::System.InvalidOperationException("Response deserialization failed.");
-                }
-                catch (global::System.Exception __ex)
+            global::System.Net.Http.HttpRequestMessage? __httpRequest = null;
+            global::System.Net.Http.HttpResponseMessage? __response = null;
+            var __attemptNumber = 0;
+            try
+            {
+                for (var __attempt = 1; __attempt <= __maxAttempts; __attempt++)
                 {
-                    string? __content = null;
+                    __attemptNumber = __attempt;
+                    __httpRequest = __CreateHttpRequest();
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostInternalTesting",
+                                methodName: "PostInternalTestingAsync",
+                                pathTemplate: "\"/internal-testing\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: null,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
-                        __content = await __response.Content.ReadAsStringAsync(
-#if NET5_0_OR_GREATER
-                            cancellationToken
-#endif
-                        ).ConfigureAwait(false);
+                        __response = await HttpClient.SendAsync(
+                request: __httpRequest,
+                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseContentRead,
+                cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                     }
-                    catch (global::System.Exception)
+                    catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostInternalTesting",
+                                methodName: "PostInternalTestingAsync",
+                                pathTemplate: "\"/internal-testing\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: null,
+                                exception: __exception,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: __willRetry,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                        if (!__willRetry)
+                        {
+                            throw;
+                        }
+
+                        __httpRequest.Dispose();
+                        __httpRequest = null;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
+                        continue;
                     }
 
-                    throw new global::Ideogram.ApiException(
-                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                        innerException: __ex,
-                        statusCode: __response.StatusCode)
+                    if (__response != null &&
+                        __attempt < __maxAttempts &&
+                        global::Ideogram.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
-                        ResponseBody = __content,
-                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                            __response.Headers,
-                            h => h.Key,
-                            h => h.Value),
-                    };
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostInternalTesting",
+                                methodName: "PostInternalTestingAsync",
+                                pathTemplate: "\"/internal-testing\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: true,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                        __response.Dispose();
+                        __response = null;
+                        __httpRequest.Dispose();
+                        __httpRequest = null;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
+                        continue;
+                    }
+
+                    break;
                 }
+
+                if (__response == null)
+                {
+                    throw new global::System.InvalidOperationException("No response received.");
+                }
+
+                using (__response)
+                {
+
+                ProcessResponse(
+                    client: HttpClient,
+                    response: __response);
+                ProcessPostInternalTestingResponse(
+                    httpClient: HttpClient,
+                    httpResponseMessage: __response);
+                if (__response.IsSuccessStatusCode)
+                {
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostInternalTesting",
+                                methodName: "PostInternalTestingAsync",
+                                pathTemplate: "\"/internal-testing\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attemptNumber,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                }
+                else
+                {
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostInternalTesting",
+                                methodName: "PostInternalTestingAsync",
+                                pathTemplate: "\"/internal-testing\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attemptNumber,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                }
+
+                            if (__effectiveReadResponseAsString)
+                            {
+                                var __content = await __response.Content.ReadAsStringAsync(
+                #if NET5_0_OR_GREATER
+                                    __effectiveCancellationToken
+                #endif
+                                ).ConfigureAwait(false);
+
+                                ProcessResponseContent(
+                                    client: HttpClient,
+                                    response: __response,
+                                    content: ref __content);
+                                ProcessPostInternalTestingResponseContent(
+                                    httpClient: HttpClient,
+                                    httpResponseMessage: __response,
+                                    content: ref __content);
+
+                                try
+                                {
+                                    __response.EnsureSuccessStatusCode();
+
+                                    return
+                                        global::Ideogram.PostInternalTesting200Response.FromJson(__content, JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    throw new global::Ideogram.ApiException(
+                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        innerException: __ex,
+                                        statusCode: __response.StatusCode)
+                                    {
+                                        ResponseBody = __content,
+                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                            __response.Headers,
+                                            h => h.Key,
+                                            h => h.Value),
+                                    };
+                                }
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    __response.EnsureSuccessStatusCode();
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                #if NET5_0_OR_GREATER
+                                        __effectiveCancellationToken
+                #endif
+                                    ).ConfigureAwait(false);
+
+                                    return
+                                        await global::Ideogram.PostInternalTesting200Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    string? __content = null;
+                                    try
+                                    {
+                                        __content = await __response.Content.ReadAsStringAsync(
+                #if NET5_0_OR_GREATER
+                                            __effectiveCancellationToken
+                #endif
+                                        ).ConfigureAwait(false);
+                                    }
+                                    catch (global::System.Exception)
+                                    {
+                                    }
+
+                                    throw new global::Ideogram.ApiException(
+                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        innerException: __ex,
+                                        statusCode: __response.StatusCode)
+                                    {
+                                        ResponseBody = __content,
+                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                            __response.Headers,
+                                            h => h.Key,
+                                            h => h.Value),
+                                    };
+                                }
+                            }
+
+                }
+            }
+            finally
+            {
+                __httpRequest?.Dispose();
             }
         }
         /// <summary>
@@ -356,6 +539,7 @@ namespace Ideogram
         /// <param name="repeatedPrimitiveField"></param>
         /// <param name="repeatedComplexField"></param>
         /// <param name="enumTypeField"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.PostInternalTesting200Response> PostInternalTestingAsync(
@@ -375,6 +559,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? repeatedPrimitiveField = default,
             global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? repeatedComplexField = default,
             global::Ideogram.InternalTestingEnumField? enumTypeField = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Ideogram.InternalTestingRequest
@@ -399,6 +584,7 @@ namespace Ideogram
                 xTestHeader: xTestHeader,
                 xTestHeader2: xTestHeader2,
                 request: __request,
+                requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }

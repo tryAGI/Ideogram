@@ -10,12 +10,14 @@ namespace Ideogram
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.TrainDatasetModelResponse> TrainDatasetModelAsync(
             string datasetId,
 
             global::Ideogram.TrainDatasetModelRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Train a model from a dataset<br/>
@@ -46,6 +48,7 @@ namespace Ideogram
         /// Learning rate for the optimizer. Must be greater than 0.<br/>
         /// Example: 0.0001F
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.TrainDatasetModelResponse> TrainDatasetModelAsync(
@@ -56,6 +59,7 @@ namespace Ideogram
             int? numChips = default,
             double? ema = default,
             double? learningRate = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

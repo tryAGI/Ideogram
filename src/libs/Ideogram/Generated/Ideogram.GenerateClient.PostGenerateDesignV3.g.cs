@@ -14,6 +14,7 @@ namespace Ideogram
                 {                    new global::Ideogram.EndPointAuthorizationRequirement
                     {
                         Type = "Http",
+                        SchemeId = "HttpBearer",
                         Location = "Header",
                         Name = "Bearer",
                         FriendlyName = "Bearer",
@@ -47,11 +48,13 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.LayeredImageGenerationResponseV3> PostGenerateDesignV3Async(
 
             global::Ideogram.GenerateDesignRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
@@ -68,22 +71,43 @@ namespace Ideogram
                 securityRequirements: s_PostGenerateDesignV3SecurityRequirements,
                 operationName: "PostGenerateDesignV3Async");
 
-            var __pathBuilder = new global::Ideogram.PathBuilder(
-                path: "/v1/ideogram-v3/generate-design",
-                baseUri: HttpClient.BaseAddress);
-            var __path = __pathBuilder.ToString();
-            using var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                method: global::System.Net.Http.HttpMethod.Post,
-                requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
+            using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken);
+            var __effectiveCancellationToken = __timeoutCancellationTokenSource?.Token ?? cancellationToken;
+            var __effectiveReadResponseAsString = global::Ideogram.AutoSDKRequestOptionsSupport.GetReadResponseAsString(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                fallbackValue: ReadResponseAsString);
+            var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                supportsRetry: true);
+
+            global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
+            {
+                            var __pathBuilder = new global::Ideogram.PathBuilder(
+                                path: "/v1/ideogram-v3/generate-design",
+                                baseUri: HttpClient.BaseAddress);
+                            var __path = __pathBuilder.ToString();
+                __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
+                    path: __path,
+                    clientParameters: Options.QueryParameters,
+                    requestParameters: requestOptions?.QueryParameters);
+                var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
+                    method: global::System.Net.Http.HttpMethod.Post,
+                    requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
-            __httpRequest.Version = global::System.Net.HttpVersion.Version11;
-            __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
+                __httpRequest.Version = global::System.Net.HttpVersion.Version11;
+                __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
 #endif
 
             foreach (var __authorization in __authorizations)
             {
                 if (__authorization.Type == "Http" ||
-                    __authorization.Type == "OAuth2")
+                    __authorization.Type == "OAuth2" ||
+                    __authorization.Type == "OpenIdConnect")
                 {
                     __httpRequest.Headers.Authorization = new global::System.Net.Http.Headers.AuthenticationHeaderValue(
                         scheme: __authorization.Name,
@@ -93,449 +117,608 @@ namespace Ideogram
                          __authorization.Location == "Header")
                 {
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
-                }
+                } 
             }
-            using var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-            __httpRequestContent.Add(
-                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
-                name: "\"prompt\"");
-            if (request.Seed != default)
-            {
+                            var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            __httpRequestContent.Add(
+                                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                                name: "\"prompt\"");
+                            if (request.Seed != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
-                    name: "\"seed\"");
-            } 
-            if (request.Resolution != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                                    name: "\"seed\"");
+                            } 
+                            if (request.Resolution != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.Resolution?.ToValueString()}"),
-                    name: "\"resolution\"");
-            } 
-            if (request.AspectRatio != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.Resolution?.ToValueString()}"),
+                                    name: "\"resolution\"");
+                            } 
+                            if (request.AspectRatio != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.AspectRatio?.ToValueString()}"),
-                    name: "\"aspect_ratio\"");
-            } 
-            if (request.RenderingSpeed != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.AspectRatio?.ToValueString()}"),
+                                    name: "\"aspect_ratio\"");
+                            } 
+                            if (request.RenderingSpeed != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
-                    name: "\"rendering_speed\"");
-            } 
-            if (request.MagicPrompt != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
+                                    name: "\"rendering_speed\"");
+                            } 
+                            if (request.MagicPrompt != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
-                    name: "\"magic_prompt\"");
-            } 
-            if (request.NegativePrompt != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
+                                    name: "\"magic_prompt\"");
+                            } 
+                            if (request.NegativePrompt != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.NegativePrompt}"),
-                    name: "\"negative_prompt\"");
-            } 
-            if (request.NumImages != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.NegativePrompt}"),
+                                    name: "\"negative_prompt\"");
+                            } 
+                            if (request.NumImages != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
-                    name: "\"num_images\"");
-            } 
-            if (request.ColorPalette != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
+                                    name: "\"num_images\"");
+                            } 
+                            if (request.ColorPalette != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent(request.ColorPalette?.ToString() ?? string.Empty),
-                    name: "\"color_palette\"");
-            } 
-            if (request.StyleCodes != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ColorPalette?.ToString() ?? string.Empty),
+                                    name: "\"color_palette\"");
+                            } 
+                            if (request.StyleCodes != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes, x => x))}]"),
-                    name: "\"style_codes\"");
-            } 
-            if (request.StyleType != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes, x => x))}]"),
+                                    name: "\"style_codes\"");
+                            } 
+                            if (request.StyleType != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
-                    name: "\"style_type\"");
-            } 
-            if (request.StylePreset != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
+                                    name: "\"style_type\"");
+                            } 
+                            if (request.StylePreset != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
-                    name: "\"style_preset\"");
-            } 
-            if (request.CustomModelUri != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
+                                    name: "\"style_preset\"");
+                            } 
+                            if (request.CustomModelUri != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
-                    name: "\"custom_model_uri\"");
-            } 
-            if (request.FontFileH1 != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                                    name: "\"custom_model_uri\"");
+                            } 
+                            if (request.FontFileH1 != default)
+                            {
 
-                var __contentFontFileH1 = new global::System.Net.Http.ByteArrayContent(request.FontFileH1 ?? global::System.Array.Empty<byte>());
-                __httpRequestContent.Add(
-                    content: __contentFontFileH1,
-                    name: "\"font_file_h1\"",
-                    fileName: request.FontFileH1name != null ? $"\"{request.FontFileH1name}\"" : string.Empty);
-                if (__contentFontFileH1.Headers.ContentDisposition != null)
-                {
-                    __contentFontFileH1.Headers.ContentDisposition.FileNameStar = null;
-                }
-            } 
-            if (request.FontNameH1 != default)
-            {
+                                var __contentFontFileH1 = new global::System.Net.Http.ByteArrayContent(request.FontFileH1 ?? global::System.Array.Empty<byte>());
+                                __httpRequestContent.Add(
+                                    content: __contentFontFileH1,
+                                    name: "\"font_file_h1\"",
+                                    fileName: request.FontFileH1name != null ? $"\"{request.FontFileH1name}\"" : string.Empty);
+                                if (__contentFontFileH1.Headers.ContentDisposition != null)
+                                {
+                                    __contentFontFileH1.Headers.ContentDisposition.FileNameStar = null;
+                                }
+                            } 
+                            if (request.FontNameH1 != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.FontNameH1}"),
-                    name: "\"font_name_h1\"");
-            } 
-            if (request.FontFileH2 != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.FontNameH1}"),
+                                    name: "\"font_name_h1\"");
+                            } 
+                            if (request.FontFileH2 != default)
+                            {
 
-                var __contentFontFileH2 = new global::System.Net.Http.ByteArrayContent(request.FontFileH2 ?? global::System.Array.Empty<byte>());
-                __httpRequestContent.Add(
-                    content: __contentFontFileH2,
-                    name: "\"font_file_h2\"",
-                    fileName: request.FontFileH2name != null ? $"\"{request.FontFileH2name}\"" : string.Empty);
-                if (__contentFontFileH2.Headers.ContentDisposition != null)
-                {
-                    __contentFontFileH2.Headers.ContentDisposition.FileNameStar = null;
-                }
-            } 
-            if (request.FontNameH2 != default)
-            {
+                                var __contentFontFileH2 = new global::System.Net.Http.ByteArrayContent(request.FontFileH2 ?? global::System.Array.Empty<byte>());
+                                __httpRequestContent.Add(
+                                    content: __contentFontFileH2,
+                                    name: "\"font_file_h2\"",
+                                    fileName: request.FontFileH2name != null ? $"\"{request.FontFileH2name}\"" : string.Empty);
+                                if (__contentFontFileH2.Headers.ContentDisposition != null)
+                                {
+                                    __contentFontFileH2.Headers.ContentDisposition.FileNameStar = null;
+                                }
+                            } 
+                            if (request.FontNameH2 != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.FontNameH2}"),
-                    name: "\"font_name_h2\"");
-            } 
-            if (request.FontFileBody != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.FontNameH2}"),
+                                    name: "\"font_name_h2\"");
+                            } 
+                            if (request.FontFileBody != default)
+                            {
 
-                var __contentFontFileBody = new global::System.Net.Http.ByteArrayContent(request.FontFileBody ?? global::System.Array.Empty<byte>());
-                __httpRequestContent.Add(
-                    content: __contentFontFileBody,
-                    name: "\"font_file_body\"",
-                    fileName: request.FontFileBodyname != null ? $"\"{request.FontFileBodyname}\"" : string.Empty);
-                if (__contentFontFileBody.Headers.ContentDisposition != null)
-                {
-                    __contentFontFileBody.Headers.ContentDisposition.FileNameStar = null;
-                }
-            } 
-            if (request.FontNameBody != default)
-            {
+                                var __contentFontFileBody = new global::System.Net.Http.ByteArrayContent(request.FontFileBody ?? global::System.Array.Empty<byte>());
+                                __httpRequestContent.Add(
+                                    content: __contentFontFileBody,
+                                    name: "\"font_file_body\"",
+                                    fileName: request.FontFileBodyname != null ? $"\"{request.FontFileBodyname}\"" : string.Empty);
+                                if (__contentFontFileBody.Headers.ContentDisposition != null)
+                                {
+                                    __contentFontFileBody.Headers.ContentDisposition.FileNameStar = null;
+                                }
+                            } 
+                            if (request.FontNameBody != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.FontNameBody}"),
-                    name: "\"font_name_body\"");
-            } 
-            if (request.FontFileSmall != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.FontNameBody}"),
+                                    name: "\"font_name_body\"");
+                            } 
+                            if (request.FontFileSmall != default)
+                            {
 
-                var __contentFontFileSmall = new global::System.Net.Http.ByteArrayContent(request.FontFileSmall ?? global::System.Array.Empty<byte>());
-                __httpRequestContent.Add(
-                    content: __contentFontFileSmall,
-                    name: "\"font_file_small\"",
-                    fileName: request.FontFileSmallname != null ? $"\"{request.FontFileSmallname}\"" : string.Empty);
-                if (__contentFontFileSmall.Headers.ContentDisposition != null)
-                {
-                    __contentFontFileSmall.Headers.ContentDisposition.FileNameStar = null;
-                }
-            } 
-            if (request.FontNameSmall != default)
-            {
+                                var __contentFontFileSmall = new global::System.Net.Http.ByteArrayContent(request.FontFileSmall ?? global::System.Array.Empty<byte>());
+                                __httpRequestContent.Add(
+                                    content: __contentFontFileSmall,
+                                    name: "\"font_file_small\"",
+                                    fileName: request.FontFileSmallname != null ? $"\"{request.FontFileSmallname}\"" : string.Empty);
+                                if (__contentFontFileSmall.Headers.ContentDisposition != null)
+                                {
+                                    __contentFontFileSmall.Headers.ContentDisposition.FileNameStar = null;
+                                }
+                            } 
+                            if (request.FontNameSmall != default)
+                            {
 
-                __httpRequestContent.Add(
-                    content: new global::System.Net.Http.StringContent($"{request.FontNameSmall}"),
-                    name: "\"font_name_small\"");
-            } 
-            if (request.StyleReferenceImages != default)
-            {
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.FontNameSmall}"),
+                                    name: "\"font_name_small\"");
+                            } 
+                            if (request.StyleReferenceImages != default)
+                            {
 
-                for (var __iStyleReferenceImages = 0; __iStyleReferenceImages < request.StyleReferenceImages.Count; __iStyleReferenceImages++)
-                {
-                    var __contentStyleReferenceImages = new global::System.Net.Http.ByteArrayContent(request.StyleReferenceImages[__iStyleReferenceImages]);
-                    __httpRequestContent.Add(
-                        content: __contentStyleReferenceImages,
-                        name: "\"style_reference_images\"",
-                        fileName: $"\"file{__iStyleReferenceImages}.bin\"");
-                    if (__contentStyleReferenceImages.Headers.ContentDisposition != null)
-                    {
-                        __contentStyleReferenceImages.Headers.ContentDisposition.FileNameStar = null;
-                    }
-                }
-            } 
-            if (request.ReferenceAssetImages != default)
-            {
+                                for (var __iStyleReferenceImages = 0; __iStyleReferenceImages < request.StyleReferenceImages.Count; __iStyleReferenceImages++)
+                                {
+                                    var __contentStyleReferenceImages = new global::System.Net.Http.ByteArrayContent(request.StyleReferenceImages[__iStyleReferenceImages]);
+                                    __httpRequestContent.Add(
+                                        content: __contentStyleReferenceImages,
+                                        name: "\"style_reference_images\"",
+                                        fileName: $"\"file{__iStyleReferenceImages}.bin\"");
+                                    if (__contentStyleReferenceImages.Headers.ContentDisposition != null)
+                                    {
+                                        __contentStyleReferenceImages.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
+                            } 
+                            if (request.ReferenceAssetImages != default)
+                            {
 
-                for (var __iReferenceAssetImages = 0; __iReferenceAssetImages < request.ReferenceAssetImages.Count; __iReferenceAssetImages++)
-                {
-                    var __contentReferenceAssetImages = new global::System.Net.Http.ByteArrayContent(request.ReferenceAssetImages[__iReferenceAssetImages]);
-                    __httpRequestContent.Add(
-                        content: __contentReferenceAssetImages,
-                        name: "\"reference_asset_images\"",
-                        fileName: $"\"file{__iReferenceAssetImages}.bin\"");
-                    if (__contentReferenceAssetImages.Headers.ContentDisposition != null)
-                    {
-                        __contentReferenceAssetImages.Headers.ContentDisposition.FileNameStar = null;
-                    }
-                }
-            }
-            __httpRequest.Content = __httpRequestContent;
+                                for (var __iReferenceAssetImages = 0; __iReferenceAssetImages < request.ReferenceAssetImages.Count; __iReferenceAssetImages++)
+                                {
+                                    var __contentReferenceAssetImages = new global::System.Net.Http.ByteArrayContent(request.ReferenceAssetImages[__iReferenceAssetImages]);
+                                    __httpRequestContent.Add(
+                                        content: __contentReferenceAssetImages,
+                                        name: "\"reference_asset_images\"",
+                                        fileName: $"\"file{__iReferenceAssetImages}.bin\"");
+                                    if (__contentReferenceAssetImages.Headers.ContentDisposition != null)
+                                    {
+                                        __contentReferenceAssetImages.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
+                            }
+                            __httpRequest.Content = __httpRequestContent;
+                global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
+                    request: __httpRequest,
+                    clientHeaders: Options.Headers,
+                    requestHeaders: requestOptions?.Headers);
 
-            PrepareRequest(
-                client: HttpClient,
-                request: __httpRequest);
-            PreparePostGenerateDesignV3Request(
-                httpClient: HttpClient,
-                httpRequestMessage: __httpRequest,
-                request: request);
-
-            using var __response = await HttpClient.SendAsync(
-                request: __httpRequest,
-                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseContentRead,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
-
-            ProcessResponse(
-                client: HttpClient,
-                response: __response);
-            ProcessPostGenerateDesignV3Response(
-                httpClient: HttpClient,
-                httpResponseMessage: __response);
-            // 
-            if ((int)__response.StatusCode == 400)
-            {
-                string? __content_400 = null;
-                global::System.Exception? __exception_400 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_400 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        __content_400 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_400 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException(
-                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_400,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_400,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
-            // 
-            if ((int)__response.StatusCode == 401)
-            {
-                string? __content_401 = null;
-                global::System.Exception? __exception_401 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_401 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        __content_401 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_401 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException(
-                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_401,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_401,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
-            // Prompt failed the safety check.
-            if ((int)__response.StatusCode == 422)
-            {
-                string? __content_422 = null;
-                global::System.Exception? __exception_422 = null;
-                global::Ideogram.GenerateImageSafetyError? __value_422 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_422 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                        __value_422 = global::Ideogram.GenerateImageSafetyError.FromJson(__content_422, JsonSerializerContext);
-                    }
-                    else
-                    {
-                        __content_422 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-
-                        __value_422 = global::Ideogram.GenerateImageSafetyError.FromJson(__content_422, JsonSerializerContext);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_422 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException<global::Ideogram.GenerateImageSafetyError>(
-                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_422,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_422,
-                    ResponseObject = __value_422,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
-            // 
-            if ((int)__response.StatusCode == 429)
-            {
-                string? __content_429 = null;
-                global::System.Exception? __exception_429 = null;
-                try
-                {
-                    if (ReadResponseAsString)
-                    {
-                        __content_429 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                    else
-                    {
-                        __content_429 = await __response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
-                    }
-                }
-                catch (global::System.Exception __ex)
-                {
-                    __exception_429 = __ex;
-                }
-
-                throw new global::Ideogram.ApiException(
-                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
-                    innerException: __exception_429,
-                    statusCode: __response.StatusCode)
-                {
-                    ResponseBody = __content_429,
-                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                        __response.Headers,
-                        h => h.Key,
-                        h => h.Value),
-                };
-            }
-
-            if (ReadResponseAsString)
-            {
-                var __content = await __response.Content.ReadAsStringAsync(
-#if NET5_0_OR_GREATER
-                    cancellationToken
-#endif
-                ).ConfigureAwait(false);
-
-                ProcessResponseContent(
+                PrepareRequest(
                     client: HttpClient,
-                    response: __response,
-                    content: ref __content);
-                ProcessPostGenerateDesignV3ResponseContent(
+                    request: __httpRequest);
+                PreparePostGenerateDesignV3Request(
                     httpClient: HttpClient,
-                    httpResponseMessage: __response,
-                    content: ref __content);
+                    httpRequestMessage: __httpRequest,
+                    request: request);
 
-                try
-                {
-                    __response.EnsureSuccessStatusCode();
-
-                    return
-                        global::Ideogram.LayeredImageGenerationResponseV3.FromJson(__content, JsonSerializerContext) ??
-                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                }
-                catch (global::System.Exception __ex)
-                {
-                    throw new global::Ideogram.ApiException(
-                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                        innerException: __ex,
-                        statusCode: __response.StatusCode)
-                    {
-                        ResponseBody = __content,
-                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                            __response.Headers,
-                            h => h.Key,
-                            h => h.Value),
-                    };
-                }
+                return __httpRequest;
             }
-            else
-            {
-                try
-                {
-                    __response.EnsureSuccessStatusCode();
-                    using var __content = await __response.Content.ReadAsStreamAsync(
-#if NET5_0_OR_GREATER
-                        cancellationToken
-#endif
-                    ).ConfigureAwait(false);
 
-                    return
-                        await global::Ideogram.LayeredImageGenerationResponseV3.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
-                        throw new global::System.InvalidOperationException("Response deserialization failed.");
-                }
-                catch (global::System.Exception __ex)
+            global::System.Net.Http.HttpRequestMessage? __httpRequest = null;
+            global::System.Net.Http.HttpResponseMessage? __response = null;
+            var __attemptNumber = 0;
+            try
+            {
+                for (var __attempt = 1; __attempt <= __maxAttempts; __attempt++)
                 {
-                    string? __content = null;
+                    __attemptNumber = __attempt;
+                    __httpRequest = __CreateHttpRequest();
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateDesignV3",
+                                methodName: "PostGenerateDesignV3Async",
+                                pathTemplate: "\"/v1/ideogram-v3/generate-design\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: null,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
-                        __content = await __response.Content.ReadAsStringAsync(
-#if NET5_0_OR_GREATER
-                            cancellationToken
-#endif
-                        ).ConfigureAwait(false);
+                        __response = await HttpClient.SendAsync(
+                request: __httpRequest,
+                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseContentRead,
+                cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                     }
-                    catch (global::System.Exception)
+                    catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateDesignV3",
+                                methodName: "PostGenerateDesignV3Async",
+                                pathTemplate: "\"/v1/ideogram-v3/generate-design\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: null,
+                                exception: __exception,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: __willRetry,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                        if (!__willRetry)
+                        {
+                            throw;
+                        }
+
+                        __httpRequest.Dispose();
+                        __httpRequest = null;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
+                        continue;
                     }
 
-                    throw new global::Ideogram.ApiException(
-                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
-                        innerException: __ex,
-                        statusCode: __response.StatusCode)
+                    if (__response != null &&
+                        __attempt < __maxAttempts &&
+                        global::Ideogram.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
-                        ResponseBody = __content,
-                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                            __response.Headers,
-                            h => h.Key,
-                            h => h.Value),
-                    };
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateDesignV3",
+                                methodName: "PostGenerateDesignV3Async",
+                                pathTemplate: "\"/v1/ideogram-v3/generate-design\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: true,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                        __response.Dispose();
+                        __response = null;
+                        __httpRequest.Dispose();
+                        __httpRequest = null;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
+                        continue;
+                    }
+
+                    break;
                 }
+
+                if (__response == null)
+                {
+                    throw new global::System.InvalidOperationException("No response received.");
+                }
+
+                using (__response)
+                {
+
+                ProcessResponse(
+                    client: HttpClient,
+                    response: __response);
+                ProcessPostGenerateDesignV3Response(
+                    httpClient: HttpClient,
+                    httpResponseMessage: __response);
+                if (__response.IsSuccessStatusCode)
+                {
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateDesignV3",
+                                methodName: "PostGenerateDesignV3Async",
+                                pathTemplate: "\"/v1/ideogram-v3/generate-design\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attemptNumber,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                }
+                else
+                {
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateDesignV3",
+                                methodName: "PostGenerateDesignV3Async",
+                                pathTemplate: "\"/v1/ideogram-v3/generate-design\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attemptNumber,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                }
+                            // 
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+                                throw new global::Ideogram.ApiException(
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_400,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
+                            // 
+                            if ((int)__response.StatusCode == 401)
+                            {
+                                string? __content_401 = null;
+                                global::System.Exception? __exception_401 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_401 = __ex;
+                                }
+
+                                throw new global::Ideogram.ApiException(
+                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_401,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_401,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
+                            // Prompt failed the safety check.
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                global::Ideogram.GenerateImageSafetyError? __value_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_422 = global::Ideogram.GenerateImageSafetyError.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_422 = global::Ideogram.GenerateImageSafetyError.FromJson(__content_422, JsonSerializerContext);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+                                throw new global::Ideogram.ApiException<global::Ideogram.GenerateImageSafetyError>(
+                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_422,
+                                    ResponseObject = __value_422,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
+                            // 
+                            if ((int)__response.StatusCode == 429)
+                            {
+                                string? __content_429 = null;
+                                global::System.Exception? __exception_429 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_429 = __ex;
+                                }
+
+                                throw new global::Ideogram.ApiException(
+                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_429,
+                                    statusCode: __response.StatusCode)
+                                {
+                                    ResponseBody = __content_429,
+                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value),
+                                };
+                            }
+
+                            if (__effectiveReadResponseAsString)
+                            {
+                                var __content = await __response.Content.ReadAsStringAsync(
+                #if NET5_0_OR_GREATER
+                                    __effectiveCancellationToken
+                #endif
+                                ).ConfigureAwait(false);
+
+                                ProcessResponseContent(
+                                    client: HttpClient,
+                                    response: __response,
+                                    content: ref __content);
+                                ProcessPostGenerateDesignV3ResponseContent(
+                                    httpClient: HttpClient,
+                                    httpResponseMessage: __response,
+                                    content: ref __content);
+
+                                try
+                                {
+                                    __response.EnsureSuccessStatusCode();
+
+                                    return
+                                        global::Ideogram.LayeredImageGenerationResponseV3.FromJson(__content, JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    throw new global::Ideogram.ApiException(
+                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        innerException: __ex,
+                                        statusCode: __response.StatusCode)
+                                    {
+                                        ResponseBody = __content,
+                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                            __response.Headers,
+                                            h => h.Key,
+                                            h => h.Value),
+                                    };
+                                }
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    __response.EnsureSuccessStatusCode();
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                #if NET5_0_OR_GREATER
+                                        __effectiveCancellationToken
+                #endif
+                                    ).ConfigureAwait(false);
+
+                                    return
+                                        await global::Ideogram.LayeredImageGenerationResponseV3.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    string? __content = null;
+                                    try
+                                    {
+                                        __content = await __response.Content.ReadAsStringAsync(
+                #if NET5_0_OR_GREATER
+                                            __effectiveCancellationToken
+                #endif
+                                        ).ConfigureAwait(false);
+                                    }
+                                    catch (global::System.Exception)
+                                    {
+                                    }
+
+                                    throw new global::Ideogram.ApiException(
+                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        innerException: __ex,
+                                        statusCode: __response.StatusCode)
+                                    {
+                                        ResponseBody = __content,
+                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                            __response.Headers,
+                                            h => h.Key,
+                                            h => h.Value),
+                                    };
+                                }
+                            }
+
+                }
+            }
+            finally
+            {
+                __httpRequest?.Dispose();
             }
         }
         /// <summary>
@@ -640,6 +823,7 @@ namespace Ideogram
         /// <param name="referenceAssetImages">
         /// A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.LayeredImageGenerationResponseV3> PostGenerateDesignV3Async(
@@ -670,6 +854,7 @@ namespace Ideogram
             string? fontNameSmall = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? referenceAssetImages = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __request = new global::Ideogram.GenerateDesignRequestV3
@@ -705,6 +890,7 @@ namespace Ideogram
 
             return await PostGenerateDesignV3Async(
                 request: __request,
+                requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }

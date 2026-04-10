@@ -10,11 +10,13 @@ namespace Ideogram
         /// Supported image formats include JPEG, PNG, and WebP.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
 
             global::Ideogram.DescribeRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Describe<br/>
@@ -31,12 +33,14 @@ namespace Ideogram
         /// The model version to use for describing images. Defaults to V_3.<br/>
         /// Default Value: V_3
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
             byte[] imageFile,
             string imageFilename,
             global::Ideogram.DescribeModelVersion? describeModelVersion = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
