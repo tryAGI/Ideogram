@@ -13,11 +13,13 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostGenerateImageV3TransparentAsync(
 
             global::Ideogram.GenerateTransparentImageRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Generate with Ideogram 3.0 (Transparent Background)<br/>
@@ -66,6 +68,7 @@ namespace Ideogram
         /// A model must be able to generate transparent background to be used for this endpoint.<br/>
         /// Example: model/my-custom-model/version/1
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostGenerateImageV3TransparentAsync(
@@ -78,6 +81,7 @@ namespace Ideogram
             string? negativePrompt = default,
             int? numImages = default,
             string? customModelUri = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

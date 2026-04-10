@@ -11,11 +11,13 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.LayeredImageGenerationResponseV3> PostGenerateDesignV3Async(
 
             global::Ideogram.GenerateDesignRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Generate a design from a text prompt with text detection and correction<br/>
@@ -119,6 +121,7 @@ namespace Ideogram
         /// <param name="referenceAssetImages">
         /// A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.LayeredImageGenerationResponseV3> PostGenerateDesignV3Async(
@@ -149,6 +152,7 @@ namespace Ideogram
             string? fontNameSmall = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? referenceAssetImages = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

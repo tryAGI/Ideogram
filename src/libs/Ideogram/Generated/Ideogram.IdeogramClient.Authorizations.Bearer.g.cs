@@ -25,6 +25,7 @@ namespace Ideogram
             Authorizations.Add(new global::Ideogram.EndPointAuthorization
             {
                 Type = "Http",
+                SchemeId = "HttpBearer",
                 Location = "Header",
                 Name = "Bearer",
                 Value = apiKey,

@@ -13,11 +13,13 @@ namespace Ideogram
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostTryOnV3Async(
 
             global::Ideogram.TryOnRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Virtual Try-On with Ideogram 3.0<br/>
@@ -66,6 +68,7 @@ namespace Ideogram
         /// <param name="productReferenceImages">
         /// An image to use as the product reference for the try-on (exactly 1 image required). The image should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostTryOnV3Async(
@@ -79,6 +82,7 @@ namespace Ideogram
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }

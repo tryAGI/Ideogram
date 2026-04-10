@@ -10,12 +10,14 @@ namespace Ideogram
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.UploadDatasetAssetsResponse> UploadDatasetAssetsAsync(
             string datasetId,
 
             global::Ideogram.UploadDatasetAssetsRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Upload assets to a dataset<br/>
@@ -25,11 +27,13 @@ namespace Ideogram
         /// <param name="files">
         /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg).
         /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.UploadDatasetAssetsResponse> UploadDatasetAssetsAsync(
             string datasetId,
             global::System.Collections.Generic.IList<byte[]> files,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
 }
