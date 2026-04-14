@@ -13,6 +13,9 @@
   "security": [
     {
       "ApiKeyAuth": []
+    },
+    {
+      "BearerAuth": []
     }
   ],
   "tags": [
@@ -3250,6 +3253,14 @@
             "description": "Random seed for reproducibility.",
             "nullable": true,
             "type": "integer"
+          },
+          "magic_prompt_option": {
+            "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "custom_model_uri": {
+            "description": "A custom model URI in the format model/<model_name>/version/<version_name>.\nWhen provided, the model version and style will be resolved from this URI.\n",
+            "example": "model/my-custom-model/version/0",
+            "type": "string"
           }
         },
         "required": [
@@ -7736,6 +7747,7 @@
               },
               "start_time": "2024-01-01T00:00:00+00:00",
               "end_time": "2024-01-31T23:59:59+00:00",
+              "invoice_id": "invoice_123",
               "line_items": [
                 {
                   "charge_name": "Image Generation - V3",
@@ -7747,7 +7759,8 @@
                   "unit_price": {
                     "amount": 1050,
                     "currency_code": "USD"
-                  }
+                  },
+                  "api_key_id": "api_key_id"
                 },
                 {
                   "charge_name": "Image Generation - V3",
@@ -7759,10 +7772,12 @@
                   "unit_price": {
                     "amount": 1050,
                     "currency_code": "USD"
-                  }
+                  },
+                  "api_key_id": "api_key_id"
                 }
               ],
               "issued_time": "2024-01-01T00:00:00+00:00",
+              "paid_date": "2024-02-01T00:00:00+00:00",
               "invoice_status": "PAID"
             },
             {
@@ -7772,6 +7787,7 @@
               },
               "start_time": "2024-01-01T00:00:00+00:00",
               "end_time": "2024-01-31T23:59:59+00:00",
+              "invoice_id": "invoice_123",
               "line_items": [
                 {
                   "charge_name": "Image Generation - V3",
@@ -7783,7 +7799,8 @@
                   "unit_price": {
                     "amount": 1050,
                     "currency_code": "USD"
-                  }
+                  },
+                  "api_key_id": "api_key_id"
                 },
                 {
                   "charge_name": "Image Generation - V3",
@@ -7795,10 +7812,12 @@
                   "unit_price": {
                     "amount": 1050,
                     "currency_code": "USD"
-                  }
+                  },
+                  "api_key_id": "api_key_id"
                 }
               ],
               "issued_time": "2024-01-01T00:00:00+00:00",
+              "paid_date": "2024-02-01T00:00:00+00:00",
               "invoice_status": "PAID"
             }
           ]
@@ -7828,6 +7847,7 @@
           },
           "start_time": "2024-01-01T00:00:00+00:00",
           "end_time": "2024-01-31T23:59:59+00:00",
+          "invoice_id": "invoice_123",
           "line_items": [
             {
               "charge_name": "Image Generation - V3",
@@ -7839,7 +7859,8 @@
               "unit_price": {
                 "amount": 1050,
                 "currency_code": "USD"
-              }
+              },
+              "api_key_id": "api_key_id"
             },
             {
               "charge_name": "Image Generation - V3",
@@ -7851,13 +7872,22 @@
               "unit_price": {
                 "amount": 1050,
                 "currency_code": "USD"
-              }
+              },
+              "api_key_id": "api_key_id"
             }
           ],
           "issued_time": "2024-01-01T00:00:00+00:00",
+          "paid_date": "2024-02-01T00:00:00+00:00",
           "invoice_status": "PAID"
         },
         "properties": {
+          "invoice_id": {
+            "description": "The invoice ID in Metronome",
+            "example": "invoice_123",
+            "nullable": true,
+            "title": "invoice_id",
+            "type": "string"
+          },
           "start_time": {
             "description": "The start time of the invoice period",
             "example": "2024-01-01T00:00:00+00:00",
@@ -7878,6 +7908,14 @@
             "format": "date-time",
             "nullable": true,
             "title": "issued_time",
+            "type": "string"
+          },
+          "paid_date": {
+            "description": "The date when the invoice was marked paid in Metronome",
+            "example": "2024-02-01T00:00:00+00:00",
+            "format": "date-time",
+            "nullable": true,
+            "title": "paid_date",
             "type": "string"
           },
           "total_spend": {
@@ -7911,7 +7949,8 @@
         "enum": [
           "DRAFT",
           "PENDING_PAYMENT",
-          "PAID"
+          "PAID",
+          "VOIDED"
         ],
         "example": "PAID",
         "title": "InvoiceStatus",
@@ -7928,13 +7967,20 @@
           "unit_price": {
             "amount": 1050,
             "currency_code": "USD"
-          }
+          },
+          "api_key_id": "api_key_id"
         },
         "properties": {
           "charge_name": {
             "description": "The name of the charge",
             "example": "Image Generation - V3",
             "title": "charge_name",
+            "type": "string"
+          },
+          "api_key_id": {
+            "description": "The API key associated with the usage, when available",
+            "nullable": true,
+            "title": "api_key_id",
             "type": "string"
           },
           "quantity": {
@@ -8400,8 +8446,9 @@
         "example": {
           "model_name": "my-custom-model",
           "lora_rank": 64,
-          "num_chips": 16,
+          "num_chips": 32,
           "ema": 0.999,
+          "base_model_version": "V_3_1",
           "training_steps": 1000,
           "learning_rate": 0.0001
         },
@@ -8425,10 +8472,21 @@
             "type": "integer"
           },
           "num_chips": {
-            "description": "Number of TPU chips to use. Must be one of 16 or 32.\n",
-            "example": 16,
+            "description": "Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16 or 32, V_4_0 supports 128.\n",
+            "example": 32,
             "title": "num_chips",
             "type": "integer"
+          },
+          "base_model_version": {
+            "default": "V_3_1",
+            "description": "Base model version to train on. Defaults to V_3_1.\n",
+            "enum": [
+              "V_3_1",
+              "V_4_0"
+            ],
+            "example": "V_3_1",
+            "title": "base_model_version",
+            "type": "string"
           },
           "ema": {
             "description": "Exponential moving average decay rate. Must be greater than 0.\n",
@@ -8797,6 +8855,20 @@
         "title": "GetModelResponse",
         "type": "object"
       },
+      "MagicPromptOption": {
+        "description": "Determine if MagicPrompt should be used in generating the request or not.",
+        "enum": [
+          "AUTO",
+          "ON",
+          "OFF"
+        ],
+        "example": "ON",
+        "externalDocs": {
+          "url": "https://docs.ideogram.ai/using-ideogram/ideogram-features/magic-prompt"
+        },
+        "title": "MagicPromptOption",
+        "type": "string"
+      },
       "Description": {
         "properties": {
           "text": {
@@ -8818,20 +8890,6 @@
           "CUSTOM"
         ],
         "title": "DescribeModelVersion",
-        "type": "string"
-      },
-      "MagicPromptOption": {
-        "description": "Determine if MagicPrompt should be used in generating the request or not.",
-        "enum": [
-          "AUTO",
-          "ON",
-          "OFF"
-        ],
-        "example": "ON",
-        "externalDocs": {
-          "url": "https://docs.ideogram.ai/using-ideogram/ideogram-features/magic-prompt"
-        },
-        "title": "MagicPromptOption",
         "type": "string"
       },
       "NumImages": {

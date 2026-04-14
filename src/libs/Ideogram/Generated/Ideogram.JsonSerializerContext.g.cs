@@ -89,6 +89,10 @@ namespace Ideogram
 
             typeof(global::Ideogram.JsonConverters.DatasetAssetFailureReasonNullableJsonConverter),
 
+            typeof(global::Ideogram.JsonConverters.TrainDatasetModelRequestBaseModelVersionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.TrainDatasetModelRequestBaseModelVersionNullableJsonConverter),
+
             typeof(global::Ideogram.JsonConverters.ModelStatusJsonConverter),
 
             typeof(global::Ideogram.JsonConverters.ModelStatusNullableJsonConverter),
@@ -97,13 +101,13 @@ namespace Ideogram
 
             typeof(global::Ideogram.JsonConverters.TrainingRunStatusNullableJsonConverter),
 
-            typeof(global::Ideogram.JsonConverters.DescribeModelVersionJsonConverter),
-
-            typeof(global::Ideogram.JsonConverters.DescribeModelVersionNullableJsonConverter),
-
             typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter),
 
             typeof(global::Ideogram.JsonConverters.MagicPromptOptionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DescribeModelVersionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DescribeModelVersionNullableJsonConverter),
 
             typeof(global::Ideogram.JsonConverters.StyleTypeJsonConverter),
 
@@ -177,6 +181,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptOption), TypeInfoPropertyName = "MagicPromptOption2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.Description>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Description))]
@@ -185,7 +190,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeModelVersion), TypeInfoPropertyName = "DescribeModelVersion2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditImageRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelEnum), TypeInfoPropertyName = "ModelEnum2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptOption), TypeInfoPropertyName = "MagicPromptOption2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StyleType), TypeInfoPropertyName = "StyleType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageRequest))]
@@ -347,6 +351,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UploadDatasetAssetsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelRequestBaseModelVersion), TypeInfoPropertyName = "TrainDatasetModelRequestBaseModelVersion2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.CustomModel>))]

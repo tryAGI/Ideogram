@@ -21,6 +21,10 @@ namespace Ideogram
         /// 
         /// </summary>
         PendingPayment,
+        /// <summary>
+        /// 
+        /// </summary>
+        Voided,
     }
 
     /// <summary>
@@ -38,6 +42,7 @@ namespace Ideogram
                 InvoiceStatus.Draft => "DRAFT",
                 InvoiceStatus.Paid => "PAID",
                 InvoiceStatus.PendingPayment => "PENDING_PAYMENT",
+                InvoiceStatus.Voided => "VOIDED",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -51,6 +56,7 @@ namespace Ideogram
                 "DRAFT" => InvoiceStatus.Draft,
                 "PAID" => InvoiceStatus.Paid,
                 "PENDING_PAYMENT" => InvoiceStatus.PendingPayment,
+                "VOIDED" => InvoiceStatus.Voided,
                 _ => null,
             };
         }

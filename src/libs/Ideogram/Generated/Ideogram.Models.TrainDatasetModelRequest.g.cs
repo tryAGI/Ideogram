@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"model_name":"my-custom-model","lora_rank":64,"num_chips":16,"ema":0.999,"training_steps":1000,"learning_rate":0.0001}
+    /// Example: {"model_name":"my-custom-model","lora_rank":64,"num_chips":32,"ema":0.999,"base_model_version":"V_3_1","training_steps":1000,"learning_rate":0.0001}
     /// </summary>
     public sealed partial class TrainDatasetModelRequest
     {
@@ -34,12 +34,22 @@ namespace Ideogram
         public int? LoraRank { get; set; }
 
         /// <summary>
-        /// Number of TPU chips to use. Must be one of 16 or 32.<br/>
-        /// Example: 16
+        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16 or 32, V_4_0 supports 128.<br/>
+        /// Example: 32
         /// </summary>
-        /// <example>16</example>
+        /// <example>32</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("num_chips")]
         public int? NumChips { get; set; }
+
+        /// <summary>
+        /// Base model version to train on. Defaults to V_3_1.<br/>
+        /// Default Value: V_3_1<br/>
+        /// Example: V_3_1
+        /// </summary>
+        /// <example>V_3_1</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("base_model_version")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.TrainDatasetModelRequestBaseModelVersionJsonConverter))]
+        public global::Ideogram.TrainDatasetModelRequestBaseModelVersion? BaseModelVersion { get; set; }
 
         /// <summary>
         /// Exponential moving average decay rate. Must be greater than 0.<br/>
@@ -79,8 +89,13 @@ namespace Ideogram
         /// Example: 64
         /// </param>
         /// <param name="numChips">
-        /// Number of TPU chips to use. Must be one of 16 or 32.<br/>
-        /// Example: 16
+        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16 or 32, V_4_0 supports 128.<br/>
+        /// Example: 32
+        /// </param>
+        /// <param name="baseModelVersion">
+        /// Base model version to train on. Defaults to V_3_1.<br/>
+        /// Default Value: V_3_1<br/>
+        /// Example: V_3_1
         /// </param>
         /// <param name="ema">
         /// Exponential moving average decay rate. Must be greater than 0.<br/>
@@ -98,6 +113,7 @@ namespace Ideogram
             int? trainingSteps,
             int? loraRank,
             int? numChips,
+            global::Ideogram.TrainDatasetModelRequestBaseModelVersion? baseModelVersion,
             double? ema,
             double? learningRate)
         {
@@ -105,6 +121,7 @@ namespace Ideogram
             this.TrainingSteps = trainingSteps;
             this.LoraRank = loraRank;
             this.NumChips = numChips;
+            this.BaseModelVersion = baseModelVersion;
             this.Ema = ema;
             this.LearningRate = learningRate;
         }
