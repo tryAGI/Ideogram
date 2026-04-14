@@ -128,14 +128,14 @@ namespace Ideogram
                 } 
             }
 
-                if (xTestHeader != default)
-                {
-                    __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header", xTestHeader.ToString());
-                }
-                if (xTestHeader2 != default)
-                {
-                    __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header-2", xTestHeader2.ToString());
-                }
+            if (xTestHeader != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header", xTestHeader.ToString());
+            }
+            if (xTestHeader2 != default)
+            {
+                __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header-2", xTestHeader2.ToString());
+            }
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             if (xTestHeader != default)
