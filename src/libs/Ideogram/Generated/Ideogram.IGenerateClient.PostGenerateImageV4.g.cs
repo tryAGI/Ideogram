@@ -29,12 +29,23 @@ namespace Ideogram
         /// <param name="seed">
         /// Random seed for reproducibility.
         /// </param>
+        /// <param name="magicPromptOption">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
+        /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;.<br/>
+        /// When provided, the model version and style will be resolved from this URI.<br/>
+        /// Example: model/my-custom-model/version/0
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV4> PostGenerateImageV4Async(
             string prompt,
             int? seed = default,
+            global::Ideogram.MagicPromptOption? magicPromptOption = default,
+            string? customModelUri = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

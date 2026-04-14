@@ -128,6 +128,20 @@ namespace Ideogram
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent($"{request.Seed}"),
                                     name: "\"seed\"");
+                            } 
+                            if (request.MagicPromptOption != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.MagicPromptOption?.ToValueString()}"),
+                                    name: "\"magic_prompt_option\"");
+                            } 
+                            if (request.CustomModelUri != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                                    name: "\"custom_model_uri\"");
                             }
                             __httpRequest.Content = __httpRequestContent;
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
@@ -542,12 +556,23 @@ namespace Ideogram
         /// <param name="seed">
         /// Random seed for reproducibility.
         /// </param>
+        /// <param name="magicPromptOption">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
+        /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;.<br/>
+        /// When provided, the model version and style will be resolved from this URI.<br/>
+        /// Example: model/my-custom-model/version/0
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV4> PostGenerateImageV4Async(
             string prompt,
             int? seed = default,
+            global::Ideogram.MagicPromptOption? magicPromptOption = default,
+            string? customModelUri = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -555,6 +580,8 @@ namespace Ideogram
             {
                 Prompt = prompt,
                 Seed = seed,
+                MagicPromptOption = magicPromptOption,
+                CustomModelUri = customModelUri,
             };
 
             return await PostGenerateImageV4Async(

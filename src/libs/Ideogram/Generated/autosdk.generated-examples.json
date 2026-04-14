@@ -50,7 +50,7 @@
       "Slug": "train-dataset-model",
       "Description": "Start training a custom model from a dataset. The dataset must contain at least 5 images. Returns the model ID and training status.",
       "Language": "http",
-      "Code": "### Train a model from a dataset\n# @name train_dataset_model\nPOST {{host}}/datasets/{{dataset_id}}/train_model\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022model_name\u0022: \u0022my-custom-model\u0022,\n  \u0022lora_rank\u0022: 64,\n  \u0022num_chips\u0022: 16,\n  \u0022ema\u0022: 0.999,\n  \u0022training_steps\u0022: 1000,\n  \u0022learning_rate\u0022: 0.0001\n}\n\n## Responses\n# 200\n# Description: Training started successfully\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# 401\n# Description: Unauthorized\n# 404\n# Description: Dataset not found",
+      "Code": "### Train a model from a dataset\n# @name train_dataset_model\nPOST {{host}}/datasets/{{dataset_id}}/train_model\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022model_name\u0022: \u0022my-custom-model\u0022,\n  \u0022lora_rank\u0022: 64,\n  \u0022num_chips\u0022: 32,\n  \u0022ema\u0022: 0.999,\n  \u0022base_model_version\u0022: \u0022V_3_1\u0022,\n  \u0022training_steps\u0022: 1000,\n  \u0022learning_rate\u0022: 0.0001\n}\n\n## Responses\n# 200\n# Description: Training started successfully\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# 401\n# Description: Unauthorized\n# 404\n# Description: Dataset not found",
       "Format": "http",
       "OperationId": "train_dataset_model",
       "Setup": null
@@ -138,7 +138,7 @@
       "Slug": "post-generate-image-v4",
       "Description": "Generates images synchronously using the Ideogram 4.0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
       "Language": "http",
-      "Code": "### Generate with Ideogram 4.0\n# @name post_generate_image_v4\nPOST {{host}}/v1/ideogram-v4/generate\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022string\u0022,\n  \u0022seed\u0022: 0\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Code": "### Generate with Ideogram 4.0\n# @name post_generate_image_v4\nPOST {{host}}/v1/ideogram-v4/generate\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022string\u0022,\n  \u0022seed\u0022: 0,\n  \u0022magic_prompt_option\u0022: \u0022ON\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/0\u0022\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
       "Format": "http",
       "OperationId": "post_generate_image_v4",
       "Setup": null

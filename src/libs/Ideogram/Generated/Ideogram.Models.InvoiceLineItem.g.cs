@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}}
+    /// Example: {"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"},"api_key_id":"api_key_id"}
     /// </summary>
     public sealed partial class InvoiceLineItem
     {
@@ -16,6 +16,12 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("charge_name")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ChargeName { get; set; }
+
+        /// <summary>
+        /// The API key associated with the usage, when available
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("api_key_id")]
+        public string? ApiKeyId { get; set; }
 
         /// <summary>
         /// The quantity of the charge<br/>
@@ -69,6 +75,9 @@ namespace Ideogram
         /// Represents a price.<br/>
         /// Example: {"amount":1050,"currency_code":"USD"}
         /// </param>
+        /// <param name="apiKeyId">
+        /// The API key associated with the usage, when available
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -76,9 +85,11 @@ namespace Ideogram
             string chargeName,
             int quantity,
             global::Ideogram.Price unitPrice,
-            global::Ideogram.Price total)
+            global::Ideogram.Price total,
+            string? apiKeyId)
         {
             this.ChargeName = chargeName ?? throw new global::System.ArgumentNullException(nameof(chargeName));
+            this.ApiKeyId = apiKeyId;
             this.Quantity = quantity;
             this.UnitPrice = unitPrice ?? throw new global::System.ArgumentNullException(nameof(unitPrice));
             this.Total = total ?? throw new global::System.ArgumentNullException(nameof(total));

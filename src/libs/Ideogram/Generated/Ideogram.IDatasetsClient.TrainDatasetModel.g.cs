@@ -37,8 +37,13 @@ namespace Ideogram
         /// Example: 64
         /// </param>
         /// <param name="numChips">
-        /// Number of TPU chips to use. Must be one of 16 or 32.<br/>
-        /// Example: 16
+        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16 or 32, V_4_0 supports 128.<br/>
+        /// Example: 32
+        /// </param>
+        /// <param name="baseModelVersion">
+        /// Base model version to train on. Defaults to V_3_1.<br/>
+        /// Default Value: V_3_1<br/>
+        /// Example: V_3_1
         /// </param>
         /// <param name="ema">
         /// Exponential moving average decay rate. Must be greater than 0.<br/>
@@ -57,6 +62,7 @@ namespace Ideogram
             int? trainingSteps = default,
             int? loraRank = default,
             int? numChips = default,
+            global::Ideogram.TrainDatasetModelRequestBaseModelVersion? baseModelVersion = default,
             double? ema = default,
             double? learningRate = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,

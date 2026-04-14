@@ -4,10 +4,18 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"total_spend":{"amount":1050,"currency_code":"USD"},"start_time":"2024-01-01T00:00:00\u002B00:00","end_time":"2024-01-31T23:59:59\u002B00:00","line_items":[{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}},{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"}}],"issued_time":"2024-01-01T00:00:00\u002B00:00","invoice_status":"PAID"}
+    /// Example: {"total_spend":{"amount":1050,"currency_code":"USD"},"start_time":"2024-01-01T00:00:00\u002B00:00","end_time":"2024-01-31T23:59:59\u002B00:00","invoice_id":"invoice_123","line_items":[{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"},"api_key_id":"api_key_id"},{"charge_name":"Image Generation - V3","total":{"amount":1050,"currency_code":"USD"},"quantity":1000,"unit_price":{"amount":1050,"currency_code":"USD"},"api_key_id":"api_key_id"}],"issued_time":"2024-01-01T00:00:00\u002B00:00","paid_date":"2024-02-01T00:00:00\u002B00:00","invoice_status":"PAID"}
     /// </summary>
     public sealed partial class Invoice
     {
+        /// <summary>
+        /// The invoice ID in Metronome<br/>
+        /// Example: invoice_123
+        /// </summary>
+        /// <example>invoice_123</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("invoice_id")]
+        public string? InvoiceId { get; set; }
+
         /// <summary>
         /// The start time of the invoice period<br/>
         /// Example: 2024-01-01T00:00:00+00:00
@@ -33,6 +41,14 @@ namespace Ideogram
         /// <example>2024-01-01T00:00:00+00:00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("issued_time")]
         public global::System.DateTime? IssuedTime { get; set; }
+
+        /// <summary>
+        /// The date when the invoice was marked paid in Metronome<br/>
+        /// Example: 2024-02-01T00:00:00+00:00
+        /// </summary>
+        /// <example>2024-02-01T00:00:00+00:00</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("paid_date")]
+        public global::System.DateTime? PaidDate { get; set; }
 
         /// <summary>
         /// Represents a price.<br/>
@@ -90,9 +106,17 @@ namespace Ideogram
         /// A list of line items within the invoice<br/>
         /// Default Value: []
         /// </param>
+        /// <param name="invoiceId">
+        /// The invoice ID in Metronome<br/>
+        /// Example: invoice_123
+        /// </param>
         /// <param name="issuedTime">
         /// The date when the invoice was issued<br/>
         /// Example: 2024-01-01T00:00:00+00:00
+        /// </param>
+        /// <param name="paidDate">
+        /// The date when the invoice was marked paid in Metronome<br/>
+        /// Example: 2024-02-01T00:00:00+00:00
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -103,11 +127,15 @@ namespace Ideogram
             global::Ideogram.Price totalSpend,
             global::Ideogram.InvoiceStatus invoiceStatus,
             global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem> lineItems,
-            global::System.DateTime? issuedTime)
+            string? invoiceId,
+            global::System.DateTime? issuedTime,
+            global::System.DateTime? paidDate)
         {
+            this.InvoiceId = invoiceId;
             this.StartTime = startTime;
             this.EndTime = endTime;
             this.IssuedTime = issuedTime;
+            this.PaidDate = paidDate;
             this.TotalSpend = totalSpend ?? throw new global::System.ArgumentNullException(nameof(totalSpend));
             this.InvoiceStatus = invoiceStatus;
             this.LineItems = lineItems ?? throw new global::System.ArgumentNullException(nameof(lineItems));
