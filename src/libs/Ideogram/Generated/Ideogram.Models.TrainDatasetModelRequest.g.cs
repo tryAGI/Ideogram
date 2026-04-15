@@ -26,7 +26,7 @@ namespace Ideogram
         public int? TrainingSteps { get; set; }
 
         /// <summary>
-        /// LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank &gt; 128 requires num_chips &gt;= 32.<br/>
+        /// LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank 256 requires num_chips &gt;= 64.<br/>
         /// Example: 64
         /// </summary>
         /// <example>64</example>
@@ -34,7 +34,7 @@ namespace Ideogram
         public int? LoraRank { get; set; }
 
         /// <summary>
-        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16 or 32, V_4_0 supports 128.<br/>
+        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16, 32, or 64, V_4_0 supports 128.<br/>
         /// Example: 32
         /// </summary>
         /// <example>32</example>
@@ -85,11 +85,11 @@ namespace Ideogram
         /// Example: 1000
         /// </param>
         /// <param name="loraRank">
-        /// LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank &gt; 128 requires num_chips &gt;= 32.<br/>
+        /// LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank 256 requires num_chips &gt;= 64.<br/>
         /// Example: 64
         /// </param>
         /// <param name="numChips">
-        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16 or 32, V_4_0 supports 128.<br/>
+        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16, 32, or 64, V_4_0 supports 128.<br/>
         /// Example: 32
         /// </param>
         /// <param name="baseModelVersion">

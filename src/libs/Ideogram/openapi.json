@@ -8466,13 +8466,13 @@
             "type": "integer"
           },
           "lora_rank": {
-            "description": "LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank > 128 requires num_chips >= 32.\n",
+            "description": "LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank 256 requires num_chips >= 64.\n",
             "example": 64,
             "title": "lora_rank",
             "type": "integer"
           },
           "num_chips": {
-            "description": "Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16 or 32, V_4_0 supports 128.\n",
+            "description": "Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16, 32, or 64, V_4_0 supports 128.\n",
             "example": 32,
             "title": "num_chips",
             "type": "integer"
