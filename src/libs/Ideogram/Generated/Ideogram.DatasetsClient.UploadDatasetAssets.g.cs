@@ -45,7 +45,7 @@ namespace Ideogram
 
         /// <summary>
         /// Upload assets to a dataset<br/>
-        /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions.
+        /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="request"></param>
@@ -505,7 +505,7 @@ namespace Ideogram
         }
         /// <summary>
         /// Upload assets to a dataset<br/>
-        /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions.
+        /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="files">

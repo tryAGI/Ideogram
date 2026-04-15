@@ -144,7 +144,7 @@
     },
     "/datasets/{dataset_id}/train_model": {
       "post": {
-        "description": "Start training a custom model from a dataset. The dataset must contain at least 5 images. Returns the model ID and training status.\n",
+        "description": "Start training a custom model from a dataset. The dataset must contain at least 15 images. Returns the model ID and training status.\n",
         "operationId": "train_dataset_model",
         "parameters": [
           {
@@ -198,7 +198,7 @@
     },
     "/datasets/{dataset_id}/upload_assets": {
       "post": {
-        "description": "Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions.\n",
+        "description": "Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.\n",
         "operationId": "upload_dataset_assets",
         "parameters": [
           {
