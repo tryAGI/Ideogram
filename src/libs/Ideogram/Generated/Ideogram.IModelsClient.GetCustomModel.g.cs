@@ -6,7 +6,7 @@ namespace Ideogram
     {
         /// <summary>
         /// Get model details<br/>
-        /// Get detailed information about a specific custom model, including training run history for owned models. The user must either own the model or the model must be shared with the user's organization via the model registry. Returns 404 if the model is not found or not accessible.
+        /// Get detailed information about a specific custom model. The user must either own the model or the model must be shared with the user's organization via the model registry. Returns 404 if the model is not found or not accessible.
         /// </summary>
         /// <param name="modelId"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

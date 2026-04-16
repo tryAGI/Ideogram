@@ -144,7 +144,7 @@
     },
     "/datasets/{dataset_id}/train_model": {
       "post": {
-        "description": "Start training a custom model from a dataset. The dataset must contain at least 15 images. Returns the model ID and training status.\n",
+        "description": "Start training a custom model from a dataset. The dataset must contain at least 10 images and a maximum of 100 images. Returns the model ID and training status.\n",
         "operationId": "train_dataset_model",
         "parameters": [
           {
@@ -1935,16 +1935,15 @@
     },
     "/models": {
       "get": {
-        "description": "Lists custom models for the authenticated user. Use the `scope` parameter to control which models are returned. `owned` (default) returns models created by the user. `shared` returns models shared with the user's organization via the model registry, excluding the user's own models.\n",
+        "description": "Lists custom models for the authenticated user. Use the `scope` parameter to control which models are returned. If omitted, returns both owned models and models shared with the user's organization via the model registry. `owned` returns only models created by the user. `shared` returns only models shared via the model registry, excluding the user's own models.\n",
         "operationId": "list_custom_models",
         "parameters": [
           {
-            "description": "Controls which models are returned. `owned` returns models created by the authenticated user. `shared` returns models shared with the user's organization via the model registry.\n",
+            "description": "Controls which models are returned. Omit to return both owned and shared models combined. `owned` returns only models created by the authenticated user. `shared` returns only models shared with the user's organization via the model registry.\n",
             "in": "query",
             "name": "scope",
             "required": false,
             "schema": {
-              "default": "owned",
               "enum": [
                 "owned",
                 "shared"
@@ -1953,7 +1952,7 @@
             }
           },
           {
-            "description": "Filter by model status. Only applies when scope is `owned`. Example: `?status=TRAINING&status=COMPLETED`\n",
+            "description": "Filter by model status. Applied to owned models only; shared models in the model registry are already filtered to available versions. Example: `?status=TRAINING&status=COMPLETED`\n",
             "explode": true,
             "in": "query",
             "name": "status",
@@ -1991,7 +1990,7 @@
     },
     "/models/{model_id}": {
       "get": {
-        "description": "Get detailed information about a specific custom model, including training run history for owned models. The user must either own the model or the model must be shared with the user's organization via the model registry. Returns 404 if the model is not found or not accessible.\n",
+        "description": "Get detailed information about a specific custom model. The user must either own the model or the model must be shared with the user's organization via the model registry. Returns 404 if the model is not found or not accessible.\n",
         "operationId": "get_custom_model",
         "parameters": [
           {
@@ -8292,112 +8291,24 @@
         "example": {
           "datasets": [
             {
-              "collection_id": "collection_id",
               "creation_time": "2000-01-23T04:56:07+00:00",
               "user_id": "user_id",
+              "dataset_id": "dataset_id",
               "name": "name",
               "cover_asset_identifier": {
                 "asset_type": "RESPONSE",
                 "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
-              },
-              "sharing": [
-                {
-                  "updated_time": "2000-01-23T04:56:07+00:00",
-                  "organization": {
-                    "role": null,
-                    "publishing_disabled": true,
-                    "organization_id": "organization_id",
-                    "name": "name",
-                    "avatar": {
-                      "avatar_url": "avatar_url"
-                    },
-                    "type": null
-                  },
-                  "permission": null,
-                  "user": {
-                    "badge": "badge",
-                    "subscription_plan_id": "subscription_plan_id",
-                    "display_handle": "display_handle",
-                    "user_id": "user_id",
-                    "photo_url": "photo_url"
-                  }
-                },
-                {
-                  "updated_time": "2000-01-23T04:56:07+00:00",
-                  "organization": {
-                    "role": null,
-                    "publishing_disabled": true,
-                    "organization_id": "organization_id",
-                    "name": "name",
-                    "avatar": {
-                      "avatar_url": "avatar_url"
-                    },
-                    "type": null
-                  },
-                  "permission": null,
-                  "user": {
-                    "badge": "badge",
-                    "subscription_plan_id": "subscription_plan_id",
-                    "display_handle": "display_handle",
-                    "user_id": "user_id",
-                    "photo_url": "photo_url"
-                  }
-                }
-              ]
+              }
             },
             {
-              "collection_id": "collection_id",
               "creation_time": "2000-01-23T04:56:07+00:00",
               "user_id": "user_id",
+              "dataset_id": "dataset_id",
               "name": "name",
               "cover_asset_identifier": {
                 "asset_type": "RESPONSE",
                 "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
-              },
-              "sharing": [
-                {
-                  "updated_time": "2000-01-23T04:56:07+00:00",
-                  "organization": {
-                    "role": null,
-                    "publishing_disabled": true,
-                    "organization_id": "organization_id",
-                    "name": "name",
-                    "avatar": {
-                      "avatar_url": "avatar_url"
-                    },
-                    "type": null
-                  },
-                  "permission": null,
-                  "user": {
-                    "badge": "badge",
-                    "subscription_plan_id": "subscription_plan_id",
-                    "display_handle": "display_handle",
-                    "user_id": "user_id",
-                    "photo_url": "photo_url"
-                  }
-                },
-                {
-                  "updated_time": "2000-01-23T04:56:07+00:00",
-                  "organization": {
-                    "role": null,
-                    "publishing_disabled": true,
-                    "organization_id": "organization_id",
-                    "name": "name",
-                    "avatar": {
-                      "avatar_url": "avatar_url"
-                    },
-                    "type": null
-                  },
-                  "permission": null,
-                  "user": {
-                    "badge": "badge",
-                    "subscription_plan_id": "subscription_plan_id",
-                    "display_handle": "display_handle",
-                    "user_id": "user_id",
-                    "photo_url": "photo_url"
-                  }
-                }
-              ]
+              }
             }
           ]
         },
@@ -8419,99 +8330,46 @@
         "type": "object"
       },
       "Dataset": {
-        "description": "A dataset for organizing assets.",
+        "description": "A dataset for organizing training images.",
         "example": {
-          "collection_id": "collection_id",
           "creation_time": "2000-01-23T04:56:07+00:00",
           "user_id": "user_id",
+          "dataset_id": "dataset_id",
           "name": "name",
           "cover_asset_identifier": {
             "asset_type": "RESPONSE",
             "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
-          },
-          "sharing": [
-            {
-              "updated_time": "2000-01-23T04:56:07+00:00",
-              "organization": {
-                "role": null,
-                "publishing_disabled": true,
-                "organization_id": "organization_id",
-                "name": "name",
-                "avatar": {
-                  "avatar_url": "avatar_url"
-                },
-                "type": null
-              },
-              "permission": null,
-              "user": {
-                "badge": "badge",
-                "subscription_plan_id": "subscription_plan_id",
-                "display_handle": "display_handle",
-                "user_id": "user_id",
-                "photo_url": "photo_url"
-              }
-            },
-            {
-              "updated_time": "2000-01-23T04:56:07+00:00",
-              "organization": {
-                "role": null,
-                "publishing_disabled": true,
-                "organization_id": "organization_id",
-                "name": "name",
-                "avatar": {
-                  "avatar_url": "avatar_url"
-                },
-                "type": null
-              },
-              "permission": null,
-              "user": {
-                "badge": "badge",
-                "subscription_plan_id": "subscription_plan_id",
-                "display_handle": "display_handle",
-                "user_id": "user_id",
-                "photo_url": "photo_url"
-              }
-            }
-          ]
+          }
         },
         "properties": {
-          "collection_id": {
-            "description": "Unique identifier for the collection.",
-            "title": "collection_id",
+          "dataset_id": {
+            "description": "Unique identifier for the dataset.",
+            "title": "dataset_id",
             "type": "string"
           },
           "name": {
-            "description": "Display name of the collection.",
+            "description": "Display name of the dataset.",
             "title": "name",
             "type": "string"
           },
           "user_id": {
-            "description": "ID of the user who owns this collection.",
+            "description": "ID of the user who owns this dataset.",
             "title": "user_id",
             "type": "string"
           },
           "creation_time": {
-            "description": "When the collection was created.",
+            "description": "When the dataset was created.",
             "format": "date-time",
             "title": "creation_time",
             "type": "string"
           },
           "cover_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
-          },
-          "sharing": {
-            "description": "Sharing details for this collection including the owner entry.",
-            "items": {
-              "$ref": "#/components/schemas/SharingInfo"
-            },
-            "nullable": true,
-            "title": "sharing",
-            "type": "array"
           }
         },
         "required": [
-          "collection_id",
           "creation_time",
+          "dataset_id",
           "name",
           "user_id"
         ],
@@ -8674,7 +8532,7 @@
       "UploadDatasetAssetsRequest": {
         "properties": {
           "files": {
-            "description": "Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg).\n",
+            "description": "Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg). Captions are optional!\n",
             "items": {
               "format": "binary",
               "type": "string"
@@ -9849,180 +9707,6 @@
         ],
         "title": "AssetType",
         "type": "string"
-      },
-      "SharingInfo": {
-        "example": {
-          "updated_time": "2000-01-23T04:56:07+00:00",
-          "organization": {
-            "role": null,
-            "publishing_disabled": true,
-            "organization_id": "organization_id",
-            "name": "name",
-            "avatar": {
-              "avatar_url": "avatar_url"
-            },
-            "type": null
-          },
-          "permission": null,
-          "user": {
-            "badge": "badge",
-            "subscription_plan_id": "subscription_plan_id",
-            "display_handle": "display_handle",
-            "user_id": "user_id",
-            "photo_url": "photo_url"
-          }
-        },
-        "properties": {
-          "permission": {
-            "$ref": "#/components/schemas/SharingPermission"
-          },
-          "updated_time": {
-            "description": "When this sharing entry was last updated.",
-            "format": "date-time",
-            "title": "updated_time",
-            "type": "string"
-          },
-          "organization": {
-            "$ref": "#/components/schemas/OrganizationObject"
-          },
-          "user": {
-            "$ref": "#/components/schemas/User"
-          }
-        },
-        "required": [
-          "permission",
-          "updated_time"
-        ],
-        "title": "SharingInfo",
-        "type": "object"
-      },
-      "SharingPermission": {
-        "description": "Permission level for the shared organization. OWNER is read-only and cannot be set via add/remove.",
-        "enum": [
-          "OWNER",
-          "EDITOR",
-          "VIEWER"
-        ],
-        "title": "SharingPermission",
-        "type": "string"
-      },
-      "OrganizationObject": {
-        "description": "An organization object",
-        "example": {
-          "role": null,
-          "publishing_disabled": true,
-          "organization_id": "organization_id",
-          "name": "name",
-          "avatar": {
-            "avatar_url": "avatar_url"
-          },
-          "type": null
-        },
-        "properties": {
-          "organization_id": {
-            "description": "ID of the organization",
-            "title": "organization_id",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name of the organization",
-            "title": "name",
-            "type": "string"
-          },
-          "type": {
-            "$ref": "#/components/schemas/OrganizationType"
-          },
-          "role": {
-            "$ref": "#/components/schemas/OrganizationRoleEnum"
-          },
-          "avatar": {
-            "$ref": "#/components/schemas/OrganizationAvatarObject"
-          },
-          "publishing_disabled": {
-            "description": "Whether publishing is disabled for this organization.",
-            "title": "publishing_disabled",
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "name",
-          "organization_id"
-        ],
-        "title": "OrganizationObject",
-        "type": "object"
-      },
-      "OrganizationType": {
-        "description": "The type of organization",
-        "enum": [
-          "PRIVATE",
-          "TEAM",
-          "ENTERPRISE"
-        ],
-        "title": "OrganizationType",
-        "type": "string"
-      },
-      "OrganizationRoleEnum": {
-        "description": "Role of a user in an organization.",
-        "enum": [
-          "OWNER",
-          "WRITER"
-        ],
-        "title": "OrganizationRoleEnum",
-        "type": "string"
-      },
-      "OrganizationAvatarObject": {
-        "example": {
-          "avatar_url": "avatar_url"
-        },
-        "properties": {
-          "avatar_url": {
-            "title": "avatar_url",
-            "type": "string"
-          }
-        },
-        "required": [
-          "avatar_url"
-        ],
-        "title": "OrganizationAvatarObject",
-        "type": "object"
-      },
-      "User": {
-        "example": {
-          "badge": "badge",
-          "subscription_plan_id": "subscription_plan_id",
-          "display_handle": "display_handle",
-          "user_id": "user_id",
-          "photo_url": "photo_url"
-        },
-        "properties": {
-          "user_id": {
-            "title": "user_id",
-            "type": "string"
-          },
-          "display_handle": {
-            "title": "display_handle",
-            "type": "string"
-          },
-          "photo_url": {
-            "title": "photo_url",
-            "type": "string"
-          },
-          "subscription_plan_id": {
-            "title": "subscription_plan_id",
-            "type": "string"
-          },
-          "badge": {
-            "title": "badge",
-            "type": "string"
-          }
-        },
-        "required": [
-          "display_handle",
-          "photo_url",
-          "user_id"
-        ],
-        "title": "User",
-        "type": "object"
       },
       "postInternalTesting_200_response": {
         "example": {

@@ -9,7 +9,7 @@ namespace Ideogram
     public sealed partial class UploadDatasetAssetsRequest
     {
         /// <summary>
-        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg).
+        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg). Captions are optional!
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("files")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -25,7 +25,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="UploadDatasetAssetsRequest" /> class.
         /// </summary>
         /// <param name="files">
-        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg).
+        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg). Captions are optional!
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

@@ -157,18 +157,6 @@ namespace Ideogram
 
             typeof(global::Ideogram.JsonConverters.AssetTypeNullableJsonConverter),
 
-            typeof(global::Ideogram.JsonConverters.SharingPermissionJsonConverter),
-
-            typeof(global::Ideogram.JsonConverters.SharingPermissionNullableJsonConverter),
-
-            typeof(global::Ideogram.JsonConverters.OrganizationTypeJsonConverter),
-
-            typeof(global::Ideogram.JsonConverters.OrganizationTypeNullableJsonConverter),
-
-            typeof(global::Ideogram.JsonConverters.OrganizationRoleEnumJsonConverter),
-
-            typeof(global::Ideogram.JsonConverters.OrganizationRoleEnumNullableJsonConverter),
-
             typeof(global::Ideogram.JsonConverters.ListCustomModelsScopeJsonConverter),
 
             typeof(global::Ideogram.JsonConverters.ListCustomModelsScopeNullableJsonConverter),
@@ -343,8 +331,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.Dataset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Dataset))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetIdentifier))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.SharingInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SharingInfo))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreateDatasetRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UploadDatasetAssetsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DatasetUploadSucceededAsset>))]
@@ -371,12 +357,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteMember))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType), TypeInfoPropertyName = "AssetType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SharingPermission), TypeInfoPropertyName = "SharingPermission2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OrganizationObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.User))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OrganizationType), TypeInfoPropertyName = "OrganizationType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OrganizationRoleEnum), TypeInfoPropertyName = "OrganizationRoleEnum2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OrganizationAvatarObject))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostInternalTesting200Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ToolType>))]
@@ -412,7 +392,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.Invoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.InvoiceLineItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.Dataset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.SharingInfo>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DatasetUploadSucceededAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DatasetUploadFailedAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.CustomModel>))]

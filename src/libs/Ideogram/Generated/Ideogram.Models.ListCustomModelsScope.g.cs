@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Default Value: owned
+    /// 
     /// </summary>
     public enum ListCustomModelsScope
     {
