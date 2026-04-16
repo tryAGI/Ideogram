@@ -2708,6 +2708,126 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
+    "/v1/ideogram-v3/inpaint": {
+      "post": {
+        "description": "Inpaint a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_inpaint_image_v3",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "color_palette": {
+                  "contentType": "application/json",
+                  "style": "form"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/EditImageRequestV3"
+              }
+            }
+          },
+          "description": "A request to inpaint an image with Ideogram 3.0.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageGenerationResponseV3"
+                }
+              }
+            },
+            "description": "Image edits generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized to generate an image."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt or Initial Image failed the safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Inpaint with Ideogram 3.0",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
+    "/v1/ideogram-v3/instructional-edit": {
+      "post": {
+        "description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nUnlike inpainting (/v1/ideogram-v3/inpaint), no mask is required. The model interprets the\nprompt to determine what to change.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_edit_image_v2_v3",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/EditImageV2RequestV3"
+              }
+            }
+          },
+          "description": "A request to edit images.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditImageGenerationResponseV3"
+                }
+              }
+            },
+            "description": "Image edits generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized to generate an image."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt or provided image failed safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "503": {
+            "description": "Image generation service temporarily unavailable."
+          }
+        },
+        "summary": "Edit with Ideogram V2",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
     "/v1/ideogram-v3/layerize-design": {
       "post": {
         "description": "Processes an existing flat graphic image to detect and correct text layers without generating a new image from scratch.\n\nThe uploaded image is analyzed for text content, which is then removed and returned as structured text layers with font matching, sizing, and color information.\n\nSupported image formats include JPEG, PNG, and WebP (max size 10MB).\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
@@ -3998,6 +4118,56 @@
         ],
         "type": "object"
       },
+      "EditImageV2RequestV3": {
+        "properties": {
+          "prompt": {
+            "description": "The prompt describing the desired edit.",
+            "example": "Change the background to a beach sunset.",
+            "type": "string"
+          },
+          "images": {
+            "description": "Images to edit (max 10 images, max size 10MB each); JPEG, WebP and PNG formats are supported.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "image_urls": {
+            "description": "URLs to Ideogram images to use as references (max 10). Supports URLs from generation responses and image uploads. Alternative to uploading via the images field.",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "num_images": {
+            "$ref": "#/components/schemas/NumImages"
+          },
+          "seed": {
+            "$ref": "#/components/schemas/Seed"
+          },
+          "magic_prompt": {
+            "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV3"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/AspectRatioV3"
+          },
+          "transparent_background": {
+            "default": false,
+            "description": "Whether the output should have a transparent background. Default false.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
       "TryOnRequestV3": {
         "properties": {
           "image": {
@@ -4595,6 +4765,119 @@
           "seed"
         ],
         "title": "ImageGenerationObjectV3",
+        "type": "object"
+      },
+      "EditImageGenerationResponseV3": {
+        "description": "The response which contains information about the edited image, including the download link.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+        "example": {
+          "data": [
+            {
+              "style_type": "GENERAL",
+              "seed": 12345,
+              "upscaled_resolution": "4096x4096",
+              "prompt": "A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.",
+              "resolution": "4096x4096",
+              "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+              "is_image_safe": true
+            },
+            {
+              "style_type": "GENERAL",
+              "seed": 12345,
+              "upscaled_resolution": "4096x4096",
+              "prompt": "A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.",
+              "resolution": "4096x4096",
+              "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+              "is_image_safe": true
+            }
+          ],
+          "created": "2000-01-23T04:56:07+00:00"
+        },
+        "properties": {
+          "created": {
+            "description": "The time the request was created.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          },
+          "data": {
+            "description": "A list of ImageObjects that contain the edited image(s).",
+            "items": {
+              "$ref": "#/components/schemas/EditImageGenerationObjectV3"
+            },
+            "title": "data",
+            "type": "array"
+          }
+        },
+        "required": [
+          "created",
+          "data"
+        ],
+        "title": "EditImageGenerationResponseV3",
+        "type": "object"
+      },
+      "EditImageGenerationObjectV3": {
+        "example": {
+          "style_type": "GENERAL",
+          "seed": 12345,
+          "upscaled_resolution": "4096x4096",
+          "prompt": "A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.",
+          "resolution": "4096x4096",
+          "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+          "is_image_safe": true
+        },
+        "properties": {
+          "url": {
+            "description": "The direct link to the image generated.",
+            "example": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+            "format": "uri",
+            "nullable": true,
+            "title": "url",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "The prompt used for the generation. This may be different from the original prompt.",
+            "example": "A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there's an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.",
+            "title": "prompt",
+            "type": "string"
+          },
+          "resolution": {
+            "description": "Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.",
+            "example": "4096x4096",
+            "pattern": "^\\d{2,5}x\\d{2,5}$",
+            "title": "FreeformResolution",
+            "type": "string"
+          },
+          "upscaled_resolution": {
+            "description": "Output resolution, only used if operations alters image dimensions, such as upscale, crop etc.",
+            "example": "4096x4096",
+            "pattern": "^\\d{2,5}x\\d{2,5}$",
+            "title": "FreeformResolution",
+            "type": "string"
+          },
+          "is_image_safe": {
+            "description": "Whether this request passes safety checks. If false, the url field will be empty.",
+            "title": "is_image_safe",
+            "type": "boolean"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "style_type": {
+            "$ref": "#/components/schemas/StyleTypeV3"
+          }
+        },
+        "required": [
+          "is_image_safe",
+          "prompt",
+          "resolution",
+          "seed"
+        ],
+        "title": "EditImageGenerationObjectV3",
         "type": "object"
       },
       "ImageObject": {

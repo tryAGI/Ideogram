@@ -79,6 +79,17 @@
     },
     {
       "Order": 8,
+      "Title": "Edit with Ideogram V2",
+      "Slug": "post-edit-image-v2-v3",
+      "Description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nUnlike inpainting (/v1/ideogram-v3/inpaint), no mask is required. The model interprets the\nprompt to determine what to change.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Edit with Ideogram V2\n# @name post_edit_image_v2_v3\nPOST {{host}}/v1/ideogram-v3/instructional-edit\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image edits generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 402\n# Description: Insufficient credits or quota.\n# 422\n# Description: Prompt or provided image failed safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.\n# 503\n# Description: Image generation service temporarily unavailable.",
+      "Format": "http",
+      "OperationId": "post_edit_image_v2_v3",
+      "Setup": null
+    },
+    {
+      "Order": 9,
       "Title": "Edit with Ideogram 3.0",
       "Slug": "post-edit-image-v3",
       "Description": "Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -89,7 +100,7 @@
       "Setup": null
     },
     {
-      "Order": 9,
+      "Order": 10,
       "Title": "Generate a design from a text prompt with text detection and correction",
       "Slug": "post-generate-design-v3",
       "Description": "Generates a design synchronously from a text prompt using the Ideogram 3.0 model, then detects and corrects text layers within the generated image.\n\nThe response includes the generated image URL along with detected text layers (with font, size, color, position) and image asset layers.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -100,7 +111,7 @@
       "Setup": null
     },
     {
-      "Order": 10,
+      "Order": 11,
       "Title": "Generate (legacy)",
       "Slug": "post-generate-image",
       "Description": "Generates images synchronously based on a given prompt and optional parameters.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -111,7 +122,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 11,
+      "Order": 12,
       "Title": "Generate with Ideogram 3.0",
       "Slug": "post-generate-image-v3",
       "Description": "Generates images synchronously based on a given prompt and optional parameters using the Ideogram 3.0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -122,7 +133,7 @@
       "Setup": null
     },
     {
-      "Order": 12,
+      "Order": 13,
       "Title": "Generate with Ideogram 3.0 (Transparent Background)",
       "Slug": "post-generate-image-v3-transparent",
       "Description": "Generates images with transparent background synchronously based on a given prompt and optional parameters using\nthe Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio\nto allow best results with upscaler. The selected resolution is written to the response, not the upscaled final\nresolution.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -133,7 +144,7 @@
       "Setup": null
     },
     {
-      "Order": 13,
+      "Order": 14,
       "Title": "Generate with Ideogram 4.0",
       "Slug": "post-generate-image-v4",
       "Description": "Generates images synchronously using the Ideogram 4.0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -144,7 +155,18 @@
       "Setup": null
     },
     {
-      "Order": 14,
+      "Order": 15,
+      "Title": "Inpaint with Ideogram 3.0",
+      "Slug": "post-inpaint-image-v3",
+      "Description": "Inpaint a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Inpaint with Ideogram 3.0\n# @name post_inpaint_image_v3\nPOST {{host}}/v1/ideogram-v3/inpaint\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image edits generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt or Initial Image failed the safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_inpaint_image_v3",
+      "Setup": null
+    },
+    {
+      "Order": 16,
       "Title": "Layerize an existing flat graphic image with text detection and correction",
       "Slug": "post-layerize-design-v3",
       "Description": "Processes an existing flat graphic image to detect and correct text layers without generating a new image from scratch.\n\nThe uploaded image is analyzed for text content, which is then removed and returned as structured text layers with font matching, sizing, and color information.\n\nSupported image formats include JPEG, PNG, and WebP (max size 10MB).\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -155,7 +177,7 @@
       "Setup": null
     },
     {
-      "Order": 15,
+      "Order": 17,
       "Title": "Layerize Text",
       "Slug": "post-layerize-text-v3",
       "Description": "Analyzes an image to detect text regions, then returns each detected text block with its position, content, font information, and styling.\n\nThe response includes a text-erased base image (background with all text removed) and a flat list of detected text blocks.\n\nSupported image formats include JPEG, PNG, and WebP (max size 10MB).\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -166,7 +188,7 @@
       "Setup": null
     },
     {
-      "Order": 16,
+      "Order": 18,
       "Title": "Reframe (legacy)",
       "Slug": "post-reframe-image",
       "Description": "Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -177,7 +199,7 @@
       "Setup": null
     },
     {
-      "Order": 17,
+      "Order": 19,
       "Title": "Reframe with Ideogram 3.0",
       "Slug": "post-reframe-image-v3",
       "Description": "Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -188,7 +210,7 @@
       "Setup": null
     },
     {
-      "Order": 18,
+      "Order": 20,
       "Title": "Remix (legacy)",
       "Slug": "post-remix-image",
       "Description": "Remix provided images synchronously based on a given prompt and optional parameters.\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -199,7 +221,7 @@
       "Setup": null
     },
     {
-      "Order": 19,
+      "Order": 21,
       "Title": "Remix with Ideogram 3.0",
       "Slug": "post-remix-image-v3",
       "Description": "Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -210,7 +232,7 @@
       "Setup": null
     },
     {
-      "Order": 20,
+      "Order": 22,
       "Title": "Replace Background with Ideogram 3.0",
       "Slug": "post-replace-background-v3",
       "Description": "Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject\nwill be identified and kept, while the background is replaced based on the prompt and chosen style.\nSupported image formats include JPEG, PNG, and WebP.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -221,7 +243,7 @@
       "Setup": null
     },
     {
-      "Order": 21,
+      "Order": 23,
       "Title": "Virtual Try-On with Ideogram 3.0",
       "Slug": "post-try-on-v3",
       "Description": "Performs virtual clothing try-on by automatically segmenting the clothing in the provided image\nand replacing it based on the prompt. The user provides an image and an optional prompt describing\nthe desired clothing change (e.g., \u0022change his shirt to a pink shirt\u0022).\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -232,7 +254,7 @@
       "Setup": null
     },
     {
-      "Order": 22,
+      "Order": 24,
       "Title": "Upscale",
       "Slug": "post-upscale-image",
       "Description": "Upscale provided images synchronously with an optional prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -243,7 +265,7 @@
       "Setup": null
     },
     {
-      "Order": 23,
+      "Order": 25,
       "Title": "Testing",
       "Slug": "post-internal-testing",
       "Description": "Just a testing endpoint",
@@ -254,7 +276,7 @@
       "Setup": null
     },
     {
-      "Order": 24,
+      "Order": 26,
       "Title": "Add members to a specific organization",
       "Slug": "add-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -265,7 +287,7 @@
       "Setup": null
     },
     {
-      "Order": 25,
+      "Order": 27,
       "Title": "Creates an API key.",
       "Slug": "create-api-key",
       "Description": "Generated from OpenAPI examples.",
@@ -276,7 +298,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 26,
+      "Order": 28,
       "Title": "Create an API key for a specific organization",
       "Slug": "create-api-key-v2",
       "Description": "Generated from OpenAPI examples.",
@@ -287,7 +309,7 @@
       "Setup": null
     },
     {
-      "Order": 27,
+      "Order": 29,
       "Title": "Delete an API key.",
       "Slug": "delete-single-api-key",
       "Description": "Generated from OpenAPI examples.",
@@ -298,7 +320,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 28,
+      "Order": 30,
       "Title": "Retrieve current API keys and their respective data.",
       "Slug": "get-api-keys",
       "Description": "Generated from OpenAPI examples.",
@@ -309,7 +331,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 29,
+      "Order": 31,
       "Title": "Retrieve API keys for a specific organization",
       "Slug": "get-api-keys-v2",
       "Description": "Generated from OpenAPI examples.",
@@ -320,7 +342,7 @@
       "Setup": null
     },
     {
-      "Order": 30,
+      "Order": 32,
       "Title": "Get search results for user handles with suggestions for a particular organization.",
       "Slug": "get-api-organization-user-suggestions",
       "Description": "Generated from OpenAPI examples.",
@@ -331,7 +353,7 @@
       "Setup": null
     },
     {
-      "Order": 31,
+      "Order": 33,
       "Title": "Retrieve the user\u0027s current API profiles",
       "Slug": "get-api-profiles",
       "Description": "Generated from OpenAPI examples.",
@@ -342,7 +364,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 32,
+      "Order": 34,
       "Title": "Retrieve data relevant to connecting to Stripe.",
       "Slug": "get-api-stripe-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -353,7 +375,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 33,
+      "Order": 35,
       "Title": "Retrieve data relevant to creating an API subscription.",
       "Slug": "get-api-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -364,7 +386,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 34,
+      "Order": 36,
       "Title": "Retrieve the latest terms of service for API usage.",
       "Slug": "get-api-terms",
       "Description": "Generated from OpenAPI examples.",
@@ -375,7 +397,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 35,
+      "Order": 37,
       "Title": "Retrieve members of a specific organization",
       "Slug": "get-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -386,7 +408,7 @@
       "Setup": null
     },
     {
-      "Order": 36,
+      "Order": 38,
       "Title": "Retrieve usage information segmented by time period with tool-specific breakdowns",
       "Slug": "get-usage-info",
       "Description": "Generated from OpenAPI examples.",
@@ -397,7 +419,7 @@
       "Setup": null
     },
     {
-      "Order": 37,
+      "Order": 39,
       "Title": "Retrieve user credit information and spending metrics",
       "Slug": "get-user-credits",
       "Description": "Generated from OpenAPI examples.",
@@ -408,7 +430,7 @@
       "Setup": null
     },
     {
-      "Order": 38,
+      "Order": 40,
       "Title": "Retrieve user spend commit information",
       "Slug": "get-user-spend-commit-info",
       "Description": "Generated from OpenAPI examples.",
@@ -419,7 +441,7 @@
       "Setup": null
     },
     {
-      "Order": 39,
+      "Order": 41,
       "Title": "Retrieve invoices for a specific organization",
       "Slug": "list-organization-invoices",
       "Description": "Generated from OpenAPI examples.",
@@ -430,7 +452,7 @@
       "Setup": null
     },
     {
-      "Order": 40,
+      "Order": 42,
       "Title": "Add credits to an API user\u0027s account.",
       "Slug": "post-add-credits-for-api",
       "Description": "Generated from OpenAPI examples.",
@@ -441,7 +463,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 41,
+      "Order": 43,
       "Title": "Update API subscription settings",
       "Slug": "post-api-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -452,7 +474,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 42,
+      "Order": 44,
       "Title": "Accept terms",
       "Slug": "post-api-terms",
       "Description": "Generated from OpenAPI examples.",
@@ -463,7 +485,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 43,
+      "Order": 45,
       "Title": "Promote members to OWNER role in a specific organization",
       "Slug": "promote-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -474,7 +496,7 @@
       "Setup": null
     },
     {
-      "Order": 44,
+      "Order": 46,
       "Title": "Reactivates a subscription by attempting to re-enable Metronome billing.",
       "Slug": "reactivate-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -485,7 +507,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 45,
+      "Order": 47,
       "Title": "Remove members from a specific organization",
       "Slug": "remove-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -496,7 +518,7 @@
       "Setup": null
     },
     {
-      "Order": 46,
+      "Order": 48,
       "Title": "Get model details",
       "Slug": "get-custom-model",
       "Description": "Get detailed information about a specific custom model, including training run history for owned models. The user must either own the model or the model must be shared with the user\u0027s organization via the model registry. Returns 404 if the model is not found or not accessible.",
@@ -507,7 +529,7 @@
       "Setup": null
     },
     {
-      "Order": 47,
+      "Order": 49,
       "Title": "List models",
       "Slug": "list-custom-models",
       "Description": "Lists custom models for the authenticated user. Use the \u0060scope\u0060 parameter to control which models are returned. \u0060owned\u0060 (default) returns models created by the user. \u0060shared\u0060 returns models shared with the user\u0027s organization via the model registry, excluding the user\u0027s own models.",
@@ -518,7 +540,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 48,
+      "Order": 50,
       "Title": "Generate Magic Prompt",
       "Slug": "post-magic-prompt",
       "Description": "Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.",
@@ -529,7 +551,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 49,
+      "Order": 51,
       "Title": "Describe",
       "Slug": "post-describe",
       "Description": "Describe an image.\n\nSupported image formats include JPEG, PNG, and WebP.",
