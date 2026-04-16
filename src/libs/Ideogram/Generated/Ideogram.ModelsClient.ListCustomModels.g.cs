@@ -45,11 +45,9 @@ namespace Ideogram
 
         /// <summary>
         /// List models<br/>
-        /// Lists custom models for the authenticated user. Use the `scope` parameter to control which models are returned. `owned` (default) returns models created by the user. `shared` returns models shared with the user's organization via the model registry, excluding the user's own models.
+        /// Lists custom models for the authenticated user. Use the `scope` parameter to control which models are returned. If omitted, returns both owned models and models shared with the user's organization via the model registry. `owned` returns only models created by the user. `shared` returns only models shared via the model registry, excluding the user's own models.
         /// </summary>
-        /// <param name="scope">
-        /// Default Value: owned
-        /// </param>
+        /// <param name="scope"></param>
         /// <param name="status"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

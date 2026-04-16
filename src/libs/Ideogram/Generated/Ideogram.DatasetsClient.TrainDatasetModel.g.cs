@@ -45,7 +45,7 @@ namespace Ideogram
 
         /// <summary>
         /// Train a model from a dataset<br/>
-        /// Start training a custom model from a dataset. The dataset must contain at least 15 images. Returns the model ID and training status.
+        /// Start training a custom model from a dataset. The dataset must contain at least 10 images and a maximum of 100 images. Returns the model ID and training status.
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="request"></param>
@@ -494,7 +494,7 @@ namespace Ideogram
         }
         /// <summary>
         /// Train a model from a dataset<br/>
-        /// Start training a custom model from a dataset. The dataset must contain at least 15 images. Returns the model ID and training status.
+        /// Start training a custom model from a dataset. The dataset must contain at least 10 images and a maximum of 100 images. Returns the model ID and training status.
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="modelName">

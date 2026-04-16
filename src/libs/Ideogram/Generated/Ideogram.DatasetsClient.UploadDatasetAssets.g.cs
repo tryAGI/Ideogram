@@ -509,7 +509,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="files">
-        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg).
+        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg). Captions are optional!
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
