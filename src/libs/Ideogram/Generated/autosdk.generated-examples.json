@@ -81,7 +81,7 @@
       "Order": 8,
       "Title": "Edit with Ideogram V2",
       "Slug": "post-edit-image-v2-v3",
-      "Description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nUnlike inpainting (/v1/ideogram-v3/inpaint), no mask is required. The model interprets the\nprompt to determine what to change.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
       "Language": "http",
       "Code": "### Edit with Ideogram V2\n# @name post_edit_image_v2_v3\nPOST {{host}}/v1/ideogram-v3/instructional-edit\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image edits generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 402\n# Description: Insufficient credits or quota.\n# 422\n# Description: Prompt or provided image failed safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.\n# 503\n# Description: Image generation service temporarily unavailable.",
       "Format": "http",
