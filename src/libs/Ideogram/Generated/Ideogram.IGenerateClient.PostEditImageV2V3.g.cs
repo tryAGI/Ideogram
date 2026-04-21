@@ -8,8 +8,6 @@ namespace Ideogram
         /// Edit with Ideogram V2<br/>
         /// Edit one or more images using a text prompt. Provide images via file upload<br/>
         /// or Ideogram image URLs, and describe the desired edit in your prompt.<br/>
-        /// Unlike inpainting (/v1/ideogram-v3/inpaint), no mask is required. The model interprets the<br/>
-        /// prompt to determine what to change.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
@@ -26,8 +24,6 @@ namespace Ideogram
         /// Edit with Ideogram V2<br/>
         /// Edit one or more images using a text prompt. Provide images via file upload<br/>
         /// or Ideogram image URLs, and describe the desired edit in your prompt.<br/>
-        /// Unlike inpainting (/v1/ideogram-v3/inpaint), no mask is required. The model interprets the<br/>
-        /// prompt to determine what to change.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
