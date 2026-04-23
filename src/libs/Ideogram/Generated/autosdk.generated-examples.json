@@ -35,6 +35,17 @@
     },
     {
       "Order": 4,
+      "Title": "Get a dataset",
+      "Slug": "get-dataset",
+      "Description": "Returns a dataset by ID, including the total number of files and a list of each file\u0027s name and size in bytes.",
+      "Language": "http",
+      "Code": "### Get a dataset\n# @name get_dataset\nGET {{host}}/datasets/{{dataset_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Dataset retrieved successfully\n# Content-Type: application/json\n# 401\n# Description: Unauthorized\n# 404\n# Description: Dataset not found",
+      "Format": "http",
+      "OperationId": "get_dataset",
+      "Setup": null
+    },
+    {
+      "Order": 5,
       "Title": "List datasets",
       "Slug": "list-datasets",
       "Description": "Lists all datasets for the authenticated user",
@@ -45,10 +56,10 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 5,
+      "Order": 6,
       "Title": "Train a model from a dataset",
       "Slug": "train-dataset-model",
-      "Description": "Start training a custom model from a dataset. The dataset must contain at least 10 images and a maximum of 100 images. Returns the model ID and training status.",
+      "Description": "Start training a custom model from a dataset. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.",
       "Language": "http",
       "Code": "### Train a model from a dataset\n# @name train_dataset_model\nPOST {{host}}/datasets/{{dataset_id}}/train_model\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022model_name\u0022: \u0022my-custom-model\u0022,\n  \u0022lora_rank\u0022: 64,\n  \u0022num_chips\u0022: 32,\n  \u0022ema\u0022: 0.999,\n  \u0022base_model_version\u0022: \u0022V_3_1\u0022,\n  \u0022training_steps\u0022: 1000,\n  \u0022learning_rate\u0022: 0.0001\n}\n\n## Responses\n# 200\n# Description: Training started successfully\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# 401\n# Description: Unauthorized\n# 404\n# Description: Dataset not found",
       "Format": "http",
@@ -56,7 +67,7 @@
       "Setup": null
     },
     {
-      "Order": 6,
+      "Order": 7,
       "Title": "Upload assets to a dataset",
       "Slug": "upload-dataset-assets",
       "Description": "Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.",
@@ -67,7 +78,7 @@
       "Setup": null
     },
     {
-      "Order": 7,
+      "Order": 8,
       "Title": "Edit (legacy)",
       "Slug": "post-edit-image",
       "Description": "Edit a given image synchronously using the provided mask. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style type can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -75,17 +86,6 @@
       "Code": "### Edit (legacy)\n# @name post_edit_image\nPOST {{host}}/edit\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image edits generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt or Initial Image failed the safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
       "Format": "http",
       "OperationId": "post_edit_image",
-      "Setup": null
-    },
-    {
-      "Order": 8,
-      "Title": "Edit with Ideogram V2",
-      "Slug": "post-edit-image-v2-v3",
-      "Description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
-      "Language": "http",
-      "Code": "### Edit with Ideogram V2\n# @name post_edit_image_v2_v3\nPOST {{host}}/v1/ideogram-v3/instructional-edit\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image edits generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 402\n# Description: Insufficient credits or quota.\n# 422\n# Description: Prompt or provided image failed safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.\n# 503\n# Description: Image generation service temporarily unavailable.",
-      "Format": "http",
-      "OperationId": "post_edit_image_v2_v3",
       "Setup": null
     },
     {
@@ -266,6 +266,17 @@
     },
     {
       "Order": 25,
+      "Title": "Edit images with a prompt",
+      "Slug": "post-v1-edit-image",
+      "Description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Edit images with a prompt\n# @name post_v1_edit_image\nPOST {{host}}/v1/edit\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image edits generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 402\n# Description: Insufficient credits or quota.\n# 422\n# Description: Prompt or provided image failed safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.\n# 503\n# Description: Image generation service temporarily unavailable.",
+      "Format": "http",
+      "OperationId": "post_v1_edit_image",
+      "Setup": null
+    },
+    {
+      "Order": 26,
       "Title": "Testing",
       "Slug": "post-internal-testing",
       "Description": "Just a testing endpoint",
@@ -276,7 +287,7 @@
       "Setup": null
     },
     {
-      "Order": 26,
+      "Order": 27,
       "Title": "Add members to a specific organization",
       "Slug": "add-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -287,7 +298,7 @@
       "Setup": null
     },
     {
-      "Order": 27,
+      "Order": 28,
       "Title": "Creates an API key.",
       "Slug": "create-api-key",
       "Description": "Generated from OpenAPI examples.",
@@ -298,7 +309,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 28,
+      "Order": 29,
       "Title": "Create an API key for a specific organization",
       "Slug": "create-api-key-v2",
       "Description": "Generated from OpenAPI examples.",
@@ -309,7 +320,7 @@
       "Setup": null
     },
     {
-      "Order": 29,
+      "Order": 30,
       "Title": "Delete an API key.",
       "Slug": "delete-single-api-key",
       "Description": "Generated from OpenAPI examples.",
@@ -320,7 +331,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 30,
+      "Order": 31,
       "Title": "Retrieve current API keys and their respective data.",
       "Slug": "get-api-keys",
       "Description": "Generated from OpenAPI examples.",
@@ -331,7 +342,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 31,
+      "Order": 32,
       "Title": "Retrieve API keys for a specific organization",
       "Slug": "get-api-keys-v2",
       "Description": "Generated from OpenAPI examples.",
@@ -342,7 +353,7 @@
       "Setup": null
     },
     {
-      "Order": 32,
+      "Order": 33,
       "Title": "Get search results for user handles with suggestions for a particular organization.",
       "Slug": "get-api-organization-user-suggestions",
       "Description": "Generated from OpenAPI examples.",
@@ -353,7 +364,7 @@
       "Setup": null
     },
     {
-      "Order": 33,
+      "Order": 34,
       "Title": "Retrieve the user\u0027s current API profiles",
       "Slug": "get-api-profiles",
       "Description": "Generated from OpenAPI examples.",
@@ -364,7 +375,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 34,
+      "Order": 35,
       "Title": "Retrieve data relevant to connecting to Stripe.",
       "Slug": "get-api-stripe-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -375,7 +386,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 35,
+      "Order": 36,
       "Title": "Retrieve data relevant to creating an API subscription.",
       "Slug": "get-api-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -386,7 +397,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 36,
+      "Order": 37,
       "Title": "Retrieve the latest terms of service for API usage.",
       "Slug": "get-api-terms",
       "Description": "Generated from OpenAPI examples.",
@@ -397,7 +408,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 37,
+      "Order": 38,
       "Title": "Retrieve members of a specific organization",
       "Slug": "get-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -408,7 +419,7 @@
       "Setup": null
     },
     {
-      "Order": 38,
+      "Order": 39,
       "Title": "Retrieve usage information segmented by time period with tool-specific breakdowns",
       "Slug": "get-usage-info",
       "Description": "Generated from OpenAPI examples.",
@@ -419,7 +430,7 @@
       "Setup": null
     },
     {
-      "Order": 39,
+      "Order": 40,
       "Title": "Retrieve user credit information and spending metrics",
       "Slug": "get-user-credits",
       "Description": "Generated from OpenAPI examples.",
@@ -430,7 +441,7 @@
       "Setup": null
     },
     {
-      "Order": 40,
+      "Order": 41,
       "Title": "Retrieve user spend commit information",
       "Slug": "get-user-spend-commit-info",
       "Description": "Generated from OpenAPI examples.",
@@ -441,7 +452,7 @@
       "Setup": null
     },
     {
-      "Order": 41,
+      "Order": 42,
       "Title": "Retrieve invoices for a specific organization",
       "Slug": "list-organization-invoices",
       "Description": "Generated from OpenAPI examples.",
@@ -452,7 +463,7 @@
       "Setup": null
     },
     {
-      "Order": 42,
+      "Order": 43,
       "Title": "Add credits to an API user\u0027s account.",
       "Slug": "post-add-credits-for-api",
       "Description": "Generated from OpenAPI examples.",
@@ -463,7 +474,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 43,
+      "Order": 44,
       "Title": "Update API subscription settings",
       "Slug": "post-api-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -474,7 +485,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 44,
+      "Order": 45,
       "Title": "Accept terms",
       "Slug": "post-api-terms",
       "Description": "Generated from OpenAPI examples.",
@@ -485,7 +496,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 45,
+      "Order": 46,
       "Title": "Promote members to OWNER role in a specific organization",
       "Slug": "promote-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -496,7 +507,7 @@
       "Setup": null
     },
     {
-      "Order": 46,
+      "Order": 47,
       "Title": "Reactivates a subscription by attempting to re-enable Metronome billing.",
       "Slug": "reactivate-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -507,7 +518,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 47,
+      "Order": 48,
       "Title": "Remove members from a specific organization",
       "Slug": "remove-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -518,7 +529,7 @@
       "Setup": null
     },
     {
-      "Order": 48,
+      "Order": 49,
       "Title": "Get model details",
       "Slug": "get-custom-model",
       "Description": "Get detailed information about a specific custom model. The user must either own the model or the model must be shared with the user\u0027s organization via the model registry. Returns 404 if the model is not found or not accessible.",
@@ -529,7 +540,7 @@
       "Setup": null
     },
     {
-      "Order": 49,
+      "Order": 50,
       "Title": "List models",
       "Slug": "list-custom-models",
       "Description": "Lists custom models for the authenticated user. Use the \u0060scope\u0060 parameter to control which models are returned. If omitted, returns both owned models and models shared with the user\u0027s organization via the model registry. \u0060owned\u0060 returns only models created by the user. \u0060shared\u0060 returns only models shared via the model registry, excluding the user\u0027s own models.",
@@ -540,7 +551,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 50,
+      "Order": 51,
       "Title": "Generate Magic Prompt",
       "Slug": "post-magic-prompt",
       "Description": "Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.",
@@ -551,7 +562,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 51,
+      "Order": 52,
       "Title": "Describe",
       "Slug": "post-describe",
       "Description": "Describe an image.\n\nSupported image formats include JPEG, PNG, and WebP.",

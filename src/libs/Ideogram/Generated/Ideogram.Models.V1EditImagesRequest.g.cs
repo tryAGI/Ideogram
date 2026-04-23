@@ -6,7 +6,7 @@ namespace Ideogram
     /// <summary>
     /// 
     /// </summary>
-    public sealed partial class EditImageV2RequestV3
+    public sealed partial class V1EditImagesRequest
     {
         /// <summary>
         /// The prompt describing the desired edit.<br/>
@@ -83,7 +83,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditImageV2RequestV3" /> class.
+        /// Initializes a new instance of the <see cref="V1EditImagesRequest" /> class.
         /// </summary>
         /// <param name="prompt">
         /// The prompt describing the desired edit.<br/>
@@ -121,7 +121,7 @@ namespace Ideogram
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public EditImageV2RequestV3(
+        public V1EditImagesRequest(
             string prompt,
             global::System.Collections.Generic.IList<byte[]>? images,
             global::System.Collections.Generic.IList<string>? imageUrls,
@@ -144,9 +144,9 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EditImageV2RequestV3" /> class.
+        /// Initializes a new instance of the <see cref="V1EditImagesRequest" /> class.
         /// </summary>
-        public EditImageV2RequestV3()
+        public V1EditImagesRequest()
         {
         }
     }

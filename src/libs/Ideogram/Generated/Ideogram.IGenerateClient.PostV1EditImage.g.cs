@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IGenerateClient
     {
         /// <summary>
-        /// Edit with Ideogram V2<br/>
+        /// Edit images with a prompt<br/>
         /// Edit one or more images using a text prompt. Provide images via file upload<br/>
         /// or Ideogram image URLs, and describe the desired edit in your prompt.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
@@ -15,13 +15,13 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.EditImageGenerationResponseV3> PostEditImageV2V3Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.V1EditImagesResponse> PostV1EditImageAsync(
 
-            global::Ideogram.EditImageV2RequestV3 request,
+            global::Ideogram.V1EditImagesRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Edit with Ideogram V2<br/>
+        /// Edit images with a prompt<br/>
         /// Edit one or more images using a text prompt. Provide images via file upload<br/>
         /// or Ideogram image URLs, and describe the desired edit in your prompt.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
@@ -63,7 +63,7 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.EditImageGenerationResponseV3> PostEditImageV2V3Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.V1EditImagesResponse> PostV1EditImageAsync(
             string prompt,
             global::System.Collections.Generic.IList<byte[]>? images = default,
             global::System.Collections.Generic.IList<string>? imageUrls = default,

@@ -7,7 +7,7 @@ namespace Ideogram
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostEditImageV2V3SecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostV1EditImageSecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,28 +21,28 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostEditImageV2V3SecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostV1EditImageSecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostEditImageV2V3SecurityRequirement0,
+            {                s_PostV1EditImageSecurityRequirement0,
             };
-        partial void PreparePostEditImageV2V3Arguments(
+        partial void PreparePostV1EditImageArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.EditImageV2RequestV3 request);
-        partial void PreparePostEditImageV2V3Request(
+            global::Ideogram.V1EditImagesRequest request);
+        partial void PreparePostV1EditImageRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.EditImageV2RequestV3 request);
-        partial void ProcessPostEditImageV2V3Response(
+            global::Ideogram.V1EditImagesRequest request);
+        partial void ProcessPostV1EditImageResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostEditImageV2V3ResponseContent(
+        partial void ProcessPostV1EditImageResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Edit with Ideogram V2<br/>
+        /// Edit images with a prompt<br/>
         /// Edit one or more images using a text prompt. Provide images via file upload<br/>
         /// or Ideogram image URLs, and describe the desired edit in your prompt.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
@@ -52,9 +52,9 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.EditImageGenerationResponseV3> PostEditImageV2V3Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.V1EditImagesResponse> PostV1EditImageAsync(
 
-            global::Ideogram.EditImageV2RequestV3 request,
+            global::Ideogram.V1EditImagesRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -62,15 +62,15 @@ namespace Ideogram
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostEditImageV2V3Arguments(
+            PreparePostV1EditImageArguments(
                 httpClient: HttpClient,
                 request: request);
 
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostEditImageV2V3SecurityRequirements,
-                operationName: "PostEditImageV2V3Async");
+                securityRequirements: s_PostV1EditImageSecurityRequirements,
+                operationName: "PostV1EditImageAsync");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -89,7 +89,7 @@ namespace Ideogram
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v1/ideogram-v3/instructional-edit",
+                                path: "/v1/edit",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -198,7 +198,7 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostEditImageV2V3Request(
+                PreparePostV1EditImageRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     request: request);
@@ -218,9 +218,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV2V3",
-                                methodName: "PostEditImageV2V3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/instructional-edit\"",
+                                operationId: "PostV1EditImage",
+                                methodName: "PostV1EditImageAsync",
+                                pathTemplate: "\"/v1/edit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -245,9 +245,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV2V3",
-                                methodName: "PostEditImageV2V3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/instructional-edit\"",
+                                operationId: "PostV1EditImage",
+                                methodName: "PostV1EditImageAsync",
+                                pathTemplate: "\"/v1/edit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -280,9 +280,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV2V3",
-                                methodName: "PostEditImageV2V3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/instructional-edit\"",
+                                operationId: "PostV1EditImage",
+                                methodName: "PostV1EditImageAsync",
+                                pathTemplate: "\"/v1/edit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -319,7 +319,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostEditImageV2V3Response(
+                ProcessPostV1EditImageResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -327,9 +327,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV2V3",
-                                methodName: "PostEditImageV2V3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/instructional-edit\"",
+                                operationId: "PostV1EditImage",
+                                methodName: "PostV1EditImageAsync",
+                                pathTemplate: "\"/v1/edit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -347,9 +347,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV2V3",
-                                methodName: "PostEditImageV2V3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/instructional-edit\"",
+                                operationId: "PostV1EditImage",
+                                methodName: "PostV1EditImageAsync",
+                                pathTemplate: "\"/v1/edit\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -578,7 +578,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostEditImageV2V3ResponseContent(
+                                ProcessPostV1EditImageResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -588,7 +588,7 @@ namespace Ideogram
                                     __response.EnsureSuccessStatusCode();
 
                                     return
-                                        global::Ideogram.EditImageGenerationResponseV3.FromJson(__content, JsonSerializerContext) ??
+                                        global::Ideogram.V1EditImagesResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                                 }
                                 catch (global::System.Exception __ex)
@@ -618,7 +618,7 @@ namespace Ideogram
                                     ).ConfigureAwait(false);
 
                                     return
-                                        await global::Ideogram.EditImageGenerationResponseV3.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        await global::Ideogram.V1EditImagesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                                 }
                                 catch (global::System.Exception __ex)
@@ -658,7 +658,7 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Edit with Ideogram V2<br/>
+        /// Edit images with a prompt<br/>
         /// Edit one or more images using a text prompt. Provide images via file upload<br/>
         /// or Ideogram image URLs, and describe the desired edit in your prompt.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
@@ -700,7 +700,7 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.EditImageGenerationResponseV3> PostEditImageV2V3Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.V1EditImagesResponse> PostV1EditImageAsync(
             string prompt,
             global::System.Collections.Generic.IList<byte[]>? images = default,
             global::System.Collections.Generic.IList<string>? imageUrls = default,
@@ -713,7 +713,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.EditImageV2RequestV3
+            var __request = new global::Ideogram.V1EditImagesRequest
             {
                 Prompt = prompt,
                 Images = images,
@@ -726,7 +726,7 @@ namespace Ideogram
                 TransparentBackground = transparentBackground,
             };
 
-            return await PostEditImageV2V3Async(
+            return await PostV1EditImageAsync(
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
