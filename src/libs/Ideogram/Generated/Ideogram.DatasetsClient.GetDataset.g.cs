@@ -7,7 +7,7 @@ namespace Ideogram
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_TrainDatasetModelSecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_GetDatasetSecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,58 +21,50 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_TrainDatasetModelSecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_GetDatasetSecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_TrainDatasetModelSecurityRequirement0,
+            {                s_GetDatasetSecurityRequirement0,
             };
-        partial void PrepareTrainDatasetModelArguments(
+        partial void PrepareGetDatasetArguments(
             global::System.Net.Http.HttpClient httpClient,
-            ref string datasetId,
-            global::Ideogram.TrainDatasetModelRequest request);
-        partial void PrepareTrainDatasetModelRequest(
+            ref string datasetId);
+        partial void PrepareGetDatasetRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            string datasetId,
-            global::Ideogram.TrainDatasetModelRequest request);
-        partial void ProcessTrainDatasetModelResponse(
+            string datasetId);
+        partial void ProcessGetDatasetResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessTrainDatasetModelResponseContent(
+        partial void ProcessGetDatasetResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Train a model from a dataset<br/>
-        /// Start training a custom model from a dataset. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.
+        /// Get a dataset<br/>
+        /// Returns a dataset by ID, including the total number of files and a list of each file's name and size in bytes.
         /// </summary>
         /// <param name="datasetId"></param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.TrainDatasetModelResponse> TrainDatasetModelAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GetDatasetResponse> GetDatasetAsync(
             string datasetId,
-
-            global::Ideogram.TrainDatasetModelRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PrepareTrainDatasetModelArguments(
+            PrepareGetDatasetArguments(
                 httpClient: HttpClient,
-                datasetId: ref datasetId,
-                request: request);
+                datasetId: ref datasetId);
 
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_TrainDatasetModelSecurityRequirements,
-                operationName: "TrainDatasetModelAsync");
+                securityRequirements: s_GetDatasetSecurityRequirements,
+                operationName: "GetDatasetAsync");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -91,7 +83,7 @@ namespace Ideogram
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: $"/datasets/{datasetId}/train_model",
+                                path: $"/datasets/{datasetId}",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -99,7 +91,7 @@ namespace Ideogram
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -122,12 +114,6 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -136,11 +122,10 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PrepareTrainDatasetModelRequest(
+                PrepareGetDatasetRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    datasetId: datasetId,
-                    request: request);
+                    datasetId: datasetId);
 
                 return __httpRequest;
             }
@@ -157,10 +142,10 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TrainDatasetModel",
-                                methodName: "TrainDatasetModelAsync",
-                                pathTemplate: "$\"/datasets/{datasetId}/train_model\"",
-                                httpMethod: "POST",
+                                operationId: "GetDataset",
+                                methodName: "GetDatasetAsync",
+                                pathTemplate: "$\"/datasets/{datasetId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -184,10 +169,10 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TrainDatasetModel",
-                                methodName: "TrainDatasetModelAsync",
-                                pathTemplate: "$\"/datasets/{datasetId}/train_model\"",
-                                httpMethod: "POST",
+                                operationId: "GetDataset",
+                                methodName: "GetDatasetAsync",
+                                pathTemplate: "$\"/datasets/{datasetId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -219,10 +204,10 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TrainDatasetModel",
-                                methodName: "TrainDatasetModelAsync",
-                                pathTemplate: "$\"/datasets/{datasetId}/train_model\"",
-                                httpMethod: "POST",
+                                operationId: "GetDataset",
+                                methodName: "GetDatasetAsync",
+                                pathTemplate: "$\"/datasets/{datasetId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -258,7 +243,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessTrainDatasetModelResponse(
+                ProcessGetDatasetResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -266,10 +251,10 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TrainDatasetModel",
-                                methodName: "TrainDatasetModelAsync",
-                                pathTemplate: "$\"/datasets/{datasetId}/train_model\"",
-                                httpMethod: "POST",
+                                operationId: "GetDataset",
+                                methodName: "GetDatasetAsync",
+                                pathTemplate: "$\"/datasets/{datasetId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -286,10 +271,10 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "TrainDatasetModel",
-                                methodName: "TrainDatasetModelAsync",
-                                pathTemplate: "$\"/datasets/{datasetId}/train_model\"",
-                                httpMethod: "POST",
+                                operationId: "GetDataset",
+                                methodName: "GetDatasetAsync",
+                                pathTemplate: "$\"/datasets/{datasetId}\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -301,39 +286,6 @@ namespace Ideogram
                                 willRetry: false,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // 
-                            if ((int)__response.StatusCode == 400)
-                            {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                    }
-                                    else
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_400 = __ex;
-                                }
-
-                                throw new global::Ideogram.ApiException(
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_400,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value),
-                                };
-                            }
                             // 
                             if ((int)__response.StatusCode == 401)
                             {
@@ -413,7 +365,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessTrainDatasetModelResponseContent(
+                                ProcessGetDatasetResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -423,7 +375,7 @@ namespace Ideogram
                                     __response.EnsureSuccessStatusCode();
 
                                     return
-                                        global::Ideogram.TrainDatasetModelResponse.FromJson(__content, JsonSerializerContext) ??
+                                        global::Ideogram.GetDatasetResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
                                 }
                                 catch (global::System.Exception __ex)
@@ -453,7 +405,7 @@ namespace Ideogram
                                     ).ConfigureAwait(false);
 
                                     return
-                                        await global::Ideogram.TrainDatasetModelResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        await global::Ideogram.GetDatasetResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
                                 }
                                 catch (global::System.Exception __ex)
@@ -491,72 +443,6 @@ namespace Ideogram
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Train a model from a dataset<br/>
-        /// Start training a custom model from a dataset. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.
-        /// </summary>
-        /// <param name="datasetId"></param>
-        /// <param name="modelName">
-        /// Name for the trained model. Must be 5-30 characters, alphanumeric with spaces and hyphens allowed.<br/>
-        /// Example: my-custom-model
-        /// </param>
-        /// <param name="trainingSteps">
-        /// Number of training steps. Must be between 100 and 20000 and a multiple of 100. Defaults to 1000.<br/>
-        /// Example: 1000
-        /// </param>
-        /// <param name="loraRank">
-        /// LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank 256 requires num_chips &gt;= 64.<br/>
-        /// Example: 64
-        /// </param>
-        /// <param name="numChips">
-        /// Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16, 32, or 64, V_4_0 supports 128.<br/>
-        /// Example: 32
-        /// </param>
-        /// <param name="baseModelVersion">
-        /// Base model version to train on. Defaults to V_3_1.<br/>
-        /// Default Value: V_3_1<br/>
-        /// Example: V_3_1
-        /// </param>
-        /// <param name="ema">
-        /// Exponential moving average decay rate. Must be greater than 0.<br/>
-        /// Example: 0.999F
-        /// </param>
-        /// <param name="learningRate">
-        /// Learning rate for the optimizer. Must be greater than 0.<br/>
-        /// Example: 0.0001F
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.TrainDatasetModelResponse> TrainDatasetModelAsync(
-            string datasetId,
-            string modelName,
-            int? trainingSteps = default,
-            int? loraRank = default,
-            int? numChips = default,
-            global::Ideogram.TrainDatasetModelRequestBaseModelVersion? baseModelVersion = default,
-            double? ema = default,
-            double? learningRate = default,
-            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Ideogram.TrainDatasetModelRequest
-            {
-                ModelName = modelName,
-                TrainingSteps = trainingSteps,
-                LoraRank = loraRank,
-                NumChips = numChips,
-                BaseModelVersion = baseModelVersion,
-                Ema = ema,
-                LearningRate = learningRate,
-            };
-
-            return await TrainDatasetModelAsync(
-                datasetId: datasetId,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }

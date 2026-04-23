@@ -2,7 +2,7 @@
 
 namespace Ideogram
 {
-    public sealed partial class EditImageGenerationObjectV3
+    public sealed partial class V1EditImagesResponse
     {
         /// <summary>
         /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
@@ -34,14 +34,14 @@ namespace Ideogram
         /// <summary>
         /// Deserializes a JSON string using the provided JsonSerializerContext.
         /// </summary>
-        public static global::Ideogram.EditImageGenerationObjectV3? FromJson(
+        public static global::Ideogram.V1EditImagesResponse? FromJson(
             string json,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return global::System.Text.Json.JsonSerializer.Deserialize(
                 json,
-                typeof(global::Ideogram.EditImageGenerationObjectV3),
-                jsonSerializerContext) as global::Ideogram.EditImageGenerationObjectV3;
+                typeof(global::Ideogram.V1EditImagesResponse),
+                jsonSerializerContext) as global::Ideogram.V1EditImagesResponse;
         }
 
         /// <summary>
@@ -51,11 +51,11 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::Ideogram.EditImageGenerationObjectV3? FromJson(
+        public static global::Ideogram.V1EditImagesResponse? FromJson(
             string json,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
-            return global::System.Text.Json.JsonSerializer.Deserialize<global::Ideogram.EditImageGenerationObjectV3>(
+            return global::System.Text.Json.JsonSerializer.Deserialize<global::Ideogram.V1EditImagesResponse>(
                 json,
                 jsonSerializerOptions);
         }
@@ -63,14 +63,14 @@ namespace Ideogram
         /// <summary>
         /// Deserializes a JSON stream using the provided JsonSerializerContext.
         /// </summary>
-        public static async global::System.Threading.Tasks.ValueTask<global::Ideogram.EditImageGenerationObjectV3?> FromJsonStreamAsync(
+        public static async global::System.Threading.Tasks.ValueTask<global::Ideogram.V1EditImagesResponse?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.Serialization.JsonSerializerContext jsonSerializerContext)
         {
             return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
                 jsonStream,
-                typeof(global::Ideogram.EditImageGenerationObjectV3),
-                jsonSerializerContext).ConfigureAwait(false)) as global::Ideogram.EditImageGenerationObjectV3;
+                typeof(global::Ideogram.V1EditImagesResponse),
+                jsonSerializerContext).ConfigureAwait(false)) as global::Ideogram.V1EditImagesResponse;
         }
 
         /// <summary>
@@ -80,11 +80,11 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("JSON serialization and deserialization might require types that cannot be statically analyzed. Use the overload that takes a JsonTypeInfo or JsonSerializerContext, or make sure all of the required types are preserved.")]
         [global::System.Diagnostics.CodeAnalysis.RequiresDynamicCode("JSON serialization and deserialization might require types that cannot be statically analyzed and might need runtime code generation. Use System.Text.Json source generation for native AOT applications.")]
 #endif
-        public static global::System.Threading.Tasks.ValueTask<global::Ideogram.EditImageGenerationObjectV3?> FromJsonStreamAsync(
+        public static global::System.Threading.Tasks.ValueTask<global::Ideogram.V1EditImagesResponse?> FromJsonStreamAsync(
             global::System.IO.Stream jsonStream,
             global::System.Text.Json.JsonSerializerOptions? jsonSerializerOptions = null)
         {
-            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Ideogram.EditImageGenerationObjectV3?>(
+            return global::System.Text.Json.JsonSerializer.DeserializeAsync<global::Ideogram.V1EditImagesResponse?>(
                 jsonStream,
                 jsonSerializerOptions);
         }

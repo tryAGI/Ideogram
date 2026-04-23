@@ -142,9 +142,48 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.datasets_controller"
       }
     },
+    "/datasets/{dataset_id}": {
+      "get": {
+        "description": "Returns a dataset by ID, including the total number of files and a list of each file's name and size in bytes.\n",
+        "operationId": "get_dataset",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "dataset_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDatasetResponse"
+                }
+              }
+            },
+            "description": "Dataset retrieved successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        },
+        "summary": "Get a dataset",
+        "tags": [
+          "datasets"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.datasets_controller"
+      }
+    },
     "/datasets/{dataset_id}/train_model": {
       "post": {
-        "description": "Start training a custom model from a dataset. The dataset must contain at least 10 images and a maximum of 100 images. Returns the model ID and training status.\n",
+        "description": "Start training a custom model from a dataset. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.\n",
         "operationId": "train_dataset_model",
         "parameters": [
           {
@@ -2238,6 +2277,66 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
+    "/v1/edit": {
+      "post": {
+        "description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_v1_edit_image",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/V1EditImagesRequest"
+              }
+            }
+          },
+          "description": "A request to edit images.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V1EditImagesResponse"
+                }
+              }
+            },
+            "description": "Image edits generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized to generate an image."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt or provided image failed safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "503": {
+            "description": "Image generation service temporarily unavailable."
+          }
+        },
+        "summary": "Edit images with a prompt",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
     "/v1/ideogram-v3/edit": {
       "post": {
         "description": "Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
@@ -2761,66 +2860,6 @@
           }
         },
         "summary": "Inpaint with Ideogram 3.0",
-        "tags": [
-          "generate"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
-      }
-    },
-    "/v1/ideogram-v3/instructional-edit": {
-      "post": {
-        "description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
-        "operationId": "post_edit_image_v2_v3",
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/EditImageV2RequestV3"
-              }
-            }
-          },
-          "description": "A request to edit images.",
-          "required": true,
-          "x-body-name": "body"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EditImageGenerationResponseV3"
-                }
-              }
-            },
-            "description": "Image edits generated successfully."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Not authorized to generate an image."
-          },
-          "402": {
-            "description": "Insufficient credits or quota."
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerateImageSafetyError"
-                }
-              }
-            },
-            "description": "Prompt or provided image failed safety checks."
-          },
-          "429": {
-            "description": "Too many requests."
-          },
-          "503": {
-            "description": "Image generation service temporarily unavailable."
-          }
-        },
-        "summary": "Edit with Ideogram V2",
         "tags": [
           "generate"
         ],
@@ -4117,7 +4156,7 @@
         ],
         "type": "object"
       },
-      "EditImageV2RequestV3": {
+      "V1EditImagesRequest": {
         "properties": {
           "prompt": {
             "description": "The prompt describing the desired edit.",
@@ -4766,7 +4805,7 @@
         "title": "ImageGenerationObjectV3",
         "type": "object"
       },
-      "EditImageGenerationResponseV3": {
+      "V1EditImagesResponse": {
         "description": "The response which contains information about the edited image, including the download link.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
         "example": {
           "data": [
@@ -4801,7 +4840,7 @@
           "data": {
             "description": "A list of ImageObjects that contain the edited image(s).",
             "items": {
-              "$ref": "#/components/schemas/EditImageGenerationObjectV3"
+              "$ref": "#/components/schemas/V1EditImageObject"
             },
             "title": "data",
             "type": "array"
@@ -4811,10 +4850,10 @@
           "created",
           "data"
         ],
-        "title": "EditImageGenerationResponseV3",
+        "title": "V1EditImagesResponse",
         "type": "object"
       },
-      "EditImageGenerationObjectV3": {
+      "V1EditImageObject": {
         "example": {
           "style_type": "GENERAL",
           "seed": 12345,
@@ -4876,7 +4915,7 @@
           "resolution",
           "seed"
         ],
-        "title": "EditImageGenerationObjectV3",
+        "title": "V1EditImageObject",
         "type": "object"
       },
       "ImageObject": {
@@ -8391,6 +8430,91 @@
           "name"
         ],
         "title": "CreateDatasetRequest",
+        "type": "object"
+      },
+      "GetDatasetResponse": {
+        "description": "Detailed view of a dataset, including its files.",
+        "example": {
+          "file_count": 0,
+          "files": [
+            {
+              "file_name": "file_name",
+              "file_size_bytes": 6
+            },
+            {
+              "file_name": "file_name",
+              "file_size_bytes": 6
+            }
+          ],
+          "dataset": {
+            "creation_time": "2000-01-23T04:56:07+00:00",
+            "user_id": "user_id",
+            "dataset_id": "dataset_id",
+            "name": "name",
+            "cover_asset_identifier": {
+              "asset_type": "RESPONSE",
+              "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
+            }
+          },
+          "custom_model_id": "custom_model_id"
+        },
+        "properties": {
+          "dataset": {
+            "$ref": "#/components/schemas/Dataset"
+          },
+          "file_count": {
+            "description": "Total number of files in the dataset.",
+            "title": "file_count",
+            "type": "integer"
+          },
+          "files": {
+            "default": [],
+            "description": "List of files in the dataset.",
+            "items": {
+              "$ref": "#/components/schemas/DatasetFile"
+            },
+            "title": "files",
+            "type": "array"
+          },
+          "custom_model_id": {
+            "description": "ID of the custom model trained from this dataset, if one exists. Null if no model has been trained yet.\n",
+            "nullable": true,
+            "title": "custom_model_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "file_count",
+          "files"
+        ],
+        "title": "GetDatasetResponse",
+        "type": "object"
+      },
+      "DatasetFile": {
+        "description": "A file in a dataset.",
+        "example": {
+          "file_name": "file_name",
+          "file_size_bytes": 6
+        },
+        "properties": {
+          "file_name": {
+            "description": "Filename of the file in the dataset.",
+            "nullable": true,
+            "title": "file_name",
+            "type": "string"
+          },
+          "file_size_bytes": {
+            "description": "Size of the file in bytes, if available.",
+            "nullable": true,
+            "title": "file_size_bytes",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "file_name"
+        ],
+        "title": "DatasetFile",
         "type": "object"
       },
       "UploadDatasetAssetsResponse": {
