@@ -3248,6 +3248,94 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
+    "/v1/ideogram-v3/train-model": {
+      "post": {
+        "description": "Start training a custom Ideogram v3 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.\n",
+        "operationId": "train_model_v3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrainModelV3Request"
+              }
+            }
+          },
+          "description": "Training configuration",
+          "required": true,
+          "x-body-name": "train_model_v3_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrainDatasetModelResponse"
+                }
+              }
+            },
+            "description": "Training started successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        },
+        "summary": "Train a custom Ideogram v3 model",
+        "tags": [
+          "models"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.models_controller"
+      }
+    },
+    "/v1/ideogram-v3/train-model-advanced": {
+      "post": {
+        "description": "Start training a custom Ideogram v3 model from a dataset with caller-supplied hyperparameters (training steps, LoRA rank, EMA decay, learning rate). All hyperparameters are optional and fall back to defaults when omitted. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.\n",
+        "operationId": "train_model_v3_advanced",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TrainModelV3AdvancedRequest"
+              }
+            }
+          },
+          "description": "Advanced training configuration",
+          "required": true,
+          "x-body-name": "train_model_v3_advanced_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrainDatasetModelResponse"
+                }
+              }
+            },
+            "description": "Training started successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        },
+        "summary": "Train a custom Ideogram v3 model with advanced hyperparameters",
+        "tags": [
+          "models"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.models_controller"
+      }
+    },
     "/v1/ideogram-v3/try-on": {
       "post": {
         "description": "Performs virtual clothing try-on by automatically segmenting the clothing in the provided image\nand replacing it based on the prompt. The user provides an image and an optional prompt describing\nthe desired clothing change (e.g., \"change his shirt to a pink shirt\").\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
@@ -8436,6 +8524,10 @@
         "description": "Detailed view of a dataset, including its files.",
         "example": {
           "file_count": 0,
+          "custom_model_ids": [
+            "custom_model_ids",
+            "custom_model_ids"
+          ],
           "files": [
             {
               "file_name": "file_name",
@@ -8455,8 +8547,7 @@
               "asset_type": "RESPONSE",
               "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
             }
-          },
-          "custom_model_id": "custom_model_id"
+          }
         },
         "properties": {
           "dataset": {
@@ -8476,14 +8567,18 @@
             "title": "files",
             "type": "array"
           },
-          "custom_model_id": {
-            "description": "ID of the custom model trained from this dataset, if one exists. Null if no model has been trained yet.\n",
-            "nullable": true,
-            "title": "custom_model_id",
-            "type": "string"
+          "custom_model_ids": {
+            "default": [],
+            "description": "IDs of all custom models trained from this dataset. Empty array if no model has been trained yet.\n",
+            "items": {
+              "type": "string"
+            },
+            "title": "custom_model_ids",
+            "type": "array"
           }
         },
         "required": [
+          "custom_model_ids",
           "dataset",
           "file_count",
           "files"
@@ -8708,14 +8803,9 @@
         "type": "object"
       },
       "TrainDatasetModelRequest": {
+        "description": "Custom Model training request.",
         "example": {
-          "model_name": "my-custom-model",
-          "lora_rank": 64,
-          "num_chips": 32,
-          "ema": 0.999,
-          "base_model_version": "V_3_1",
-          "training_steps": 1000,
-          "learning_rate": 0.0001
+          "model_name": "my-custom-model"
         },
         "properties": {
           "model_name": {
@@ -8723,47 +8813,6 @@
             "example": "my-custom-model",
             "title": "model_name",
             "type": "string"
-          },
-          "training_steps": {
-            "description": "Number of training steps. Must be between 100 and 20000 and a multiple of 100. Defaults to 1000.\n",
-            "example": 1000,
-            "title": "training_steps",
-            "type": "integer"
-          },
-          "lora_rank": {
-            "description": "LoRA rank for model training. Must be one of 64, 128, or 256. Defaults to 128. Note: lora_rank 256 requires num_chips >= 64.\n",
-            "example": 64,
-            "title": "lora_rank",
-            "type": "integer"
-          },
-          "num_chips": {
-            "description": "Number of TPU chips to use. Allowed values depend on the base_model_version: V_3_1 supports 16, 32, or 64, V_4_0 supports 128.\n",
-            "example": 32,
-            "title": "num_chips",
-            "type": "integer"
-          },
-          "base_model_version": {
-            "default": "V_3_1",
-            "description": "Base model version to train on. Defaults to V_3_1.\n",
-            "enum": [
-              "V_3_1",
-              "V_4_0"
-            ],
-            "example": "V_3_1",
-            "title": "base_model_version",
-            "type": "string"
-          },
-          "ema": {
-            "description": "Exponential moving average decay rate. Must be greater than 0.\n",
-            "example": 0.999,
-            "title": "ema",
-            "type": "number"
-          },
-          "learning_rate": {
-            "description": "Learning rate for the optimizer. Must be greater than 0.\n",
-            "example": 0.0001,
-            "title": "learning_rate",
-            "type": "number"
           }
         },
         "required": [
@@ -9118,6 +9167,88 @@
           "model"
         ],
         "title": "GetModelResponse",
+        "type": "object"
+      },
+      "TrainModelV3Request": {
+        "description": "Training request for a custom Ideogram v3 model using default hyperparameters.\n",
+        "example": {
+          "model_name": "my-custom-model",
+          "dataset_id": "abc123"
+        },
+        "properties": {
+          "dataset_id": {
+            "description": "ID of the dataset to train the model from.",
+            "example": "abc123",
+            "title": "dataset_id",
+            "type": "string"
+          },
+          "model_name": {
+            "description": "Name for the trained model. Must be 5-30 characters, alphanumeric with spaces and hyphens allowed.\n",
+            "example": "my-custom-model",
+            "title": "model_name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset_id",
+          "model_name"
+        ],
+        "title": "TrainModelV3Request",
+        "type": "object"
+      },
+      "TrainModelV3AdvancedRequest": {
+        "description": "Advanced training request for a custom Ideogram v3 model. Hyperparameters are optional and fall back to defaults when omitted.\n",
+        "example": {
+          "model_name": "my-custom-model",
+          "lora_rank": 64,
+          "dataset_id": "abc123",
+          "ema": 0.999,
+          "training_steps": 1000,
+          "learning_rate": 0.0001
+        },
+        "properties": {
+          "dataset_id": {
+            "description": "ID of the dataset to train the model from.",
+            "example": "abc123",
+            "title": "dataset_id",
+            "type": "string"
+          },
+          "model_name": {
+            "description": "Name for the trained model. Must be 5-30 characters, alphanumeric with spaces and hyphens allowed.\n",
+            "example": "my-custom-model",
+            "title": "model_name",
+            "type": "string"
+          },
+          "training_steps": {
+            "description": "Number of training steps. Must be between 100 and 10000 and a multiple of 100. Defaults to 1000.\n",
+            "example": 1000,
+            "title": "training_steps",
+            "type": "integer"
+          },
+          "lora_rank": {
+            "description": "LoRA rank for model training. Must be one of 64 or 128. Defaults to 128. Higher rank increases model capacity at the cost of longer training and larger weights.\n",
+            "example": 64,
+            "title": "lora_rank",
+            "type": "integer"
+          },
+          "ema": {
+            "description": "Exponential moving average decay rate for the model weights. Must be between 0 and 1 (exclusive). Typical values are 0.99-0.9999; higher values produce smoother weight averages but respond more slowly to training updates.\n",
+            "example": 0.999,
+            "title": "ema",
+            "type": "number"
+          },
+          "learning_rate": {
+            "description": "Learning rate for the optimizer. Must be greater than 0. Typical values for LoRA fine-tuning are 1e-5 to 1e-4; larger values train faster but risk instability.\n",
+            "example": 0.0001,
+            "title": "learning_rate",
+            "type": "number"
+          }
+        },
+        "required": [
+          "dataset_id",
+          "model_name"
+        ],
+        "title": "TrainModelV3AdvancedRequest",
         "type": "object"
       },
       "MagicPromptOption": {

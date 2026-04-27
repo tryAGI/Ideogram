@@ -61,7 +61,7 @@
       "Slug": "train-dataset-model",
       "Description": "Start training a custom model from a dataset. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.",
       "Language": "http",
-      "Code": "### Train a model from a dataset\n# @name train_dataset_model\nPOST {{host}}/datasets/{{dataset_id}}/train_model\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022model_name\u0022: \u0022my-custom-model\u0022,\n  \u0022lora_rank\u0022: 64,\n  \u0022num_chips\u0022: 32,\n  \u0022ema\u0022: 0.999,\n  \u0022base_model_version\u0022: \u0022V_3_1\u0022,\n  \u0022training_steps\u0022: 1000,\n  \u0022learning_rate\u0022: 0.0001\n}\n\n## Responses\n# 200\n# Description: Training started successfully\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# 401\n# Description: Unauthorized\n# 404\n# Description: Dataset not found",
+      "Code": "### Train a model from a dataset\n# @name train_dataset_model\nPOST {{host}}/datasets/{{dataset_id}}/train_model\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022model_name\u0022: \u0022my-custom-model\u0022\n}\n\n## Responses\n# 200\n# Description: Training started successfully\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# 401\n# Description: Unauthorized\n# 404\n# Description: Dataset not found",
       "Format": "http",
       "OperationId": "train_dataset_model",
       "Setup": null
@@ -552,6 +552,28 @@
     },
     {
       "Order": 51,
+      "Title": "Train a custom Ideogram v3 model",
+      "Slug": "train-model-v3",
+      "Description": "Start training a custom Ideogram v3 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.",
+      "Language": "csharp",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.TrainModelV3Request\u003E(\n    @\u0022{\n  \u0022\u0022model_name\u0022\u0022: \u0022\u0022my-custom-model\u0022\u0022,\n  \u0022\u0022dataset_id\u0022\u0022: \u0022\u0022abc123\u0022\u0022\n}\u0022)!;\n\nvar response = await client.Models.TrainModelV3Async(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022training_status\u0022: \u0022training_status\u0022,\n//   \u0022model_name\u0022: \u0022model_name\u0022,\n//   \u0022dataset_id\u0022: \u0022dataset_id\u0022,\n//   \u0022model_id\u0022: \u0022model_id\u0022\n// }",
+      "Format": "sdk",
+      "OperationId": "train_model_v3",
+      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 52,
+      "Title": "Train a custom Ideogram v3 model with advanced hyperparameters",
+      "Slug": "train-model-v3-advanced",
+      "Description": "Start training a custom Ideogram v3 model from a dataset with caller-supplied hyperparameters (training steps, LoRA rank, EMA decay, learning rate). All hyperparameters are optional and fall back to defaults when omitted. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.",
+      "Language": "csharp",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.TrainModelV3AdvancedRequest\u003E(\n    @\u0022{\n  \u0022\u0022model_name\u0022\u0022: \u0022\u0022my-custom-model\u0022\u0022,\n  \u0022\u0022lora_rank\u0022\u0022: 64,\n  \u0022\u0022dataset_id\u0022\u0022: \u0022\u0022abc123\u0022\u0022,\n  \u0022\u0022ema\u0022\u0022: 0.999,\n  \u0022\u0022training_steps\u0022\u0022: 1000,\n  \u0022\u0022learning_rate\u0022\u0022: 0.0001\n}\u0022)!;\n\nvar response = await client.Models.TrainModelV3AdvancedAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022training_status\u0022: \u0022training_status\u0022,\n//   \u0022model_name\u0022: \u0022model_name\u0022,\n//   \u0022dataset_id\u0022: \u0022dataset_id\u0022,\n//   \u0022model_id\u0022: \u0022model_id\u0022\n// }",
+      "Format": "sdk",
+      "OperationId": "train_model_v3_advanced",
+      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 53,
       "Title": "Generate Magic Prompt",
       "Slug": "post-magic-prompt",
       "Description": "Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.",
@@ -562,7 +584,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 52,
+      "Order": 54,
       "Title": "Describe",
       "Slug": "post-describe",
       "Description": "Describe an image.\n\nSupported image formats include JPEG, PNG, and WebP.",
