@@ -89,10 +89,6 @@ namespace Ideogram
 
             typeof(global::Ideogram.JsonConverters.DatasetAssetFailureReasonNullableJsonConverter),
 
-            typeof(global::Ideogram.JsonConverters.TrainDatasetModelRequestBaseModelVersionJsonConverter),
-
-            typeof(global::Ideogram.JsonConverters.TrainDatasetModelRequestBaseModelVersionNullableJsonConverter),
-
             typeof(global::Ideogram.JsonConverters.ModelStatusJsonConverter),
 
             typeof(global::Ideogram.JsonConverters.ModelStatusNullableJsonConverter),
@@ -345,8 +341,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UploadDatasetAssetsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelRequestBaseModelVersion), TypeInfoPropertyName = "TrainDatasetModelRequestBaseModelVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListModelsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.CustomModel>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CustomModel))]
@@ -354,7 +348,10 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TrainingRun>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainingRun))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainingRunStatus), TypeInfoPropertyName = "TrainingRunStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetModelResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainModelV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainModelV3AdvancedRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteWithPresetName))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteWithMembers))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPalettePresetName), TypeInfoPropertyName = "ColorPalettePresetName2")]

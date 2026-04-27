@@ -744,87 +744,91 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.TrainDatasetModelRequestBaseModelVersion? Type179 { get; set; }
+        public global::Ideogram.ListModelsResponse? Type179 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public double? Type180 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.CustomModel>? Type180 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ListModelsResponse? Type181 { get; set; }
+        public global::Ideogram.CustomModel? Type181 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.CustomModel>? Type182 { get; set; }
+        public global::Ideogram.ModelStatus? Type182 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.CustomModel? Type183 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.TrainingRun>? Type183 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ModelStatus? Type184 { get; set; }
+        public global::Ideogram.TrainingRun? Type184 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.TrainingRun>? Type185 { get; set; }
+        public global::Ideogram.TrainingRunStatus? Type185 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.TrainingRun? Type186 { get; set; }
+        public double? Type186 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.TrainingRunStatus? Type187 { get; set; }
+        public global::Ideogram.GetModelResponse? Type187 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.GetModelResponse? Type188 { get; set; }
+        public global::Ideogram.TrainModelV3Request? Type188 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ColorPaletteWithPresetName? Type189 { get; set; }
+        public global::Ideogram.TrainModelV3AdvancedRequest? Type189 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ColorPaletteWithMembers? Type190 { get; set; }
+        public global::Ideogram.ColorPaletteWithPresetName? Type190 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ColorPalettePresetName? Type191 { get; set; }
+        public global::Ideogram.ColorPaletteWithMembers? Type191 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>? Type192 { get; set; }
+        public global::Ideogram.ColorPalettePresetName? Type192 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ColorPaletteMember? Type193 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>? Type193 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.AssetType? Type194 { get; set; }
+        public global::Ideogram.ColorPaletteMember? Type194 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.PostInternalTesting200Response? Type195 { get; set; }
+        public global::Ideogram.AssetType? Type195 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? Type196 { get; set; }
+        public global::Ideogram.PostInternalTesting200Response? Type196 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ToolType>? Type197 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? Type197 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::Ideogram.ListCustomModelsScope? Type198 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ToolType>? Type198 { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ModelStatus>? Type199 { get; set; }
+        public global::Ideogram.ListCustomModelsScope? Type199 { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ModelStatus>? Type200 { get; set; }
 
         /// <summary>
         /// 

@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// Detailed view of a dataset, including its files.<br/>
-    /// Example: {"file_count":0,"files":[{"file_name":"file_name","file_size_bytes":6},{"file_name":"file_name","file_size_bytes":6}],"dataset":{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}},"custom_model_id":"custom_model_id"}
+    /// Example: {"file_count":0,"custom_model_ids":["custom_model_ids","custom_model_ids"],"files":[{"file_name":"file_name","file_size_bytes":6},{"file_name":"file_name","file_size_bytes":6}],"dataset":{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}}
     /// </summary>
     public sealed partial class GetDatasetResponse
     {
@@ -34,10 +34,12 @@ namespace Ideogram
         public required global::System.Collections.Generic.IList<global::Ideogram.DatasetFile> Files { get; set; }
 
         /// <summary>
-        /// ID of the custom model trained from this dataset, if one exists. Null if no model has been trained yet.
+        /// IDs of all custom models trained from this dataset. Empty array if no model has been trained yet.<br/>
+        /// Default Value: []
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_id")]
-        public string? CustomModelId { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_ids")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<string> CustomModelIds { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -59,8 +61,9 @@ namespace Ideogram
         /// List of files in the dataset.<br/>
         /// Default Value: []
         /// </param>
-        /// <param name="customModelId">
-        /// ID of the custom model trained from this dataset, if one exists. Null if no model has been trained yet.
+        /// <param name="customModelIds">
+        /// IDs of all custom models trained from this dataset. Empty array if no model has been trained yet.<br/>
+        /// Default Value: []
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -69,12 +72,12 @@ namespace Ideogram
             global::Ideogram.Dataset dataset,
             int fileCount,
             global::System.Collections.Generic.IList<global::Ideogram.DatasetFile> files,
-            string? customModelId)
+            global::System.Collections.Generic.IList<string> customModelIds)
         {
             this.Dataset = dataset ?? throw new global::System.ArgumentNullException(nameof(dataset));
             this.FileCount = fileCount;
             this.Files = files ?? throw new global::System.ArgumentNullException(nameof(files));
-            this.CustomModelId = customModelId;
+            this.CustomModelIds = customModelIds ?? throw new global::System.ArgumentNullException(nameof(customModelIds));
         }
 
         /// <summary>
