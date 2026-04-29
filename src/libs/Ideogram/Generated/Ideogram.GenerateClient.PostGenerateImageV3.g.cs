@@ -120,62 +120,62 @@ namespace Ideogram
             }
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
                                 name: "\"prompt\"");
                             if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
                             } 
                             if (request.Resolution != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.Resolution?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.Resolution).HasValue ? (request.Resolution).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"resolution\"");
                             } 
                             if (request.AspectRatio != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.AspectRatio?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.AspectRatio).HasValue ? (request.AspectRatio).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"aspect_ratio\"");
                             } 
                             if (request.RenderingSpeed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.RenderingSpeed).HasValue ? (request.RenderingSpeed).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"rendering_speed\"");
                             } 
                             if (request.MagicPrompt != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.MagicPrompt).HasValue ? (request.MagicPrompt).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"magic_prompt\"");
                             } 
                             if (request.NegativePrompt != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NegativePrompt}"),
+                                    content: new global::System.Net.Http.StringContent(request.NegativePrompt ?? string.Empty),
                                     name: "\"negative_prompt\"");
                             } 
                             if (request.NumImages != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"num_images\"");
                             } 
                             if (request.ColorPalette != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.ColorPalette?.ToString() ?? string.Empty),
+                                    content: new global::System.Net.Http.StringContent(request.ColorPalette.ToString() ?? string.Empty),
                                     name: "\"color_palette\"");
                             } 
                             if (request.StyleCodes != default)
@@ -189,21 +189,21 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.StyleType).HasValue ? (request.StyleType).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_type\"");
                             } 
                             if (request.StylePreset != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.StylePreset).HasValue ? (request.StylePreset).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_preset\"");
                             } 
                             if (request.CustomModelUri != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                                    content: new global::System.Net.Http.StringContent(request.CustomModelUri ?? string.Empty),
                                     name: "\"custom_model_uri\"");
                             } 
                             if (request.StyleReferenceImages != default)
@@ -212,6 +212,7 @@ namespace Ideogram
                                 for (var __iStyleReferenceImages = 0; __iStyleReferenceImages < request.StyleReferenceImages.Count; __iStyleReferenceImages++)
                                 {
                                     var __contentStyleReferenceImages = new global::System.Net.Http.ByteArrayContent(request.StyleReferenceImages[__iStyleReferenceImages]);
+                                __contentStyleReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                                     __httpRequestContent.Add(
                                         content: __contentStyleReferenceImages,
                                         name: "\"style_reference_images\"",
@@ -228,6 +229,7 @@ namespace Ideogram
                                 for (var __iCharacterReferenceImages = 0; __iCharacterReferenceImages < request.CharacterReferenceImages.Count; __iCharacterReferenceImages++)
                                 {
                                     var __contentCharacterReferenceImages = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImages[__iCharacterReferenceImages]);
+                                __contentCharacterReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                                     __httpRequestContent.Add(
                                         content: __contentCharacterReferenceImages,
                                         name: "\"character_reference_images\"",
@@ -244,6 +246,7 @@ namespace Ideogram
                                 for (var __iCharacterReferenceImagesMask = 0; __iCharacterReferenceImagesMask < request.CharacterReferenceImagesMask.Count; __iCharacterReferenceImagesMask++)
                                 {
                                     var __contentCharacterReferenceImagesMask = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImagesMask[__iCharacterReferenceImagesMask]);
+                                __contentCharacterReferenceImagesMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                                     __httpRequestContent.Add(
                                         content: __contentCharacterReferenceImagesMask,
                                         name: "\"character_reference_images_mask\"",

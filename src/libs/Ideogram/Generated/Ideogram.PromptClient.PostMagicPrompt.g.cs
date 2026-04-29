@@ -119,26 +119,26 @@ namespace Ideogram
             }
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
                                 name: "\"prompt\"");
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.MagicPromptVersion.ToValueString()}"),
+                                content: new global::System.Net.Http.StringContent(request.MagicPromptVersion.ToValueString()),
                                 name: "\"magic_prompt_version\"");
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.ClassifyPromptCategory}"),
+                                content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.ClassifyPromptCategory, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
                                 name: "\"classify_prompt_category\"");
                             if (request.StyleType != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.StyleType).HasValue ? (request.StyleType).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_type\"");
                             } 
                             if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
                             } 
                             if (request.CharacterReferenceImages != default)
@@ -147,6 +147,7 @@ namespace Ideogram
                                 for (var __iCharacterReferenceImages = 0; __iCharacterReferenceImages < request.CharacterReferenceImages.Count; __iCharacterReferenceImages++)
                                 {
                                     var __contentCharacterReferenceImages = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImages[__iCharacterReferenceImages]);
+                                __contentCharacterReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                                     __httpRequestContent.Add(
                                         content: __contentCharacterReferenceImages,
                                         name: "\"character_reference_images\"",
@@ -161,7 +162,7 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.SystemPrompt}"),
+                                    content: new global::System.Net.Http.StringContent(request.SystemPrompt ?? string.Empty),
                                     name: "\"system_prompt\"");
                             }
                             __httpRequest.Content = __httpRequestContent;

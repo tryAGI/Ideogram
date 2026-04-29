@@ -122,7 +122,7 @@ namespace Ideogram
                 PrepareDeactivateOrganizationApiKeyRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    apiKeyId: apiKeyId);
+                    apiKeyId: apiKeyId!);
 
                 return __httpRequest;
             }
