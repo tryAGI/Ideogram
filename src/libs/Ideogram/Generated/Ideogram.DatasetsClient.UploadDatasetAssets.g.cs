@@ -124,11 +124,12 @@ namespace Ideogram
             }
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{datasetId}"),
+                                content: new global::System.Net.Http.StringContent(datasetId ?? string.Empty),
                                 name: "\"dataset_id\"");
                             for (var __iFiles = 0; __iFiles < request.Files.Count; __iFiles++)
                             {
                                 var __contentFiles = new global::System.Net.Http.ByteArrayContent(request.Files[__iFiles]);
+                            __contentFiles.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                                 __httpRequestContent.Add(
                                     content: __contentFiles,
                                     name: "\"files\"",
@@ -150,7 +151,7 @@ namespace Ideogram
                 PrepareUploadDatasetAssetsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    datasetId: datasetId,
+                    datasetId: datasetId!,
                     request: request);
 
                 return __httpRequest;

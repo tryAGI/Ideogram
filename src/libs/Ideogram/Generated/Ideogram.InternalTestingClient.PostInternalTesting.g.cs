@@ -142,27 +142,55 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{xTestHeader}"),
+                                    content: new global::System.Net.Http.StringContent(xTestHeader ?? string.Empty),
                                     name: "\"X-Test-Header\"");
                             } 
                             if (xTestHeader2 != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{xTestHeader2}"),
+                                    content: new global::System.Net.Http.StringContent(xTestHeader2 ?? string.Empty),
                                     name: "\"X-Test-Header-2\"");
                             } 
                             if (request.XPosition != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.XPosition}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.XPosition, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"x_position\"");
                             } 
                             if (request.ImageFile != default)
                             {
 
                                 var __contentImageFile = new global::System.Net.Http.ByteArrayContent(request.ImageFile ?? global::System.Array.Empty<byte>());
+                                __contentImageFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.ImageFilename is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.ImageFilename) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
                                 __httpRequestContent.Add(
                                     content: __contentImageFile,
                                     name: "\"image_file\"",
@@ -176,6 +204,34 @@ namespace Ideogram
                             {
 
                                 var __contentAnotherImageFile = new global::System.Net.Http.ByteArrayContent(request.AnotherImageFile ?? global::System.Array.Empty<byte>());
+                                __contentAnotherImageFile.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.AnotherImageFilename is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.AnotherImageFilename) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
                                 __httpRequestContent.Add(
                                     content: __contentAnotherImageFile,
                                     name: "\"another_image_file\"",
@@ -189,38 +245,38 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.SomeText}"),
+                                    content: new global::System.Net.Http.StringContent(request.SomeText ?? string.Empty),
                                     name: "\"some_text\"");
                             } 
                             if (request.NestedObject != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NestedObject}"),
+                                    content: new global::System.Net.Http.StringContent(request.NestedObject.ToJson(JsonSerializerContext)),
                                     name: "\"nested_object\"");
                             } 
                             if (request.NestedObjectRequiredFields != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NestedObjectRequiredFields}"),
+                                    content: new global::System.Net.Http.StringContent(request.NestedObjectRequiredFields.ToJson(JsonSerializerContext)),
                                     name: "\"nested_object_required_fields\"");
                             } 
                             if (request.DateTypeField != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.DateTypeField}"),
+                                    content: new global::System.Net.Http.StringContent((request.DateTypeField).HasValue ? (request.DateTypeField).GetValueOrDefault().ToString("yyyy-MM-dd") : string.Empty),
                                     name: "\"date_type_field\"");
                             }
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.RequiredDateTypeField}"),
+                                content: new global::System.Net.Http.StringContent(request.RequiredDateTypeField.ToString("yyyy-MM-dd")),
                                 name: "\"required_date_type_field\"");
                             if (request.DateTimeTypeField != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.DateTimeTypeField}"),
+                                    content: new global::System.Net.Http.StringContent((request.DateTimeTypeField).HasValue ? (request.DateTimeTypeField).GetValueOrDefault().ToString("yyyy-MM-ddTHH:mm:ssZ") : string.Empty),
                                     name: "\"date_time_type_field\"");
                             } 
                             if (request.RepeatedPrimitiveField != default)
@@ -234,14 +290,14 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedComplexField, x => x))}]"),
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedComplexField, x => x.ToJson(JsonSerializerContext)))}]"),
                                     name: "\"repeated_complex_field\"");
                             } 
                             if (request.EnumTypeField != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.EnumTypeField?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.EnumTypeField).HasValue ? (request.EnumTypeField).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"enum_type_field\"");
                             }
                             __httpRequest.Content = __httpRequestContent;

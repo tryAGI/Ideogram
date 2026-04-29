@@ -121,62 +121,62 @@ namespace Ideogram
             }
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
                                 name: "\"prompt\"");
                             if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
                             } 
                             if (request.Resolution != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.Resolution?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.Resolution).HasValue ? (request.Resolution).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"resolution\"");
                             } 
                             if (request.AspectRatio != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.AspectRatio?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.AspectRatio).HasValue ? (request.AspectRatio).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"aspect_ratio\"");
                             } 
                             if (request.RenderingSpeed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.RenderingSpeed).HasValue ? (request.RenderingSpeed).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"rendering_speed\"");
                             } 
                             if (request.MagicPrompt != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.MagicPrompt).HasValue ? (request.MagicPrompt).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"magic_prompt\"");
                             } 
                             if (request.NegativePrompt != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NegativePrompt}"),
+                                    content: new global::System.Net.Http.StringContent(request.NegativePrompt ?? string.Empty),
                                     name: "\"negative_prompt\"");
                             } 
                             if (request.NumImages != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"num_images\"");
                             } 
                             if (request.ColorPalette != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.ColorPalette?.ToString() ?? string.Empty),
+                                    content: new global::System.Net.Http.StringContent(request.ColorPalette.ToString() ?? string.Empty),
                                     name: "\"color_palette\"");
                             } 
                             if (request.StyleCodes != default)
@@ -190,27 +190,55 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.StyleType?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.StyleType).HasValue ? (request.StyleType).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_type\"");
                             } 
                             if (request.StylePreset != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.StylePreset?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.StylePreset).HasValue ? (request.StylePreset).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_preset\"");
                             } 
                             if (request.CustomModelUri != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                                    content: new global::System.Net.Http.StringContent(request.CustomModelUri ?? string.Empty),
                                     name: "\"custom_model_uri\"");
                             } 
                             if (request.FontFileH1 != default)
                             {
 
                                 var __contentFontFileH1 = new global::System.Net.Http.ByteArrayContent(request.FontFileH1 ?? global::System.Array.Empty<byte>());
+                                __contentFontFileH1.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.FontFileH1name is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.FontFileH1name) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
                                 __httpRequestContent.Add(
                                     content: __contentFontFileH1,
                                     name: "\"font_file_h1\"",
@@ -224,13 +252,41 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.FontNameH1}"),
+                                    content: new global::System.Net.Http.StringContent(request.FontNameH1 ?? string.Empty),
                                     name: "\"font_name_h1\"");
                             } 
                             if (request.FontFileH2 != default)
                             {
 
                                 var __contentFontFileH2 = new global::System.Net.Http.ByteArrayContent(request.FontFileH2 ?? global::System.Array.Empty<byte>());
+                                __contentFontFileH2.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.FontFileH2name is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.FontFileH2name) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
                                 __httpRequestContent.Add(
                                     content: __contentFontFileH2,
                                     name: "\"font_file_h2\"",
@@ -244,13 +300,41 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.FontNameH2}"),
+                                    content: new global::System.Net.Http.StringContent(request.FontNameH2 ?? string.Empty),
                                     name: "\"font_name_h2\"");
                             } 
                             if (request.FontFileBody != default)
                             {
 
                                 var __contentFontFileBody = new global::System.Net.Http.ByteArrayContent(request.FontFileBody ?? global::System.Array.Empty<byte>());
+                                __contentFontFileBody.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.FontFileBodyname is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.FontFileBodyname) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
                                 __httpRequestContent.Add(
                                     content: __contentFontFileBody,
                                     name: "\"font_file_body\"",
@@ -264,13 +348,41 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.FontNameBody}"),
+                                    content: new global::System.Net.Http.StringContent(request.FontNameBody ?? string.Empty),
                                     name: "\"font_name_body\"");
                             } 
                             if (request.FontFileSmall != default)
                             {
 
                                 var __contentFontFileSmall = new global::System.Net.Http.ByteArrayContent(request.FontFileSmall ?? global::System.Array.Empty<byte>());
+                                __contentFontFileSmall.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.FontFileSmallname is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.FontFileSmallname) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
                                 __httpRequestContent.Add(
                                     content: __contentFontFileSmall,
                                     name: "\"font_file_small\"",
@@ -284,7 +396,7 @@ namespace Ideogram
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.FontNameSmall}"),
+                                    content: new global::System.Net.Http.StringContent(request.FontNameSmall ?? string.Empty),
                                     name: "\"font_name_small\"");
                             } 
                             if (request.StyleReferenceImages != default)
@@ -293,6 +405,7 @@ namespace Ideogram
                                 for (var __iStyleReferenceImages = 0; __iStyleReferenceImages < request.StyleReferenceImages.Count; __iStyleReferenceImages++)
                                 {
                                     var __contentStyleReferenceImages = new global::System.Net.Http.ByteArrayContent(request.StyleReferenceImages[__iStyleReferenceImages]);
+                                __contentStyleReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                                     __httpRequestContent.Add(
                                         content: __contentStyleReferenceImages,
                                         name: "\"style_reference_images\"",
@@ -309,6 +422,7 @@ namespace Ideogram
                                 for (var __iReferenceAssetImages = 0; __iReferenceAssetImages < request.ReferenceAssetImages.Count; __iReferenceAssetImages++)
                                 {
                                     var __contentReferenceAssetImages = new global::System.Net.Http.ByteArrayContent(request.ReferenceAssetImages[__iReferenceAssetImages]);
+                                __contentReferenceAssetImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                                     __httpRequestContent.Add(
                                         content: __contentReferenceAssetImages,
                                         name: "\"reference_asset_images\"",

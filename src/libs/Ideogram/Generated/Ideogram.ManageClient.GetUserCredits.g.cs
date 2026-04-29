@@ -139,8 +139,8 @@ namespace Ideogram
                 PrepareGetUserCreditsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    organizationId: organizationId,
-                    startTime: startTime,
+                    organizationId: organizationId!,
+                    startTime: startTime!,
                     endTime: endTime);
 
                 return __httpRequest;

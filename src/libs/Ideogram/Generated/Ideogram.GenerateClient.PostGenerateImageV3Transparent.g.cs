@@ -123,62 +123,62 @@ namespace Ideogram
             }
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
                                 name: "\"prompt\"");
                             if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
                             } 
                             if (request.UpscaleFactor != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.UpscaleFactor?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.UpscaleFactor).HasValue ? (request.UpscaleFactor).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"upscale_factor\"");
                             } 
                             if (request.AspectRatio != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.AspectRatio?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.AspectRatio).HasValue ? (request.AspectRatio).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"aspect_ratio\"");
                             } 
                             if (request.RenderingSpeed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.RenderingSpeed?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.RenderingSpeed).HasValue ? (request.RenderingSpeed).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"rendering_speed\"");
                             } 
                             if (request.MagicPrompt != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.MagicPrompt?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.MagicPrompt).HasValue ? (request.MagicPrompt).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"magic_prompt\"");
                             } 
                             if (request.NegativePrompt != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NegativePrompt}"),
+                                    content: new global::System.Net.Http.StringContent(request.NegativePrompt ?? string.Empty),
                                     name: "\"negative_prompt\"");
                             } 
                             if (request.NumImages != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.NumImages}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"num_images\"");
                             } 
                             if (request.CustomModelUri != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                                    content: new global::System.Net.Http.StringContent(request.CustomModelUri ?? string.Empty),
                                     name: "\"custom_model_uri\"");
                             }
                             __httpRequest.Content = __httpRequestContent;

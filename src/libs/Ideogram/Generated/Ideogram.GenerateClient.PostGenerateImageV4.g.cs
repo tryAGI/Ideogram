@@ -120,27 +120,27 @@ namespace Ideogram
             }
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"{request.Prompt}"),
+                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
                                 name: "\"prompt\"");
                             if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.Seed}"),
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
                             } 
                             if (request.MagicPromptOption != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.MagicPromptOption?.ToValueString()}"),
+                                    content: new global::System.Net.Http.StringContent((request.MagicPromptOption).HasValue ? (request.MagicPromptOption).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"magic_prompt_option\"");
                             } 
                             if (request.CustomModelUri != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"{request.CustomModelUri}"),
+                                    content: new global::System.Net.Http.StringContent(request.CustomModelUri ?? string.Empty),
                                     name: "\"custom_model_uri\"");
                             }
                             __httpRequest.Content = __httpRequestContent;

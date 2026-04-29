@@ -141,7 +141,7 @@ namespace Ideogram
                 PrepareGetApiOrganizationUserSuggestionsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    organizationId: organizationId,
+                    organizationId: organizationId!,
                     userHandlePrefix: userHandlePrefix,
                     maxItems: maxItems);
 

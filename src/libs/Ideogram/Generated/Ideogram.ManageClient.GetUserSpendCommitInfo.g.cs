@@ -133,7 +133,7 @@ namespace Ideogram
                 PrepareGetUserSpendCommitInfoRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    organizationId: organizationId,
+                    organizationId: organizationId!,
                     postpaidOnly: postpaidOnly);
 
                 return __httpRequest;

@@ -189,9 +189,9 @@ namespace Ideogram
                 PrepareGetUsageInfoRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    organizationId: organizationId,
-                    segmentBy: segmentBy,
-                    startTime: startTime,
+                    organizationId: organizationId!,
+                    segmentBy: segmentBy!,
+                    startTime: startTime!,
                     endTime: endTime,
                     modelVersions: modelVersions,
                     tools: tools,
