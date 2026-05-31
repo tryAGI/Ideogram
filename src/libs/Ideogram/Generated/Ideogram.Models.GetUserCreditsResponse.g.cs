@@ -74,5 +74,6 @@ namespace Ideogram
         public GetUserCreditsResponse()
         {
         }
+
     }
 }

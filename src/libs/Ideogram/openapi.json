@@ -1445,6 +1445,99 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
+    "/manage/api/organization/{organization_id}/api_properties": {
+      "patch": {
+        "description": "Lets an organization owner toggle API-only settings such as\ncopyright_detection_enabled. Updates only the fields explicitly present\nin the request body; absent fields are left unchanged.\n",
+        "operationId": "update_organization_api_properties",
+        "parameters": [
+          {
+            "description": "Base64 encoded organization ID to update.",
+            "in": "path",
+            "name": "organization_id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOrganizationApiPropertiesRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-body-name": "update_organization_api_properties_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateOrganizationApiPropertiesResponse"
+                }
+              }
+            },
+            "description": "Updated API properties."
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "403": {
+            "description": "Not authorized — must be an organization owner"
+          },
+          "404": {
+            "description": "Organization not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Update a single field on an organization's API properties.",
+        "tags": [
+          "manage"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
+      }
+    },
+    "/manage/api/payment": {
+      "post": {
+        "description": "Returns a client_secret for the org's payment customer so the inline payment\nmodal can save a card without leaving the app.\n\nSoft-deprecated: the inline Elements flow was removed in the Stripe.js\neager-bundle incident (2026-05-20). New clients should use the\nstripe_payment_setup_url field on ManageApiStripeSubscriptionResponse, which\nreturns a hosted Stripe Checkout URL instead. This endpoint will be formally\ndeprecated and then removed once no callers reference it.\n",
+        "operationId": "create_api_payment",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManageApiPaymentResponse"
+                }
+              }
+            },
+            "description": "client_secret for inline card collection."
+          },
+          "401": {
+            "description": "Not authorized"
+          },
+          "403": {
+            "description": "Not authorized"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Create a payment setup session for inline card collection.",
+        "tags": [
+          "manage"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
+      }
+    },
     "/manage/api/profiles": {
       "get": {
         "operationId": "get_api_profiles",
@@ -2334,12 +2427,48 @@
         "tags": [
           "generate"
         ],
+        "x-fern-examples": [
+          {
+            "request": {
+              "prompt": "Change the background to a beach sunset."
+            },
+            "response": {
+              "body": {
+                "created": "2000-01-23T04:56:07+00:00",
+                "data": [
+                  {
+                    "prompt": "Change the background to a beach sunset.",
+                    "resolution": "1024x1024",
+                    "is_image_safe": true,
+                    "seed": 12345,
+                    "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89"
+                  }
+                ]
+              }
+            },
+            "code-samples": [
+              {
+                "sdk": "curl",
+                "code": "curl -X POST https://api.ideogram.ai/v1/edit \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F images=@<file1> \\\n  -F prompt=\"Change the background to a beach sunset.\"\n"
+              },
+              {
+                "sdk": "python",
+                "code": "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/edit\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"prompt\": \"Change the background to a beach sunset.\"\n  },\n  files={\n    \"images\": open(\"<file1>\", \"rb\"),\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+              },
+              {
+                "sdk": "typescript",
+                "code": "const formData = new FormData();\nformData.append('prompt', 'Change the background to a beach sunset.');\nformData.append('images', '<file1>');\nconst response = await fetch('https://api.ideogram.ai/v1/edit', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
+              }
+            ]
+          }
+        ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
     "/v1/ideogram-v3/edit": {
       "post": {
-        "description": "Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "deprecated": true,
+        "description": "Deprecated: use [`POST /v1/ideogram-v3/inpaint`](/api-reference/api-reference/inpaint-v3) instead. This endpoint will be removed in a future release.\n\nEdit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
         "operationId": "post_edit_image_v3",
         "requestBody": {
           "content": {
@@ -2605,7 +2734,7 @@
     },
     "/v1/ideogram-v3/generate-transparent": {
       "post": {
-        "description": "Generates images with transparent background synchronously based on a given prompt and optional parameters using\nthe Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio\nto allow best results with upscaler. The selected resolution is written to the response, not the upscaled final\nresolution.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "description": "Generates images with transparent background synchronously based on a given prompt and optional parameters using\nthe Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio\nto allow best results with upscaler. The selected resolution is written to the response, not the upscaled final\nresolution.\n\n`rendering_speed=FLASH` is not supported for transparent-background generation; the request will return a 400.\nUse `TURBO`, `DEFAULT`, or `QUALITY` instead.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
         "operationId": "post_generate_image_v3_transparent",
         "requestBody": {
           "content": {
@@ -2862,6 +2991,43 @@
         "summary": "Inpaint with Ideogram 3.0",
         "tags": [
           "generate"
+        ],
+        "x-fern-examples": [
+          {
+            "request": {
+              "prompt": "A photo of a cat wearing a hat.",
+              "style_type": "AUTO"
+            },
+            "response": {
+              "body": {
+                "created": "2000-01-23T04:56:07+00:00",
+                "data": [
+                  {
+                    "prompt": "A photo of a cat wearing a hat.",
+                    "resolution": "1024x1024",
+                    "is_image_safe": true,
+                    "seed": 12345,
+                    "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+                    "style_type": "AUTO"
+                  }
+                ]
+              }
+            },
+            "code-samples": [
+              {
+                "sdk": "curl",
+                "code": "curl -X POST https://api.ideogram.ai/v1/ideogram-v3/inpaint \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F mask=@<file1> \\\n  -F prompt=\"A photo of a cat wearing a hat.\" \\\n  -F rendering_speed=\"DEFAULT\"\n"
+              },
+              {
+                "sdk": "python",
+                "code": "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/ideogram-v3/inpaint\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  data={\n    \"prompt\": \"A photo of a cat wearing a hat.\",\n    \"rendering_speed\": \"DEFAULT\"\n  },\n  files={\n    \"image\": open(\"<file1>\", \"rb\"),\n    \"mask\": open(\"<file1>\", \"rb\"),\n  }\n)\nprint(response.json())\nwith open('output.png', 'wb') as f:\n  f.write(requests.get(response.json()['data'][0]['url']).content)\n"
+              },
+              {
+                "sdk": "typescript",
+                "code": "const formData = new FormData();\nformData.append('prompt', 'A photo of a cat');\nformData.append('rendering_speed', 'TURBO');\nconst response = await fetch('https://api.ideogram.ai/v1/ideogram-v3/inpaint', {\n  method: 'POST',\n  headers: { 'Api-Key': '<apiKey>' },\n  body: formData\n});\nconst data = await response.json();\nconsole.log(data);\n"
+              }
+            ]
+          }
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
@@ -3485,14 +3651,504 @@
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
+    },
+    "/v1/ideogram-v4/generate-design": {
+      "post": {
+        "description": "Experimental prototype endpoint for generating an editable V4 HTML design from a prompt.\n\nOptionally accepts inspiration reference images to guide transferable visual style. Inspiration images are design/style references only and are not edit targets.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_generate_design_v4",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateDesignRequestV4"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateDesignRequestV4"
+              }
+            }
+          },
+          "description": "A request to generate an editable design with Ideogram 4.0 HTML.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/postGenerateDesignV4_200_response"
+                }
+              },
+              "image/png": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              },
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Design(s) generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt failed the safety check."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Generate an editable design with Ideogram 4.0 HTML",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
+    "/v1/ideogram-v4/generate/stable": {
+      "post": {
+        "description": "Generates images synchronously using a pinned stable build of the\nIdeogram 4.0 model. This endpoint is intentionally minimal: it accepts\nonly a prompt (and optional seed), pins the underlying model URI, and\nlets the server pick the output resolution automatically.\n\nImages links are available for a limited period of time; if you would\nlike to keep the image, you must download it.\n",
+        "operationId": "post_generate_image_v4_stable",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequestV4Stable"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequestV4Stable"
+              }
+            }
+          },
+          "description": "A request to generate an image with the stable Ideogram 4.0 build.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageGenerationResponseV4"
+                }
+              }
+            },
+            "description": "Image(s) generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt failed the safety check."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Generate with Ideogram 4.0 (stable model)",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
+    "/v1/ideogram-v4/image-to-image": {
+      "post": {
+        "description": "Generates images synchronously using the Ideogram 4.0 model with an initial image as input.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_generate_image_v4_im2_im",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageRequestV4Im2Im"
+              }
+            }
+          },
+          "description": "A request to generate an image with Ideogram 4.0 using an initial image.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageGenerationResponseV4"
+                }
+              }
+            },
+            "description": "Image(s) generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt failed the safety check."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Image-to-image with Ideogram 4.0",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
+    "/v1/ideogram-v4/remix": {
+      "post": {
+        "description": "Remix an image synchronously using the Ideogram 4.0 model with an initial image and a prompt.\n\nMirrors `/v1/ideogram-v3/remix` semantics (including `image_weight` for how strongly the\noutput should resemble the input image) but routes the request through the V_4_0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.\n",
+        "operationId": "post_remix_image_v4",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RemixImageRequestV4"
+              }
+            }
+          },
+          "description": "A request to remix an image with Ideogram 4.0.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageGenerationResponseV4"
+                }
+              }
+            },
+            "description": "Image(s) generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Prompt failed the safety check."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Remix with Ideogram 4.0",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
+    "/v1/remove-background": {
+      "post": {
+        "description": "Remove the background of a given image synchronously. The foreground subject\nis identified and returned on a transparent background. Supported image formats include JPEG,\nPNG, and WebP.\nImage links are available for a limited period of time; if you would like to keep the image,\nyou must download it.\n",
+        "operationId": "post_remove_background",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RemoveBackgroundRequest"
+              }
+            }
+          },
+          "description": "A request to remove the background of an image.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemoveBackgroundResponse"
+                }
+              }
+            },
+            "description": "Background removed successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Not authorized to remove background."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageSafetyError"
+                }
+              }
+            },
+            "description": "Initial image failed the safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Remove Background",
+        "tags": [
+          "generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
     }
   },
   "components": {
     "schemas": {
       "GenerateImageRequestV4": {
+        "description": "Request body for Ideogram 4.0 image generation. Supply exactly one of\n`text_prompt` or `json_prompt`. When `text_prompt` is supplied,\nmagic-prompt is applied automatically. When `json_prompt` is supplied,\nmagic-prompt is skipped and the structured prompt is consumed\ndirectly.\n",
+        "properties": {
+          "text_prompt": {
+            "description": "A natural-language prompt for image generation. When supplied,\nmagic-prompt is enabled automatically. Mutually exclusive with\n`json_prompt`.\n",
+            "type": "string"
+          },
+          "json_prompt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/V4JsonPrompt"
+              }
+            ],
+            "description": "A structured prompt that conforms to the Ideogram 4.0 JSON\ncontract. When supplied, magic-prompt is disabled and the\nstructured prompt is consumed by the diffusion model directly.\nMutually exclusive with `text_prompt`.\n"
+          },
+          "prompt": {
+            "deprecated": true,
+            "description": "Deprecated — use `text_prompt` for plain-text prompts or\n`json_prompt` for structured prompts.\n",
+            "type": "string"
+          },
+          "seed": {
+            "description": "Random seed for reproducibility.",
+            "nullable": true,
+            "type": "integer"
+          },
+          "magic_prompt_option": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicPromptOption"
+              }
+            ],
+            "deprecated": true,
+            "description": "Deprecated — magic-prompt is now derived from the prompt input:\n`text_prompt` enables it, `json_prompt` disables it.\n"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use\nfor this request. Honored when `text_prompt` is supplied. Ignored\nwhen `json_prompt` is supplied.\n",
+            "type": "string"
+          },
+          "magic_prompt_version": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicPromptVersionEnum"
+              }
+            ],
+            "deprecated": true,
+            "description": "Deprecated — pin a registered magic-prompt system prompt via\n`magic_prompt_system_prompt_config_id` instead.\n"
+          },
+          "custom_model_uri": {
+            "description": "A custom model URI in the format model/<model_name>/version/<version_name>.\nWhen provided, the model version and style will be resolved from this URI.\n",
+            "example": "model/my-custom-model/version/0",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV4"
+          },
+          "rendering_speed": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RenderingSpeed"
+              }
+            ],
+            "description": "The rendering speed to use. For Ideogram V4, `rendering_speed=FLASH`\nis coming soon; requests with `rendering_speed=FLASH` currently\nreturn a 400.\n"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection (Hive likeness + logo\nchecks). The effective gate is the OR of this field and the organization's\n`copyright_detection_enabled` setting on `/api`. See GenerateImageRequestV3 for details.\n",
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "GenerateImageRequestV4Stable": {
+        "description": "Request body for the stable Ideogram 4.0 endpoint. Supply exactly one\nof `text_prompt` or `json_prompt`. The model URI is pinned\nserver-side. When `resolution` is omitted, the server chooses an\naspect ratio automatically.\n",
+        "properties": {
+          "text_prompt": {
+            "description": "A natural-language prompt for image generation. When supplied,\nmagic-prompt is enabled automatically. Mutually exclusive with\n`json_prompt`.\n",
+            "type": "string"
+          },
+          "json_prompt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/V4JsonPrompt"
+              }
+            ],
+            "description": "A structured prompt that conforms to the Ideogram 4.0 JSON\ncontract. When supplied, magic-prompt is disabled and the\nstructured prompt is consumed by the diffusion model directly.\nMutually exclusive with `text_prompt`.\n"
+          },
+          "seed": {
+            "description": "Random seed for reproducibility.",
+            "nullable": true,
+            "type": "integer"
+          },
+          "resolution": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResolutionV4"
+              }
+            ],
+            "description": "Optional. When supplied, the image is generated at this\nresolution. When omitted, the server picks an aspect ratio\nautomatically based on the prompt.\n"
+          },
+          "version": {
+            "description": "Optional. Selects a specific pinned stable build. When omitted,\nthe default stable model URI is used. When set to `stable_may29`,\nthe request is routed to the May 29th stable build.\n",
+            "enum": [
+              "stable_may29"
+            ],
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "GenerateImageRequestV4Im2Im": {
+        "properties": {
+          "image": {
+            "description": "The initial image binary (max 10MB); only JPEG, WebP and PNG formats are supported.",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "An optional text prompt to guide the generation.",
+            "type": "string"
+          },
+          "seed": {
+            "$ref": "#/components/schemas/Seed"
+          },
+          "magic_prompt_option": {
+            "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV4"
+          },
+          "rendering_speed": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RenderingSpeed"
+              }
+            ],
+            "description": "The rendering speed to use. For Ideogram V4, `rendering_speed=FLASH`\nis coming soon; requests with `rendering_speed=FLASH` currently\nreturn a 400.\n"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection (Hive likeness + logo\nchecks). See GenerateImageRequestV3 for details.\n",
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "type": "object"
+      },
+      "RemixImageRequestV4": {
+        "properties": {
+          "image": {
+            "description": "The initial image binary (max 10MB); only JPEG, WebP and PNG formats are supported.",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "The text prompt that guides the remix.",
+            "type": "string"
+          },
+          "image_weight": {
+            "default": 50,
+            "description": "How strongly the output should resemble the input image. Higher values keep the\ninput image's structure; lower values allow the prompt to drive the output more.\n",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "seed": {
+            "$ref": "#/components/schemas/Seed"
+          },
+          "magic_prompt_option": {
+            "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV4"
+          },
+          "rendering_speed": {
+            "$ref": "#/components/schemas/RenderingSpeed"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection (Hive likeness + logo\nchecks). See GenerateImageRequestV3 for details.\n",
+            "nullable": true,
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "image",
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "GenerateDesignRequestV4": {
         "properties": {
           "prompt": {
-            "description": "The text prompt for image generation.",
+            "description": "The text prompt for editable design generation.",
             "type": "string"
           },
           "seed": {
@@ -3503,9 +4159,72 @@
           "magic_prompt_option": {
             "$ref": "#/components/schemas/MagicPromptOption"
           },
-          "custom_model_uri": {
-            "description": "A custom model URI in the format model/<model_name>/version/<version_name>.\nWhen provided, the model version and style will be resolved from this URI.\n",
-            "example": "model/my-custom-model/version/0",
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV4Layout"
+          },
+          "rendering_speed": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RenderingSpeed"
+              }
+            ],
+            "description": "The rendering speed to use. For Ideogram V4, `rendering_speed=FLASH`\nis coming soon; requests with `rendering_speed=FLASH` currently\nreturn a 400.\n"
+          },
+          "inspiration_reference_images": {
+            "description": "Experimental. Up to 4 static inspiration images used as transferable visual style references for V4 layout-to-image design. Images are not edit targets and are not inserted into the generated HTML layout. Supported formats are JPEG, PNG, and WebP (max size 10MB each). Animated images are not supported.\n",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 4,
+            "type": "array"
+          },
+          "inspiration_reference_model": {
+            "default": "claude-sonnet-4-6",
+            "description": "Experimental. Model to use for the inspiration vision prepass.",
+            "enum": [
+              "claude-sonnet-4-6",
+              "claude-opus-4-6",
+              "claude-opus-4-7"
+            ],
+            "nullable": true,
+            "type": "string"
+          },
+          "artifact_generation_model": {
+            "default": "claude-sonnet-4-6",
+            "description": "Experimental. Model to use for the HTML/layout and base-plate handoff generation call.",
+            "enum": [
+              "claude-sonnet-4-6",
+              "claude-opus-4-6",
+              "claude-opus-4-7"
+            ],
+            "nullable": true,
+            "type": "string"
+          },
+          "layout2image_variant": {
+            "description": "Experimental. Staging only. Select a v4 layout-to-image pipeline variant.\nOmit for the default v4l2i path. Rejected on production.\n",
+            "enum": [
+              "opus_4_7",
+              "separate_image_layer",
+              "bbox_aware"
+            ],
+            "nullable": true,
+            "type": "string"
+          },
+          "response_type": {
+            "default": "layered",
+            "description": "layered (default): full editable design payload with text layers and HTML.\nurl: JSON with an expiring link to the final composited cover image.\nbinary: raw PNG bytes of the final composited cover image (Content-Type image/png).\nhtml: raw HTML document of the generated layout (Content-Type text/html).\n",
+            "enum": [
+              "layered",
+              "url",
+              "binary",
+              "html"
+            ],
+            "nullable": true,
             "type": "string"
           }
         },
@@ -3574,6 +4293,10 @@
           "magic_prompt_option": {
             "$ref": "#/components/schemas/MagicPromptOption"
           },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
           "num_images": {
             "$ref": "#/components/schemas/NumImages"
           },
@@ -3639,6 +4362,10 @@
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
           },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
           "negative_prompt": {
             "description": "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
             "example": "brush strokes, painting",
@@ -3700,6 +4427,11 @@
               "type": "string"
             },
             "type": "array"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection (Hive likeness + logo\nchecks). The effective gate is the OR of this field and the organization's\n`copyright_detection_enabled` setting on `/api`: if the org has it on, this is ignored;\nif the org has it off, setting this `true` enables detection for this request only.\nAdds detection latency. Flagged images come back with `is_image_safe: false`.\n",
+            "nullable": true,
+            "type": "boolean"
           }
         },
         "required": [
@@ -3733,6 +4465,10 @@
           },
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
           },
           "negative_prompt": {
             "description": "Description of what to exclude from a graphic. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
@@ -3859,6 +4595,10 @@
           },
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
           },
           "negative_prompt": {
             "description": "Description of what to exclude from a design. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
@@ -4049,6 +4789,10 @@
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
           },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
           "negative_prompt": {
             "description": "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
             "example": "brush strokes, painting",
@@ -4105,6 +4849,10 @@
           },
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
           },
           "negative_prompt": {
             "description": "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
@@ -4185,6 +4933,10 @@
           },
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
           },
           "num_images": {
             "$ref": "#/components/schemas/NumImages"
@@ -4277,6 +5029,10 @@
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
           },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
           "resolution": {
             "$ref": "#/components/schemas/ResolutionV3"
           },
@@ -4309,6 +5065,10 @@
           },
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
           },
           "num_images": {
             "$ref": "#/components/schemas/NumImages"
@@ -4400,6 +5160,10 @@
           "magic_prompt": {
             "$ref": "#/components/schemas/MagicPromptOption"
           },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
           "num_images": {
             "$ref": "#/components/schemas/NumImages"
           },
@@ -4431,6 +5195,73 @@
           "image",
           "prompt"
         ],
+        "type": "object"
+      },
+      "RemoveBackgroundRequest": {
+        "properties": {
+          "image": {
+            "description": "The image whose background is being removed (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.",
+            "format": "binary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "image"
+        ],
+        "type": "object"
+      },
+      "RemoveBackgroundResponse": {
+        "description": "The response containing the foreground image with the background removed.\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.",
+        "example": {
+          "created": "2000-01-23T04:56:07+00:00",
+          "data": [
+            {
+              "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+              "is_image_safe": true
+            }
+          ]
+        },
+        "properties": {
+          "created": {
+            "description": "The time the request was created.",
+            "format": "date-time",
+            "type": "string"
+          },
+          "data": {
+            "description": "A list containing the single foreground image. The endpoint always returns exactly one entry.",
+            "items": {
+              "$ref": "#/components/schemas/RemoveBackgroundImageObject"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "created",
+          "data"
+        ],
+        "title": "RemoveBackgroundResponse",
+        "type": "object"
+      },
+      "RemoveBackgroundImageObject": {
+        "properties": {
+          "url": {
+            "description": "The direct link to the foreground image. Empty when the image fails safety checks.",
+            "example": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+            "format": "uri",
+            "nullable": true,
+            "title": "url",
+            "type": "string"
+          },
+          "is_image_safe": {
+            "description": "Whether the foreground image passes safety checks. If false, the url field will be empty.",
+            "title": "is_image_safe",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "is_image_safe"
+        ],
+        "title": "RemoveBackgroundImageObject",
         "type": "object"
       },
       "InternalTestingRequest": {
@@ -4619,6 +5450,10 @@
           "magic_prompt_option": {
             "$ref": "#/components/schemas/MagicPromptOption"
           },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "type": "string"
+          },
           "magic_prompt_version": {
             "$ref": "#/components/schemas/MagicPromptVersionEnum"
           },
@@ -4712,6 +5547,11 @@
           },
           "magic_prompt_option": {
             "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "title": "magic_prompt_system_prompt_config_id",
+            "type": "string"
           },
           "magic_prompt_version": {
             "$ref": "#/components/schemas/MagicPromptVersionEnum"
@@ -5077,21 +5917,30 @@
             {
               "seed": 12345,
               "prompt": "prompt",
-              "resolution": "1280x800",
+              "resolution": "2048x2048",
               "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
               "is_image_safe": true
             },
             {
               "seed": 12345,
               "prompt": "prompt",
-              "resolution": "1280x800",
+              "resolution": "2048x2048",
               "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
               "is_image_safe": true
             }
           ],
-          "created": "2000-01-23T04:56:07+00:00"
+          "created": "2000-01-23T04:56:07+00:00",
+          "response_type": "url"
         },
         "properties": {
+          "response_type": {
+            "description": "Discriminator for the postGenerateDesignV4 oneOf response. Always \"url\" for this shape.",
+            "enum": [
+              "url"
+            ],
+            "title": "response_type",
+            "type": "string"
+          },
           "created": {
             "description": "The time the request was created.",
             "format": "date-time",
@@ -5118,7 +5967,7 @@
         "example": {
           "seed": 12345,
           "prompt": "prompt",
-          "resolution": "1280x800",
+          "resolution": "2048x2048",
           "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
           "is_image_safe": true
         },
@@ -5162,6 +6011,80 @@
         "title": "ImageGenerationObjectV4",
         "type": "object"
       },
+      "ImageGenerationResponseV4Layout": {
+        "description": "The response which contains information about the generated layout-to-image output, including the download link.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+        "properties": {
+          "response_type": {
+            "description": "Discriminator for the postGenerateDesignV4 oneOf response. Always \"url\" for this shape.",
+            "enum": [
+              "url"
+            ],
+            "title": "response_type",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time the request was created.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          },
+          "data": {
+            "description": "A list of ImageObjects that contain the generated image(s).",
+            "items": {
+              "$ref": "#/components/schemas/ImageGenerationObjectV4Layout"
+            },
+            "title": "data",
+            "type": "array"
+          }
+        },
+        "required": [
+          "created",
+          "data"
+        ],
+        "title": "ImageGenerationResponseV4Layout",
+        "type": "object"
+      },
+      "ImageGenerationObjectV4Layout": {
+        "properties": {
+          "url": {
+            "description": "The direct link to the image generated.",
+            "example": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+            "format": "uri",
+            "nullable": true,
+            "title": "url",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "The prompt used for the generation. This may be different from the original prompt.",
+            "title": "prompt",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV4Layout"
+          },
+          "is_image_safe": {
+            "description": "Whether this request passes safety checks. If false, the url field will be empty.",
+            "title": "is_image_safe",
+            "type": "boolean"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "is_image_safe",
+          "prompt",
+          "resolution",
+          "seed"
+        ],
+        "title": "ImageGenerationObjectV4Layout",
+        "type": "object"
+      },
       "LayeredImageGenerationObjectV3": {
         "allOf": [
           {
@@ -5196,7 +6119,23 @@
                       ]
                     }
                   ],
+                  "text_shadows": [
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    },
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    }
+                  ],
                   "font_size": 5,
+                  "vertical_alignment": "top",
+                  "text_transform": "none",
                   "glyph_type": "bullet",
                   "line_height": 2.302136,
                   "x": 0,
@@ -5206,6 +6145,7 @@
                   "angle": 0,
                   "alignment": "center",
                   "font_file": "font_file",
+                  "letter_spacing": 7.0614014,
                   "height": 5
                 },
                 {
@@ -5231,7 +6171,23 @@
                       ]
                     }
                   ],
+                  "text_shadows": [
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    },
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    }
+                  ],
                   "font_size": 5,
+                  "vertical_alignment": "top",
+                  "text_transform": "none",
                   "glyph_type": "bullet",
                   "line_height": 2.302136,
                   "x": 0,
@@ -5241,6 +6197,7 @@
                   "angle": 0,
                   "alignment": "center",
                   "font_file": "font_file",
+                  "letter_spacing": 7.0614014,
                   "height": 5
                 }
               ]
@@ -5271,7 +6228,23 @@
                       ]
                     }
                   ],
+                  "text_shadows": [
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    },
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    }
+                  ],
                   "font_size": 5,
+                  "vertical_alignment": "top",
+                  "text_transform": "none",
                   "glyph_type": "bullet",
                   "line_height": 2.302136,
                   "x": 0,
@@ -5281,6 +6254,7 @@
                   "angle": 0,
                   "alignment": "center",
                   "font_file": "font_file",
+                  "letter_spacing": 7.0614014,
                   "height": 5
                 },
                 {
@@ -5306,7 +6280,23 @@
                       ]
                     }
                   ],
+                  "text_shadows": [
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    },
+                    {
+                      "color": "color",
+                      "blur": 0.2027123,
+                      "offset_x": 9.301444,
+                      "offset_y": 3.6160767
+                    }
+                  ],
                   "font_size": 5,
+                  "vertical_alignment": "top",
+                  "text_transform": "none",
                   "glyph_type": "bullet",
                   "line_height": 2.302136,
                   "x": 0,
@@ -5316,6 +6306,7 @@
                   "angle": 0,
                   "alignment": "center",
                   "font_file": "font_file",
+                  "letter_spacing": 7.0614014,
                   "height": 5
                 }
               ]
@@ -5324,17 +6315,17 @@
           "image_layers": [
             {
               "ref_id": "REF_0",
-              "x": 7,
-              "width": 3,
-              "y": 9,
-              "height": 2
+              "x": 4,
+              "width": 1,
+              "y": 7,
+              "height": 1
             },
             {
               "ref_id": "REF_0",
-              "x": 7,
-              "width": 3,
-              "y": 9,
-              "height": 2
+              "x": 4,
+              "width": 1,
+              "y": 7,
+              "height": 1
             }
           ],
           "url": "https://openapi-generator.tech",
@@ -5406,7 +6397,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5416,6 +6423,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     },
                     {
@@ -5441,7 +6449,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5451,6 +6475,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     }
                   ]
@@ -5481,7 +6506,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5491,6 +6532,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     },
                     {
@@ -5516,7 +6558,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5526,6 +6584,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     }
                   ]
@@ -5534,17 +6593,17 @@
               "image_layers": [
                 {
                   "ref_id": "REF_0",
-                  "x": 7,
-                  "width": 3,
-                  "y": 9,
-                  "height": 2
+                  "x": 4,
+                  "width": 1,
+                  "y": 7,
+                  "height": 1
                 },
                 {
                   "ref_id": "REF_0",
-                  "x": 7,
-                  "width": 3,
-                  "y": 9,
-                  "height": 2
+                  "x": 4,
+                  "width": 1,
+                  "y": 7,
+                  "height": 1
                 }
               ],
               "url": "https://openapi-generator.tech",
@@ -5578,7 +6637,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5588,6 +6663,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     },
                     {
@@ -5613,7 +6689,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5623,6 +6715,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     }
                   ]
@@ -5653,7 +6746,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5663,6 +6772,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     },
                     {
@@ -5688,7 +6798,23 @@
                           ]
                         }
                       ],
+                      "text_shadows": [
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        },
+                        {
+                          "color": "color",
+                          "blur": 0.2027123,
+                          "offset_x": 9.301444,
+                          "offset_y": 3.6160767
+                        }
+                      ],
                       "font_size": 5,
+                      "vertical_alignment": "top",
+                      "text_transform": "none",
                       "glyph_type": "bullet",
                       "line_height": 2.302136,
                       "x": 0,
@@ -5698,6 +6824,7 @@
                       "angle": 0,
                       "alignment": "center",
                       "font_file": "font_file",
+                      "letter_spacing": 7.0614014,
                       "height": 5
                     }
                   ]
@@ -5706,26 +6833,35 @@
               "image_layers": [
                 {
                   "ref_id": "REF_0",
-                  "x": 7,
-                  "width": 3,
-                  "y": 9,
-                  "height": 2
+                  "x": 4,
+                  "width": 1,
+                  "y": 7,
+                  "height": 1
                 },
                 {
                   "ref_id": "REF_0",
-                  "x": 7,
-                  "width": 3,
-                  "y": 9,
-                  "height": 2
+                  "x": 4,
+                  "width": 1,
+                  "y": 7,
+                  "height": 1
                 }
               ],
               "url": "https://openapi-generator.tech",
               "text_html": "text_html"
             }
           ],
-          "created": "2000-01-23T04:56:07+00:00"
+          "created": "2000-01-23T04:56:07+00:00",
+          "response_type": "layered"
         },
         "properties": {
+          "response_type": {
+            "description": "Discriminator for the postGenerateDesignV4 oneOf response. Always \"layered\" for this shape; absent on the legacy postGenerateDesignV3 endpoint.",
+            "enum": [
+              "layered"
+            ],
+            "title": "response_type",
+            "type": "string"
+          },
           "created": {
             "description": "The time the request was created.",
             "format": "date-time",
@@ -5747,23 +6883,6 @@
         ],
         "title": "LayeredImageGenerationResponseV3",
         "type": "object"
-      },
-      "MagicPromptVersionEnum": {
-        "description": "The magic prompt version to use when magic prompt option is set to AUTO or ON.",
-        "enum": [
-          "V_0",
-          "V_0_1",
-          "V_0_2",
-          "V_0_3",
-          "V_0_4",
-          "V_0_5",
-          "V_0_6",
-          "V_0_7",
-          "V_0_8"
-        ],
-        "example": "V_0",
-        "title": "MagicPromptVersionEnum",
-        "type": "string"
       },
       "ModelEnum": {
         "default": "V_2",
@@ -5810,7 +6929,7 @@
         },
         "properties": {
           "prompt": {
-            "description": "The prompt to enhance with a magic prompt",
+            "description": "The prompt to enhance with a magic prompt. Mutually\nexclusive with `messages`; one of the two must be set.\n",
             "example": "a cat",
             "type": "string"
           },
@@ -5843,12 +6962,86 @@
             "description": "A system prompt to use for the magic prompt.",
             "example": "You are a helpful assistant that generates magic prompts for images.",
             "type": "string"
+          },
+          "aspect_ratio": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AspectRatioV3"
+              }
+            ],
+            "description": "Optional target aspect ratio used to condition the generated\nmagic prompt's framing. Forwarded to the autoprompt pipeline\nso registry-driven system prompts that interpolate\n`` see the bucket the caller intends.\n"
+          },
+          "temperature": {
+            "description": "Sampling temperature override. Defaults to the trainer-conditioned\nvalue when omitted (0.7 for V4_QWEN_3_5_27B). Only honored with\nV4 magic-prompt versions; supplying it with another version\nreturns 400.\n",
+            "format": "float",
+            "maximum": 2,
+            "minimum": 0,
+            "type": "number"
+          },
+          "top_p": {
+            "description": "Nucleus-sampling top_p override. Only honored with V4 versions.\n",
+            "exclusiveMinimum": true,
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "top_k": {
+            "description": "Top-k sampling override. Only honored with V4 versions.\n",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "min_p": {
+            "description": "min_p sampling override. Only honored with V4 versions.\n",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "max_tokens": {
+            "description": "Cap on the number of tokens the model may generate. Defaults to\n4096 (the trainer's reference cap) when omitted. Only honored\nwith V4 versions.\n",
+            "maximum": 4096,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "presence_penalty": {
+            "description": "Presence-penalty override. Only honored with V4 versions.\n",
+            "format": "float",
+            "maximum": 2,
+            "minimum": -2,
+            "type": "number"
+          },
+          "frequency_penalty": {
+            "description": "Frequency-penalty override. Only honored with V4 versions.\n",
+            "format": "float",
+            "maximum": 2,
+            "minimum": -2,
+            "type": "number"
+          },
+          "repetition_penalty": {
+            "description": "Repetition-penalty override. Only honored with V4 versions.\n",
+            "format": "float",
+            "maximum": 2,
+            "minimum": 0,
+            "type": "number"
+          },
+          "checkpoint": {
+            "description": "Optional override of the LoRA adapter the V4 magic-prompt\nwrapper downloads and runs. Pass a `gs://` URI pointing at a\ncheckpoint directory containing `adapter_config.json`. When\nomitted, the wrapper-preloaded production checkpoint is used.\nOnly honored with the LoRA-fused `V4_QWEN_3_5_27B` version;\nsupplying it with `V4_QWEN_3_5_27B_PREFUSED` (which serves\npre-merged weights and cannot swap adapters per request) or\nany other version returns 400.\n",
+            "pattern": "^gs://",
+            "type": "string"
+          },
+          "messages": {
+            "description": "Pre-formed chat messages forwarded verbatim to V4. Mutually\nexclusive with `prompt`; exactly one must be set. V4 only.\n",
+            "items": {
+              "$ref": "#/components/schemas/MagicPromptRequest_messages_inner"
+            },
+            "minItems": 1,
+            "type": "array"
           }
         },
         "required": [
           "classify_prompt_category",
-          "magic_prompt_version",
-          "prompt"
+          "magic_prompt_version"
         ],
         "title": "MagicPromptRequest",
         "type": "object"
@@ -5878,6 +7071,7 @@
             "a dog"
           ],
           "sampling_request_params": {
+            "magic_prompt_system_prompt_config_id": "magic_prompt_system_prompt_config_id",
             "aspect_ratio": "1x1",
             "style_type": "GENERAL",
             "magic_prompt_version": "V_0",
@@ -5942,6 +7136,7 @@
       },
       "SamplingRequestParams": {
         "example": {
+          "magic_prompt_system_prompt_config_id": "magic_prompt_system_prompt_config_id",
           "aspect_ratio": "1x1",
           "style_type": "GENERAL",
           "magic_prompt_version": "V_0",
@@ -5970,6 +7165,11 @@
           },
           "magic_prompt_option": {
             "$ref": "#/components/schemas/MagicPromptOption"
+          },
+          "magic_prompt_system_prompt_config_id": {
+            "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
+            "title": "magic_prompt_system_prompt_config_id",
+            "type": "string"
           },
           "magic_prompt_version": {
             "$ref": "#/components/schemas/MagicPromptVersionEnum"
@@ -6088,7 +7288,23 @@
               ]
             }
           ],
+          "text_shadows": [
+            {
+              "color": "color",
+              "blur": 0.2027123,
+              "offset_x": 9.301444,
+              "offset_y": 3.6160767
+            },
+            {
+              "color": "color",
+              "blur": 0.2027123,
+              "offset_x": 9.301444,
+              "offset_y": 3.6160767
+            }
+          ],
           "font_size": 5,
+          "vertical_alignment": "top",
+          "text_transform": "none",
           "glyph_type": "bullet",
           "line_height": 2.302136,
           "x": 0,
@@ -6098,6 +7314,7 @@
           "angle": 0,
           "alignment": "center",
           "font_file": "font_file",
+          "letter_spacing": 7.0614014,
           "height": 5
         },
         "properties": {
@@ -6192,6 +7409,44 @@
             "title": "line_height",
             "type": "number"
           },
+          "letter_spacing": {
+            "description": "Letter spacing in em units (e.g. 0.05 = 5% of em). V4 vector-text only.",
+            "format": "float",
+            "nullable": true,
+            "title": "letter_spacing",
+            "type": "number"
+          },
+          "text_transform": {
+            "description": "Case folding applied at render time. V4 vector-text only.",
+            "enum": [
+              "none",
+              "uppercase",
+              "lowercase"
+            ],
+            "nullable": true,
+            "title": "text_transform",
+            "type": "string"
+          },
+          "vertical_alignment": {
+            "description": "Vertical anchor (top|middle|bottom) for the rendered text within\nits bounding box. Maps to SVG `dominant-baseline`. V4 vector-text\nonly. Distinct from horizontal `alignment` (left|center|right).\n",
+            "enum": [
+              "top",
+              "middle",
+              "bottom"
+            ],
+            "nullable": true,
+            "title": "vertical_alignment",
+            "type": "string"
+          },
+          "text_shadows": {
+            "description": "Stacked CSS text shadows, composed back-to-front. Phase-1 ships at\nmost one entry; phase-2 unlocks multi-stack. V4 vector-text only.\n",
+            "items": {
+              "$ref": "#/components/schemas/LayeredAssetTextShadow"
+            },
+            "nullable": true,
+            "title": "text_shadows",
+            "type": "array"
+          },
           "spans": {
             "description": "Ordered list of text spans. Concatenating span text values produces the full item text.",
             "items": {
@@ -6241,7 +7496,23 @@
                   ]
                 }
               ],
+              "text_shadows": [
+                {
+                  "color": "color",
+                  "blur": 0.2027123,
+                  "offset_x": 9.301444,
+                  "offset_y": 3.6160767
+                },
+                {
+                  "color": "color",
+                  "blur": 0.2027123,
+                  "offset_x": 9.301444,
+                  "offset_y": 3.6160767
+                }
+              ],
               "font_size": 5,
+              "vertical_alignment": "top",
+              "text_transform": "none",
               "glyph_type": "bullet",
               "line_height": 2.302136,
               "x": 0,
@@ -6251,6 +7522,7 @@
               "angle": 0,
               "alignment": "center",
               "font_file": "font_file",
+              "letter_spacing": 7.0614014,
               "height": 5
             },
             {
@@ -6276,7 +7548,23 @@
                   ]
                 }
               ],
+              "text_shadows": [
+                {
+                  "color": "color",
+                  "blur": 0.2027123,
+                  "offset_x": 9.301444,
+                  "offset_y": 3.6160767
+                },
+                {
+                  "color": "color",
+                  "blur": 0.2027123,
+                  "offset_x": 9.301444,
+                  "offset_y": 3.6160767
+                }
+              ],
               "font_size": 5,
+              "vertical_alignment": "top",
+              "text_transform": "none",
               "glyph_type": "bullet",
               "line_height": 2.302136,
               "x": 0,
@@ -6286,6 +7574,7 @@
               "angle": 0,
               "alignment": "center",
               "font_file": "font_file",
+              "letter_spacing": 7.0614014,
               "height": 5
             }
           ]
@@ -6316,10 +7605,10 @@
         "description": "An image layer (logo, brand asset, icon) for a layered image generation.",
         "example": {
           "ref_id": "REF_0",
-          "x": 7,
-          "width": 3,
-          "y": 9,
-          "height": 2
+          "x": 4,
+          "width": 1,
+          "y": 7,
+          "height": 1
         },
         "properties": {
           "x": {
@@ -7005,12 +8294,18 @@
       "ManageApiStripeSubscriptionResponse": {
         "example": {
           "stripe_subscription_url": "stripe_subscription_url",
-          "stripe_billing_url": "stripe_billing_url"
+          "stripe_billing_url": "stripe_billing_url",
+          "stripe_payment_setup_url": "stripe_payment_setup_url"
         },
         "properties": {
           "stripe_subscription_url": {
-            "description": "The URL for the user to checkout the Stripe subscription plan.",
+            "description": "The URL for the user to checkout the Stripe subscription plan. Soft-deprecated — this is the legacy $0-subscription flow; new clients use stripe_payment_setup_url instead. Removed once no callers reference it.",
             "title": "stripe_subscription_url",
+            "type": "string"
+          },
+          "stripe_payment_setup_url": {
+            "description": "The URL for the user to capture a payment method via hosted Stripe Checkout (mode='setup'). No charge happens during this flow; the captured payment method is attached to the org's Stripe Customer via the checkout.session.completed webhook.",
+            "title": "stripe_payment_setup_url",
             "type": "string"
           },
           "stripe_billing_url": {
@@ -7021,6 +8316,23 @@
           }
         },
         "title": "ManageApiStripeSubscriptionResponse",
+        "type": "object"
+      },
+      "ManageApiPaymentResponse": {
+        "example": {
+          "client_secret": "client_secret"
+        },
+        "properties": {
+          "client_secret": {
+            "description": "client_secret to be passed to the inline payment Elements on the client. Soft-deprecated — new clients use stripe_payment_setup_url on ManageApiStripeSubscriptionResponse for the hosted Checkout flow.",
+            "title": "client_secret",
+            "type": "string"
+          }
+        },
+        "required": [
+          "client_secret"
+        ],
+        "title": "ManageApiPaymentResponse",
         "type": "object"
       },
       "GetApiTermsResponse": {
@@ -7492,7 +8804,7 @@
         "type": "string"
       },
       "ModelVersion": {
-        "description": "The model_version to use.\n- V_0_3: Model 1.0\n- V_1_1: Model 1.1\n- V_1_5: Model 2.0\n- V_2_1: Model 2a\n- V_3_0: Model 3.0 March 26\n- V_3_1: Model 3.0 Latest\n- V_4_0: Model 4.0\n- AUTO: Automatically select the best model version based on the request.\n",
+        "description": "The model_version to use.\n- V_0_3: Model 1.0\n- V_1_1: Model 1.1\n- V_1_5: Model 2.0\n- V_2_1: Model 2a\n- V_3_0: Model 3.0 March 26\n- V_3_1: Model 3.0 Latest\n- V_4_0: Model 4.0\n- V_4_D: Model 4.0 Layered Design (vector-text path; gated by the access_to_v4 feature flag)\n- V_4_LAYOUT2IMAGE: Model 4.0 Layout to Image (HTML layout rasterized as IMAGE_TO_IMAGE conditioning; gated by the access_to_v4 feature flag)\n- AUTO: Automatically select the best model version based on the request.\n",
         "enum": [
           "V_0_1",
           "V_0_2",
@@ -7503,6 +8815,8 @@
           "V_3_0",
           "V_3_1",
           "V_4_0",
+          "V_4_D",
+          "V_4_LAYOUT2IMAGE",
           "EXTERNAL_GOOGLE_VEO_3_0",
           "EXTERNAL_BYTEDANCE_SEEDANCE_1_0_PRO",
           "EXTERNAL_MINIMAX_HAILUO_02",
@@ -7518,6 +8832,7 @@
           "profiles": [
             {
               "is_metronome_2_user": true,
+              "copyright_detection_enabled": true,
               "role": "OWNER",
               "avatar_url": "https://example.com/avatar.jpg",
               "organization_id": "b3JnYW5pemF0aW9uXzEyMw",
@@ -7541,6 +8856,7 @@
             },
             {
               "is_metronome_2_user": true,
+              "copyright_detection_enabled": true,
               "role": "OWNER",
               "avatar_url": "https://example.com/avatar.jpg",
               "organization_id": "b3JnYW5pemF0aW9uXzEyMw",
@@ -7584,6 +8900,7 @@
       "ApiProfile": {
         "example": {
           "is_metronome_2_user": true,
+          "copyright_detection_enabled": true,
           "role": "OWNER",
           "avatar_url": "https://example.com/avatar.jpg",
           "organization_id": "b3JnYW5pemF0aW9uXzEyMw",
@@ -7649,6 +8966,12 @@
             "example": 10,
             "title": "max_num_inflight_requests_permitted",
             "type": "integer"
+          },
+          "copyright_detection_enabled": {
+            "description": "Whether post-generation copyright detection (Hive likeness + logo) is enabled for this organization's API generations. When true, every successful generation is run through Hive IP scoring after the asset is saved; images that cross the likeness or logo thresholds come back with `is_image_safe = false`. Only populated for ENTERPRISE profiles.",
+            "nullable": true,
+            "title": "copyright_detection_enabled",
+            "type": "boolean"
           }
         },
         "required": [
@@ -7730,6 +9053,39 @@
         ],
         "title": "ApiKeyStatus",
         "type": "string"
+      },
+      "UpdateOrganizationApiPropertiesResponse": {
+        "example": {
+          "copyright_detection_enabled": true
+        },
+        "properties": {
+          "copyright_detection_enabled": {
+            "description": "The setting after the update.",
+            "title": "copyright_detection_enabled",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "copyright_detection_enabled"
+        ],
+        "title": "UpdateOrganizationApiPropertiesResponse",
+        "type": "object"
+      },
+      "UpdateOrganizationApiPropertiesRequest": {
+        "description": "Partial update for an organization's API-only properties. Only fields explicitly present are written; unset fields preserve their current value.",
+        "example": {
+          "copyright_detection_enabled": true
+        },
+        "properties": {
+          "copyright_detection_enabled": {
+            "description": "Toggle post-generation Hive likeness + logo detection for this organization. See ApiProfile.copyright_detection_enabled for behavior.",
+            "nullable": true,
+            "title": "copyright_detection_enabled",
+            "type": "boolean"
+          }
+        },
+        "title": "UpdateOrganizationApiPropertiesRequest",
+        "type": "object"
       },
       "GetApiOrganizationUserSuggestionsResponse": {
         "example": {
@@ -9251,6 +10607,216 @@
         "title": "TrainModelV3AdvancedRequest",
         "type": "object"
       },
+      "V4JsonPrompt": {
+        "description": "Structured prompt for Ideogram 4.0 generation. When `json_prompt` is\nsupplied, magic-prompt is disabled and the diffusion model consumes\nthe JSON contract directly. Mutually exclusive with `text_prompt`\nand the legacy `prompt` field.\n",
+        "properties": {
+          "high_level_description": {
+            "description": "One- or two-sentence overall description of the desired image.",
+            "title": "high_level_description",
+            "type": "string"
+          },
+          "style_description": {
+            "$ref": "#/components/schemas/V4StyleDescription"
+          },
+          "compositional_deconstruction": {
+            "$ref": "#/components/schemas/V4CompositionalDeconstruction"
+          }
+        },
+        "required": [
+          "compositional_deconstruction",
+          "high_level_description"
+        ],
+        "title": "V4JsonPrompt",
+        "type": "object"
+      },
+      "V4StyleDescription": {
+        "description": "Optional style description supplied alongside a V4 JSON prompt.",
+        "properties": {
+          "aesthetics": {
+            "description": "Aesthetic notes (mood, vibe, references).",
+            "title": "aesthetics",
+            "type": "string"
+          },
+          "art_style": {
+            "description": "Optional art-style hint (e.g., illustration, oil painting).",
+            "title": "art_style",
+            "type": "string"
+          },
+          "lighting": {
+            "description": "Lighting description.",
+            "title": "lighting",
+            "type": "string"
+          },
+          "medium": {
+            "description": "Medium description (e.g., photograph, digital art).",
+            "title": "medium",
+            "type": "string"
+          },
+          "photo": {
+            "description": "Optional photographic style notes (e.g., lens, film stock).",
+            "title": "photo",
+            "type": "string"
+          }
+        },
+        "required": [
+          "aesthetics",
+          "lighting",
+          "medium"
+        ],
+        "title": "V4StyleDescription",
+        "type": "object"
+      },
+      "V4CompositionalDeconstruction": {
+        "description": "The compositional breakdown of a V4 prompt — background plus an ordered list of elements.",
+        "properties": {
+          "background": {
+            "description": "Description of the background of the scene.",
+            "title": "background",
+            "type": "string"
+          },
+          "elements": {
+            "description": "Ordered list of elements (objects and text) composing the scene.",
+            "items": {
+              "$ref": "#/components/schemas/V4PromptElement"
+            },
+            "title": "elements",
+            "type": "array"
+          }
+        },
+        "required": [
+          "background",
+          "elements"
+        ],
+        "title": "V4CompositionalDeconstruction",
+        "type": "object"
+      },
+      "V4PromptElement": {
+        "description": "A single element in the V4 prompt's compositional deconstruction.\nDiscriminated by the `type` field.\n",
+        "discriminator": {
+          "mapping": {
+            "obj": "#/components/schemas/V4ObjPromptElement",
+            "text": "#/components/schemas/V4TextPromptElement"
+          },
+          "propertyName": "type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/V4ObjPromptElement"
+          },
+          {
+            "$ref": "#/components/schemas/V4TextPromptElement"
+          }
+        ],
+        "title": "V4PromptElement"
+      },
+      "V4ObjPromptElement": {
+        "description": "A non-text element (object, character, background detail) in the V4 prompt layout.",
+        "properties": {
+          "type": {
+            "description": "Discriminator. Must be `obj`.",
+            "enum": [
+              "obj"
+            ],
+            "title": "type",
+            "type": "string"
+          },
+          "bbox": {
+            "description": "Bounding box for an element, expressed as four integers in `[0, 1000]`\nwith `[y_min, x_min, y_max, x_max]` semantics (row-first). Values are\nnormalized so the canvas is `1000 x 1000` regardless of the final\nresolution.\n",
+            "example": [
+              0,
+              0,
+              1000,
+              1000
+            ],
+            "items": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "title": "V4PromptBbox",
+            "type": "array"
+          },
+          "desc": {
+            "description": "Description of the object element.",
+            "title": "desc",
+            "type": "string"
+          }
+        },
+        "required": [
+          "desc",
+          "type"
+        ],
+        "title": "V4ObjPromptElement",
+        "type": "object"
+      },
+      "V4PromptBbox": {
+        "description": "Bounding box for an element, expressed as four integers in `[0, 1000]`\nwith `[y_min, x_min, y_max, x_max]` semantics (row-first). Values are\nnormalized so the canvas is `1000 x 1000` regardless of the final\nresolution.\n",
+        "example": [
+          0,
+          0,
+          1000,
+          1000
+        ],
+        "items": {
+          "maximum": 1000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "maxItems": 4,
+        "minItems": 4,
+        "title": "V4PromptBbox",
+        "type": "array"
+      },
+      "V4TextPromptElement": {
+        "description": "A text element to render in the V4 prompt layout.",
+        "properties": {
+          "type": {
+            "description": "Discriminator. Must be `text`.",
+            "enum": [
+              "text"
+            ],
+            "title": "type",
+            "type": "string"
+          },
+          "bbox": {
+            "description": "Bounding box for an element, expressed as four integers in `[0, 1000]`\nwith `[y_min, x_min, y_max, x_max]` semantics (row-first). Values are\nnormalized so the canvas is `1000 x 1000` regardless of the final\nresolution.\n",
+            "example": [
+              0,
+              0,
+              1000,
+              1000
+            ],
+            "items": {
+              "maximum": 1000,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "title": "V4PromptBbox",
+            "type": "array"
+          },
+          "text": {
+            "description": "The literal text to render in the image.",
+            "title": "text",
+            "type": "string"
+          },
+          "desc": {
+            "description": "Description of the text element (style, role, placement notes).",
+            "title": "desc",
+            "type": "string"
+          }
+        },
+        "required": [
+          "desc",
+          "text",
+          "type"
+        ],
+        "title": "V4TextPromptElement",
+        "type": "object"
+      },
       "MagicPromptOption": {
         "description": "Determine if MagicPrompt should be used in generating the request or not.",
         "enum": [
@@ -9263,6 +10829,96 @@
           "url": "https://docs.ideogram.ai/using-ideogram/ideogram-features/magic-prompt"
         },
         "title": "MagicPromptOption",
+        "type": "string"
+      },
+      "MagicPromptVersionEnum": {
+        "description": "The magic prompt version to use when magic prompt option is set to AUTO or ON.",
+        "enum": [
+          "V_0",
+          "V_0_1",
+          "V_0_2",
+          "V_0_3",
+          "V_0_4",
+          "V_0_5",
+          "V_0_6",
+          "V_0_7",
+          "V_0_8",
+          "V4_QWEN_3_5_27B",
+          "V4_QWEN_3_5_27B_PREFUSED"
+        ],
+        "example": "V_0",
+        "title": "MagicPromptVersionEnum",
+        "type": "string"
+      },
+      "ResolutionV4": {
+        "description": "The 2K resolutions supported for Ideogram 4.0 image generation.",
+        "enum": [
+          "2048x2048",
+          "1440x2880",
+          "2880x1440",
+          "1664x2496",
+          "2496x1664",
+          "1792x2240",
+          "2240x1792",
+          "1440x2560",
+          "2560x1440",
+          "1600x2560",
+          "2560x1600",
+          "1728x2304",
+          "2304x1728",
+          "1296x3168",
+          "3168x1296",
+          "1152x2944",
+          "2944x1152",
+          "1248x3328",
+          "3328x1248",
+          "1280x3072",
+          "3072x1280"
+        ],
+        "example": "2048x2048",
+        "title": "ResolutionV4",
+        "type": "string"
+      },
+      "RenderingSpeed": {
+        "default": "DEFAULT",
+        "description": "The rendering speed to use.",
+        "enum": [
+          "FLASH",
+          "TURBO",
+          "BALANCED",
+          "DEFAULT",
+          "QUALITY"
+        ],
+        "title": "RenderingSpeed",
+        "type": "string"
+      },
+      "Seed": {
+        "description": "Random seed. Set for reproducible generation.",
+        "example": 12345,
+        "maximum": 2147483647,
+        "minimum": 0,
+        "title": "Seed",
+        "type": "integer"
+      },
+      "ResolutionV4Layout": {
+        "description": "The resolutions supported for Ideogram 4.0 layout-to-image and design generation.",
+        "enum": [
+          "1024x1024",
+          "896x1120",
+          "1120x896",
+          "864x1152",
+          "1152x864",
+          "832x1248",
+          "1248x832",
+          "800x1280",
+          "1280x800",
+          "720x1280",
+          "1280x720",
+          "720x1440",
+          "1440x720"
+        ],
+        "example": "1024x1024",
+        "title": "ResolutionV4Layout",
         "type": "string"
       },
       "Description": {
@@ -9283,7 +10939,8 @@
         "enum": [
           "V_2",
           "V_3",
-          "CUSTOM"
+          "CUSTOM",
+          "V_4"
         ],
         "title": "DescribeModelVersion",
         "type": "string"
@@ -9294,14 +10951,6 @@
         "maximum": 8,
         "minimum": 1,
         "title": "NumImages",
-        "type": "integer"
-      },
-      "Seed": {
-        "description": "Random seed. Set for reproducible generation.",
-        "example": 12345,
-        "maximum": 2147483647,
-        "minimum": 0,
-        "title": "Seed",
         "type": "integer"
       },
       "StyleType": {
@@ -9418,19 +11067,6 @@
           "1x1"
         ],
         "title": "AspectRatioV3",
-        "type": "string"
-      },
-      "RenderingSpeed": {
-        "default": "DEFAULT",
-        "description": "The rendering speed to use.",
-        "enum": [
-          "FLASH",
-          "TURBO",
-          "BALANCED",
-          "DEFAULT",
-          "QUALITY"
-        ],
-        "title": "RenderingSpeed",
         "type": "string"
       },
       "ColorPaletteWithPresetNameOrMembers": {
@@ -9826,83 +11462,49 @@
         "title": "FreeformResolution",
         "type": "string"
       },
-      "ResolutionV4": {
-        "description": "The resolutions supported for Ideogram 4.0.",
-        "enum": [
-          "512x512",
-          "512x1536",
-          "576x1408",
-          "576x1472",
-          "576x1536",
-          "640x1344",
-          "640x1408",
-          "640x1472",
-          "640x1536",
-          "704x1152",
-          "704x1216",
-          "704x1280",
-          "704x1344",
-          "704x1408",
-          "704x1472",
-          "736x1312",
-          "768x1088",
-          "768x1216",
-          "768x1280",
-          "768x1344",
-          "800x1280",
-          "832x960",
-          "832x1024",
-          "832x1088",
-          "832x1152",
-          "832x1216",
-          "832x1248",
-          "864x1152",
-          "896x960",
-          "896x1024",
-          "896x1088",
-          "896x1120",
-          "896x1152",
-          "960x832",
-          "960x896",
-          "960x1024",
-          "960x1088",
-          "1024x832",
-          "1024x896",
-          "1024x960",
-          "1024x1024",
-          "1088x768",
-          "1088x832",
-          "1088x896",
-          "1088x960",
-          "1120x896",
-          "1152x704",
-          "1152x832",
-          "1152x864",
-          "1152x896",
-          "1216x704",
-          "1216x768",
-          "1216x832",
-          "1248x832",
-          "1280x704",
-          "1280x768",
-          "1280x800",
-          "1312x736",
-          "1344x640",
-          "1344x704",
-          "1344x768",
-          "1408x576",
-          "1408x640",
-          "1408x704",
-          "1472x576",
-          "1472x640",
-          "1472x704",
-          "1536x512",
-          "1536x576",
-          "1536x640"
+      "LayeredAssetTextShadow": {
+        "description": "Single CSS shadow for V4 vector text. Used by text_shadows and box_shadow. offset_x, offset_y, and blur are in px.",
+        "example": {
+          "color": "color",
+          "blur": 0.2027123,
+          "offset_x": 9.301444,
+          "offset_y": 3.6160767
+        },
+        "properties": {
+          "color": {
+            "description": "Shadow hex color. Accepts both 6-hex (#RRGGBB) and 8-hex\n(#RRGGBBAA) — the layered-design extractor emits alpha-included\ncolors for semi-transparent shadows, and stripping alpha would\nlose real visual information. Aligned with the other text-layer\ncolor fields (stroke/border/gradient) which already accept 6,8.\n",
+            "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$",
+            "title": "color",
+            "type": "string"
+          },
+          "offset_x": {
+            "default": 0,
+            "description": "Horizontal shadow offset in px.",
+            "format": "float",
+            "title": "offset_x",
+            "type": "number"
+          },
+          "offset_y": {
+            "default": 0,
+            "description": "Vertical shadow offset in px.",
+            "format": "float",
+            "title": "offset_y",
+            "type": "number"
+          },
+          "blur": {
+            "default": 0,
+            "description": "Shadow blur radius in px.",
+            "format": "float",
+            "minimum": 0,
+            "title": "blur",
+            "type": "number"
+          }
+        },
+        "required": [
+          "color"
         ],
-        "example": "1280x800",
-        "title": "ResolutionV4",
-        "type": "string"
+        "title": "LayeredAssetTextShadow",
+        "type": "object"
       },
       "Price": {
         "description": "Represents a price.",
@@ -9963,6 +11565,24 @@
         "title": "AssetType",
         "type": "string"
       },
+      "postGenerateDesignV4_200_response": {
+        "discriminator": {
+          "mapping": {
+            "layered": "#/components/schemas/LayeredImageGenerationResponseV3",
+            "url": "#/components/schemas/ImageGenerationResponseV4Layout"
+          },
+          "propertyName": "response_type"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/LayeredImageGenerationResponseV3"
+          },
+          {
+            "$ref": "#/components/schemas/ImageGenerationResponseV4Layout"
+          }
+        ],
+        "title": "postGenerateDesignV4_200_response"
+      },
       "postInternalTesting_200_response": {
         "example": {
           "response_content": "response_content"
@@ -9974,6 +11594,29 @@
           }
         },
         "title": "postInternalTesting_200_response",
+        "type": "object"
+      },
+      "MagicPromptRequest_messages_inner": {
+        "properties": {
+          "role": {
+            "enum": [
+              "system",
+              "user",
+              "assistant"
+            ],
+            "title": "role",
+            "type": "string"
+          },
+          "content": {
+            "title": "content",
+            "type": "string"
+          }
+        },
+        "required": [
+          "content",
+          "role"
+        ],
+        "title": "MagicPromptRequest_messages_inner",
         "type": "object"
       },
       "InternalBatchResultsResponse_results_inner": {

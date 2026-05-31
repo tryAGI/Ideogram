@@ -66,5 +66,6 @@ namespace Ideogram
         public UpscaleImageRequest()
         {
         }
+
     }
 }

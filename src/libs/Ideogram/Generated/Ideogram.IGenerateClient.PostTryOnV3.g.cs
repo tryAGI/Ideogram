@@ -29,6 +29,23 @@ namespace Ideogram
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ImageGenerationResponseV3>> PostTryOnV3AsResponseAsync(
+
+            global::Ideogram.TryOnRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Virtual Try-On with Ideogram 3.0<br/>
+        /// Performs virtual clothing try-on by automatically segmenting the clothing in the provided image<br/>
+        /// and replacing it based on the prompt. The user provides an image and an optional prompt describing<br/>
+        /// the desired clothing change (e.g., "change his shirt to a pink shirt").<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
         /// <param name="image">
         /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
@@ -43,6 +60,9 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -77,11 +97,155 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]> productReferenceImages,
             string? prompt = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
             int? numImages = default,
             int? seed = default,
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Virtual Try-On with Ideogram 3.0<br/>
+        /// Performs virtual clothing try-on by automatically segmenting the clothing in the provided image<br/>
+        /// and replacing it based on the prompt. The user provides an image and an optional prompt describing<br/>
+        /// the desired clothing change (e.g., "change his shirt to a pink shirt").<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
+        /// <param name="image">
+        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imagename">
+        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt describing the desired clothing change. Defaults to "Person wearing this piece of clothing" if omitted or empty.<br/>
+        /// Default Value: Person wearing this piece of clothing<br/>
+        /// Example: Change his shirt to a pink shirt
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
+        /// <param name="numImages">
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
+        /// Example: 12345
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use.<br/>
+        /// Default Value: DEFAULT
+        /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
+        /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
+        /// <param name="productReferenceImages">
+        /// An image to use as the product reference for the try-on (exactly 1 image required). The image should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="productReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'product_reference_images' file parts.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostTryOnV3Async(
+            global::System.IO.Stream image,
+            string imagename,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream> productReferenceImages,
+            string? prompt = default,
+            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
+            int? numImages = default,
+            int? seed = default,
+            global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.StyleTypeV3? styleType = default,
+            global::Ideogram.StylePresetV3? stylePreset = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? productReferenceImagesFileNames = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Virtual Try-On with Ideogram 3.0<br/>
+        /// Performs virtual clothing try-on by automatically segmenting the clothing in the provided image<br/>
+        /// and replacing it based on the prompt. The user provides an image and an optional prompt describing<br/>
+        /// the desired clothing change (e.g., "change his shirt to a pink shirt").<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
+        /// <param name="image">
+        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imagename">
+        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt describing the desired clothing change. Defaults to "Person wearing this piece of clothing" if omitted or empty.<br/>
+        /// Default Value: Person wearing this piece of clothing<br/>
+        /// Example: Change his shirt to a pink shirt
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
+        /// <param name="numImages">
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
+        /// Example: 12345
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use.<br/>
+        /// Default Value: DEFAULT
+        /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
+        /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
+        /// <param name="productReferenceImages">
+        /// An image to use as the product reference for the try-on (exactly 1 image required). The image should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="productReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'product_reference_images' file parts.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ImageGenerationResponseV3>> PostTryOnV3AsResponseAsync(
+            global::System.IO.Stream image,
+            string imagename,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream> productReferenceImages,
+            string? prompt = default,
+            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
+            int? numImages = default,
+            int? seed = default,
+            global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.StyleTypeV3? styleType = default,
+            global::Ideogram.StylePresetV3? stylePreset = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? productReferenceImagesFileNames = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

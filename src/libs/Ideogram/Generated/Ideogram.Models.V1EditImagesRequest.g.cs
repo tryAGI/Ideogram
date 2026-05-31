@@ -54,6 +54,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
         /// </summary>
@@ -107,6 +113,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="resolution">
         /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
@@ -128,6 +137,7 @@ namespace Ideogram
             int? numImages,
             int? seed,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             global::Ideogram.ResolutionV3? resolution,
             global::Ideogram.AspectRatioV3? aspectRatio,
             bool? transparentBackground)
@@ -138,6 +148,7 @@ namespace Ideogram
             this.NumImages = numImages;
             this.Seed = seed;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.Resolution = resolution;
             this.AspectRatio = aspectRatio;
             this.TransparentBackground = transparentBackground;
@@ -149,5 +160,6 @@ namespace Ideogram
         public V1EditImagesRequest()
         {
         }
+
     }
 }

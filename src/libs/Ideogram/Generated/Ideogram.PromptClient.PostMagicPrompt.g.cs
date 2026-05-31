@@ -55,6 +55,29 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            var __response = await PostMagicPromptAsResponseAsync(
+
+                request: request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// Generate Magic Prompt<br/>
+        /// Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.MagicPromptResponse>> PostMagicPromptAsResponseAsync(
+
+            global::Ideogram.MagicPromptRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
 
             PrepareArguments(
@@ -81,10 +104,11 @@ namespace Ideogram
             var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
                 clientOptions: Options,
                 requestOptions: requestOptions,
-                supportsRetry: true);
+                supportsRetry: false);
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/magic-prompt",
                                 baseUri: HttpClient.BaseAddress);
@@ -117,30 +141,40 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
-                                name: "\"prompt\"");
+                            if (request.Prompt != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
+                                    name: "\"prompt\"");
+
+                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.MagicPromptVersion.ToValueString()),
                                 name: "\"magic_prompt_version\"");
+
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.ClassifyPromptCategory, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
                                 name: "\"classify_prompt_category\"");
+
                             if (request.StyleType != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.StyleType).HasValue ? (request.StyleType).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_type\"");
-                            } 
+
+                            }
                             if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
-                            } 
+
+                            }
                             if (request.CharacterReferenceImages != default)
                             {
 
@@ -157,15 +191,107 @@ namespace Ideogram
                                         __contentCharacterReferenceImages.Headers.ContentDisposition.FileNameStar = null;
                                     }
                                 }
-                            } 
+
+                            }
                             if (request.SystemPrompt != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.SystemPrompt ?? string.Empty),
                                     name: "\"system_prompt\"");
+
                             }
+                            if (request.AspectRatio != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.AspectRatio).HasValue ? (request.AspectRatio).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"aspect_ratio\"");
+
+                            }
+                            if (request.Temperature != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Temperature, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"temperature\"");
+
+                            }
+                            if (request.TopP != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.TopP, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"top_p\"");
+
+                            }
+                            if (request.TopK != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.TopK, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"top_k\"");
+
+                            }
+                            if (request.MinP != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.MinP, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"min_p\"");
+
+                            }
+                            if (request.MaxTokens != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.MaxTokens, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"max_tokens\"");
+
+                            }
+                            if (request.PresencePenalty != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.PresencePenalty, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"presence_penalty\"");
+
+                            }
+                            if (request.FrequencyPenalty != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.FrequencyPenalty, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"frequency_penalty\"");
+
+                            }
+                            if (request.RepetitionPenalty != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.RepetitionPenalty, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"repetition_penalty\"");
+
+                            }
+                            if (request.Checkpoint != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.Checkpoint ?? string.Empty),
+                                    name: "\"checkpoint\"");
+
+                            }
+                            if (request.Messages != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.Messages, x => x.ToJson(JsonSerializerContext)))}]"),
+                                    name: "\"messages\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
+
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -207,6 +333,8 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -217,6 +345,11 @@ namespace Ideogram
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
@@ -234,6 +367,8 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -243,8 +378,7 @@ namespace Ideogram
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -253,6 +387,11 @@ namespace Ideogram
                         __attempt < __maxAttempts &&
                         global::Ideogram.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
@@ -269,14 +408,15 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -316,6 +456,8 @@ namespace Ideogram
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -336,6 +478,8 @@ namespace Ideogram
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                             // 
@@ -359,17 +503,16 @@ namespace Ideogram
                                     __exception_400 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException(
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_400,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_400,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
                             // 
                             if ((int)__response.StatusCode == 401)
@@ -392,17 +535,16 @@ namespace Ideogram
                                     __exception_401 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException(
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_401,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_401,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
                             // 
                             if ((int)__response.StatusCode == 429)
@@ -425,17 +567,16 @@ namespace Ideogram
                                     __exception_429 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException(
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_429,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_429,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
                             // 
                             if ((int)__response.StatusCode == 500)
@@ -458,17 +599,16 @@ namespace Ideogram
                                     __exception_500 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException(
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_500,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_500,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_500,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
 
                             if (__effectiveReadResponseAsString)
@@ -492,23 +632,25 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        global::Ideogram.MagicPromptResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.MagicPromptResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.MagicPromptResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    throw new global::Ideogram.ApiException(
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
                             else
@@ -522,9 +664,13 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        await global::Ideogram.MagicPromptResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.MagicPromptResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.MagicPromptResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -541,17 +687,15 @@ namespace Ideogram
                                     {
                                     }
 
-                                    throw new global::Ideogram.ApiException(
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
 
@@ -567,7 +711,8 @@ namespace Ideogram
         /// Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to enhance with a magic prompt<br/>
+        /// The prompt to enhance with a magic prompt. Mutually<br/>
+        /// exclusive with `messages`; one of the two must be set.<br/>
         /// Example: a cat
         /// </param>
         /// <param name="magicPromptVersion">
@@ -595,17 +740,77 @@ namespace Ideogram
         /// A system prompt to use for the magic prompt.<br/>
         /// Example: You are a helpful assistant that generates magic prompts for images.
         /// </param>
+        /// <param name="aspectRatio">
+        /// Optional target aspect ratio used to condition the generated<br/>
+        /// magic prompt's framing. Forwarded to the autoprompt pipeline<br/>
+        /// so registry-driven system prompts that interpolate<br/>
+        /// `` see the bucket the caller intends.
+        /// </param>
+        /// <param name="temperature">
+        /// Sampling temperature override. Defaults to the trainer-conditioned<br/>
+        /// value when omitted (0.7 for V4_QWEN_3_5_27B). Only honored with<br/>
+        /// V4 magic-prompt versions; supplying it with another version<br/>
+        /// returns 400.
+        /// </param>
+        /// <param name="topP">
+        /// Nucleus-sampling top_p override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="topK">
+        /// Top-k sampling override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="minP">
+        /// min_p sampling override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="maxTokens">
+        /// Cap on the number of tokens the model may generate. Defaults to<br/>
+        /// 4096 (the trainer's reference cap) when omitted. Only honored<br/>
+        /// with V4 versions.
+        /// </param>
+        /// <param name="presencePenalty">
+        /// Presence-penalty override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="frequencyPenalty">
+        /// Frequency-penalty override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="repetitionPenalty">
+        /// Repetition-penalty override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="checkpoint">
+        /// Optional override of the LoRA adapter the V4 magic-prompt<br/>
+        /// wrapper downloads and runs. Pass a `gs://` URI pointing at a<br/>
+        /// checkpoint directory containing `adapter_config.json`. When<br/>
+        /// omitted, the wrapper-preloaded production checkpoint is used.<br/>
+        /// Only honored with the LoRA-fused `V4_QWEN_3_5_27B` version;<br/>
+        /// supplying it with `V4_QWEN_3_5_27B_PREFUSED` (which serves<br/>
+        /// pre-merged weights and cannot swap adapters per request) or<br/>
+        /// any other version returns 400.
+        /// </param>
+        /// <param name="messages">
+        /// Pre-formed chat messages forwarded verbatim to V4. Mutually<br/>
+        /// exclusive with `prompt`; exactly one must be set. V4 only.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.MagicPromptResponse> PostMagicPromptAsync(
-            string prompt,
             global::Ideogram.MagicPromptVersionEnum magicPromptVersion,
             bool classifyPromptCategory,
+            string? prompt = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             int? seed = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             string? systemPrompt = default,
+            global::Ideogram.AspectRatioV3? aspectRatio = default,
+            float? temperature = default,
+            float? topP = default,
+            int? topK = default,
+            float? minP = default,
+            int? maxTokens = default,
+            float? presencePenalty = default,
+            float? frequencyPenalty = default,
+            float? repetitionPenalty = default,
+            string? checkpoint = default,
+            global::System.Collections.Generic.IList<global::Ideogram.MagicPromptRequestMessagesInner>? messages = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -618,6 +823,17 @@ namespace Ideogram
                 Seed = seed,
                 CharacterReferenceImages = characterReferenceImages,
                 SystemPrompt = systemPrompt,
+                AspectRatio = aspectRatio,
+                Temperature = temperature,
+                TopP = topP,
+                TopK = topK,
+                MinP = minP,
+                MaxTokens = maxTokens,
+                PresencePenalty = presencePenalty,
+                FrequencyPenalty = frequencyPenalty,
+                RepetitionPenalty = repetitionPenalty,
+                Checkpoint = checkpoint,
+                Messages = messages,
             };
 
             return await PostMagicPromptAsync(

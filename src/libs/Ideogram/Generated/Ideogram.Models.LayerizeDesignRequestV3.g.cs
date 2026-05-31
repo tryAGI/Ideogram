@@ -225,5 +225,6 @@ namespace Ideogram
         public LayerizeDesignRequestV3()
         {
         }
+
     }
 }

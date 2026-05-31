@@ -133,5 +133,6 @@ namespace Ideogram
         public ImageGenerationObjectV3()
         {
         }
+
     }
 }

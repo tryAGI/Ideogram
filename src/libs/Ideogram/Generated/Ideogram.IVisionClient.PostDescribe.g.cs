@@ -23,6 +23,20 @@ namespace Ideogram
         /// Describe an image.<br/>
         /// Supported image formats include JPEG, PNG, and WebP.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.DescribeResponse>> PostDescribeAsResponseAsync(
+
+            global::Ideogram.DescribeRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Describe<br/>
+        /// Describe an image.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.
+        /// </summary>
         /// <param name="imageFile">
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
@@ -38,6 +52,55 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
             byte[] imageFile,
+            string imageFilename,
+            global::Ideogram.DescribeModelVersion? describeModelVersion = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Describe<br/>
+        /// Describe an image.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.
+        /// </summary>
+        /// <param name="imageFile">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imageFilename">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="describeModelVersion">
+        /// The model version to use for describing images. Defaults to V_3.<br/>
+        /// Default Value: V_3
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.DescribeResponse> PostDescribeAsync(
+            global::System.IO.Stream imageFile,
+            string imageFilename,
+            global::Ideogram.DescribeModelVersion? describeModelVersion = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Describe<br/>
+        /// Describe an image.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.
+        /// </summary>
+        /// <param name="imageFile">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imageFilename">
+        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="describeModelVersion">
+        /// The model version to use for describing images. Defaults to V_3.<br/>
+        /// Default Value: V_3
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.DescribeResponse>> PostDescribeAsResponseAsync(
+            global::System.IO.Stream imageFile,
             string imageFilename,
             global::Ideogram.DescribeModelVersion? describeModelVersion = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,

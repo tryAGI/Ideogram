@@ -7,7 +7,7 @@ namespace Ideogram
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostEditImageV3SecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostGenerateDesignV4SecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,40 +21,64 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostEditImageV3SecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostGenerateDesignV4SecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostEditImageV3SecurityRequirement0,
+            {                s_PostGenerateDesignV4SecurityRequirement0,
             };
-        partial void PreparePostEditImageV3Arguments(
+        partial void PreparePostGenerateDesignV4Arguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.EditImageRequestV3 request);
-        partial void PreparePostEditImageV3Request(
+            global::Ideogram.GenerateDesignRequestV4 request);
+        partial void PreparePostGenerateDesignV4Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.EditImageRequestV3 request);
-        partial void ProcessPostEditImageV3Response(
+            global::Ideogram.GenerateDesignRequestV4 request);
+        partial void ProcessPostGenerateDesignV4Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostEditImageV3ResponseContent(
+        partial void ProcessPostGenerateDesignV4ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Edit with Ideogram 3.0<br/>
-        /// Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image<br/>
-        /// should be edited, while the prompt and chosen style can further guide the edit.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Generate an editable design with Ideogram 4.0 HTML<br/>
+        /// Experimental prototype endpoint for generating an editable V4 HTML design from a prompt.<br/>
+        /// Optionally accepts inspiration reference images to guide transferable visual style. Inspiration images are design/style references only and are not edit targets.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostEditImageV3Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.PostGenerateDesignV4200Response> PostGenerateDesignV4Async(
 
-            global::Ideogram.EditImageRequestV3 request,
+            global::Ideogram.GenerateDesignRequestV4 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __response = await PostGenerateDesignV4AsResponseAsync(
+
+                request: request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// Generate an editable design with Ideogram 4.0 HTML<br/>
+        /// Experimental prototype endpoint for generating an editable V4 HTML design from a prompt.<br/>
+        /// Optionally accepts inspiration reference images to guide transferable visual style. Inspiration images are design/style references only and are not edit targets.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PostGenerateDesignV4200Response>> PostGenerateDesignV4AsResponseAsync(
+
+            global::Ideogram.GenerateDesignRequestV4 request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -62,15 +86,15 @@ namespace Ideogram
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostEditImageV3Arguments(
+            PreparePostGenerateDesignV4Arguments(
                 httpClient: HttpClient,
                 request: request);
 
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostEditImageV3SecurityRequirements,
-                operationName: "PostEditImageV3Async");
+                securityRequirements: s_PostGenerateDesignV4SecurityRequirements,
+                operationName: "PostGenerateDesignV4Async");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -84,12 +108,13 @@ namespace Ideogram
             var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
                 clientOptions: Options,
                 requestOptions: requestOptions,
-                supportsRetry: true);
+                supportsRetry: false);
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v1/ideogram-v3/edit",
+                                path: "/v1/ideogram-v4/generate-design",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -120,199 +145,105 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 } 
             }
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            var __contentImage = new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>());
-                            __contentImage.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
-                                request.Imagename is null
-                                    ? "application/octet-stream"
-                                    : (global::System.IO.Path.GetExtension(request.Imagename) ?? string.Empty).ToLowerInvariant() switch
-                                    {
-                                        ".aac" => "audio/aac",
-                                        ".flac" => "audio/flac",
-                                        ".gif" => "image/gif",
-                                        ".jpeg" => "image/jpeg",
-                                        ".jpg" => "image/jpeg",
-                                        ".json" => "application/json",
-                                        ".m4a" => "audio/mp4",
-                                        ".mp3" => "audio/mpeg",
-                                        ".mp4" => "video/mp4",
-                                        ".mpeg" => "audio/mpeg",
-                                        ".mpga" => "audio/mpeg",
-                                        ".oga" => "audio/ogg",
-                                        ".ogg" => "audio/ogg",
-                                        ".opus" => "audio/ogg",
-                                        ".pdf" => "application/pdf",
-                                        ".png" => "image/png",
-                                        ".txt" => "text/plain",
-                                        ".wav" => "audio/wav",
-                                        ".weba" => "audio/webm",
-                                        ".webm" => "video/webm",
-                                        ".webp" => "image/webp",
-                                        _ => "application/octet-stream",
-                                    });
-                            __httpRequestContent.Add(
-                                content: __contentImage,
-                                name: "\"image\"",
-                                fileName: request.Imagename != null ? $"\"{request.Imagename}\"" : string.Empty);
-                            if (__contentImage.Headers.ContentDisposition != null)
-                            {
-                                __contentImage.Headers.ContentDisposition.FileNameStar = null;
-                            }
-                            var __contentMask = new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>());
-                            __contentMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
-                                request.Maskname is null
-                                    ? "application/octet-stream"
-                                    : (global::System.IO.Path.GetExtension(request.Maskname) ?? string.Empty).ToLowerInvariant() switch
-                                    {
-                                        ".aac" => "audio/aac",
-                                        ".flac" => "audio/flac",
-                                        ".gif" => "image/gif",
-                                        ".jpeg" => "image/jpeg",
-                                        ".jpg" => "image/jpeg",
-                                        ".json" => "application/json",
-                                        ".m4a" => "audio/mp4",
-                                        ".mp3" => "audio/mpeg",
-                                        ".mp4" => "video/mp4",
-                                        ".mpeg" => "audio/mpeg",
-                                        ".mpga" => "audio/mpeg",
-                                        ".oga" => "audio/ogg",
-                                        ".ogg" => "audio/ogg",
-                                        ".opus" => "audio/ogg",
-                                        ".pdf" => "application/pdf",
-                                        ".png" => "image/png",
-                                        ".txt" => "text/plain",
-                                        ".wav" => "audio/wav",
-                                        ".weba" => "audio/webm",
-                                        ".webm" => "video/webm",
-                                        ".webp" => "image/webp",
-                                        _ => "application/octet-stream",
-                                    });
-                            __httpRequestContent.Add(
-                                content: __contentMask,
-                                name: "\"mask\"",
-                                fileName: request.Maskname != null ? $"\"{request.Maskname}\"" : string.Empty);
-                            if (__contentMask.Headers.ContentDisposition != null)
-                            {
-                                __contentMask.Headers.ContentDisposition.FileNameStar = null;
-                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
                                 name: "\"prompt\"");
-                            if (request.MagicPrompt != default)
-                            {
 
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.MagicPrompt).HasValue ? (request.MagicPrompt).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"magic_prompt\"");
-                            } 
-                            if (request.NumImages != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
-                                    name: "\"num_images\"");
-                            } 
                             if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
-                            } 
+
+                            }
+                            if (request.MagicPromptOption != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.MagicPromptOption).HasValue ? (request.MagicPromptOption).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"magic_prompt_option\"");
+
+                            }
+                            if (request.MagicPromptSystemPromptConfigId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.MagicPromptSystemPromptConfigId ?? string.Empty),
+                                    name: "\"magic_prompt_system_prompt_config_id\"");
+
+                            }
+                            if (request.Resolution != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Resolution).HasValue ? (request.Resolution).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"resolution\"");
+
+                            }
                             if (request.RenderingSpeed != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.RenderingSpeed).HasValue ? (request.RenderingSpeed).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"rendering_speed\"");
-                            } 
-                            if (request.StyleType != default)
-                            {
 
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.StyleType).HasValue ? (request.StyleType).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"style_type\"");
-                            } 
-                            if (request.StylePreset != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.StylePreset).HasValue ? (request.StylePreset).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"style_preset\"");
-                            } 
-                            if (request.CustomModelUri != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.CustomModelUri ?? string.Empty),
-                                    name: "\"custom_model_uri\"");
-                            } 
-                            if (request.ColorPalette != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.ColorPalette.ToString() ?? string.Empty),
-                                    name: "\"color_palette\"");
-                            } 
-                            if (request.StyleCodes != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes, x => x))}]"),
-                                    name: "\"style_codes\"");
-                            } 
-                            if (request.StyleReferenceImages != default)
-                            {
-
-                                for (var __iStyleReferenceImages = 0; __iStyleReferenceImages < request.StyleReferenceImages.Count; __iStyleReferenceImages++)
-                                {
-                                    var __contentStyleReferenceImages = new global::System.Net.Http.ByteArrayContent(request.StyleReferenceImages[__iStyleReferenceImages]);
-                                __contentStyleReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-                                    __httpRequestContent.Add(
-                                        content: __contentStyleReferenceImages,
-                                        name: "\"style_reference_images\"",
-                                        fileName: $"\"file{__iStyleReferenceImages}.bin\"");
-                                    if (__contentStyleReferenceImages.Headers.ContentDisposition != null)
-                                    {
-                                        __contentStyleReferenceImages.Headers.ContentDisposition.FileNameStar = null;
-                                    }
-                                }
-                            } 
-                            if (request.CharacterReferenceImages != default)
-                            {
-
-                                for (var __iCharacterReferenceImages = 0; __iCharacterReferenceImages < request.CharacterReferenceImages.Count; __iCharacterReferenceImages++)
-                                {
-                                    var __contentCharacterReferenceImages = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImages[__iCharacterReferenceImages]);
-                                __contentCharacterReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-                                    __httpRequestContent.Add(
-                                        content: __contentCharacterReferenceImages,
-                                        name: "\"character_reference_images\"",
-                                        fileName: $"\"file{__iCharacterReferenceImages}.bin\"");
-                                    if (__contentCharacterReferenceImages.Headers.ContentDisposition != null)
-                                    {
-                                        __contentCharacterReferenceImages.Headers.ContentDisposition.FileNameStar = null;
-                                    }
-                                }
-                            } 
-                            if (request.CharacterReferenceImagesMask != default)
-                            {
-
-                                for (var __iCharacterReferenceImagesMask = 0; __iCharacterReferenceImagesMask < request.CharacterReferenceImagesMask.Count; __iCharacterReferenceImagesMask++)
-                                {
-                                    var __contentCharacterReferenceImagesMask = new global::System.Net.Http.ByteArrayContent(request.CharacterReferenceImagesMask[__iCharacterReferenceImagesMask]);
-                                __contentCharacterReferenceImagesMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-                                    __httpRequestContent.Add(
-                                        content: __contentCharacterReferenceImagesMask,
-                                        name: "\"character_reference_images_mask\"",
-                                        fileName: $"\"file{__iCharacterReferenceImagesMask}.bin\"");
-                                    if (__contentCharacterReferenceImagesMask.Headers.ContentDisposition != null)
-                                    {
-                                        __contentCharacterReferenceImagesMask.Headers.ContentDisposition.FileNameStar = null;
-                                    }
-                                }
                             }
+                            if (request.InspirationReferenceImages != default)
+                            {
+
+                                for (var __iInspirationReferenceImages = 0; __iInspirationReferenceImages < request.InspirationReferenceImages.Count; __iInspirationReferenceImages++)
+                                {
+                                    var __contentInspirationReferenceImages = new global::System.Net.Http.ByteArrayContent(request.InspirationReferenceImages[__iInspirationReferenceImages]);
+                                __contentInspirationReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                                    __httpRequestContent.Add(
+                                        content: __contentInspirationReferenceImages,
+                                        name: "\"inspiration_reference_images\"",
+                                        fileName: $"\"file{__iInspirationReferenceImages}.bin\"");
+                                    if (__contentInspirationReferenceImages.Headers.ContentDisposition != null)
+                                    {
+                                        __contentInspirationReferenceImages.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
+
+                            }
+                            if (request.InspirationReferenceModel != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.InspirationReferenceModel).HasValue ? (request.InspirationReferenceModel).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"inspiration_reference_model\"");
+
+                            }
+                            if (request.ArtifactGenerationModel != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.ArtifactGenerationModel).HasValue ? (request.ArtifactGenerationModel).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"artifact_generation_model\"");
+
+                            }
+                            if (request.Layout2imageVariant != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Layout2imageVariant).HasValue ? (request.Layout2imageVariant).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"layout2image_variant\"");
+
+                            }
+                            if (request.ResponseType != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.ResponseType).HasValue ? (request.ResponseType).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"response_type\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
+
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -321,7 +252,7 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostEditImageV3Request(
+                PreparePostGenerateDesignV4Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     request: request);
@@ -341,9 +272,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV3",
-                                methodName: "PostEditImageV3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/edit\"",
+                                operationId: "PostGenerateDesignV4",
+                                methodName: "PostGenerateDesignV4Async",
+                                pathTemplate: "\"/v1/ideogram-v4/generate-design\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -354,6 +285,8 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -364,13 +297,18 @@ namespace Ideogram
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV3",
-                                methodName: "PostEditImageV3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/edit\"",
+                                operationId: "PostGenerateDesignV4",
+                                methodName: "PostGenerateDesignV4Async",
+                                pathTemplate: "\"/v1/ideogram-v4/generate-design\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -381,6 +319,8 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -390,8 +330,7 @@ namespace Ideogram
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -400,12 +339,17 @@ namespace Ideogram
                         __attempt < __maxAttempts &&
                         global::Ideogram.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV3",
-                                methodName: "PostEditImageV3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/edit\"",
+                                operationId: "PostGenerateDesignV4",
+                                methodName: "PostGenerateDesignV4Async",
+                                pathTemplate: "\"/v1/ideogram-v4/generate-design\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -416,14 +360,15 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -442,7 +387,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostEditImageV3Response(
+                ProcessPostGenerateDesignV4Response(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -450,9 +395,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV3",
-                                methodName: "PostEditImageV3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/edit\"",
+                                operationId: "PostGenerateDesignV4",
+                                methodName: "PostGenerateDesignV4Async",
+                                pathTemplate: "\"/v1/ideogram-v4/generate-design\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -463,6 +408,8 @@ namespace Ideogram
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -470,9 +417,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostEditImageV3",
-                                methodName: "PostEditImageV3Async",
-                                pathTemplate: "\"/v1/ideogram-v3/edit\"",
+                                operationId: "PostGenerateDesignV4",
+                                methodName: "PostGenerateDesignV4Async",
+                                pathTemplate: "\"/v1/ideogram-v4/generate-design\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -483,6 +430,8 @@ namespace Ideogram
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                             // 
@@ -506,17 +455,16 @@ namespace Ideogram
                                     __exception_400 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException(
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_400,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_400,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
                             // 
                             if ((int)__response.StatusCode == 401)
@@ -539,19 +487,18 @@ namespace Ideogram
                                     __exception_401 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException(
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_401,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_401,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
-                            // Prompt or Initial Image failed the safety checks.
+                            // Prompt failed the safety check.
                             if ((int)__response.StatusCode == 422)
                             {
                                 string? __content_422 = null;
@@ -576,18 +523,17 @@ namespace Ideogram
                                     __exception_422 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException<global::Ideogram.GenerateImageSafetyError>(
+
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerateImageSafetyError>.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_422,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_422,
-                                    ResponseObject = __value_422,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_422,
+                                    responseObject: __value_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
                             // 
                             if ((int)__response.StatusCode == 429)
@@ -610,17 +556,16 @@ namespace Ideogram
                                     __exception_429 = __ex;
                                 }
 
-                                throw new global::Ideogram.ApiException(
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
-                                    statusCode: __response.StatusCode)
-                                {
-                                    ResponseBody = __content_429,
-                                    ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                    responseBody: __content_429,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
-                                        h => h.Value),
-                                };
+                                        h => h.Value));
                             }
 
                             if (__effectiveReadResponseAsString)
@@ -635,7 +580,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostEditImageV3ResponseContent(
+                                ProcessPostGenerateDesignV4ResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -644,23 +589,25 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        global::Ideogram.ImageGenerationResponseV3.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.PostGenerateDesignV4200Response.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PostGenerateDesignV4200Response>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    throw new global::Ideogram.ApiException(
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
                             else
@@ -674,9 +621,13 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        await global::Ideogram.ImageGenerationResponseV3.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.PostGenerateDesignV4200Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PostGenerateDesignV4200Response>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -693,17 +644,15 @@ namespace Ideogram
                                     {
                                     }
 
-                                    throw new global::Ideogram.ApiException(
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
 
@@ -715,120 +664,89 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Edit with Ideogram 3.0<br/>
-        /// Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image<br/>
-        /// should be edited, while the prompt and chosen style can further guide the edit.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Generate an editable design with Ideogram 4.0 HTML<br/>
+        /// Experimental prototype endpoint for generating an editable V4 HTML design from a prompt.<br/>
+        /// Optionally accepts inspiration reference images to guide transferable visual style. Inspiration images are design/style references only and are not edit targets.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
-        /// <param name="image">
-        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
-        /// </param>
-        /// <param name="imagename">
-        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
-        /// </param>
-        /// <param name="mask">
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
-        /// </param>
-        /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
-        /// </param>
         /// <param name="prompt">
-        /// The prompt used to describe the edited result.<br/>
-        /// Example: A photo of a cat.
+        /// The text prompt for editable design generation.
         /// </param>
-        /// <param name="magicPrompt">
+        /// <param name="seed">
+        /// Random seed for reproducibility.
+        /// </param>
+        /// <param name="magicPromptOption">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
-        /// <param name="numImages">
-        /// The number of images to generate.<br/>
-        /// Default Value: 1
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// <param name="resolution">
+        /// The resolutions supported for Ideogram 4.0 layout-to-image and design generation.<br/>
+        /// Example: 1024x1024
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. For Ideogram V4, `rendering_speed=FLASH`<br/>
+        /// is coming soon; requests with `rendering_speed=FLASH` currently<br/>
+        /// return a 400.
         /// </param>
-        /// <param name="styleType">
-        /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
+        /// <param name="inspirationReferenceImages">
+        /// Experimental. Up to 4 static inspiration images used as transferable visual style references for V4 layout-to-image design. Images are not edit targets and are not inserted into the generated HTML layout. Supported formats are JPEG, PNG, and WebP (max size 10MB each). Animated images are not supported.
         /// </param>
-        /// <param name="stylePreset">
-        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
-        /// Example: BRIGHT_ART
+        /// <param name="inspirationReferenceModel">
+        /// Experimental. Model to use for the inspiration vision prepass.<br/>
+        /// Default Value: claude-sonnet-4-6
         /// </param>
-        /// <param name="customModelUri">
-        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;. <br/>
-        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
-        /// Example: model/my-custom-model/version/1
+        /// <param name="artifactGenerationModel">
+        /// Experimental. Model to use for the HTML/layout and base-plate handoff generation call.<br/>
+        /// Default Value: claude-sonnet-4-6
         /// </param>
-        /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// <param name="layout2imageVariant">
+        /// Experimental. Staging only. Select a v4 layout-to-image pipeline variant.<br/>
+        /// Omit for the default v4l2i path. Rejected on production.
         /// </param>
-        /// <param name="styleCodes">
-        /// A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.<br/>
-        /// Example: [AAFF5733, 0133FF57, DE3357FF]
-        /// </param>
-        /// <param name="styleReferenceImages">
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
-        /// </param>
-        /// <param name="characterReferenceImages">
-        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
-        /// </param>
-        /// <param name="characterReferenceImagesMask">
-        /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
+        /// <param name="responseType">
+        /// layered (default): full editable design payload with text layers and HTML.<br/>
+        /// url: JSON with an expiring link to the final composited cover image.<br/>
+        /// binary: raw PNG bytes of the final composited cover image (Content-Type image/png).<br/>
+        /// html: raw HTML document of the generated layout (Content-Type text/html).<br/>
+        /// Default Value: layered
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostEditImageV3Async(
-            byte[] image,
-            string imagename,
-            byte[] mask,
-            string maskname,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.PostGenerateDesignV4200Response> PostGenerateDesignV4Async(
             string prompt,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
-            int? numImages = default,
             int? seed = default,
+            global::Ideogram.MagicPromptOption? magicPromptOption = default,
+            string? magicPromptSystemPromptConfigId = default,
+            global::Ideogram.ResolutionV4Layout? resolution = default,
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
-            global::Ideogram.StyleTypeV3? styleType = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
-            string? customModelUri = default,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
-            global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
-            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
-            global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask = default,
+            global::System.Collections.Generic.IList<byte[]>? inspirationReferenceImages = default,
+            global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel? inspirationReferenceModel = default,
+            global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel? artifactGenerationModel = default,
+            global::Ideogram.GenerateDesignRequestV4Layout2imageVariant? layout2imageVariant = default,
+            global::Ideogram.GenerateDesignRequestV4ResponseType? responseType = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.EditImageRequestV3
+            var __request = new global::Ideogram.GenerateDesignRequestV4
             {
-                Image = image,
-                Imagename = imagename,
-                Mask = mask,
-                Maskname = maskname,
                 Prompt = prompt,
-                MagicPrompt = magicPrompt,
-                NumImages = numImages,
                 Seed = seed,
+                MagicPromptOption = magicPromptOption,
+                MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId,
+                Resolution = resolution,
                 RenderingSpeed = renderingSpeed,
-                StyleType = styleType,
-                StylePreset = stylePreset,
-                CustomModelUri = customModelUri,
-                ColorPalette = colorPalette,
-                StyleCodes = styleCodes,
-                StyleReferenceImages = styleReferenceImages,
-                CharacterReferenceImages = characterReferenceImages,
-                CharacterReferenceImagesMask = characterReferenceImagesMask,
+                InspirationReferenceImages = inspirationReferenceImages,
+                InspirationReferenceModel = inspirationReferenceModel,
+                ArtifactGenerationModel = artifactGenerationModel,
+                Layout2imageVariant = layout2imageVariant,
+                ResponseType = responseType,
             };
 
-            return await PostEditImageV3Async(
+            return await PostGenerateDesignV4Async(
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

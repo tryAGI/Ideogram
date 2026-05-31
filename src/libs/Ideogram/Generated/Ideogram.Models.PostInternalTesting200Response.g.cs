@@ -39,5 +39,6 @@ namespace Ideogram
         public PostInternalTesting200Response()
         {
         }
+
     }
 }

@@ -56,5 +56,6 @@ namespace Ideogram
         public GenerateImageResponse()
         {
         }
+
     }
 }

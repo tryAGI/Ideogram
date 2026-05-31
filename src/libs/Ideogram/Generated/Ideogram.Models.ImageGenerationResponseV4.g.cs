@@ -6,10 +6,17 @@ namespace Ideogram
     /// <summary>
     /// The response which contains information about the generated image, including the download link.<br/>
     /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.<br/>
-    /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1280x800","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1280x800","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}],"created":"2000-01-23T04:56:07\u002B00:00"}
+    /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}],"created":"2000-01-23T04:56:07\u002B00:00","response_type":"url"}
     /// </summary>
     public sealed partial class ImageGenerationResponseV4
     {
+        /// <summary>
+        /// Discriminator for the postGenerateDesignV4 oneOf response. Always "url" for this shape.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("response_type")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ImageGenerationResponseV4ResponseTypeJsonConverter))]
+        public global::Ideogram.ImageGenerationResponseV4ResponseType? ResponseType { get; set; }
+
         /// <summary>
         /// The time the request was created.
         /// </summary>
@@ -39,13 +46,18 @@ namespace Ideogram
         /// <param name="data">
         /// A list of ImageObjects that contain the generated image(s).
         /// </param>
+        /// <param name="responseType">
+        /// Discriminator for the postGenerateDesignV4 oneOf response. Always "url" for this shape.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ImageGenerationResponseV4(
             global::System.DateTime created,
-            global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4> data)
+            global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4> data,
+            global::Ideogram.ImageGenerationResponseV4ResponseType? responseType)
         {
+            this.ResponseType = responseType;
             this.Created = created;
             this.Data = data ?? throw new global::System.ArgumentNullException(nameof(data));
         }
@@ -56,5 +68,6 @@ namespace Ideogram
         public ImageGenerationResponseV4()
         {
         }
+
     }
 }

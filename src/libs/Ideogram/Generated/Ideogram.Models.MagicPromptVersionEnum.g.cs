@@ -12,6 +12,14 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
+        V4Qwen3527b,
+        /// <summary>
+        /// 
+        /// </summary>
+        V4Qwen3527bPrefused,
+        /// <summary>
+        /// 
+        /// </summary>
         V0,
         /// <summary>
         /// 
@@ -59,6 +67,8 @@ namespace Ideogram
         {
             return value switch
             {
+                MagicPromptVersionEnum.V4Qwen3527b => "V4_QWEN_3_5_27B",
+                MagicPromptVersionEnum.V4Qwen3527bPrefused => "V4_QWEN_3_5_27B_PREFUSED",
                 MagicPromptVersionEnum.V0 => "V_0",
                 MagicPromptVersionEnum.V01 => "V_0_1",
                 MagicPromptVersionEnum.V02 => "V_0_2",
@@ -78,6 +88,8 @@ namespace Ideogram
         {
             return value switch
             {
+                "V4_QWEN_3_5_27B" => MagicPromptVersionEnum.V4Qwen3527b,
+                "V4_QWEN_3_5_27B_PREFUSED" => MagicPromptVersionEnum.V4Qwen3527bPrefused,
                 "V_0" => MagicPromptVersionEnum.V0,
                 "V_0_1" => MagicPromptVersionEnum.V01,
                 "V_0_2" => MagicPromptVersionEnum.V02,
