@@ -10,6 +10,8 @@ namespace Ideogram
         /// the Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio<br/>
         /// to allow best results with upscaler. The selected resolution is written to the response, not the upscaled final<br/>
         /// resolution.<br/>
+        /// `rendering_speed=FLASH` is not supported for transparent-background generation; the request will return a 400.<br/>
+        /// Use `TURBO`, `DEFAULT`, or `QUALITY` instead.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="request"></param>
@@ -27,6 +29,27 @@ namespace Ideogram
         /// the Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio<br/>
         /// to allow best results with upscaler. The selected resolution is written to the response, not the upscaled final<br/>
         /// resolution.<br/>
+        /// `rendering_speed=FLASH` is not supported for transparent-background generation; the request will return a 400.<br/>
+        /// Use `TURBO`, `DEFAULT`, or `QUALITY` instead.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ImageGenerationResponseV3>> PostGenerateImageV3TransparentAsResponseAsync(
+
+            global::Ideogram.GenerateTransparentImageRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Generate with Ideogram 3.0 (Transparent Background)<br/>
+        /// Generates images with transparent background synchronously based on a given prompt and optional parameters using<br/>
+        /// the Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio<br/>
+        /// to allow best results with upscaler. The selected resolution is written to the response, not the upscaled final<br/>
+        /// resolution.<br/>
+        /// `rendering_speed=FLASH` is not supported for transparent-background generation; the request will return a 400.<br/>
+        /// Use `TURBO`, `DEFAULT`, or `QUALITY` instead.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
         /// <param name="prompt">
@@ -53,6 +76,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
@@ -78,6 +104,7 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio = default,
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
             string? negativePrompt = default,
             int? numImages = default,
             string? customModelUri = default,

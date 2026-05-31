@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"seed":12345,"prompt":"prompt","resolution":"1280x800","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}
+    /// Example: {"seed":12345,"prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}
     /// </summary>
     public sealed partial class ImageGenerationObjectV4
     {
@@ -24,10 +24,10 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The resolutions supported for Ideogram 4.0.<br/>
-        /// Example: 1280x800
+        /// The 2K resolutions supported for Ideogram 4.0 image generation.<br/>
+        /// Example: 2048x2048
         /// </summary>
-        /// <example>1280x800</example>
+        /// <example>2048x2048</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -62,8 +62,8 @@ namespace Ideogram
         /// The prompt used for the generation. This may be different from the original prompt.
         /// </param>
         /// <param name="resolution">
-        /// The resolutions supported for Ideogram 4.0.<br/>
-        /// Example: 1280x800
+        /// The 2K resolutions supported for Ideogram 4.0 image generation.<br/>
+        /// Example: 2048x2048
         /// </param>
         /// <param name="isImageSafe">
         /// Whether this request passes safety checks. If false, the url field will be empty.
@@ -99,5 +99,6 @@ namespace Ideogram
         public ImageGenerationObjectV4()
         {
         }
+
     }
 }

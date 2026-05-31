@@ -21,6 +21,19 @@ namespace Ideogram
         /// Train a custom Ideogram v3 model<br/>
         /// Start training a custom Ideogram v3 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.TrainDatasetModelResponse>> TrainModelV3AsResponseAsync(
+
+            global::Ideogram.TrainModelV3Request request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Train a custom Ideogram v3 model<br/>
+        /// Start training a custom Ideogram v3 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.
+        /// </summary>
         /// <param name="datasetId">
         /// ID of the dataset to train the model from.<br/>
         /// Example: abc123

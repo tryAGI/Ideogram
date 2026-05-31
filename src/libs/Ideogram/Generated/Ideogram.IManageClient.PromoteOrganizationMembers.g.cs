@@ -22,6 +22,20 @@ namespace Ideogram
         /// Promote members to OWNER role in a specific organization
         /// </summary>
         /// <param name="organizationId"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.OrganizationMemberOperationResponse>> PromoteOrganizationMembersAsResponseAsync(
+            string organizationId,
+
+            global::Ideogram.PromoteOrganizationMembersRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Promote members to OWNER role in a specific organization
+        /// </summary>
+        /// <param name="organizationId"></param>
         /// <param name="members">
         /// List of organization members to promote to OWNER role<br/>
         /// Default Value: []

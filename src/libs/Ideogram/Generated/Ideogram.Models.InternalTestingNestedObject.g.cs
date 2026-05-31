@@ -48,5 +48,6 @@ namespace Ideogram
         public InternalTestingNestedObject()
         {
         }
+
     }
 }

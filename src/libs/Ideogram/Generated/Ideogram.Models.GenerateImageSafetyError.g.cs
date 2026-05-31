@@ -43,5 +43,6 @@ namespace Ideogram
         public GenerateImageSafetyError()
         {
         }
+
     }
 }

@@ -76,6 +76,7 @@ namespace Ideogram.JsonConverters
             {
                 try
                 {
+
                     var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ColorPaletteWithPresetName), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ColorPaletteWithPresetName> ??
                                    throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ColorPaletteWithPresetName).Name}");
                     colorPaletteWithPresetName = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);
@@ -86,9 +87,13 @@ namespace Ideogram.JsonConverters
                 catch (global::System.InvalidOperationException)
                 {
                 }
+            }
 
+            if (colorPaletteWithPresetName == null && colorPaletteWithMembers == null)
+            {
                 try
                 {
+
                     var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ColorPaletteWithMembers), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ColorPaletteWithMembers> ??
                                    throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ColorPaletteWithMembers).Name}");
                     colorPaletteWithMembers = global::System.Text.Json.JsonSerializer.Deserialize(__rawJson, typeInfo);

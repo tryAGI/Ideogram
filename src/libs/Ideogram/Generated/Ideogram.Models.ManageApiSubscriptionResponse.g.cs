@@ -120,5 +120,6 @@ namespace Ideogram
         public ManageApiSubscriptionResponse()
         {
         }
+
     }
 }

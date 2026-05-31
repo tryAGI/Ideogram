@@ -12,6 +12,8 @@ namespace Ideogram
     /// - V_3_0: Model 3.0 March 26<br/>
     /// - V_3_1: Model 3.0 Latest<br/>
     /// - V_4_0: Model 4.0<br/>
+    /// - V_4_D: Model 4.0 Layered Design (vector-text path; gated by the access_to_v4 feature flag)<br/>
+    /// - V_4_LAYOUT2IMAGE: Model 4.0 Layout to Image (HTML layout rasterized as IMAGE_TO_IMAGE conditioning; gated by the access_to_v4 feature flag)<br/>
     /// - AUTO: Automatically select the best model version based on the request.<br/>
     /// Example: V_0_3
     /// </summary>
@@ -73,6 +75,14 @@ namespace Ideogram
         /// Model 4.0
         /// </summary>
         V40,
+        /// <summary>
+        /// Model 4.0 Layered Design (vector-text path; gated by the access_to_v4 feature flag)
+        /// </summary>
+        V4d,
+        /// <summary>
+        /// Model 4.0 Layout to Image (HTML layout rasterized as IMAGE_TO_IMAGE conditioning; gated by the access_to_v4 feature flag)
+        /// </summary>
+        V4Layout2image,
     }
 
     /// <summary>
@@ -101,6 +111,8 @@ namespace Ideogram
                 ModelVersion.V30 => "V_3_0",
                 ModelVersion.V31 => "V_3_1",
                 ModelVersion.V40 => "V_4_0",
+                ModelVersion.V4d => "V_4_D",
+                ModelVersion.V4Layout2image => "V_4_LAYOUT2IMAGE",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -125,6 +137,8 @@ namespace Ideogram
                 "V_3_0" => ModelVersion.V30,
                 "V_3_1" => ModelVersion.V31,
                 "V_4_0" => ModelVersion.V40,
+                "V_4_D" => ModelVersion.V4d,
+                "V_4_LAYOUT2IMAGE" => ModelVersion.V4Layout2image,
                 _ => null,
             };
         }

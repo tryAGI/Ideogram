@@ -85,5 +85,6 @@ namespace Ideogram
         public ApiProfileApiKey()
         {
         }
+
     }
 }

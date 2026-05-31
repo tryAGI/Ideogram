@@ -1,0 +1,53 @@
+#nullable enable
+
+namespace Ideogram.JsonConverters
+{
+    /// <inheritdoc />
+    public sealed class GenerateDesignRequestV4InspirationReferenceModelJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel>
+    {
+        /// <inheritdoc />
+        public override global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel Read(
+            ref global::System.Text.Json.Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            switch (reader.TokenType)
+            {
+                case global::System.Text.Json.JsonTokenType.String:
+                {
+                    var stringValue = reader.GetString();
+                    if (stringValue != null)
+                    {
+                        return global::Ideogram.GenerateDesignRequestV4InspirationReferenceModelExtensions.ToEnum(stringValue) ?? default;
+                    }
+                    
+                    break;
+                }
+                case global::System.Text.Json.JsonTokenType.Number:
+                {
+                    var numValue = reader.GetInt32();
+                    return (global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel)numValue;
+                }
+                case global::System.Text.Json.JsonTokenType.Null:
+                {
+                    return default(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel);
+                }
+                default:
+                    throw new global::System.ArgumentOutOfRangeException(nameof(reader));
+            }
+
+            return default;
+        }
+
+        /// <inheritdoc />
+        public override void Write(
+            global::System.Text.Json.Utf8JsonWriter writer,
+            global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel value,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
+
+            writer.WriteStringValue(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModelExtensions.ToValueString(value));
+        }
+    }
+}

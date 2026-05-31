@@ -63,6 +63,35 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
+            var __response = await PostInternalTestingAsResponseAsync(
+
+                request: request,
+                xTestHeader: xTestHeader,
+                xTestHeader2: xTestHeader2,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// Testing<br/>
+        /// Just a testing endpoint
+        /// </summary>
+        /// <param name="xTestHeader"></param>
+        /// <param name="xTestHeader2"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PostInternalTesting200Response>> PostInternalTestingAsResponseAsync(
+
+            global::Ideogram.InternalTestingRequest request,
+            string? xTestHeader = default,
+            string? xTestHeader2 = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
             request = request ?? throw new global::System.ArgumentNullException(nameof(request));
 
             PrepareArguments(
@@ -91,10 +120,11 @@ namespace Ideogram
             var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
                 clientOptions: Options,
                 requestOptions: requestOptions,
-                supportsRetry: true);
+                supportsRetry: false);
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
+
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/internal-testing",
                                 baseUri: HttpClient.BaseAddress);
@@ -137,6 +167,7 @@ namespace Ideogram
                 __httpRequest.Headers.TryAddWithoutValidation("X-Test-Header-2", xTestHeader2.ToString());
             }
 
+
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
                             if (xTestHeader != default)
                             {
@@ -144,21 +175,24 @@ namespace Ideogram
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(xTestHeader ?? string.Empty),
                                     name: "\"X-Test-Header\"");
-                            } 
+
+                            }
                             if (xTestHeader2 != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(xTestHeader2 ?? string.Empty),
                                     name: "\"X-Test-Header-2\"");
-                            } 
+
+                            }
                             if (request.XPosition != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.XPosition, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"x_position\"");
-                            } 
+
+                            }
                             if (request.ImageFile != default)
                             {
 
@@ -199,7 +233,8 @@ namespace Ideogram
                                 {
                                     __contentImageFile.Headers.ContentDisposition.FileNameStar = null;
                                 }
-                            } 
+
+                            }
                             if (request.AnotherImageFile != default)
                             {
 
@@ -240,67 +275,79 @@ namespace Ideogram
                                 {
                                     __contentAnotherImageFile.Headers.ContentDisposition.FileNameStar = null;
                                 }
-                            } 
+
+                            }
                             if (request.SomeText != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.SomeText ?? string.Empty),
                                     name: "\"some_text\"");
-                            } 
+
+                            }
                             if (request.NestedObject != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.NestedObject.ToJson(JsonSerializerContext)),
                                     name: "\"nested_object\"");
-                            } 
+
+                            }
                             if (request.NestedObjectRequiredFields != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(request.NestedObjectRequiredFields.ToJson(JsonSerializerContext)),
                                     name: "\"nested_object_required_fields\"");
-                            } 
+
+                            }
                             if (request.DateTypeField != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.DateTypeField).HasValue ? (request.DateTypeField).GetValueOrDefault().ToString("yyyy-MM-dd") : string.Empty),
                                     name: "\"date_type_field\"");
+
                             }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.RequiredDateTypeField.ToString("yyyy-MM-dd")),
                                 name: "\"required_date_type_field\"");
+
                             if (request.DateTimeTypeField != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.DateTimeTypeField).HasValue ? (request.DateTimeTypeField).GetValueOrDefault().ToString("yyyy-MM-ddTHH:mm:ssZ") : string.Empty),
                                     name: "\"date_time_type_field\"");
-                            } 
+
+                            }
                             if (request.RepeatedPrimitiveField != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedPrimitiveField, x => x))}]"),
                                     name: "\"repeated_primitive_field\"");
-                            } 
+
+                            }
                             if (request.RepeatedComplexField != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.RepeatedComplexField, x => x.ToJson(JsonSerializerContext)))}]"),
                                     name: "\"repeated_complex_field\"");
-                            } 
+
+                            }
                             if (request.EnumTypeField != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.EnumTypeField).HasValue ? (request.EnumTypeField).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"enum_type_field\"");
+
                             }
+
                             __httpRequest.Content = __httpRequestContent;
+
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -344,6 +391,8 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                     try
                     {
@@ -354,6 +403,11 @@ namespace Ideogram
                     }
                     catch (global::System.Net.Http.HttpRequestException __exception)
                     {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
                         var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
@@ -371,6 +425,8 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         if (!__willRetry)
                         {
@@ -380,8 +436,7 @@ namespace Ideogram
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -390,6 +445,11 @@ namespace Ideogram
                         __attempt < __maxAttempts &&
                         global::Ideogram.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
                     {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
@@ -406,14 +466,15 @@ namespace Ideogram
                                 attempt: __attempt,
                                 maxAttempts: __maxAttempts,
                                 willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                         __response.Dispose();
                         __response = null;
                         __httpRequest.Dispose();
                         __httpRequest = null;
                         await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
-                            clientOptions: Options,
-                            requestOptions: requestOptions,
+                            retryDelay: __retryDelay,
                             cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
                         continue;
                     }
@@ -453,6 +514,8 @@ namespace Ideogram
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
                 else
@@ -473,6 +536,8 @@ namespace Ideogram
                                 attempt: __attemptNumber,
                                 maxAttempts: __maxAttempts,
                                 willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
 
@@ -497,23 +562,25 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    return
-                                        global::Ideogram.PostInternalTesting200Response.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.PostInternalTesting200Response.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PostInternalTesting200Response>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    throw new global::Ideogram.ApiException(
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
                             else
@@ -527,9 +594,13 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    return
-                                        await global::Ideogram.PostInternalTesting200Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.PostInternalTesting200Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PostInternalTesting200Response>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
                                 }
                                 catch (global::System.Exception __ex)
                                 {
@@ -546,17 +617,15 @@ namespace Ideogram
                                     {
                                     }
 
-                                    throw new global::Ideogram.ApiException(
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
                                         message: __content ?? __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
-                                        statusCode: __response.StatusCode)
-                                    {
-                                        ResponseBody = __content,
-                                        ResponseHeaders = global::System.Linq.Enumerable.ToDictionary(
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                             __response.Headers,
                                             h => h.Key,
-                                            h => h.Value),
-                                    };
+                                            h => h.Value));
                                 }
                             }
 

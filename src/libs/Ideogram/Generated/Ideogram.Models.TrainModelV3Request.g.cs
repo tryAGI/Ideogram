@@ -61,5 +61,6 @@ namespace Ideogram
         public TrainModelV3Request()
         {
         }
+
     }
 }

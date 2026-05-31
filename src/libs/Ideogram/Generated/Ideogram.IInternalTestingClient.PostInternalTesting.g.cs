@@ -27,6 +27,23 @@ namespace Ideogram
         /// </summary>
         /// <param name="xTestHeader"></param>
         /// <param name="xTestHeader2"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PostInternalTesting200Response>> PostInternalTestingAsResponseAsync(
+
+            global::Ideogram.InternalTestingRequest request,
+            string? xTestHeader = default,
+            string? xTestHeader2 = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Testing<br/>
+        /// Just a testing endpoint
+        /// </summary>
+        /// <param name="xTestHeader"></param>
+        /// <param name="xTestHeader2"></param>
         /// <param name="xPosition"></param>
         /// <param name="imageFile">
         /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
