@@ -27,6 +27,22 @@ namespace Ideogram
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ImageGenerationResponseV3>> PostRemixImageV3AsResponseAsync(
+
+            global::Ideogram.RemixImageRequestV3 request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remix with Ideogram 3.0<br/>
+        /// Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.<br/>
+        /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
         /// <param name="image">
         /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
@@ -59,6 +75,9 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
@@ -112,6 +131,7 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio = default,
             global::Ideogram.RenderingSpeed? renderingSpeed = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
             string? negativePrompt = default,
             int? numImages = default,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
@@ -122,6 +142,247 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remix with Ideogram 3.0<br/>
+        /// Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.<br/>
+        /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
+        /// <param name="image">
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imagename">
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt to use to generate the image.<br/>
+        /// Example: A photo of a cat
+        /// </param>
+        /// <param name="imageWeight">
+        /// Default Value: 50<br/>
+        /// Example: 50
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
+        /// Example: 12345
+        /// </param>
+        /// <param name="resolution">
+        /// The resolutions supported for Ideogram 3.0.<br/>
+        /// Example: 1280x800
+        /// </param>
+        /// <param name="aspectRatio">
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use.<br/>
+        /// Default Value: DEFAULT
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
+        /// <param name="negativePrompt">
+        /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
+        /// to descriptions in the negative prompt.<br/>
+        /// Example: brush strokes, painting
+        /// </param>
+        /// <param name="numImages">
+        /// Number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
+        /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
+        /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;.<br/>
+        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="styleReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'style_reference_images' file parts.
+        /// </param>
+        /// <param name="characterReferenceImages">
+        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="characterReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'character_reference_images' file parts.
+        /// </param>
+        /// <param name="characterReferenceImagesMask">
+        /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="characterReferenceImagesMaskFileNames">
+        /// Optional file names to use for the multipart 'character_reference_images_mask' file parts.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.ImageGenerationResponseV3> PostRemixImageV3Async(
+            global::System.IO.Stream image,
+            string imagename,
+            string prompt,
+            int? imageWeight = default,
+            int? seed = default,
+            global::Ideogram.ResolutionV3? resolution = default,
+            global::Ideogram.AspectRatioV3? aspectRatio = default,
+            global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
+            string? negativePrompt = default,
+            int? numImages = default,
+            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
+            global::Ideogram.StyleTypeV3? styleType = default,
+            global::Ideogram.StylePresetV3? stylePreset = default,
+            string? customModelUri = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? styleReferenceImages = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? styleReferenceImagesFileNames = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? characterReferenceImages = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? characterReferenceImagesFileNames = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? characterReferenceImagesMask = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? characterReferenceImagesMaskFileNames = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remix with Ideogram 3.0<br/>
+        /// Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.<br/>
+        /// Input images are cropped to the chosen aspect ratio before being remixed.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
+        /// <param name="image">
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="imagename">
+        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt to use to generate the image.<br/>
+        /// Example: A photo of a cat
+        /// </param>
+        /// <param name="imageWeight">
+        /// Default Value: 50<br/>
+        /// Example: 50
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
+        /// Example: 12345
+        /// </param>
+        /// <param name="resolution">
+        /// The resolutions supported for Ideogram 3.0.<br/>
+        /// Example: 1280x800
+        /// </param>
+        /// <param name="aspectRatio">
+        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use.<br/>
+        /// Default Value: DEFAULT
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
+        /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
+        /// <param name="negativePrompt">
+        /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
+        /// to descriptions in the negative prompt.<br/>
+        /// Example: brush strokes, painting
+        /// </param>
+        /// <param name="numImages">
+        /// Number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
+        /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with.<br/>
+        /// Default Value: GENERAL<br/>
+        /// Example: GENERAL
+        /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
+        /// Example: BRIGHT_ART
+        /// </param>
+        /// <param name="customModelUri">
+        /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;.<br/>
+        /// When provided, the model version and style will be resolved from this URI, and style_type is not required.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="styleReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'style_reference_images' file parts.
+        /// </param>
+        /// <param name="characterReferenceImages">
+        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="characterReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'character_reference_images' file parts.
+        /// </param>
+        /// <param name="characterReferenceImagesMask">
+        /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
+        /// </param>
+        /// <param name="characterReferenceImagesMaskFileNames">
+        /// Optional file names to use for the multipart 'character_reference_images_mask' file parts.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ImageGenerationResponseV3>> PostRemixImageV3AsResponseAsync(
+            global::System.IO.Stream image,
+            string imagename,
+            string prompt,
+            int? imageWeight = default,
+            int? seed = default,
+            global::Ideogram.ResolutionV3? resolution = default,
+            global::Ideogram.AspectRatioV3? aspectRatio = default,
+            global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
+            string? negativePrompt = default,
+            int? numImages = default,
+            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
+            global::Ideogram.StyleTypeV3? styleType = default,
+            global::Ideogram.StylePresetV3? stylePreset = default,
+            string? customModelUri = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? styleReferenceImages = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? styleReferenceImagesFileNames = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? characterReferenceImages = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? characterReferenceImagesFileNames = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? characterReferenceImagesMask = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? characterReferenceImagesMaskFileNames = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

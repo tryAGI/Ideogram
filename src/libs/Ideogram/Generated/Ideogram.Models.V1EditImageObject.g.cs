@@ -132,5 +132,6 @@ namespace Ideogram
         public V1EditImageObject()
         {
         }
+
     }
 }

@@ -17,7 +17,7 @@
       "Slug": "post-batch",
       "Description": "Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. \nGenerates images using large batches of user prompt inputs. Internal use only (feature flagged).",
       "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.InternalBatchRequest\u003E(\n    @\u0022{\n  \u0022\u0022user_prompts\u0022\u0022: [\n    \u0022\u0022a cat\u0022\u0022,\n    \u0022\u0022a dog\u0022\u0022\n  ],\n  \u0022\u0022sampling_request_params\u0022\u0022: {\n    \u0022\u0022aspect_ratio\u0022\u0022: \u0022\u00221x1\u0022\u0022,\n    \u0022\u0022style_type\u0022\u0022: \u0022\u0022GENERAL\u0022\u0022,\n    \u0022\u0022magic_prompt_version\u0022\u0022: \u0022\u0022V_0\u0022\u0022,\n    \u0022\u0022seed\u0022\u0022: 12345,\n    \u0022\u0022negative_prompt\u0022\u0022: \u0022\u0022brush strokes, painting\u0022\u0022,\n    \u0022\u0022magic_prompt_option\u0022\u0022: \u0022\u0022ON\u0022\u0022,\n    \u0022\u0022model\u0022\u0022: \u0022\u0022V_2_TURBO\u0022\u0022,\n    \u0022\u0022resolution\u0022\u0022: \u0022\u00221280x800\u0022\u0022,\n    \u0022\u0022num_images\u0022\u0022: 1,\n    \u0022\u0022color_palette\u0022\u0022: {\n      \u0022\u0022name\u0022\u0022: \u0022\u0022PASTEL\u0022\u0022\n    }\n  },\n  \u0022\u0022experiment_variant\u0022\u0022: \u0022\u0022MAGIC_PROMPT_NO_TEXT\u0022\u0022\n}\u0022)!;\n\nvar response = await client.Batch.PostBatchAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022job_id\u0022: \u0022job_id\u0022\n// }",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.InternalBatchRequest\u003E(\n    @\u0022{\n  \u0022\u0022user_prompts\u0022\u0022: [\n    \u0022\u0022a cat\u0022\u0022,\n    \u0022\u0022a dog\u0022\u0022\n  ],\n  \u0022\u0022sampling_request_params\u0022\u0022: {\n    \u0022\u0022magic_prompt_system_prompt_config_id\u0022\u0022: \u0022\u0022magic_prompt_system_prompt_config_id\u0022\u0022,\n    \u0022\u0022aspect_ratio\u0022\u0022: \u0022\u00221x1\u0022\u0022,\n    \u0022\u0022style_type\u0022\u0022: \u0022\u0022GENERAL\u0022\u0022,\n    \u0022\u0022magic_prompt_version\u0022\u0022: \u0022\u0022V_0\u0022\u0022,\n    \u0022\u0022seed\u0022\u0022: 12345,\n    \u0022\u0022negative_prompt\u0022\u0022: \u0022\u0022brush strokes, painting\u0022\u0022,\n    \u0022\u0022magic_prompt_option\u0022\u0022: \u0022\u0022ON\u0022\u0022,\n    \u0022\u0022model\u0022\u0022: \u0022\u0022V_2_TURBO\u0022\u0022,\n    \u0022\u0022resolution\u0022\u0022: \u0022\u00221280x800\u0022\u0022,\n    \u0022\u0022num_images\u0022\u0022: 1,\n    \u0022\u0022color_palette\u0022\u0022: {\n      \u0022\u0022name\u0022\u0022: \u0022\u0022PASTEL\u0022\u0022\n    }\n  },\n  \u0022\u0022experiment_variant\u0022\u0022: \u0022\u0022MAGIC_PROMPT_NO_TEXT\u0022\u0022\n}\u0022)!;\n\nvar response = await client.Batch.PostBatchAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022job_id\u0022: \u0022job_id\u0022\n// }",
       "Format": "sdk",
       "OperationId": "post_batch",
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
@@ -79,6 +79,17 @@
     },
     {
       "Order": 8,
+      "Title": "Poll a generation",
+      "Slug": "get-generation",
+      "Description": "Retrieves the current status of an asynchronous generation, and its results once complete. Use the \u0060generation_id\u0060 returned by the async generation endpoint. While the generation is \u0060pending\u0060 or has \u0060failed\u0060, the response contains only \u0060generation_id\u0060, \u0060status\u0060, and \u0060created\u0060; the \u0060response_type\u0060 and \u0060data\u0060 fields are present only once \u0060status\u0060 is \u0060completed\u0060.",
+      "Language": "http",
+      "Code": "### Poll a generation\n# @name get_generation\nGET {{host}}/v1/generations/{{generation_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Generation status retrieved successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid request ID provided.\n# 401\n# Description: Not authorized.\n# 404\n# Description: Request not found.\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "get_generation",
+      "Setup": null
+    },
+    {
+      "Order": 9,
       "Title": "Edit (legacy)",
       "Slug": "post-edit-image",
       "Description": "Edit a given image synchronously using the provided mask. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style type can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -89,73 +100,139 @@
       "Setup": null
     },
     {
-      "Order": 9,
-      "Title": "Edit with Ideogram 3.0",
-      "Slug": "post-edit-image-v3",
-      "Description": "Edit a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
-      "Language": "http",
-      "Code": "### Edit with Ideogram 3.0\n# @name post_edit_image_v3\nPOST {{host}}/v1/ideogram-v3/edit\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image edits generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt or Initial Image failed the safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
-      "Format": "http",
-      "OperationId": "post_edit_image_v3",
-      "Setup": null
-    },
-    {
       "Order": 10,
       "Title": "Generate a design from a text prompt with text detection and correction",
       "Slug": "post-generate-design-v3",
       "Description": "Generates a design synchronously from a text prompt using the Ideogram 3.0 model, then detects and corrects text layers within the generated image.\n\nThe response includes the generated image URL along with detected text layers (with font, size, color, position) and image asset layers.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
       "Language": "http",
-      "Code": "### Generate a design from a text prompt with text detection and correction\n# @name post_generate_design_v3\nPOST {{host}}/v1/ideogram-v3/generate-design\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022A birthday card saying \\u0027Happy Birthday\\u0027\u0022,\n  \u0022seed\u0022: 12345,\n  \u0022resolution\u0022: \u00221280x800\u0022,\n  \u0022aspect_ratio\u0022: \u00221x3\u0022,\n  \u0022rendering_speed\u0022: \u0022DEFAULT\u0022,\n  \u0022magic_prompt\u0022: \u0022ON\u0022,\n  \u0022negative_prompt\u0022: \u0022brush strokes, painting\u0022,\n  \u0022num_images\u0022: 1,\n  \u0022color_palette\u0022: {\n    \u0022name\u0022: \u0022PASTEL\u0022\n  },\n  \u0022style_codes\u0022: [\n    \u0022AAFF5733\u0022,\n    \u00220133FF57\u0022,\n    \u0022DE3357FF\u0022\n  ],\n  \u0022style_type\u0022: \u0022GENERAL\u0022,\n  \u0022style_preset\u0022: \u0022BRIGHT_ART\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/1\u0022,\n  \u0022font_file_h1\u0022: \u0022\u0022,\n  \u0022font_name_h1\u0022: \u0022Ubuntu-Bold.ttf\u0022,\n  \u0022font_file_h2\u0022: \u0022\u0022,\n  \u0022font_name_h2\u0022: \u0022string\u0022,\n  \u0022font_file_body\u0022: \u0022\u0022,\n  \u0022font_name_body\u0022: \u0022string\u0022,\n  \u0022font_file_small\u0022: \u0022\u0022,\n  \u0022font_name_small\u0022: \u0022string\u0022,\n  \u0022style_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022reference_asset_images\u0022: [\n    \u0022\u0022\n  ]\n}\n\n## Responses\n# 200\n# Description: Design(s) generated successfully with text correction.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Code": "### Generate a design from a text prompt with text detection and correction\n# @name post_generate_design_v3\nPOST {{host}}/v1/ideogram-v3/generate-design\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022A birthday card saying \\u0027Happy Birthday\\u0027\u0022,\n  \u0022seed\u0022: 12345,\n  \u0022resolution\u0022: \u00221280x800\u0022,\n  \u0022aspect_ratio\u0022: \u00221x3\u0022,\n  \u0022rendering_speed\u0022: \u0022DEFAULT\u0022,\n  \u0022magic_prompt\u0022: \u0022ON\u0022,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022negative_prompt\u0022: \u0022brush strokes, painting\u0022,\n  \u0022num_images\u0022: 1,\n  \u0022color_palette\u0022: {\n    \u0022name\u0022: \u0022PASTEL\u0022\n  },\n  \u0022style_codes\u0022: [\n    \u0022AAFF5733\u0022,\n    \u00220133FF57\u0022,\n    \u0022DE3357FF\u0022\n  ],\n  \u0022style_type\u0022: \u0022GENERAL\u0022,\n  \u0022style_preset\u0022: \u0022BRIGHT_ART\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/1\u0022,\n  \u0022font_file_h1\u0022: \u0022\u0022,\n  \u0022font_name_h1\u0022: \u0022Ubuntu-Bold.ttf\u0022,\n  \u0022font_file_h2\u0022: \u0022\u0022,\n  \u0022font_name_h2\u0022: \u0022string\u0022,\n  \u0022font_file_body\u0022: \u0022\u0022,\n  \u0022font_name_body\u0022: \u0022string\u0022,\n  \u0022font_file_small\u0022: \u0022\u0022,\n  \u0022font_name_small\u0022: \u0022string\u0022,\n  \u0022style_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022reference_asset_images\u0022: [\n    \u0022\u0022\n  ]\n}\n\n## Responses\n# 200\n# Description: Design(s) generated successfully with text correction.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
       "Format": "http",
       "OperationId": "post_generate_design_v3",
       "Setup": null
     },
     {
       "Order": 11,
+      "Title": "Generate an editable design with Ideogram 4.0 HTML",
+      "Slug": "post-generate-design-v4",
+      "Description": "Experimental prototype endpoint for generating an editable V4 HTML design from a prompt.\n\nOptionally accepts inspiration reference images to guide transferable visual style. Inspiration images are design/style references only and are not edit targets.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Generate an editable design with Ideogram 4.0 HTML\n# @name post_generate_design_v4\nPOST {{host}}/v1/ideogram-v4/generate-design\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json, image/png, text/html\n\n{\n  \u0022prompt\u0022: \u0022string\u0022,\n  \u0022seed\u0022: 0,\n  \u0022magic_prompt_option\u0022: \u0022ON\u0022,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022resolution\u0022: \u00221024x1024\u0022,\n  \u0022rendering_speed\u0022: {},\n  \u0022inspiration_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022inspiration_reference_model\u0022: \u0022claude-sonnet-4-6\u0022,\n  \u0022artifact_generation_model\u0022: \u0022claude-sonnet-4-6\u0022,\n  \u0022layout2image_variant\u0022: \u0022opus_4_7\u0022,\n  \u0022response_type\u0022: \u0022layered\u0022\n}\n\n## Responses\n# 200\n# Description: Design(s) generated successfully.\n# Content-Type: application/json, image/png, text/html\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_generate_design_v4",
+      "Setup": null
+    },
+    {
+      "Order": 12,
+      "Title": "Generate an editable V4 HTML design asynchronously via webhook",
+      "Slug": "post-generate-design-v4-async",
+      "Description": "Accepts an Ideogram 4.0 HTML design request for asynchronous processing and\nreturns immediately with a request_id. The generated design is POSTed to the\nsupplied \u0060webhook_url\u0060 once ready.",
+      "Language": "http",
+      "Code": "### Generate an editable V4 HTML design asynchronously via webhook\n# @name post_generate_design_v4_async\nPOST {{host}}/v1/ideogram-v4/async/generate-design?webhook_url={{webhook_url}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022string\u0022,\n  \u0022seed\u0022: 0,\n  \u0022magic_prompt_option\u0022: \u0022ON\u0022,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022resolution\u0022: \u00221024x1024\u0022,\n  \u0022rendering_speed\u0022: {},\n  \u0022inspiration_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022inspiration_reference_model\u0022: \u0022claude-sonnet-4-6\u0022,\n  \u0022artifact_generation_model\u0022: \u0022claude-sonnet-4-6\u0022,\n  \u0022layout2image_variant\u0022: \u0022opus_4_7\u0022,\n  \u0022response_type\u0022: \u0022layered\u0022\n}\n\n## Responses\n# 200\n# Description: Request accepted for asynchronous delivery.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_generate_design_v4_async",
+      "Setup": null
+    },
+    {
+      "Order": 13,
       "Title": "Generate (legacy)",
       "Slug": "post-generate-image",
       "Description": "Generates images synchronously based on a given prompt and optional parameters.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
       "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.GenerateImageRequest\u003E(\n    @\u0022{\n  \u0022\u0022image_request\u0022\u0022: {\n    \u0022\u0022aspect_ratio\u0022\u0022: \u0022\u0022ASPECT_10_16\u0022\u0022,\n    \u0022\u0022magic_prompt_option\u0022\u0022: \u0022\u0022AUTO\u0022\u0022,\n    \u0022\u0022model\u0022\u0022: \u0022\u0022V_2\u0022\u0022,\n    \u0022\u0022prompt\u0022\u0022: \u0022\u0022A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.\u0022\u0022\n  }\n}\u0022)!;\n\nvar response = await client.Generate.PostGenerateImageAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022data\u0022: [\n//     {\n//       \u0022style_type\u0022: \u0022REALISTIC\u0022,\n//       \u0022seed\u0022: 12345,\n//       \u0022upscaled_resolution\u0022: \u00224096x4096\u0022,\n//       \u0022prompt\u0022: \u0022A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g\u0022,\n//       \u0022is_image_safe\u0022: true\n//     },\n//     {\n//       \u0022style_type\u0022: \u0022REALISTIC\u0022,\n//       \u0022seed\u0022: 12345,\n//       \u0022upscaled_resolution\u0022: \u00224096x4096\u0022,\n//       \u0022prompt\u0022: \u0022A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g\u0022,\n//       \u0022is_image_safe\u0022: true\n//     }\n//   ],\n//   \u0022created\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022\n// }",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.GenerateImageRequest\u003E(\n    @\u0022{\n  \u0022\u0022image_request\u0022\u0022: {\n    \u0022\u0022aspect_ratio\u0022\u0022: \u0022\u0022ASPECT_10_16\u0022\u0022,\n    \u0022\u0022magic_prompt_option\u0022\u0022: \u0022\u0022AUTO\u0022\u0022,\n    \u0022\u0022model\u0022\u0022: \u0022\u0022V_2\u0022\u0022,\n    \u0022\u0022prompt\u0022\u0022: \u0022\u0022A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.\u0022\u0022\n  }\n}\u0022)!;\n\nvar response = await client.Generate.PostGenerateImageAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022data\u0022: [\n//     {\n//       \u0022style_type\u0022: \u0022REALISTIC\u0022,\n//       \u0022seed\u0022: 12345,\n//       \u0022upscaled_resolution\u0022: \u00224096x4096\u0022,\n//       \u0022prompt\u0022: \u0022A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g\u0022,\n//       \u0022is_image_safe\u0022: true\n//     },\n//     {\n//       \u0022style_type\u0022: \u0022REALISTIC\u0022,\n//       \u0022seed\u0022: 12345,\n//       \u0022upscaled_resolution\u0022: \u00224096x4096\u0022,\n//       \u0022prompt\u0022: \u0022A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g\u0022,\n//       \u0022is_image_safe\u0022: true\n//     }\n//   ],\n//   \u0022created\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//   \u0022request_id\u0022: \u0022request_id\u0022\n// }",
       "Format": "sdk",
       "OperationId": "post_generate_image",
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 12,
+      "Order": 14,
       "Title": "Generate with Ideogram 3.0",
       "Slug": "post-generate-image-v3",
       "Description": "Generates images synchronously based on a given prompt and optional parameters using the Ideogram 3.0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
       "Language": "http",
-      "Code": "### Generate with Ideogram 3.0\n# @name post_generate_image_v3\nPOST {{host}}/v1/ideogram-v3/generate\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022A photo of a cat\u0022,\n  \u0022seed\u0022: 12345,\n  \u0022resolution\u0022: \u00221280x800\u0022,\n  \u0022aspect_ratio\u0022: \u00221x3\u0022,\n  \u0022rendering_speed\u0022: \u0022DEFAULT\u0022,\n  \u0022magic_prompt\u0022: \u0022ON\u0022,\n  \u0022negative_prompt\u0022: \u0022brush strokes, painting\u0022,\n  \u0022num_images\u0022: 1,\n  \u0022color_palette\u0022: {\n    \u0022name\u0022: \u0022PASTEL\u0022\n  },\n  \u0022style_codes\u0022: [\n    \u0022AAFF5733\u0022,\n    \u00220133FF57\u0022,\n    \u0022DE3357FF\u0022\n  ],\n  \u0022style_type\u0022: \u0022GENERAL\u0022,\n  \u0022style_preset\u0022: \u0022BRIGHT_ART\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/1\u0022,\n  \u0022style_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022character_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022character_reference_images_mask\u0022: [\n    \u0022\u0022\n  ]\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Code": "### Generate with Ideogram 3.0\n# @name post_generate_image_v3\nPOST {{host}}/v1/ideogram-v3/generate\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022A photo of a cat\u0022,\n  \u0022seed\u0022: 12345,\n  \u0022resolution\u0022: \u00221280x800\u0022,\n  \u0022aspect_ratio\u0022: \u00221x3\u0022,\n  \u0022rendering_speed\u0022: \u0022DEFAULT\u0022,\n  \u0022magic_prompt\u0022: \u0022ON\u0022,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022negative_prompt\u0022: \u0022brush strokes, painting\u0022,\n  \u0022num_images\u0022: 1,\n  \u0022color_palette\u0022: {\n    \u0022name\u0022: \u0022PASTEL\u0022\n  },\n  \u0022style_codes\u0022: [\n    \u0022AAFF5733\u0022,\n    \u00220133FF57\u0022,\n    \u0022DE3357FF\u0022\n  ],\n  \u0022style_type\u0022: \u0022GENERAL\u0022,\n  \u0022style_preset\u0022: \u0022BRIGHT_ART\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/1\u0022,\n  \u0022style_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022character_reference_images\u0022: [\n    \u0022\u0022\n  ],\n  \u0022character_reference_images_mask\u0022: [\n    \u0022\u0022\n  ],\n  \u0022enable_copyright_detection\u0022: true\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
       "Format": "http",
       "OperationId": "post_generate_image_v3",
       "Setup": null
     },
     {
-      "Order": 13,
+      "Order": 15,
       "Title": "Generate with Ideogram 3.0 (Transparent Background)",
       "Slug": "post-generate-image-v3-transparent",
-      "Description": "Generates images with transparent background synchronously based on a given prompt and optional parameters using\nthe Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio\nto allow best results with upscaler. The selected resolution is written to the response, not the upscaled final\nresolution.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Description": "Generates images with transparent background synchronously based on a given prompt and optional parameters using\nthe Ideogram 3.0 model. Images will be generated using maximum supported resolution at the specified aspect ratio\nto allow best results with upscaler. The selected resolution is written to the response, not the upscaled final\nresolution.\n\n\u0060rendering_speed=FLASH\u0060 is not supported for transparent-background generation; the request will return a 400.\nUse \u0060TURBO\u0060, \u0060DEFAULT\u0060, or \u0060QUALITY\u0060 instead.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
       "Language": "http",
-      "Code": "### Generate with Ideogram 3.0 (Transparent Background)\n# @name post_generate_image_v3_transparent\nPOST {{host}}/v1/ideogram-v3/generate-transparent\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022A photo of a cat\u0022,\n  \u0022seed\u0022: 12345,\n  \u0022upscale_factor\u0022: \u0022X2\u0022,\n  \u0022aspect_ratio\u0022: \u00221x3\u0022,\n  \u0022rendering_speed\u0022: \u0022DEFAULT\u0022,\n  \u0022magic_prompt\u0022: \u0022ON\u0022,\n  \u0022negative_prompt\u0022: \u0022brush strokes, painting\u0022,\n  \u0022num_images\u0022: 1,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/1\u0022\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Code": "### Generate with Ideogram 3.0 (Transparent Background)\n# @name post_generate_image_v3_transparent\nPOST {{host}}/v1/ideogram-v3/generate-transparent\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022A photo of a cat\u0022,\n  \u0022seed\u0022: 12345,\n  \u0022upscale_factor\u0022: \u0022X2\u0022,\n  \u0022aspect_ratio\u0022: \u00221x3\u0022,\n  \u0022rendering_speed\u0022: \u0022DEFAULT\u0022,\n  \u0022magic_prompt\u0022: \u0022ON\u0022,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022negative_prompt\u0022: \u0022brush strokes, painting\u0022,\n  \u0022num_images\u0022: 1,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/1\u0022\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to generate an image.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
       "Format": "http",
       "OperationId": "post_generate_image_v3_transparent",
       "Setup": null
     },
     {
-      "Order": 14,
+      "Order": 16,
       "Title": "Generate with Ideogram 4.0",
       "Slug": "post-generate-image-v4",
       "Description": "Generates images synchronously using the Ideogram 4.0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
       "Language": "http",
-      "Code": "### Generate with Ideogram 4.0\n# @name post_generate_image_v4\nPOST {{host}}/v1/ideogram-v4/generate\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022prompt\u0022: \u0022string\u0022,\n  \u0022seed\u0022: 0,\n  \u0022magic_prompt_option\u0022: \u0022ON\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/0\u0022\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Code": "### Generate with Ideogram 4.0\n# @name post_generate_image_v4\nPOST {{host}}/v1/ideogram-v4/generate\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022text_prompt\u0022: \u0022string\u0022,\n  \u0022json_prompt\u0022: {\n    \u0022high_level_description\u0022: \u0022string\u0022,\n    \u0022style_description\u0022: {\n      \u0022photo\u0022: \u0022photo\u0022,\n      \u0022art_style\u0022: \u0022art_style\u0022,\n      \u0022medium\u0022: \u0022medium\u0022,\n      \u0022aesthetics\u0022: \u0022aesthetics\u0022,\n      \u0022lighting\u0022: \u0022lighting\u0022,\n      \u0022color_palette\u0022: [\n        \u0022#FFD700\u0022,\n        \u0022#FFD700\u0022\n      ]\n    },\n    \u0022compositional_deconstruction\u0022: {\n      \u0022background\u0022: \u0022background\u0022,\n      \u0022elements\u0022: [\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        },\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        }\n      ]\n    },\n    \u0022tags\u0022: [\n      \u0022string\u0022\n    ]\n  },\n  \u0022seed\u0022: 0,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/0\u0022,\n  \u0022resolution\u0022: \u00222048x2048\u0022,\n  \u0022rendering_speed\u0022: {},\n  \u0022enable_copyright_detection\u0022: true\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
       "Format": "http",
       "OperationId": "post_generate_image_v4",
       "Setup": null
     },
     {
-      "Order": 15,
+      "Order": 17,
+      "Title": "Generate with Ideogram 4.0 asynchronously via webhook",
+      "Slug": "post-generate-image-v4-async",
+      "Description": "Accepts an Ideogram 4.0 generation request for asynchronous processing and\nreturns immediately with a generation_id. The generated images are POSTed to\nthe supplied \u0060webhook_url\u0060 once ready, in a payload that mirrors the\nsynchronous response with an added generation_id for correlation.\n\nSee [Webhooks](/ideogram-api/webhooks) for the delivery payload and how to verify webhook signatures.",
+      "Language": "http",
+      "Code": "### Generate with Ideogram 4.0 asynchronously via webhook\n# @name post_generate_image_v4_async\nPOST {{host}}/v1/ideogram-v4/async/generate?webhook_url={{webhook_url}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022text_prompt\u0022: \u0022string\u0022,\n  \u0022json_prompt\u0022: {\n    \u0022high_level_description\u0022: \u0022string\u0022,\n    \u0022style_description\u0022: {\n      \u0022photo\u0022: \u0022photo\u0022,\n      \u0022art_style\u0022: \u0022art_style\u0022,\n      \u0022medium\u0022: \u0022medium\u0022,\n      \u0022aesthetics\u0022: \u0022aesthetics\u0022,\n      \u0022lighting\u0022: \u0022lighting\u0022,\n      \u0022color_palette\u0022: [\n        \u0022#FFD700\u0022,\n        \u0022#FFD700\u0022\n      ]\n    },\n    \u0022compositional_deconstruction\u0022: {\n      \u0022background\u0022: \u0022background\u0022,\n      \u0022elements\u0022: [\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        },\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        }\n      ]\n    },\n    \u0022tags\u0022: [\n      \u0022string\u0022\n    ]\n  },\n  \u0022seed\u0022: 0,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022custom_model_uri\u0022: \u0022model/my-custom-model/version/0\u0022,\n  \u0022resolution\u0022: \u00222048x2048\u0022,\n  \u0022rendering_speed\u0022: {},\n  \u0022enable_copyright_detection\u0022: true\n}\n\n## Responses\n# 200\n# Description: Request accepted for asynchronous delivery.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_generate_image_v4_async",
+      "Setup": null
+    },
+    {
+      "Order": 18,
+      "Title": "Generate with the fp8-quantized Ideogram 4.0 model",
+      "Slug": "post-generate-image-v4-fp8",
+      "Description": "Generates images synchronously using the fp8-quantized Ideogram 4.0 model.\nA LoRA checkpoint can be layered on the base via the\n\u0060X-Ideogram-Positive-Lora-Ckpt-Path\u0060 header.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Generate with the fp8-quantized Ideogram 4.0 model\n# @name post_generate_image_v4_fp8\nPOST {{host}}/v1/ideogram-v4-fp8/generate\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022text_prompt\u0022: \u0022string\u0022,\n  \u0022json_prompt\u0022: {\n    \u0022high_level_description\u0022: \u0022string\u0022,\n    \u0022style_description\u0022: {\n      \u0022photo\u0022: \u0022photo\u0022,\n      \u0022art_style\u0022: \u0022art_style\u0022,\n      \u0022medium\u0022: \u0022medium\u0022,\n      \u0022aesthetics\u0022: \u0022aesthetics\u0022,\n      \u0022lighting\u0022: \u0022lighting\u0022,\n      \u0022color_palette\u0022: [\n        \u0022#FFD700\u0022,\n        \u0022#FFD700\u0022\n      ]\n    },\n    \u0022compositional_deconstruction\u0022: {\n      \u0022background\u0022: \u0022background\u0022,\n      \u0022elements\u0022: [\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        },\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        }\n      ]\n    },\n    \u0022tags\u0022: [\n      \u0022string\u0022\n    ]\n  },\n  \u0022seed\u0022: 0,\n  \u0022magic_prompt_system_prompt_config_id\u0022: \u0022string\u0022,\n  \u0022resolution\u0022: \u00222048x2048\u0022,\n  \u0022rendering_speed\u0022: {},\n  \u0022enable_copyright_detection\u0022: true\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_generate_image_v4_fp8",
+      "Setup": null
+    },
+    {
+      "Order": 19,
+      "Title": "Image-to-image with Ideogram 4.0",
+      "Slug": "post-generate-image-v4-im2-im",
+      "Description": "Generates images synchronously using the Ideogram 4.0 model with an initial image as input.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Image-to-image with Ideogram 4.0\n# @name post_generate_image_v4_im2_im\nPOST {{host}}/v1/ideogram-v4/image-to-image\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_generate_image_v4_im2_im",
+      "Setup": null
+    },
+    {
+      "Order": 20,
+      "Title": "Image-to-image with Ideogram 4.0 asynchronously via webhook",
+      "Slug": "post-generate-image-v4-im2-im-async",
+      "Description": "Accepts an Ideogram 4.0 image-to-image request for asynchronous processing\nand returns immediately with a request_id. The generated images are POSTed\nto the supplied \u0060webhook_url\u0060 once ready.",
+      "Language": "http",
+      "Code": "### Image-to-image with Ideogram 4.0 asynchronously via webhook\n# @name post_generate_image_v4_im2_im_async\nPOST {{host}}/v1/ideogram-v4/async/image-to-image?webhook_url={{webhook_url}}\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Request accepted for asynchronous delivery.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_generate_image_v4_im2_im_async",
+      "Setup": null
+    },
+    {
+      "Order": 21,
+      "Title": "Generate with Ideogram 4.0 (stable model)",
+      "Slug": "post-generate-image-v4-stable",
+      "Description": "Generates images synchronously using a pinned stable build of the\nIdeogram 4.0 model. This endpoint is intentionally minimal: it accepts\nonly a prompt (and optional seed), pins the underlying model URI, and\nlets the server pick the output resolution automatically.\n\nImages links are available for a limited period of time; if you would\nlike to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Generate with Ideogram 4.0 (stable model)\n# @name post_generate_image_v4_stable\nPOST {{host}}/v1/ideogram-v4/generate/stable\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022text_prompt\u0022: \u0022string\u0022,\n  \u0022json_prompt\u0022: {\n    \u0022high_level_description\u0022: \u0022string\u0022,\n    \u0022style_description\u0022: {\n      \u0022photo\u0022: \u0022photo\u0022,\n      \u0022art_style\u0022: \u0022art_style\u0022,\n      \u0022medium\u0022: \u0022medium\u0022,\n      \u0022aesthetics\u0022: \u0022aesthetics\u0022,\n      \u0022lighting\u0022: \u0022lighting\u0022,\n      \u0022color_palette\u0022: [\n        \u0022#FFD700\u0022,\n        \u0022#FFD700\u0022\n      ]\n    },\n    \u0022compositional_deconstruction\u0022: {\n      \u0022background\u0022: \u0022background\u0022,\n      \u0022elements\u0022: [\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        },\n        {\n          \u0022bbox\u0022: [\n            0,\n            0,\n            1000,\n            1000\n          ],\n          \u0022type\u0022: \u0022obj\u0022,\n          \u0022desc\u0022: \u0022desc\u0022,\n          \u0022color_palette\u0022: [\n            \u0022#FFD700\u0022,\n            \u0022#FFD700\u0022\n          ]\n        }\n      ]\n    },\n    \u0022tags\u0022: [\n      \u0022string\u0022\n    ]\n  },\n  \u0022seed\u0022: 0,\n  \u0022resolution\u0022: {},\n  \u0022version\u0022: \u0022stable_may29\u0022\n}\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_generate_image_v4_stable",
+      "Setup": null
+    },
+    {
+      "Order": 22,
       "Title": "Inpaint with Ideogram 3.0",
       "Slug": "post-inpaint-image-v3",
       "Description": "Inpaint a given image synchronously using the provided mask with Ideogram 3.0. The mask indicates which part of the image\nshould be edited, while the prompt and chosen style can further guide the edit.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -166,7 +243,7 @@
       "Setup": null
     },
     {
-      "Order": 16,
+      "Order": 23,
       "Title": "Layerize an existing flat graphic image with text detection and correction",
       "Slug": "post-layerize-design-v3",
       "Description": "Processes an existing flat graphic image to detect and correct text layers without generating a new image from scratch.\n\nThe uploaded image is analyzed for text content, which is then removed and returned as structured text layers with font matching, sizing, and color information.\n\nSupported image formats include JPEG, PNG, and WebP (max size 10MB).\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -177,7 +254,18 @@
       "Setup": null
     },
     {
-      "Order": 17,
+      "Order": 24,
+      "Title": "Logo recognition \u002B inpainting (internal)",
+      "Slug": "post-layerize-logos",
+      "Description": "Detects caller-supplied reference logos in a flat design image, inpaints\nthem out, and returns the cleaned image together with the matched\nbounding boxes (each tagged with the matching reference\u0027s \u0060REF_\u003Cn\u003E\u0060).\n\nInternal-only; not surfaced on public Fern docs (path is excluded from the\nFern path allowlist in \u0060openapi/fern-content/create_public_spec.py\u0060). Uses\nthe default \u0060Api-Key\u0060 security scheme \u2014 required because the underlying\nsampling-coordinator submission carries user/org context, even though this\nendpoint itself does not bill.",
+      "Language": "http",
+      "Code": "### Logo recognition \u002B inpainting (internal)\n# @name post_layerize_logos\nPOST {{host}}/v1/layerize-logos\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Detection completed (may contain zero matches).\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_layerize_logos",
+      "Setup": null
+    },
+    {
+      "Order": 25,
       "Title": "Layerize Text",
       "Slug": "post-layerize-text-v3",
       "Description": "Analyzes an image to detect text regions, then returns each detected text block with its position, content, font information, and styling.\n\nThe response includes a text-erased base image (background with all text removed) and a flat list of detected text blocks.\n\nSupported image formats include JPEG, PNG, and WebP (max size 10MB).\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -188,7 +276,7 @@
       "Setup": null
     },
     {
-      "Order": 18,
+      "Order": 26,
       "Title": "Reframe (legacy)",
       "Slug": "post-reframe-image",
       "Description": "Reframe a square image to a chosen resolution. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -199,7 +287,7 @@
       "Setup": null
     },
     {
-      "Order": 19,
+      "Order": 27,
       "Title": "Reframe with Ideogram 3.0",
       "Slug": "post-reframe-image-v3",
       "Description": "Reframe a square image to a chosen resolution with Ideogram 3.0. The supported image formats include JPEG, PNG, and WebP.\n\nImage links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -210,7 +298,7 @@
       "Setup": null
     },
     {
-      "Order": 20,
+      "Order": 28,
       "Title": "Remix (legacy)",
       "Slug": "post-remix-image",
       "Description": "Remix provided images synchronously based on a given prompt and optional parameters.\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -221,7 +309,7 @@
       "Setup": null
     },
     {
-      "Order": 21,
+      "Order": 29,
       "Title": "Remix with Ideogram 3.0",
       "Slug": "post-remix-image-v3",
       "Description": "Remix provided images synchronously based on a given prompt and optional parameters with the Ideogram 3.0 model.\n\nInput images are cropped to the chosen aspect ratio before being remixed.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -232,7 +320,40 @@
       "Setup": null
     },
     {
-      "Order": 22,
+      "Order": 30,
+      "Title": "Remix with Ideogram 4.0",
+      "Slug": "post-remix-image-v4",
+      "Description": "Remix an image synchronously using the Ideogram 4.0 model with an initial image and a prompt.\n\nMirrors \u0060/v1/ideogram-v3/remix\u0060 semantics (including \u0060image_weight\u0060 for how strongly the\noutput should resemble the input image) but routes the request through the V_4_0 model.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
+      "Language": "http",
+      "Code": "### Remix with Ideogram 4.0\n# @name post_remix_image_v4\nPOST {{host}}/v1/ideogram-v4/remix\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Image(s) generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized.\n# 422\n# Description: Prompt failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_remix_image_v4",
+      "Setup": null
+    },
+    {
+      "Order": 31,
+      "Title": "Remove Background",
+      "Slug": "post-remove-background",
+      "Description": "Remove the background of a given image synchronously. The foreground subject\nis identified and returned on a transparent background. Supported image formats include JPEG,\nPNG, and WebP.\nImage links are available for a limited period of time; if you would like to keep the image,\nyou must download it.",
+      "Language": "http",
+      "Code": "### Remove Background\n# @name post_remove_background\nPOST {{host}}/v1/remove-background\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Background removed successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to remove background.\n# 422\n# Description: Initial image failed the safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_remove_background",
+      "Setup": null
+    },
+    {
+      "Order": 32,
+      "Title": "Remove Object",
+      "Slug": "post-remove-object",
+      "Description": "Remove a masked object from a given image synchronously. Supply the image and a\nbinary mask marking the region to remove (white = remove); the masked region is\nregenerated to blend with the surrounding scene. Supported image formats include\nJPEG, PNG, and WebP.\nImage links are available for a limited period of time; if you would like to keep the image,\nyou must download it.",
+      "Language": "http",
+      "Code": "### Remove Object\n# @name post_remove_object\nPOST {{host}}/v1/remove-object\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Object removed successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Not authorized to remove object.\n# 422\n# Description: Initial image failed the safety checks.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.",
+      "Format": "http",
+      "OperationId": "post_remove_object",
+      "Setup": null
+    },
+    {
+      "Order": 33,
       "Title": "Replace Background with Ideogram 3.0",
       "Slug": "post-replace-background-v3",
       "Description": "Replace the background of a given image synchronously using a prompt with Ideogram 3.0. The foreground subject\nwill be identified and kept, while the background is replaced based on the prompt and chosen style.\nSupported image formats include JPEG, PNG, and WebP.\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -243,7 +364,7 @@
       "Setup": null
     },
     {
-      "Order": 23,
+      "Order": 34,
       "Title": "Virtual Try-On with Ideogram 3.0",
       "Slug": "post-try-on-v3",
       "Description": "Performs virtual clothing try-on by automatically segmenting the clothing in the provided image\nand replacing it based on the prompt. The user provides an image and an optional prompt describing\nthe desired clothing change (e.g., \u0022change his shirt to a pink shirt\u0022).\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -254,7 +375,7 @@
       "Setup": null
     },
     {
-      "Order": 24,
+      "Order": 35,
       "Title": "Upscale",
       "Slug": "post-upscale-image",
       "Description": "Upscale provided images synchronously with an optional prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -265,7 +386,7 @@
       "Setup": null
     },
     {
-      "Order": 25,
+      "Order": 36,
       "Title": "Edit images with a prompt",
       "Slug": "post-v1-edit-image",
       "Description": "Edit one or more images using a text prompt. Provide images via file upload\nor Ideogram image URLs, and describe the desired edit in your prompt.\n\nSupported image formats include JPEG, PNG, and WebP.\n\nImages links are available for a limited period of time; if you would like to keep the image, you must download it.",
@@ -276,7 +397,7 @@
       "Setup": null
     },
     {
-      "Order": 26,
+      "Order": 37,
       "Title": "Testing",
       "Slug": "post-internal-testing",
       "Description": "Just a testing endpoint",
@@ -287,7 +408,7 @@
       "Setup": null
     },
     {
-      "Order": 27,
+      "Order": 38,
       "Title": "Add members to a specific organization",
       "Slug": "add-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -298,29 +419,51 @@
       "Setup": null
     },
     {
-      "Order": 28,
+      "Order": 39,
+      "Title": "Cancel a pending invite for an organization",
+      "Slug": "cancel-organization-invite",
+      "Description": "Generated from OpenAPI examples.",
+      "Language": "http",
+      "Code": "### Cancel a pending invite for an organization\n# @name cancel_organization_invite\nPOST {{host}}/manage/api/organization/cancel_invite?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022invite_id\u0022: \u0022invite_id\u0022\n}\n\n## Responses\n# 200\n# Description: Result of cancelling the invite\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner or admin\n# 404\n# Description: Organization or invite not found",
+      "Format": "http",
+      "OperationId": "cancel_organization_invite",
+      "Setup": null
+    },
+    {
+      "Order": 40,
       "Title": "Creates an API key.",
       "Slug": "create-api-key",
       "Description": "Generated from OpenAPI examples.",
       "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\nvar response = await client.Manage.CreateApiKeyAsync();\n\n// Example response:\n// {\n//   \u0022api_key\u0022: \u0022example_api_key_replace_with_your_actual_key\u0022,\n//   \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg==\u0022\n// }",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.CreateApiKeyRequest\u003E(\n    @\u0022{\n  \u0022\u0022label\u0022\u0022: \u0022\u0022label\u0022\u0022\n}\u0022)!;\n\nvar response = await client.Manage.CreateApiKeyAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022api_key\u0022: \u0022example_api_key_replace_with_your_actual_key\u0022,\n//   \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg==\u0022\n// }",
       "Format": "sdk",
       "OperationId": "create_api_key",
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 29,
+      "Order": 41,
       "Title": "Create an API key for a specific organization",
       "Slug": "create-api-key-v2",
       "Description": "Generated from OpenAPI examples.",
       "Language": "http",
-      "Code": "### Create an API key for a specific organization\n# @name create_api_key_v2\nPOST {{host}}/manage/api/api_keys_v2?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: API key created successfully\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 402\n# Description: Payment is required before creating an API key.\n# 403\n# Description: Not authorized",
+      "Code": "### Create an API key for a specific organization\n# @name create_api_key_v2\nPOST {{host}}/manage/api/api_keys_v2?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022label\u0022: \u0022label\u0022\n}\n\n## Responses\n# 200\n# Description: API key created successfully\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 402\n# Description: Payment is required before creating an API key.\n# 403\n# Description: Not authorized",
       "Format": "http",
       "OperationId": "create_api_key_v2",
       "Setup": null
     },
     {
-      "Order": 30,
+      "Order": 42,
+      "Title": "Create a payment setup session for inline card collection.",
+      "Slug": "create-api-payment",
+      "Description": "Returns a client_secret for the org\u0027s payment customer so the inline payment\nmodal can save a card without leaving the app.\n\nSoft-deprecated: the inline Elements flow was removed in the Stripe.js\neager-bundle incident (2026-05-20). New clients should use the\nstripe_payment_setup_url field on ManageApiStripeSubscriptionResponse, which\nreturns a hosted Stripe Checkout URL instead. This endpoint will be formally\ndeprecated and then removed once no callers reference it.",
+      "Language": "http",
+      "Code": "### Create a payment setup session for inline card collection.\n# @name create_api_payment\nPOST {{host}}/manage/api/payment?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: client_secret for inline card collection.\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized",
+      "Format": "http",
+      "OperationId": "create_api_payment",
+      "Setup": null
+    },
+    {
+      "Order": 43,
       "Title": "Delete an API key.",
       "Slug": "delete-single-api-key",
       "Description": "Generated from OpenAPI examples.",
@@ -331,7 +474,29 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 31,
+      "Order": 44,
+      "Title": "Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization",
+      "Slug": "demote-organization-admins",
+      "Description": "Generated from OpenAPI examples.",
+      "Language": "http",
+      "Code": "### Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization\n# @name demote_organization_admins\nPOST {{host}}/manage/api/organization/demote_admins?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022members\u0022: [\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    },\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    }\n  ]\n}\n\n## Responses\n# 200\n# Description: Results of demoting admins\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner\n# 404\n# Description: Organization not found",
+      "Format": "http",
+      "OperationId": "demote_organization_admins",
+      "Setup": null
+    },
+    {
+      "Order": 45,
+      "Title": "Lifetime credit totals for the API user\u0027s account.",
+      "Slug": "get-api-credit-summary",
+      "Description": "Returns the lifetime credit KPIs (consumed, expired, issued) used to\nrender the API credit dashboard strip. All values default to $0 when\nMetronome is unavailable so the FE can always render.",
+      "Language": "http",
+      "Code": "### Lifetime credit totals for the API user\u0027s account.\n# @name get_api_credit_summary\nGET {{host}}/manage/api/credit_summary?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: API credit summary content\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized",
+      "Format": "http",
+      "OperationId": "get_api_credit_summary",
+      "Setup": null
+    },
+    {
+      "Order": 46,
       "Title": "Retrieve current API keys and their respective data.",
       "Slug": "get-api-keys",
       "Description": "Generated from OpenAPI examples.",
@@ -342,7 +507,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 32,
+      "Order": 47,
       "Title": "Retrieve API keys for a specific organization",
       "Slug": "get-api-keys-v2",
       "Description": "Generated from OpenAPI examples.",
@@ -353,7 +518,7 @@
       "Setup": null
     },
     {
-      "Order": 33,
+      "Order": 48,
       "Title": "Get search results for user handles with suggestions for a particular organization.",
       "Slug": "get-api-organization-user-suggestions",
       "Description": "Generated from OpenAPI examples.",
@@ -364,40 +529,40 @@
       "Setup": null
     },
     {
-      "Order": 34,
+      "Order": 49,
       "Title": "Retrieve the user\u0027s current API profiles",
       "Slug": "get-api-profiles",
       "Description": "Generated from OpenAPI examples.",
       "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\nvar response = await client.Manage.GetApiProfilesAsync();\n\n// Example response:\n// {\n//   \u0022profiles\u0022: [\n//     {\n//       \u0022is_metronome_2_user\u0022: true,\n//       \u0022role\u0022: \u0022OWNER\u0022,\n//       \u0022avatar_url\u0022: \u0022https://example.com/avatar.jpg\u0022,\n//       \u0022organization_id\u0022: \u0022b3JnYW5pemF0aW9uXzEyMw\u0022,\n//       \u0022name\u0022: \u0022Gamma\u0022,\n//       \u0022type\u0022: \u0022INDIVIDUAL\u0022,\n//       \u0022api_keys\u0022: [\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         },\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         }\n//       ],\n//       \u0022max_num_inflight_requests_permitted\u0022: 10\n//     },\n//     {\n//       \u0022is_metronome_2_user\u0022: true,\n//       \u0022role\u0022: \u0022OWNER\u0022,\n//       \u0022avatar_url\u0022: \u0022https://example.com/avatar.jpg\u0022,\n//       \u0022organization_id\u0022: \u0022b3JnYW5pemF0aW9uXzEyMw\u0022,\n//       \u0022name\u0022: \u0022Gamma\u0022,\n//       \u0022type\u0022: \u0022INDIVIDUAL\u0022,\n//       \u0022api_keys\u0022: [\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         },\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         }\n//       ],\n//       \u0022max_num_inflight_requests_permitted\u0022: 10\n//     }\n//   ]\n// }",
+      "Code": "using var client = new IdeogramClient(apiKey);\nvar response = await client.Manage.GetApiProfilesAsync();\n\n// Example response:\n// {\n//   \u0022profiles\u0022: [\n//     {\n//       \u0022is_metronome_2_user\u0022: true,\n//       \u0022copyright_detection_enabled\u0022: true,\n//       \u0022role\u0022: \u0022OWNER\u0022,\n//       \u0022avatar_url\u0022: \u0022https://example.com/avatar.jpg\u0022,\n//       \u0022organization_id\u0022: \u0022b3JnYW5pemF0aW9uXzEyMw\u0022,\n//       \u0022name\u0022: \u0022Gamma\u0022,\n//       \u0022type\u0022: \u0022INDIVIDUAL\u0022,\n//       \u0022api_keys\u0022: [\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022label\u0022: \u0022Live production environment\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         },\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022label\u0022: \u0022Live production environment\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         }\n//       ],\n//       \u0022max_num_inflight_requests_permitted\u0022: 10\n//     },\n//     {\n//       \u0022is_metronome_2_user\u0022: true,\n//       \u0022copyright_detection_enabled\u0022: true,\n//       \u0022role\u0022: \u0022OWNER\u0022,\n//       \u0022avatar_url\u0022: \u0022https://example.com/avatar.jpg\u0022,\n//       \u0022organization_id\u0022: \u0022b3JnYW5pemF0aW9uXzEyMw\u0022,\n//       \u0022name\u0022: \u0022Gamma\u0022,\n//       \u0022type\u0022: \u0022INDIVIDUAL\u0022,\n//       \u0022api_keys\u0022: [\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022label\u0022: \u0022Live production environment\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         },\n//         {\n//           \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//           \u0022label\u0022: \u0022Live production environment\u0022,\n//           \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//           \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//           \u0022status\u0022: null\n//         }\n//       ],\n//       \u0022max_num_inflight_requests_permitted\u0022: 10\n//     }\n//   ]\n// }",
       "Format": "sdk",
       "OperationId": "get_api_profiles",
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 35,
+      "Order": 50,
       "Title": "Retrieve data relevant to connecting to Stripe.",
       "Slug": "get-api-stripe-subscription",
       "Description": "Generated from OpenAPI examples.",
-      "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\nvar response = await client.Manage.GetApiStripeSubscriptionAsync();\n\n// Example response:\n// {\n//   \u0022stripe_subscription_url\u0022: \u0022stripe_subscription_url\u0022,\n//   \u0022stripe_billing_url\u0022: \u0022stripe_billing_url\u0022\n// }",
-      "Format": "sdk",
+      "Language": "http",
+      "Code": "### Retrieve data relevant to connecting to Stripe.\n# @name get_api_stripe_subscription\nGET {{host}}/manage/api/stripe_subscription?organization_id={{organization_id}}\u0026isBusiness={{isBusiness}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: API subscription content related to connecting to Stripe\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized",
+      "Format": "http",
       "OperationId": "get_api_stripe_subscription",
-      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+      "Setup": null
     },
     {
-      "Order": 36,
+      "Order": 51,
       "Title": "Retrieve data relevant to creating an API subscription.",
       "Slug": "get-api-subscription",
       "Description": "Generated from OpenAPI examples.",
-      "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\nvar response = await client.Manage.GetApiSubscriptionAsync();\n\n// Example response:\n// {\n//   \u0022recharge_settings\u0022: {\n//     \u0022is_active\u0022: true\n//   },\n//   \u0022has_stripe_setup\u0022: true,\n//   \u0022metronome_dashboard_dark_mode_url\u0022: \u0022metronome_dashboard_dark_mode_url\u0022,\n//   \u0022stripe_billing_url\u0022: \u0022stripe_billing_url\u0022,\n//   \u0022current_balance\u0022: {\n//     \u0022amount\u0022: 1050,\n//     \u0022currency_code\u0022: \u0022USD\u0022\n//   },\n//   \u0022has_accepted_terms\u0022: true,\n//   \u0022metronome_dashboard_url\u0022: \u0022metronome_dashboard_url\u0022,\n//   \u0022metronome_links\u0022: {\n//     \u0022usage_iframe_url\u0022: \u0022usage_iframe_url\u0022,\n//     \u0022usage_iframe_dark_mode_url\u0022: \u0022usage_iframe_dark_mode_url\u0022,\n//     \u0022credits_iframe_dark_mode_url\u0022: \u0022credits_iframe_dark_mode_url\u0022,\n//     \u0022invoices_iframe_dark_mode_url\u0022: \u0022invoices_iframe_dark_mode_url\u0022,\n//     \u0022invoices_iframe_url\u0022: \u0022invoices_iframe_url\u0022,\n//     \u0022credits_iframe_url\u0022: \u0022credits_iframe_url\u0022\n//   }\n// }",
-      "Format": "sdk",
+      "Language": "http",
+      "Code": "### Retrieve data relevant to creating an API subscription.\n# @name get_api_subscription\nGET {{host}}/manage/api/subscription?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: API subscription content\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized",
+      "Format": "http",
       "OperationId": "get_api_subscription",
-      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+      "Setup": null
     },
     {
-      "Order": 37,
+      "Order": 52,
       "Title": "Retrieve the latest terms of service for API usage.",
       "Slug": "get-api-terms",
       "Description": "Generated from OpenAPI examples.",
@@ -408,10 +573,21 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 38,
+      "Order": 53,
+      "Title": "Retrieve the Stripe billing portal URL for a specific organization",
+      "Slug": "get-organization-billing-portal",
+      "Description": "Generated from OpenAPI examples.",
+      "Language": "http",
+      "Code": "### Retrieve the Stripe billing portal URL for a specific organization\n# @name get_organization_billing_portal\nGET {{host}}/manage/api/organization/billing_portal?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Billing portal URL retrieved successfully\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized\n# 404\n# Description: Organization not found",
+      "Format": "http",
+      "OperationId": "get_organization_billing_portal",
+      "Setup": null
+    },
+    {
+      "Order": 54,
       "Title": "Retrieve members of a specific organization",
       "Slug": "get-organization-members",
-      "Description": "Generated from OpenAPI examples.",
+      "Description": "Returns both active members and pending invites for the organization. A pending invite is identified by a non-null invite_status (e.g. PENDING); active members have a null invite_status.",
       "Language": "http",
       "Code": "### Retrieve members of a specific organization\n# @name get_organization_members\nGET {{host}}/manage/api/organization/members?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Organization members retrieved successfully\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized\n# 404\n# Description: Organization not found",
       "Format": "http",
@@ -419,7 +595,7 @@
       "Setup": null
     },
     {
-      "Order": 39,
+      "Order": 55,
       "Title": "Retrieve usage information segmented by time period with tool-specific breakdowns",
       "Slug": "get-usage-info",
       "Description": "Generated from OpenAPI examples.",
@@ -430,7 +606,7 @@
       "Setup": null
     },
     {
-      "Order": 40,
+      "Order": 56,
       "Title": "Retrieve user credit information and spending metrics",
       "Slug": "get-user-credits",
       "Description": "Generated from OpenAPI examples.",
@@ -441,7 +617,7 @@
       "Setup": null
     },
     {
-      "Order": 41,
+      "Order": 57,
       "Title": "Retrieve user spend commit information",
       "Slug": "get-user-spend-commit-info",
       "Description": "Generated from OpenAPI examples.",
@@ -452,7 +628,7 @@
       "Setup": null
     },
     {
-      "Order": 42,
+      "Order": 58,
       "Title": "Retrieve invoices for a specific organization",
       "Slug": "list-organization-invoices",
       "Description": "Generated from OpenAPI examples.",
@@ -463,29 +639,29 @@
       "Setup": null
     },
     {
-      "Order": 43,
+      "Order": 59,
       "Title": "Add credits to an API user\u0027s account.",
       "Slug": "post-add-credits-for-api",
       "Description": "Generated from OpenAPI examples.",
-      "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.PostAddCreditsRequest\u003E(\n    @\u0022{\n  \u0022\u0022amount\u0022\u0022: {\n    \u0022\u0022amount\u0022\u0022: 1050,\n    \u0022\u0022currency_code\u0022\u0022: \u0022\u0022USD\u0022\u0022\n  }\n}\u0022)!;\n\nvar response = await client.Manage.PostAddCreditsForApiAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022amount\u0022: {\n//     \u0022amount\u0022: 1050,\n//     \u0022currency_code\u0022: \u0022USD\u0022\n//   }\n// }",
-      "Format": "sdk",
+      "Language": "http",
+      "Code": "### Add credits to an API user\u0027s account.\n# @name post_add_credits_for_api\nPOST {{host}}/manage/api/add_credits?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022amount\u0022: {\n    \u0022amount\u0022: 1050,\n    \u0022currency_code\u0022: \u0022USD\u0022\n  }\n}\n\n## Responses\n# 200\n# Description: API subscription content\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized",
+      "Format": "http",
       "OperationId": "post_add_credits_for_api",
-      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+      "Setup": null
     },
     {
-      "Order": 44,
+      "Order": 60,
       "Title": "Update API subscription settings",
       "Slug": "post-api-subscription",
       "Description": "Generated from OpenAPI examples.",
-      "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.PostApiSubscriptionRequest\u003E(\n    @\u0022{\n  \u0022\u0022recharge_settings\u0022\u0022: {\n    \u0022\u0022minimum_balance_threshold\u0022\u0022: {\n      \u0022\u0022amount\u0022\u0022: 1050,\n      \u0022\u0022currency_code\u0022\u0022: \u0022\u0022USD\u0022\u0022\n    },\n    \u0022\u0022top_up_balance\u0022\u0022: {\n      \u0022\u0022amount\u0022\u0022: 1050,\n      \u0022\u0022currency_code\u0022\u0022: \u0022\u0022USD\u0022\u0022\n    }\n  },\n  \u0022\u0022is_active\u0022\u0022: true\n}\u0022)!;\n\nvar response = await client.Manage.PostApiSubscriptionAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022recharge_settings\u0022: {\n//     \u0022is_active\u0022: true\n//   }\n// }",
-      "Format": "sdk",
+      "Language": "http",
+      "Code": "### Update API subscription settings\n# @name post_api_subscription\nPOST {{host}}/manage/api/subscription?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022recharge_settings\u0022: {\n    \u0022minimum_balance_threshold\u0022: {\n      \u0022amount\u0022: 1050,\n      \u0022currency_code\u0022: \u0022USD\u0022\n    },\n    \u0022top_up_balance\u0022: {\n      \u0022amount\u0022: 1050,\n      \u0022currency_code\u0022: \u0022USD\u0022\n    }\n  },\n  \u0022is_active\u0022: true\n}\n\n## Responses\n# 200\n# Description: API subscription content\n# Content-Type: application/json\n# 400\n# Description: Bad request\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized",
+      "Format": "http",
       "OperationId": "post_api_subscription",
-      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+      "Setup": null
     },
     {
-      "Order": 45,
+      "Order": 61,
       "Title": "Accept terms",
       "Slug": "post-api-terms",
       "Description": "Generated from OpenAPI examples.",
@@ -496,18 +672,18 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 46,
-      "Title": "Promote members to OWNER role in a specific organization",
-      "Slug": "promote-organization-members",
+      "Order": 62,
+      "Title": "Promote members to ADMIN role in a TEAM_API or ENTERPRISE_API organization",
+      "Slug": "promote-organization-admins",
       "Description": "Generated from OpenAPI examples.",
       "Language": "http",
-      "Code": "### Promote members to OWNER role in a specific organization\n# @name promote_organization_members\nPOST {{host}}/manage/api/organization/promote_members?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022members\u0022: [\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    },\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    }\n  ]\n}\n\n## Responses\n# 200\n# Description: Results of promoting members in the organization\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner\n# 404\n# Description: Organization not found",
+      "Code": "### Promote members to ADMIN role in a TEAM_API or ENTERPRISE_API organization\n# @name promote_organization_admins\nPOST {{host}}/manage/api/organization/promote_admins?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022members\u0022: [\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    },\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    }\n  ]\n}\n\n## Responses\n# 200\n# Description: Results of promoting members to admin\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner or admin\n# 404\n# Description: Organization not found",
       "Format": "http",
-      "OperationId": "promote_organization_members",
+      "OperationId": "promote_organization_admins",
       "Setup": null
     },
     {
-      "Order": 47,
+      "Order": 63,
       "Title": "Reactivates a subscription by attempting to re-enable Metronome billing.",
       "Slug": "reactivate-subscription",
       "Description": "Generated from OpenAPI examples.",
@@ -518,7 +694,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 48,
+      "Order": 64,
       "Title": "Remove members from a specific organization",
       "Slug": "remove-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -529,7 +705,40 @@
       "Setup": null
     },
     {
-      "Order": 49,
+      "Order": 65,
+      "Title": "Resend a pending invite for an organization",
+      "Slug": "resend-organization-invite",
+      "Description": "Generated from OpenAPI examples.",
+      "Language": "http",
+      "Code": "### Resend a pending invite for an organization\n# @name resend_organization_invite\nPOST {{host}}/manage/api/organization/resend_invite?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022invite_id\u0022: \u0022invite_id\u0022\n}\n\n## Responses\n# 200\n# Description: Result of resending the invite\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner or admin\n# 404\n# Description: Organization or invite not found",
+      "Format": "http",
+      "OperationId": "resend_organization_invite",
+      "Setup": null
+    },
+    {
+      "Order": 66,
+      "Title": "Update a single field on an organization\u0027s API properties.",
+      "Slug": "update-organization-api-properties",
+      "Description": "Lets an organization owner toggle API-only settings such as\ncopyright_detection_enabled. Updates only the fields explicitly present\nin the request body; absent fields are left unchanged.",
+      "Language": "http",
+      "Code": "### Update a single field on an organization\u0027s API properties.\n# @name update_organization_api_properties\nPATCH {{host}}/manage/api/organization/{{organization_id}}/api_properties\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022copyright_detection_enabled\u0022: true\n}\n\n## Responses\n# 200\n# Description: Updated API properties.\n# Content-Type: application/json\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized \u2014 must be an organization owner\n# 404\n# Description: Organization not found",
+      "Format": "http",
+      "OperationId": "update_organization_api_properties",
+      "Setup": null
+    },
+    {
+      "Order": 67,
+      "Title": "Update an API key\u0027s user-supplied label.",
+      "Slug": "update-single-api-key",
+      "Description": "Generated from OpenAPI examples.",
+      "Language": "csharp",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.PatchApiKeyRequest\u003E(\n    @\u0022{\n  \u0022\u0022label\u0022\u0022: \u0022\u0022Live production environment\u0022\u0022\n}\u0022)!;\n\nvar response = await client.Manage.UpdateSingleApiKeyAsync(\n    apiKeyId: \u0022d7abd0cd4ae94db78676e986a4ebd8dc\u0022,\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022creation_time\u0022: \u00222000-01-23T04:56:07\\u002B00:00\u0022,\n//   \u0022label\u0022: \u0022Live production environment\u0022,\n//   \u0022redacted_api_key\u0022: \u0022ATG56\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\\u2022\u0022,\n//   \u0022api_key_id\u0022: \u0022JRPVD7jWR1aTBYiJ0UFVOg\u0022,\n//   \u0022status\u0022: null\n// }",
+      "Format": "sdk",
+      "OperationId": "update_single_api_key",
+      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 68,
       "Title": "Get model details",
       "Slug": "get-custom-model",
       "Description": "Get detailed information about a specific custom model. The user must either own the model or the model must be shared with the user\u0027s organization via the model registry. Returns 404 if the model is not found or not accessible.",
@@ -540,7 +749,7 @@
       "Setup": null
     },
     {
-      "Order": 50,
+      "Order": 69,
       "Title": "List models",
       "Slug": "list-custom-models",
       "Description": "Lists custom models for the authenticated user. Use the \u0060scope\u0060 parameter to control which models are returned. If omitted, returns both owned models and models shared with the user\u0027s organization via the model registry. \u0060owned\u0060 returns only models created by the user. \u0060shared\u0060 returns only models shared via the model registry, excluding the user\u0027s own models.",
@@ -551,7 +760,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 51,
+      "Order": 70,
       "Title": "Train a custom Ideogram v3 model",
       "Slug": "train-model-v3",
       "Description": "Start training a custom Ideogram v3 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.",
@@ -562,7 +771,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 52,
+      "Order": 71,
       "Title": "Train a custom Ideogram v3 model with advanced hyperparameters",
       "Slug": "train-model-v3-advanced",
       "Description": "Start training a custom Ideogram v3 model from a dataset with caller-supplied hyperparameters (training steps, LoRA rank, EMA decay, learning rate). All hyperparameters are optional and fall back to defaults when omitted. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.",
@@ -573,18 +782,51 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 53,
+      "Order": 72,
+      "Title": "Train a custom Ideogram v4 model",
+      "Slug": "train-model-v4",
+      "Description": "Start training a custom Ideogram v4 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.",
+      "Language": "csharp",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.TrainModelV4Request\u003E(\n    @\u0022{\n  \u0022\u0022model_name\u0022\u0022: \u0022\u0022my-custom-model\u0022\u0022,\n  \u0022\u0022dataset_id\u0022\u0022: \u0022\u0022abc123\u0022\u0022\n}\u0022)!;\n\nvar response = await client.Models.TrainModelV4Async(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022training_status\u0022: \u0022training_status\u0022,\n//   \u0022model_name\u0022: \u0022model_name\u0022,\n//   \u0022dataset_id\u0022: \u0022dataset_id\u0022,\n//   \u0022model_id\u0022: \u0022model_id\u0022\n// }",
+      "Format": "sdk",
+      "OperationId": "train_model_v4",
+      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 73,
+      "Title": "Train a custom Ideogram v4 model with advanced hyperparameters",
+      "Slug": "train-model-v4-advanced",
+      "Description": "Start training a custom Ideogram v4 model from a dataset with caller-supplied hyperparameters (training steps, LoRA rank, EMA decay, learning rate). All hyperparameters are optional and fall back to defaults when omitted. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.",
+      "Language": "csharp",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.TrainModelV4AdvancedRequest\u003E(\n    @\u0022{\n  \u0022\u0022model_name\u0022\u0022: \u0022\u0022my-custom-model\u0022\u0022,\n  \u0022\u0022lora_rank\u0022\u0022: 64,\n  \u0022\u0022dataset_id\u0022\u0022: \u0022\u0022abc123\u0022\u0022,\n  \u0022\u0022ema\u0022\u0022: 0.999,\n  \u0022\u0022training_steps\u0022\u0022: 1000,\n  \u0022\u0022learning_rate\u0022\u0022: 0.0001\n}\u0022)!;\n\nvar response = await client.Models.TrainModelV4AdvancedAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022training_status\u0022: \u0022training_status\u0022,\n//   \u0022model_name\u0022: \u0022model_name\u0022,\n//   \u0022dataset_id\u0022: \u0022dataset_id\u0022,\n//   \u0022model_id\u0022: \u0022model_id\u0022\n// }",
+      "Format": "sdk",
+      "OperationId": "train_model_v4_advanced",
+      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 74,
       "Title": "Generate Magic Prompt",
       "Slug": "post-magic-prompt",
       "Description": "Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.",
       "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.MagicPromptRequest\u003E(\n    @\u0022{\n  \u0022\u0022prompt\u0022\u0022: \u0022\u0022a cat\u0022\u0022,\n  \u0022\u0022magic_prompt_version\u0022\u0022: \u0022\u0022V_0_4\u0022\u0022,\n  \u0022\u0022classify_prompt_category\u0022\u0022: true,\n  \u0022\u0022style_type\u0022\u0022: \u0022\u0022AUTO\u0022\u0022,\n  \u0022\u0022seed\u0022\u0022: 12345\n}\u0022)!;\n\nvar response = await client.Prompt.PostMagicPromptAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022magic_prompt\u0022: \u0022A photorealistic cat with striking green eyes, sitting gracefully on a vintage wooden chair. The cat\\u0027s fur has beautiful orange and white markings, and soft natural lighting illuminates the scene from a nearby window.\u0022\n// }",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.MagicPromptRequest\u003E(\n    @\u0022{\n  \u0022\u0022prompt\u0022\u0022: \u0022\u0022a cat\u0022\u0022,\n  \u0022\u0022magic_prompt_version\u0022\u0022: \u0022\u0022V_0_4\u0022\u0022,\n  \u0022\u0022classify_prompt_category\u0022\u0022: true,\n  \u0022\u0022style_type\u0022\u0022: \u0022\u0022AUTO\u0022\u0022,\n  \u0022\u0022seed\u0022\u0022: 12345\n}\u0022)!;\n\nvar response = await client.Prompt.PostMagicPromptAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022magic_prompt\u0022: \u0022A photorealistic cat with striking green eyes, sitting gracefully on a vintage wooden chair. The cat\\u0027s fur has beautiful orange and white markings, and soft natural lighting illuminates the scene from a nearby window.\u0022,\n//   \u0022magic_prompt_version\u0022: \u0022V4_QWEN_3_5_27B_EXPERIMENTAL_SLOT_01\u0022,\n//   \u0022served_model_name\u0022: \u0022qwen35-27b-magic-prompt-experimental-2026-06-17\u0022\n// }",
       "Format": "sdk",
       "OperationId": "post_magic_prompt",
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 54,
+      "Order": 75,
+      "Title": "Generate a Magic Prompt with Ideogram 4.0",
+      "Slug": "post-magic-prompt-v4",
+      "Description": "Transforms a basic prompt into an enhanced Ideogram 4.0 magic prompt.\nThe magic prompt model version is fixed; callers cannot select it.\nWhen \u0060aspect_ratio\u0060 is \u0060AUTO\u0060 (the default), the model selects the most\nsuitable aspect ratio for the prompt and returns it in the response.",
+      "Language": "csharp",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.MagicPromptV4Request\u003E(\n    @\u0022{\n  \u0022\u0022text_prompt\u0022\u0022: \u0022\u0022a cat\u0022\u0022,\n  \u0022\u0022aspect_ratio\u0022\u0022: \u0022\u0022AUTO\u0022\u0022\n}\u0022)!;\n\nvar response = await client.Prompt.PostMagicPromptV4Async(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022json_prompt\u0022: {\n//     \u0022high_level_description\u0022: \u0022A photorealistic ginger cat perched on a vintage wooden chair by a sunlit window.\u0022,\n//     \u0022style_description\u0022: {\n//       \u0022aesthetics\u0022: \u0022warm, cozy, nostalgic\u0022,\n//       \u0022lighting\u0022: \u0022soft natural window light\u0022,\n//       \u0022medium\u0022: \u0022photograph\u0022\n//     },\n//     \u0022compositional_deconstruction\u0022: {\n//       \u0022background\u0022: \u0022A dim room with a bright window casting warm light.\u0022,\n//       \u0022elements\u0022: [\n//         {\n//           \u0022type\u0022: \u0022obj\u0022,\n//           \u0022desc\u0022: \u0022ginger cat with green eyes sitting upright on a vintage wooden chair\u0022\n//         }\n//       ]\n//     }\n//   },\n//   \u0022aspect_ratio\u0022: \u00221x1\u0022\n// }",
+      "Format": "sdk",
+      "OperationId": "post_magic_prompt_v4",
+      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
+    },
+    {
+      "Order": 76,
       "Title": "Describe",
       "Slug": "post-describe",
       "Description": "Describe an image.\n\nSupported image formats include JPEG, PNG, and WebP.",
@@ -593,6 +835,28 @@
       "Format": "http",
       "OperationId": "post_describe",
       "Setup": null
+    },
+    {
+      "Order": 77,
+      "Title": "Describe with Ideogram 4.0",
+      "Slug": "post-describe-v4",
+      "Description": "Describe an image with Ideogram 4.0 and return a structured\n\u0060V4JsonPrompt\u0060. The returned \u0060json_prompt\u0060 is a working JSON prompt\nthat can be passed directly as \u0060json_prompt\u0060 to the\n\u0060/v1/ideogram-v4/generate\u0060 family of endpoints.\n\nSupported image formats include JPEG, PNG, and WebP.",
+      "Language": "http",
+      "Code": "### Describe with Ideogram 4.0\n# @name post_describe_v4\nPOST {{host}}/v1/ideogram-v4/describe\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data\nAccept: application/json\n\n## Responses\n# 200\n# Description: Structured V4 prompt generated successfully.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 422\n# Description: Image failed the safety check.\n# Content-Type: application/json\n# 429\n# Description: Too many requests.\n# 503\n# Description: Took too long to finish.",
+      "Format": "http",
+      "OperationId": "post_describe_v4",
+      "Setup": null
+    },
+    {
+      "Order": 78,
+      "Title": "Get the public keys used to verify webhook signatures",
+      "Slug": "get-webhook-signing-jwks",
+      "Description": "Returns the set of Ed25519 public keys Ideogram uses to sign outbound\nwebhook payloads. Customers verify incoming webhooks by recomputing the\ncanonical signed message (\u0060request_id\\nuser_id\\ntimestamp\\nsha256_hex(body)\u0060)\nand checking the \u0060X-Ideogram-Webhook-Signature\u0060 header against any key\nin this document.\n\nThe document includes the current signing key plus any keys recently\nrotated out, so signatures already in flight remain verifiable across\nrotations. Cache for up to 24 hours; refresh sooner if a signature\nfails to verify against the cached set.\n\nThis endpoint is public and unauthenticated \u2014 no API key is required.",
+      "Language": "csharp",
+      "Code": "using var client = new IdeogramClient(apiKey);\nvar response = await client.Webhooks.GetWebhookSigningJwksAsync();\n\n// Example response:\n// {\n//   \u0022keys\u0022: [\n//     {\n//       \u0022kty\u0022: \u0022OKP\u0022,\n//       \u0022crv\u0022: \u0022Ed25519\u0022,\n//       \u0022use\u0022: \u0022sig\u0022,\n//       \u0022kid\u0022: \u0022v1\u0022,\n//       \u0022x\u0022: \u002211qYAYKxCrfVS_7TyWQHOg7hcvPapiMlrwIaaPcHURo\u0022,\n//       \u0022alg\u0022: \u0022EdDSA\u0022\n//     },\n//     {\n//       \u0022kty\u0022: \u0022OKP\u0022,\n//       \u0022crv\u0022: \u0022Ed25519\u0022,\n//       \u0022use\u0022: \u0022sig\u0022,\n//       \u0022kid\u0022: \u0022v1\u0022,\n//       \u0022x\u0022: \u002211qYAYKxCrfVS_7TyWQHOg7hcvPapiMlrwIaaPcHURo\u0022,\n//       \u0022alg\u0022: \u0022EdDSA\u0022\n//     }\n//   ]\n// }",
+      "Format": "sdk",
+      "OperationId": "get_webhook_signing_jwks",
+      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     }
   ]
 }

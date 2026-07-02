@@ -79,5 +79,6 @@ namespace Ideogram
         public LayerizeTextRequest()
         {
         }
+
     }
 }

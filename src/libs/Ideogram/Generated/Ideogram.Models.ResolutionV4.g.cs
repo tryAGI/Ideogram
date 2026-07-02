@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The resolutions supported for Ideogram 4.0.<br/>
-    /// Example: 1280x800
+    /// The 1K and 2K resolutions supported for Ideogram 4.0 image generation.<br/>
+    /// Example: 2048x2048
     /// </summary>
     public enum ResolutionV4
     {
@@ -16,31 +16,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x1024x832,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1024x896,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1024x960,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1088x768,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1088x832,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1088x896,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1088x960,
+        x1024x3072,
         /// <summary>
         /// 
         /// </summary>
@@ -48,11 +24,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x1152x704,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1152x832,
+        x1152x2944,
         /// <summary>
         /// 
         /// </summary>
@@ -60,19 +32,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x1152x896,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1216x704,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1216x768,
-        /// <summary>
-        /// 
-        /// </summary>
-        x1216x832,
+        x1248x3328,
         /// <summary>
         /// 
         /// </summary>
@@ -80,11 +40,11 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x1280x704,
+        x1280x3072,
         /// <summary>
         /// 
         /// </summary>
-        x1280x768,
+        x1280x720,
         /// <summary>
         /// 
         /// </summary>
@@ -92,135 +52,91 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x1312x736,
+        x1296x3168,
         /// <summary>
         /// 
         /// </summary>
-        x1344x640,
+        x1440x2560,
         /// <summary>
         /// 
         /// </summary>
-        x1344x704,
+        x1440x2880,
         /// <summary>
         /// 
         /// </summary>
-        x1344x768,
+        x1440x720,
         /// <summary>
         /// 
         /// </summary>
-        x1408x576,
+        x1600x2560,
         /// <summary>
         /// 
         /// </summary>
-        x1408x640,
+        x1664x2496,
         /// <summary>
         /// 
         /// </summary>
-        x1408x704,
+        x1728x2304,
         /// <summary>
         /// 
         /// </summary>
-        x1472x576,
+        x1792x2240,
         /// <summary>
         /// 
         /// </summary>
-        x1472x640,
+        x2048x2048,
         /// <summary>
         /// 
         /// </summary>
-        x1472x704,
+        x2240x1792,
         /// <summary>
         /// 
         /// </summary>
-        x1536x512,
+        x2304x1728,
         /// <summary>
         /// 
         /// </summary>
-        x1536x576,
+        x2496x1664,
         /// <summary>
         /// 
         /// </summary>
-        x1536x640,
+        x2560x1440,
         /// <summary>
         /// 
         /// </summary>
-        x512x1536,
+        x2560x1600,
         /// <summary>
         /// 
         /// </summary>
-        x512x512,
+        x2880x1440,
         /// <summary>
         /// 
         /// </summary>
-        x576x1408,
+        x2944x1152,
         /// <summary>
         /// 
         /// </summary>
-        x576x1472,
+        x3072x1024,
         /// <summary>
         /// 
         /// </summary>
-        x576x1536,
+        x3072x1280,
         /// <summary>
         /// 
         /// </summary>
-        x640x1344,
+        x3168x1296,
         /// <summary>
         /// 
         /// </summary>
-        x640x1408,
+        x3328x1248,
         /// <summary>
         /// 
         /// </summary>
-        x640x1472,
+        x720x1280,
         /// <summary>
         /// 
         /// </summary>
-        x640x1536,
-        /// <summary>
-        /// 
-        /// </summary>
-        x704x1152,
-        /// <summary>
-        /// 
-        /// </summary>
-        x704x1216,
-        /// <summary>
-        /// 
-        /// </summary>
-        x704x1280,
-        /// <summary>
-        /// 
-        /// </summary>
-        x704x1344,
-        /// <summary>
-        /// 
-        /// </summary>
-        x704x1408,
-        /// <summary>
-        /// 
-        /// </summary>
-        x704x1472,
-        /// <summary>
-        /// 
-        /// </summary>
-        x736x1312,
-        /// <summary>
-        /// 
-        /// </summary>
-        x768x1088,
-        /// <summary>
-        /// 
-        /// </summary>
-        x768x1216,
-        /// <summary>
-        /// 
-        /// </summary>
-        x768x1280,
-        /// <summary>
-        /// 
-        /// </summary>
-        x768x1344,
+        x720x1440,
         /// <summary>
         /// 
         /// </summary>
@@ -228,27 +144,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x832x1024,
-        /// <summary>
-        /// 
-        /// </summary>
-        x832x1088,
-        /// <summary>
-        /// 
-        /// </summary>
-        x832x1152,
-        /// <summary>
-        /// 
-        /// </summary>
-        x832x1216,
-        /// <summary>
-        /// 
-        /// </summary>
         x832x1248,
-        /// <summary>
-        /// 
-        /// </summary>
-        x832x960,
         /// <summary>
         /// 
         /// </summary>
@@ -256,39 +152,7 @@ namespace Ideogram
         /// <summary>
         /// 
         /// </summary>
-        x896x1024,
-        /// <summary>
-        /// 
-        /// </summary>
-        x896x1088,
-        /// <summary>
-        /// 
-        /// </summary>
         x896x1120,
-        /// <summary>
-        /// 
-        /// </summary>
-        x896x1152,
-        /// <summary>
-        /// 
-        /// </summary>
-        x896x960,
-        /// <summary>
-        /// 
-        /// </summary>
-        x960x1024,
-        /// <summary>
-        /// 
-        /// </summary>
-        x960x1088,
-        /// <summary>
-        /// 
-        /// </summary>
-        x960x832,
-        /// <summary>
-        /// 
-        /// </summary>
-        x960x896,
     }
 
     /// <summary>
@@ -304,75 +168,41 @@ namespace Ideogram
             return value switch
             {
                 ResolutionV4.x1024x1024 => "1024x1024",
-                ResolutionV4.x1024x832 => "1024x832",
-                ResolutionV4.x1024x896 => "1024x896",
-                ResolutionV4.x1024x960 => "1024x960",
-                ResolutionV4.x1088x768 => "1088x768",
-                ResolutionV4.x1088x832 => "1088x832",
-                ResolutionV4.x1088x896 => "1088x896",
-                ResolutionV4.x1088x960 => "1088x960",
+                ResolutionV4.x1024x3072 => "1024x3072",
                 ResolutionV4.x1120x896 => "1120x896",
-                ResolutionV4.x1152x704 => "1152x704",
-                ResolutionV4.x1152x832 => "1152x832",
+                ResolutionV4.x1152x2944 => "1152x2944",
                 ResolutionV4.x1152x864 => "1152x864",
-                ResolutionV4.x1152x896 => "1152x896",
-                ResolutionV4.x1216x704 => "1216x704",
-                ResolutionV4.x1216x768 => "1216x768",
-                ResolutionV4.x1216x832 => "1216x832",
+                ResolutionV4.x1248x3328 => "1248x3328",
                 ResolutionV4.x1248x832 => "1248x832",
-                ResolutionV4.x1280x704 => "1280x704",
-                ResolutionV4.x1280x768 => "1280x768",
+                ResolutionV4.x1280x3072 => "1280x3072",
+                ResolutionV4.x1280x720 => "1280x720",
                 ResolutionV4.x1280x800 => "1280x800",
-                ResolutionV4.x1312x736 => "1312x736",
-                ResolutionV4.x1344x640 => "1344x640",
-                ResolutionV4.x1344x704 => "1344x704",
-                ResolutionV4.x1344x768 => "1344x768",
-                ResolutionV4.x1408x576 => "1408x576",
-                ResolutionV4.x1408x640 => "1408x640",
-                ResolutionV4.x1408x704 => "1408x704",
-                ResolutionV4.x1472x576 => "1472x576",
-                ResolutionV4.x1472x640 => "1472x640",
-                ResolutionV4.x1472x704 => "1472x704",
-                ResolutionV4.x1536x512 => "1536x512",
-                ResolutionV4.x1536x576 => "1536x576",
-                ResolutionV4.x1536x640 => "1536x640",
-                ResolutionV4.x512x1536 => "512x1536",
-                ResolutionV4.x512x512 => "512x512",
-                ResolutionV4.x576x1408 => "576x1408",
-                ResolutionV4.x576x1472 => "576x1472",
-                ResolutionV4.x576x1536 => "576x1536",
-                ResolutionV4.x640x1344 => "640x1344",
-                ResolutionV4.x640x1408 => "640x1408",
-                ResolutionV4.x640x1472 => "640x1472",
-                ResolutionV4.x640x1536 => "640x1536",
-                ResolutionV4.x704x1152 => "704x1152",
-                ResolutionV4.x704x1216 => "704x1216",
-                ResolutionV4.x704x1280 => "704x1280",
-                ResolutionV4.x704x1344 => "704x1344",
-                ResolutionV4.x704x1408 => "704x1408",
-                ResolutionV4.x704x1472 => "704x1472",
-                ResolutionV4.x736x1312 => "736x1312",
-                ResolutionV4.x768x1088 => "768x1088",
-                ResolutionV4.x768x1216 => "768x1216",
-                ResolutionV4.x768x1280 => "768x1280",
-                ResolutionV4.x768x1344 => "768x1344",
+                ResolutionV4.x1296x3168 => "1296x3168",
+                ResolutionV4.x1440x2560 => "1440x2560",
+                ResolutionV4.x1440x2880 => "1440x2880",
+                ResolutionV4.x1440x720 => "1440x720",
+                ResolutionV4.x1600x2560 => "1600x2560",
+                ResolutionV4.x1664x2496 => "1664x2496",
+                ResolutionV4.x1728x2304 => "1728x2304",
+                ResolutionV4.x1792x2240 => "1792x2240",
+                ResolutionV4.x2048x2048 => "2048x2048",
+                ResolutionV4.x2240x1792 => "2240x1792",
+                ResolutionV4.x2304x1728 => "2304x1728",
+                ResolutionV4.x2496x1664 => "2496x1664",
+                ResolutionV4.x2560x1440 => "2560x1440",
+                ResolutionV4.x2560x1600 => "2560x1600",
+                ResolutionV4.x2880x1440 => "2880x1440",
+                ResolutionV4.x2944x1152 => "2944x1152",
+                ResolutionV4.x3072x1024 => "3072x1024",
+                ResolutionV4.x3072x1280 => "3072x1280",
+                ResolutionV4.x3168x1296 => "3168x1296",
+                ResolutionV4.x3328x1248 => "3328x1248",
+                ResolutionV4.x720x1280 => "720x1280",
+                ResolutionV4.x720x1440 => "720x1440",
                 ResolutionV4.x800x1280 => "800x1280",
-                ResolutionV4.x832x1024 => "832x1024",
-                ResolutionV4.x832x1088 => "832x1088",
-                ResolutionV4.x832x1152 => "832x1152",
-                ResolutionV4.x832x1216 => "832x1216",
                 ResolutionV4.x832x1248 => "832x1248",
-                ResolutionV4.x832x960 => "832x960",
                 ResolutionV4.x864x1152 => "864x1152",
-                ResolutionV4.x896x1024 => "896x1024",
-                ResolutionV4.x896x1088 => "896x1088",
                 ResolutionV4.x896x1120 => "896x1120",
-                ResolutionV4.x896x1152 => "896x1152",
-                ResolutionV4.x896x960 => "896x960",
-                ResolutionV4.x960x1024 => "960x1024",
-                ResolutionV4.x960x1088 => "960x1088",
-                ResolutionV4.x960x832 => "960x832",
-                ResolutionV4.x960x896 => "960x896",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -384,75 +214,41 @@ namespace Ideogram
             return value switch
             {
                 "1024x1024" => ResolutionV4.x1024x1024,
-                "1024x832" => ResolutionV4.x1024x832,
-                "1024x896" => ResolutionV4.x1024x896,
-                "1024x960" => ResolutionV4.x1024x960,
-                "1088x768" => ResolutionV4.x1088x768,
-                "1088x832" => ResolutionV4.x1088x832,
-                "1088x896" => ResolutionV4.x1088x896,
-                "1088x960" => ResolutionV4.x1088x960,
+                "1024x3072" => ResolutionV4.x1024x3072,
                 "1120x896" => ResolutionV4.x1120x896,
-                "1152x704" => ResolutionV4.x1152x704,
-                "1152x832" => ResolutionV4.x1152x832,
+                "1152x2944" => ResolutionV4.x1152x2944,
                 "1152x864" => ResolutionV4.x1152x864,
-                "1152x896" => ResolutionV4.x1152x896,
-                "1216x704" => ResolutionV4.x1216x704,
-                "1216x768" => ResolutionV4.x1216x768,
-                "1216x832" => ResolutionV4.x1216x832,
+                "1248x3328" => ResolutionV4.x1248x3328,
                 "1248x832" => ResolutionV4.x1248x832,
-                "1280x704" => ResolutionV4.x1280x704,
-                "1280x768" => ResolutionV4.x1280x768,
+                "1280x3072" => ResolutionV4.x1280x3072,
+                "1280x720" => ResolutionV4.x1280x720,
                 "1280x800" => ResolutionV4.x1280x800,
-                "1312x736" => ResolutionV4.x1312x736,
-                "1344x640" => ResolutionV4.x1344x640,
-                "1344x704" => ResolutionV4.x1344x704,
-                "1344x768" => ResolutionV4.x1344x768,
-                "1408x576" => ResolutionV4.x1408x576,
-                "1408x640" => ResolutionV4.x1408x640,
-                "1408x704" => ResolutionV4.x1408x704,
-                "1472x576" => ResolutionV4.x1472x576,
-                "1472x640" => ResolutionV4.x1472x640,
-                "1472x704" => ResolutionV4.x1472x704,
-                "1536x512" => ResolutionV4.x1536x512,
-                "1536x576" => ResolutionV4.x1536x576,
-                "1536x640" => ResolutionV4.x1536x640,
-                "512x1536" => ResolutionV4.x512x1536,
-                "512x512" => ResolutionV4.x512x512,
-                "576x1408" => ResolutionV4.x576x1408,
-                "576x1472" => ResolutionV4.x576x1472,
-                "576x1536" => ResolutionV4.x576x1536,
-                "640x1344" => ResolutionV4.x640x1344,
-                "640x1408" => ResolutionV4.x640x1408,
-                "640x1472" => ResolutionV4.x640x1472,
-                "640x1536" => ResolutionV4.x640x1536,
-                "704x1152" => ResolutionV4.x704x1152,
-                "704x1216" => ResolutionV4.x704x1216,
-                "704x1280" => ResolutionV4.x704x1280,
-                "704x1344" => ResolutionV4.x704x1344,
-                "704x1408" => ResolutionV4.x704x1408,
-                "704x1472" => ResolutionV4.x704x1472,
-                "736x1312" => ResolutionV4.x736x1312,
-                "768x1088" => ResolutionV4.x768x1088,
-                "768x1216" => ResolutionV4.x768x1216,
-                "768x1280" => ResolutionV4.x768x1280,
-                "768x1344" => ResolutionV4.x768x1344,
+                "1296x3168" => ResolutionV4.x1296x3168,
+                "1440x2560" => ResolutionV4.x1440x2560,
+                "1440x2880" => ResolutionV4.x1440x2880,
+                "1440x720" => ResolutionV4.x1440x720,
+                "1600x2560" => ResolutionV4.x1600x2560,
+                "1664x2496" => ResolutionV4.x1664x2496,
+                "1728x2304" => ResolutionV4.x1728x2304,
+                "1792x2240" => ResolutionV4.x1792x2240,
+                "2048x2048" => ResolutionV4.x2048x2048,
+                "2240x1792" => ResolutionV4.x2240x1792,
+                "2304x1728" => ResolutionV4.x2304x1728,
+                "2496x1664" => ResolutionV4.x2496x1664,
+                "2560x1440" => ResolutionV4.x2560x1440,
+                "2560x1600" => ResolutionV4.x2560x1600,
+                "2880x1440" => ResolutionV4.x2880x1440,
+                "2944x1152" => ResolutionV4.x2944x1152,
+                "3072x1024" => ResolutionV4.x3072x1024,
+                "3072x1280" => ResolutionV4.x3072x1280,
+                "3168x1296" => ResolutionV4.x3168x1296,
+                "3328x1248" => ResolutionV4.x3328x1248,
+                "720x1280" => ResolutionV4.x720x1280,
+                "720x1440" => ResolutionV4.x720x1440,
                 "800x1280" => ResolutionV4.x800x1280,
-                "832x1024" => ResolutionV4.x832x1024,
-                "832x1088" => ResolutionV4.x832x1088,
-                "832x1152" => ResolutionV4.x832x1152,
-                "832x1216" => ResolutionV4.x832x1216,
                 "832x1248" => ResolutionV4.x832x1248,
-                "832x960" => ResolutionV4.x832x960,
                 "864x1152" => ResolutionV4.x864x1152,
-                "896x1024" => ResolutionV4.x896x1024,
-                "896x1088" => ResolutionV4.x896x1088,
                 "896x1120" => ResolutionV4.x896x1120,
-                "896x1152" => ResolutionV4.x896x1152,
-                "896x960" => ResolutionV4.x896x960,
-                "960x1024" => ResolutionV4.x960x1024,
-                "960x1088" => ResolutionV4.x960x1088,
-                "960x832" => ResolutionV4.x960x832,
-                "960x896" => ResolutionV4.x960x896,
                 _ => null,
             };
         }

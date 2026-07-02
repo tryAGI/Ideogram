@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// A single text block within a container, representing one logical unit of text (e.g., a headline, a paragraph, a list entry).<br/>
-    /// Example: {"font_candidates":["font_candidates","font_candidates"],"spans":[{"color":"#212121","text":"text","font_fx":["bold","italic"]},{"color":"#212121","text":"text","font_fx":["bold","italic"]}],"font_size":5,"glyph_type":"bullet","line_height":2.302136,"x":0,"width":1,"style_class":"body","y":6,"angle":0,"alignment":"center","font_file":"font_file","height":5}
+    /// Example: {"font_candidates":["font_candidates","font_candidates"],"spans":[{"color":"#212121","text":"text","font_fx":["bold","italic"]},{"color":"#212121","text":"text","font_fx":["bold","italic"]}],"text_shadows":[{"color":"color","blur":0.2027123,"offset_x":9.301444,"offset_y":3.6160767},{"color":"color","blur":0.2027123,"offset_x":9.301444,"offset_y":3.6160767}],"font_size":5,"vertical_alignment":"top","text_transform":"none","glyph_type":"bullet","line_height":2.302136,"x":0,"width":1,"style_class":"body","y":6,"angle":0,"alignment":"center","font_file":"font_file","letter_spacing":7.0614014,"height":5}
     /// </summary>
     public sealed partial class TextItemV3
     {
@@ -99,6 +99,35 @@ namespace Ideogram
         public float? LineHeight { get; set; }
 
         /// <summary>
+        /// Letter spacing in em units (e.g. 0.05 = 5% of em). V4 vector-text only.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("letter_spacing")]
+        public float? LetterSpacing { get; set; }
+
+        /// <summary>
+        /// Case folding applied at render time. V4 vector-text only.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("text_transform")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.TextItemV3TextTransformJsonConverter))]
+        public global::Ideogram.TextItemV3TextTransform? TextTransform { get; set; }
+
+        /// <summary>
+        /// Vertical anchor (top|middle|bottom) for the rendered text within<br/>
+        /// its bounding box. Maps to SVG `dominant-baseline`. V4 vector-text<br/>
+        /// only. Distinct from horizontal `alignment` (left|center|right).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("vertical_alignment")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.TextItemV3VerticalAlignmentJsonConverter))]
+        public global::Ideogram.TextItemV3VerticalAlignment? VerticalAlignment { get; set; }
+
+        /// <summary>
+        /// Stacked CSS text shadows, composed back-to-front. Phase-1 ships at<br/>
+        /// most one entry; phase-2 unlocks multi-stack. V4 vector-text only.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("text_shadows")]
+        public global::System.Collections.Generic.IList<global::Ideogram.LayeredAssetTextShadow>? TextShadows { get; set; }
+
+        /// <summary>
         /// Ordered list of text spans. Concatenating span text values produces the full item text.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("spans")]
@@ -157,6 +186,21 @@ namespace Ideogram
         /// <param name="lineHeight">
         /// The line height multiplier (e.g., 1.2). Null for non-editable items.
         /// </param>
+        /// <param name="letterSpacing">
+        /// Letter spacing in em units (e.g. 0.05 = 5% of em). V4 vector-text only.
+        /// </param>
+        /// <param name="textTransform">
+        /// Case folding applied at render time. V4 vector-text only.
+        /// </param>
+        /// <param name="verticalAlignment">
+        /// Vertical anchor (top|middle|bottom) for the rendered text within<br/>
+        /// its bounding box. Maps to SVG `dominant-baseline`. V4 vector-text<br/>
+        /// only. Distinct from horizontal `alignment` (left|center|right).
+        /// </param>
+        /// <param name="textShadows">
+        /// Stacked CSS text shadows, composed back-to-front. Phase-1 ships at<br/>
+        /// most one entry; phase-2 unlocks multi-stack. V4 vector-text only.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -173,7 +217,11 @@ namespace Ideogram
             string? fontFile,
             global::System.Collections.Generic.IList<string>? fontCandidates,
             int? fontSize,
-            float? lineHeight)
+            float? lineHeight,
+            float? letterSpacing,
+            global::Ideogram.TextItemV3TextTransform? textTransform,
+            global::Ideogram.TextItemV3VerticalAlignment? verticalAlignment,
+            global::System.Collections.Generic.IList<global::Ideogram.LayeredAssetTextShadow>? textShadows)
         {
             this.X = x;
             this.Y = y;
@@ -187,6 +235,10 @@ namespace Ideogram
             this.FontCandidates = fontCandidates;
             this.FontSize = fontSize;
             this.LineHeight = lineHeight;
+            this.LetterSpacing = letterSpacing;
+            this.TextTransform = textTransform;
+            this.VerticalAlignment = verticalAlignment;
+            this.TextShadows = textShadows;
             this.Spans = spans ?? throw new global::System.ArgumentNullException(nameof(spans));
         }
 
@@ -196,5 +248,6 @@ namespace Ideogram
         public TextItemV3()
         {
         }
+
     }
 }

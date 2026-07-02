@@ -101,5 +101,6 @@ namespace Ideogram
         public InvoiceLineItem()
         {
         }
+
     }
 }

@@ -10,13 +10,13 @@ namespace Ideogram
     public sealed partial class MagicPromptRequest
     {
         /// <summary>
-        /// The prompt to enhance with a magic prompt<br/>
+        /// The prompt to enhance with a magic prompt. Mutually<br/>
+        /// exclusive with `messages`; one of the two must be set.<br/>
         /// Example: a cat
         /// </summary>
         /// <example>a cat</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Prompt { get; set; }
+        public string? Prompt { get; set; }
 
         /// <summary>
         /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
@@ -71,6 +71,91 @@ namespace Ideogram
         public string? SystemPrompt { get; set; }
 
         /// <summary>
+        /// Optional target aspect ratio used to condition the generated<br/>
+        /// magic prompt's framing. Forwarded to the autoprompt pipeline<br/>
+        /// so registry-driven system prompts that interpolate<br/>
+        /// `` see the bucket the caller intends.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter))]
+        public global::Ideogram.AspectRatioV3? AspectRatio { get; set; }
+
+        /// <summary>
+        /// Sampling temperature override. Defaults to the trainer-conditioned<br/>
+        /// value when omitted (0.7 for V4_QWEN_3_5_27B). Only honored with<br/>
+        /// V4 magic-prompt versions; supplying it with another version<br/>
+        /// returns 400.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("temperature")]
+        public float? Temperature { get; set; }
+
+        /// <summary>
+        /// Nucleus-sampling top_p override. Only honored with V4 versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("top_p")]
+        public float? TopP { get; set; }
+
+        /// <summary>
+        /// Top-k sampling override. Only honored with V4 versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("top_k")]
+        public int? TopK { get; set; }
+
+        /// <summary>
+        /// min_p sampling override. Only honored with V4 versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("min_p")]
+        public float? MinP { get; set; }
+
+        /// <summary>
+        /// Cap on the number of tokens the model may generate. Defaults to<br/>
+        /// 4096 (the trainer's reference cap) when omitted. Only honored<br/>
+        /// with V4 versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("max_tokens")]
+        public int? MaxTokens { get; set; }
+
+        /// <summary>
+        /// Presence-penalty override. Only honored with V4 versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("presence_penalty")]
+        public float? PresencePenalty { get; set; }
+
+        /// <summary>
+        /// Frequency-penalty override. Only honored with V4 versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("frequency_penalty")]
+        public float? FrequencyPenalty { get; set; }
+
+        /// <summary>
+        /// Repetition-penalty override. Only honored with V4 versions.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("repetition_penalty")]
+        public float? RepetitionPenalty { get; set; }
+
+        /// <summary>
+        /// Optional override of the LoRA adapter the V4 magic-prompt<br/>
+        /// wrapper downloads and runs. Pass a `gs://` URI pointing at a<br/>
+        /// checkpoint directory containing `adapter_config.json`. When<br/>
+        /// omitted, the wrapper-preloaded production checkpoint is used.<br/>
+        /// Honored with the wrapper-routed LoRA versions<br/>
+        /// `V4_QWEN_3_5_27B` and `V4_QWEN_3_5_27B_FULL_FINETUNE_LORA`;<br/>
+        /// supplying it with `V4_QWEN_3_5_27B_PREFUSED` or<br/>
+        /// `V4_QWEN_3_5_27B_FULL_FINETUNE` (which serve fixed weights and<br/>
+        /// cannot swap adapters per request) or any other version returns<br/>
+        /// 400.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("checkpoint")]
+        public string? Checkpoint { get; set; }
+
+        /// <summary>
+        /// Pre-formed chat messages forwarded verbatim to V4. Mutually<br/>
+        /// exclusive with `prompt`; exactly one must be set. V4 only.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("messages")]
+        public global::System.Collections.Generic.IList<global::Ideogram.MagicPromptRequestMessagesInner>? Messages { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -79,10 +164,6 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="MagicPromptRequest" /> class.
         /// </summary>
-        /// <param name="prompt">
-        /// The prompt to enhance with a magic prompt<br/>
-        /// Example: a cat
-        /// </param>
         /// <param name="magicPromptVersion">
         /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
         /// Example: V_0
@@ -91,6 +172,11 @@ namespace Ideogram
         /// Whether to classify the prompt into a use case category.<br/>
         /// Default Value: true<br/>
         /// Example: false
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt to enhance with a magic prompt. Mutually<br/>
+        /// exclusive with `messages`; one of the two must be set.<br/>
+        /// Example: a cat
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
@@ -108,25 +194,98 @@ namespace Ideogram
         /// A system prompt to use for the magic prompt.<br/>
         /// Example: You are a helpful assistant that generates magic prompts for images.
         /// </param>
+        /// <param name="aspectRatio">
+        /// Optional target aspect ratio used to condition the generated<br/>
+        /// magic prompt's framing. Forwarded to the autoprompt pipeline<br/>
+        /// so registry-driven system prompts that interpolate<br/>
+        /// `` see the bucket the caller intends.
+        /// </param>
+        /// <param name="temperature">
+        /// Sampling temperature override. Defaults to the trainer-conditioned<br/>
+        /// value when omitted (0.7 for V4_QWEN_3_5_27B). Only honored with<br/>
+        /// V4 magic-prompt versions; supplying it with another version<br/>
+        /// returns 400.
+        /// </param>
+        /// <param name="topP">
+        /// Nucleus-sampling top_p override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="topK">
+        /// Top-k sampling override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="minP">
+        /// min_p sampling override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="maxTokens">
+        /// Cap on the number of tokens the model may generate. Defaults to<br/>
+        /// 4096 (the trainer's reference cap) when omitted. Only honored<br/>
+        /// with V4 versions.
+        /// </param>
+        /// <param name="presencePenalty">
+        /// Presence-penalty override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="frequencyPenalty">
+        /// Frequency-penalty override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="repetitionPenalty">
+        /// Repetition-penalty override. Only honored with V4 versions.
+        /// </param>
+        /// <param name="checkpoint">
+        /// Optional override of the LoRA adapter the V4 magic-prompt<br/>
+        /// wrapper downloads and runs. Pass a `gs://` URI pointing at a<br/>
+        /// checkpoint directory containing `adapter_config.json`. When<br/>
+        /// omitted, the wrapper-preloaded production checkpoint is used.<br/>
+        /// Honored with the wrapper-routed LoRA versions<br/>
+        /// `V4_QWEN_3_5_27B` and `V4_QWEN_3_5_27B_FULL_FINETUNE_LORA`;<br/>
+        /// supplying it with `V4_QWEN_3_5_27B_PREFUSED` or<br/>
+        /// `V4_QWEN_3_5_27B_FULL_FINETUNE` (which serve fixed weights and<br/>
+        /// cannot swap adapters per request) or any other version returns<br/>
+        /// 400.
+        /// </param>
+        /// <param name="messages">
+        /// Pre-formed chat messages forwarded verbatim to V4. Mutually<br/>
+        /// exclusive with `prompt`; exactly one must be set. V4 only.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public MagicPromptRequest(
-            string prompt,
             global::Ideogram.MagicPromptVersionEnum magicPromptVersion,
             bool classifyPromptCategory,
+            string? prompt,
             global::Ideogram.StyleTypeV3? styleType,
             int? seed,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages,
-            string? systemPrompt)
+            string? systemPrompt,
+            global::Ideogram.AspectRatioV3? aspectRatio,
+            float? temperature,
+            float? topP,
+            int? topK,
+            float? minP,
+            int? maxTokens,
+            float? presencePenalty,
+            float? frequencyPenalty,
+            float? repetitionPenalty,
+            string? checkpoint,
+            global::System.Collections.Generic.IList<global::Ideogram.MagicPromptRequestMessagesInner>? messages)
         {
-            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.Prompt = prompt;
             this.MagicPromptVersion = magicPromptVersion;
             this.ClassifyPromptCategory = classifyPromptCategory;
             this.StyleType = styleType;
             this.Seed = seed;
             this.CharacterReferenceImages = characterReferenceImages;
             this.SystemPrompt = systemPrompt;
+            this.AspectRatio = aspectRatio;
+            this.Temperature = temperature;
+            this.TopP = topP;
+            this.TopK = topK;
+            this.MinP = minP;
+            this.MaxTokens = maxTokens;
+            this.PresencePenalty = presencePenalty;
+            this.FrequencyPenalty = frequencyPenalty;
+            this.RepetitionPenalty = repetitionPenalty;
+            this.Checkpoint = checkpoint;
+            this.Messages = messages;
         }
 
         /// <summary>
@@ -135,5 +294,6 @@ namespace Ideogram
         public MagicPromptRequest()
         {
         }
+
     }
 }

@@ -202,5 +202,6 @@ namespace Ideogram
         public DetectedTextBlock()
         {
         }
+
     }
 }

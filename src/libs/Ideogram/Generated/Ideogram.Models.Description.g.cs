@@ -44,5 +44,6 @@ namespace Ideogram
         public Description()
         {
         }
+
     }
 }

@@ -130,5 +130,6 @@ namespace Ideogram
         public ImageObject()
         {
         }
+
     }
 }

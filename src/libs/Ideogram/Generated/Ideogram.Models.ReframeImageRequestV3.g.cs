@@ -163,5 +163,6 @@ namespace Ideogram
         public ReframeImageRequestV3()
         {
         }
+
     }
 }

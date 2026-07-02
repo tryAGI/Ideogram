@@ -41,6 +41,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
@@ -116,6 +122,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
@@ -150,6 +159,7 @@ namespace Ideogram
             string imagename,
             string prompt,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             int? numImages,
             int? seed,
             global::Ideogram.RenderingSpeed? renderingSpeed,
@@ -162,6 +172,7 @@ namespace Ideogram
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NumImages = numImages;
             this.Seed = seed;
             this.RenderingSpeed = renderingSpeed;
@@ -177,5 +188,6 @@ namespace Ideogram
         public ReplaceBackgroundRequestV3()
         {
         }
+
     }
 }

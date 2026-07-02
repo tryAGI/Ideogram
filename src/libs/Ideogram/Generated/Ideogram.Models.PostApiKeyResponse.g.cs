@@ -60,5 +60,6 @@ namespace Ideogram
         public PostApiKeyResponse()
         {
         }
+
     }
 }

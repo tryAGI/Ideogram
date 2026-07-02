@@ -4,16 +4,30 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    /// Request body for Ideogram 4.0 image generation. Supply exactly one of<br/>
+    /// `text_prompt` or `json_prompt`. When `text_prompt` is supplied,<br/>
+    /// magic-prompt is applied automatically. When `json_prompt` is supplied,<br/>
+    /// magic-prompt is skipped and the structured prompt is consumed<br/>
+    /// directly.
     /// </summary>
     public sealed partial class GenerateImageRequestV4
     {
         /// <summary>
-        /// The text prompt for image generation.
+        /// A natural-language prompt for image generation. When supplied,<br/>
+        /// magic-prompt is enabled automatically. Mutually exclusive with<br/>
+        /// `json_prompt`.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Prompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("text_prompt")]
+        public string? TextPrompt { get; set; }
+
+        /// <summary>
+        /// A structured prompt that conforms to the Ideogram 4.0 JSON<br/>
+        /// contract. When supplied, magic-prompt is disabled and the<br/>
+        /// structured prompt is consumed by the diffusion model directly.<br/>
+        /// Mutually exclusive with `text_prompt`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("json_prompt")]
+        public global::Ideogram.V4JsonPrompt? JsonPrompt { get; set; }
 
         /// <summary>
         /// Random seed for reproducibility.
@@ -22,13 +36,12 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
-        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
-        /// Example: ON
+        /// A base64url-encoded magic prompt system prompt config ID to use<br/>
+        /// for this request. Honored when `text_prompt` is supplied. Ignored<br/>
+        /// when `json_prompt` is supplied.
         /// </summary>
-        /// <example>ON</example>
-        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_option")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
 
         /// <summary>
         /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;.<br/>
@@ -40,6 +53,32 @@ namespace Ideogram
         public string? CustomModelUri { get; set; }
 
         /// <summary>
+        /// The 1K and 2K resolutions supported for Ideogram 4.0 image generation.<br/>
+        /// Example: 2048x2048
+        /// </summary>
+        /// <example>2048x2048</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter))]
+        public global::Ideogram.ResolutionV4? Resolution { get; set; }
+
+        /// <summary>
+        /// The rendering speed to use. For Ideogram V4, `rendering_speed=FLASH`<br/>
+        /// is coming soon; requests with `rendering_speed=FLASH` currently<br/>
+        /// return a 400.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RenderingSpeedJsonConverter))]
+        public global::Ideogram.RenderingSpeed? RenderingSpeed { get; set; }
+
+        /// <summary>
+        /// Optional. Opt this request into post-generation copyright detection (Hive likeness + logo<br/>
+        /// checks). The effective gate is the OR of this field and the organization's<br/>
+        /// `copyright_detection_enabled` setting on `/api`. See GenerateImageRequestV3 for details.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
+        public bool? EnableCopyrightDetection { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -48,34 +87,65 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="GenerateImageRequestV4" /> class.
         /// </summary>
-        /// <param name="prompt">
-        /// The text prompt for image generation.
+        /// <param name="textPrompt">
+        /// A natural-language prompt for image generation. When supplied,<br/>
+        /// magic-prompt is enabled automatically. Mutually exclusive with<br/>
+        /// `json_prompt`.
+        /// </param>
+        /// <param name="jsonPrompt">
+        /// A structured prompt that conforms to the Ideogram 4.0 JSON<br/>
+        /// contract. When supplied, magic-prompt is disabled and the<br/>
+        /// structured prompt is consumed by the diffusion model directly.<br/>
+        /// Mutually exclusive with `text_prompt`.
         /// </param>
         /// <param name="seed">
         /// Random seed for reproducibility.
         /// </param>
-        /// <param name="magicPromptOption">
-        /// Determine if MagicPrompt should be used in generating the request or not.<br/>
-        /// Example: ON
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use<br/>
+        /// for this request. Honored when `text_prompt` is supplied. Ignored<br/>
+        /// when `json_prompt` is supplied.
         /// </param>
         /// <param name="customModelUri">
         /// A custom model URI in the format model/&lt;model_name&gt;/version/&lt;version_name&gt;.<br/>
         /// When provided, the model version and style will be resolved from this URI.<br/>
         /// Example: model/my-custom-model/version/0
         /// </param>
+        /// <param name="resolution">
+        /// The 1K and 2K resolutions supported for Ideogram 4.0 image generation.<br/>
+        /// Example: 2048x2048
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use. For Ideogram V4, `rendering_speed=FLASH`<br/>
+        /// is coming soon; requests with `rendering_speed=FLASH` currently<br/>
+        /// return a 400.
+        /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Opt this request into post-generation copyright detection (Hive likeness + logo<br/>
+        /// checks). The effective gate is the OR of this field and the organization's<br/>
+        /// `copyright_detection_enabled` setting on `/api`. See GenerateImageRequestV3 for details.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GenerateImageRequestV4(
-            string prompt,
+            string? textPrompt,
+            global::Ideogram.V4JsonPrompt? jsonPrompt,
             int? seed,
-            global::Ideogram.MagicPromptOption? magicPromptOption,
-            string? customModelUri)
+            string? magicPromptSystemPromptConfigId,
+            string? customModelUri,
+            global::Ideogram.ResolutionV4? resolution,
+            global::Ideogram.RenderingSpeed? renderingSpeed,
+            bool? enableCopyrightDetection)
         {
-            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.TextPrompt = textPrompt;
+            this.JsonPrompt = jsonPrompt;
             this.Seed = seed;
-            this.MagicPromptOption = magicPromptOption;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.CustomModelUri = customModelUri;
+            this.Resolution = resolution;
+            this.RenderingSpeed = renderingSpeed;
+            this.EnableCopyrightDetection = enableCopyrightDetection;
         }
 
         /// <summary>
@@ -84,5 +154,6 @@ namespace Ideogram
         public GenerateImageRequestV4()
         {
         }
+
     }
 }

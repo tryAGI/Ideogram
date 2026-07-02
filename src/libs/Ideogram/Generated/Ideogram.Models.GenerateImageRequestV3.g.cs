@@ -59,6 +59,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
@@ -136,6 +142,16 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImagesMask { get; set; }
 
         /// <summary>
+        /// Optional. Opt this request into post-generation copyright detection (Hive likeness + logo<br/>
+        /// checks). The effective gate is the OR of this field and the organization's<br/>
+        /// `copyright_detection_enabled` setting on `/api`: if the org has it on, this is ignored;<br/>
+        /// if the org has it off, setting this `true` enables detection for this request only.<br/>
+        /// Adds detection latency. Flagged images come back with `is_image_safe: false`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
+        public bool? EnableCopyrightDetection { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -166,6 +182,9 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
@@ -206,6 +225,13 @@ namespace Ideogram
         /// <param name="characterReferenceImagesMask">
         /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
         /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Opt this request into post-generation copyright detection (Hive likeness + logo<br/>
+        /// checks). The effective gate is the OR of this field and the organization's<br/>
+        /// `copyright_detection_enabled` setting on `/api`: if the org has it on, this is ignored;<br/>
+        /// if the org has it off, setting this `true` enables detection for this request only.<br/>
+        /// Adds detection latency. Flagged images come back with `is_image_safe: false`.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -216,6 +242,7 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.RenderingSpeed? renderingSpeed,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             string? negativePrompt,
             int? numImages,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
@@ -225,7 +252,8 @@ namespace Ideogram
             string? customModelUri,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages,
-            global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask)
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImagesMask,
+            bool? enableCopyrightDetection)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Seed = seed;
@@ -233,6 +261,7 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.RenderingSpeed = renderingSpeed;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NegativePrompt = negativePrompt;
             this.NumImages = numImages;
             this.ColorPalette = colorPalette;
@@ -243,6 +272,7 @@ namespace Ideogram
             this.StyleReferenceImages = styleReferenceImages;
             this.CharacterReferenceImages = characterReferenceImages;
             this.CharacterReferenceImagesMask = characterReferenceImagesMask;
+            this.EnableCopyrightDetection = enableCopyrightDetection;
         }
 
         /// <summary>
@@ -251,5 +281,6 @@ namespace Ideogram
         public GenerateImageRequestV3()
         {
         }
+
     }
 }

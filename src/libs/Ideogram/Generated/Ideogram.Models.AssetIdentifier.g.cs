@@ -52,5 +52,6 @@ namespace Ideogram
         public AssetIdentifier()
         {
         }
+
     }
 }
