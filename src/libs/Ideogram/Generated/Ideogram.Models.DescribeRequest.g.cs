@@ -68,5 +68,6 @@ namespace Ideogram
         public DescribeRequest()
         {
         }
+
     }
 }

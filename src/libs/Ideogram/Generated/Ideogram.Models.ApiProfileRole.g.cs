@@ -4,11 +4,15 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Role within an enterprise organization profile<br/>
+    /// Role within an organization profile. ADMIN only exists for TEAM_API organizations.<br/>
     /// Example: OWNER
     /// </summary>
     public enum ApiProfileRole
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        Admin,
         /// <summary>
         /// 
         /// </summary>
@@ -31,6 +35,7 @@ namespace Ideogram
         {
             return value switch
             {
+                ApiProfileRole.Admin => "ADMIN",
                 ApiProfileRole.Member => "MEMBER",
                 ApiProfileRole.Owner => "OWNER",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -43,6 +48,7 @@ namespace Ideogram
         {
             return value switch
             {
+                "ADMIN" => ApiProfileRole.Admin,
                 "MEMBER" => ApiProfileRole.Member,
                 "OWNER" => ApiProfileRole.Owner,
                 _ => null,

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}
+    /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}
     /// </summary>
     public sealed partial class ApiProfileApiKey
     {
@@ -42,6 +42,14 @@ namespace Ideogram
         public required global::Ideogram.ApiKeyStatus Status { get; set; }
 
         /// <summary>
+        /// An optional user-supplied label for managing the API key<br/>
+        /// Example: Live production environment
+        /// </summary>
+        /// <example>Live production environment</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("label")]
+        public string? Label { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -64,6 +72,10 @@ namespace Ideogram
         /// <param name="status">
         /// Status of the API key
         /// </param>
+        /// <param name="label">
+        /// An optional user-supplied label for managing the API key<br/>
+        /// Example: Live production environment
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -71,12 +83,14 @@ namespace Ideogram
             string apiKeyId,
             string redactedApiKey,
             global::System.DateTime creationTime,
-            global::Ideogram.ApiKeyStatus status)
+            global::Ideogram.ApiKeyStatus status,
+            string? label)
         {
             this.ApiKeyId = apiKeyId ?? throw new global::System.ArgumentNullException(nameof(apiKeyId));
             this.RedactedApiKey = redactedApiKey ?? throw new global::System.ArgumentNullException(nameof(redactedApiKey));
             this.CreationTime = creationTime;
             this.Status = status;
+            this.Label = label;
         }
 
         /// <summary>
@@ -85,5 +99,6 @@ namespace Ideogram
         public ApiProfileApiKey()
         {
         }
+
     }
 }

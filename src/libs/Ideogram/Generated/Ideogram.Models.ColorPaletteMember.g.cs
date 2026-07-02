@@ -59,5 +59,6 @@ namespace Ideogram
         public ColorPaletteMember()
         {
         }
+
     }
 }

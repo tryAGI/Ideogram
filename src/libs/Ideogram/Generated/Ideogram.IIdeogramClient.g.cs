@@ -85,5 +85,12 @@ namespace Ideogram
         /// </summary>
         public VisionClient Vision { get; }
 
+        /// <summary>
+        /// Endpoints related to webhook delivery and verification. The JWKS<br/>
+        /// endpoint publishes the Ed25519 public keys customers use to verify<br/>
+        /// that an inbound webhook genuinely originated from Ideogram.
+        /// </summary>
+        public WebhooksClient Webhooks { get; }
+
     }
 }

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"is_metronome_2_user":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}],"max_num_inflight_requests_permitted":10}
+    /// Example: {"is_metronome_2_user":true,"copyright_detection_enabled":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}],"max_num_inflight_requests_permitted":10}
     /// </summary>
     public sealed partial class ApiProfile
     {
@@ -45,7 +45,7 @@ namespace Ideogram
         public required string OrganizationId { get; set; }
 
         /// <summary>
-        /// Role within an enterprise organization profile<br/>
+        /// Role within an organization profile. ADMIN only exists for TEAM_API organizations.<br/>
         /// Example: OWNER
         /// </summary>
         /// <example>OWNER</example>
@@ -79,6 +79,12 @@ namespace Ideogram
         public required int MaxNumInflightRequestsPermitted { get; set; }
 
         /// <summary>
+        /// Whether post-generation copyright detection (Hive likeness + logo) is enabled for this organization's API generations. When true, every successful generation is run through Hive IP scoring after the asset is saved; images that cross the likeness or logo thresholds come back with `is_image_safe = false`. Only populated for ENTERPRISE profiles.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("copyright_detection_enabled")]
+        public bool? CopyrightDetectionEnabled { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -100,7 +106,7 @@ namespace Ideogram
         /// Example: b3JnYW5pemF0aW9uXzEyMw
         /// </param>
         /// <param name="role">
-        /// Role within an enterprise organization profile<br/>
+        /// Role within an organization profile. ADMIN only exists for TEAM_API organizations.<br/>
         /// Example: OWNER
         /// </param>
         /// <param name="apiKeys">
@@ -118,6 +124,9 @@ namespace Ideogram
         /// URL to the profile avatar<br/>
         /// Example: https://example.com/avatar.jpg
         /// </param>
+        /// <param name="copyrightDetectionEnabled">
+        /// Whether post-generation copyright detection (Hive likeness + logo) is enabled for this organization's API generations. When true, every successful generation is run through Hive IP scoring after the asset is saved; images that cross the likeness or logo thresholds come back with `is_image_safe = false`. Only populated for ENTERPRISE profiles.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -129,7 +138,8 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey> apiKeys,
             bool isMetronome2User,
             int maxNumInflightRequestsPermitted,
-            string? avatarUrl)
+            string? avatarUrl,
+            bool? copyrightDetectionEnabled)
         {
             this.Type = type;
             this.Name = name ?? throw new global::System.ArgumentNullException(nameof(name));
@@ -139,6 +149,7 @@ namespace Ideogram
             this.ApiKeys = apiKeys ?? throw new global::System.ArgumentNullException(nameof(apiKeys));
             this.IsMetronome2User = isMetronome2User;
             this.MaxNumInflightRequestsPermitted = maxNumInflightRequestsPermitted;
+            this.CopyrightDetectionEnabled = copyrightDetectionEnabled;
         }
 
         /// <summary>
@@ -147,5 +158,6 @@ namespace Ideogram
         public ApiProfile()
         {
         }
+
     }
 }

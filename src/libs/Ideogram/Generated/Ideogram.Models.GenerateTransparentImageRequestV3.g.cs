@@ -60,6 +60,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
@@ -118,6 +124,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
@@ -143,6 +152,7 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.RenderingSpeed? renderingSpeed,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             string? negativePrompt,
             int? numImages,
             string? customModelUri)
@@ -153,6 +163,7 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.RenderingSpeed = renderingSpeed;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NegativePrompt = negativePrompt;
             this.NumImages = numImages;
             this.CustomModelUri = customModelUri;
@@ -164,5 +175,6 @@ namespace Ideogram
         public GenerateTransparentImageRequestV3()
         {
         }
+
     }
 }

@@ -61,6 +61,8 @@ namespace Ideogram
         /// - V_3_0: Model 3.0 March 26<br/>
         /// - V_3_1: Model 3.0 Latest<br/>
         /// - V_4_0: Model 4.0<br/>
+        /// - V_4_D: Model 4.0 Layered Design (vector-text path; gated by the access_to_v4_experimental feature flag)<br/>
+        /// - V_4_LAYOUT2IMAGE: Model 4.0 Layout to Image (HTML layout rasterized as IMAGE_TO_IMAGE conditioning; gated by the access_to_v4_experimental feature flag)<br/>
         /// - AUTO: Automatically select the best model version based on the request.<br/>
         /// Example: V_0_3
         /// </summary>
@@ -107,6 +109,8 @@ namespace Ideogram
         /// - V_3_0: Model 3.0 March 26<br/>
         /// - V_3_1: Model 3.0 Latest<br/>
         /// - V_4_0: Model 4.0<br/>
+        /// - V_4_D: Model 4.0 Layered Design (vector-text path; gated by the access_to_v4_experimental feature flag)<br/>
+        /// - V_4_LAYOUT2IMAGE: Model 4.0 Layout to Image (HTML layout rasterized as IMAGE_TO_IMAGE conditioning; gated by the access_to_v4_experimental feature flag)<br/>
         /// - AUTO: Automatically select the best model version based on the request.<br/>
         /// Example: V_0_3
         /// </param>
@@ -135,5 +139,6 @@ namespace Ideogram
         public ToolUsage()
         {
         }
+
     }
 }

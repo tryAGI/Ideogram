@@ -86,5 +86,6 @@ namespace Ideogram
         public GetDatasetResponse()
         {
         }
+
     }
 }

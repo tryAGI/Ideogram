@@ -42,5 +42,6 @@ namespace Ideogram
         public GetUsageInfoResponse()
         {
         }
+
     }
 }

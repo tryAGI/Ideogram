@@ -23,6 +23,20 @@ namespace Ideogram
         /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
         /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.InternalBatchResponse>> PostBatchAsResponseAsync(
+
+            global::Ideogram.InternalBatchRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Initiate Batch Magic Prompt Evalution<br/>
+        /// Runs automated evaluation of multiple LLM models and system prompts for magic prompt generation. <br/>
+        /// Generates images using large batches of user prompt inputs. Internal use only (feature flagged).
+        /// </summary>
         /// <param name="userPrompts">
         /// The prompts to enhance with a magic prompt.<br/>
         /// Example: [a cat, a dog]
@@ -32,7 +46,7 @@ namespace Ideogram
         /// Example: MAGIC_PROMPT_NO_TEXT
         /// </param>
         /// <param name="samplingRequestParams">
-        /// Example: {"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
+        /// Example: {"magic_prompt_system_prompt_config_id":"magic_prompt_system_prompt_config_id","aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

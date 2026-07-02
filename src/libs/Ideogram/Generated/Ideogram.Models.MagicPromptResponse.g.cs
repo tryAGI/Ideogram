@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// The response containing generated magic prompt<br/>
-    /// Example: {"magic_prompt":"A photorealistic cat with striking green eyes, sitting gracefully on a vintage wooden chair. The cat\u0027s fur has beautiful orange and white markings, and soft natural lighting illuminates the scene from a nearby window."}
+    /// Example: {"magic_prompt":"A photorealistic cat with striking green eyes, sitting gracefully on a vintage wooden chair. The cat\u0027s fur has beautiful orange and white markings, and soft natural lighting illuminates the scene from a nearby window.","magic_prompt_version":"V4_QWEN_3_5_27B_EXPERIMENTAL_SLOT_01","served_model_name":"qwen35-27b-magic-prompt-experimental-2026-06-17"}
     /// </summary>
     public sealed partial class MagicPromptResponse
     {
@@ -15,6 +15,22 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string MagicPrompt { get; set; }
+
+        /// <summary>
+        /// The magic prompt version that produced this response.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_version")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptVersionEnumJsonConverter))]
+        public global::Ideogram.MagicPromptVersionEnum? MagicPromptVersion { get; set; }
+
+        /// <summary>
+        /// Identifier of the underlying model that produced this prompt. For<br/>
+        /// experimental versions, whose backing model can change over time,<br/>
+        /// this reports the model that actually served the request. Null when<br/>
+        /// not applicable.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("served_model_name")]
+        public string? ServedModelName { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -28,13 +44,26 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// The generated magic prompt
         /// </param>
+        /// <param name="magicPromptVersion">
+        /// The magic prompt version that produced this response.
+        /// </param>
+        /// <param name="servedModelName">
+        /// Identifier of the underlying model that produced this prompt. For<br/>
+        /// experimental versions, whose backing model can change over time,<br/>
+        /// this reports the model that actually served the request. Null when<br/>
+        /// not applicable.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public MagicPromptResponse(
-            string magicPrompt)
+            string magicPrompt,
+            global::Ideogram.MagicPromptVersionEnum? magicPromptVersion,
+            string? servedModelName)
         {
             this.MagicPrompt = magicPrompt ?? throw new global::System.ArgumentNullException(nameof(magicPrompt));
+            this.MagicPromptVersion = magicPromptVersion;
+            this.ServedModelName = servedModelName;
         }
 
         /// <summary>
@@ -43,5 +72,6 @@ namespace Ideogram
         public MagicPromptResponse()
         {
         }
+
     }
 }

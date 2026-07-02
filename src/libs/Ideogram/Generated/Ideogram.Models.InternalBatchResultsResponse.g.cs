@@ -57,5 +57,6 @@ namespace Ideogram
         public InternalBatchResultsResponse()
         {
         }
+
     }
 }

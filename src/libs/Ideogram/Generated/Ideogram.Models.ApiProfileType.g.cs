@@ -17,6 +17,10 @@ namespace Ideogram
         /// 
         /// </summary>
         Individual,
+        /// <summary>
+        /// 
+        /// </summary>
+        TeamApi,
     }
 
     /// <summary>
@@ -33,6 +37,7 @@ namespace Ideogram
             {
                 ApiProfileType.Enterprise => "ENTERPRISE",
                 ApiProfileType.Individual => "INDIVIDUAL",
+                ApiProfileType.TeamApi => "TEAM_API",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -45,6 +50,7 @@ namespace Ideogram
             {
                 "ENTERPRISE" => ApiProfileType.Enterprise,
                 "INDIVIDUAL" => ApiProfileType.Individual,
+                "TEAM_API" => ApiProfileType.TeamApi,
                 _ => null,
             };
         }
