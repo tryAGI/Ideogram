@@ -22,7 +22,7 @@ public partial class Tests
         var imageBytes = new byte[] { 0x89, 0x50, 0x4E, 0x47 };
         var maskBytes = new byte[] { 0x89, 0x50, 0x4E, 0x47 };
 
-        ImageGenerationResponseV3 response = await api.Generate.PostEditImageV3Async(
+        ImageGenerationResponseV3 response = await api.Generate.PostInpaintImageV3Async(
             new EditImageRequestV3
             {
                 Image = imageBytes,
