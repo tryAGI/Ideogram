@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class UploadDatasetAssetsRequest
     {
@@ -42,5 +42,6 @@ namespace Ideogram
         public UploadDatasetAssetsRequest()
         {
         }
+
     }
 }

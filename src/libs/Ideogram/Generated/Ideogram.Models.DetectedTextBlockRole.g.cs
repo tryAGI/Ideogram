@@ -9,19 +9,19 @@ namespace Ideogram
     public enum DetectedTextBlockRole
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Body,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Caption,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Heading,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Subheading,
     }

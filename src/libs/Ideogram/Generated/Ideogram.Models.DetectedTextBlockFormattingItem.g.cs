@@ -4,40 +4,40 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum DetectedTextBlockFormattingItem
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AllCaps,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Bold,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Italic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SmallCaps,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Strikethrough,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Subscript,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Superscript,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Underline,
     }

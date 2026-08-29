@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"members":[{"display_handle":"john_doe","email_address":"john.doe@example.com","role":"OWNER","full_name":"full_name","avatar_url":"https://example.com/avatars/user123.jpg","user_id":"dXNlcl8xMjM"},{"display_handle":"john_doe","email_address":"john.doe@example.com","role":"OWNER","full_name":"full_name","avatar_url":"https://example.com/avatars/user123.jpg","user_id":"dXNlcl8xMjM"}]}
+    /// Example: {"members":[{"invite_id":"invite_id","display_handle":"john_doe","email_address":"john.doe@example.com","role":"OWNER","full_name":"full_name","invite_expiry_time":"2000-01-23T04:56:07\u002B00:00","avatar_url":"https://example.com/avatars/user123.jpg","user_id":"dXNlcl8xMjM","invite_status":"PENDING"},{"invite_id":"invite_id","display_handle":"john_doe","email_address":"john.doe@example.com","role":"OWNER","full_name":"full_name","invite_expiry_time":"2000-01-23T04:56:07\u002B00:00","avatar_url":"https://example.com/avatars/user123.jpg","user_id":"dXNlcl8xMjM","invite_status":"PENDING"}]}
     /// </summary>
     public sealed partial class GetOrganizationMembersResponse
     {
@@ -44,5 +44,6 @@ namespace Ideogram
         public GetOrganizationMembersResponse()
         {
         }
+
     }
 }

@@ -10,19 +10,19 @@ namespace Ideogram
     public enum InvoiceStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Draft,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Paid,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PendingPayment,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Voided,
     }

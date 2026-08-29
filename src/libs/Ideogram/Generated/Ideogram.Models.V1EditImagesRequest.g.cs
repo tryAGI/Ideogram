@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class V1EditImagesRequest
     {
@@ -18,7 +18,7 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// Images to edit (max 10 images, max size 10MB each); JPEG, WebP and PNG formats are supported.
+        /// Images to edit (max 10 images, max size 25MB each); JPEG, WebP and PNG formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("images")]
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
@@ -54,6 +54,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
         /// </summary>
@@ -71,6 +77,8 @@ namespace Ideogram
 
         /// <summary>
         /// Whether the output should have a transparent background. Default false.<br/>
+        /// When more than one image is supplied, the first image is treated as<br/>
+        /// the image being edited and drives the transparency decision.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transparent_background")]
@@ -90,7 +98,7 @@ namespace Ideogram
         /// Example: Change the background to a beach sunset.
         /// </param>
         /// <param name="images">
-        /// Images to edit (max 10 images, max size 10MB each); JPEG, WebP and PNG formats are supported.
+        /// Images to edit (max 10 images, max size 25MB each); JPEG, WebP and PNG formats are supported.
         /// </param>
         /// <param name="imageUrls">
         /// URLs to Ideogram images to use as references (max 10). Supports URLs from generation responses and image uploads. Alternative to uploading via the images field.
@@ -107,6 +115,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="resolution">
         /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
@@ -116,6 +127,8 @@ namespace Ideogram
         /// </param>
         /// <param name="transparentBackground">
         /// Whether the output should have a transparent background. Default false.<br/>
+        /// When more than one image is supplied, the first image is treated as<br/>
+        /// the image being edited and drives the transparency decision.<br/>
         /// Default Value: false
         /// </param>
 #if NET7_0_OR_GREATER
@@ -128,6 +141,7 @@ namespace Ideogram
             int? numImages,
             int? seed,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             global::Ideogram.ResolutionV3? resolution,
             global::Ideogram.AspectRatioV3? aspectRatio,
             bool? transparentBackground)
@@ -138,6 +152,7 @@ namespace Ideogram
             this.NumImages = numImages;
             this.Seed = seed;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.Resolution = resolution;
             this.AspectRatio = aspectRatio;
             this.TransparentBackground = transparentBackground;
@@ -149,5 +164,6 @@ namespace Ideogram
         public V1EditImagesRequest()
         {
         }
+
     }
 }

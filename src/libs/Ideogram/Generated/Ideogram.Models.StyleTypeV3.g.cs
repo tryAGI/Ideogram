@@ -11,31 +11,31 @@ namespace Ideogram
     public enum StyleTypeV3
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Custom,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Design,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Fiction,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         General,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Realistic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Stylized,
     }

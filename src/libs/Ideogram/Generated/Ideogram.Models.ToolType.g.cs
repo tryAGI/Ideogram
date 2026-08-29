@@ -10,27 +10,27 @@ namespace Ideogram
     public enum ToolType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Describe,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Edit,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Generate,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Other,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Remix,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Upscale,
     }

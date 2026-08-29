@@ -4,18 +4,18 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class InternalTestingNestedObject
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prop_one")]
         public string? PropOne { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prop_two")]
         public string? PropTwo { get; set; }
@@ -48,5 +48,6 @@ namespace Ideogram
         public InternalTestingNestedObject()
         {
         }
+
     }
 }

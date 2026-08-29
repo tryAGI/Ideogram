@@ -10,19 +10,19 @@ namespace Ideogram
     public enum TextItemV3GlyphType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Bullet,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Icon,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Number,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Other,
     }

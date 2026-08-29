@@ -1,0 +1,835 @@
+
+#nullable enable
+
+namespace Ideogram
+{
+    public partial class ImagesGenerateClient
+    {
+
+
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirement0 =
+            new global::Ideogram.EndPointSecurityRequirement
+            {
+                Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
+                {                    new global::Ideogram.EndPointAuthorizationRequirement
+                    {
+                        Type = "Http",
+                        SchemeId = "HttpBearer",
+                        Location = "Header",
+                        Name = "Bearer",
+                        FriendlyName = "Bearer",
+                    },
+                },
+            };
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirements =
+            new global::Ideogram.EndPointSecurityRequirement[]
+            {                s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirement0,
+            };
+        partial void PreparePostGenerateImageV2IdeogramV4CustomModelArguments(
+            global::System.Net.Http.HttpClient httpClient,
+            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request);
+        partial void PreparePostGenerateImageV2IdeogramV4CustomModelRequest(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request);
+        partial void ProcessPostGenerateImageV2IdeogramV4CustomModelResponse(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+        partial void ProcessPostGenerateImageV2IdeogramV4CustomModelResponseContent(
+            global::System.Net.Http.HttpClient httpClient,
+            global::System.Net.Http.HttpResponseMessage httpResponseMessage,
+            ref string content);
+
+        /// <summary>
+        /// Generate images with a custom Ideogram 4.0 model<br/>
+        /// Generate one or more images with a custom Ideogram 4.0 model that the<br/>
+        /// authenticated user or organization can access. The model registry<br/>
+        /// controls the model's supported rendering speeds.<br/>
+        /// The `prompt` accepts either natural language or a structured Ideogram<br/>
+        /// 4.0 JSON prompt; the server detects which was supplied. A structured<br/>
+        /// JSON prompt is consumed by the model directly and skips magic prompt.<br/>
+        /// By default the request blocks until the images are ready and returns<br/>
+        /// them in `data`. Set `async` to true to return immediately after the<br/>
+        /// request is accepted, then poll for completion and results with<br/>
+        /// `GET /v1/generations/{generation_id}` using the returned<br/>
+        /// `generation_id`.<br/>
+        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
+        /// `async` says: the response returns as soon as the request is accepted,<br/>
+        /// and the finished result is POSTed to that URL.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse> PostGenerateImageV2IdeogramV4CustomModelAsync(
+
+            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __response = await PostGenerateImageV2IdeogramV4CustomModelAsResponseAsync(
+
+                request: request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken
+            ).ConfigureAwait(false);
+
+            return __response.Body;
+        }
+        /// <summary>
+        /// Generate images with a custom Ideogram 4.0 model<br/>
+        /// Generate one or more images with a custom Ideogram 4.0 model that the<br/>
+        /// authenticated user or organization can access. The model registry<br/>
+        /// controls the model's supported rendering speeds.<br/>
+        /// The `prompt` accepts either natural language or a structured Ideogram<br/>
+        /// 4.0 JSON prompt; the server detects which was supplied. A structured<br/>
+        /// JSON prompt is consumed by the model directly and skips magic prompt.<br/>
+        /// By default the request blocks until the images are ready and returns<br/>
+        /// them in `data`. Set `async` to true to return immediately after the<br/>
+        /// request is accepted, then poll for completion and results with<br/>
+        /// `GET /v1/generations/{generation_id}` using the returned<br/>
+        /// `generation_id`.<br/>
+        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
+        /// `async` says: the response returns as soon as the request is accepted,<br/>
+        /// and the finished result is POSTed to that URL.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse>> PostGenerateImageV2IdeogramV4CustomModelAsResponseAsync(
+
+            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
+
+            PrepareArguments(
+                client: HttpClient);
+            PreparePostGenerateImageV2IdeogramV4CustomModelArguments(
+                httpClient: HttpClient,
+                request: request);
+
+
+            var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
+                availableAuthorizations: Authorizations,
+                securityRequirements: s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirements,
+                operationName: "PostGenerateImageV2IdeogramV4CustomModelAsync");
+
+            using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken);
+            var __effectiveCancellationToken = __timeoutCancellationTokenSource?.Token ?? cancellationToken;
+            var __effectiveReadResponseAsString = global::Ideogram.AutoSDKRequestOptionsSupport.GetReadResponseAsString(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                fallbackValue: ReadResponseAsString);
+            var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
+                clientOptions: Options,
+                requestOptions: requestOptions,
+                supportsRetry: true);
+
+            global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
+            {
+
+                            var __pathBuilder = new global::Ideogram.PathBuilder(
+                                path: "/v2/images/generate/ideogram-v4-custom-model",
+                                baseUri: HttpClient.BaseAddress);
+                            var __path = __pathBuilder.ToString();
+                __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
+                    path: __path,
+                    clientParameters: Options.QueryParameters,
+                    requestParameters: requestOptions?.QueryParameters);
+                var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
+                    method: global::System.Net.Http.HttpMethod.Post,
+                    requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
+#if NET6_0_OR_GREATER
+                __httpRequest.Version = global::System.Net.HttpVersion.Version11;
+                __httpRequest.VersionPolicy = global::System.Net.Http.HttpVersionPolicy.RequestVersionOrHigher;
+#endif
+
+            foreach (var __authorization in __authorizations)
+            {
+                if (__authorization.Type == "Http" ||
+                    __authorization.Type == "OAuth2" ||
+                    __authorization.Type == "OpenIdConnect")
+                {
+                    __httpRequest.Headers.Authorization = new global::System.Net.Http.Headers.AuthenticationHeaderValue(
+                        scheme: __authorization.Name,
+                        parameter: __authorization.Value);
+                }
+                else if (__authorization.Type == "ApiKey" &&
+                         __authorization.Location == "Header")
+                {
+                    __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
+                }
+            }
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
+                            __httpRequest.Content = __httpRequestContent;
+                global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
+                    request: __httpRequest,
+                    clientHeaders: Options.Headers,
+                    requestHeaders: requestOptions?.Headers);
+
+                PrepareRequest(
+                    client: HttpClient,
+                    request: __httpRequest);
+                PreparePostGenerateImageV2IdeogramV4CustomModelRequest(
+                    httpClient: HttpClient,
+                    httpRequestMessage: __httpRequest,
+                    request: request);
+
+                return __httpRequest;
+            }
+
+            global::System.Net.Http.HttpRequestMessage? __httpRequest = null;
+            global::System.Net.Http.HttpResponseMessage? __response = null;
+            var __attemptNumber = 0;
+            try
+            {
+                for (var __attempt = 1; __attempt <= __maxAttempts; __attempt++)
+                {
+                    __attemptNumber = __attempt;
+                    __httpRequest = __CreateHttpRequest();
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
+                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
+                                pathTemplate: "\"/v2/images/generate/ideogram-v4-custom-model\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: null,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                    try
+                    {
+                        __response = await HttpClient.SendAsync(
+                request: __httpRequest,
+                completionOption: global::System.Net.Http.HttpCompletionOption.ResponseContentRead,
+                cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
+                    }
+                    catch (global::System.Net.Http.HttpRequestException __exception)
+                    {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: null,
+                            attempt: __attempt);
+                        var __willRetry = __attempt < __maxAttempts && !__effectiveCancellationToken.IsCancellationRequested;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
+                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
+                                pathTemplate: "\"/v2/images/generate/ideogram-v4-custom-model\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: null,
+                                exception: __exception,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: __willRetry,
+                                retryDelay: __willRetry ? __retryDelay : (global::System.TimeSpan?)null,
+                                retryReason: "exception",
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                        if (!__willRetry)
+                        {
+                            throw;
+                        }
+
+                        __httpRequest.Dispose();
+                        __httpRequest = null;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
+                            retryDelay: __retryDelay,
+                            cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
+                        continue;
+                    }
+
+                    if (__response != null &&
+                        __attempt < __maxAttempts &&
+                        global::Ideogram.AutoSDKRequestOptionsSupport.ShouldRetryStatusCode(__response.StatusCode))
+                    {
+                        var __retryDelay = global::Ideogram.AutoSDKRequestOptionsSupport.GetRetryDelay(
+                            clientOptions: Options,
+                            requestOptions: requestOptions,
+                            response: __response,
+                            attempt: __attempt);
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
+                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
+                                pathTemplate: "\"/v2/images/generate/ideogram-v4-custom-model\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attempt,
+                                maxAttempts: __maxAttempts,
+                                willRetry: true,
+                                retryDelay: __retryDelay,
+                                retryReason: "status:" + ((int)__response.StatusCode).ToString(global::System.Globalization.CultureInfo.InvariantCulture),
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                        __response.Dispose();
+                        __response = null;
+                        __httpRequest.Dispose();
+                        __httpRequest = null;
+                        await global::Ideogram.AutoSDKRequestOptionsSupport.DelayBeforeRetryAsync(
+                            retryDelay: __retryDelay,
+                            cancellationToken: __effectiveCancellationToken).ConfigureAwait(false);
+                        continue;
+                    }
+
+                    break;
+                }
+
+                if (__response == null)
+                {
+                    throw new global::System.InvalidOperationException("No response received.");
+                }
+
+                using (__response)
+                {
+
+                ProcessResponse(
+                    client: HttpClient,
+                    response: __response);
+                ProcessPostGenerateImageV2IdeogramV4CustomModelResponse(
+                    httpClient: HttpClient,
+                    httpResponseMessage: __response);
+                if (__response.IsSuccessStatusCode)
+                {
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
+                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
+                                pathTemplate: "\"/v2/images/generate/ideogram-v4-custom-model\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attemptNumber,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                }
+                else
+                {
+                    await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
+                            clientOptions: Options,
+                            context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
+                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
+                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
+                                pathTemplate: "\"/v2/images/generate/ideogram-v4-custom-model\"",
+                                httpMethod: "POST",
+                                baseUri: BaseUri,
+                                request: __httpRequest!,
+                                response: __response,
+                                exception: null,
+                                clientOptions: Options,
+                                requestOptions: requestOptions,
+                                attempt: __attemptNumber,
+                                maxAttempts: __maxAttempts,
+                                willRetry: false,
+                                retryDelay: null,
+                                retryReason: global::System.String.Empty,
+                                cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
+                }
+                            //
+                            if ((int)__response.StatusCode == 400)
+                            {
+                                string? __content_400 = null;
+                                global::System.Exception? __exception_400 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_400 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_400,
+                                    responseBody: __content_400,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 401)
+                            {
+                                string? __content_401 = null;
+                                global::System.Exception? __exception_401 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_401 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_401,
+                                    responseBody: __content_401,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 402)
+                            {
+                                string? __content_402 = null;
+                                global::System.Exception? __exception_402 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_402 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_402,
+                                    responseBody: __content_402,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    responseBody: __content_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 429)
+                            {
+                                string? __content_429 = null;
+                                global::System.Exception? __exception_429 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_429 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_429,
+                                    responseBody: __content_429,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 500)
+                            {
+                                string? __content_500 = null;
+                                global::System.Exception? __exception_500 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_500 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_500,
+                                    responseBody: __content_500,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+
+                            if (__effectiveReadResponseAsString)
+                            {
+                                var __content = await __response.Content.ReadAsStringAsync(
+                #if NET5_0_OR_GREATER
+                                    __effectiveCancellationToken
+                #endif
+                                ).ConfigureAwait(false);
+
+                                ProcessResponseContent(
+                                    client: HttpClient,
+                                    response: __response,
+                                    content: ref __content);
+                                ProcessPostGenerateImageV2IdeogramV4CustomModelResponseContent(
+                                    httpClient: HttpClient,
+                                    httpResponseMessage: __response,
+                                    content: ref __content);
+
+                                try
+                                {
+                                    __response.EnsureSuccessStatusCode();
+
+                                    var __value = global::Ideogram.GenerateImageIdeogramV4CustomModelResponse.FromJson(__content, JsonSerializerContext) ??
+                                        throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
+                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        innerException: __ex,
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                            __response.Headers,
+                                            h => h.Key,
+                                            h => h.Value));
+                                }
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    __response.EnsureSuccessStatusCode();
+                                    using var __content = await __response.Content.ReadAsStreamAsync(
+                #if NET5_0_OR_GREATER
+                                        __effectiveCancellationToken
+                #endif
+                                    ).ConfigureAwait(false);
+
+                                    var __value = await global::Ideogram.GenerateImageIdeogramV4CustomModelResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                        throw new global::System.InvalidOperationException("Response deserialization failed.");
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse>(
+                                        statusCode: __response.StatusCode,
+                                        headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
+                                        requestUri: __response.RequestMessage?.RequestUri,
+                                        body: __value);
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    string? __content = null;
+                                    try
+                                    {
+                                        __content = await __response.Content.ReadAsStringAsync(
+                #if NET5_0_OR_GREATER
+                                            __effectiveCancellationToken
+                #endif
+                                        ).ConfigureAwait(false);
+                                    }
+                                    catch (global::System.Exception)
+                                    {
+                                    }
+
+                                    throw global::Ideogram.ApiException.Create(
+                                        statusCode: __response.StatusCode,
+                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        innerException: __ex,
+                                        responseBody: __content,
+                                        responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                            __response.Headers,
+                                            h => h.Key,
+                                            h => h.Value));
+                                }
+                            }
+
+                }
+            }
+            finally
+            {
+                __httpRequest?.Dispose();
+            }
+        }
+        /// <summary>
+        /// Generate images with a custom Ideogram 4.0 model<br/>
+        /// Generate one or more images with a custom Ideogram 4.0 model that the<br/>
+        /// authenticated user or organization can access. The model registry<br/>
+        /// controls the model's supported rendering speeds.<br/>
+        /// The `prompt` accepts either natural language or a structured Ideogram<br/>
+        /// 4.0 JSON prompt; the server detects which was supplied. A structured<br/>
+        /// JSON prompt is consumed by the model directly and skips magic prompt.<br/>
+        /// By default the request blocks until the images are ready and returns<br/>
+        /// them in `data`. Set `async` to true to return immediately after the<br/>
+        /// request is accepted, then poll for completion and results with<br/>
+        /// `GET /v1/generations/{generation_id}` using the returned<br/>
+        /// `generation_id`.<br/>
+        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
+        /// `async` says: the response returns as soon as the request is accepted,<br/>
+        /// and the finished result is POSTed to that URL.
+        /// </summary>
+        /// <param name="prompt">
+        /// The prompt to generate images from. Accepts either natural<br/>
+        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
+        /// detects which was supplied. A structured JSON prompt is consumed<br/>
+        /// by the model directly and skips magic prompt.
+        /// </param>
+        /// <param name="customModelUri">
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// Example: model/my-custom-v4-model/version/1
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
+        /// default) and `ON` rewrite and expand the prompt before generation.<br/>
+        /// `OFF` keeps your wording and only converts the prompt into the<br/>
+        /// structured format the model consumes. A prompt that is already a<br/>
+        /// valid structured JSON prompt skips magic prompt entirely unless<br/>
+        /// `magic_prompt` is `ON`.<br/>
+        /// Default Value: AUTO
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.<br/>
+        /// Example: 12345
+        /// </param>
+        /// <param name="numImages">
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="resolution">
+        /// Optional. When supplied, the images are generated at this<br/>
+        /// resolution. When omitted, the server picks an aspect ratio<br/>
+        /// automatically based on the prompt.
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// </param>
+        /// <param name="async">
+        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// Default Value: false
+        /// </param>
+        /// <param name="webhookUrl">
+        /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
+        /// JSON POST to this URL once all images for the request have finished<br/>
+        /// generating. The body mirrors the synchronous generate response:<br/>
+        /// `request_id`, `created`, and a `data` array<br/>
+        /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
+        /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
+        /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
+        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
+        /// Example: https://api.example.com/webhooks/ideogram
+        /// </param>
+        /// <param name="private">
+        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
+        /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse> PostGenerateImageV2IdeogramV4CustomModelAsync(
+            string prompt,
+            string customModelUri,
+            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            int? seed = default,
+            int? numImages = default,
+            global::Ideogram.ResolutionV4? resolution = default,
+            global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed? renderingSpeed = default,
+            bool? enableCopyrightDetection = default,
+            bool? async = default,
+            string? webhookUrl = default,
+            bool? @private = default,
+            string? targetCollectionId = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default)
+        {
+            var __request = new global::Ideogram.GenerateImageIdeogramV4CustomModelRequest
+            {
+                Prompt = prompt,
+                CustomModelUri = customModelUri,
+                MagicPrompt = magicPrompt,
+                Seed = seed,
+                NumImages = numImages,
+                Resolution = resolution,
+                RenderingSpeed = renderingSpeed,
+                EnableCopyrightDetection = enableCopyrightDetection,
+                Async = async,
+                WebhookUrl = webhookUrl,
+                Private = @private,
+                TargetCollectionId = targetCollectionId,
+            };
+
+            return await PostGenerateImageV2IdeogramV4CustomModelAsync(
+                request: __request,
+                requestOptions: requestOptions,
+                cancellationToken: cancellationToken).ConfigureAwait(false);
+        }
+    }
+}

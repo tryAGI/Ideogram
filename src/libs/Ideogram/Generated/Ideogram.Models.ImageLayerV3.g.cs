@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// An image layer (logo, brand asset, icon) for a layered image generation.<br/>
-    /// Example: {"ref_id":"REF_0","x":7,"width":3,"y":9,"height":2}
+    /// Example: {"ref_id":"REF_0","x":4,"width":1,"y":7,"height":1}
     /// </summary>
     public sealed partial class ImageLayerV3
     {
@@ -93,5 +93,6 @@ namespace Ideogram
         public ImageLayerV3()
         {
         }
+
     }
 }

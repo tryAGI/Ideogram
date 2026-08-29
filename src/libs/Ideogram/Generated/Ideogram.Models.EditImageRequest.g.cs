@@ -4,33 +4,33 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class EditImageRequest
     {
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ImageFilename { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Mask { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -67,6 +67,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
@@ -100,16 +106,16 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="EditImageRequest" /> class.
         /// </summary>
         /// <param name="imageFile">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>
@@ -123,6 +129,9 @@ namespace Ideogram
         /// <param name="magicPromptOption">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -147,6 +156,7 @@ namespace Ideogram
             string prompt,
             global::Ideogram.ModelEnum model,
             global::Ideogram.MagicPromptOption? magicPromptOption,
+            string? magicPromptSystemPromptConfigId,
             int? numImages,
             int? seed,
             global::Ideogram.StyleType? styleType)
@@ -158,6 +168,7 @@ namespace Ideogram
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Model = model;
             this.MagicPromptOption = magicPromptOption;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NumImages = numImages;
             this.Seed = seed;
             this.StyleType = styleType;
@@ -169,5 +180,6 @@ namespace Ideogram
         public EditImageRequest()
         {
         }
+
     }
 }

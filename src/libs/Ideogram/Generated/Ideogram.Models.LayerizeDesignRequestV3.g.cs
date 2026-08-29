@@ -4,19 +4,19 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class LayerizeDesignRequestV3
     {
         /// <summary>
-        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flat_graphic_image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] FlatGraphicImage { get; set; }
 
         /// <summary>
-        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flat_graphic_imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -126,10 +126,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="LayerizeDesignRequestV3" /> class.
         /// </summary>
         /// <param name="flatGraphicImage">
-        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </param>
         /// <param name="flatGraphicImagename">
-        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// The flat graphic image to process for text detection and correction. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </param>
         /// <param name="prompt">
         /// An optional prompt to describe the image. If not provided, a prompt will be auto-generated from the image via captioning.
@@ -225,5 +225,6 @@ namespace Ideogram
         public LayerizeDesignRequestV3()
         {
         }
+
     }
 }

@@ -78,5 +78,6 @@ namespace Ideogram
         public TrainDatasetModelResponse()
         {
         }
+
     }
 }

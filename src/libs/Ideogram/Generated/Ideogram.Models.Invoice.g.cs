@@ -147,5 +147,6 @@ namespace Ideogram
         public Invoice()
         {
         }
+
     }
 }

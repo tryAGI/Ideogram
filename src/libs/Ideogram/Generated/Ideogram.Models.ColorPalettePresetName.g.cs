@@ -10,35 +10,35 @@ namespace Ideogram
     public enum ColorPalettePresetName
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ember,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Fresh,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Jungle,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Magic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Melon,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Mosaic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Pastel,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ultramarine,
     }

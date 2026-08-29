@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class Description
     {
@@ -44,5 +44,6 @@ namespace Ideogram
         public Description()
         {
         }
+
     }
 }

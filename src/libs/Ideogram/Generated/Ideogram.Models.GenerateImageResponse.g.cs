@@ -6,10 +6,19 @@ namespace Ideogram
     /// <summary>
     /// The response which contains information about the generated image, including the download link.<br/>
     /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.<br/>
-    /// Example: {"data":[{"style_type":"REALISTIC","seed":12345,"upscaled_resolution":"4096x4096","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","resolution":"1024x1024","url":"https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g","is_image_safe":true},{"style_type":"REALISTIC","seed":12345,"upscaled_resolution":"4096x4096","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","resolution":"1024x1024","url":"https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g","is_image_safe":true}],"created":"2000-01-23T04:56:07\u002B00:00"}
+    /// Example: {"data":[{"style_type":"REALISTIC","seed":12345,"upscaled_resolution":"4096x4096","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","resolution":"1024x1024","url":"https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g","is_image_safe":true},{"style_type":"REALISTIC","seed":12345,"upscaled_resolution":"4096x4096","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there\u0027s an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","resolution":"1024x1024","url":"https://ideogram.ai/api/images/direct/8YEpFzHuS-S6xXEGmCsf7g","is_image_safe":true}],"created":"2000-01-23T04:56:07\u002B00:00","request_id":"request_id"}
     /// </summary>
     public sealed partial class GenerateImageResponse
     {
+        /// <summary>
+        /// URL-safe base64 ID of the sampling request. Present when the caller<br/>
+        /// supplied `webhook_url` and the request was accepted for async<br/>
+        /// delivery; in that case `data` is omitted and the generated images<br/>
+        /// will be POSTed to the customer's `webhook_url` when ready.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("request_id")]
+        public string? RequestId { get; set; }
+
         /// <summary>
         /// The time the request was created.
         /// </summary>
@@ -21,8 +30,7 @@ namespace Ideogram
         /// A list of ImageObjects that contain the generated image(s).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("data")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Ideogram.ImageObject> Data { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageObject>? Data { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -36,6 +44,12 @@ namespace Ideogram
         /// <param name="created">
         /// The time the request was created.
         /// </param>
+        /// <param name="requestId">
+        /// URL-safe base64 ID of the sampling request. Present when the caller<br/>
+        /// supplied `webhook_url` and the request was accepted for async<br/>
+        /// delivery; in that case `data` is omitted and the generated images<br/>
+        /// will be POSTed to the customer's `webhook_url` when ready.
+        /// </param>
         /// <param name="data">
         /// A list of ImageObjects that contain the generated image(s).
         /// </param>
@@ -44,10 +58,12 @@ namespace Ideogram
 #endif
         public GenerateImageResponse(
             global::System.DateTime created,
-            global::System.Collections.Generic.IList<global::Ideogram.ImageObject> data)
+            string? requestId,
+            global::System.Collections.Generic.IList<global::Ideogram.ImageObject>? data)
         {
+            this.RequestId = requestId;
             this.Created = created;
-            this.Data = data ?? throw new global::System.ArgumentNullException(nameof(data));
+            this.Data = data;
         }
 
         /// <summary>
@@ -56,5 +72,6 @@ namespace Ideogram
         public GenerateImageResponse()
         {
         }
+
     }
 }

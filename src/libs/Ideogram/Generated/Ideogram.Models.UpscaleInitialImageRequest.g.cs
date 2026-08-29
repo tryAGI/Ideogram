@@ -42,10 +42,14 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
 
         /// <summary>
-        /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
-        /// Example: V_0
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </summary>
-        /// <example>V_0</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
+        ///
+        /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_version")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptVersionEnumJsonConverter))]
         public global::Ideogram.MagicPromptVersionEnum? MagicPromptVersion { get; set; }
@@ -90,10 +94,10 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
-        /// <param name="magicPromptVersion">
-        /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
-        /// Example: V_0
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
+        /// <param name="magicPromptVersion"></param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
@@ -110,6 +114,7 @@ namespace Ideogram
             int? resemblance,
             int? detail,
             global::Ideogram.MagicPromptOption? magicPromptOption,
+            string? magicPromptSystemPromptConfigId,
             global::Ideogram.MagicPromptVersionEnum? magicPromptVersion,
             int? numImages,
             int? seed)
@@ -118,6 +123,7 @@ namespace Ideogram
             this.Resemblance = resemblance;
             this.Detail = detail;
             this.MagicPromptOption = magicPromptOption;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.MagicPromptVersion = magicPromptVersion;
             this.NumImages = numImages;
             this.Seed = seed;
@@ -129,5 +135,6 @@ namespace Ideogram
         public UpscaleInitialImageRequest()
         {
         }
+
     }
 }

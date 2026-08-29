@@ -9,7 +9,7 @@ namespace Ideogram
     public sealed partial class PostInternalTesting200Response
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("response_content")]
         public string? ResponseContent { get; set; }
@@ -39,5 +39,6 @@ namespace Ideogram
         public PostInternalTesting200Response()
         {
         }
+
     }
 }

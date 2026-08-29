@@ -10,251 +10,251 @@ namespace Ideogram
     public enum StylePresetV3
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x80sIllustration,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x90sNostalgia,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AbstractOrganic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AnalogNostalgia,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ArtBrut,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ArtDeco,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ArtPoster,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aura,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         AvantGarde,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Bauhaus,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Blueprint,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         BlurryMotion,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         BrightArt,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         C4dCartoon,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ChildrensBook,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Collage,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColoringBookI,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ColoringBookIi,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Cubism,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DarkAura,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Doodle,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DoubleExposure,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         DramaticCinema,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Editorial,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         EmotionalMinimal,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         EtherealParty,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ExpiredFilm,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FlatArt,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FlatVector,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         ForestReverie,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GeoMinimalist,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GlassPrism,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GoldenHour,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GraffitiI,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         GraffitiIi,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         HalftonePrint,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         HighContrast,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         HippieEra,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Iconic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         JapandiFusion,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Jazzy,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LongExposure,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         MagazineEditorial,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         MinimalIllustration,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         MixedMedia,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Monochrome,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Nightlife,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         OilPainting,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         OldCartoons,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PaintGesture,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PopArt,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         RetroEtching,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         RivieraPop,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Spotlight80s,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         StylizedRed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         SurrealCollage,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TravelPoster,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         VintageGeo,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         VintagePoster,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Watercolor,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Weird,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         WoodblockPrint,
     }

@@ -10,11 +10,11 @@ namespace Ideogram
     public enum SegmentBy
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Day,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Hour,
     }

@@ -10,15 +10,15 @@ namespace Ideogram
     public enum TextItemV3Alignment
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Center,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Left,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Right,
     }

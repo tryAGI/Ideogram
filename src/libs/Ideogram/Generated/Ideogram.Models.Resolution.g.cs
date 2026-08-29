@@ -10,315 +10,315 @@ namespace Ideogram
     public enum Resolution
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x10241024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1120896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152864,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1216704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1216768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1216832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1232768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1248832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1280704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1280720,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1280768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1280800,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1312736,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1344640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1344704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1344768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1408576,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1408640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1408704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1472576,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1472640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1472704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1536512,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1536576,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1536640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x5121536,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x5761408,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x5761472,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x5761536,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x6401024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x6401344,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x6401408,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x6401472,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x6401536,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7041152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7041216,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7041280,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7041344,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7041408,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7041472,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7201280,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7361312,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7681024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7681088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7681152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7681216,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7681232,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7681280,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x7681344,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8321024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8321088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8321152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8321216,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8321248,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x832960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8641152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8961024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8961088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8961120,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x8961152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x896960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x9601024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x9601088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x960832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x960896,
     }

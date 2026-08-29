@@ -4,19 +4,19 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class LayerizeTextRequest
     {
         /// <summary>
-        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 10MB).
+        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 25MB).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 10MB).
+        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 25MB).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -46,10 +46,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="LayerizeTextRequest" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 10MB).
+        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 25MB).
         /// </param>
         /// <param name="imagename">
-        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 10MB).
+        /// The image to analyze for text detection. The image should be in JPEG, PNG, or WebP format (max size 25MB).
         /// </param>
         /// <param name="prompt">
         /// An optional text description of the image. If not provided, a description will be auto-generated from the image.
@@ -79,5 +79,6 @@ namespace Ideogram
         public LayerizeTextRequest()
         {
         }
+
     }
 }

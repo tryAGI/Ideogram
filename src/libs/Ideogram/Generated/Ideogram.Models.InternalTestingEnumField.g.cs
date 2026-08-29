@@ -4,20 +4,20 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum InternalTestingEnumField
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Drei,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Ein,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Zwei,
     }

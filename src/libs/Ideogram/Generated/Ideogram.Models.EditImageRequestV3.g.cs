@@ -4,33 +4,33 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class EditImageRequestV3
     {
         /// <summary>
-        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Imagename { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Mask { get; set; }
 
         /// <summary>
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -53,6 +53,12 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+
+        /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -121,13 +127,13 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (max size 25MB per image; the whole request must stay under 50MB). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
 
         /// <summary>
-        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
+        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (max size 25MB per image; the whole request must stay under 50MB), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
@@ -148,16 +154,16 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="EditImageRequestV3" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image being edited (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image being edited (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="mask">
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="maskname">
-        /// A black and white image of the same size as the image being edited (max size 10MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
+        /// A black and white image of the same size as the image being edited (max size 25MB). Black regions in the mask should match up with the regions of the image that you would like to edit; only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt used to describe the edited result.<br/>
@@ -166,6 +172,9 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -201,10 +210,10 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (max size 25MB per image; the whole request must stay under 50MB). The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="characterReferenceImages">
-        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
+        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (max size 25MB per image; the whole request must stay under 50MB), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="characterReferenceImagesMask">
         /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
@@ -219,6 +228,7 @@ namespace Ideogram
             string maskname,
             string prompt,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             int? numImages,
             int? seed,
             global::Ideogram.RenderingSpeed? renderingSpeed,
@@ -237,6 +247,7 @@ namespace Ideogram
             this.Maskname = maskname ?? throw new global::System.ArgumentNullException(nameof(maskname));
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NumImages = numImages;
             this.Seed = seed;
             this.RenderingSpeed = renderingSpeed;
@@ -256,5 +267,6 @@ namespace Ideogram
         public EditImageRequestV3()
         {
         }
+
     }
 }

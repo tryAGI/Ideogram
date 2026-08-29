@@ -4,91 +4,91 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class InternalTestingRequest
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("x_position")]
         public int? XPosition { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         public byte[]? ImageFile { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         public string? ImageFilename { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("another_image_file")]
         public byte[]? AnotherImageFile { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("another_image_filename")]
         public string? AnotherImageFilename { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("some_text")]
         public string? SomeText { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("nested_object")]
         public global::Ideogram.InternalTestingNestedObject? NestedObject { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("nested_object_required_fields")]
         public global::Ideogram.InternalTestingNestedObjectRequiredFields? NestedObjectRequiredFields { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("date_type_field")]
         public global::System.DateTime? DateTypeField { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("required_date_type_field")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::System.DateTime RequiredDateTypeField { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("date_time_type_field")]
         public global::System.DateTime? DateTimeTypeField { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("repeated_primitive_field")]
         public global::System.Collections.Generic.IList<string>? RepeatedPrimitiveField { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("repeated_complex_field")]
         public global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? RepeatedComplexField { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enum_type_field")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.InternalTestingEnumFieldJsonConverter))]
@@ -106,16 +106,16 @@ namespace Ideogram
         /// <param name="requiredDateTypeField"></param>
         /// <param name="xPosition"></param>
         /// <param name="imageFile">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="anotherImageFile">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="anotherImageFilename">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="someText"></param>
         /// <param name="nestedObject"></param>
@@ -166,5 +166,6 @@ namespace Ideogram
         public InternalTestingRequest()
         {
         }
+
     }
 }

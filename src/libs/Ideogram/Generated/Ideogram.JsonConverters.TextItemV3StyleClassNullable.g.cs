@@ -20,7 +20,7 @@ namespace Ideogram.JsonConverters
                     {
                         return global::Ideogram.TextItemV3StyleClassExtensions.ToEnum(stringValue);
                     }
-                    
+
                     break;
                 }
                 case global::System.Text.Json.JsonTokenType.Number:

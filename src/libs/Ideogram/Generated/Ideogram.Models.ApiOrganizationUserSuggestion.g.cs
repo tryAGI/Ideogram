@@ -88,5 +88,6 @@ namespace Ideogram
         public ApiOrganizationUserSuggestion()
         {
         }
+
     }
 }

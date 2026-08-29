@@ -75,5 +75,6 @@ namespace Ideogram
         public CreateApiKeyResponse()
         {
         }
+
     }
 }

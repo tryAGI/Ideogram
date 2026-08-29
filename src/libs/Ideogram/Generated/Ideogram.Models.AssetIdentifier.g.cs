@@ -10,7 +10,7 @@ namespace Ideogram
     public sealed partial class AssetIdentifier
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("asset_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AssetTypeJsonConverter))]
@@ -18,7 +18,7 @@ namespace Ideogram
         public required global::Ideogram.AssetType AssetType { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("asset_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -52,5 +52,6 @@ namespace Ideogram
         public AssetIdentifier()
         {
         }
+
     }
 }
