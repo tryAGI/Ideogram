@@ -72,5 +72,6 @@ namespace Ideogram
         public UsageSegment()
         {
         }
+
     }
 }

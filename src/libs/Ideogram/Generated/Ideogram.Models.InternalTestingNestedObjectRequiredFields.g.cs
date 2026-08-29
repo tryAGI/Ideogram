@@ -4,19 +4,19 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class InternalTestingNestedObjectRequiredFields
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prop_one")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string PropOne { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prop_two")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -50,5 +50,6 @@ namespace Ideogram
         public InternalTestingNestedObjectRequiredFields()
         {
         }
+
     }
 }

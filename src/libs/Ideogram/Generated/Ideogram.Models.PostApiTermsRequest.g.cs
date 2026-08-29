@@ -45,5 +45,6 @@ namespace Ideogram
         public PostApiTermsRequest()
         {
         }
+
     }
 }

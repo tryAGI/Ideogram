@@ -11,7 +11,7 @@ namespace Ideogram
     public sealed partial class IdeogramClient : global::Ideogram.IIdeogramClient, global::System.IDisposable
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public const string DefaultBaseUrl = "https://api.ideogram.ai/";
 
@@ -34,82 +34,232 @@ namespace Ideogram
 
         /// <inheritdoc/>
         public global::Ideogram.AutoSDKClientOptions Options { get; }
+
+        internal global::System.Lazy<global::System.Text.Json.Serialization.JsonSerializerContext> JsonSerializerContextProvider { get; set; } = new(() => global::Ideogram.SourceGenerationContext.Default);
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
-        public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext { get; set; } = global::Ideogram.SourceGenerationContext.Default;
+        public global::System.Text.Json.Serialization.JsonSerializerContext JsonSerializerContext
+        {
+            get => JsonSerializerContextProvider.Value;
+            set => JsonSerializerContextProvider = new(() => value);
+        }
 
 
         /// <summary>
-        /// 
+        /// Model-agnostic endpoints where the server selects the model for each<br/>
+        /// request. Requests are JSON and return a generation id that can be<br/>
+        /// polled via `GET /v1/generations/{generation_id}`.
         /// </summary>
-        public BatchClient Batch => new BatchClient(HttpClient, authorizations: Authorizations, options: Options)
+        public AutoModelClient AutoModel => new AutoModelClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public BatchClient Batch => new BatchClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
         /// Operations related to managing datasets.
         /// </summary>
-        public DatasetsClient Datasets => new DatasetsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public DatasetsClient Datasets => new DatasetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Asynchronous image-editing workflows that return results through generation polling.
+        /// </summary>
+        public EditWorkflowClient EditWorkflow => new EditWorkflowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
         /// All things related to generating content.
         /// </summary>
-        public GenerateClient Generate => new GenerateClient(HttpClient, authorizations: Authorizations, options: Options)
+        public GenerateClient Generate => new GenerateClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Edit existing images from a plain-language instruction. Requests supply<br/>
+        /// sources by `AssetIdentifier` reference or as uploaded bytes and return a<br/>
+        /// generation id that can be polled via `GET /v1/generations/{generation_id}`.
+        /// </summary>
+        public ImagesEditClient ImagesEdit => new ImagesEditClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Generate images with a specific model contract. Requests are JSON<br/>
+        /// (Ideogram 3.0 also accepts multipart for style reference bytes) and<br/>
+        /// return a generation id that can be polled via<br/>
+        /// `GET /v1/generations/{generation_id}`.
+        /// </summary>
+        public ImagesGenerateClient ImagesGenerate => new ImagesGenerateClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Repaint a masked region of an image with a specific model contract.<br/>
+        /// Requests supply the source image and mask by `AssetIdentifier`<br/>
+        /// reference or as uploaded bytes and return a generation id that can be<br/>
+        /// polled via `GET /v1/generations/{generation_id}`.
+        /// </summary>
+        public ImagesInpaintClient ImagesInpaint => new ImagesInpaintClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Transform an existing image with a specific model contract, guided by<br/>
+        /// a prompt. Requests supply the source by `AssetIdentifier` reference or<br/>
+        /// as uploaded bytes, and return a generation id that can be polled via<br/>
+        /// `GET /v1/generations/{generation_id}`.
+        /// </summary>
+        public ImagesRemixClient ImagesRemix => new ImagesRemixClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ImagesUpscaleClient ImagesUpscale => new ImagesUpscaleClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
         /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
         /// </summary>
-        public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, authorizations: Authorizations, options: Options)
+        public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
         /// Content related to managing API account and API access.
         /// </summary>
-        public ManageClient Manage => new ManageClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ManageClient Manage => new ManageClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Operations related to publishing mini-apps into the catalog.
+        /// </summary>
+        public MiniAppsClient MiniApps => new MiniAppsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
         /// Operations related to managing custom models.
         /// </summary>
-        public ModelsClient Models => new ModelsClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
-        /// 
+        /// Remove unwanted objects from existing image assets. Requests use<br/>
+        /// `AssetIdentifier` references and return a generation id that can be<br/>
+        /// polled via `GET /v1/generations/{generation_id}`.
         /// </summary>
-        public PromptClient Prompt => new PromptClient(HttpClient, authorizations: Authorizations, options: Options)
+        public ObjectRemovalClient ObjectRemoval => new ObjectRemovalClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public PromptClient Prompt => new PromptClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ProvenanceClient Provenance => new ProvenanceClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Outcome-focused image tools with implementation details managed by Ideogram.
+        /// </summary>
+        public ToolClient Tool => new ToolClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public ToolsClient Tools => new ToolsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
+        public VideoGenerateClient VideoGenerate => new VideoGenerateClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
         /// Operations related to understanding visual content.
         /// </summary>
-        public VisionClient Vision => new VisionClient(HttpClient, authorizations: Authorizations, options: Options)
+        public VisionClient Vision => new VisionClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContext = JsonSerializerContext,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        /// Endpoints related to webhook delivery and verification. The JWKS<br/>
+        /// endpoint publishes the Ed25519 public keys customers use to verify<br/>
+        /// that an inbound webhook genuinely originated from Ideogram.
+        /// </summary>
+        public WebhooksClient Webhooks => new WebhooksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
         };
 
         /// <summary>
@@ -135,6 +285,27 @@ namespace Ideogram
         }
 
         /// <summary>
+        /// Creates a new instance of the IdeogramClient with explicit options but no base URL override.
+        /// Skips passing <c>baseUri</c> so the default base URL from the OpenAPI spec applies.
+        /// </summary>
+        /// <param name="httpClient">The HttpClient instance. If not provided, a new one will be created.</param>
+        /// <param name="authorizations">The authorizations to use for the requests.</param>
+        /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
+        /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
+        public IdeogramClient(
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations,
+            global::Ideogram.AutoSDKClientOptions? options,
+            bool disposeHttpClient = true) : this(
+                httpClient,
+                baseUri: null,
+                authorizations,
+                options,
+                disposeHttpClient: disposeHttpClient)
+        {
+        }
+
+        /// <summary>
         /// Creates a new instance of the IdeogramClient.
         /// If no httpClient is provided, a new one will be created.
         /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
@@ -145,10 +316,10 @@ namespace Ideogram
         /// <param name="options">Client-wide request defaults such as headers, query parameters, retries, and timeout.</param>
         /// <param name="disposeHttpClient">Dispose the HttpClient when the instance is disposed. True by default.</param>
         public IdeogramClient(
-            global::System.Net.Http.HttpClient? httpClient = null,
-            global::System.Uri? baseUri = null,
-            global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations = null,
-            global::Ideogram.AutoSDKClientOptions? options = null,
+            global::System.Net.Http.HttpClient? httpClient,
+            global::System.Uri? baseUri,
+            global::System.Collections.Generic.List<global::Ideogram.EndPointAuthorization>? authorizations,
+            global::Ideogram.AutoSDKClientOptions? options,
             bool disposeHttpClient = true)
         {
 

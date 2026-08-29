@@ -4,19 +4,19 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class RemixImageRequestV3
     {
         /// <summary>
-        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -81,6 +81,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
@@ -140,13 +146,13 @@ namespace Ideogram
         public string? CustomModelUri { get; set; }
 
         /// <summary>
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (max size 25MB per image; the whole request must stay under 50MB). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
 
         /// <summary>
-        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
+        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (max size 25MB per image; the whole request must stay under 50MB), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
@@ -167,10 +173,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="RemixImageRequestV3" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image to remix binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image to remix binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="prompt">
         /// The prompt to use to generate the image.<br/>
@@ -198,6 +204,9 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
@@ -230,10 +239,10 @@ namespace Ideogram
         /// Example: model/my-custom-model/version/1
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (max size 25MB per image; the whole request must stay under 50MB). The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="characterReferenceImages">
-        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (maximum total size 10MB across all character references), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
+        /// Generations with character reference are subject to the character reference pricing. A set of images to use as character references (max size 25MB per image; the whole request must stay under 50MB), currently only supports 1 character reference image. The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="characterReferenceImagesMask">
         /// Optional masks for character reference images. When provided, must match the number of character_reference_images. Each mask should be a grayscale image of the same dimensions as the corresponding character reference image. The images should be in JPEG, PNG or WebP format.
@@ -251,6 +260,7 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.RenderingSpeed? renderingSpeed,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             string? negativePrompt,
             int? numImages,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
@@ -271,6 +281,7 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.RenderingSpeed = renderingSpeed;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NegativePrompt = negativePrompt;
             this.NumImages = numImages;
             this.ColorPalette = colorPalette;
@@ -289,5 +300,6 @@ namespace Ideogram
         public RemixImageRequestV3()
         {
         }
+
     }
 }

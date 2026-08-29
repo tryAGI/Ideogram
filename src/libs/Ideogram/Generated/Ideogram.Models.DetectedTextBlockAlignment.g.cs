@@ -9,15 +9,15 @@ namespace Ideogram
     public enum DetectedTextBlockAlignment
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Center,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Left,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Right,
     }

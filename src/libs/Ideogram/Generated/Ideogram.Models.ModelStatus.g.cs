@@ -9,27 +9,27 @@ namespace Ideogram
     public enum ModelStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Archived,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Completed,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Creating,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Draft,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Errored,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Training,
     }

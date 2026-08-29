@@ -9,7 +9,7 @@ namespace Ideogram
     public sealed partial class ListDatasetsResponse
     {
         /// <summary>
-        /// List of datasets for the authenticated user.<br/>
+        /// Matching datasets, most recently updated first.<br/>
         /// Default Value: []
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("datasets")]
@@ -26,7 +26,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ListDatasetsResponse" /> class.
         /// </summary>
         /// <param name="datasets">
-        /// List of datasets for the authenticated user.<br/>
+        /// Matching datasets, most recently updated first.<br/>
         /// Default Value: []
         /// </param>
 #if NET7_0_OR_GREATER
@@ -44,5 +44,6 @@ namespace Ideogram
         public ListDatasetsResponse()
         {
         }
+
     }
 }

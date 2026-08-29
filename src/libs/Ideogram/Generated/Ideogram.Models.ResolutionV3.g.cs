@@ -10,279 +10,279 @@ namespace Ideogram
     public enum ResolutionV3
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024x1024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024x832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024x896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1024x960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088x768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088x832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088x896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1088x960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1120x896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152x704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152x832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152x864,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1152x896,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1216x704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1216x768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1216x832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1248x832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1280x704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1280x768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1280x800,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1312x736,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1344x640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1344x704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1344x768,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1408x576,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1408x640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1408x704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1472x576,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1472x640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1472x704,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1536x512,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1536x576,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1536x640,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x512x1536,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x576x1408,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x576x1472,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x576x1536,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x640x1344,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x640x1408,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x640x1472,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x640x1536,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x704x1152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x704x1216,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x704x1280,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x704x1344,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x704x1408,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x704x1472,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x736x1312,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x768x1088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x768x1216,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x768x1280,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x768x1344,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x800x1280,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x832x1024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x832x1088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x832x1152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x832x1216,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x832x1248,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x832x960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x864x1152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x896x1024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x896x1088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x896x1120,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x896x1152,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x896x960,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x960x1024,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x960x1088,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x960x832,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x960x896,
     }

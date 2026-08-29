@@ -11,15 +11,15 @@ namespace Ideogram
     public enum UpscaleFactor
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         X1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         X2,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         X4,
     }

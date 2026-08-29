@@ -27,12 +27,28 @@ namespace Ideogram
         /// Supported image formats include JPEG, PNG, and WebP.<br/>
         /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
         /// </summary>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.V1EditImagesResponse>> PostV1EditImageAsResponseAsync(
+
+            global::Ideogram.V1EditImagesRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Edit images with a prompt<br/>
+        /// Edit one or more images using a text prompt. Provide images via file upload<br/>
+        /// or Ideogram image URLs, and describe the desired edit in your prompt.<br/>
+        /// Supported image formats include JPEG, PNG, and WebP.<br/>
+        /// Images links are available for a limited period of time; if you would like to keep the image, you must download it.
+        /// </summary>
         /// <param name="prompt">
         /// The prompt describing the desired edit.<br/>
         /// Example: Change the background to a beach sunset.
         /// </param>
         /// <param name="images">
-        /// Images to edit (max 10 images, max size 10MB each); JPEG, WebP and PNG formats are supported.
+        /// Images to edit (max 10 images, max size 25MB each); JPEG, WebP and PNG formats are supported.
         /// </param>
         /// <param name="imageUrls">
         /// URLs to Ideogram images to use as references (max 10). Supports URLs from generation responses and image uploads. Alternative to uploading via the images field.
@@ -49,6 +65,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="resolution">
         /// The resolutions supported for Ideogram 3.0.<br/>
         /// Example: 1280x800
@@ -58,6 +77,8 @@ namespace Ideogram
         /// </param>
         /// <param name="transparentBackground">
         /// Whether the output should have a transparent background. Default false.<br/>
+        /// When more than one image is supplied, the first image is treated as<br/>
+        /// the image being edited and drives the transparency decision.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -70,6 +91,7 @@ namespace Ideogram
             int? numImages = default,
             int? seed = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
+            string? magicPromptSystemPromptConfigId = default,
             global::Ideogram.ResolutionV3? resolution = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
             bool? transparentBackground = default,

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
+    /// Example: {"magic_prompt_system_prompt_config_id":"magic_prompt_system_prompt_config_id","aspect_ratio":"1x1","style_type":"GENERAL","magic_prompt_version":"V_0","seed":12345,"negative_prompt":"brush strokes, painting","magic_prompt_option":"ON","model":"V_2_TURBO","resolution":"1280x800","num_images":1,"color_palette":{"name":"PASTEL"}}
     /// </summary>
     public sealed partial class SamplingRequestParams
     {
@@ -34,6 +34,12 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_option")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
         public global::Ideogram.MagicPromptOption? MagicPromptOption { get; set; }
+
+        /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
 
         /// <summary>
         /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
@@ -114,6 +120,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="magicPromptVersion">
         /// The magic prompt version to use when magic prompt option is set to AUTO or ON.<br/>
         /// Example: V_0
@@ -149,6 +158,7 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.ModelEnum? model,
             global::Ideogram.MagicPromptOption? magicPromptOption,
+            string? magicPromptSystemPromptConfigId,
             global::Ideogram.MagicPromptVersionEnum? magicPromptVersion,
             int? seed,
             global::Ideogram.StyleTypeV3? styleType,
@@ -160,6 +170,7 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.Model = model;
             this.MagicPromptOption = magicPromptOption;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.MagicPromptVersion = magicPromptVersion;
             this.Seed = seed;
             this.StyleType = styleType;
@@ -175,5 +186,6 @@ namespace Ideogram
         public SamplingRequestParams()
         {
         }
+
     }
 }

@@ -18,7 +18,7 @@ namespace Ideogram
         public required global::Ideogram.AssetIdentifier AssetIdentifier { get; set; }
 
         /// <summary>
-        /// Original filename of the uploaded image.
+        /// Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename, and asset_identifier points to the image the caption was applied to. A single image therefore yields one entry for the image plus one per caption file.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("file_name")]
         public string? FileName { get; set; }
@@ -37,7 +37,7 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="fileName">
-        /// Original filename of the uploaded image.
+        /// Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename, and asset_identifier points to the image the caption was applied to. A single image therefore yields one entry for the image plus one per caption file.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -56,5 +56,6 @@ namespace Ideogram
         public DatasetUploadSucceededAsset()
         {
         }
+
     }
 }

@@ -157,5 +157,6 @@ namespace Ideogram
         public CustomModel()
         {
         }
+
     }
 }

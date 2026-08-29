@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"profiles":[{"is_metronome_2_user":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}],"max_num_inflight_requests_permitted":10},{"is_metronome_2_user":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}],"max_num_inflight_requests_permitted":10}]}
+    /// Example: {"profiles":[{"is_metronome_2_user":true,"copyright_detection_enabled":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}],"max_num_inflight_requests_permitted":10},{"is_metronome_2_user":true,"copyright_detection_enabled":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}],"max_num_inflight_requests_permitted":10}]}
     /// </summary>
     public sealed partial class GetApiProfilesResponse
     {
@@ -44,5 +44,6 @@ namespace Ideogram
         public GetApiProfilesResponse()
         {
         }
+
     }
 }

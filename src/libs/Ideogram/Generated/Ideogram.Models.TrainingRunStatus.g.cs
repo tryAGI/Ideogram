@@ -9,23 +9,27 @@ namespace Ideogram
     public enum TrainingRunStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Completed,
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        Failed,
+        /// <summary>
+        ///
         /// </summary>
         Finalizing,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         PreparingData,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Queued,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Training,
     }
@@ -43,6 +47,7 @@ namespace Ideogram
             return value switch
             {
                 TrainingRunStatus.Completed => "COMPLETED",
+                TrainingRunStatus.Failed => "FAILED",
                 TrainingRunStatus.Finalizing => "FINALIZING",
                 TrainingRunStatus.PreparingData => "PREPARING_DATA",
                 TrainingRunStatus.Queued => "QUEUED",
@@ -58,6 +63,7 @@ namespace Ideogram
             return value switch
             {
                 "COMPLETED" => TrainingRunStatus.Completed,
+                "FAILED" => TrainingRunStatus.Failed,
                 "FINALIZING" => TrainingRunStatus.Finalizing,
                 "PREPARING_DATA" => TrainingRunStatus.PreparingData,
                 "QUEUED" => TrainingRunStatus.Queued,

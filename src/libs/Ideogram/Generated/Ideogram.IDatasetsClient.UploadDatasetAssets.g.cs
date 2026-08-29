@@ -24,6 +24,21 @@ namespace Ideogram
         /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.
         /// </summary>
         /// <param name="datasetId"></param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.UploadDatasetAssetsResponse>> UploadDatasetAssetsAsResponseAsync(
+            string datasetId,
+
+            global::Ideogram.UploadDatasetAssetsRequest request,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Upload assets to a dataset<br/>
+        /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.
+        /// </summary>
+        /// <param name="datasetId"></param>
         /// <param name="files">
         /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg). Captions are optional!
         /// </param>
@@ -33,6 +48,47 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.UploadDatasetAssetsResponse> UploadDatasetAssetsAsync(
             string datasetId,
             global::System.Collections.Generic.IList<byte[]> files,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Upload assets to a dataset<br/>
+        /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.
+        /// </summary>
+        /// <param name="datasetId"></param>
+        /// <param name="files">
+        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg). Captions are optional!
+        /// </param>
+        /// <param name="filesFileNames">
+        /// Optional file names to use for the multipart 'files' file parts.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.UploadDatasetAssetsResponse> UploadDatasetAssetsAsync(
+            string datasetId,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream> files,
+            global::System.Collections.Generic.IReadOnlyList<string>? filesFileNames = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Upload assets to a dataset<br/>
+        /// Upload image assets to a dataset for model training. Accepts individual images (JPEG, PNG, WebP), optional .txt caption sidecar files, and/or ZIP archives containing images and captions. A dataset can contain up to 100 images.
+        /// </summary>
+        /// <param name="datasetId"></param>
+        /// <param name="files">
+        /// Image files (JPEG, PNG, WebP), .txt caption sidecar files, and/or ZIP archives containing images and captions. Caption .txt files are matched to images by filename stem (e.g. sunset.txt provides the caption for sunset.jpg). Captions are optional!
+        /// </param>
+        /// <param name="filesFileNames">
+        /// Optional file names to use for the multipart 'files' file parts.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.UploadDatasetAssetsResponse>> UploadDatasetAssetsAsResponseAsync(
+            string datasetId,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream> files,
+            global::System.Collections.Generic.IReadOnlyList<string>? filesFileNames = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

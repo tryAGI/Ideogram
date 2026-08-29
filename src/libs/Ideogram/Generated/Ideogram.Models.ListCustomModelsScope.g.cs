@@ -4,16 +4,16 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum ListCustomModelsScope
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Owned,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Shared,
     }

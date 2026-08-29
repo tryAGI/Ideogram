@@ -73,5 +73,6 @@ namespace Ideogram
         public RedactedApiKey()
         {
         }
+
     }
 }

@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// Detailed view of a dataset, including its files.<br/>
-    /// Example: {"file_count":0,"custom_model_ids":["custom_model_ids","custom_model_ids"],"files":[{"file_name":"file_name","file_size_bytes":6},{"file_name":"file_name","file_size_bytes":6}],"dataset":{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}}
+    /// Example: {"file_count":0,"custom_model_ids":["custom_model_ids","custom_model_ids"],"files":[{"file_name":"file_name","caption":"caption","file_size_bytes":6},{"file_name":"file_name","caption":"caption","file_size_bytes":6}],"dataset":{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}}
     /// </summary>
     public sealed partial class GetDatasetResponse
     {
@@ -86,5 +86,6 @@ namespace Ideogram
         public GetDatasetResponse()
         {
         }
+
     }
 }

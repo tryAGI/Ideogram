@@ -54,5 +54,6 @@ namespace Ideogram
         public DatasetUploadFailedAsset()
         {
         }
+
     }
 }

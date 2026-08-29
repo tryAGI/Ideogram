@@ -96,5 +96,6 @@ namespace Ideogram
         public MetronomeLinks()
         {
         }
+
     }
 }

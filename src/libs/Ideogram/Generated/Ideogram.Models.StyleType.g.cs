@@ -10,39 +10,39 @@ namespace Ideogram
     public enum StyleType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Anime,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Custom,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Design,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Fiction,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         General,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Realistic,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Render3d,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Stylized,
     }

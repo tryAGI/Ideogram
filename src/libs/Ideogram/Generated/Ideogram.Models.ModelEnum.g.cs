@@ -11,35 +11,35 @@ namespace Ideogram
     public enum ModelEnum
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         V1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         V1Turbo,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         V2,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         V2a,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         V2aTurbo,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         V2Turbo,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         V3,
     }

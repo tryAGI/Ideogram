@@ -134,5 +134,6 @@ namespace Ideogram
         public TrainingRun()
         {
         }
+
     }
 }

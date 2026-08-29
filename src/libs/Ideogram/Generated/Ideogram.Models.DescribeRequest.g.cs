@@ -4,19 +4,19 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class DescribeRequest
     {
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -40,10 +40,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="DescribeRequest" /> class.
         /// </summary>
         /// <param name="imageFile">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="describeModelVersion">
         /// The model version to use for describing images. Defaults to V_3.<br/>
@@ -68,5 +68,6 @@ namespace Ideogram
         public DescribeRequest()
         {
         }
+
     }
 }

@@ -1,0 +1,49 @@
+
+#nullable enable
+
+namespace Ideogram
+{
+    /// <summary>
+    /// Acknowledgement that the ad resize was accepted. Poll<br/>
+    /// `GET /v1/generations/{generation_id}` for status and results.<br/>
+    /// Example: {"generation_id":"generation_id"}
+    /// </summary>
+    public sealed partial class AdResizerResponse
+    {
+        /// <summary>
+        /// URL-safe base64 ID accepted by the generation polling endpoint.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string GenerationId { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdResizerResponse" /> class.
+        /// </summary>
+        /// <param name="generationId">
+        /// URL-safe base64 ID accepted by the generation polling endpoint.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public AdResizerResponse(
+            string generationId)
+        {
+            this.GenerationId = generationId ?? throw new global::System.ArgumentNullException(nameof(generationId));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdResizerResponse" /> class.
+        /// </summary>
+        public AdResizerResponse()
+        {
+        }
+
+    }
+}

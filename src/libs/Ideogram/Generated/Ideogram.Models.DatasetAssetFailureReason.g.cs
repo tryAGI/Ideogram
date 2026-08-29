@@ -9,31 +9,35 @@ namespace Ideogram
     public enum DatasetAssetFailureReason
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FailedSafetyCheck,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         FileTooLarge,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InternalError,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InvalidCaption,
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        InvalidCaptionJson,
+        /// <summary>
+        ///
         /// </summary>
         InvalidImage,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         InvalidZip,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         TooManyImages,
     }
@@ -54,6 +58,7 @@ namespace Ideogram
                 DatasetAssetFailureReason.FileTooLarge => "FILE_TOO_LARGE",
                 DatasetAssetFailureReason.InternalError => "INTERNAL_ERROR",
                 DatasetAssetFailureReason.InvalidCaption => "INVALID_CAPTION",
+                DatasetAssetFailureReason.InvalidCaptionJson => "INVALID_CAPTION_JSON",
                 DatasetAssetFailureReason.InvalidImage => "INVALID_IMAGE",
                 DatasetAssetFailureReason.InvalidZip => "INVALID_ZIP",
                 DatasetAssetFailureReason.TooManyImages => "TOO_MANY_IMAGES",
@@ -71,6 +76,7 @@ namespace Ideogram
                 "FILE_TOO_LARGE" => DatasetAssetFailureReason.FileTooLarge,
                 "INTERNAL_ERROR" => DatasetAssetFailureReason.InternalError,
                 "INVALID_CAPTION" => DatasetAssetFailureReason.InvalidCaption,
+                "INVALID_CAPTION_JSON" => DatasetAssetFailureReason.InvalidCaptionJson,
                 "INVALID_IMAGE" => DatasetAssetFailureReason.InvalidImage,
                 "INVALID_ZIP" => DatasetAssetFailureReason.InvalidZip,
                 "TOO_MANY_IMAGES" => DatasetAssetFailureReason.TooManyImages,

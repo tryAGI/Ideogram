@@ -9,63 +9,63 @@ namespace Ideogram
     public enum AspectRatioV3
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x10x16,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x16x10,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x16x9,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1x1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1x2,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x1x3,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x2x1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x2x3,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x3x1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x3x2,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x3x4,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x4x3,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x4x5,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x5x4,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         x9x16,
     }

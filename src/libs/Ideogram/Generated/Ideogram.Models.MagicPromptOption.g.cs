@@ -10,15 +10,15 @@ namespace Ideogram
     public enum MagicPromptOption
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Auto,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Off,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         On,
     }

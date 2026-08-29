@@ -10,19 +10,19 @@ namespace Ideogram
     public enum TextItemV3StyleClass
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Body,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         H1,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         H2,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Small,
     }

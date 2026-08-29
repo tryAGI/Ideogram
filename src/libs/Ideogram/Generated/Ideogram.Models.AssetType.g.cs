@@ -4,28 +4,28 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public enum AssetType
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Asset,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         CanvasAsset,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         LayeredAsset,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Response,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Upload,
     }

@@ -18,14 +18,14 @@ namespace Ideogram
         public required global::Ideogram.InitialImageRequest ImageRequest { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_file")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] ImageFile { get; set; }
 
         /// <summary>
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_filename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -45,10 +45,10 @@ namespace Ideogram
         /// Example: {"aspect_ratio":"ASPECT_10_16","magic_prompt_option":"ON","model":"V_2","prompt":"A serene tropical beach scene. Dominating the foreground are tall palm trees with lush green leaves, standing tall against a backdrop of a sandy beach. The beach leads to the azure waters of the sea, which gently kisses the shoreline. In the distance, there is an island or landmass with a silhouette of what appears to be a lighthouse or tower. The sky above is painted with fluffy white clouds, some of which are tinged with hues of pink and orange, suggesting either a sunrise or sunset.","image_weight":50}
         /// </param>
         /// <param name="imageFile">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imageFilename">
-        /// An image binary (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// An image binary (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -69,5 +69,6 @@ namespace Ideogram
         public RemixImageRequest()
         {
         }
+
     }
 }

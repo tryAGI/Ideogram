@@ -10,23 +10,23 @@ namespace Ideogram
     public enum RenderingSpeed
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Balanced,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Default,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Flash,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Quality,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Turbo,
     }

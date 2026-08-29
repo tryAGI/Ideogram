@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class GenerateGraphicRequestV3
     {
@@ -56,6 +56,12 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+
+        /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
 
         /// <summary>
         /// Description of what to exclude from a graphic. Descriptions in the prompt take precedence<br/>
@@ -117,13 +123,13 @@ namespace Ideogram
         public string? CustomModelUri { get; set; }
 
         /// <summary>
-        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flat_graphic_image")]
         public byte[]? FlatGraphicImage { get; set; }
 
         /// <summary>
-        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("flat_graphic_imagename")]
         public string? FlatGraphicImagename { get; set; }
@@ -203,7 +209,7 @@ namespace Ideogram
         public string? FontNameSmall { get; set; }
 
         /// <summary>
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (max size 25MB per image; the whole request must stay under 50MB). The images should be in JPEG, PNG or WebP format.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -246,6 +252,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from a graphic. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
@@ -277,10 +286,10 @@ namespace Ideogram
         /// Example: model/my-custom-model/version/1
         /// </param>
         /// <param name="flatGraphicImage">
-        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </param>
         /// <param name="flatGraphicImagename">
-        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 10MB).
+        /// An existing flat graphic image to process for text detection and correction without generating a new image. When provided, image generation is bypassed. The image should be in JPEG, PNG or WebP format (max size 25MB).
         /// </param>
         /// <param name="fontFileH1">
         /// Custom font file for H1 (heading) text. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB). Takes priority over font_name_h1.
@@ -320,7 +329,7 @@ namespace Ideogram
         /// Font name from the available font library for small text. Ignored if font_file_small is provided.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// A set of images to use as style references (maximum total size 10MB across all style references). The images should be in JPEG, PNG or WebP format.
+        /// A set of images to use as style references (max size 25MB per image; the whole request must stay under 50MB). The images should be in JPEG, PNG or WebP format.
         /// </param>
         /// <param name="referenceAssetImages">
         /// A set of asset images (e.g., logos, icons) to use as references for detection and replacement (maximum 10 images). The images should be in JPEG, PNG or WebP format.
@@ -335,6 +344,7 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.RenderingSpeed? renderingSpeed,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             string? negativePrompt,
             int? numImages,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
@@ -365,6 +375,7 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.RenderingSpeed = renderingSpeed;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NegativePrompt = negativePrompt;
             this.NumImages = numImages;
             this.ColorPalette = colorPalette;
@@ -396,5 +407,6 @@ namespace Ideogram
         public GenerateGraphicRequestV3()
         {
         }
+
     }
 }

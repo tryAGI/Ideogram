@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class GenerateTransparentImageRequestV3
     {
@@ -60,6 +60,12 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
+
+        /// <summary>
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
         /// Example: brush strokes, painting
@@ -84,6 +90,16 @@ namespace Ideogram
         /// <example>model/my-custom-model/version/1</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_uri")]
         public string? CustomModelUri { get; set; }
+
+        /// <summary>
+        /// Optional. Opt this request into post-generation copyright detection (Hive likeness + logo<br/>
+        /// checks). The effective gate is the OR of this field and the organization's<br/>
+        /// `copyright_detection_enabled` setting on `/api`: if the org has it on, this is ignored;<br/>
+        /// if the org has it off, setting this `true` enables detection for this request only.<br/>
+        /// Adds detection latency. Flagged images come back with `is_image_safe: false`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
+        public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -118,6 +134,9 @@ namespace Ideogram
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
         /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from an image. Descriptions in the prompt take precedence<br/>
         /// to descriptions in the negative prompt.<br/>
@@ -133,6 +152,13 @@ namespace Ideogram
         /// A model must be able to generate transparent background to be used for this endpoint.<br/>
         /// Example: model/my-custom-model/version/1
         /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Opt this request into post-generation copyright detection (Hive likeness + logo<br/>
+        /// checks). The effective gate is the OR of this field and the organization's<br/>
+        /// `copyright_detection_enabled` setting on `/api`: if the org has it on, this is ignored;<br/>
+        /// if the org has it off, setting this `true` enables detection for this request only.<br/>
+        /// Adds detection latency. Flagged images come back with `is_image_safe: false`.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -143,9 +169,11 @@ namespace Ideogram
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.RenderingSpeed? renderingSpeed,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             string? negativePrompt,
             int? numImages,
-            string? customModelUri)
+            string? customModelUri,
+            bool? enableCopyrightDetection)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Seed = seed;
@@ -153,9 +181,11 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.RenderingSpeed = renderingSpeed;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NegativePrompt = negativePrompt;
             this.NumImages = numImages;
             this.CustomModelUri = customModelUri;
+            this.EnableCopyrightDetection = enableCopyrightDetection;
         }
 
         /// <summary>
@@ -164,5 +194,6 @@ namespace Ideogram
         public GenerateTransparentImageRequestV3()
         {
         }
+
     }
 }

@@ -9,11 +9,11 @@ namespace Ideogram
     public enum ApiKeyStatus
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Active,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Disabled,
     }

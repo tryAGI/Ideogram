@@ -4,19 +4,19 @@
 namespace Ideogram
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public sealed partial class TryOnRequestV3
     {
         /// <summary>
-        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image containing a person wearing clothing to be modified (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image containing a person wearing clothing to be modified (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -39,6 +39,12 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+
+        /// <summary>
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt_system_prompt_config_id")]
+        public string? MagicPromptSystemPromptConfigId { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -99,10 +105,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="TryOnRequestV3" /> class.
         /// </summary>
         /// <param name="image">
-        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image containing a person wearing clothing to be modified (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="imagename">
-        /// The image containing a person wearing clothing to be modified (max size 10MB); only JPEG, WebP and PNG formats are supported at this time.
+        /// The image containing a person wearing clothing to be modified (max size 25MB); only JPEG, WebP and PNG formats are supported at this time.
         /// </param>
         /// <param name="productReferenceImages">
         /// An image to use as the product reference for the try-on (exactly 1 image required). The image should be in JPEG, PNG or WebP format.
@@ -115,6 +121,9 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Determine if MagicPrompt should be used in generating the request or not.<br/>
         /// Example: ON
+        /// </param>
+        /// <param name="magicPromptSystemPromptConfigId">
+        /// A base64url-encoded magic prompt system prompt config ID to use for this request.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -146,6 +155,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]> productReferenceImages,
             string? prompt,
             global::Ideogram.MagicPromptOption? magicPrompt,
+            string? magicPromptSystemPromptConfigId,
             int? numImages,
             int? seed,
             global::Ideogram.RenderingSpeed? renderingSpeed,
@@ -156,6 +166,7 @@ namespace Ideogram
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
             this.Prompt = prompt;
             this.MagicPrompt = magicPrompt;
+            this.MagicPromptSystemPromptConfigId = magicPromptSystemPromptConfigId;
             this.NumImages = numImages;
             this.Seed = seed;
             this.RenderingSpeed = renderingSpeed;
@@ -170,5 +181,6 @@ namespace Ideogram
         public TryOnRequestV3()
         {
         }
+
     }
 }

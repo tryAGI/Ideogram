@@ -10,47 +10,47 @@ namespace Ideogram
     public enum AspectRatio
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect1016,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect1610,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect169,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect11,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect13,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect23,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect31,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect32,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect34,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect43,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Aspect916,
     }

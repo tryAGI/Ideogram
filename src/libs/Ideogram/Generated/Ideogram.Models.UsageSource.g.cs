@@ -10,11 +10,11 @@ namespace Ideogram
     public enum UsageSource
     {
         /// <summary>
-        /// 
+        ///
         /// </summary>
         Api,
         /// <summary>
-        /// 
+        ///
         /// </summary>
         App,
     }
