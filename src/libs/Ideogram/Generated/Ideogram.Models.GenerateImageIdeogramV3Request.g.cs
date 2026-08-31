@@ -101,13 +101,25 @@ namespace Ideogram
         public global::Ideogram.StylePresetV3? StylePreset { get; set; }
 
         /// <summary>
-        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
+        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
+        public string? StyleReferenceCollectionId { get; set; }
+
+        /// <summary>
+        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_version_id")]
+        public string? StyleReferenceCollectionVersionId { get; set; }
+
+        /// <summary>
+        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_asset_identifiers")]
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -205,11 +217,17 @@ namespace Ideogram
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references.
         /// </param>
+        /// <param name="styleReferenceCollectionId">
+        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
+        /// </param>
+        /// <param name="styleReferenceCollectionVersionId">
+        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
-        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
+        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -251,6 +269,8 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes,
             global::Ideogram.StyleTypeV3? styleType,
             global::Ideogram.StylePresetV3? stylePreset,
+            string? styleReferenceCollectionId,
+            string? styleReferenceCollectionVersionId,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             bool? enableCopyrightDetection,
@@ -271,6 +291,8 @@ namespace Ideogram
             this.StyleCodes = styleCodes;
             this.StyleType = styleType;
             this.StylePreset = stylePreset;
+            this.StyleReferenceCollectionId = styleReferenceCollectionId;
+            this.StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId;
             this.StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers;
             this.StyleReferenceImages = styleReferenceImages;
             this.EnableCopyrightDetection = enableCopyrightDetection;

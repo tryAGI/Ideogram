@@ -5,12 +5,10 @@ namespace Ideogram
     public partial interface IGenerateClient
     {
         /// <summary>
-        /// Logo recognition + inpainting (internal)<br/>
+        /// Detect and remove reference logos from an image<br/>
         /// Detects caller-supplied reference logos in a flat design image, inpaints<br/>
         /// them out, and returns the cleaned image together with the matched<br/>
-        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).<br/>
-        /// Internal-only; hidden from both Fern documentation audiences. Uses the<br/>
-        /// default `Api-Key` security scheme.
+        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -22,12 +20,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Logo recognition + inpainting (internal)<br/>
+        /// Detect and remove reference logos from an image<br/>
         /// Detects caller-supplied reference logos in a flat design image, inpaints<br/>
         /// them out, and returns the cleaned image together with the matched<br/>
-        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).<br/>
-        /// Internal-only; hidden from both Fern documentation audiences. Uses the<br/>
-        /// default `Api-Key` security scheme.
+        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -39,12 +35,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Logo recognition + inpainting (internal)<br/>
+        /// Detect and remove reference logos from an image<br/>
         /// Detects caller-supplied reference logos in a flat design image, inpaints<br/>
         /// them out, and returns the cleaned image together with the matched<br/>
-        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).<br/>
-        /// Internal-only; hidden from both Fern documentation audiences. Uses the<br/>
-        /// default `Api-Key` security scheme.
+        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).
         /// </summary>
         /// <param name="designImage">
         /// The flat design image to analyze. The image should be in JPEG, PNG, or WebP format (max size 25MB).
@@ -69,12 +63,10 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
-        /// Logo recognition + inpainting (internal)<br/>
+        /// Detect and remove reference logos from an image<br/>
         /// Detects caller-supplied reference logos in a flat design image, inpaints<br/>
         /// them out, and returns the cleaned image together with the matched<br/>
-        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).<br/>
-        /// Internal-only; hidden from both Fern documentation audiences. Uses the<br/>
-        /// default `Api-Key` security scheme.
+        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).
         /// </summary>
         /// <param name="designImage">
         /// The flat design image to analyze. The image should be in JPEG, PNG, or WebP format (max size 25MB).
@@ -102,12 +94,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Logo recognition + inpainting (internal)<br/>
+        /// Detect and remove reference logos from an image<br/>
         /// Detects caller-supplied reference logos in a flat design image, inpaints<br/>
         /// them out, and returns the cleaned image together with the matched<br/>
-        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).<br/>
-        /// Internal-only; hidden from both Fern documentation audiences. Uses the<br/>
-        /// default `Api-Key` security scheme.
+        /// bounding boxes (each tagged with the matching reference's `REF_&lt;n&gt;`).
         /// </summary>
         /// <param name="designImage">
         /// The flat design image to analyze. The image should be in JPEG, PNG, or WebP format (max size 25MB).

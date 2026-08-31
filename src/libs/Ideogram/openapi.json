@@ -170,6 +170,14 @@
         "url": "https://docs.ideogram.ai"
       },
       "name": "auto-model"
+    },
+    {
+      "description": "Expand an existing image to a new model-specific output shape while\npreserving the source content and filling the new area.\n",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://docs.ideogram.ai"
+      },
+      "name": "images-reframe"
     }
   ],
   "paths": {
@@ -6833,7 +6841,7 @@
     },
     "/v1/layerize-logos": {
       "post": {
-        "description": "Detects caller-supplied reference logos in a flat design image, inpaints\nthem out, and returns the cleaned image together with the matched\nbounding boxes (each tagged with the matching reference's `REF_<n>`).\n\nInternal-only; hidden from both Fern documentation audiences. Uses the\ndefault `Api-Key` security scheme.\n",
+        "description": "Detects caller-supplied reference logos in a flat design image, inpaints\nthem out, and returns the cleaned image together with the matched\nbounding boxes (each tagged with the matching reference's `REF_<n>`).\n",
         "operationId": "post_layerize_logos",
         "requestBody": {
           "content": {
@@ -6865,16 +6873,10 @@
             "description": "Too many requests."
           }
         },
-        "summary": "Logo recognition + inpainting (internal)",
+        "summary": "Detect and remove reference logos from an image",
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -8191,7 +8193,7 @@
     },
     "/v2/images/generate/ideogram-v3": {
       "post": {
-        "description": "Generate one or more images from a text prompt with Ideogram 3.0,\nwith optional style controls: style codes, a style preset, a color\npalette, or style reference images. Supply style references either as\n`style_reference_asset_identifiers` references (images already stored\nwith Ideogram) or as raw `style_reference_images` bytes (multipart\nrequests only). If both are supplied, the references win and the bytes\nare ignored.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images from a text prompt with Ideogram 3.0,\nwith optional style controls: style codes, a style preset, a color\npalette, or style references. Supply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references (images already stored\nwith Ideogram), or as raw `style_reference_images` bytes (multipart\nrequests only). These three style reference forms cannot be combined.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_generate_image_v2_ideogram_v3",
         "requestBody": {
           "content": {
@@ -8214,7 +8216,7 @@
               }
             }
           },
-          "description": "A request to generate images with Ideogram 3.0. Use `multipart/form-data` to upload `style_reference_images` bytes directly, or `application/json` (or multipart with `style_reference_asset_identifiers`) to reference existing assets instead.",
+          "description": "A request to generate images with Ideogram 3.0. Use `multipart/form-data` to upload `style_reference_images` bytes directly, or `application/json` (or multipart with the collection id or asset identifier forms) to reference a saved style or existing assets instead.",
           "required": true,
           "x-body-name": "body"
         },
@@ -8239,7 +8241,7 @@
             "description": "Insufficient credits or quota."
           },
           "404": {
-            "description": "A referenced style asset was not found."
+            "description": "A referenced style collection or asset was not found."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
@@ -8963,6 +8965,165 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
       }
     },
+    "/v2/images/reframe/gemini-3.1-flash-image": {
+      "post": {
+        "description": "Expand one image to a new aspect ratio with Gemini 3.1 Flash Image.\nSupply either an existing Ideogram image asset or raw image bytes,\nbut not both. The requested aspect ratio is resolved to the closest\nsupported 1K output dimensions.\n\nThis operation is asynchronous. It returns as soon as the request is\naccepted; poll `GET /v1/generations/{generation_id}` for completion\nand results.\n",
+        "operationId": "post_reframe_image_gemini31_flash_image",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ReframeImageGemini31FlashImageRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReframeImageGemini31FlashImageRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReframeImageGemini31FlashImageResponse"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "The referenced source asset was not found."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Reframe an image with Gemini 3.1 Flash Image",
+        "tags": [
+          "images-reframe"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-fern-sdk-group-name": [
+          "image",
+          "reframe"
+        ],
+        "x-fern-sdk-method-name": "gemini31FlashImage",
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_reframe_controller"
+      }
+    },
+    "/v2/images/reframe/ideogram-v3": {
+      "post": {
+        "description": "Expand an image to a new Ideogram 3.0 resolution. The source pixels\nare preserved in the center and Ideogram fills the new area. Supply\nexactly one source: an `AssetIdentifier` reference\n(`image_asset_identifier`) or raw image bytes (`image`, multipart\nrequests only). Supplying both forms, or neither, is rejected.\n\nOptional style controls are mutually exclusive. Supply at most one of\n`style_preset`, `style_codes`, `style_reference_asset_identifiers`, or\nraw `style_reference_images` (multipart requests only). Each style\nreference transport accepts at most 10 images.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately, then poll\n`GET /v1/generations/{generation_id}`.\n",
+        "operationId": "post_reframe_image_v2_ideogram_v3",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "style_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "color_palette": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ReframeImageIdeogramV3Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReframeImageIdeogramV3Request"
+              }
+            }
+          },
+          "description": "Use `multipart/form-data` to upload `image` or `style_reference_images` bytes directly. Use `application/json` (or multipart fields with JSON content) to reference existing source or style assets by `AssetIdentifier`.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReframeImageIdeogramV3Response"
+                }
+              }
+            },
+            "description": "The reframed images, or an acknowledgement for an asynchronous request."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "A referenced source or style asset was not found."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Reframe an image with Ideogram 3.0, by asset id or by uploaded bytes",
+        "tags": [
+          "images-reframe"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-fern-sdk-group-name": [
+          "image",
+          "reframe"
+        ],
+        "x-fern-sdk-method-name": "ideogramV3",
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_reframe_controller"
+      }
+    },
     "/v2/images/remix/ideogram-v3": {
       "post": {
         "description": "Transform an existing image with Ideogram 3.0, guided by a text\nprompt. Supply the source either as an `image_asset_identifier`\nreference (an image already stored with Ideogram) or as raw `image`\nbytes (multipart requests only). Supplying both is rejected rather\nthan one being ignored. `image_weight` controls how closely the\nresult follows the source; when omitted the server picks a value from\nyour prompt.\n\nOmit `resolution` and `aspect_ratio` to keep the source image's\nshape. If you request a different shape, the source is center-cropped\nto fit it first, and whatever falls outside the new shape is\ndiscarded.\n\nOptional style controls work as on the Ideogram 3.0 generate\nendpoint: style codes, a style preset, a color palette, or style\nreference images.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
@@ -9182,6 +9343,12 @@
         "tags": [
           "images-upscale"
         ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
       }
     },
@@ -9400,7 +9567,7 @@
     },
     "/v2/tool/colorways": {
       "post": {
-        "description": "Recolors the masked region of the product photo to the target color\nwhile preserving the product's geometry, materials, prints, logos,\nand shading, and keeping every region outside the mask unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n\nSupply the mask marking the region to recolor as either an\n`AssetIdentifier` reference (`mask_asset_identifier`) or the raw mask\nbytes directly (`mask`, multipart requests only). Provide exactly one\nof the two forms. The mask must have the same pixel dimensions as the\nproduct photo. White pixels mark the region to recolor; black pixels\nare preserved. Alpha-only masks are also supported: opaque pixels mark\nthe region to recolor and transparent pixels are preserved.\n",
+        "description": "Recolors the masked regions of the product photo, each to its own\ntarget color, while preserving the product's geometry, materials,\nprints, logos, and shading, and keeping every region outside the\nmasks unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n\nSupply the masks marking the regions to recolor as either\n`AssetIdentifier` references (`mask_asset_identifiers`) or the raw\nmask bytes directly (`masks`, multipart requests only), paired by\nposition with `colors` — up to 4 regions; a single-region edit is a\none-item list. Provide exactly one of the two forms. Every mask must\nhave the same pixel dimensions as the product photo. White pixels\nmark the region to recolor; black pixels are preserved. Alpha-only\nmasks are also supported: opaque pixels mark the region to recolor\nand transparent pixels are preserved.\n",
         "operationId": "post_colorways",
         "requestBody": {
           "content": {
@@ -9409,7 +9576,7 @@
                 "image_asset_identifier": {
                   "contentType": "application/json"
                 },
-                "mask_asset_identifier": {
+                "mask_asset_identifiers": {
                   "contentType": "application/json"
                 }
               },
@@ -9423,7 +9590,7 @@
               }
             }
           },
-          "description": "The product photo, the mask marking the region to recolor, and the target color. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "description": "The product photo, one mask or several masks marking the regions to recolor, and one target color per mask. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
           "required": true,
           "x-body-name": "body"
         },
@@ -9538,7 +9705,7 @@
     },
     "/v2/tool/material-swap": {
       "post": {
-        "description": "Re-renders the masked region of the product photo in the material shown\nby the reference image — matching its color, texture, pattern scale,\nand orientation — while preserving the product's silhouette,\nconstruction, seams, and shading, and keeping every region outside the\nmask unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n\nSupply the mask marking the region to re-material as either an\n`AssetIdentifier` reference (`mask_asset_identifier`) or the raw mask\nbytes directly (`mask`, multipart requests only). Provide exactly one\nof the two forms. The mask must have the same pixel dimensions as the\nproduct photo. White pixels mark the region to change; black pixels are\npreserved. Alpha-only masks are also supported: opaque pixels mark the\nregion to change and transparent pixels are preserved.\n\nSupply the material reference as either an `AssetIdentifier` reference\n(`material_asset_identifier`) or the raw image bytes directly\n(`material`, multipart requests only). Provide exactly one of the two\nforms.\n",
+        "description": "Re-renders the masked regions of the product photo in the materials\nshown by the reference images — matching each one's color, texture,\npattern scale, and orientation — while preserving the product's\nsilhouette, construction, seams, and shading, and keeping every region\noutside the masks unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n\nSupply the masks marking the regions to re-material as either\n`AssetIdentifier` references (`mask_asset_identifiers`) or the raw mask\nbytes directly (`masks`, multipart requests only) — up to 4 regions; a\nsingle-region edit is a one-item list. Provide exactly one of the two\nforms. Every mask must have the same pixel dimensions as the product\nphoto. White pixels mark the region to change; black pixels are\npreserved. Alpha-only masks are also supported: opaque pixels mark the\nregion to change and transparent pixels are preserved.\n\nSupply the material references as either `AssetIdentifier` references\n(`material_asset_identifiers`) or the raw image bytes directly\n(`materials`, multipart requests only). Provide exactly one of the two\nforms. Send either one material, which every mask takes, or exactly one\nmaterial per mask, paired by position.\n",
         "operationId": "post_material_swap",
         "requestBody": {
           "content": {
@@ -9547,10 +9714,10 @@
                 "image_asset_identifier": {
                   "contentType": "application/json"
                 },
-                "mask_asset_identifier": {
+                "mask_asset_identifiers": {
                   "contentType": "application/json"
                 },
-                "material_asset_identifier": {
+                "material_asset_identifiers": {
                   "contentType": "application/json"
                 }
               },
@@ -9564,7 +9731,7 @@
               }
             }
           },
-          "description": "The product photo, the mask marking the region to change, and the material reference image. Use `multipart/form-data` to upload raw bytes directly, or `application/json` (or multipart with `*_asset_identifier` fields) to reference existing assets instead.",
+          "description": "The product photo, one mask or several masks marking the regions to change, and either one shared material reference or one per mask. Use `multipart/form-data` to upload raw bytes directly, or `application/json` (or multipart with `*_asset_identifiers` fields) to reference existing assets instead.",
           "required": true,
           "x-body-name": "body"
         },
@@ -9889,6 +10056,83 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tool_controller"
       }
     },
+    "/v2/tool/replace-background": {
+      "post": {
+        "description": "Replaces the background of one image from a text prompt while preserving\nthe foreground subject. The foreground mask is detected automatically;\ncallers do not provide a mask.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply exactly one source transport: an existing `AssetIdentifier` in\n`image_asset_identifier`, or raw `image` bytes in a multipart request.\nSupplying both or neither is rejected with a 400.\n",
+        "operationId": "post_replace_background",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceBackgroundRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceBackgroundRequest"
+              }
+            }
+          },
+          "description": "The source image and a prompt describing its new background.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceBackgroundResponse"
+                }
+              }
+            },
+            "description": "Background replacement accepted for asynchronous processing."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "Not authorized to replace backgrounds."
+          },
+          "404": {
+            "description": "The source asset was not found or is not readable."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "503": {
+            "description": "Background replacement is temporarily unavailable."
+          }
+        },
+        "summary": "Replace an image background",
+        "tags": [
+          "edit-workflow"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-fern-sdk-group-name": "tool",
+        "x-fern-sdk-method-name": "replaceBackground",
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
+      }
+    },
     "/v2/tool/sketch-to-render": {
       "post": {
         "description": "Converts one fashion sketch into photorealistic garment or product\nimagery while preserving its silhouette, construction, colors, and\nvisible design details.\n\nThe request runs asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply exactly one sketch transport: an existing `AssetIdentifier` in\n`sketch_asset_identifier`, or raw `sketch_image` bytes in a multipart\nrequest. Supplying both or neither is rejected with a 400.\n",
@@ -10096,6 +10340,444 @@
           ]
         },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tools_controller"
+      }
+    },
+    "/v2/video/generate/kling-v3-standard-image-to-video": {
+      "post": {
+        "description": "Generate a video from a first-frame image and a text prompt with Kling\nv3 Standard. Supply the first frame either as an\n`image_asset_identifier` reference (an image already stored with\nIdeogram) or as raw `image` bytes (multipart requests only) — callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: `end_image_asset_identifier` or\n`end_image`. The final frame is optional and follows the same\none-form-only rule.\n\nThe generated video takes its aspect ratio from the first frame, so\nthere is no aspect ratio to set.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_generate_video_kling_v3_standard_image_to_video",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "end_image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoKlingV3StandardImageToVideoRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoKlingV3StandardImageToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to generate a video from a first-frame image with Kling v3 Standard. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoKlingV3Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "404": {
+            "description": "The referenced first-frame asset was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate a video from a first frame with Kling v3 Standard, by asset id or by uploaded bytes",
+        "tags": [
+          "video-generate"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
+      }
+    },
+    "/v2/video/generate/kling-v3-standard-text-to-video": {
+      "post": {
+        "description": "Generate a video from a text prompt with Kling v3 Standard.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_generate_video_kling_v3_standard_text_to_video",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoKlingV3StandardTextToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to generate a video from a text prompt with Kling v3 Standard.",
+          "required": true,
+          "x-body-name": "generate_video_kling_v3_standard_text_to_video_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoKlingV3Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate a video from a text prompt with Kling v3 Standard",
+        "tags": [
+          "video-generate"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
+      }
+    },
+    "/v2/video/generate/minimax-h3-image-to-video": {
+      "post": {
+        "description": "Generate a video from a first-frame image and a text prompt with\nMiniMax H3. Supply the first frame either as an\n`image_asset_identifier` reference (an image already stored with\nIdeogram) or as raw `image` bytes (multipart requests only) — callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: `end_image_asset_identifier` or\n`end_image`. The final frame is optional and follows the same\none-form-only rule.\n\nThe generated video takes its aspect ratio from the first frame, so\nthis endpoint accepts no `aspect_ratio`.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_generate_video_minimax_h3_image_to_video",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "end_image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoMinimaxH3ImageToVideoRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoMinimaxH3ImageToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to generate a video from a first-frame image with MiniMax H3. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoMinimaxH3Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "404": {
+            "description": "The referenced first-frame asset was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate a video from a first frame with MiniMax H3, by asset id or by uploaded bytes",
+        "tags": [
+          "video-generate"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
+      }
+    },
+    "/v2/video/generate/minimax-h3-text-to-video": {
+      "post": {
+        "description": "Generate a video from a text prompt with MiniMax H3.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_generate_video_minimax_h3_text_to_video",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoMinimaxH3TextToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to generate a video from a text prompt with MiniMax H3.",
+          "required": true,
+          "x-body-name": "generate_video_minimax_h3_text_to_video_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoMinimaxH3Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate a video from a text prompt with MiniMax H3",
+        "tags": [
+          "video-generate"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
+      }
+    },
+    "/v2/video/generate/seedance-2-5-image-to-video": {
+      "post": {
+        "description": "Generate a video from a first-frame image and a text prompt with\nSeedance 2.5. Supply the first frame either as an\n`image_asset_identifier` reference (an image already stored with\nIdeogram) or as raw `image` bytes (multipart requests only) — callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: `end_image_asset_identifier` or\n`end_image`. The final frame is optional and follows the same\none-form-only rule.\n\nSeedance 2.5 always derives an image-to-video result's aspect ratio\nfrom its first frame, so this endpoint takes no `aspect_ratio`.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_generate_video_seed_dance25_image_to_video",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "end_image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoSeedDance25ImageToVideoRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoSeedDance25ImageToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to generate a video from a first-frame image with Seedance 2.5. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoSeedDance25Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "404": {
+            "description": "The referenced first-frame asset was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate a video from a first frame with Seedance 2.5, by asset id or by uploaded bytes",
+        "tags": [
+          "video-generate"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
+      }
+    },
+    "/v2/video/generate/seedance-2-5-text-to-video": {
+      "post": {
+        "description": "Generate a video from a text prompt with Seedance 2.5, which serves\nresolutions up to 1080p and durations up to 30 seconds.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_generate_video_seed_dance25_text_to_video",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateVideoSeedDance25TextToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to generate a video from a text prompt with Seedance 2.5.",
+          "required": true,
+          "x-body-name": "generate_video_seed_dance25_text_to_video_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoSeedDance25Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate a video from a text prompt with Seedance 2.5",
+        "tags": [
+          "video-generate"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
     "/v2/video/generate/seedance-2-image-to-video": {
@@ -16472,6 +17154,624 @@
         ],
         "type": "object"
       },
+      "GenerateVideoSeedDance25Response": {
+        "description": "Acknowledgement returned by the Seedance 2.5 video generation\nendpoints. Video generation always runs asynchronously, so the\ngenerated video is never part of this response: poll for it with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive it at the `webhook_url` you supplied.\n",
+        "example": {
+          "generation_id": "generation_id",
+          "created": "2000-01-23T04:56:07+00:00"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time the request was accepted.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          }
+        },
+        "required": [
+          "created",
+          "generation_id"
+        ],
+        "title": "GenerateVideoSeedDance25Response",
+        "type": "object"
+      },
+      "GenerateVideoSeedDance25TextToVideoRequest": {
+        "description": "Request body for Seedance 2.5 text-to-video generation.",
+        "example": {
+          "duration": 5,
+          "aspect_ratio": null,
+          "private": true,
+          "webhook_url": "https://api.example.com/webhooks/ideogram",
+          "target_collection_id": "target_collection_id",
+          "generate_audio": false,
+          "prompt": "A red fox running through a snowy forest at dawn.",
+          "resolution": null
+        },
+        "properties": {
+          "prompt": {
+            "description": "A natural-language prompt describing the video to generate.",
+            "example": "A red fox running through a snowy forest at dawn.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "prompt",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/SeedDance2AspectRatio"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/SeedDance25Resolution"
+          },
+          "duration": {
+            "description": "The length of the generated video in seconds. When omitted, the model\npicks the best duration for the prompt (\"auto\").\n",
+            "example": 5,
+            "maximum": 30,
+            "minimum": 4,
+            "title": "duration",
+            "type": "integer"
+          },
+          "generate_audio": {
+            "default": false,
+            "description": "Whether to generate an audio track for the video. Audio roughly\ndoubles the provider cost and is subject to stricter output moderation.\n",
+            "title": "generate_audio",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "title": "private",
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateVideoSeedDance25TextToVideoRequest",
+        "type": "object"
+      },
+      "SeedDance25Resolution": {
+        "default": "720p",
+        "description": "The resolution tier of the generated video.",
+        "enum": [
+          "480p",
+          "720p",
+          "1080p"
+        ],
+        "title": "SeedDance25Resolution",
+        "type": "string"
+      },
+      "SeedDance25DurationSeconds": {
+        "description": "The length of the generated video in seconds. When omitted, the model\npicks the best duration for the prompt (\"auto\").\n",
+        "example": 5,
+        "maximum": 30,
+        "minimum": 4,
+        "title": "duration",
+        "type": "integer"
+      },
+      "GenerateVideoSeedDance25ImageToVideoRequest": {
+        "description": "Request body for Seedance 2.5 image-to-video generation. Supply the\nfirst frame either as an `image_asset_identifier` reference or\n(multipart requests only) as raw `image` bytes. Exactly one source is\nrequired. An optional final frame may be supplied the same way, with\n`end_image_asset_identifier` or `end_image`, to generate a transition\nbetween the two stills.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "A reference to an image already stored with Ideogram to use as the first frame, in place of uploading `image`. Only image assets are accepted."
+          },
+          "image": {
+            "description": "The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.",
+            "format": "binary",
+            "type": "string"
+          },
+          "end_image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An optional final frame, as a reference to an image already stored with Ideogram. When supplied, the generated video transitions from the first frame to this one. Only image assets are accepted."
+          },
+          "end_image": {
+            "description": "An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "A natural-language prompt describing how the first frame should animate.",
+            "example": "The camera slowly pans right as the waves roll in.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/SeedDance25Resolution"
+          },
+          "duration": {
+            "description": "The length of the generated video in seconds. When omitted, the model\npicks the best duration for the prompt (\"auto\").\n",
+            "example": 5,
+            "maximum": 30,
+            "minimum": 4,
+            "title": "duration",
+            "type": "integer"
+          },
+          "generate_audio": {
+            "default": false,
+            "description": "Whether to generate an audio track for the video. Audio roughly\ndoubles the provider cost and is subject to stricter output moderation.\n",
+            "title": "generate_audio",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "GenerateVideoMinimaxH3Response": {
+        "description": "Acknowledgement returned by the MiniMax H3 video generation endpoints.\nVideo generation always runs asynchronously, so the generated video is\nnever part of this response: poll for it with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive it at the `webhook_url` you supplied.\n",
+        "example": {
+          "generation_id": "generation_id",
+          "created": "2000-01-23T04:56:07+00:00"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time the request was accepted.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          }
+        },
+        "required": [
+          "created",
+          "generation_id"
+        ],
+        "title": "GenerateVideoMinimaxH3Response",
+        "type": "object"
+      },
+      "GenerateVideoMinimaxH3TextToVideoRequest": {
+        "description": "Request body for MiniMax H3 text-to-video generation.",
+        "example": {
+          "duration": 5,
+          "aspect_ratio": null,
+          "private": true,
+          "webhook_url": "https://api.example.com/webhooks/ideogram",
+          "target_collection_id": "target_collection_id",
+          "prompt": "A red fox running through a snowy forest at dawn.",
+          "resolution": null
+        },
+        "properties": {
+          "prompt": {
+            "description": "A natural-language prompt describing the video to generate.",
+            "example": "A red fox running through a snowy forest at dawn.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "prompt",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/MinimaxH3AspectRatio"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/MinimaxH3Resolution"
+          },
+          "duration": {
+            "default": 5,
+            "description": "The length of the generated video in seconds.",
+            "example": 5,
+            "maximum": 15,
+            "minimum": 5,
+            "title": "duration",
+            "type": "integer"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "title": "private",
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateVideoMinimaxH3TextToVideoRequest",
+        "type": "object"
+      },
+      "GenerateVideoMinimaxH3ImageToVideoRequest": {
+        "description": "Request body for MiniMax H3 image-to-video generation. Supply the first\nframe either as an `image_asset_identifier` reference or (multipart\nrequests only) as raw `image` bytes. Exactly one source is required. An\noptional final frame may be supplied the same way, with\n`end_image_asset_identifier` or `end_image`, to generate a transition\nbetween the two stills.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "A reference to an image already stored with Ideogram to use as the first frame, in place of uploading `image`. Only image assets are accepted."
+          },
+          "image": {
+            "description": "The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.",
+            "format": "binary",
+            "type": "string"
+          },
+          "end_image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An optional final frame, as a reference to an image already stored with Ideogram. When supplied, the generated video transitions from the first frame to this one. Only image assets are accepted."
+          },
+          "end_image": {
+            "description": "An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "A natural-language prompt describing how the first frame should animate.",
+            "example": "The camera slowly pans right as the waves roll in.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/MinimaxH3Resolution"
+          },
+          "duration": {
+            "default": 5,
+            "description": "The length of the generated video in seconds.",
+            "example": 5,
+            "maximum": 15,
+            "minimum": 5,
+            "title": "duration",
+            "type": "integer"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "GenerateVideoKlingV3Response": {
+        "description": "Acknowledgement returned by the Kling v3 video generation endpoints.\nVideo generation always runs asynchronously, so the generated video is\nnever part of this response: poll for it with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive it at the `webhook_url` you supplied.\n",
+        "example": {
+          "generation_id": "generation_id",
+          "created": "2000-01-23T04:56:07+00:00"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time the request was accepted.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          }
+        },
+        "required": [
+          "created",
+          "generation_id"
+        ],
+        "title": "GenerateVideoKlingV3Response",
+        "type": "object"
+      },
+      "GenerateVideoKlingV3StandardTextToVideoRequest": {
+        "description": "Request body for Kling v3 Standard text-to-video generation.",
+        "example": {
+          "duration": 5,
+          "shot_type": null,
+          "aspect_ratio": null,
+          "private": true,
+          "webhook_url": "https://api.example.com/webhooks/ideogram",
+          "negative_prompt": "negative_prompt",
+          "target_collection_id": "target_collection_id",
+          "generate_audio": false,
+          "prompt": "A red fox running through a snowy forest at dawn.",
+          "cfg_scale": 0.5
+        },
+        "properties": {
+          "prompt": {
+            "description": "A natural-language prompt describing the video to generate.",
+            "example": "A red fox running through a snowy forest at dawn.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "prompt",
+            "type": "string"
+          },
+          "negative_prompt": {
+            "description": "Description of what to keep out of the video. Descriptions in the prompt take precedence over descriptions in the negative prompt.",
+            "maxLength": 2000,
+            "title": "negative_prompt",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/KlingV3AspectRatio"
+          },
+          "duration": {
+            "description": "The length of the generated video in seconds. Defaults to 5 seconds\nwhen omitted.\n",
+            "example": 5,
+            "maximum": 15,
+            "minimum": 3,
+            "title": "duration",
+            "type": "integer"
+          },
+          "generate_audio": {
+            "default": false,
+            "description": "Whether to generate an audio track for the video. Audio roughly\ndoubles the provider cost and is subject to stricter output moderation.\n",
+            "title": "generate_audio",
+            "type": "boolean"
+          },
+          "shot_type": {
+            "$ref": "#/components/schemas/KlingV3ShotType"
+          },
+          "cfg_scale": {
+            "description": "How closely the video follows the prompt, from 0 to 1. Lower values\nleave the model more freedom. Defaults to 0.5 when omitted.\n",
+            "example": 0.5,
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "cfg_scale",
+            "type": "number"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "title": "private",
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateVideoKlingV3StandardTextToVideoRequest",
+        "type": "object"
+      },
+      "GenerateVideoKlingV3StandardImageToVideoRequest": {
+        "description": "Request body for Kling v3 Standard image-to-video generation. Supply the\nfirst frame either as an `image_asset_identifier` reference or\n(multipart requests only) as raw `image` bytes. Exactly one source is\nrequired. An optional final frame may be supplied the same way, with\n`end_image_asset_identifier` or `end_image`, to generate a transition\nbetween the two stills.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "A reference to an image already stored with Ideogram to use as the first frame, in place of uploading `image`. Only image assets are accepted."
+          },
+          "image": {
+            "description": "The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.",
+            "format": "binary",
+            "type": "string"
+          },
+          "end_image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An optional final frame, as a reference to an image already stored with Ideogram. When supplied, the generated video transitions from the first frame to this one. Only image assets are accepted."
+          },
+          "end_image": {
+            "description": "An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "A natural-language prompt describing how the first frame should animate.",
+            "example": "The camera slowly pans right as the waves roll in.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "negative_prompt": {
+            "description": "Description of what to keep out of the video. Descriptions in the prompt take precedence over descriptions in the negative prompt.",
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "duration": {
+            "description": "The length of the generated video in seconds. Defaults to 5 seconds\nwhen omitted.\n",
+            "example": 5,
+            "maximum": 15,
+            "minimum": 3,
+            "title": "duration",
+            "type": "integer"
+          },
+          "generate_audio": {
+            "default": false,
+            "description": "Whether to generate an audio track for the video. Audio roughly\ndoubles the provider cost and is subject to stricter output moderation.\n",
+            "title": "generate_audio",
+            "type": "boolean"
+          },
+          "shot_type": {
+            "$ref": "#/components/schemas/KlingV3ShotType"
+          },
+          "cfg_scale": {
+            "description": "How closely the video follows the prompt, from 0 to 1. Lower values\nleave the model more freedom. Defaults to 0.5 when omitted.\n",
+            "example": 0.5,
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "title": "cfg_scale",
+            "type": "number"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
       "RemoveObjectFromV2AssetsResponse": {
         "description": "Acknowledgement returned by `POST /v2/object-removal`. The request is\naccepted for asynchronous processing; poll for completion and results\nusing `GET /v1/generations/{generation_id}` with the returned\n`generation_id`.\n",
         "example": {
@@ -16652,6 +17952,77 @@
         },
         "required": [
           "image_asset_identifier"
+        ],
+        "type": "object"
+      },
+      "ReplaceBackgroundResponse": {
+        "description": "Acknowledgement that the workflow was accepted.",
+        "example": {
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID accepted by the generation polling endpoint.",
+            "title": "generation_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "generation_id"
+        ],
+        "title": "ReplaceBackgroundResponse",
+        "type": "object"
+      },
+      "ReplaceBackgroundRequest": {
+        "description": "Supply exactly one of `image_asset_identifier` or multipart `image`\nbytes. The prompt describes only the desired new background; the\nforeground subject is detected and preserved automatically.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "Raw source-image bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,\nTIFF, and MPO are supported, up to 50 MB. Multipart requests only.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "Plain-language description of the desired new background.",
+            "maxLength": 4000,
+            "minLength": 1,
+            "pattern": "\\S",
+            "type": "string"
+          },
+          "quality": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GptImage2Quality"
+              }
+            ],
+            "default": "HIGH",
+            "description": "The generation quality level. Defaults to `HIGH`."
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "title": "NumImages",
+            "type": "integer"
+          },
+          "private": {
+            "description": "If true, the user is requesting private generation. If omitted,\nthis defaults to the user's plan entitlement. Enterprise\ngenerations are always private.\n",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
         ],
         "type": "object"
       },
@@ -17510,7 +18881,7 @@
         "type": "object"
       },
       "ColorwaysRequest": {
-        "description": "Supply the product photo as either an `AssetIdentifier` reference or\n(multipart requests only) raw image bytes; provide exactly one of the\ntwo forms. Supplying both, or neither, is rejected with a 400.\n",
+        "description": "Supply the product photo as either an `AssetIdentifier` reference or\n(multipart requests only) raw image bytes; provide exactly one of the\ntwo forms. Supplying both, or neither, is rejected with a 400.\n\nSupply up to 4 masks with one color per mask; a single-region edit is\na one-item `masks` (or `mask_asset_identifiers`) list with a one-item\n`colors` list.\n",
         "properties": {
           "image_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
@@ -17520,18 +18891,34 @@
             "format": "binary",
             "type": "string"
           },
-          "mask_asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+          "mask_asset_identifiers": {
+            "description": "The masks marking the regions of the product photo to recolor, by\nreference, paired by position with `colors` (max 4). Every mask\nmust have the same pixel dimensions as the product photo. White\npixels mark the region to recolor; black pixels are preserved.\nAlpha-only masks are also supported: opaque pixels mark the\nregion to recolor and transparent pixels are preserved. Provide\nexactly one of `mask_asset_identifiers` or `masks`.\n",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
           },
-          "mask": {
-            "description": "The mask marking the region of the product photo to recolor (max\nsize 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are\nsupported. The mask must have the same pixel dimensions as the\nproduct photo. White pixels mark the region to recolor; black\npixels are preserved. Alpha-only masks are also supported: opaque\npixels mark the region to recolor and transparent pixels are\npreserved. Multipart requests only. Provide exactly one of\n`mask_asset_identifier` or `mask`.\n",
-            "format": "binary",
-            "type": "string"
+          "masks": {
+            "description": "The masks marking the regions of the product photo to recolor\n(max 4, max size 25MB each), as raw bytes, paired by position with\n`colors`; only JPEG, PNG, and WEBP formats are supported. Every\nmask must have the same pixel dimensions as the product photo,\nand follows the same pixel rules as `mask_asset_identifiers`.\nMultipart requests only. Provide exactly one of\n`mask_asset_identifiers` or `masks`.\n",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
           },
-          "color": {
-            "description": "The target color for the masked region, as a six-digit hex code\nlike `#B3202C`. The product's shape, construction, materials,\nprints, and logos are always preserved.\n",
-            "pattern": "^#[0-9a-fA-F]{6}$",
-            "type": "string"
+          "colors": {
+            "description": "One target color per mask in `masks` or\n`mask_asset_identifiers`, as six-digit hex codes like `#B3202C`,\npaired by position. The product's shape, construction, materials,\nprints, and logos are always preserved.\n",
+            "items": {
+              "pattern": "^#[0-9a-fA-F]{6}$",
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
           },
           "aspect_ratio": {
             "description": "The aspect ratio of the generated image. Defaults to the aspect\nratio of the product photo when omitted, which preserves the\noriginal framing exactly. When a different ratio is requested, the\nscene is extended to fill the new shape rather than cropped, so\npart of the frame is newly generated. Supported values are `1:1`,\n`3:4`, `4:3`, `16:9`, and `9:16`.\n",
@@ -17561,7 +18948,7 @@
           }
         },
         "required": [
-          "color"
+          "colors"
         ],
         "type": "object"
       },
@@ -17933,7 +19320,7 @@
         "type": "object"
       },
       "MaterialSwapRequest": {
-        "description": "Supply the product photo, the mask, and the material reference each as\neither an `AssetIdentifier` reference or (multipart requests only) raw\nimage bytes; provide exactly one form per input. Supplying both forms\nof an input, or neither, is rejected with a 400.\n",
+        "description": "Supply the product photo, the masks, and the material references each\nas either `AssetIdentifier` references or (multipart requests only) raw\nimage bytes; provide exactly one form per input. Supplying both forms\nof an input, or neither, is rejected with a 400.\n\nSupply up to 4 masks, with either one material for all of them or one\nmaterial per mask paired by position. A single-region edit is a one-item\n`masks` (or `mask_asset_identifiers`) list with a one-item material list.\n",
         "properties": {
           "image_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
@@ -17943,21 +19330,43 @@
             "format": "binary",
             "type": "string"
           },
-          "mask_asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+          "mask_asset_identifiers": {
+            "description": "The masks marking the regions of the product photo to change, by\nreference (max 4). Every mask must have the same pixel dimensions\nas the product photo. White pixels mark the region to change; black\npixels are preserved. Alpha-only masks are also supported: opaque\npixels mark the region to change and transparent pixels are\npreserved. Provide exactly one of `mask_asset_identifiers` or\n`masks`.\n",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
           },
-          "mask": {
-            "description": "The mask marking the region of the product photo to change (max\nsize 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are\nsupported. The mask must have the same pixel dimensions as the\nproduct photo. White pixels mark the region to change; black pixels\nare preserved. Alpha-only masks are also supported: opaque pixels\nmark the region to change and transparent pixels are preserved.\nMultipart requests only. Provide exactly one of\n`mask_asset_identifier` or `mask`.\n",
-            "format": "binary",
-            "type": "string"
+          "masks": {
+            "description": "The masks marking the regions of the product photo to change (max\n4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP\nformats are supported. Every mask must have the same pixel\ndimensions as the product photo, and follows the same pixel rules\nas `mask_asset_identifiers`. Multipart requests only. Provide\nexactly one of `mask_asset_identifiers` or `masks`.\n",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
           },
-          "material_asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+          "material_asset_identifiers": {
+            "description": "The material reference images, by reference. Only their material —\ncolor, texture, pattern scale, and orientation — is applied to the\nmasked regions. Send one material, which every mask takes, or\nexactly one per mask paired by position. Provide exactly one of\n`material_asset_identifiers` or `materials`.\n",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
           },
-          "material": {
-            "description": "The material reference image (max size 25MB), as raw bytes; only\nJPEG, PNG, and WEBP formats are supported. Only its material —\ncolor, texture, pattern scale, and orientation — is applied to the\nmasked region. Multipart requests only. Provide exactly one of\n`material_asset_identifier` or `material`.\n",
-            "format": "binary",
-            "type": "string"
+          "materials": {
+            "description": "The material reference images (max size 25MB each), as raw bytes;\nonly JPEG, PNG, and WEBP formats are supported. Only their material\n— color, texture, pattern scale, and orientation — is applied to\nthe masked regions. Send one material, which every mask takes, or\nexactly one per mask paired by position. Multipart requests only.\nProvide exactly one of `material_asset_identifiers` or `materials`.\n",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 4,
+            "minItems": 1,
+            "type": "array"
           },
           "aspect_ratio": {
             "description": "The aspect ratio of the generated image. Defaults to the aspect\nratio of the product photo when omitted, which preserves the\noriginal framing exactly. When a different ratio is requested, the\nscene is extended to fill the new shape rather than cropped, so\npart of the frame is newly generated. Supported values are `1:1`,\n`3:4`, `4:3`, `16:9`, and `9:16`.\n",
@@ -18080,6 +19489,17 @@
             "minimum": 0,
             "title": "Seed",
             "type": "integer"
+          },
+          "internal": {
+            "default": false,
+            "description": "When true, the upscale is excluded from the user's gallery and feeds.",
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
           },
           "async": {
             "default": false,
@@ -18754,8 +20174,16 @@
             ],
             "description": "A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references."
           },
+          "style_reference_collection_id": {
+            "description": "A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.",
+            "type": "string"
+          },
+          "style_reference_collection_version_id": {
+            "description": "Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.",
+            "type": "string"
+          },
           "style_reference_asset_identifiers": {
-            "description": "Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.",
+            "description": "Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.",
             "items": {
               "$ref": "#/components/schemas/AssetIdentifier"
             },
@@ -18764,7 +20192,7 @@
             "type": "array"
           },
           "style_reference_images": {
-            "description": "Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.",
+            "description": "Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.",
             "items": {
               "format": "binary",
               "type": "string"
@@ -21235,6 +22663,233 @@
         ],
         "type": "object"
       },
+      "ReframeImageIdeogramV3Response": {
+        "description": "Synchronous requests (the default) include the reframed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`.\nThe seed reports the value the request resolved to when the caller\nleft it unset.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The reframed images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "ReframeImageIdeogramV3Response",
+        "type": "object"
+      },
+      "ReframeImageIdeogramV3Request": {
+        "additionalProperties": false,
+        "description": "Provide exactly one of `image_asset_identifier` or `image` for the\nsource. Style controls are optional; when used, provide only one of\n`style_preset`, `style_codes`, `style_reference_asset_identifiers`, or\n`style_reference_images`.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The JPEG, PNG, or WEBP image to reframe (max 25MB), as raw bytes. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.",
+            "format": "binary",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV3"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "title": "NumImages",
+            "type": "integer"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "rendering_speed": {
+            "default": "DEFAULT",
+            "enum": [
+              "TURBO",
+              "DEFAULT",
+              "QUALITY"
+            ],
+            "type": "string"
+          },
+          "style_preset": {
+            "$ref": "#/components/schemas/StylePresetV3"
+          },
+          "color_palette": {
+            "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+          },
+          "style_codes": {
+            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "example": [
+              "AAFF5733",
+              "0133FF57",
+              "DE3357FF"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/StyleCode"
+            },
+            "type": "array"
+          },
+          "style_reference_asset_identifiers": {
+            "description": "Existing upload or generated image assets to use as style references. Cannot be combined with a style preset, style codes, or uploaded style reference images.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "style_reference_images": {
+            "description": "JPEG, PNG, or WEBP style reference images (max 10, max 25MB each), as raw bytes. Multipart requests only. Cannot be combined with a style preset, style codes, or referenced style assets.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "async": {
+            "default": false,
+            "description": "Return immediately instead of waiting for reframed images.",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "resolution"
+        ],
+        "type": "object"
+      },
+      "ReframeImageGemini31FlashImageResponse": {
+        "description": "Acknowledges an accepted asynchronous Reframe request. Poll\n`GET /v1/generations/{generation_id}` for completion and output\nimages. The seed, width, and height report the values the request\nresolved to when the caller left them unset.\n",
+        "example": {
+          "seed": 12345,
+          "generation_id": "generation_id",
+          "width": 0,
+          "height": 6
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "width": {
+            "description": "The resolved 1K output width in pixels.",
+            "title": "width",
+            "type": "integer"
+          },
+          "height": {
+            "description": "The resolved 1K output height in pixels.",
+            "title": "height",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "height",
+          "seed",
+          "width"
+        ],
+        "title": "ReframeImageGemini31FlashImageResponse",
+        "type": "object"
+      },
+      "ReframeImageGemini31FlashImageRequest": {
+        "additionalProperties": false,
+        "description": "Supply exactly one source: `image_asset_identifier` for an existing\nIdeogram asset, or `image` for a raw upload. Supplying both or neither\nis rejected with a 400.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The JPEG, PNG, or WEBP image to reframe (max 50MB).",
+            "format": "binary",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "description": "The requested output aspect ratio. It resolves to the closest dimensions Gemini supports at the 1K output tier.",
+            "example": 969,
+            "maxLength": 21,
+            "minLength": 3,
+            "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
+            "type": "string"
+          },
+          "private": {
+            "description": "API-key requests are always private. For bearer-authenticated\nrequests, this controls whether the result is private; when\nomitted, it follows the caller's plan entitlement. Enterprise\ngenerations are always private.\n",
+            "type": "boolean"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of output images to generate.",
+            "maximum": 4,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "aspect_ratio"
+        ],
+        "type": "object"
+      },
       "GenerateImageIdeogramV3CharacterResponse": {
         "description": "Response returned by `POST /v2/images/generate/ideogram-v3-character`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
@@ -21937,13 +23592,15 @@
             "type": "array"
           },
           "aspect_ratio": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AspectRatioV4"
-              }
-            ],
             "default": "AUTO",
-            "description": "The output aspect ratio. `AUTO` (the default) lets the server pick the ratio; the model generally preserves the source images' composition. Any other value pins the ratio."
+            "description": "The output aspect ratio. `AUTO` (the default) lets the server pick the ratio; the model generally preserves the source images' composition. Any other value requests a shape hint formatted as \"WIDTHxHEIGHT\", for example \"16x9\" or \"9x23\". The selected model may serve the closest shape and resolution it supports. Omit `resolution` when supplying a non-`AUTO` value.",
+            "pattern": "^(AUTO|[1-9][0-9]{0,4}x[1-9][0-9]{0,4})$",
+            "type": "string"
+          },
+          "resolution": {
+            "description": "The requested output resolution, formatted as \"WIDTHxHEIGHT\" (for example \"900x2300\"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `AUTO`) when supplying a resolution.",
+            "pattern": "^[1-9][0-9]{1,4}x[1-9][0-9]{1,4}$",
+            "type": "string"
           },
           "resolution_tier": {
             "description": "The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.",
@@ -21984,6 +23641,19 @@
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "category_id": {
+            "description": "The internal generation category to attribute to the output, as a URL-safe base64 UUID without padding.",
+            "maxLength": 22,
+            "minLength": 22,
+            "pattern": "^[A-Za-z0-9_-]{22}$",
             "type": "string",
             "x-ideogram-docs": {
               "hidden-in": [
@@ -22749,6 +24419,7 @@
           "label": "Live production environment",
           "redacted_api_key": "ATG56•••••••••••••",
           "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+          "creator_display_label": "John Doe",
           "status": null
         },
         "properties": {
@@ -22778,6 +24449,13 @@
             "example": "Live production environment",
             "nullable": true,
             "title": "label",
+            "type": "string"
+          },
+          "creator_display_label": {
+            "description": "Name of the member who created the key, falling back to their display handle when no name is set. Null on keys created before creators were recorded, and on workspace types whose keys are shared rather than owned by one member.",
+            "example": "John Doe",
+            "nullable": true,
+            "title": "creator_display_label",
             "type": "string"
           }
         },
@@ -23376,6 +25054,7 @@
                   "label": "Live production environment",
                   "redacted_api_key": "ATG56•••••••••••••",
                   "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                  "creator_display_label": "John Doe",
                   "status": null
                 },
                 {
@@ -23383,6 +25062,7 @@
                   "label": "Live production environment",
                   "redacted_api_key": "ATG56•••••••••••••",
                   "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                  "creator_display_label": "John Doe",
                   "status": null
                 }
               ],
@@ -23402,6 +25082,7 @@
                   "label": "Live production environment",
                   "redacted_api_key": "ATG56•••••••••••••",
                   "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                  "creator_display_label": "John Doe",
                   "status": null
                 },
                 {
@@ -23409,6 +25090,7 @@
                   "label": "Live production environment",
                   "redacted_api_key": "ATG56•••••••••••••",
                   "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                  "creator_display_label": "John Doe",
                   "status": null
                 }
               ],
@@ -23448,6 +25130,7 @@
               "label": "Live production environment",
               "redacted_api_key": "ATG56•••••••••••••",
               "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+              "creator_display_label": "John Doe",
               "status": null
             },
             {
@@ -23455,6 +25138,7 @@
               "label": "Live production environment",
               "redacted_api_key": "ATG56•••••••••••••",
               "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+              "creator_display_label": "John Doe",
               "status": null
             }
           ],
@@ -23525,11 +25209,12 @@
         "type": "object"
       },
       "ApiProfileType": {
-        "description": "Type of API profile",
+        "description": "Type of API profile. TEAM is a seat-based team workspace, where each key belongs to the member who created it and spends that member's seat credits; the other types share their keys across the whole workspace.",
         "enum": [
           "INDIVIDUAL",
           "ENTERPRISE",
-          "TEAM_API"
+          "TEAM_API",
+          "TEAM"
         ],
         "example": "INDIVIDUAL",
         "title": "ApiProfileType",
@@ -23819,6 +25504,7 @@
               "label": "Live production environment",
               "redacted_api_key": "ATG56•••••••••••••",
               "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+              "creator_display_label": "John Doe",
               "status": null
             },
             {
@@ -23826,6 +25512,7 @@
               "label": "Live production environment",
               "redacted_api_key": "ATG56•••••••••••••",
               "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+              "creator_display_label": "John Doe",
               "status": null
             }
           ]
@@ -26270,7 +27957,7 @@
         "type": "string"
       },
       "Quality": {
-        "description": "The generation quality level. Higher levels may use more inference steps\nor additional prompt processing.\n",
+        "description": "The generation quality level. Higher levels may use more inference steps\nor additional prompt processing. `VERY_HIGH` generates multiple\ncandidates internally and returns the strongest result, so it has\nnoticeably higher latency and cost than the other levels.\n",
         "enum": [
           "VERY_LOW",
           "LOW",
@@ -27052,6 +28739,79 @@
         ],
         "title": "AssetType",
         "type": "string"
+      },
+      "MinimaxH3AspectRatio": {
+        "default": "16x9",
+        "description": "The aspect ratio of the generated video.",
+        "enum": [
+          "21x9",
+          "16x9",
+          "4x3",
+          "1x1",
+          "3x4",
+          "9x16"
+        ],
+        "title": "MinimaxH3AspectRatio",
+        "type": "string"
+      },
+      "MinimaxH3Resolution": {
+        "default": "2k",
+        "description": "The resolution tier of the generated video. `480p` and `768p` are\ngenerated natively; `2k` and `4k` are upscaled from a `768p` result.\nHigher tiers cost more.\n",
+        "enum": [
+          "480p",
+          "768p",
+          "2k",
+          "4k"
+        ],
+        "title": "MinimaxH3Resolution",
+        "type": "string"
+      },
+      "MinimaxH3DurationSeconds": {
+        "default": 5,
+        "description": "The length of the generated video in seconds.",
+        "example": 5,
+        "maximum": 15,
+        "minimum": 5,
+        "title": "duration",
+        "type": "integer"
+      },
+      "KlingV3AspectRatio": {
+        "default": "16x9",
+        "description": "The aspect ratio of the generated video.",
+        "enum": [
+          "16x9",
+          "9x16",
+          "1x1"
+        ],
+        "title": "KlingV3AspectRatio",
+        "type": "string"
+      },
+      "KlingV3DurationSeconds": {
+        "description": "The length of the generated video in seconds. Defaults to 5 seconds\nwhen omitted.\n",
+        "example": 5,
+        "maximum": 15,
+        "minimum": 3,
+        "title": "duration",
+        "type": "integer"
+      },
+      "KlingV3ShotType": {
+        "default": "customize",
+        "description": "How the prompt is staged. `customize` follows the prompt as written;\n`intelligent` lets the model break the prompt into its own shots.\n",
+        "enum": [
+          "customize",
+          "intelligent"
+        ],
+        "title": "KlingV3ShotType",
+        "type": "string"
+      },
+      "KlingV3CfgScale": {
+        "description": "How closely the video follows the prompt, from 0 to 1. Lower values\nleave the model more freedom. Defaults to 0.5 when omitted.\n",
+        "example": 0.5,
+        "format": "float",
+        "maximum": 1,
+        "minimum": 0,
+        "title": "cfg_scale",
+        "type": "number"
       },
       "GptImage2Quality": {
         "description": "The quality tier for the image edit. Higher tiers may improve detail\nand take longer to complete.\n",

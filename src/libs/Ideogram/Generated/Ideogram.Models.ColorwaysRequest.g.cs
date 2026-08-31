@@ -6,7 +6,10 @@ namespace Ideogram
     /// <summary>
     /// Supply the product photo as either an `AssetIdentifier` reference or<br/>
     /// (multipart requests only) raw image bytes; provide exactly one of the<br/>
-    /// two forms. Supplying both, or neither, is rejected with a 400.
+    /// two forms. Supplying both, or neither, is rejected with a 400.<br/>
+    /// Supply up to 4 masks with one color per mask; a single-region edit is<br/>
+    /// a one-item `masks` (or `mask_asset_identifiers`) list with a one-item<br/>
+    /// `colors` list.
     /// </summary>
     public sealed partial class ColorwaysRequest
     {
@@ -35,47 +38,38 @@ namespace Ideogram
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The masks marking the regions of the product photo to recolor, by<br/>
+        /// reference, paired by position with `colors` (max 4). Every mask<br/>
+        /// must have the same pixel dimensions as the product photo. White<br/>
+        /// pixels mark the region to recolor; black pixels are preserved.<br/>
+        /// Alpha-only masks are also supported: opaque pixels mark the<br/>
+        /// region to recolor and transparent pixels are preserved. Provide<br/>
+        /// exactly one of `mask_asset_identifiers` or `masks`.
         /// </summary>
-        /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
-        [global::System.Text.Json.Serialization.JsonPropertyName("mask_asset_identifier")]
-        public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("mask_asset_identifiers")]
+        public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? MaskAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The mask marking the region of the product photo to recolor (max<br/>
-        /// size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are<br/>
-        /// supported. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to recolor; black<br/>
-        /// pixels are preserved. Alpha-only masks are also supported: opaque<br/>
-        /// pixels mark the region to recolor and transparent pixels are<br/>
-        /// preserved. Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifier` or `mask`.
+        /// The masks marking the regions of the product photo to recolor<br/>
+        /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
+        /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
+        /// mask must have the same pixel dimensions as the product photo,<br/>
+        /// and follows the same pixel rules as `mask_asset_identifiers`.<br/>
+        /// Multipart requests only. Provide exactly one of<br/>
+        /// `mask_asset_identifiers` or `masks`.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
-        public byte[]? Mask { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("masks")]
+        public global::System.Collections.Generic.IList<byte[]>? Masks { get; set; }
 
         /// <summary>
-        /// The mask marking the region of the product photo to recolor (max<br/>
-        /// size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are<br/>
-        /// supported. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to recolor; black<br/>
-        /// pixels are preserved. Alpha-only masks are also supported: opaque<br/>
-        /// pixels mark the region to recolor and transparent pixels are<br/>
-        /// preserved. Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifier` or `mask`.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
-        public string? Maskname { get; set; }
-
-        /// <summary>
-        /// The target color for the masked region, as a six-digit hex code<br/>
-        /// like `#B3202C`. The product's shape, construction, materials,<br/>
+        /// One target color per mask in `masks` or<br/>
+        /// `mask_asset_identifiers`, as six-digit hex codes like `#B3202C`,<br/>
+        /// paired by position. The product's shape, construction, materials,<br/>
         /// prints, and logos are always preserved.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("color")]
+        [global::System.Text.Json.Serialization.JsonPropertyName("colors")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Color { get; set; }
+        public required global::System.Collections.Generic.IList<string> Colors { get; set; }
 
         /// <summary>
         /// The aspect ratio of the generated image. Defaults to the aspect<br/>
@@ -126,9 +120,10 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="ColorwaysRequest" /> class.
         /// </summary>
-        /// <param name="color">
-        /// The target color for the masked region, as a six-digit hex code<br/>
-        /// like `#B3202C`. The product's shape, construction, materials,<br/>
+        /// <param name="colors">
+        /// One target color per mask in `masks` or<br/>
+        /// `mask_asset_identifiers`, as six-digit hex codes like `#B3202C`,<br/>
+        /// paired by position. The product's shape, construction, materials,<br/>
         /// prints, and logos are always preserved.
         /// </param>
         /// <param name="imageAssetIdentifier">
@@ -145,29 +140,23 @@ namespace Ideogram
         /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
         /// Provide exactly one of `image_asset_identifier` or `image`.
         /// </param>
-        /// <param name="maskAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// <param name="maskAssetIdentifiers">
+        /// The masks marking the regions of the product photo to recolor, by<br/>
+        /// reference, paired by position with `colors` (max 4). Every mask<br/>
+        /// must have the same pixel dimensions as the product photo. White<br/>
+        /// pixels mark the region to recolor; black pixels are preserved.<br/>
+        /// Alpha-only masks are also supported: opaque pixels mark the<br/>
+        /// region to recolor and transparent pixels are preserved. Provide<br/>
+        /// exactly one of `mask_asset_identifiers` or `masks`.
         /// </param>
-        /// <param name="mask">
-        /// The mask marking the region of the product photo to recolor (max<br/>
-        /// size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are<br/>
-        /// supported. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to recolor; black<br/>
-        /// pixels are preserved. Alpha-only masks are also supported: opaque<br/>
-        /// pixels mark the region to recolor and transparent pixels are<br/>
-        /// preserved. Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifier` or `mask`.
-        /// </param>
-        /// <param name="maskname">
-        /// The mask marking the region of the product photo to recolor (max<br/>
-        /// size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are<br/>
-        /// supported. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to recolor; black<br/>
-        /// pixels are preserved. Alpha-only masks are also supported: opaque<br/>
-        /// pixels mark the region to recolor and transparent pixels are<br/>
-        /// preserved. Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifier` or `mask`.
+        /// <param name="masks">
+        /// The masks marking the regions of the product photo to recolor<br/>
+        /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
+        /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
+        /// mask must have the same pixel dimensions as the product photo,<br/>
+        /// and follows the same pixel rules as `mask_asset_identifiers`.<br/>
+        /// Multipart requests only. Provide exactly one of<br/>
+        /// `mask_asset_identifiers` or `masks`.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated image. Defaults to the aspect<br/>
@@ -199,13 +188,12 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ColorwaysRequest(
-            string color,
+            global::System.Collections.Generic.IList<string> colors,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
-            global::Ideogram.AssetIdentifier? maskAssetIdentifier,
-            byte[]? mask,
-            string? maskname,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? maskAssetIdentifiers,
+            global::System.Collections.Generic.IList<byte[]>? masks,
             string? aspectRatio,
             global::Ideogram.GptImage2Quality? quality,
             bool? @private,
@@ -214,10 +202,9 @@ namespace Ideogram
             this.ImageAssetIdentifier = imageAssetIdentifier;
             this.Image = image;
             this.Imagename = imagename;
-            this.MaskAssetIdentifier = maskAssetIdentifier;
-            this.Mask = mask;
-            this.Maskname = maskname;
-            this.Color = color ?? throw new global::System.ArgumentNullException(nameof(color));
+            this.MaskAssetIdentifiers = maskAssetIdentifiers;
+            this.Masks = masks;
+            this.Colors = colors ?? throw new global::System.ArgumentNullException(nameof(colors));
             this.AspectRatio = aspectRatio;
             this.Quality = quality;
             this.Private = @private;

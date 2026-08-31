@@ -4,12 +4,12 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"is_metronome_2_user":true,"copyright_detection_enabled":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}],"max_num_inflight_requests_permitted":10}
+    /// Example: {"is_metronome_2_user":true,"copyright_detection_enabled":true,"role":"OWNER","avatar_url":"https://example.com/avatar.jpg","organization_id":"b3JnYW5pemF0aW9uXzEyMw","name":"Gamma","type":"INDIVIDUAL","api_keys":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","creator_display_label":"John Doe","status":null},{"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","creator_display_label":"John Doe","status":null}],"max_num_inflight_requests_permitted":10}
     /// </summary>
     public sealed partial class ApiProfile
     {
         /// <summary>
-        /// Type of API profile<br/>
+        /// Type of API profile. TEAM is a seat-based team workspace, where each key belongs to the member who created it and spends that member's seat credits; the other types share their keys across the whole workspace.<br/>
         /// Example: INDIVIDUAL
         /// </summary>
         /// <example>INDIVIDUAL</example>
@@ -94,7 +94,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ApiProfile" /> class.
         /// </summary>
         /// <param name="type">
-        /// Type of API profile<br/>
+        /// Type of API profile. TEAM is a seat-based team workspace, where each key belongs to the member who created it and spends that member's seat credits; the other types share their keys across the whole workspace.<br/>
         /// Example: INDIVIDUAL
         /// </param>
         /// <param name="name">

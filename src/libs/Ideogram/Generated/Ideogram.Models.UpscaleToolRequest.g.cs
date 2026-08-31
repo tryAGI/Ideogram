@@ -48,6 +48,13 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
+        /// When true, the upscale is excluded from the user's gallery and feeds.<br/>
+        /// Default Value: false
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("internal")]
+        public bool? Internal { get; set; }
+
+        /// <summary>
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </summary>
@@ -96,6 +103,10 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="internal">
+        /// When true, the upscale is excluded from the user's gallery and feeds.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
@@ -120,6 +131,7 @@ namespace Ideogram
             string? imagename,
             global::Ideogram.UpscaleToolRequestUpscaleFactor? upscaleFactor,
             int? seed,
+            bool? @internal,
             bool? async,
             string? webhookUrl)
         {
@@ -128,6 +140,7 @@ namespace Ideogram
             this.Imagename = imagename;
             this.UpscaleFactor = upscaleFactor;
             this.Seed = seed;
+            this.Internal = @internal;
             this.Async = async;
             this.WebhookUrl = webhookUrl;
         }

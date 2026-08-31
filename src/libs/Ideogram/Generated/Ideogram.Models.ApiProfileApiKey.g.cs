@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","status":null}
+    /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","label":"Live production environment","redacted_api_key":"ATG56\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","api_key_id":"JRPVD7jWR1aTBYiJ0UFVOg","creator_display_label":"John Doe","status":null}
     /// </summary>
     public sealed partial class ApiProfileApiKey
     {
@@ -50,6 +50,14 @@ namespace Ideogram
         public string? Label { get; set; }
 
         /// <summary>
+        /// Name of the member who created the key, falling back to their display handle when no name is set. Null on keys created before creators were recorded, and on workspace types whose keys are shared rather than owned by one member.<br/>
+        /// Example: John Doe
+        /// </summary>
+        /// <example>John Doe</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("creator_display_label")]
+        public string? CreatorDisplayLabel { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -76,6 +84,10 @@ namespace Ideogram
         /// An optional user-supplied label for managing the API key<br/>
         /// Example: Live production environment
         /// </param>
+        /// <param name="creatorDisplayLabel">
+        /// Name of the member who created the key, falling back to their display handle when no name is set. Null on keys created before creators were recorded, and on workspace types whose keys are shared rather than owned by one member.<br/>
+        /// Example: John Doe
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -84,13 +96,15 @@ namespace Ideogram
             string redactedApiKey,
             global::System.DateTime creationTime,
             global::Ideogram.ApiKeyStatus status,
-            string? label)
+            string? label,
+            string? creatorDisplayLabel)
         {
             this.ApiKeyId = apiKeyId ?? throw new global::System.ArgumentNullException(nameof(apiKeyId));
             this.RedactedApiKey = redactedApiKey ?? throw new global::System.ArgumentNullException(nameof(redactedApiKey));
             this.CreationTime = creationTime;
             this.Status = status;
             this.Label = label;
+            this.CreatorDisplayLabel = creatorDisplayLabel;
         }
 
         /// <summary>

@@ -53,7 +53,9 @@ namespace Ideogram
 
         /// <summary>
         /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing.
+        /// or additional prompt processing. `VERY_HIGH` generates multiple<br/>
+        /// candidates internally and returns the strongest result, so it has<br/>
+        /// noticeably higher latency and cost than the other levels.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.QualityJsonConverter))]
@@ -121,7 +123,9 @@ namespace Ideogram
         /// </param>
         /// <param name="quality">
         /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing.
+        /// or additional prompt processing. `VERY_HIGH` generates multiple<br/>
+        /// candidates internally and returns the strongest result, so it has<br/>
+        /// noticeably higher latency and cost than the other levels.
         /// </param>
         /// <param name="numImages">
         /// The number of reframed variations to generate.<br/>
