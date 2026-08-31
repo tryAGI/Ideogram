@@ -130,6 +130,16 @@ namespace Ideogram
         };
 
         /// <summary>
+        /// Expand an existing image to a new model-specific output shape while<br/>
+        /// preserving the source content and filling the new area.
+        /// </summary>
+        public ImagesReframeClient ImagesReframe => new ImagesReframeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
         /// Transform an existing image with a specific model contract, guided by<br/>
         /// a prompt. Requests supply the source by `AssetIdentifier` reference or<br/>
         /// as uploaded bytes, and return a generation id that can be polled via<br/>

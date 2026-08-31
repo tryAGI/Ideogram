@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Type of API profile<br/>
+    /// Type of API profile. TEAM is a seat-based team workspace, where each key belongs to the member who created it and spends that member's seat credits; the other types share their keys across the whole workspace.<br/>
     /// Example: INDIVIDUAL
     /// </summary>
     public enum ApiProfileType
@@ -17,6 +17,10 @@ namespace Ideogram
         ///
         /// </summary>
         Individual,
+        /// <summary>
+        ///
+        /// </summary>
+        Team,
         /// <summary>
         ///
         /// </summary>
@@ -37,6 +41,7 @@ namespace Ideogram
             {
                 ApiProfileType.Enterprise => "ENTERPRISE",
                 ApiProfileType.Individual => "INDIVIDUAL",
+                ApiProfileType.Team => "TEAM",
                 ApiProfileType.TeamApi => "TEAM_API",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -50,6 +55,7 @@ namespace Ideogram
             {
                 "ENTERPRISE" => ApiProfileType.Enterprise,
                 "INDIVIDUAL" => ApiProfileType.Individual,
+                "TEAM" => ApiProfileType.Team,
                 "TEAM_API" => ApiProfileType.TeamApi,
                 _ => null,
             };

@@ -31,12 +31,17 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
-        /// The output aspect ratio. `AUTO` (the default) lets the server pick the ratio; the model generally preserves the source images' composition. Any other value pins the ratio.<br/>
+        /// The output aspect ratio. `AUTO` (the default) lets the server pick the ratio; the model generally preserves the source images' composition. Any other value requests a shape hint formatted as "WIDTHxHEIGHT", for example "16x9" or "9x23". The selected model may serve the closest shape and resolution it supports. Omit `resolution` when supplying a non-`AUTO` value.<br/>
         /// Default Value: AUTO
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV4JsonConverter))]
-        public global::Ideogram.AspectRatioV4? AspectRatio { get; set; }
+        public string? AspectRatio { get; set; }
+
+        /// <summary>
+        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "900x2300"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `AUTO`) when supplying a resolution.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
+        public string? Resolution { get; set; }
 
         /// <summary>
         /// The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.
@@ -81,6 +86,12 @@ namespace Ideogram
         public string? TargetCollectionId { get; set; }
 
         /// <summary>
+        /// The internal generation category to attribute to the output, as a URL-safe base64 UUID without padding.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("category_id")]
+        public string? CategoryId { get; set; }
+
+        /// <summary>
         /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </summary>
@@ -106,8 +117,11 @@ namespace Ideogram
         /// The source images to transform (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="aspectRatio">
-        /// The output aspect ratio. `AUTO` (the default) lets the server pick the ratio; the model generally preserves the source images' composition. Any other value pins the ratio.<br/>
+        /// The output aspect ratio. `AUTO` (the default) lets the server pick the ratio; the model generally preserves the source images' composition. Any other value requests a shape hint formatted as "WIDTHxHEIGHT", for example "16x9" or "9x23". The selected model may serve the closest shape and resolution it supports. Omit `resolution` when supplying a non-`AUTO` value.<br/>
         /// Default Value: AUTO
+        /// </param>
+        /// <param name="resolution">
+        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "900x2300"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `AUTO`) when supplying a resolution.
         /// </param>
         /// <param name="resolutionTier">
         /// The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.
@@ -130,6 +144,9 @@ namespace Ideogram
         /// <param name="targetCollectionId">
         /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
         /// </param>
+        /// <param name="categoryId">
+        /// The internal generation category to attribute to the output, as a URL-safe base64 UUID without padding.
+        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
@@ -141,25 +158,29 @@ namespace Ideogram
             string prompt,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? images,
-            global::Ideogram.AspectRatioV4? aspectRatio,
+            string? aspectRatio,
+            string? resolution,
             global::Ideogram.ToolImageToImageRequestResolutionTier? resolutionTier,
             global::Ideogram.MagicPromptOption? magicPrompt,
             int? numImages,
             int? seed,
             bool? @private,
             string? targetCollectionId,
+            string? categoryId,
             bool? async)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.ImageAssetIdentifiers = imageAssetIdentifiers;
             this.Images = images;
             this.AspectRatio = aspectRatio;
+            this.Resolution = resolution;
             this.ResolutionTier = resolutionTier;
             this.MagicPrompt = magicPrompt;
             this.NumImages = numImages;
             this.Seed = seed;
             this.Private = @private;
             this.TargetCollectionId = targetCollectionId;
+            this.CategoryId = categoryId;
             this.Async = async;
         }
 

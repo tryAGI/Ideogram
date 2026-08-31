@@ -45,11 +45,11 @@ namespace Ideogram
         /// Generate images with Ideogram 3.0 from a text prompt<br/>
         /// Generate one or more images from a text prompt with Ideogram 3.0,<br/>
         /// with optional style controls: style codes, a style preset, a color<br/>
-        /// palette, or style reference images. Supply style references either as<br/>
+        /// palette, or style references. Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
-        /// with Ideogram) or as raw `style_reference_images` bytes (multipart<br/>
-        /// requests only). If both are supplied, the references win and the bytes<br/>
-        /// are ignored.<br/>
+        /// with Ideogram), or as raw `style_reference_images` bytes (multipart<br/>
+        /// requests only). These three style reference forms cannot be combined.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -82,11 +82,11 @@ namespace Ideogram
         /// Generate images with Ideogram 3.0 from a text prompt<br/>
         /// Generate one or more images from a text prompt with Ideogram 3.0,<br/>
         /// with optional style controls: style codes, a style preset, a color<br/>
-        /// palette, or style reference images. Supply style references either as<br/>
+        /// palette, or style references. Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
-        /// with Ideogram) or as raw `style_reference_images` bytes (multipart<br/>
-        /// requests only). If both are supplied, the references win and the bytes<br/>
-        /// are ignored.<br/>
+        /// with Ideogram), or as raw `style_reference_images` bytes (multipart<br/>
+        /// requests only). These three style reference forms cannot be combined.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -261,6 +261,22 @@ namespace Ideogram
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.StylePreset).HasValue ? (request.StylePreset).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_preset\"");
+
+                            }
+                            if (request.StyleReferenceCollectionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.StyleReferenceCollectionId ?? string.Empty),
+                                    name: "\"style_reference_collection_id\"");
+
+                            }
+                            if (request.StyleReferenceCollectionVersionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.StyleReferenceCollectionVersionId ?? string.Empty),
+                                    name: "\"style_reference_collection_version_id\"");
 
                             }
                             if (request.StyleReferenceAssetIdentifiers != default)
@@ -878,11 +894,11 @@ namespace Ideogram
         /// Generate images with Ideogram 3.0 from a text prompt<br/>
         /// Generate one or more images from a text prompt with Ideogram 3.0,<br/>
         /// with optional style controls: style codes, a style preset, a color<br/>
-        /// palette, or style reference images. Supply style references either as<br/>
+        /// palette, or style references. Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
-        /// with Ideogram) or as raw `style_reference_images` bytes (multipart<br/>
-        /// requests only). If both are supplied, the references win and the bytes<br/>
-        /// are ignored.<br/>
+        /// with Ideogram), or as raw `style_reference_images` bytes (multipart<br/>
+        /// requests only). These three style reference forms cannot be combined.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -936,11 +952,17 @@ namespace Ideogram
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references.
         /// </param>
+        /// <param name="styleReferenceCollectionId">
+        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
+        /// </param>
+        /// <param name="styleReferenceCollectionVersionId">
+        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
-        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
+        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -982,6 +1004,8 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            string? styleReferenceCollectionId = default,
+            string? styleReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             bool? enableCopyrightDetection = default,
@@ -1006,6 +1030,8 @@ namespace Ideogram
                 StyleCodes = styleCodes,
                 StyleType = styleType,
                 StylePreset = stylePreset,
+                StyleReferenceCollectionId = styleReferenceCollectionId,
+                StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId,
                 StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers,
                 StyleReferenceImages = styleReferenceImages,
                 EnableCopyrightDetection = enableCopyrightDetection,

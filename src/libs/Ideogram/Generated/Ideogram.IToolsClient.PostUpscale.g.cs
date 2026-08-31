@@ -106,6 +106,10 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="internal">
+        /// When true, the upscale is excluded from the user's gallery and feeds.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
@@ -130,6 +134,7 @@ namespace Ideogram
             string? imagename = default,
             global::Ideogram.UpscaleToolRequestUpscaleFactor? upscaleFactor = default,
             int? seed = default,
+            bool? @internal = default,
             bool? async = default,
             string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,

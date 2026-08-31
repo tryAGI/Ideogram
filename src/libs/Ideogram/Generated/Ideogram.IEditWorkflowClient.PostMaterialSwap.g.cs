@@ -6,11 +6,11 @@ namespace Ideogram
     {
         /// <summary>
         /// Product Material Change<br/>
-        /// Re-renders the masked region of the product photo in the material shown<br/>
-        /// by the reference image — matching its color, texture, pattern scale,<br/>
-        /// and orientation — while preserving the product's silhouette,<br/>
-        /// construction, seams, and shading, and keeping every region outside the<br/>
-        /// mask unchanged.<br/>
+        /// Re-renders the masked regions of the product photo in the materials<br/>
+        /// shown by the reference images — matching each one's color, texture,<br/>
+        /// pattern scale, and orientation — while preserving the product's<br/>
+        /// silhouette, construction, seams, and shading, and keeping every region<br/>
+        /// outside the masks unchanged.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.<br/>
@@ -18,17 +18,19 @@ namespace Ideogram
         /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.<br/>
-        /// Supply the mask marking the region to re-material as either an<br/>
-        /// `AssetIdentifier` reference (`mask_asset_identifier`) or the raw mask<br/>
-        /// bytes directly (`mask`, multipart requests only). Provide exactly one<br/>
-        /// of the two forms. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to change; black pixels are<br/>
+        /// Supply the masks marking the regions to re-material as either<br/>
+        /// `AssetIdentifier` references (`mask_asset_identifiers`) or the raw mask<br/>
+        /// bytes directly (`masks`, multipart requests only) — up to 4 regions; a<br/>
+        /// single-region edit is a one-item list. Provide exactly one of the two<br/>
+        /// forms. Every mask must have the same pixel dimensions as the product<br/>
+        /// photo. White pixels mark the region to change; black pixels are<br/>
         /// preserved. Alpha-only masks are also supported: opaque pixels mark the<br/>
         /// region to change and transparent pixels are preserved.<br/>
-        /// Supply the material reference as either an `AssetIdentifier` reference<br/>
-        /// (`material_asset_identifier`) or the raw image bytes directly<br/>
-        /// (`material`, multipart requests only). Provide exactly one of the two<br/>
-        /// forms.
+        /// Supply the material references as either `AssetIdentifier` references<br/>
+        /// (`material_asset_identifiers`) or the raw image bytes directly<br/>
+        /// (`materials`, multipart requests only). Provide exactly one of the two<br/>
+        /// forms. Send either one material, which every mask takes, or exactly one<br/>
+        /// material per mask, paired by position.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -41,11 +43,11 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Product Material Change<br/>
-        /// Re-renders the masked region of the product photo in the material shown<br/>
-        /// by the reference image — matching its color, texture, pattern scale,<br/>
-        /// and orientation — while preserving the product's silhouette,<br/>
-        /// construction, seams, and shading, and keeping every region outside the<br/>
-        /// mask unchanged.<br/>
+        /// Re-renders the masked regions of the product photo in the materials<br/>
+        /// shown by the reference images — matching each one's color, texture,<br/>
+        /// pattern scale, and orientation — while preserving the product's<br/>
+        /// silhouette, construction, seams, and shading, and keeping every region<br/>
+        /// outside the masks unchanged.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.<br/>
@@ -53,17 +55,19 @@ namespace Ideogram
         /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.<br/>
-        /// Supply the mask marking the region to re-material as either an<br/>
-        /// `AssetIdentifier` reference (`mask_asset_identifier`) or the raw mask<br/>
-        /// bytes directly (`mask`, multipart requests only). Provide exactly one<br/>
-        /// of the two forms. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to change; black pixels are<br/>
+        /// Supply the masks marking the regions to re-material as either<br/>
+        /// `AssetIdentifier` references (`mask_asset_identifiers`) or the raw mask<br/>
+        /// bytes directly (`masks`, multipart requests only) — up to 4 regions; a<br/>
+        /// single-region edit is a one-item list. Provide exactly one of the two<br/>
+        /// forms. Every mask must have the same pixel dimensions as the product<br/>
+        /// photo. White pixels mark the region to change; black pixels are<br/>
         /// preserved. Alpha-only masks are also supported: opaque pixels mark the<br/>
         /// region to change and transparent pixels are preserved.<br/>
-        /// Supply the material reference as either an `AssetIdentifier` reference<br/>
-        /// (`material_asset_identifier`) or the raw image bytes directly<br/>
-        /// (`material`, multipart requests only). Provide exactly one of the two<br/>
-        /// forms.
+        /// Supply the material references as either `AssetIdentifier` references<br/>
+        /// (`material_asset_identifiers`) or the raw image bytes directly<br/>
+        /// (`materials`, multipart requests only). Provide exactly one of the two<br/>
+        /// forms. Send either one material, which every mask takes, or exactly one<br/>
+        /// material per mask, paired by position.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -76,11 +80,11 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Product Material Change<br/>
-        /// Re-renders the masked region of the product photo in the material shown<br/>
-        /// by the reference image — matching its color, texture, pattern scale,<br/>
-        /// and orientation — while preserving the product's silhouette,<br/>
-        /// construction, seams, and shading, and keeping every region outside the<br/>
-        /// mask unchanged.<br/>
+        /// Re-renders the masked regions of the product photo in the materials<br/>
+        /// shown by the reference images — matching each one's color, texture,<br/>
+        /// pattern scale, and orientation — while preserving the product's<br/>
+        /// silhouette, construction, seams, and shading, and keeping every region<br/>
+        /// outside the masks unchanged.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.<br/>
@@ -88,17 +92,19 @@ namespace Ideogram
         /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.<br/>
-        /// Supply the mask marking the region to re-material as either an<br/>
-        /// `AssetIdentifier` reference (`mask_asset_identifier`) or the raw mask<br/>
-        /// bytes directly (`mask`, multipart requests only). Provide exactly one<br/>
-        /// of the two forms. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to change; black pixels are<br/>
+        /// Supply the masks marking the regions to re-material as either<br/>
+        /// `AssetIdentifier` references (`mask_asset_identifiers`) or the raw mask<br/>
+        /// bytes directly (`masks`, multipart requests only) — up to 4 regions; a<br/>
+        /// single-region edit is a one-item list. Provide exactly one of the two<br/>
+        /// forms. Every mask must have the same pixel dimensions as the product<br/>
+        /// photo. White pixels mark the region to change; black pixels are<br/>
         /// preserved. Alpha-only masks are also supported: opaque pixels mark the<br/>
         /// region to change and transparent pixels are preserved.<br/>
-        /// Supply the material reference as either an `AssetIdentifier` reference<br/>
-        /// (`material_asset_identifier`) or the raw image bytes directly<br/>
-        /// (`material`, multipart requests only). Provide exactly one of the two<br/>
-        /// forms.
+        /// Supply the material references as either `AssetIdentifier` references<br/>
+        /// (`material_asset_identifiers`) or the raw image bytes directly<br/>
+        /// (`materials`, multipart requests only). Provide exactly one of the two<br/>
+        /// forms. Send either one material, which every mask takes, or exactly one<br/>
+        /// material per mask, paired by position.
         /// </summary>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -114,47 +120,37 @@ namespace Ideogram
         /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
         /// Provide exactly one of `image_asset_identifier` or `image`.
         /// </param>
-        /// <param name="maskAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// <param name="maskAssetIdentifiers">
+        /// The masks marking the regions of the product photo to change, by<br/>
+        /// reference (max 4). Every mask must have the same pixel dimensions<br/>
+        /// as the product photo. White pixels mark the region to change; black<br/>
+        /// pixels are preserved. Alpha-only masks are also supported: opaque<br/>
+        /// pixels mark the region to change and transparent pixels are<br/>
+        /// preserved. Provide exactly one of `mask_asset_identifiers` or<br/>
+        /// `masks`.
         /// </param>
-        /// <param name="mask">
-        /// The mask marking the region of the product photo to change (max<br/>
-        /// size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are<br/>
-        /// supported. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to change; black pixels<br/>
-        /// are preserved. Alpha-only masks are also supported: opaque pixels<br/>
-        /// mark the region to change and transparent pixels are preserved.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifier` or `mask`.
+        /// <param name="masks">
+        /// The masks marking the regions of the product photo to change (max<br/>
+        /// 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Every mask must have the same pixel<br/>
+        /// dimensions as the product photo, and follows the same pixel rules<br/>
+        /// as `mask_asset_identifiers`. Multipart requests only. Provide<br/>
+        /// exactly one of `mask_asset_identifiers` or `masks`.
         /// </param>
-        /// <param name="maskname">
-        /// The mask marking the region of the product photo to change (max<br/>
-        /// size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are<br/>
-        /// supported. The mask must have the same pixel dimensions as the<br/>
-        /// product photo. White pixels mark the region to change; black pixels<br/>
-        /// are preserved. Alpha-only masks are also supported: opaque pixels<br/>
-        /// mark the region to change and transparent pixels are preserved.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifier` or `mask`.
-        /// </param>
-        /// <param name="materialAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
-        /// </param>
-        /// <param name="material">
-        /// The material reference image (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Only its material —<br/>
+        /// <param name="materialAssetIdentifiers">
+        /// The material reference images, by reference. Only their material —<br/>
         /// color, texture, pattern scale, and orientation — is applied to the<br/>
-        /// masked region. Multipart requests only. Provide exactly one of<br/>
-        /// `material_asset_identifier` or `material`.
+        /// masked regions. Send one material, which every mask takes, or<br/>
+        /// exactly one per mask paired by position. Provide exactly one of<br/>
+        /// `material_asset_identifiers` or `materials`.
         /// </param>
-        /// <param name="materialname">
-        /// The material reference image (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Only its material —<br/>
-        /// color, texture, pattern scale, and orientation — is applied to the<br/>
-        /// masked region. Multipart requests only. Provide exactly one of<br/>
-        /// `material_asset_identifier` or `material`.
+        /// <param name="materials">
+        /// The material reference images (max size 25MB each), as raw bytes;<br/>
+        /// only JPEG, PNG, and WEBP formats are supported. Only their material<br/>
+        /// — color, texture, pattern scale, and orientation — is applied to<br/>
+        /// the masked regions. Send one material, which every mask takes, or<br/>
+        /// exactly one per mask paired by position. Multipart requests only.<br/>
+        /// Provide exactly one of `material_asset_identifiers` or `materials`.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated image. Defaults to the aspect<br/>
@@ -189,12 +185,10 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
-            global::Ideogram.AssetIdentifier? maskAssetIdentifier = default,
-            byte[]? mask = default,
-            string? maskname = default,
-            global::Ideogram.AssetIdentifier? materialAssetIdentifier = default,
-            byte[]? material = default,
-            string? materialname = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? maskAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? masks = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? materialAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? materials = default,
             string? aspectRatio = default,
             global::Ideogram.GptImage2Quality? quality = default,
             bool? @private = default,
