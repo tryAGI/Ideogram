@@ -102,11 +102,19 @@ namespace Ideogram
         public global::Ideogram.StyleTypeV3? StyleType { get; set; }
 
         /// <summary>
-        /// A predefined style preset to apply to the repainted images. Cannot be combined with style references.
+        /// A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
         public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+
+        /// <summary>
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
+        /// </summary>
+        /// <example>[AAFF5733, 0133FF57, DE3357FF]</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_codes")]
+        public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
         /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
@@ -226,7 +234,11 @@ namespace Ideogram
         /// Example: GENERAL
         /// </param>
         /// <param name="stylePreset">
-        /// A predefined style preset to apply to the repainted images. Cannot be combined with style references.
+        /// A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references.
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceCollectionId">
         /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
@@ -281,6 +293,7 @@ namespace Ideogram
             global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed? renderingSpeed,
             global::Ideogram.StyleTypeV3? styleType,
             global::Ideogram.StylePresetV3? stylePreset,
+            global::System.Collections.Generic.IList<string>? styleCodes,
             string? styleReferenceCollectionId,
             string? styleReferenceCollectionVersionId,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers,
@@ -304,6 +317,7 @@ namespace Ideogram
             this.RenderingSpeed = renderingSpeed;
             this.StyleType = styleType;
             this.StylePreset = stylePreset;
+            this.StyleCodes = styleCodes;
             this.StyleReferenceCollectionId = styleReferenceCollectionId;
             this.StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId;
             this.StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers;

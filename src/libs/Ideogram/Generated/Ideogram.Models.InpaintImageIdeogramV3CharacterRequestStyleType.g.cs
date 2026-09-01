@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The style type to repaint the character with. Defaults to `AUTO`.<br/>
+    /// The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.<br/>
     /// Default Value: AUTO
     /// </summary>
     public enum InpaintImageIdeogramV3CharacterRequestStyleType

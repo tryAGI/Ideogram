@@ -516,20 +516,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Insufficient credits or quota.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
                                 global::System.Exception? __exception_402 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_402 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -538,11 +542,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
+                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -644,20 +649,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Too many requests.
                             if ((int)__response.StatusCode == 429)
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -666,11 +675,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
+                                    responseObject: __value_429,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,

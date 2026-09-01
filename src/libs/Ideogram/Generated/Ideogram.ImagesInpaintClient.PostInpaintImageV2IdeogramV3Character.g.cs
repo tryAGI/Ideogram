@@ -58,6 +58,15 @@ namespace Ideogram
         /// `character_reference_mask` marking where the character is in the<br/>
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
+        /// Optional style controls may be combined with the character when<br/>
+        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
+        /// one reference form is supplied, the collection wins over the<br/>
+        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
+        /// also need access to the style-with-character API rollout.<br/>
         /// The output matches the size of the source image (snapped to the<br/>
         /// nearest resolution the model renders). By default the request blocks<br/>
         /// until the images are ready and returns them in `data`. Set `async` to<br/>
@@ -104,6 +113,15 @@ namespace Ideogram
         /// `character_reference_mask` marking where the character is in the<br/>
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
+        /// Optional style controls may be combined with the character when<br/>
+        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
+        /// one reference form is supplied, the collection wins over the<br/>
+        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
+        /// also need access to the style-with-character API rollout.<br/>
         /// The output matches the size of the source image (snapped to the<br/>
         /// nearest resolution the model renders). By default the request blocks<br/>
         /// until the images are ready and returns them in `data`. Set `async` to<br/>
@@ -417,6 +435,56 @@ namespace Ideogram
                                     name: "\"style_type\"");
 
                             }
+                            if (request.StyleCodes != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes!, x => x))}]"),
+                                    name: "\"style_codes\"");
+
+                            }
+                            if (request.StyleReferenceCollectionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.StyleReferenceCollectionId ?? string.Empty),
+                                    name: "\"style_reference_collection_id\"");
+
+                            }
+                            if (request.StyleReferenceCollectionVersionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.StyleReferenceCollectionVersionId ?? string.Empty),
+                                    name: "\"style_reference_collection_version_id\"");
+
+                            }
+                            if (request.StyleReferenceAssetIdentifiers != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleReferenceAssetIdentifiers!, x => x.ToJson(JsonSerializerContext)))}]"),
+                                    name: "\"style_reference_asset_identifiers\"");
+
+                            }
+                            if (request.StyleReferenceImages != default)
+                            {
+
+                                for (var __iStyleReferenceImages = 0; __iStyleReferenceImages < request.StyleReferenceImages.Count; __iStyleReferenceImages++)
+                                {
+                                    var __contentStyleReferenceImages = new global::System.Net.Http.ByteArrayContent(request.StyleReferenceImages[__iStyleReferenceImages]);
+                                __contentStyleReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                                    __httpRequestContent.Add(
+                                        content: __contentStyleReferenceImages,
+                                        name: "\"style_reference_images\"",
+                                        fileName: $"\"file{__iStyleReferenceImages}.bin\"");
+                                    if (__contentStyleReferenceImages.Headers.ContentDisposition != null)
+                                    {
+                                        __contentStyleReferenceImages.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
+
+                            }
                             if (request.EnableCopyrightDetection != default)
                             {
 
@@ -714,20 +782,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Insufficient credits or quota.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
                                 global::System.Exception? __exception_402 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_402 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -736,11 +808,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
+                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -810,20 +883,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Too many requests.
                             if ((int)__response.StatusCode == 429)
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -832,11 +909,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
+                                    responseObject: __value_429,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -1019,6 +1097,15 @@ namespace Ideogram
         /// `character_reference_mask` marking where the character is in the<br/>
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
+        /// Optional style controls may be combined with the character when<br/>
+        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
+        /// one reference form is supplied, the collection wins over the<br/>
+        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
+        /// also need access to the style-with-character API rollout.<br/>
         /// The output matches the size of the source image (snapped to the<br/>
         /// nearest resolution the model renders). By default the request blocks<br/>
         /// until the images are ready and returns them in `data`. Set `async` to<br/>
@@ -1087,8 +1174,24 @@ namespace Ideogram
         /// Default Value: DEFAULT
         /// </param>
         /// <param name="styleType">
-        /// The style type to repaint the character with. Defaults to `AUTO`.<br/>
+        /// The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.<br/>
         /// Default Value: AUTO
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
+        /// </param>
+        /// <param name="styleReferenceCollectionId">
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied. Cannot be combined with `style_codes`.
+        /// </param>
+        /// <param name="styleReferenceCollectionVersionId">
+        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// </param>
+        /// <param name="styleReferenceAssetIdentifiers">
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied. Cannot be combined with `style_codes`.
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied. Cannot be combined with `style_codes`.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -1136,6 +1239,11 @@ namespace Ideogram
             int? seed = default,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType? styleType = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
+            string? styleReferenceCollectionId = default,
+            string? styleReferenceCollectionVersionId = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             bool? enableCopyrightDetection = default,
             bool? async = default,
             string? webhookUrl = default,
@@ -1164,6 +1272,11 @@ namespace Ideogram
                 Seed = seed,
                 RenderingSpeed = renderingSpeed,
                 StyleType = styleType,
+                StyleCodes = styleCodes,
+                StyleReferenceCollectionId = styleReferenceCollectionId,
+                StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId,
+                StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers,
+                StyleReferenceImages = styleReferenceImages,
                 EnableCopyrightDetection = enableCopyrightDetection,
                 Async = async,
                 WebhookUrl = webhookUrl,

@@ -13,7 +13,8 @@ namespace Ideogram
         /// `mask`, multipart requests only). If both a reference and bytes are<br/>
         /// supplied for the same input, the reference wins and the bytes are<br/>
         /// ignored.<br/>
-        /// Optional style controls: a style preset or style reference images.<br/>
+        /// Optional style controls: style codes, a style preset, or style<br/>
+        /// reference images.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
@@ -48,7 +49,8 @@ namespace Ideogram
         /// `mask`, multipart requests only). If both a reference and bytes are<br/>
         /// supplied for the same input, the reference wins and the bytes are<br/>
         /// ignored.<br/>
-        /// Optional style controls: a style preset or style reference images.<br/>
+        /// Optional style controls: style codes, a style preset, or style<br/>
+        /// reference images.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
@@ -83,7 +85,8 @@ namespace Ideogram
         /// `mask`, multipart requests only). If both a reference and bytes are<br/>
         /// supplied for the same input, the reference wins and the bytes are<br/>
         /// ignored.<br/>
-        /// Optional style controls: a style preset or style reference images.<br/>
+        /// Optional style controls: style codes, a style preset, or style<br/>
+        /// reference images.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
@@ -145,7 +148,11 @@ namespace Ideogram
         /// Example: GENERAL
         /// </param>
         /// <param name="stylePreset">
-        /// A predefined style preset to apply to the repainted images. Cannot be combined with style references.
+        /// A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references.
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceCollectionId">
         /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
@@ -200,6 +207,7 @@ namespace Ideogram
             global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
             string? styleReferenceCollectionId = default,
             string? styleReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
