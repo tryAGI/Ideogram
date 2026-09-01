@@ -7619,6 +7619,13 @@
             "description": "Prompt failed the safety check."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -7689,6 +7696,13 @@
             "description": "Prompt failed the safety check."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -7749,6 +7763,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -7758,6 +7779,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -7824,6 +7852,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -7833,6 +7868,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -7899,6 +7941,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -7908,6 +7957,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -7974,6 +8030,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -7983,6 +8046,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8039,12 +8109,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8101,12 +8185,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8163,12 +8261,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8238,6 +8350,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -8247,6 +8366,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8316,6 +8442,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -8325,6 +8458,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8394,6 +8534,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -8406,6 +8553,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8462,12 +8616,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8524,12 +8692,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8586,6 +8768,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -8595,6 +8784,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8651,12 +8847,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8713,12 +8923,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8775,12 +8999,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8805,7 +9043,7 @@
     },
     "/v2/images/inpaint/ideogram-v3": {
       "post": {
-        "description": "Repaint the masked region of a source image from a text prompt with\nIdeogram 3.0. For each of the source image and the mask, supply either\nan `AssetIdentifier` reference (`image_asset_identifier` /\n`mask_asset_identifier`) or the raw image bytes directly (`image` /\n`mask`, multipart requests only). If both a reference and bytes are\nsupplied for the same input, the reference wins and the bytes are\nignored.\n\nOptional style controls: a style preset or style reference images.\nSupply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references (images already stored\nwith Ideogram), or as raw `style_reference_images` bytes (multipart\nrequests only). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Repaint the masked region of a source image from a text prompt with\nIdeogram 3.0. For each of the source image and the mask, supply either\nan `AssetIdentifier` reference (`image_asset_identifier` /\n`mask_asset_identifier`) or the raw image bytes directly (`image` /\n`mask`, multipart requests only). If both a reference and bytes are\nsupplied for the same input, the reference wins and the bytes are\nignored.\n\nOptional style controls: style codes, a style preset, or style\nreference images.\nSupply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references (images already stored\nwith Ideogram), or as raw `style_reference_images` bytes (multipart\nrequests only). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_inpaint_image_v2_ideogram_v3",
         "requestBody": {
           "content": {
@@ -8853,6 +9091,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -8862,6 +9107,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -8886,7 +9138,7 @@
     },
     "/v2/images/inpaint/ideogram-v3-character": {
       "post": {
-        "description": "Repaint the masked region of a source image so it features a\nconsistent character, with Ideogram 3.0. For each of the source image\nand the mask, supply either an `AssetIdentifier` reference\n(`image_asset_identifier` / `mask_asset_identifier`) or the raw image\nbytes directly (`image` / `mask`, multipart requests only). If both a\nreference and bytes are supplied for the same input, the reference\nwins and the bytes are ignored.\n\nSupply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references (an image already\nstored with Ideogram), or as raw `character_reference_images` bytes\n(multipart requests only, with an optional\n`character_reference_mask` marking where the character is in the\nreference). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Repaint the masked region of a source image so it features a\nconsistent character, with Ideogram 3.0. For each of the source image\nand the mask, supply either an `AssetIdentifier` reference\n(`image_asset_identifier` / `mask_asset_identifier`) or the raw image\nbytes directly (`image` / `mask`, multipart requests only). If both a\nreference and bytes are supplied for the same input, the reference\nwins and the bytes are ignored.\n\nSupply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references (an image already\nstored with Ideogram), or as raw `character_reference_images` bytes\n(multipart requests only, with an optional\n`character_reference_mask` marking where the character is in the\nreference). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nOptional style controls may be combined with the character when\n`style_type` is `AUTO`. Supply either style codes or style references.\nSupply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references, or as raw\n`style_reference_images` bytes (multipart requests only). If more than\none reference form is supplied, the collection wins over the\nidentifiers, and the identifiers win over the bytes. API-key callers\nalso need access to the style-with-character API rollout.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_inpaint_image_v2_ideogram_v3_character",
         "requestBody": {
           "content": {
@@ -8899,6 +9151,9 @@
                   "contentType": "application/json"
                 },
                 "character_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "style_reference_asset_identifiers": {
                   "contentType": "application/json"
                 }
               },
@@ -8934,10 +9189,108 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
             "description": "A referenced asset or collection was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Repaint a masked region with a consistent character with Ideogram 3.0",
+        "tags": [
+          "images-inpaint"
+        ],
+        "x-ideogram-docs": {
+          "hidden-in": [
+            "prod",
+            "staging"
+          ]
+        },
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
+      }
+    },
+    "/v2/images/inpaint/ideogram-v3-custom-model": {
+      "post": {
+        "description": "Repaint the masked region of a source image with a custom Ideogram 3.0\nmodel the authenticated user or organization can access. Supply the\nmodel URI returned by the custom-model API as `custom_model_uri`.\n\nFor each of the source image and mask, supply either an\n`AssetIdentifier` reference (`image_asset_identifier` /\n`mask_asset_identifier`) or raw bytes (`image` / `mask`, multipart\nrequests only). A reference wins if both forms are supplied.\n\nOptional style controls are style codes, a style preset, or style\nreference images. Supply style references as a saved style, existing\nasset identifiers, or raw image bytes. Only one style control may be\nused; when multiple reference forms are supplied, the collection wins\nover identifiers, and identifiers win over bytes.\n\nBy default the request blocks until the images are ready. Set `async`\nto true to return after dispatch and poll\n`GET /v1/generations/{generation_id}`.",
+        "operationId": "post_inpaint_image_v2_ideogram_v3_custom_model",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "mask_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "style_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/InpaintImageIdeogramV3CustomModelRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InpaintImageIdeogramV3CustomModelRequest"
+              }
+            }
+          },
+          "description": "A custom-model V3 inpaint request. Use multipart/form-data for raw image bytes or application/json to reference existing assets.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InpaintImageIdeogramV3CustomModelResponse"
+                }
+              }
+            },
+            "description": "The repainted images, or an acknowledgement for an asynchronous request."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "The caller cannot use the requested custom model."
+          },
+          "404": {
+            "description": "A referenced asset or style collection was not found."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
@@ -8952,7 +9305,7 @@
             "description": "The endpoint is temporarily unavailable."
           }
         },
-        "summary": "Repaint a masked region with a consistent character with Ideogram 3.0",
+        "summary": "Repaint a masked region with a custom Ideogram 3.0 model",
         "tags": [
           "images-inpaint"
         ],
@@ -9008,12 +9361,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
             "description": "The referenced source asset was not found."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -9091,12 +9458,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
             "description": "A referenced source or style asset was not found."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -9174,6 +9555,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -9183,6 +9571,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -9249,6 +9644,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -9258,6 +9660,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -9324,12 +9733,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
             "description": "The referenced source asset was not found."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -9399,12 +9822,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
             "description": "Not authorized to remove an object."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -9465,6 +9902,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -9477,6 +9921,13 @@
             "description": "The prompt was rejected by safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -9537,6 +9988,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -9549,6 +10007,13 @@
             "description": "The prompt was rejected by safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -9612,12 +10077,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
             "description": "Not authorized to create a colorway."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -9672,6 +10151,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "404": {
@@ -9681,6 +10167,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -9753,12 +10246,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
             "description": "Not authorized to create a material swap."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -9816,6 +10323,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -9828,6 +10342,13 @@
             "description": "The instruction did not pass prompt safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -9891,6 +10412,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -9903,6 +10431,13 @@
             "description": "The instruction did not pass prompt safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -9953,12 +10488,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
             "description": "Not authorized to create packshots."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -10018,6 +10567,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10027,6 +10583,13 @@
             "description": "A referenced source asset was not found or is not readable."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10100,6 +10663,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10112,6 +10682,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "503": {
@@ -10177,6 +10754,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10189,6 +10773,13 @@
             "description": "The instruction did not pass prompt safety validation."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -10239,12 +10830,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "422": {
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10311,6 +10916,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10320,6 +10932,13 @@
             "description": "The referenced source asset was not found."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10389,6 +11008,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10401,6 +11027,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10457,6 +11090,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10466,6 +11106,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10535,6 +11182,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10547,6 +11201,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10603,6 +11264,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10612,6 +11280,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10681,6 +11356,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10693,6 +11375,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10749,6 +11438,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10758,6 +11454,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10827,6 +11530,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10839,6 +11549,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10895,6 +11612,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -10904,6 +11628,13 @@
             "description": "The prompt did not pass safety checks."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "500": {
@@ -10960,12 +11691,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
             "description": "Not authorized to create a lookbook."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -11032,6 +11777,13 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
@@ -11041,6 +11793,13 @@
             "description": "An input asset was not found or is not readable."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           },
           "503": {
@@ -11107,12 +11866,26 @@
             "description": "Unauthorized."
           },
           "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Insufficient credits or quota."
           },
           "403": {
             "description": "Not authorized to create a try-on."
           },
           "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
             "description": "Too many requests."
           }
         },
@@ -12373,7 +13146,7 @@
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
           },
           "style_codes": {
-            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
             "example": [
               "AAFF5733",
               "0133FF57",
@@ -12477,7 +13250,7 @@
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
           },
           "style_codes": {
-            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
             "example": [
               "AAFF5733",
               "0133FF57",
@@ -12607,7 +13380,7 @@
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
           },
           "style_codes": {
-            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
             "example": [
               "AAFF5733",
               "0133FF57",
@@ -16915,6 +17688,42 @@
         "title": "ImageSafetyError",
         "type": "object"
       },
+      "GenerationErrorResponse": {
+        "description": "A generation request rejected by an account or usage limit.",
+        "example": {
+          "reject_reason": null,
+          "error": "error"
+        },
+        "properties": {
+          "error": {
+            "description": "A message describing why the generation request was rejected.",
+            "title": "error",
+            "type": "string"
+          },
+          "reject_reason": {
+            "$ref": "#/components/schemas/GenerationRejectReason"
+          }
+        },
+        "required": [
+          "error",
+          "reject_reason"
+        ],
+        "title": "GenerationErrorResponse",
+        "type": "object"
+      },
+      "GenerationRejectReason": {
+        "description": "The account or usage limit that rejected a generation request.",
+        "enum": [
+          "insufficient_funds",
+          "subscription_required",
+          "daily_limit",
+          "priority_credit_required",
+          "inflight_limit",
+          "feature_limit"
+        ],
+        "title": "GenerationRejectReason",
+        "type": "string"
+      },
       "ImageToVideoRequestSeedDance2": {
         "description": "Request body for the Seedance 2.0 image-to-video endpoint. Provide the\nfirst frame with exactly one of `image` or `image_asset_id`.\n",
         "properties": {
@@ -20152,7 +20961,7 @@
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
           },
           "style_codes": {
-            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
             "example": [
               "AAFF5733",
               "0133FF57",
@@ -20361,7 +21170,7 @@
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
           },
           "style_codes": {
-            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
             "example": [
               "AAFF5733",
               "0133FF57",
@@ -20966,7 +21775,7 @@
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
           },
           "style_codes": {
-            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
             "example": [
               "AAFF5733",
               "0133FF57",
@@ -22590,7 +23399,19 @@
                 "$ref": "#/components/schemas/StylePresetV3"
               }
             ],
-            "description": "A predefined style preset to apply to the repainted images. Cannot be combined with style references."
+            "description": "A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references."
+          },
+          "style_codes": {
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
+            "example": [
+              "AAFF5733",
+              "0133FF57",
+              "DE3357FF"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/StyleCode"
+            },
+            "type": "array"
           },
           "style_reference_collection_id": {
             "description": "A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.",
@@ -22659,6 +23480,232 @@
           }
         },
         "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "InpaintImageIdeogramV3CustomModelResponse": {
+        "description": "Response returned by\n`POST /v2/images/inpaint/ideogram-v3-custom-model`. Synchronous\nrequests include the repainted images in `data`; asynchronous requests\nomit `data` and can be polled with\n`GET /v1/generations/{generation_id}`.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id",
+          "width": 0,
+          "height": 6
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID accepted by the generation polling endpoint.",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The repainted images, in generation order. Present only for synchronous requests.",
+            "items": {
+              "$ref": "#/components/schemas/InpaintedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "width": {
+            "description": "The output width in pixels.",
+            "title": "width",
+            "type": "integer"
+          },
+          "height": {
+            "description": "The output height in pixels.",
+            "title": "height",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "height",
+          "seed",
+          "width"
+        ],
+        "title": "InpaintImageIdeogramV3CustomModelResponse",
+        "type": "object"
+      },
+      "InpaintImageIdeogramV3CustomModelRequest": {
+        "description": "Supply the source image and mask as either `AssetIdentifier` references\nor raw bytes. At least one form of each input is required; references\ntake priority over bytes when both are supplied.\n",
+        "properties": {
+          "prompt": {
+            "description": "The prompt describing the repainted result.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "custom_model_uri": {
+            "description": "The custom model URI returned by the custom-model API, in the form `model/<model_name>/version/<version_name>`. The authenticated user or organization must have access to the model.",
+            "example": "model/my-custom-model/version/1",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^model/[^/]+/version/[^/]+$",
+            "type": "string"
+          },
+          "image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The source image asset to repaint. Takes priority over `image`."
+          },
+          "image": {
+            "description": "The source image to repaint (max size 25MB), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored when `image_asset_identifier` is supplied.",
+            "format": "binary",
+            "type": "string"
+          },
+          "mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "A black-and-white mask asset the same size as the source image. Black marks the region to repaint. Takes priority over `mask`."
+          },
+          "mask": {
+            "description": "A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.",
+            "format": "binary",
+            "type": "string"
+          },
+          "magic_prompt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicPromptOption"
+              }
+            ],
+            "default": "AUTO",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "rendering_speed": {
+            "description": "The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.",
+            "enum": [
+              "TURBO",
+              "DEFAULT",
+              "QUALITY"
+            ],
+            "type": "string"
+          },
+          "style_preset": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StylePresetV3"
+              }
+            ],
+            "description": "A predefined style preset. Cannot be combined with style codes or style references."
+          },
+          "style_codes": {
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
+            "example": [
+              "AAFF5733",
+              "0133FF57",
+              "DE3357FF"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/StyleCode"
+            },
+            "type": "array"
+          },
+          "style_reference_collection_id": {
+            "description": "A saved style, by its URL-safe base64 collection id. Takes priority over asset identifiers and raw style reference images.",
+            "type": "string"
+          },
+          "style_reference_collection_version_id": {
+            "description": "Optional URL-safe base64 version id for the saved style. Ignored without `style_reference_collection_id`.",
+            "type": "string"
+          },
+          "style_reference_asset_identifiers": {
+            "description": "Existing upload or generated image assets to use as style references. Takes priority over raw style reference images.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "style_reference_images": {
+            "description": "Images to use as style references (max 10, max size 25MB each), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored if a collection or asset identifiers are supplied.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images return `is_image_safe: false`.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "async": {
+            "default": false,
+            "description": "When false, block until the images are ready. When true, return after dispatch and poll `GET /v1/generations/{generation_id}`.",
+            "type": "boolean"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish it. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed images are added to it.",
+            "type": "string",
+            "x-ideogram-docs": {
+              "hidden-in": [
+                "prod",
+                "staging"
+              ]
+            }
+          }
+        },
+        "required": [
+          "custom_model_uri",
           "prompt"
         ],
         "type": "object"
@@ -22762,7 +23809,7 @@
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
           },
           "style_codes": {
-            "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
             "example": [
               "AAFF5733",
               "0133FF57",
@@ -23266,13 +24313,51 @@
           },
           "style_type": {
             "default": "AUTO",
-            "description": "The style type to repaint the character with. Defaults to `AUTO`.",
+            "description": "The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.",
             "enum": [
               "AUTO",
               "REALISTIC",
               "FICTION"
             ],
             "type": "string"
+          },
+          "style_codes": {
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
+            "example": [
+              "AAFF5733",
+              "0133FF57",
+              "DE3357FF"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/StyleCode"
+            },
+            "type": "array"
+          },
+          "style_reference_collection_id": {
+            "description": "A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied. Cannot be combined with `style_codes`.",
+            "type": "string"
+          },
+          "style_reference_collection_version_id": {
+            "description": "Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.",
+            "type": "string"
+          },
+          "style_reference_asset_identifiers": {
+            "description": "Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied. Cannot be combined with `style_codes`.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "style_reference_images": {
+            "description": "Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied. Cannot be combined with `style_codes`.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
           },
           "enable_copyright_detection": {
             "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.",
@@ -24472,7 +25557,8 @@
         "description": "Status of the API key",
         "enum": [
           "ACTIVE",
-          "DISABLED"
+          "DISABLED",
+          "ARCHIVED"
         ],
         "title": "ApiKeyStatus",
         "type": "string"
@@ -28355,7 +29441,7 @@
         "type": "object"
       },
       "StyleCodes": {
-        "description": "A list of 8 character hexadecimal codes representing the style of the image. Cannot be used in conjunction with style_reference_images or style_type.",
+        "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
         "example": [
           "AAFF5733",
           "0133FF57",

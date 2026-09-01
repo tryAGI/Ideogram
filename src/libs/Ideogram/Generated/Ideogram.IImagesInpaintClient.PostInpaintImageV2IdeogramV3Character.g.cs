@@ -21,6 +21,15 @@ namespace Ideogram
         /// `character_reference_mask` marking where the character is in the<br/>
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
+        /// Optional style controls may be combined with the character when<br/>
+        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
+        /// one reference form is supplied, the collection wins over the<br/>
+        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
+        /// also need access to the style-with-character API rollout.<br/>
         /// The output matches the size of the source image (snapped to the<br/>
         /// nearest resolution the model renders). By default the request blocks<br/>
         /// until the images are ready and returns them in `data`. Set `async` to<br/>
@@ -57,6 +66,15 @@ namespace Ideogram
         /// `character_reference_mask` marking where the character is in the<br/>
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
+        /// Optional style controls may be combined with the character when<br/>
+        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
+        /// one reference form is supplied, the collection wins over the<br/>
+        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
+        /// also need access to the style-with-character API rollout.<br/>
         /// The output matches the size of the source image (snapped to the<br/>
         /// nearest resolution the model renders). By default the request blocks<br/>
         /// until the images are ready and returns them in `data`. Set `async` to<br/>
@@ -93,6 +111,15 @@ namespace Ideogram
         /// `character_reference_mask` marking where the character is in the<br/>
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
+        /// Optional style controls may be combined with the character when<br/>
+        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// Supply style references as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
+        /// one reference form is supplied, the collection wins over the<br/>
+        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
+        /// also need access to the style-with-character API rollout.<br/>
         /// The output matches the size of the source image (snapped to the<br/>
         /// nearest resolution the model renders). By default the request blocks<br/>
         /// until the images are ready and returns them in `data`. Set `async` to<br/>
@@ -161,8 +188,24 @@ namespace Ideogram
         /// Default Value: DEFAULT
         /// </param>
         /// <param name="styleType">
-        /// The style type to repaint the character with. Defaults to `AUTO`.<br/>
+        /// The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.<br/>
         /// Default Value: AUTO
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
+        /// </param>
+        /// <param name="styleReferenceCollectionId">
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied. Cannot be combined with `style_codes`.
+        /// </param>
+        /// <param name="styleReferenceCollectionVersionId">
+        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// </param>
+        /// <param name="styleReferenceAssetIdentifiers">
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied. Cannot be combined with `style_codes`.
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied. Cannot be combined with `style_codes`.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -210,6 +253,11 @@ namespace Ideogram
             int? seed = default,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType? styleType = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
+            string? styleReferenceCollectionId = default,
+            string? styleReferenceCollectionVersionId = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             bool? enableCopyrightDetection = default,
             bool? async = default,
             string? webhookUrl = default,

@@ -129,12 +129,44 @@ namespace Ideogram
         public global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// The style type to repaint the character with. Defaults to `AUTO`.<br/>
+        /// The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.<br/>
         /// Default Value: AUTO
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.InpaintImageIdeogramV3CharacterRequestStyleTypeJsonConverter))]
         public global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType? StyleType { get; set; }
+
+        /// <summary>
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
+        /// </summary>
+        /// <example>[AAFF5733, 0133FF57, DE3357FF]</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_codes")]
+        public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
+
+        /// <summary>
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied. Cannot be combined with `style_codes`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
+        public string? StyleReferenceCollectionId { get; set; }
+
+        /// <summary>
+        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_version_id")]
+        public string? StyleReferenceCollectionVersionId { get; set; }
+
+        /// <summary>
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied. Cannot be combined with `style_codes`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_asset_identifiers")]
+        public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
+
+        /// <summary>
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied. Cannot be combined with `style_codes`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
+        public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
 
         /// <summary>
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -243,8 +275,24 @@ namespace Ideogram
         /// Default Value: DEFAULT
         /// </param>
         /// <param name="styleType">
-        /// The style type to repaint the character with. Defaults to `AUTO`.<br/>
+        /// The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.<br/>
         /// Default Value: AUTO
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
+        /// </param>
+        /// <param name="styleReferenceCollectionId">
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied. Cannot be combined with `style_codes`.
+        /// </param>
+        /// <param name="styleReferenceCollectionVersionId">
+        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// </param>
+        /// <param name="styleReferenceAssetIdentifiers">
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied. Cannot be combined with `style_codes`.
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied. Cannot be combined with `style_codes`.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -292,6 +340,11 @@ namespace Ideogram
             int? seed,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType? styleType,
+            global::System.Collections.Generic.IList<string>? styleCodes,
+            string? styleReferenceCollectionId,
+            string? styleReferenceCollectionVersionId,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers,
+            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             bool? enableCopyrightDetection,
             bool? async,
             string? webhookUrl,
@@ -316,6 +369,11 @@ namespace Ideogram
             this.Seed = seed;
             this.RenderingSpeed = renderingSpeed;
             this.StyleType = styleType;
+            this.StyleCodes = styleCodes;
+            this.StyleReferenceCollectionId = styleReferenceCollectionId;
+            this.StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId;
+            this.StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers;
+            this.StyleReferenceImages = styleReferenceImages;
             this.EnableCopyrightDetection = enableCopyrightDetection;
             this.Async = async;
             this.WebhookUrl = webhookUrl;

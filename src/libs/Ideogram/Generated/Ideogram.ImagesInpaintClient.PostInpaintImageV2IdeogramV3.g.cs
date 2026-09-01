@@ -50,7 +50,8 @@ namespace Ideogram
         /// `mask`, multipart requests only). If both a reference and bytes are<br/>
         /// supplied for the same input, the reference wins and the bytes are<br/>
         /// ignored.<br/>
-        /// Optional style controls: a style preset or style reference images.<br/>
+        /// Optional style controls: style codes, a style preset, or style<br/>
+        /// reference images.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
@@ -95,7 +96,8 @@ namespace Ideogram
         /// `mask`, multipart requests only). If both a reference and bytes are<br/>
         /// supplied for the same input, the reference wins and the bytes are<br/>
         /// ignored.<br/>
-        /// Optional style controls: a style preset or style reference images.<br/>
+        /// Optional style controls: style codes, a style preset, or style<br/>
+        /// reference images.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
@@ -337,6 +339,14 @@ namespace Ideogram
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.StylePreset).HasValue ? (request.StylePreset).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_preset\"");
+
+                            }
+                            if (request.StyleCodes != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.StyleCodes!, x => x))}]"),
+                                    name: "\"style_codes\"");
 
                             }
                             if (request.StyleReferenceCollectionId != default)
@@ -678,20 +688,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Insufficient credits or quota.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
                                 global::System.Exception? __exception_402 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_402 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -700,11 +714,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
+                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -774,20 +789,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Too many requests.
                             if ((int)__response.StatusCode == 429)
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -796,11 +815,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
+                                    responseObject: __value_429,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -975,7 +995,8 @@ namespace Ideogram
         /// `mask`, multipart requests only). If both a reference and bytes are<br/>
         /// supplied for the same input, the reference wins and the bytes are<br/>
         /// ignored.<br/>
-        /// Optional style controls: a style preset or style reference images.<br/>
+        /// Optional style controls: style codes, a style preset, or style<br/>
+        /// reference images.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references (images already stored<br/>
@@ -1037,7 +1058,11 @@ namespace Ideogram
         /// Example: GENERAL
         /// </param>
         /// <param name="stylePreset">
-        /// A predefined style preset to apply to the repainted images. Cannot be combined with style references.
+        /// A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references.
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
+        /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceCollectionId">
         /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
@@ -1092,6 +1117,7 @@ namespace Ideogram
             global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
             string? styleReferenceCollectionId = default,
             string? styleReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
@@ -1119,6 +1145,7 @@ namespace Ideogram
                 RenderingSpeed = renderingSpeed,
                 StyleType = styleType,
                 StylePreset = stylePreset,
+                StyleCodes = styleCodes,
                 StyleReferenceCollectionId = styleReferenceCollectionId,
                 StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId,
                 StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers,
