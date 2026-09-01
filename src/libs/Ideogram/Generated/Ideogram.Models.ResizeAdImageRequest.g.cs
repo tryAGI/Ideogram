@@ -4,29 +4,25 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source image as either an `AssetIdentifier` reference or<br/>
-    /// (multipart requests only) raw image bytes; provide exactly one of<br/>
-    /// `image_asset_identifier` / `image`. Supplying both, or neither, is<br/>
-    /// rejected with a 400.
+    /// Supply the source image as raw `image` bytes and the target ad<br/>
+    /// `resolution`.
     /// </summary>
     public sealed partial class ResizeAdImageRequest
     {
         /// <summary>
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The source image asset to reframe, by reference. Provide exactly one of `image_asset_identifier` or `image`.
         /// </summary>
-        /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_asset_identifier")]
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -86,14 +82,13 @@ namespace Ideogram
         /// dimensions.
         /// </param>
         /// <param name="imageAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The source image asset to reframe, by reference. Provide exactly one of `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
-        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="imagename">
-        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="prompt">
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".

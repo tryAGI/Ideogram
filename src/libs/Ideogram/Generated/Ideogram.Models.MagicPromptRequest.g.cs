@@ -74,7 +74,7 @@ namespace Ideogram
         /// Optional target aspect ratio used to condition the generated<br/>
         /// magic prompt's framing. Forwarded to the autoprompt pipeline<br/>
         /// so registry-driven system prompts that interpolate<br/>
-        /// `` see the bucket the caller intends.
+        /// `{{aspect_ratio}}` see the bucket the caller intends.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter))]
@@ -198,7 +198,7 @@ namespace Ideogram
         /// Optional target aspect ratio used to condition the generated<br/>
         /// magic prompt's framing. Forwarded to the autoprompt pipeline<br/>
         /// so registry-driven system prompts that interpolate<br/>
-        /// `` see the bucket the caller intends.
+        /// `{{aspect_ratio}}` see the bucket the caller intends.
         /// </param>
         /// <param name="temperature">
         /// Sampling temperature override. Defaults to the trainer-conditioned<br/>

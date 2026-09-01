@@ -164,6 +164,11 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
+        public VideoEditClient VideoEdit { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public VideoGenerateClient VideoGenerate { get; }
 
         /// <summary>

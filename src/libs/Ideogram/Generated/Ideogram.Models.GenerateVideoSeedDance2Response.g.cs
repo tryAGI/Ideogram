@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement returned by the Seedance 2.0 video generation<br/>
-    /// endpoints. Video generation always runs asynchronously, so the<br/>
+    /// Acknowledgement returned by the Seedance 2.0 video endpoints. Video<br/>
+    /// generation always runs asynchronously, so the<br/>
     /// generated videos are never part of this response: poll for them with<br/>
     /// `GET /v1/generations/{generation_id}` using the returned<br/>
     /// `generation_id`, or receive them at the `webhook_url` you supplied.<br/>

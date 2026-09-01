@@ -348,12 +348,6 @@
         "tags": [
           "datasets"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.datasets_controller"
       }
     },
@@ -673,12 +667,6 @@
         "tags": [
           "internal-testing"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.internal_testing_controller"
       }
     },
@@ -726,12 +714,6 @@
         "tags": [
           "batch"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.batch_controller"
       }
     },
@@ -780,12 +762,6 @@
         "tags": [
           "batch"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.batch_controller"
       }
     },
@@ -838,12 +814,6 @@
         "tags": [
           "prompt"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.prompt_controller"
       }
     },
@@ -910,12 +880,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -949,12 +913,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       },
       "post": {
@@ -998,12 +956,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1042,12 +994,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       },
       "patch": {
@@ -1106,12 +1052,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1171,12 +1111,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1222,12 +1156,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1292,12 +1220,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1360,12 +1282,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1413,12 +1329,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1470,12 +1380,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1538,12 +1442,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1587,12 +1485,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1655,12 +1547,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1749,12 +1635,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1803,12 +1683,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1871,12 +1745,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -1939,12 +1807,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2007,12 +1869,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2078,12 +1934,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2143,12 +1993,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2194,12 +2038,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2233,12 +2071,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2275,12 +2107,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2350,12 +2176,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2408,12 +2228,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2458,12 +2272,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       },
       "post": {
@@ -2528,12 +2336,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2567,12 +2369,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       },
       "post": {
@@ -2612,12 +2408,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2806,12 +2596,6 @@
         "tags": [
           "manage"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
@@ -2849,12 +2633,6 @@
         "tags": [
           "mini-apps"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-root-array-response": true,
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.mini_apps_controller"
       }
@@ -2908,12 +2686,6 @@
         "tags": [
           "mini-apps"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.mini_apps_controller"
       }
     },
@@ -2966,12 +2738,6 @@
         "tags": [
           "mini-apps"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.mini_apps_controller"
       }
     },
@@ -3024,12 +2790,6 @@
         "tags": [
           "mini-apps"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.mini_apps_controller"
       }
     },
@@ -3078,12 +2838,6 @@
         "tags": [
           "mini-apps"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.mini_apps_controller"
       }
     },
@@ -3128,12 +2882,6 @@
         "tags": [
           "mini-apps"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.mini_apps_controller"
       }
     },
@@ -3463,18 +3211,12 @@
         "tags": [
           "webhooks"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.webhooks_controller"
       }
     },
     "/v1/async/ad-resizer": {
       "post": {
-        "description": "Resizes an advertisement image to the exact target size. Supply `prompt`\nto provide specific instructions for how the advertisement should look\nafter resizing.\n\nThe request is processed asynchronously and immediately returns a\n`generation_id`. Poll `GET /v1/generations/{generation_id}` until `status`\nis `completed` or `failed`. The completed polling response contains the\nfinal resized image(s) in `data` and the amount charged for variable\nusage-based pricing in `usage_cost_usd_micros`. If a `webhook_url` is\nsupplied, the completed result is also POSTed to that URL.\n\nSupply the advertisement image as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two; supplying both,\nor neither, is rejected with a 400.\n\nThe required `resolution` (`WIDTHxHEIGHT`) sets the exact output\ndimensions.\n\nThe model is fixed by the route, so no `model` field is accepted.\n",
+        "description": "Resizes an advertisement image to the exact target size. Supply `prompt`\nto provide specific instructions for how the advertisement should look\nafter resizing.\n\nThe request is processed asynchronously and immediately returns a\n`generation_id`. Poll `GET /v1/generations/{generation_id}` until `status`\nis `completed` or `failed`. The completed polling response contains the\nfinal resized image(s) in `data` and the amount charged for variable\nusage-based pricing in `usage_cost_usd_micros`. If a `webhook_url` is\nsupplied, the completed result is also POSTed to that URL.\n\nSupply the advertisement image as raw `image` bytes via\n`multipart/form-data`.\n\nThe required `resolution` (`WIDTHxHEIGHT`) sets the exact output\ndimensions.\n\nThe model is fixed by the route, so no `model` field is accepted.\n",
         "operationId": "post_resize_image_async",
         "parameters": [
           {
@@ -3507,7 +3249,7 @@
               }
             }
           },
-          "description": "A request to resize a source image. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "description": "A request to resize a source image.",
           "required": true,
           "x-body-name": "body"
         },
@@ -3771,12 +3513,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-fern-examples": [
           {
             "request": {
@@ -3883,12 +3619,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -3948,12 +3678,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -4025,12 +3749,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -4090,12 +3808,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -4167,12 +3879,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -4232,12 +3938,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -4553,12 +4253,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -4723,12 +4417,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-fern-examples": [
           {
             "request": {
@@ -4909,12 +4597,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -5341,11 +5023,6 @@
         "tags": [
           "models"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.models_controller"
       }
     },
@@ -5400,12 +5077,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-fern-examples": [
           {
             "request": {
@@ -5520,12 +5191,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -5591,12 +5256,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -5662,12 +5321,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -5816,12 +5469,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -5965,12 +5612,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -6037,12 +5678,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -6245,12 +5880,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -6405,11 +6034,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -6464,12 +6088,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -6620,12 +6238,6 @@
         "tags": [
           "models"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.models_controller"
       }
     },
@@ -6670,12 +6282,6 @@
         "tags": [
           "models"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.models_controller"
       }
     },
@@ -6753,12 +6359,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -6824,12 +6424,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-playground-endpoint": {
           "id": "generate-v45",
           "label": "Generate",
@@ -6876,6 +6470,34 @@
         "summary": "Detect and remove reference logos from an image",
         "tags": [
           "generate"
+        ],
+        "x-fern-examples": [
+          {
+            "response": {
+              "body": {
+                "base_image_url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+                "layers": [
+                  {
+                    "ref_id": "REF_0",
+                    "x": 832,
+                    "y": 96,
+                    "width": 220,
+                    "height": 88
+                  }
+                ]
+              }
+            },
+            "code-samples": [
+              {
+                "sdk": "curl",
+                "code": "curl -X POST https://api.ideogram.ai/v1/layerize-logos \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F design_image=@<file1> \\\n  -F reference_images=@<file2> \\\n  -F reference_images=@<file3>\n"
+              },
+              {
+                "sdk": "python",
+                "code": "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v1/layerize-logos\",\n  headers={\n    \"Api-Key\": \"<apiKey>\"\n  },\n  files=[\n    (\"design_image\", open(\"<file1>\", \"rb\")),\n    (\"reference_images\", open(\"<file2>\", \"rb\")),\n    (\"reference_images\", open(\"<file3>\", \"rb\")),\n  ]\n)\nprint(response.json())\n"
+              }
+            ]
+          }
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
@@ -6936,12 +6558,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7001,12 +6617,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7066,12 +6676,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7131,12 +6735,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7186,12 +6784,6 @@
         "tags": [
           "provenance"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.provenance_controller"
       }
     },
@@ -7350,12 +6942,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7486,12 +7072,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7551,12 +7131,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7633,12 +7207,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7710,12 +7278,6 @@
         "tags": [
           "generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
@@ -7799,12 +7361,6 @@
         "tags": [
           "images-edit"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_edit_controller"
       }
     },
@@ -7888,12 +7444,6 @@
         "tags": [
           "images-edit"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_edit_controller"
       }
     },
@@ -7977,12 +7527,6 @@
         "tags": [
           "images-edit"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_edit_controller"
       }
     },
@@ -8066,12 +7610,6 @@
         "tags": [
           "images-edit"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_edit_controller"
       }
     },
@@ -8142,12 +7680,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8218,12 +7750,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8294,12 +7820,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8386,12 +7906,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8478,12 +7992,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8573,12 +8081,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8649,12 +8151,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8725,12 +8221,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8804,12 +8294,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8880,12 +8364,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -8956,12 +8434,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -9032,12 +8504,6 @@
         "tags": [
           "images-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -9127,12 +8593,6 @@
         "tags": [
           "images-inpaint"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
       }
     },
@@ -9225,12 +8685,6 @@
         "tags": [
           "images-inpaint"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
       }
     },
@@ -9309,12 +8763,6 @@
         "tags": [
           "images-inpaint"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
       }
     },
@@ -9394,12 +8842,6 @@
         "tags": [
           "images-reframe"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-fern-sdk-group-name": [
           "image",
           "reframe"
@@ -9491,12 +8933,6 @@
         "tags": [
           "images-reframe"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-fern-sdk-group-name": [
           "image",
           "reframe"
@@ -9591,12 +9027,6 @@
         "tags": [
           "images-remix"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
       }
     },
@@ -9680,12 +9110,6 @@
         "tags": [
           "images-remix"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
       }
     },
@@ -9766,12 +9190,6 @@
         "tags": [
           "images-upscale"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
       }
     },
@@ -9849,12 +9267,6 @@
         "tags": [
           "object-removal"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.object_removal_controller"
       }
     },
@@ -9935,12 +9347,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -10021,18 +9427,12 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
     "/v2/tool/colorways": {
       "post": {
-        "description": "Recolors the masked regions of the product photo, each to its own\ntarget color, while preserving the product's geometry, materials,\nprints, logos, and shading, and keeping every region outside the\nmasks unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n\nSupply the masks marking the regions to recolor as either\n`AssetIdentifier` references (`mask_asset_identifiers`) or the raw\nmask bytes directly (`masks`, multipart requests only), paired by\nposition with `colors` — up to 4 regions; a single-region edit is a\none-item list. Provide exactly one of the two forms. Every mask must\nhave the same pixel dimensions as the product photo. White pixels\nmark the region to recolor; black pixels are preserved. Alpha-only\nmasks are also supported: opaque pixels mark the region to recolor\nand transparent pixels are preserved.\n",
+        "description": "Recolors the masked regions of the product photo, each to its own\ntarget color, while preserving the product's geometry, materials,\nprints, logos, and shading, and keeping every region outside the\nmasks unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo as raw `image` bytes via\n`multipart/form-data`.\n\nSupply the masks marking the regions to recolor as raw `masks` bytes,\npaired by position with `colors` — up to 4 regions; a single-region\nedit is a one-item list. Every mask must have the same pixel\ndimensions as the product photo. White pixels mark the region to\nrecolor; black pixels are preserved. Alpha-only masks are also\nsupported: opaque pixels mark the region to recolor and transparent\npixels are preserved.\n",
         "operationId": "post_colorways",
         "requestBody": {
           "content": {
@@ -10055,7 +9455,7 @@
               }
             }
           },
-          "description": "The product photo, one mask or several masks marking the regions to recolor, and one target color per mask. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "description": "The product photo, one mask or several masks marking the regions to recolor, and one target color per mask.",
           "required": true,
           "x-body-name": "body"
         },
@@ -10187,18 +9587,12 @@
         "tags": [
           "auto-model"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.auto_model_controller"
       }
     },
     "/v2/tool/material-swap": {
       "post": {
-        "description": "Re-renders the masked regions of the product photo in the materials\nshown by the reference images — matching each one's color, texture,\npattern scale, and orientation — while preserving the product's\nsilhouette, construction, seams, and shading, and keeping every region\noutside the masks unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n\nSupply the masks marking the regions to re-material as either\n`AssetIdentifier` references (`mask_asset_identifiers`) or the raw mask\nbytes directly (`masks`, multipart requests only) — up to 4 regions; a\nsingle-region edit is a one-item list. Provide exactly one of the two\nforms. Every mask must have the same pixel dimensions as the product\nphoto. White pixels mark the region to change; black pixels are\npreserved. Alpha-only masks are also supported: opaque pixels mark the\nregion to change and transparent pixels are preserved.\n\nSupply the material references as either `AssetIdentifier` references\n(`material_asset_identifiers`) or the raw image bytes directly\n(`materials`, multipart requests only). Provide exactly one of the two\nforms. Send either one material, which every mask takes, or exactly one\nmaterial per mask, paired by position.\n",
+        "description": "Re-renders the masked regions of the product photo in the materials\nshown by the reference images — matching each one's color, texture,\npattern scale, and orientation — while preserving the product's\nsilhouette, construction, seams, and shading, and keeping every region\noutside the masks unchanged.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the product photo, the masks marking the regions to\nre-material, and the material reference images as raw bytes (`image`,\n`masks`, and `materials`) via `multipart/form-data` — up to 4 masks; a\nsingle-region edit is a one-item list. Every mask must have the same\npixel dimensions as the product photo. White pixels mark the region to\nchange; black pixels are preserved. Alpha-only masks are also\nsupported: opaque pixels mark the region to change and transparent\npixels are preserved. Send either one material, which every mask\ntakes, or exactly one material per mask, paired by position.\n",
         "operationId": "post_material_swap",
         "requestBody": {
           "content": {
@@ -10224,7 +9618,7 @@
               }
             }
           },
-          "description": "The product photo, one mask or several masks marking the regions to change, and either one shared material reference or one per mask. Use `multipart/form-data` to upload raw bytes directly, or `application/json` (or multipart with `*_asset_identifiers` fields) to reference existing assets instead.",
+          "description": "The product photo, one mask or several masks marking the regions to change, and either one shared material reference or one per mask.",
           "required": true,
           "x-body-name": "body"
         },
@@ -10356,12 +9750,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -10445,12 +9833,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -10515,12 +9897,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -10603,12 +9979,6 @@
         "tags": [
           "tool"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-fern-sdk-group-name": "tool",
         "x-fern-sdk-method-name": "removeBackground",
         "x-playground-endpoint": {
@@ -10699,12 +10069,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-fern-sdk-group-name": "tool",
         "x-fern-sdk-method-name": "replaceBackground",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
@@ -10787,12 +10151,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -10863,12 +10221,6 @@
         "tags": [
           "auto-model"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.auto_model_controller"
       }
     },
@@ -10952,13 +10304,69 @@
         "tags": [
           "tools"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tools_controller"
+      }
+    },
+    "/v2/video/edit/seedance-2": {
+      "post": {
+        "description": "Edit a video you already have stored with Ideogram by replacing part of\nit. Reference the source video with `video_asset_identifier` and mark the\nspan to replace with `start_frame_time` and `end_frame_time`, in seconds.\nSeedance 2.0 generates a new clip for that span from your prompt, and the\nresult is the source video with the generated clip spliced in over the\nspan: everything before `start_frame_time`, then the generated clip, then\neverything from `end_frame_time` on. That edited video is the asset the\nrequest produces.\n\n`is_start_frame_included` and `is_end_frame_included` anchor the generated\nclip on the span's own end frames, so it joins the surrounding footage\ninstead of cutting to something unrelated. Anchoring the start opens the\nclip on the frame already at `start_frame_time`; anchoring the end lands\nit on the frame at `end_frame_time`; anchoring both joins at each seam. At\nleast one must be anchored.\n\nThe generated clip is used at its own length, which the model rarely makes\nexactly the span's, so the edited video is usually a different length from\nthe source. Request a `duration` close to the span to keep them near each\nother. The clip is scaled and cropped to fill the source's frame and\nconformed to its frame rate, so resolution and aspect ratio follow the\nsource rather than being requested.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_edit_video_seed_dance2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditVideoSeedDance2Request"
+              }
+            }
+          },
+          "description": "A request to edit a video with Seedance 2.0, regenerating it from frames of the source video.",
+          "required": true,
+          "x-body-name": "edit_video_seed_dance2_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoSeedDance2Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "404": {
+            "description": "The referenced source video was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Edit a video with Seedance 2.0 by regenerating from frames of it",
+        "tags": [
+          "video-edit"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_edit_controller"
       }
     },
     "/v2/video/generate/kling-v3-standard-image-to-video": {
@@ -11047,12 +10455,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11126,12 +10528,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11221,12 +10617,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11300,12 +10690,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11395,12 +10779,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11474,12 +10852,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11569,12 +10941,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11648,12 +11014,6 @@
         "tags": [
           "video-generate"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
@@ -11718,12 +11078,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -11810,12 +11164,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -11893,12 +11241,6 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-ideogram-docs": {
-          "hidden-in": [
-            "prod",
-            "staging"
-          ]
-        },
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     }
@@ -11940,11 +11282,6 @@
             "description": "Random seed for reproducibility.",
             "nullable": true,
             "type": "integer",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            },
             "x-playground-field": {
               "hidden": true
             }
@@ -11952,11 +11289,6 @@
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use\nfor this request. Honored when `text_prompt` is supplied. Ignored\nwhen `json_prompt` is supplied.\n",
             "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            },
             "x-playground-field": {
               "hidden": true
             }
@@ -11965,11 +11297,6 @@
             "description": "A custom model URI in the format model/<model_name>/version/<version_name>.\nWhen provided, the model version and style will be resolved from this URI.\n",
             "example": "model/my-custom-model/version/0",
             "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            },
             "x-playground-field": {
               "hidden": true
             }
@@ -12054,21 +11381,11 @@
           "seed": {
             "description": "Random seed for reproducibility.",
             "nullable": true,
-            "type": "integer",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "integer"
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use\nfor this request. Honored when `text_prompt` is supplied. Ignored\nwhen `json_prompt` is supplied.\n",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "aspect_ratio": {
             "$ref": "#/components/schemas/AspectRatioV4"
@@ -12349,12 +11666,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use\nfor this request.\n",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "quality": {
             "allOf": [
@@ -12933,24 +12245,12 @@
           "include_style_descriptions": {
             "default": false,
             "description": "When false (default), the response omits `json_prompt.style_description`\nto match the contract used by `/v1/ideogram-v4/generate`'s `json_prompt`\ninput. Set to true to surface the captioner's source-image style\ndescription in the response.\n",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "include_tags": {
             "default": false,
             "description": "When false (default), the response omits `json_prompt.tags` to match\nthe contract used by `/v1/ideogram-v4/generate`'s `json_prompt`\ninput. Set to true to surface the captioner's free-form tags on the\nresponse.\n",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           }
         },
         "required": [
@@ -13049,12 +12349,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "num_images": {
             "$ref": "#/components/schemas/NumImages"
@@ -13123,12 +12418,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "negative_prompt": {
             "description": "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
@@ -13555,12 +12845,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "negative_prompt": {
             "description": "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
@@ -13577,12 +12862,7 @@
           "custom_model_uri": {
             "description": "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\nA model must be able to generate transparent background to be used for this endpoint.\n",
             "example": "model/my-custom-model/version/1",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "enable_copyright_detection": {
             "description": "Optional. Opt this request into post-generation copyright detection (Hive likeness + logo\nchecks). The effective gate is the OR of this field and the organization's\n`copyright_detection_enabled` setting on `/api`: if the org has it on, this is ignored;\nif the org has it off, setting this `true` enables detection for this request only.\nAdds detection latency. Flagged images come back with `is_image_safe: false`.\n",
@@ -13631,12 +12911,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "negative_prompt": {
             "description": "Description of what to exclude from an image. Descriptions in the prompt take precedence\nto descriptions in the negative prompt.\n",
@@ -13665,12 +12940,7 @@
           "custom_model_uri": {
             "description": "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n",
             "example": "model/my-custom-model/version/1",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "style_reference_images": {
             "description": "A set of images to use as style references (max size 25MB per image; the whole request must stay under 50MB). The images should be in JPEG, PNG or WebP format.",
@@ -13725,12 +12995,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "num_images": {
             "$ref": "#/components/schemas/NumImages"
@@ -13750,12 +13015,7 @@
           "custom_model_uri": {
             "description": "A custom model URI in the format model/<model_name>/version/<version_name>. \nWhen provided, the model version and style will be resolved from this URI, and style_type is not required.\n",
             "example": "model/my-custom-model/version/1",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "color_palette": {
             "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
@@ -13830,12 +13090,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "resolution": {
             "$ref": "#/components/schemas/ResolutionV3"
@@ -14043,12 +13298,7 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "num_images": {
             "$ref": "#/components/schemas/NumImages"
@@ -14459,24 +13709,14 @@
           },
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "magic_prompt_version": {
             "allOf": [
               {
                 "$ref": "#/components/schemas/MagicPromptVersionEnum"
               }
-            ],
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            ]
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -14572,12 +13812,7 @@
           "magic_prompt_system_prompt_config_id": {
             "description": "A base64url-encoded magic prompt system prompt config ID to use for this request.",
             "title": "magic_prompt_system_prompt_config_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "string"
           },
           "magic_prompt_version": {
             "allOf": [
@@ -14585,12 +13820,7 @@
                 "$ref": "#/components/schemas/MagicPromptVersionEnum"
               }
             ],
-            "title": "magic_prompt_version",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "title": "magic_prompt_version"
           },
           "num_images": {
             "default": 1,
@@ -16355,7 +15585,7 @@
                 "$ref": "#/components/schemas/AspectRatioV3"
               }
             ],
-            "description": "Optional target aspect ratio used to condition the generated\nmagic prompt's framing. Forwarded to the autoprompt pipeline\nso registry-driven system prompts that interpolate\n`` see the bucket the caller intends.\n"
+            "description": "Optional target aspect ratio used to condition the generated\nmagic prompt's framing. Forwarded to the autoprompt pipeline\nso registry-driven system prompts that interpolate\n`{{aspect_ratio}}` see the bucket the caller intends.\n"
           },
           "temperature": {
             "description": "Sampling temperature override. Defaults to the trainer-conditioned\nvalue when omitted (0.7 for V4_QWEN_3_5_27B). Only honored with\nV4 magic-prompt versions; supplying it with another version\nreturns 400.\n",
@@ -17281,12 +16511,7 @@
               "$ref": "#/components/schemas/DetectedTextBlock"
             },
             "title": "text_blocks",
-            "type": "array",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "array"
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -17768,7 +16993,7 @@
         "type": "object"
       },
       "GenerateVideoSeedDance2Response": {
-        "description": "Acknowledgement returned by the Seedance 2.0 video generation\nendpoints. Video generation always runs asynchronously, so the\ngenerated videos are never part of this response: poll for them with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive them at the `webhook_url` you supplied.\n",
+        "description": "Acknowledgement returned by the Seedance 2.0 video endpoints. Video\ngeneration always runs asynchronously, so the\ngenerated videos are never part of this response: poll for them with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive them at the `webhook_url` you supplied.\n",
         "example": {
           "generation_id": "generation_id",
           "created": "2000-01-23T04:56:07+00:00"
@@ -17846,24 +17071,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -17939,23 +17152,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -18042,24 +17243,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -18151,23 +17340,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -18248,24 +17425,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -18333,23 +17498,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -18453,24 +17606,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -18557,28 +17698,132 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
           "prompt"
         ],
+        "type": "object"
+      },
+      "EditVideoSeedDance2Request": {
+        "description": "Request body for a Seedance 2.0 video edit. `video_asset_identifier`\nnames the video being edited and `start_frame_time`/`end_frame_time` mark\nthe span of it the generated clip replaces. The two `is_*_included` flags\nanchor the generated clip on the span's own end frames; at least one must\nbe anchored.\n",
+        "example": {
+          "duration": 5,
+          "private": true,
+          "end_frame_time": "",
+          "is_end_frame_included": false,
+          "webhook_url": "https://api.example.com/webhooks/ideogram",
+          "video_asset_identifier": "",
+          "target_collection_id": "target_collection_id",
+          "generate_audio": false,
+          "is_start_frame_included": true,
+          "prompt": "The camera pushes in as the dancer turns towards the light.",
+          "resolution": "",
+          "start_frame_time": ""
+        },
+        "properties": {
+          "video_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "A reference to a video already stored with Ideogram to take the frames from. Only video assets are accepted.",
+            "title": "video_asset_identifier"
+          },
+          "start_frame_time": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VideoFrameTimeSeconds"
+              }
+            ],
+            "description": "Where the replaced span of the source video begins. Everything before it is kept as-is.",
+            "title": "start_frame_time"
+          },
+          "is_start_frame_included": {
+            "default": true,
+            "description": "Whether the generated clip is anchored on the frame already at `start_frame_time`, so it opens on the footage it replaces. Set it to false to anchor on the end frame alone, in which case `is_end_frame_included` must be true.",
+            "title": "is_start_frame_included",
+            "type": "boolean"
+          },
+          "end_frame_time": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VideoFrameTimeSeconds"
+              }
+            ],
+            "description": "Where the replaced span of the source video ends; must come after `start_frame_time`. Everything from here on is kept as-is.",
+            "title": "end_frame_time"
+          },
+          "is_end_frame_included": {
+            "default": false,
+            "description": "Whether the generated clip is anchored on the frame at `end_frame_time`, so it lands on the footage that follows the span.",
+            "title": "is_end_frame_included",
+            "type": "boolean"
+          },
+          "prompt": {
+            "description": "A natural-language prompt describing what the replaced span should show.",
+            "example": "The camera pushes in as the dancer turns towards the light.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "prompt",
+            "type": "string"
+          },
+          "resolution": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SeedDance2Resolution"
+              }
+            ],
+            "description": "The resolution tier the replaced span is generated at. The clip is then scaled to the source video's own frame, so this affects the detail generated rather than the edited video's dimensions.",
+            "title": "resolution"
+          },
+          "duration": {
+            "description": "The length of the generated video in seconds. When omitted, the model\npicks the best duration for the prompt (\"auto\").\n",
+            "example": 5,
+            "maximum": 15,
+            "minimum": 4,
+            "title": "duration",
+            "type": "integer"
+          },
+          "generate_audio": {
+            "default": false,
+            "description": "Whether to generate an audio track for the video. Audio roughly\ndoubles the provider cost and is subject to stricter output moderation.\n",
+            "title": "generate_audio",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "title": "private",
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "end_frame_time",
+          "prompt",
+          "start_frame_time",
+          "video_asset_identifier"
+        ],
+        "title": "EditVideoSeedDance2Request",
         "type": "object"
       },
       "RemoveObjectFromV2AssetsResponse": {
@@ -19018,23 +18263,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -19195,23 +18428,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "type": "object"
@@ -19303,13 +18524,7 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -19388,13 +18603,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -19469,13 +18678,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -19565,13 +18768,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "preserve_unmasked_pixels": {
             "default": false,
@@ -19652,13 +18849,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -19690,13 +18881,18 @@
         "type": "object"
       },
       "ColorwaysRequest": {
-        "description": "Supply the product photo as either an `AssetIdentifier` reference or\n(multipart requests only) raw image bytes; provide exactly one of the\ntwo forms. Supplying both, or neither, is rejected with a 400.\n\nSupply up to 4 masks with one color per mask; a single-region edit is\na one-item `masks` (or `mask_asset_identifiers`) list with a one-item\n`colors` list.\n",
+        "description": "Supply the product photo as raw `image` bytes, and up to 4 masks with\none color per mask; a single-region edit is a one-item `masks` list\nwith a one-item `colors` list.\n",
         "properties": {
           "image_asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The product photo to recolor, by reference. Everything outside\nthe masked region is preserved. Provide exactly one of\n`image_asset_identifier` or `image`.\n"
           },
           "image": {
-            "description": "The product photo to recolor (max size 25MB), as raw bytes; only\nJPEG, PNG, and WEBP formats are supported. Multipart requests only.\nProvide exactly one of `image_asset_identifier` or `image`.\n",
+            "description": "The product photo to recolor (max size 25MB), as raw bytes; only\nJPEG, PNG, and WEBP formats are supported.\n",
             "format": "binary",
             "type": "string"
           },
@@ -19710,7 +18906,7 @@
             "type": "array"
           },
           "masks": {
-            "description": "The masks marking the regions of the product photo to recolor\n(max 4, max size 25MB each), as raw bytes, paired by position with\n`colors`; only JPEG, PNG, and WEBP formats are supported. Every\nmask must have the same pixel dimensions as the product photo,\nand follows the same pixel rules as `mask_asset_identifiers`.\nMultipart requests only. Provide exactly one of\n`mask_asset_identifiers` or `masks`.\n",
+            "description": "The masks marking the regions of the product photo to recolor\n(max 4, max size 25MB each), as raw bytes, paired by position with\n`colors`; only JPEG, PNG, and WEBP formats are supported. Every\nmask must have the same pixel dimensions as the product photo.\nWhite pixels mark the region to recolor; black pixels are\npreserved. Alpha-only masks are also supported: opaque pixels\nmark the region to recolor and transparent pixels are preserved.\n",
             "items": {
               "format": "binary",
               "type": "string"
@@ -19720,7 +18916,7 @@
             "type": "array"
           },
           "colors": {
-            "description": "One target color per mask in `masks` or\n`mask_asset_identifiers`, as six-digit hex codes like `#B3202C`,\npaired by position. The product's shape, construction, materials,\nprints, and logos are always preserved.\n",
+            "description": "One target color per mask in `masks`, as six-digit hex codes like\n`#B3202C`, paired by position. The product's shape, construction,\nmaterials, prints, and logos are always preserved.\n",
             "items": {
               "pattern": "^#[0-9a-fA-F]{6}$",
               "type": "string"
@@ -19739,13 +18935,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -19843,13 +19033,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -19920,13 +19104,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -20000,13 +19178,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -20088,13 +19260,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -20129,13 +19295,18 @@
         "type": "object"
       },
       "MaterialSwapRequest": {
-        "description": "Supply the product photo, the masks, and the material references each\nas either `AssetIdentifier` references or (multipart requests only) raw\nimage bytes; provide exactly one form per input. Supplying both forms\nof an input, or neither, is rejected with a 400.\n\nSupply up to 4 masks, with either one material for all of them or one\nmaterial per mask paired by position. A single-region edit is a one-item\n`masks` (or `mask_asset_identifiers`) list with a one-item material list.\n",
+        "description": "Supply the product photo (`image`), the masks (`masks`), and the\nmaterial references (`materials`) as raw image bytes.\n\nSupply up to 4 masks, with either one material for all of them or one\nmaterial per mask paired by position. A single-region edit is a\none-item `masks` list with a one-item material list.\n",
         "properties": {
           "image_asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The product photo to edit, by reference. Everything outside the\nmasked region is preserved. Provide exactly one of\n`image_asset_identifier` or `image`.\n"
           },
           "image": {
-            "description": "The product photo to edit (max size 25MB), as raw bytes; only\nJPEG, PNG, and WEBP formats are supported. Multipart requests only.\nProvide exactly one of `image_asset_identifier` or `image`.\n",
+            "description": "The product photo to edit (max size 25MB), as raw bytes; only\nJPEG, PNG, and WEBP formats are supported.\n",
             "format": "binary",
             "type": "string"
           },
@@ -20149,7 +19320,7 @@
             "type": "array"
           },
           "masks": {
-            "description": "The masks marking the regions of the product photo to change (max\n4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP\nformats are supported. Every mask must have the same pixel\ndimensions as the product photo, and follows the same pixel rules\nas `mask_asset_identifiers`. Multipart requests only. Provide\nexactly one of `mask_asset_identifiers` or `masks`.\n",
+            "description": "The masks marking the regions of the product photo to change (max\n4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP\nformats are supported. Every mask must have the same pixel\ndimensions as the product photo. White pixels mark the region to\nchange; black pixels are preserved. Alpha-only masks are also\nsupported: opaque pixels mark the region to change and transparent\npixels are preserved.\n",
             "items": {
               "format": "binary",
               "type": "string"
@@ -20168,7 +19339,7 @@
             "type": "array"
           },
           "materials": {
-            "description": "The material reference images (max size 25MB each), as raw bytes;\nonly JPEG, PNG, and WEBP formats are supported. Only their material\n— color, texture, pattern scale, and orientation — is applied to\nthe masked regions. Send one material, which every mask takes, or\nexactly one per mask paired by position. Multipart requests only.\nProvide exactly one of `material_asset_identifiers` or `materials`.\n",
+            "description": "The material reference images (max size 25MB each), as raw bytes;\nonly JPEG, PNG, and WEBP formats are supported. Only their material\n— color, texture, pattern scale, and orientation — is applied to\nthe masked regions. Send one material, which every mask takes, or\nexactly one per mask paired by position.\n",
             "items": {
               "format": "binary",
               "type": "string"
@@ -20187,13 +19358,7 @@
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -20302,13 +19467,7 @@
           "internal": {
             "default": false,
             "description": "When true, the upscale is excluded from the user's gallery and feeds.",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "async": {
             "default": false,
@@ -20454,23 +19613,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -20616,23 +19763,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -20787,23 +19922,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "type": "object"
@@ -21030,23 +20153,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -21228,23 +20339,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -21397,24 +20496,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -21576,24 +20663,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -21836,23 +20911,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -21985,23 +21048,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -22156,24 +21207,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -22333,24 +21372,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -22528,24 +21555,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -22677,24 +21692,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -22845,24 +21848,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -23020,24 +22011,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -23188,24 +22167,12 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "title": "private",
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -23460,23 +22427,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -23685,23 +22640,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish it. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. Completed images are added to it.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -24131,23 +23074,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -24380,23 +23311,11 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           }
         },
         "required": [
@@ -24576,13 +23495,7 @@
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "title": "target_collection_id",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           },
           "async": {
             "default": false,
@@ -24726,26 +23639,14 @@
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           },
           "category_id": {
             "description": "The internal generation category to attribute to the output, as a URL-safe base64 UUID without padding.",
             "maxLength": 22,
             "minLength": 22,
             "pattern": "^[A-Za-z0-9_-]{22}$",
-            "type": "string",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "string"
           },
           "async": {
             "default": false,
@@ -24759,13 +23660,18 @@
         "type": "object"
       },
       "ResizeAdImageRequest": {
-        "description": "Supply the source image as either an `AssetIdentifier` reference or\n(multipart requests only) raw image bytes; provide exactly one of\n`image_asset_identifier` / `image`. Supplying both, or neither, is\nrejected with a 400.\n",
+        "description": "Supply the source image as raw `image` bytes and the target ad\n`resolution`.\n",
         "properties": {
           "image_asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The source image asset to reframe, by reference. Provide exactly one of `image_asset_identifier` or `image`."
           },
           "image": {
-            "description": "The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.",
+            "description": "The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported.",
             "format": "binary",
             "type": "string"
           },
@@ -27164,8 +26070,8 @@
               "dataset_id": "dataset_id",
               "name": "name",
               "cover_asset_identifier": {
-                "asset_type": "RESPONSE",
-                "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
+                "asset_type": null,
+                "asset_id": "asset_id"
               }
             },
             {
@@ -27174,8 +26080,8 @@
               "dataset_id": "dataset_id",
               "name": "name",
               "cover_asset_identifier": {
-                "asset_type": "RESPONSE",
-                "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
+                "asset_type": null,
+                "asset_id": "asset_id"
               }
             }
           ]
@@ -27205,8 +26111,8 @@
           "dataset_id": "dataset_id",
           "name": "name",
           "cover_asset_identifier": {
-            "asset_type": "RESPONSE",
-            "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
+            "asset_type": null,
+            "asset_id": "asset_id"
           }
         },
         "properties": {
@@ -27232,7 +26138,7 @@
             "type": "string"
           },
           "cover_asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+            "$ref": "#/components/schemas/Dataset_cover_asset_identifier"
           }
         },
         "required": [
@@ -27287,8 +26193,8 @@
             "dataset_id": "dataset_id",
             "name": "name",
             "cover_asset_identifier": {
-              "asset_type": "RESPONSE",
-              "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
+              "asset_type": null,
+              "asset_id": "asset_id"
             }
           }
         },
@@ -27367,17 +26273,11 @@
         "example": {
           "successful_assets": [
             {
-              "asset_identifier": {
-                "asset_type": "RESPONSE",
-                "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
-              },
+              "asset_identifier": "",
               "file_name": "file_name"
             },
             {
-              "asset_identifier": {
-                "asset_type": "RESPONSE",
-                "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
-              },
+              "asset_identifier": "",
               "file_name": "file_name"
             }
           ],
@@ -27440,18 +26340,21 @@
       },
       "DatasetUploadSucceededAsset": {
         "example": {
-          "asset_identifier": {
-            "asset_type": "RESPONSE",
-            "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
-          },
+          "asset_identifier": "",
           "file_name": "file_name"
         },
         "properties": {
           "asset_identifier": {
-            "$ref": "#/components/schemas/AssetIdentifier"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The uploaded image's asset identifier. For a caption sidecar entry, points to the image the caption was applied to.\n",
+            "title": "asset_identifier"
           },
           "file_name": {
-            "description": "Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename, and asset_identifier points to the image the caption was applied to. A single image therefore yields one entry for the image plus one per caption file.\n",
+            "description": "Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename. A single image therefore yields one entry for the image plus one per caption file.\n",
             "nullable": true,
             "title": "file_name",
             "type": "string"
@@ -27759,12 +26662,7 @@
               "$ref": "#/components/schemas/TrainingRun"
             },
             "title": "training_runs",
-            "type": "array",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod"
-              ]
-            }
+            "type": "array"
           }
         },
         "required": [
@@ -28643,13 +27541,7 @@
               "type": "string"
             },
             "title": "tags",
-            "type": "array",
-            "x-ideogram-docs": {
-              "hidden-in": [
-                "prod",
-                "staging"
-              ]
-            }
+            "type": "array"
           }
         },
         "required": [
@@ -29899,6 +28791,13 @@
         "title": "cfg_scale",
         "type": "number"
       },
+      "VideoFrameTimeSeconds": {
+        "description": "A position within a source video, in seconds from its start. The frame\nshown at that position is the one selected; a position past the end of\nthe video is rejected.\n",
+        "example": 1.5,
+        "format": "float",
+        "minimum": 0,
+        "type": "number"
+      },
       "GptImage2Quality": {
         "description": "The quality tier for the image edit. Higher tiers may improve detail\nand take longer to complete.\n",
         "enum": [
@@ -30075,6 +28974,20 @@
         ],
         "title": "InternalBatchResultsResponse_results_inner",
         "type": "object"
+      },
+      "Dataset_cover_asset_identifier": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          }
+        ],
+        "description": "Cover asset of the dataset, null if not set.",
+        "example": {
+          "asset_type": null,
+          "asset_id": "asset_id"
+        },
+        "nullable": true,
+        "title": "Dataset_cover_asset_identifier"
       }
     },
     "securitySchemes": {
