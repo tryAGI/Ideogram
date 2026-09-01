@@ -246,6 +246,15 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
+        public VideoEditClient VideoEdit => new VideoEditClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
+        ///
+        /// </summary>
         public VideoGenerateClient VideoGenerate => new VideoGenerateClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,

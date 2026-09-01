@@ -4,36 +4,32 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the product photo, the masks, and the material references each<br/>
-    /// as either `AssetIdentifier` references or (multipart requests only) raw<br/>
-    /// image bytes; provide exactly one form per input. Supplying both forms<br/>
-    /// of an input, or neither, is rejected with a 400.<br/>
+    /// Supply the product photo (`image`), the masks (`masks`), and the<br/>
+    /// material references (`materials`) as raw image bytes.<br/>
     /// Supply up to 4 masks, with either one material for all of them or one<br/>
-    /// material per mask paired by position. A single-region edit is a one-item<br/>
-    /// `masks` (or `mask_asset_identifiers`) list with a one-item material list.
+    /// material per mask paired by position. A single-region edit is a<br/>
+    /// one-item `masks` list with a one-item material list.
     /// </summary>
     public sealed partial class MaterialSwapRequest
     {
         /// <summary>
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The product photo to edit, by reference. Everything outside the<br/>
+        /// masked region is preserved. Provide exactly one of<br/>
+        /// `image_asset_identifier` or `image`.
         /// </summary>
-        /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_asset_identifier")]
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
         /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
         /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -54,9 +50,10 @@ namespace Ideogram
         /// The masks marking the regions of the product photo to change (max<br/>
         /// 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP<br/>
         /// formats are supported. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo, and follows the same pixel rules<br/>
-        /// as `mask_asset_identifiers`. Multipart requests only. Provide<br/>
-        /// exactly one of `mask_asset_identifiers` or `masks`.
+        /// dimensions as the product photo. White pixels mark the region to<br/>
+        /// change; black pixels are preserved. Alpha-only masks are also<br/>
+        /// supported: opaque pixels mark the region to change and transparent<br/>
+        /// pixels are preserved.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("masks")]
         public global::System.Collections.Generic.IList<byte[]>? Masks { get; set; }
@@ -76,8 +73,7 @@ namespace Ideogram
         /// only JPEG, PNG, and WEBP formats are supported. Only their material<br/>
         /// — color, texture, pattern scale, and orientation — is applied to<br/>
         /// the masked regions. Send one material, which every mask takes, or<br/>
-        /// exactly one per mask paired by position. Multipart requests only.<br/>
-        /// Provide exactly one of `material_asset_identifiers` or `materials`.
+        /// exactly one per mask paired by position.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("materials")]
         public global::System.Collections.Generic.IList<byte[]>? Materials { get; set; }
@@ -132,18 +128,17 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="MaterialSwapRequest" /> class.
         /// </summary>
         /// <param name="imageAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The product photo to edit, by reference. Everything outside the<br/>
+        /// masked region is preserved. Provide exactly one of<br/>
+        /// `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
         /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="imagename">
         /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="maskAssetIdentifiers">
         /// The masks marking the regions of the product photo to change, by<br/>
@@ -158,9 +153,10 @@ namespace Ideogram
         /// The masks marking the regions of the product photo to change (max<br/>
         /// 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP<br/>
         /// formats are supported. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo, and follows the same pixel rules<br/>
-        /// as `mask_asset_identifiers`. Multipart requests only. Provide<br/>
-        /// exactly one of `mask_asset_identifiers` or `masks`.
+        /// dimensions as the product photo. White pixels mark the region to<br/>
+        /// change; black pixels are preserved. Alpha-only masks are also<br/>
+        /// supported: opaque pixels mark the region to change and transparent<br/>
+        /// pixels are preserved.
         /// </param>
         /// <param name="materialAssetIdentifiers">
         /// The material reference images, by reference. Only their material —<br/>
@@ -174,8 +170,7 @@ namespace Ideogram
         /// only JPEG, PNG, and WEBP formats are supported. Only their material<br/>
         /// — color, texture, pattern scale, and orientation — is applied to<br/>
         /// the masked regions. Send one material, which every mask takes, or<br/>
-        /// exactly one per mask paired by position. Multipart requests only.<br/>
-        /// Provide exactly one of `material_asset_identifiers` or `materials`.
+        /// exactly one per mask paired by position.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated image. Defaults to the aspect<br/>

@@ -4,21 +4,19 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name"}
+    /// Example: {"asset_identifier":"","file_name":"file_name"}
     /// </summary>
     public sealed partial class DatasetUploadSucceededAsset
     {
         /// <summary>
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The uploaded image's asset identifier. For a caption sidecar entry, points to the image the caption was applied to.
         /// </summary>
-        /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("asset_identifier")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.AssetIdentifier AssetIdentifier { get; set; }
 
         /// <summary>
-        /// Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename, and asset_identifier points to the image the caption was applied to. A single image therefore yields one entry for the image plus one per caption file.
+        /// Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename. A single image therefore yields one entry for the image plus one per caption file.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("file_name")]
         public string? FileName { get; set; }
@@ -33,11 +31,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="DatasetUploadSucceededAsset" /> class.
         /// </summary>
         /// <param name="assetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The uploaded image's asset identifier. For a caption sidecar entry, points to the image the caption was applied to.
         /// </param>
         /// <param name="fileName">
-        /// Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename, and asset_identifier points to the image the caption was applied to. A single image therefore yields one entry for the image plus one per caption file.
+        /// Original filename of the uploaded file. For a caption sidecar (.txt or .json) this is the sidecar's filename. A single image therefore yields one entry for the image plus one per caption file.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

@@ -217,6 +217,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3AspectRatio), TypeInfoPropertyName = "KlingV3AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3ShotType), TypeInfoPropertyName = "KlingV3ShotType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoKlingV3StandardImageToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditVideoSeedDance2Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectFromV2AssetsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectFromV2AssetsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundV2Response))]
@@ -492,6 +493,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminator))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerDiscriminatorObjectType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole), TypeInfoPropertyName = "MagicPromptRequestMessagesInnerRole2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetCoverAssetIdentifier), TypeInfoPropertyName = "DatasetCoverAssetIdentifier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ToolType>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListCustomModelsScope), TypeInfoPropertyName = "ListCustomModelsScope2")]
@@ -512,8 +514,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4Layout?), TypeInfoPropertyName = "NullableResolutionV4Layout2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4InspirationReferenceModel2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ArtifactGenerationModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4Layout2imageVariant2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ResponseType?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ResponseType2")]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,8 @@ namespace Ideogram
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4Layout2imageVariant2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ResponseType?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ResponseType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeModelVersion?), TypeInfoPropertyName = "NullableDescribeModelVersion2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelEnum?), TypeInfoPropertyName = "NullableModelEnum2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StyleType?), TypeInfoPropertyName = "NullableStyleType2")]
@@ -627,6 +629,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType?), TypeInfoPropertyName = "NullablePostGenerateDesignV4200ResponseDiscriminatorResponseType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType?), TypeInfoPropertyName = "NullableGenerationResponseDataInnerDiscriminatorObjectType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole?), TypeInfoPropertyName = "NullableMagicPromptRequestMessagesInnerRole2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetCoverAssetIdentifier?), TypeInfoPropertyName = "NullableDatasetCoverAssetIdentifier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListCustomModelsScope?), TypeInfoPropertyName = "NullableListCustomModelsScope2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<byte[]>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.Description>))]
@@ -730,6 +733,7 @@ namespace Ideogram
             options.Converters.Add(new global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter());
             options.Converters.Add(new global::Ideogram.JsonConverters.PostGenerateDesignV4200ResponseJsonConverter());
             options.Converters.Add(new global::Ideogram.JsonConverters.GenerationResponseDataInnerJsonConverter());
+            options.Converters.Add(new global::Ideogram.JsonConverters.DatasetCoverAssetIdentifierJsonConverter());
             options.Converters.Add(new global::Ideogram.JsonConverters.UnixTimestampJsonConverter());
 
             options.Converters.Add(new LazyEnumJsonConverterFactory());

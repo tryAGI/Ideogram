@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"successful_assets":[{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name"},{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name"}],"total_count":0,"failed_assets":[{"file_name":"file_name","failure_reason":null},{"file_name":"file_name","failure_reason":null}],"success_count":6,"failure_count":1}
+    /// Example: {"successful_assets":[{"asset_identifier":"","file_name":"file_name"},{"asset_identifier":"","file_name":"file_name"}],"total_count":0,"failed_assets":[{"file_name":"file_name","failure_reason":null},{"file_name":"file_name","failure_reason":null}],"success_count":6,"failure_count":1}
     /// </summary>
     public sealed partial class UploadDatasetAssetsResponse
     {

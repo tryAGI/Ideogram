@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// A dataset for organizing training images.<br/>
-    /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}
+    /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":null,"asset_id":"asset_id"}}
     /// </summary>
     public sealed partial class Dataset
     {
@@ -38,10 +38,10 @@ namespace Ideogram
         public required global::System.DateTime CreationTime { get; set; }
 
         /// <summary>
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// Cover asset of the dataset, null if not set.<br/>
+        /// Example: {"asset_type":null,"asset_id":"asset_id"}
         /// </summary>
-        /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
+        /// <example>{"asset_type":null,"asset_id":"asset_id"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("cover_asset_identifier")]
         public global::Ideogram.AssetIdentifier? CoverAssetIdentifier { get; set; }
 
@@ -67,8 +67,8 @@ namespace Ideogram
         /// When the dataset was created.
         /// </param>
         /// <param name="coverAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// Cover asset of the dataset, null if not set.<br/>
+        /// Example: {"asset_type":null,"asset_id":"asset_id"}
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

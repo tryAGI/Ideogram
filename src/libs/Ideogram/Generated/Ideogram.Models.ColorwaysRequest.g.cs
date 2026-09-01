@@ -4,35 +4,30 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the product photo as either an `AssetIdentifier` reference or<br/>
-    /// (multipart requests only) raw image bytes; provide exactly one of the<br/>
-    /// two forms. Supplying both, or neither, is rejected with a 400.<br/>
-    /// Supply up to 4 masks with one color per mask; a single-region edit is<br/>
-    /// a one-item `masks` (or `mask_asset_identifiers`) list with a one-item<br/>
-    /// `colors` list.
+    /// Supply the product photo as raw `image` bytes, and up to 4 masks with<br/>
+    /// one color per mask; a single-region edit is a one-item `masks` list<br/>
+    /// with a one-item `colors` list.
     /// </summary>
     public sealed partial class ColorwaysRequest
     {
         /// <summary>
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The product photo to recolor, by reference. Everything outside<br/>
+        /// the masked region is preserved. Provide exactly one of<br/>
+        /// `image_asset_identifier` or `image`.
         /// </summary>
-        /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_asset_identifier")]
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
         /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
         /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -53,19 +48,18 @@ namespace Ideogram
         /// The masks marking the regions of the product photo to recolor<br/>
         /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
         /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
-        /// mask must have the same pixel dimensions as the product photo,<br/>
-        /// and follows the same pixel rules as `mask_asset_identifiers`.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifiers` or `masks`.
+        /// mask must have the same pixel dimensions as the product photo.<br/>
+        /// White pixels mark the region to recolor; black pixels are<br/>
+        /// preserved. Alpha-only masks are also supported: opaque pixels<br/>
+        /// mark the region to recolor and transparent pixels are preserved.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("masks")]
         public global::System.Collections.Generic.IList<byte[]>? Masks { get; set; }
 
         /// <summary>
-        /// One target color per mask in `masks` or<br/>
-        /// `mask_asset_identifiers`, as six-digit hex codes like `#B3202C`,<br/>
-        /// paired by position. The product's shape, construction, materials,<br/>
-        /// prints, and logos are always preserved.
+        /// One target color per mask in `masks`, as six-digit hex codes like<br/>
+        /// `#B3202C`, paired by position. The product's shape, construction,<br/>
+        /// materials, prints, and logos are always preserved.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("colors")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -121,24 +115,22 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ColorwaysRequest" /> class.
         /// </summary>
         /// <param name="colors">
-        /// One target color per mask in `masks` or<br/>
-        /// `mask_asset_identifiers`, as six-digit hex codes like `#B3202C`,<br/>
-        /// paired by position. The product's shape, construction, materials,<br/>
-        /// prints, and logos are always preserved.
+        /// One target color per mask in `masks`, as six-digit hex codes like<br/>
+        /// `#B3202C`, paired by position. The product's shape, construction,<br/>
+        /// materials, prints, and logos are always preserved.
         /// </param>
         /// <param name="imageAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The product photo to recolor, by reference. Everything outside<br/>
+        /// the masked region is preserved. Provide exactly one of<br/>
+        /// `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
         /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="imagename">
         /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="maskAssetIdentifiers">
         /// The masks marking the regions of the product photo to recolor, by<br/>
@@ -153,10 +145,10 @@ namespace Ideogram
         /// The masks marking the regions of the product photo to recolor<br/>
         /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
         /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
-        /// mask must have the same pixel dimensions as the product photo,<br/>
-        /// and follows the same pixel rules as `mask_asset_identifiers`.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `mask_asset_identifiers` or `masks`.
+        /// mask must have the same pixel dimensions as the product photo.<br/>
+        /// White pixels mark the region to recolor; black pixels are<br/>
+        /// preserved. Alpha-only masks are also supported: opaque pixels<br/>
+        /// mark the region to recolor and transparent pixels are preserved.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated image. Defaults to the aspect<br/>

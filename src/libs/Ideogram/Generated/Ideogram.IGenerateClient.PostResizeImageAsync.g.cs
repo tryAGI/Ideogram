@@ -15,10 +15,8 @@ namespace Ideogram
         /// final resized image(s) in `data` and the amount charged for variable<br/>
         /// usage-based pricing in `usage_cost_usd_micros`. If a `webhook_url` is<br/>
         /// supplied, the completed result is also POSTed to that URL.<br/>
-        /// Supply the advertisement image as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
+        /// Supply the advertisement image as raw `image` bytes via<br/>
+        /// `multipart/form-data`.<br/>
         /// The required `resolution` (`WIDTHxHEIGHT`) sets the exact output<br/>
         /// dimensions.<br/>
         /// The model is fixed by the route, so no `model` field is accepted.
@@ -55,10 +53,8 @@ namespace Ideogram
         /// final resized image(s) in `data` and the amount charged for variable<br/>
         /// usage-based pricing in `usage_cost_usd_micros`. If a `webhook_url` is<br/>
         /// supplied, the completed result is also POSTed to that URL.<br/>
-        /// Supply the advertisement image as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
+        /// Supply the advertisement image as raw `image` bytes via<br/>
+        /// `multipart/form-data`.<br/>
         /// The required `resolution` (`WIDTHxHEIGHT`) sets the exact output<br/>
         /// dimensions.<br/>
         /// The model is fixed by the route, so no `model` field is accepted.
@@ -95,10 +91,8 @@ namespace Ideogram
         /// final resized image(s) in `data` and the amount charged for variable<br/>
         /// usage-based pricing in `usage_cost_usd_micros`. If a `webhook_url` is<br/>
         /// supplied, the completed result is also POSTed to that URL.<br/>
-        /// Supply the advertisement image as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
+        /// Supply the advertisement image as raw `image` bytes via<br/>
+        /// `multipart/form-data`.<br/>
         /// The required `resolution` (`WIDTHxHEIGHT`) sets the exact output<br/>
         /// dimensions.<br/>
         /// The model is fixed by the route, so no `model` field is accepted.
@@ -115,14 +109,13 @@ namespace Ideogram
         /// Example: https://api.example.com/webhooks/ideogram
         /// </param>
         /// <param name="imageAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// The source image asset to reframe, by reference. Provide exactly one of `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
-        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="imagename">
-        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to reframe (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported.
         /// </param>
         /// <param name="resolution">
         /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>

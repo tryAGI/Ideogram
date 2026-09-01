@@ -5,15 +5,15 @@ namespace Ideogram
 {
     /// <summary>
     /// Detailed view of a dataset, including its files.<br/>
-    /// Example: {"file_count":0,"custom_model_ids":["custom_model_ids","custom_model_ids"],"files":[{"file_name":"file_name","caption":"caption","file_size_bytes":6},{"file_name":"file_name","caption":"caption","file_size_bytes":6}],"dataset":{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}}
+    /// Example: {"file_count":0,"custom_model_ids":["custom_model_ids","custom_model_ids"],"files":[{"file_name":"file_name","caption":"caption","file_size_bytes":6},{"file_name":"file_name","caption":"caption","file_size_bytes":6}],"dataset":{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":null,"asset_id":"asset_id"}}}
     /// </summary>
     public sealed partial class GetDatasetResponse
     {
         /// <summary>
         /// A dataset for organizing training images.<br/>
-        /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}
+        /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":null,"asset_id":"asset_id"}}
         /// </summary>
-        /// <example>{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}</example>
+        /// <example>{"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":null,"asset_id":"asset_id"}}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("dataset")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.Dataset Dataset { get; set; }
@@ -52,7 +52,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="dataset">
         /// A dataset for organizing training images.<br/>
-        /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}}
+        /// Example: {"creation_time":"2000-01-23T04:56:07\u002B00:00","user_id":"user_id","dataset_id":"dataset_id","name":"name","cover_asset_identifier":{"asset_type":null,"asset_id":"asset_id"}}
         /// </param>
         /// <param name="fileCount">
         /// Total number of files in the dataset.

@@ -3,11 +3,11 @@
 
 namespace Ideogram
 {
-    public partial class EditWorkflowClient
+    public partial class VideoEditClient
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostColorwaysSecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostEditVideoSeedDance2SecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,56 +21,68 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostColorwaysSecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostEditVideoSeedDance2SecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostColorwaysSecurityRequirement0,
+            {                s_PostEditVideoSeedDance2SecurityRequirement0,
             };
-        partial void PreparePostColorwaysArguments(
+        partial void PreparePostEditVideoSeedDance2Arguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.ColorwaysRequest request);
-        partial void PreparePostColorwaysRequest(
+            global::Ideogram.EditVideoSeedDance2Request request);
+        partial void PreparePostEditVideoSeedDance2Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.ColorwaysRequest request);
-        partial void ProcessPostColorwaysResponse(
+            global::Ideogram.EditVideoSeedDance2Request request);
+        partial void ProcessPostEditVideoSeedDance2Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostColorwaysResponseContent(
+        partial void ProcessPostEditVideoSeedDance2ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Product Color Change<br/>
-        /// Recolors the masked regions of the product photo, each to its own<br/>
-        /// target color, while preserving the product's geometry, materials,<br/>
-        /// prints, logos, and shading, and keeping every region outside the<br/>
-        /// masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo as raw `image` bytes via<br/>
-        /// `multipart/form-data`.<br/>
-        /// Supply the masks marking the regions to recolor as raw `masks` bytes,<br/>
-        /// paired by position with `colors` — up to 4 regions; a single-region<br/>
-        /// edit is a one-item list. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// recolor; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to recolor and transparent<br/>
-        /// pixels are preserved.
+        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit a video you already have stored with Ideogram by replacing part of<br/>
+        /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
+        /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
+        /// Seedance 2.0 generates a new clip for that span from your prompt, and the<br/>
+        /// result is the source video with the generated clip spliced in over the<br/>
+        /// span: everything before `start_frame_time`, then the generated clip, then<br/>
+        /// everything from `end_frame_time` on. That edited video is the asset the<br/>
+        /// request produces.<br/>
+        /// `is_start_frame_included` and `is_end_frame_included` anchor the generated<br/>
+        /// clip on the span's own end frames, so it joins the surrounding footage<br/>
+        /// instead of cutting to something unrelated. Anchoring the start opens the<br/>
+        /// clip on the frame already at `start_frame_time`; anchoring the end lands<br/>
+        /// it on the frame at `end_frame_time`; anchoring both joins at each seam. At<br/>
+        /// least one must be anchored.<br/>
+        /// The generated clip is used at its own length, which the model rarely makes<br/>
+        /// exactly the span's, so the edited video is usually a different length from<br/>
+        /// the source. Request a `duration` close to the span to keep them near each<br/>
+        /// other. The clip is scaled and cropped to fill the source's frame and<br/>
+        /// conformed to its frame rate, so resolution and aspect ratio follow the<br/>
+        /// source rather than being requested.<br/>
+        /// Video generation always runs asynchronously: the response returns as<br/>
+        /// soon as the request is accepted and carries only a `generation_id`.<br/>
+        /// Poll for completion and results with<br/>
+        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `webhook_url` to have the finished result POSTed to your server<br/>
+        /// instead.<br/>
+        /// Video links are available for a limited period of time; download the<br/>
+        /// video if you want to keep it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ColorwaysResponse> PostColorwaysAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoSeedDance2Response> PostEditVideoSeedDance2Async(
 
-            global::Ideogram.ColorwaysRequest request,
+            global::Ideogram.EditVideoSeedDance2Request request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await PostColorwaysAsResponseAsync(
+            var __response = await PostEditVideoSeedDance2AsResponseAsync(
 
                 request: request,
                 requestOptions: requestOptions,
@@ -80,31 +92,43 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Product Color Change<br/>
-        /// Recolors the masked regions of the product photo, each to its own<br/>
-        /// target color, while preserving the product's geometry, materials,<br/>
-        /// prints, logos, and shading, and keeping every region outside the<br/>
-        /// masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo as raw `image` bytes via<br/>
-        /// `multipart/form-data`.<br/>
-        /// Supply the masks marking the regions to recolor as raw `masks` bytes,<br/>
-        /// paired by position with `colors` — up to 4 regions; a single-region<br/>
-        /// edit is a one-item list. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// recolor; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to recolor and transparent<br/>
-        /// pixels are preserved.
+        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit a video you already have stored with Ideogram by replacing part of<br/>
+        /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
+        /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
+        /// Seedance 2.0 generates a new clip for that span from your prompt, and the<br/>
+        /// result is the source video with the generated clip spliced in over the<br/>
+        /// span: everything before `start_frame_time`, then the generated clip, then<br/>
+        /// everything from `end_frame_time` on. That edited video is the asset the<br/>
+        /// request produces.<br/>
+        /// `is_start_frame_included` and `is_end_frame_included` anchor the generated<br/>
+        /// clip on the span's own end frames, so it joins the surrounding footage<br/>
+        /// instead of cutting to something unrelated. Anchoring the start opens the<br/>
+        /// clip on the frame already at `start_frame_time`; anchoring the end lands<br/>
+        /// it on the frame at `end_frame_time`; anchoring both joins at each seam. At<br/>
+        /// least one must be anchored.<br/>
+        /// The generated clip is used at its own length, which the model rarely makes<br/>
+        /// exactly the span's, so the edited video is usually a different length from<br/>
+        /// the source. Request a `duration` close to the span to keep them near each<br/>
+        /// other. The clip is scaled and cropped to fill the source's frame and<br/>
+        /// conformed to its frame rate, so resolution and aspect ratio follow the<br/>
+        /// source rather than being requested.<br/>
+        /// Video generation always runs asynchronously: the response returns as<br/>
+        /// soon as the request is accepted and carries only a `generation_id`.<br/>
+        /// Poll for completion and results with<br/>
+        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `webhook_url` to have the finished result POSTed to your server<br/>
+        /// instead.<br/>
+        /// Video links are available for a limited period of time; download the<br/>
+        /// video if you want to keep it.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ColorwaysResponse>> PostColorwaysAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateVideoSeedDance2Response>> PostEditVideoSeedDance2AsResponseAsync(
 
-            global::Ideogram.ColorwaysRequest request,
+            global::Ideogram.EditVideoSeedDance2Request request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -112,15 +136,15 @@ namespace Ideogram
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostColorwaysArguments(
+            PreparePostEditVideoSeedDance2Arguments(
                 httpClient: HttpClient,
                 request: request);
 
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostColorwaysSecurityRequirements,
-                operationName: "PostColorwaysAsync");
+                securityRequirements: s_PostEditVideoSeedDance2SecurityRequirements,
+                operationName: "PostEditVideoSeedDance2Async");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -134,13 +158,13 @@ namespace Ideogram
             var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
                 clientOptions: Options,
                 requestOptions: requestOptions,
-                supportsRetry: false);
+                supportsRetry: true);
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/tool/colorways",
+                                path: "/v2/video/edit/seedance-2",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -171,123 +195,12 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-
-                            var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (request.ImageAssetIdentifier != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.ImageAssetIdentifier.ToJson(JsonSerializerContext)),
-                                    name: "\"image_asset_identifier\"");
-
-                            }
-                            if (request.Image != default)
-                            {
-
-                                var __contentImage = new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>());
-                                __contentImage.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
-                                    request.Imagename is null
-                                        ? "application/octet-stream"
-                                        : (global::System.IO.Path.GetExtension(request.Imagename) ?? string.Empty).ToLowerInvariant() switch
-                                        {
-                                            ".aac" => "audio/aac",
-                                            ".flac" => "audio/flac",
-                                            ".gif" => "image/gif",
-                                            ".jpeg" => "image/jpeg",
-                                            ".jpg" => "image/jpeg",
-                                            ".json" => "application/json",
-                                            ".m4a" => "audio/mp4",
-                                            ".mp3" => "audio/mpeg",
-                                            ".mp4" => "video/mp4",
-                                            ".mpeg" => "audio/mpeg",
-                                            ".mpga" => "audio/mpeg",
-                                            ".oga" => "audio/ogg",
-                                            ".ogg" => "audio/ogg",
-                                            ".opus" => "audio/ogg",
-                                            ".pdf" => "application/pdf",
-                                            ".png" => "image/png",
-                                            ".txt" => "text/plain",
-                                            ".wav" => "audio/wav",
-                                            ".weba" => "audio/webm",
-                                            ".webm" => "video/webm",
-                                            ".webp" => "image/webp",
-                                            _ => "application/octet-stream",
-                                        });
-                                __httpRequestContent.Add(
-                                    content: __contentImage,
-                                    name: "\"image\"",
-                                    fileName: request.Imagename != null ? $"\"{request.Imagename}\"" : string.Empty);
-                                if (__contentImage.Headers.ContentDisposition != null)
-                                {
-                                    __contentImage.Headers.ContentDisposition.FileNameStar = null;
-                                }
-
-                            }
-                            if (request.MaskAssetIdentifiers != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.MaskAssetIdentifiers!, x => x.ToJson(JsonSerializerContext)))}]"),
-                                    name: "\"mask_asset_identifiers\"");
-
-                            }
-                            if (request.Masks != default)
-                            {
-
-                                for (var __iMasks = 0; __iMasks < request.Masks.Count; __iMasks++)
-                                {
-                                    var __contentMasks = new global::System.Net.Http.ByteArrayContent(request.Masks[__iMasks]);
-                                __contentMasks.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-                                    __httpRequestContent.Add(
-                                        content: __contentMasks,
-                                        name: "\"masks\"",
-                                        fileName: $"\"file{__iMasks}.bin\"");
-                                    if (__contentMasks.Headers.ContentDisposition != null)
-                                    {
-                                        __contentMasks.Headers.ContentDisposition.FileNameStar = null;
-                                    }
-                                }
-
-                            }
-                            __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.Colors, x => x))}]"),
-                                name: "\"colors\"");
-
-                            if (request.AspectRatio != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.AspectRatio ?? string.Empty),
-                                    name: "\"aspect_ratio\"");
-
-                            }
-                            if (request.Quality != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"quality\"");
-
-                            }
-                            if (request.Private != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Private, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
-                                    name: "\"private\"");
-
-                            }
-                            if (request.WebhookUrl != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.WebhookUrl ?? string.Empty),
-                                    name: "\"webhook_url\"");
-
-                            }
-
+                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
+                            var __httpRequestContent = new global::System.Net.Http.StringContent(
+                                content: __httpRequestContentBody,
+                                encoding: global::System.Text.Encoding.UTF8,
+                                mediaType: "application/json");
                             __httpRequest.Content = __httpRequestContent;
-
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -296,7 +209,7 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostColorwaysRequest(
+                PreparePostEditVideoSeedDance2Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     request: request);
@@ -316,9 +229,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostColorways",
-                                methodName: "PostColorwaysAsync",
-                                pathTemplate: "\"/v2/tool/colorways\"",
+                                operationId: "PostEditVideoSeedDance2",
+                                methodName: "PostEditVideoSeedDance2Async",
+                                pathTemplate: "\"/v2/video/edit/seedance-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -350,9 +263,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostColorways",
-                                methodName: "PostColorwaysAsync",
-                                pathTemplate: "\"/v2/tool/colorways\"",
+                                operationId: "PostEditVideoSeedDance2",
+                                methodName: "PostEditVideoSeedDance2Async",
+                                pathTemplate: "\"/v2/video/edit/seedance-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -391,9 +304,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostColorways",
-                                methodName: "PostColorwaysAsync",
-                                pathTemplate: "\"/v2/tool/colorways\"",
+                                operationId: "PostEditVideoSeedDance2",
+                                methodName: "PostEditVideoSeedDance2Async",
+                                pathTemplate: "\"/v2/video/edit/seedance-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -431,7 +344,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostColorwaysResponse(
+                ProcessPostEditVideoSeedDance2Response(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -439,9 +352,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostColorways",
-                                methodName: "PostColorwaysAsync",
-                                pathTemplate: "\"/v2/tool/colorways\"",
+                                operationId: "PostEditVideoSeedDance2",
+                                methodName: "PostEditVideoSeedDance2Async",
+                                pathTemplate: "\"/v2/video/edit/seedance-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -461,9 +374,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostColorways",
-                                methodName: "PostColorwaysAsync",
-                                pathTemplate: "\"/v2/tool/colorways\"",
+                                operationId: "PostEditVideoSeedDance2",
+                                methodName: "PostEditVideoSeedDance2Async",
+                                pathTemplate: "\"/v2/video/edit/seedance-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -542,24 +455,20 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Insufficient credits or quota.
+                            //
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
                                 global::System.Exception? __exception_402 = null;
-                                global::Ideogram.GenerationErrorResponse? __value_402 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -568,12 +477,11 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
+                                throw global::Ideogram.ApiException.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
-                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -611,24 +519,84 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Too many requests.
+                            //
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 422)
+                            {
+                                string? __content_422 = null;
+                                global::System.Exception? __exception_422 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_422 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_422,
+                                    responseBody: __content_422,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
                             if ((int)__response.StatusCode == 429)
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
-                                global::Ideogram.GenerationErrorResponse? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -637,12 +605,75 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
+                                throw global::Ideogram.ApiException.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
-                                    responseObject: __value_429,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 500)
+                            {
+                                string? __content_500 = null;
+                                global::System.Exception? __exception_500 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_500 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_500,
+                                    responseBody: __content_500,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 503)
+                            {
+                                string? __content_503 = null;
+                                global::System.Exception? __exception_503 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_503 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_503,
+                                    responseBody: __content_503,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -661,7 +692,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostColorwaysResponseContent(
+                                ProcessPostEditVideoSeedDance2ResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -670,9 +701,9 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Ideogram.ColorwaysResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.GenerateVideoSeedDance2Response.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ColorwaysResponse>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateVideoSeedDance2Response>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -702,9 +733,9 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Ideogram.ColorwaysResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.GenerateVideoSeedDance2Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ColorwaysResponse>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateVideoSeedDance2Response>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -745,74 +776,69 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Product Color Change<br/>
-        /// Recolors the masked regions of the product photo, each to its own<br/>
-        /// target color, while preserving the product's geometry, materials,<br/>
-        /// prints, logos, and shading, and keeping every region outside the<br/>
-        /// masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo as raw `image` bytes via<br/>
-        /// `multipart/form-data`.<br/>
-        /// Supply the masks marking the regions to recolor as raw `masks` bytes,<br/>
-        /// paired by position with `colors` — up to 4 regions; a single-region<br/>
-        /// edit is a one-item list. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// recolor; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to recolor and transparent<br/>
-        /// pixels are preserved.
+        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit a video you already have stored with Ideogram by replacing part of<br/>
+        /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
+        /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
+        /// Seedance 2.0 generates a new clip for that span from your prompt, and the<br/>
+        /// result is the source video with the generated clip spliced in over the<br/>
+        /// span: everything before `start_frame_time`, then the generated clip, then<br/>
+        /// everything from `end_frame_time` on. That edited video is the asset the<br/>
+        /// request produces.<br/>
+        /// `is_start_frame_included` and `is_end_frame_included` anchor the generated<br/>
+        /// clip on the span's own end frames, so it joins the surrounding footage<br/>
+        /// instead of cutting to something unrelated. Anchoring the start opens the<br/>
+        /// clip on the frame already at `start_frame_time`; anchoring the end lands<br/>
+        /// it on the frame at `end_frame_time`; anchoring both joins at each seam. At<br/>
+        /// least one must be anchored.<br/>
+        /// The generated clip is used at its own length, which the model rarely makes<br/>
+        /// exactly the span's, so the edited video is usually a different length from<br/>
+        /// the source. Request a `duration` close to the span to keep them near each<br/>
+        /// other. The clip is scaled and cropped to fill the source's frame and<br/>
+        /// conformed to its frame rate, so resolution and aspect ratio follow the<br/>
+        /// source rather than being requested.<br/>
+        /// Video generation always runs asynchronously: the response returns as<br/>
+        /// soon as the request is accepted and carries only a `generation_id`.<br/>
+        /// Poll for completion and results with<br/>
+        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `webhook_url` to have the finished result POSTed to your server<br/>
+        /// instead.<br/>
+        /// Video links are available for a limited period of time; download the<br/>
+        /// video if you want to keep it.
         /// </summary>
-        /// <param name="imageAssetIdentifier">
-        /// The product photo to recolor, by reference. Everything outside<br/>
-        /// the masked region is preserved. Provide exactly one of<br/>
-        /// `image_asset_identifier` or `image`.
+        /// <param name="videoAssetIdentifier">
+        /// A reference to a video already stored with Ideogram to take the frames from. Only video assets are accepted.
         /// </param>
-        /// <param name="image">
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// <param name="startFrameTime">
+        /// Where the replaced span of the source video begins. Everything before it is kept as-is.
         /// </param>
-        /// <param name="imagename">
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// <param name="isStartFrameIncluded">
+        /// Whether the generated clip is anchored on the frame already at `start_frame_time`, so it opens on the footage it replaces. Set it to false to anchor on the end frame alone, in which case `is_end_frame_included` must be true.<br/>
+        /// Default Value: true
         /// </param>
-        /// <param name="maskAssetIdentifiers">
-        /// The masks marking the regions of the product photo to recolor, by<br/>
-        /// reference, paired by position with `colors` (max 4). Every mask<br/>
-        /// must have the same pixel dimensions as the product photo. White<br/>
-        /// pixels mark the region to recolor; black pixels are preserved.<br/>
-        /// Alpha-only masks are also supported: opaque pixels mark the<br/>
-        /// region to recolor and transparent pixels are preserved. Provide<br/>
-        /// exactly one of `mask_asset_identifiers` or `masks`.
+        /// <param name="endFrameTime">
+        /// Where the replaced span of the source video ends; must come after `start_frame_time`. Everything from here on is kept as-is.
         /// </param>
-        /// <param name="masks">
-        /// The masks marking the regions of the product photo to recolor<br/>
-        /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
-        /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
-        /// mask must have the same pixel dimensions as the product photo.<br/>
-        /// White pixels mark the region to recolor; black pixels are<br/>
-        /// preserved. Alpha-only masks are also supported: opaque pixels<br/>
-        /// mark the region to recolor and transparent pixels are preserved.
+        /// <param name="isEndFrameIncluded">
+        /// Whether the generated clip is anchored on the frame at `end_frame_time`, so it lands on the footage that follows the span.<br/>
+        /// Default Value: false
         /// </param>
-        /// <param name="colors">
-        /// One target color per mask in `masks`, as six-digit hex codes like<br/>
-        /// `#B3202C`, paired by position. The product's shape, construction,<br/>
-        /// materials, prints, and logos are always preserved.
+        /// <param name="prompt">
+        /// A natural-language prompt describing what the replaced span should show.<br/>
+        /// Example: The camera pushes in as the dancer turns towards the light.
         /// </param>
-        /// <param name="aspectRatio">
-        /// The aspect ratio of the generated image. Defaults to the aspect<br/>
-        /// ratio of the product photo when omitted, which preserves the<br/>
-        /// original framing exactly. When a different ratio is requested, the<br/>
-        /// scene is extended to fill the new shape rather than cropped, so<br/>
-        /// part of the frame is newly generated. Supported values are `1:1`,<br/>
-        /// `3:4`, `4:3`, `16:9`, and `9:16`.
+        /// <param name="resolution">
+        /// The resolution tier the replaced span is generated at. The clip is then scaled to the source video's own frame, so this affects the detail generated rather than the edited video's dimensions.
         /// </param>
-        /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// <param name="duration">
+        /// The length of the generated video in seconds. When omitted, the model<br/>
+        /// picks the best duration for the prompt ("auto").<br/>
+        /// Example: 5
         /// </param>
-        /// <param name="private">
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
+        /// <param name="generateAudio">
+        /// Whether to generate an audio track for the video. Audio roughly<br/>
+        /// doubles the provider cost and is subject to stricter output moderation.<br/>
+        /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">
         /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
@@ -825,38 +851,48 @@ namespace Ideogram
         /// private and loopback hosts and the cloud metadata service are rejected.<br/>
         /// Example: https://api.example.com/webhooks/ideogram
         /// </param>
+        /// <param name="private">
+        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
+        /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.ColorwaysResponse> PostColorwaysAsync(
-            global::System.Collections.Generic.IList<string> colors,
-            global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
-            byte[]? image = default,
-            string? imagename = default,
-            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? maskAssetIdentifiers = default,
-            global::System.Collections.Generic.IList<byte[]>? masks = default,
-            string? aspectRatio = default,
-            global::Ideogram.GptImage2Quality? quality = default,
-            bool? @private = default,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoSeedDance2Response> PostEditVideoSeedDance2Async(
+            global::Ideogram.AssetIdentifier videoAssetIdentifier,
+            float startFrameTime,
+            float endFrameTime,
+            string prompt,
+            bool? isStartFrameIncluded = default,
+            bool? isEndFrameIncluded = default,
+            global::Ideogram.SeedDance2Resolution? resolution = default,
+            int? duration = default,
+            bool? generateAudio = default,
             string? webhookUrl = default,
+            bool? @private = default,
+            string? targetCollectionId = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.ColorwaysRequest
+            var __request = new global::Ideogram.EditVideoSeedDance2Request
             {
-                ImageAssetIdentifier = imageAssetIdentifier,
-                Image = image,
-                Imagename = imagename,
-                MaskAssetIdentifiers = maskAssetIdentifiers,
-                Masks = masks,
-                Colors = colors,
-                AspectRatio = aspectRatio,
-                Quality = quality,
-                Private = @private,
+                VideoAssetIdentifier = videoAssetIdentifier,
+                StartFrameTime = startFrameTime,
+                IsStartFrameIncluded = isStartFrameIncluded,
+                EndFrameTime = endFrameTime,
+                IsEndFrameIncluded = isEndFrameIncluded,
+                Prompt = prompt,
+                Resolution = resolution,
+                Duration = duration,
+                GenerateAudio = generateAudio,
                 WebhookUrl = webhookUrl,
+                Private = @private,
+                TargetCollectionId = targetCollectionId,
             };
 
-            return await PostColorwaysAsync(
+            return await PostEditVideoSeedDance2Async(
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
