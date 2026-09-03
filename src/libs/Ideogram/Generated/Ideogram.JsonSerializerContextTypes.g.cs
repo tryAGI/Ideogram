@@ -1837,119 +1837,159 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4StyleDescription? Type451 { get; set; }
+        public global::Ideogram.GetIntegrationsResponse? Type451 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4CompositionalDeconstruction? Type452 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.IntegrationType>? Type452 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.V4PromptElement>? Type453 { get; set; }
+        public global::Ideogram.IntegrationType? Type453 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4PromptElement? Type454 { get; set; }
+        public global::Ideogram.IntegrationErrorResponse? Type454 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4ObjPromptElement? Type455 { get; set; }
+        public global::Ideogram.IntegrationErrorResponseError? Type455 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4TextPromptElement? Type456 { get; set; }
+        public global::Ideogram.IntegrationAssetSearchResponse? Type456 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4PromptElementDiscriminator? Type457 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.IntegrationAsset>? Type457 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4PromptElementDiscriminatorType? Type458 { get; set; }
+        public global::Ideogram.IntegrationAsset? Type458 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4ObjPromptElementType? Type459 { get; set; }
+        public global::Ideogram.IntegrationAssetDelivery? Type459 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<int>? Type460 { get; set; }
+        public global::Ideogram.IntegrationAssetSearchRequest? Type460 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4TextPromptElementType? Type461 { get; set; }
+        public global::Ideogram.V4StyleDescription? Type461 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteWithPresetName? Type462 { get; set; }
+        public global::Ideogram.V4CompositionalDeconstruction? Type462 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteWithMembers? Type463 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.V4PromptElement>? Type463 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPalettePresetName? Type464 { get; set; }
+        public global::Ideogram.V4PromptElement? Type464 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>? Type465 { get; set; }
+        public global::Ideogram.V4ObjPromptElement? Type465 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteMember? Type466 { get; set; }
+        public global::Ideogram.V4TextPromptElement? Type466 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AssetType? Type467 { get; set; }
+        public global::Ideogram.V4PromptElementDiscriminator? Type467 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostGenerateDesignV4200Response? Type468 { get; set; }
+        public global::Ideogram.V4PromptElementDiscriminatorType? Type468 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminator? Type469 { get; set; }
+        public global::Ideogram.V4ObjPromptElementType? Type469 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType? Type470 { get; set; }
+        public global::System.Collections.Generic.IList<int>? Type470 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostInternalTesting200Response? Type471 { get; set; }
+        public global::Ideogram.V4TextPromptElementType? Type471 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponseDataInnerDiscriminator? Type472 { get; set; }
+        public global::Ideogram.ColorPaletteWithPresetName? Type472 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType? Type473 { get; set; }
+        public global::Ideogram.ColorPaletteWithMembers? Type473 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptRequestMessagesInnerRole? Type474 { get; set; }
+        public global::Ideogram.ColorPalettePresetName? Type474 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DatasetCoverAssetIdentifier? Type475 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>? Type475 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? Type476 { get; set; }
+        public global::Ideogram.ColorPaletteMember? Type476 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ToolType>? Type477 { get; set; }
+        public global::Ideogram.AssetType? Type477 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ListCustomModelsScope? Type478 { get; set; }
+        public global::Ideogram.PostGenerateDesignV4200Response? Type478 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ModelStatus>? Type479 { get; set; }
+        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminator? Type479 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType? Type480 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.PostInternalTesting200Response? Type481 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.GenerationResponseDataInnerDiscriminator? Type482 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType? Type483 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.MagicPromptRequestMessagesInnerRole? Type484 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.DatasetCoverAssetIdentifier? Type485 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? Type486 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ToolType>? Type487 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.ListCustomModelsScope? Type488 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ModelStatus>? Type489 { get; set; }
 
         /// <summary>
         ///
@@ -2170,26 +2210,34 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.V4PromptElement>? ListType54 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.IntegrationType>? ListType54 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<int>? ListType55 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.IntegrationAsset>? ListType55 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ColorPaletteMember>? ListType56 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.V4PromptElement>? ListType56 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ModelVersion>? ListType57 { get; set; }
+        public global::System.Collections.Generic.List<int>? ListType57 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ToolType>? ListType58 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ColorPaletteMember>? ListType58 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ModelStatus>? ListType59 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ModelVersion>? ListType59 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Ideogram.ToolType>? ListType60 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.List<global::Ideogram.ModelStatus>? ListType61 { get; set; }
     }
 }

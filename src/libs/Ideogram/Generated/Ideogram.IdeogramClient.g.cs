@@ -161,6 +161,15 @@ namespace Ideogram
         };
 
         /// <summary>
+        /// Organization-scoped external asset integrations.
+        /// </summary>
+        public IntegrationsClient Integrations => new IntegrationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
         /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
         /// </summary>
         public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)

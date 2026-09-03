@@ -115,6 +115,11 @@ namespace Ideogram
         public ImagesUpscaleClient ImagesUpscale { get; }
 
         /// <summary>
+        /// Organization-scoped external asset integrations.
+        /// </summary>
+        public IntegrationsClient Integrations { get; }
+
+        /// <summary>
         /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
         /// </summary>
         public InternalTestingClient InternalTesting { get; }
