@@ -92,6 +92,10 @@
       "name": "mini-apps"
     },
     {
+      "description": "Organization-scoped external asset integrations.",
+      "name": "integrations"
+    },
+    {
       "description": "Remove unwanted objects from existing image assets. Requests use\n`AssetIdentifier` references and return a generation id that can be\npolled via `GET /v1/generations/{generation_id}`.\n",
       "externalDocs": {
         "description": "Find out more",
@@ -591,6 +595,73 @@
           "generate"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
+      }
+    },
+    "/integration-assets/{external_ref}": {
+      "get": {
+        "description": "Redeems the short-lived signed delivery reference returned by an integration asset search and streams the asset's media bytes. The signed reference is the sole authorization for this endpoint; it is rejected once it expires or when the integration it names has changed.",
+        "operationId": "get_integration_asset_delivery",
+        "parameters": [
+          {
+            "description": "Signed delivery reference from a search response.",
+            "in": "path",
+            "name": "external_ref",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "format": "binary",
+                  "type": "string"
+                }
+              }
+            },
+            "description": "The asset's media bytes. The Content-Type header carries the asset's media type, and the response is never cacheable by shared caches."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "The delivery reference is invalid or has expired."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "The referenced integration changed after the search."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "Integration delivery is not available."
+          }
+        },
+        "security": [],
+        "summary": "Fetch the media bytes for an integration asset",
+        "tags": [
+          "integrations"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.integrations_controller"
       }
     },
     "/internal-testing": {
@@ -9191,6 +9262,139 @@
           "images-upscale"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
+      }
+    },
+    "/v2/integrations": {
+      "get": {
+        "description": "Lists the distinct integration types enabled for the authenticated organization. The response does not expose configured integration rows, provider details, configuration, or credentials.",
+        "operationId": "get_integrations",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetIntegrationsResponse"
+                }
+              }
+            },
+            "description": "Enabled integration types for the authenticated organization."
+          },
+          "401": {
+            "description": "Authentication is required."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "The caller is not allowed to discover integrations or the mini-app token lacks the required existing asset-browsing scope."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "List enabled integration types",
+        "tags": [
+          "integrations"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.integrations_controller"
+      }
+    },
+    "/v2/integrations/{integration_type}/assets/search": {
+      "post": {
+        "operationId": "post_integration_assets_search",
+        "parameters": [
+          {
+            "description": "The integration operation family to search.",
+            "in": "path",
+            "name": "integration_type",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/IntegrationType"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationAssetSearchRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-body-name": "integration_asset_search_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationAssetSearchResponse"
+                }
+              }
+            },
+            "description": "A normalized, bounded set of assets from configured integrations."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "The integration type or search request is invalid."
+          },
+          "401": {
+            "description": "Authentication is required."
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "The caller is not allowed to search integrations or the mini-app token lacks the required existing asset-browsing scope."
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "The requested integration type is not configured."
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationErrorResponse"
+                }
+              }
+            },
+            "description": "Integration search is not available."
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
+        "summary": "Search assets from an enabled integration type",
+        "tags": [
+          "integrations"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.integrations_controller"
       }
     },
     "/v2/object-removal": {
@@ -27394,10 +27598,11 @@
             "type": "string"
           },
           "embed": {
-            "description": "How the mini-app is embedded.",
+            "description": "How the mini-app runs. Iframe and MFE apps use hosted deployments; native apps are bundled into the Ideogram frontend.",
             "enum": [
               "iframe",
-              "mfe"
+              "mfe",
+              "native"
             ],
             "title": "embed",
             "type": "string"
@@ -27439,7 +27644,7 @@
             "type": "boolean"
           },
           "deployment_url": {
-            "description": "Public URL where the deployed mini-app is served.",
+            "description": "Public URL where a hosted mini-app is served. Native apps omit this field.",
             "format": "uri",
             "nullable": true,
             "title": "deployment_url",
@@ -27469,6 +27674,232 @@
         "title": "MiniAppMarketingProjectionEntry",
         "type": "object",
         "x-drop-nulls": true
+      },
+      "GetIntegrationsResponse": {
+        "additionalProperties": false,
+        "example": {
+          "integration_types": [
+            null,
+            null
+          ]
+        },
+        "properties": {
+          "integration_types": {
+            "description": "Distinct enabled integration types for the active organization.",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationType"
+            },
+            "title": "integration_types",
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "integration_types"
+        ],
+        "title": "GetIntegrationsResponse",
+        "type": "object"
+      },
+      "IntegrationType": {
+        "description": "A provider-neutral integration operation family.",
+        "enum": [
+          "DIGITAL_ASSET_MANAGEMENT"
+        ],
+        "title": "IntegrationType",
+        "type": "string"
+      },
+      "IntegrationErrorResponse": {
+        "additionalProperties": false,
+        "example": {
+          "token_scopes": [
+            "token_scopes",
+            "token_scopes"
+          ],
+          "required_scopes": [
+            "required_scopes",
+            "required_scopes"
+          ],
+          "error": "INTEGRATION_ACCESS_DENIED",
+          "message": "message"
+        },
+        "properties": {
+          "error": {
+            "description": "Stable machine-readable integration error code. `INTEGRATION_ACCESS_DENIED` (403): the caller or organization is not allowed to use integrations. `MINI_APP_TOKEN_MISSING_SCOPES` (403): emitted by the shared mini-app token middleware. `INTEGRATION_REQUEST_INVALID` (400): malformed search request or an integration type that does not implement the operation. `INTEGRATION_NOT_CONFIGURED` (404): the organization has no enabled integration of the requested type. `INTEGRATION_STATE_CHANGED` (409): the integration mutated after the signed reference was issued; run a new search. `INTEGRATION_REFERENCE_INVALID` (404): the signed delivery reference is forged, tampered, malformed, or expired; obtain a fresh reference from a new search. `INTEGRATION_SERVER_ERROR` (503): server-side failure (adapter or runtime unavailable, credential unusable, or a malformed upstream response); retry later.",
+            "enum": [
+              "INTEGRATION_ACCESS_DENIED",
+              "MINI_APP_TOKEN_MISSING_SCOPES",
+              "INTEGRATION_REQUEST_INVALID",
+              "INTEGRATION_NOT_CONFIGURED",
+              "INTEGRATION_STATE_CHANGED",
+              "INTEGRATION_REFERENCE_INVALID",
+              "INTEGRATION_SERVER_ERROR"
+            ],
+            "title": "error",
+            "type": "string"
+          },
+          "message": {
+            "description": "Stable human-readable explanation of the error.",
+            "title": "message",
+            "type": "string"
+          },
+          "required_scopes": {
+            "description": "Required mini-app scopes when scope authorization fails.",
+            "items": {
+              "type": "string"
+            },
+            "title": "required_scopes",
+            "type": "array"
+          },
+          "token_scopes": {
+            "description": "Scopes present in the mini-app token when authorization fails.",
+            "items": {
+              "type": "string"
+            },
+            "title": "token_scopes",
+            "type": "array"
+          }
+        },
+        "required": [
+          "error",
+          "message"
+        ],
+        "title": "IntegrationErrorResponse",
+        "type": "object"
+      },
+      "IntegrationAssetSearchResponse": {
+        "additionalProperties": false,
+        "example": {
+          "assets": [
+            {
+              "delivery": "",
+              "media_type": "media_type",
+              "external_ref": "external_ref",
+              "width": 1,
+              "label": "label",
+              "height": 1
+            },
+            {
+              "delivery": "",
+              "media_type": "media_type",
+              "external_ref": "external_ref",
+              "width": 1,
+              "label": "label",
+              "height": 1
+            }
+          ]
+        },
+        "properties": {
+          "assets": {
+            "items": {
+              "$ref": "#/components/schemas/IntegrationAsset"
+            },
+            "title": "assets",
+            "type": "array"
+          }
+        },
+        "required": [
+          "assets"
+        ],
+        "title": "IntegrationAssetSearchResponse",
+        "type": "object"
+      },
+      "IntegrationAsset": {
+        "additionalProperties": false,
+        "example": {
+          "delivery": "",
+          "media_type": "media_type",
+          "external_ref": "external_ref",
+          "width": 1,
+          "label": "label",
+          "height": 1
+        },
+        "properties": {
+          "external_ref": {
+            "description": "Opaque signed reference to this external asset.",
+            "title": "external_ref",
+            "type": "string"
+          },
+          "delivery": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationAssetDelivery"
+              }
+            ],
+            "description": "Short-lived link for fetching this asset's media bytes.",
+            "title": "delivery"
+          },
+          "label": {
+            "description": "Human-readable asset label supplied by the integration.",
+            "title": "label",
+            "type": "string"
+          },
+          "media_type": {
+            "description": "Asset media type.",
+            "title": "media_type",
+            "type": "string"
+          },
+          "width": {
+            "description": "Pixel width when supplied by the integration.",
+            "minimum": 1,
+            "title": "width",
+            "type": "integer"
+          },
+          "height": {
+            "description": "Pixel height when supplied by the integration.",
+            "minimum": 1,
+            "title": "height",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "delivery",
+          "external_ref",
+          "label",
+          "media_type"
+        ],
+        "title": "IntegrationAsset",
+        "type": "object"
+      },
+      "IntegrationAssetDelivery": {
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "description": "Short-lived URL that streams this asset's media bytes.",
+            "title": "url",
+            "type": "string"
+          },
+          "expires_at": {
+            "description": "Instant after which the delivery URL stops working.",
+            "format": "date-time",
+            "title": "expires_at",
+            "type": "string"
+          }
+        },
+        "required": [
+          "expires_at",
+          "url"
+        ],
+        "title": "IntegrationAssetDelivery",
+        "type": "object"
+      },
+      "IntegrationAssetSearchRequest": {
+        "additionalProperties": false,
+        "example": {
+          "limit": 1
+        },
+        "properties": {
+          "limit": {
+            "description": "Maximum number of assets to return, bounded by the configured runtime policy. The operation returns a single bounded browse result; text search and pagination are future extensions that add optional fields additively.",
+            "minimum": 1,
+            "title": "limit",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "limit"
+        ],
+        "title": "IntegrationAssetSearchRequest",
+        "type": "object"
       },
       "V4JsonPrompt": {
         "description": "Structured prompt for Ideogram 4.0 generation. When `json_prompt` is\nsupplied, magic-prompt is disabled and the diffusion model consumes\nthe JSON contract directly. Mutually exclusive with `text_prompt`\nand the legacy `prompt` field.\n",

@@ -469,6 +469,16 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.MiniAppMarketingProjectionEntry>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MiniAppMarketingProjectionEntry))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed), TypeInfoPropertyName = "MiniAppMarketingProjectionEntryEmbed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetIntegrationsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.IntegrationType>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationType), TypeInfoPropertyName = "IntegrationType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationErrorResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationErrorResponseError), TypeInfoPropertyName = "IntegrationErrorResponseError2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAssetSearchResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.IntegrationAsset>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAsset))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAssetDelivery))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAssetSearchRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4StyleDescription))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4CompositionalDeconstruction))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.V4PromptElement>))]
@@ -504,16 +514,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OutputResolution?), TypeInfoPropertyName = "NullableOutputResolution2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeedV4?), TypeInfoPropertyName = "NullableRenderingSpeedV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV4?), TypeInfoPropertyName = "NullableAspectRatioV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptOption?), TypeInfoPropertyName = "NullableMagicPromptOption2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PImageResolution?), TypeInfoPropertyName = "NullablePImageResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Quality?), TypeInfoPropertyName = "NullableQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV3?), TypeInfoPropertyName = "NullableAspectRatioV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4StableVersion?), TypeInfoPropertyName = "NullableGenerateImageRequestV4StableVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4ImageToImage?), TypeInfoPropertyName = "NullableResolutionV4ImageToImage2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4Layout?), TypeInfoPropertyName = "NullableResolutionV4Layout2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4InspirationReferenceModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ArtifactGenerationModel2")]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,16 @@ namespace Ideogram
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV4?), TypeInfoPropertyName = "NullableAspectRatioV42")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptOption?), TypeInfoPropertyName = "NullableMagicPromptOption2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PImageResolution?), TypeInfoPropertyName = "NullablePImageResolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Quality?), TypeInfoPropertyName = "NullableQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV3?), TypeInfoPropertyName = "NullableAspectRatioV32")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4StableVersion?), TypeInfoPropertyName = "NullableGenerateImageRequestV4StableVersion2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4ImageToImage?), TypeInfoPropertyName = "NullableResolutionV4ImageToImage2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4Layout?), TypeInfoPropertyName = "NullableResolutionV4Layout2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4InspirationReferenceModel2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ArtifactGenerationModel2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4Layout2imageVariant2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ResponseType?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ResponseType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeModelVersion?), TypeInfoPropertyName = "NullableDescribeModelVersion2")]
@@ -619,6 +629,8 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppRequestEmbed?), TypeInfoPropertyName = "NullablePublishMiniAppRequestEmbed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppPreviewRequestEmbed?), TypeInfoPropertyName = "NullablePublishMiniAppPreviewRequestEmbed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed?), TypeInfoPropertyName = "NullableMiniAppMarketingProjectionEntryEmbed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationType?), TypeInfoPropertyName = "NullableIntegrationType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationErrorResponseError?), TypeInfoPropertyName = "NullableIntegrationErrorResponseError2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElement?), TypeInfoPropertyName = "NullableV4PromptElement2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElementDiscriminatorType?), TypeInfoPropertyName = "NullableV4PromptElementDiscriminatorType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4ObjPromptElementType?), TypeInfoPropertyName = "NullableV4ObjPromptElementType2")]
@@ -685,6 +697,8 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.CustomModel>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TrainingRun>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.MiniAppMarketingProjectionEntry>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.IntegrationType>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.IntegrationAsset>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.V4PromptElement>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<int>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ColorPaletteMember>))]
@@ -1050,6 +1064,14 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed)
 
                     || typeToConvert == typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed?)
+
+                    || typeToConvert == typeof(global::Ideogram.IntegrationType)
+
+                    || typeToConvert == typeof(global::Ideogram.IntegrationType?)
+
+                    || typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError)
+
+                    || typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError?)
 
                     || typeToConvert == typeof(global::Ideogram.V4PromptElementDiscriminatorType)
 
@@ -1950,6 +1972,26 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed?))
                 {
                     return new global::Ideogram.JsonConverters.MiniAppMarketingProjectionEntryEmbedNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.IntegrationType))
+                {
+                    return new global::Ideogram.JsonConverters.IntegrationTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.IntegrationType?))
+                {
+                    return new global::Ideogram.JsonConverters.IntegrationTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError))
+                {
+                    return new global::Ideogram.JsonConverters.IntegrationErrorResponseErrorJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError?))
+                {
+                    return new global::Ideogram.JsonConverters.IntegrationErrorResponseErrorNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.V4PromptElementDiscriminatorType))
