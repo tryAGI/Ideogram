@@ -7,7 +7,7 @@ namespace Ideogram
     /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>
     /// the supported ad resolutions listed above; any other value is<br/>
     /// rejected with a 400. Each returned image has exactly these pixel<br/>
-    /// dimensions.
+    /// dimensions, whether or not a `platform` was supplied.
     /// </summary>
     public enum AdResizerRequestResolution
     {

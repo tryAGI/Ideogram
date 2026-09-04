@@ -9476,7 +9476,7 @@
     },
     "/v2/tool/ad-resizer": {
       "post": {
-        "description": "Reframes the source creative to the exact requested ad resolution,\nregenerating the layout so text and key elements stay legible at the\ntarget size.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed. The completed generation\nreports the exact amount billed for the request in\n`usage_cost_usd_micros`.\n\nSupply the source creative as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n",
+        "description": "Reframes the source creative to the exact requested ad resolution,\nregenerating the layout so text and key elements stay legible at the\ntarget size.\n\nSupply `platform` to keep the whole advertisement clear of that\nplatform's own interface. The advertisement is generated at the largest\nrectangle that fits inside the platform's published safe zone for the\nrequested aspect ratio, placed at that rectangle's position, and the\nspace around it is filled in so the returned image is still exactly the\nrequested resolution. Omit `platform` and the advertisement fills the\nwhole frame.\n\nSafe zones are published per aspect ratio, and not every platform\npublishes one for every ratio. `google` and `tiktok` publish `16:9`,\n`1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A\n`platform` combined with a `resolution` that platform has no safe zone\nfor is rejected with a 400.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed. The completed generation\nreports the exact amount billed for the request in\n`usage_cost_usd_micros`.\n\nSupply the source creative as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n",
         "operationId": "post_ad_resizer",
         "requestBody": {
           "content": {
@@ -9496,7 +9496,7 @@
               }
             }
           },
-          "description": "The source creative and the target ad resolution. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "description": "The source creative, the target ad resolution, and optionally the platform whose safe zone the advertisement must stay inside. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
           "required": true,
           "x-body-name": "body"
         },
@@ -19185,7 +19185,7 @@
             "type": "string"
           },
           "resolution": {
-            "description": "Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of\nthe supported ad resolutions listed above; any other value is\nrejected with a 400. Each returned image has exactly these pixel\ndimensions.\n",
+            "description": "Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of\nthe supported ad resolutions listed above; any other value is\nrejected with a 400. Each returned image has exactly these pixel\ndimensions, whether or not a `platform` was supplied.\n",
             "enum": [
               "300x250",
               "336x280",
@@ -19218,6 +19218,16 @@
               "3840x1920",
               "1280x3840",
               "3840x1280"
+            ],
+            "type": "string"
+          },
+          "platform": {
+            "description": "The ad platform whose published safe zone the advertisement must\nstay inside. `google` covers YouTube and Google Ads placements;\n`meta` covers Facebook and Instagram. When supplied, the\nadvertisement is generated inside that platform's safe zone for the\nrequested aspect ratio and the remaining space is filled in around\nit. When omitted, the advertisement fills the whole frame. Any other\nvalue is rejected with a 400.\n",
+            "enum": [
+              "google",
+              "meta",
+              "snapchat",
+              "tiktok"
             ],
             "type": "string"
           },

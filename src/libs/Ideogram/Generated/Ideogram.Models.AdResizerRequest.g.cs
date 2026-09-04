@@ -38,12 +38,25 @@ namespace Ideogram
         /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>
         /// the supported ad resolutions listed above; any other value is<br/>
         /// rejected with a 400. Each returned image has exactly these pixel<br/>
-        /// dimensions.
+        /// dimensions, whether or not a `platform` was supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdResizerRequestResolutionJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.AdResizerRequestResolution Resolution { get; set; }
+
+        /// <summary>
+        /// The ad platform whose published safe zone the advertisement must<br/>
+        /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
+        /// `meta` covers Facebook and Instagram. When supplied, the<br/>
+        /// advertisement is generated inside that platform's safe zone for the<br/>
+        /// requested aspect ratio and the remaining space is filled in around<br/>
+        /// it. When omitted, the advertisement fills the whole frame. Any other<br/>
+        /// value is rejected with a 400.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("platform")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdResizerRequestPlatformJsonConverter))]
+        public global::Ideogram.AdResizerRequestPlatform? Platform { get; set; }
 
         /// <summary>
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".
@@ -102,7 +115,7 @@ namespace Ideogram
         /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>
         /// the supported ad resolutions listed above; any other value is<br/>
         /// rejected with a 400. Each returned image has exactly these pixel<br/>
-        /// dimensions.
+        /// dimensions, whether or not a `platform` was supplied.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -117,6 +130,15 @@ namespace Ideogram
         /// The source creative to reframe (max size 25MB), as raw bytes; only<br/>
         /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
         /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// </param>
+        /// <param name="platform">
+        /// The ad platform whose published safe zone the advertisement must<br/>
+        /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
+        /// `meta` covers Facebook and Instagram. When supplied, the<br/>
+        /// advertisement is generated inside that platform's safe zone for the<br/>
+        /// requested aspect ratio and the remaining space is filled in around<br/>
+        /// it. When omitted, the advertisement fills the whole frame. Any other<br/>
+        /// value is rejected with a 400.
         /// </param>
         /// <param name="prompt">
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".
@@ -153,6 +175,7 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
+            global::Ideogram.AdResizerRequestPlatform? platform,
             string? prompt,
             global::Ideogram.Quality? quality,
             int? numImages,
@@ -163,6 +186,7 @@ namespace Ideogram
             this.Image = image;
             this.Imagename = imagename;
             this.Resolution = resolution;
+            this.Platform = platform;
             this.Prompt = prompt;
             this.Quality = quality;
             this.NumImages = numImages;
