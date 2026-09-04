@@ -737,6 +737,17 @@ namespace Ideogram
             return Resolver.GetTypeInfo(type, Options);
         }
 
+         static void AddConverters(global::System.Text.Json.JsonSerializerOptions options)
+        {
+            options.Converters.Add(new global::Ideogram.JsonConverters.V4PromptElementJsonConverter());
+            options.Converters.Add(new global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter());
+            options.Converters.Add(new global::Ideogram.JsonConverters.PostGenerateDesignV4200ResponseJsonConverter());
+            options.Converters.Add(new global::Ideogram.JsonConverters.GenerationResponseDataInnerJsonConverter());
+            options.Converters.Add(new global::Ideogram.JsonConverters.DatasetCoverAssetIdentifierJsonConverter());
+            options.Converters.Add(new global::Ideogram.JsonConverters.UnixTimestampJsonConverter());
+            options.Converters.Add(new LazyEnumJsonConverterFactory());
+        }
+
         private static global::System.Text.Json.JsonSerializerOptions CreateDefaultOptions()
         {
             var options = new global::System.Text.Json.JsonSerializerOptions
@@ -744,14 +755,7 @@ namespace Ideogram
                 DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
                 TypeInfoResolver = Resolver,
             };
-            options.Converters.Add(new global::Ideogram.JsonConverters.V4PromptElementJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.PostGenerateDesignV4200ResponseJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.GenerationResponseDataInnerJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.DatasetCoverAssetIdentifierJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.UnixTimestampJsonConverter());
-
-            options.Converters.Add(new LazyEnumJsonConverterFactory());
+            AddConverters(options);
 
             return options;
         }
