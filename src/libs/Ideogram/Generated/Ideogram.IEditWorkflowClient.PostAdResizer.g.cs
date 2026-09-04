@@ -9,6 +9,18 @@ namespace Ideogram
         /// Reframes the source creative to the exact requested ad resolution,<br/>
         /// regenerating the layout so text and key elements stay legible at the<br/>
         /// target size.<br/>
+        /// Supply `platform` to keep the whole advertisement clear of that<br/>
+        /// platform's own interface. The advertisement is generated at the largest<br/>
+        /// rectangle that fits inside the platform's published safe zone for the<br/>
+        /// requested aspect ratio, placed at that rectangle's position, and the<br/>
+        /// space around it is filled in so the returned image is still exactly the<br/>
+        /// requested resolution. Omit `platform` and the advertisement fills the<br/>
+        /// whole frame.<br/>
+        /// Safe zones are published per aspect ratio, and not every platform<br/>
+        /// publishes one for every ratio. `google` and `tiktok` publish `16:9`,<br/>
+        /// `1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A<br/>
+        /// `platform` combined with a `resolution` that platform has no safe zone<br/>
+        /// for is rejected with a 400.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. The completed generation<br/>
@@ -33,6 +45,18 @@ namespace Ideogram
         /// Reframes the source creative to the exact requested ad resolution,<br/>
         /// regenerating the layout so text and key elements stay legible at the<br/>
         /// target size.<br/>
+        /// Supply `platform` to keep the whole advertisement clear of that<br/>
+        /// platform's own interface. The advertisement is generated at the largest<br/>
+        /// rectangle that fits inside the platform's published safe zone for the<br/>
+        /// requested aspect ratio, placed at that rectangle's position, and the<br/>
+        /// space around it is filled in so the returned image is still exactly the<br/>
+        /// requested resolution. Omit `platform` and the advertisement fills the<br/>
+        /// whole frame.<br/>
+        /// Safe zones are published per aspect ratio, and not every platform<br/>
+        /// publishes one for every ratio. `google` and `tiktok` publish `16:9`,<br/>
+        /// `1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A<br/>
+        /// `platform` combined with a `resolution` that platform has no safe zone<br/>
+        /// for is rejected with a 400.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. The completed generation<br/>
@@ -57,6 +81,18 @@ namespace Ideogram
         /// Reframes the source creative to the exact requested ad resolution,<br/>
         /// regenerating the layout so text and key elements stay legible at the<br/>
         /// target size.<br/>
+        /// Supply `platform` to keep the whole advertisement clear of that<br/>
+        /// platform's own interface. The advertisement is generated at the largest<br/>
+        /// rectangle that fits inside the platform's published safe zone for the<br/>
+        /// requested aspect ratio, placed at that rectangle's position, and the<br/>
+        /// space around it is filled in so the returned image is still exactly the<br/>
+        /// requested resolution. Omit `platform` and the advertisement fills the<br/>
+        /// whole frame.<br/>
+        /// Safe zones are published per aspect ratio, and not every platform<br/>
+        /// publishes one for every ratio. `google` and `tiktok` publish `16:9`,<br/>
+        /// `1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A<br/>
+        /// `platform` combined with a `resolution` that platform has no safe zone<br/>
+        /// for is rejected with a 400.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. The completed generation<br/>
@@ -85,7 +121,16 @@ namespace Ideogram
         /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>
         /// the supported ad resolutions listed above; any other value is<br/>
         /// rejected with a 400. Each returned image has exactly these pixel<br/>
-        /// dimensions.
+        /// dimensions, whether or not a `platform` was supplied.
+        /// </param>
+        /// <param name="platform">
+        /// The ad platform whose published safe zone the advertisement must<br/>
+        /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
+        /// `meta` covers Facebook and Instagram. When supplied, the<br/>
+        /// advertisement is generated inside that platform's safe zone for the<br/>
+        /// requested aspect ratio and the remaining space is filled in around<br/>
+        /// it. When omitted, the advertisement fills the whole frame. Any other<br/>
+        /// value is rejected with a 400.
         /// </param>
         /// <param name="prompt">
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".
@@ -122,6 +167,7 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
+            global::Ideogram.AdResizerRequestPlatform? platform = default,
             string? prompt = default,
             global::Ideogram.Quality? quality = default,
             int? numImages = default,

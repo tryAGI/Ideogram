@@ -255,6 +255,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestResolution), TypeInfoPropertyName = "AdResizerRequestResolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestPlatform), TypeInfoPropertyName = "AdResizerRequestPlatform2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsRequestVariationType), TypeInfoPropertyName = "AdVariationsRequestVariationType2")]
@@ -513,7 +514,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeed?), TypeInfoPropertyName = "NullableRenderingSpeed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OutputResolution?), TypeInfoPropertyName = "NullableOutputResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeedV4?), TypeInfoPropertyName = "NullableRenderingSpeedV42")]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -526,6 +526,7 @@ namespace Ideogram
         Converters = new global::System.Type[]
         {
         })]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeedV4?), TypeInfoPropertyName = "NullableRenderingSpeedV42")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV4?), TypeInfoPropertyName = "NullableAspectRatioV42")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptOption?), TypeInfoPropertyName = "NullableMagicPromptOption2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PImageResolution?), TypeInfoPropertyName = "NullablePImageResolution2")]
@@ -587,6 +588,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LookbookRequestCategory?), TypeInfoPropertyName = "NullableLookbookRequestCategory2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotView?), TypeInfoPropertyName = "NullablePackshotView2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestResolution?), TypeInfoPropertyName = "NullableAdResizerRequestResolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestPlatform?), TypeInfoPropertyName = "NullableAdResizerRequestPlatform2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsRequestVariationType?), TypeInfoPropertyName = "NullableAdVariationsRequestVariationType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleToolRequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleToolRequestUpscaleFactor2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditImageGemini30ProRequestResolutionTier?), TypeInfoPropertyName = "NullableEditImageGemini30ProRequestResolutionTier2")]
@@ -909,6 +911,10 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution)
 
                     || typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution?)
+
+                    || typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform)
+
+                    || typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform?)
 
                     || typeToConvert == typeof(global::Ideogram.AdVariationsRequestVariationType)
 
@@ -1577,6 +1583,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution?))
                 {
                     return new global::Ideogram.JsonConverters.AdResizerRequestResolutionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform))
+                {
+                    return new global::Ideogram.JsonConverters.AdResizerRequestPlatformJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform?))
+                {
+                    return new global::Ideogram.JsonConverters.AdResizerRequestPlatformNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.AdVariationsRequestVariationType))
