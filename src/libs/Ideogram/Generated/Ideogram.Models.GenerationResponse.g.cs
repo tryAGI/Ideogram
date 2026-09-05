@@ -58,7 +58,8 @@ namespace Ideogram
         /// <summary>
         /// A list of generated images or videos. Present when `status` is<br/>
         /// `completed`. Video entries carry an `object_type` of<br/>
-        /// `video.generation`; entries without an `object_type` are images.
+        /// `video.generation`; layerized designs carry `layerized_image`;<br/>
+        /// entries without an `object_type` are images.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("data")]
         public global::System.Collections.Generic.IList<global::Ideogram.GenerationResponseDataInner>? Data { get; set; }
@@ -96,7 +97,8 @@ namespace Ideogram
         /// <param name="data">
         /// A list of generated images or videos. Present when `status` is<br/>
         /// `completed`. Video entries carry an `object_type` of<br/>
-        /// `video.generation`; entries without an `object_type` are images.
+        /// `video.generation`; layerized designs carry `layerized_image`;<br/>
+        /// entries without an `object_type` are images.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

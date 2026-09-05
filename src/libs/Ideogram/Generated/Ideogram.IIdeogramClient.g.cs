@@ -63,6 +63,11 @@ namespace Ideogram
         public DatasetsClient Datasets { get; }
 
         /// <summary>
+        ///
+        /// </summary>
+        public DesignClient Design { get; }
+
+        /// <summary>
         /// Asynchronous image-editing workflows that return results through generation polling.
         /// </summary>
         public EditWorkflowClient EditWorkflow { get; }
