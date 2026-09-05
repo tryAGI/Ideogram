@@ -19,6 +19,10 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
+        LayerizedImage,
+        /// <summary>
+        ///
+        /// </summary>
         VideoGeneration,
     }
 
@@ -36,6 +40,7 @@ namespace Ideogram
             {
                 GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration => "image.generation",
                 GenerationResponseDataInnerDiscriminatorObjectType.ImageWithoutPromptOrSeed => "image.without-prompt-or-seed",
+                GenerationResponseDataInnerDiscriminatorObjectType.LayerizedImage => "layerized_image",
                 GenerationResponseDataInnerDiscriminatorObjectType.VideoGeneration => "video.generation",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -49,6 +54,7 @@ namespace Ideogram
             {
                 "image.generation" => GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration,
                 "image.without-prompt-or-seed" => GenerationResponseDataInnerDiscriminatorObjectType.ImageWithoutPromptOrSeed,
+                "layerized_image" => GenerationResponseDataInnerDiscriminatorObjectType.LayerizedImage,
                 "video.generation" => GenerationResponseDataInnerDiscriminatorObjectType.VideoGeneration,
                 _ => null,
             };

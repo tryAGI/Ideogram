@@ -77,6 +77,15 @@ namespace Ideogram
         };
 
         /// <summary>
+        ///
+        /// </summary>
+        public DesignClient Design => new DesignClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
         /// Asynchronous image-editing workflows that return results through generation polling.
         /// </summary>
         public EditWorkflowClient EditWorkflow => new EditWorkflowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)

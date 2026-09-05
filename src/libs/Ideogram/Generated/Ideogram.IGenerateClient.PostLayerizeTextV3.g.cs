@@ -56,6 +56,9 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -64,6 +67,7 @@ namespace Ideogram
             string imagename,
             string? prompt = default,
             int? seed = default,
+            global::System.Collections.Generic.IList<byte[]>? fontCandidateFiles = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
 
@@ -87,6 +91,12 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </param>
+        /// <param name="fontCandidateFilesFileNames">
+        /// Optional file names to use for the multipart 'font_candidate_files' file parts.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
@@ -95,6 +105,8 @@ namespace Ideogram
             string imagename,
             string? prompt = default,
             int? seed = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? fontCandidateFiles = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? fontCandidateFilesFileNames = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -117,6 +129,12 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </param>
+        /// <param name="fontCandidateFilesFileNames">
+        /// Optional file names to use for the multipart 'font_candidate_files' file parts.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
@@ -125,6 +143,8 @@ namespace Ideogram
             string imagename,
             string? prompt = default,
             int? seed = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? fontCandidateFiles = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? fontCandidateFilesFileNames = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

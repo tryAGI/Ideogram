@@ -7352,6 +7352,75 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
+    "/v2/design/layerize/ideogram-v3": {
+      "post": {
+        "description": "Decompose a flat image into an editable design: the text in the image\nis detected, erased from the image, and returned as positioned text\nblocks with matched fonts, sizes, and colors, alongside a text-free\nbase image.\n\nSupply the source either as an `image_asset_identifier` reference (an\nimage already stored with Ideogram) or as raw `image` bytes (multipart\nrequests only). Provide exactly one of the two forms; supplying both,\nor neither, is rejected with a 400.\n\nA `prompt` describing the image can guide text detection; when\nomitted, detection runs on the image alone.\n\nBy default the request blocks until layerization is complete and\nreturns the result in `data`. Set `async` to true to return\nimmediately after the request is accepted, then poll for completion\nand results with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_layerize_design_ideogram_v3",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/LayerizeDesignIdeogramV3Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LayerizeDesignIdeogramV3Request"
+              }
+            }
+          },
+          "description": "A request to layerize the text in one image. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LayerizeDesignIdeogramV3Response"
+                }
+              }
+            },
+            "description": "The layerized design (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "Not authorized to layerize images."
+          },
+          "404": {
+            "description": "The referenced source asset was not found."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Layerize the text in an image",
+        "tags": [
+          "design"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.design_controller"
+      }
+    },
     "/v2/images/edit/gemini-3.0-pro": {
       "post": {
         "description": "Edit one or more source images by describing the change in plain language,\nwith output up to 4K. Supply the sources either as `image_asset_identifiers`\nreferences (images already stored with Ideogram) or as raw `images` bytes\n(multipart requests only) — callers are never required to upload assets\nfirst. If both are supplied, the references win and the bytes are ignored.\n\nBy default the request blocks until the edited images are ready and\nreturns them in `data`. Set `async` to true to return immediately after\nthe request is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
@@ -7682,6 +7751,216 @@
           "images-edit"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_edit_controller"
+      }
+    },
+    "/v2/images/generate/gemini-3.0-pro": {
+      "post": {
+        "description": "Generate one or more images with Gemini 3.0 Pro. The prompt is\nconsumed by the model directly, without rewriting.\n\nThe output is served at the closest aspect ratio the model supports,\nat the requested `resolution_tier` (1K by default).\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_generate_image_v2_gemini30_pro",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageGemini30ProRequest"
+              }
+            }
+          },
+          "description": "A request to generate images with Gemini 3.0 Pro.",
+          "required": true,
+          "x-body-name": "generate_image_gemini30_pro_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageGemini30ProResponse"
+                }
+              }
+            },
+            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate images with Gemini 3.0 Pro from a text prompt",
+        "tags": [
+          "images-generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
+      }
+    },
+    "/v2/images/generate/gemini-3.1-flash": {
+      "post": {
+        "description": "Generate one or more images with Gemini 3.1 Flash. The prompt is\nconsumed by the model directly, without rewriting.\n\nThe output is served at the closest aspect ratio the model supports,\nat 1K resolution.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_generate_image_v2_gemini31_flash",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageGemini31FlashRequest"
+              }
+            }
+          },
+          "description": "A request to generate images with Gemini 3.1 Flash.",
+          "required": true,
+          "x-body-name": "generate_image_gemini31_flash_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageGemini31FlashResponse"
+                }
+              }
+            },
+            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate images with Gemini 3.1 Flash from a text prompt",
+        "tags": [
+          "images-generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
+      }
+    },
+    "/v2/images/generate/gpt-image-2": {
+      "post": {
+        "description": "Generate one or more images with GPT Image 2. The prompt is consumed\nby the model directly, without rewriting.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_generate_image_v2_gpt_image2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageGptImage2Request"
+              }
+            }
+          },
+          "description": "A request to generate images with GPT Image 2.",
+          "required": true,
+          "x-body-name": "generate_image_gpt_image2_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageGptImage2Response"
+                }
+              }
+            },
+            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate images with GPT Image 2 from a text prompt",
+        "tags": [
+          "images-generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
     "/v2/images/generate/ideogram-4.5": {
@@ -10509,6 +10788,81 @@
           "tools"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tools_controller"
+      }
+    },
+    "/v2/video/edit/minimax-h3-reference-to-video": {
+      "post": {
+        "description": "Produce a video from a text prompt and reference media with MiniMax H3.\n\nThe prompt addresses the references by position: the first reference\nimage is `Image 1`, the second `Image 2`, the first reference video is\n`Video 1`, and so on. Supply reference images either as\n`reference_image_asset_identifiers` (images already stored with\nIdeogram) or as raw `reference_images` bytes (multipart requests only);\nsupplying both is rejected, and uploaded bytes are used for this request\nonly and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. At most 9 reference images and 3 reference\nvideos are accepted, and reference videos are capped again on clip\nlength.\n\nReferences are optional. With none, the video is produced from the\nprompt alone.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_edit_video_minimax_h3_reference_to_video",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "reference_image_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "reference_video_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/EditVideoMinimaxH3ReferenceToVideoRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditVideoMinimaxH3ReferenceToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to produce a video from reference media with MiniMax H3. Use `multipart/form-data` to upload `reference_images` bytes directly, or `application/json` (or multipart with the asset identifier fields) to reference existing assets instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoMinimaxH3Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "404": {
+            "description": "A referenced asset was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Produce a video from reference images and videos with MiniMax H3",
+        "tags": [
+          "video-edit"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_edit_controller"
       }
     },
     "/v2/video/edit/seedance-2": {
@@ -14512,7 +14866,7 @@
             "type": "string"
           },
           "data": {
-            "description": "A list of generated images or videos. Present when `status` is\n`completed`. Video entries carry an `object_type` of\n`video.generation`; entries without an `object_type` are images.\n",
+            "description": "A list of generated images or videos. Present when `status` is\n`completed`. Video entries carry an `object_type` of\n`video.generation`; layerized designs carry `layerized_image`;\nentries without an `object_type` are images.\n",
             "items": {
               "$ref": "#/components/schemas/GenerationResponse_data_inner"
             },
@@ -16635,6 +16989,14 @@
           },
           "seed": {
             "$ref": "#/components/schemas/Seed"
+          },
+          "font_candidate_files": {
+            "description": "Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "type": "array"
           }
         },
         "required": [
@@ -16732,153 +17094,6 @@
           "text_blocks"
         ],
         "title": "LayerizeTextResponse",
-        "type": "object"
-      },
-      "DetectedTextBlock": {
-        "description": "A single detected text region with its position, content, font information, and styling.",
-        "example": {
-          "role": "heading",
-          "color": "#212121",
-          "font_alternatives": [
-            "font_alternatives",
-            "font_alternatives"
-          ],
-          "font_size": 2,
-          "font_name": "font_name",
-          "line_height": 7.0614014,
-          "x": 0,
-          "width": 1,
-          "y": 6,
-          "angle": 5.637377,
-          "text": "Hello World",
-          "alignment": "left",
-          "formatting": [
-            "bold",
-            "bold"
-          ],
-          "height": 5
-        },
-        "properties": {
-          "x": {
-            "description": "X coordinate in pixels from the top-left corner.",
-            "title": "x",
-            "type": "integer"
-          },
-          "y": {
-            "description": "Y coordinate in pixels from the top-left corner.",
-            "title": "y",
-            "type": "integer"
-          },
-          "width": {
-            "description": "Width of the text region in pixels.",
-            "title": "width",
-            "type": "integer"
-          },
-          "height": {
-            "description": "Height of the text region in pixels.",
-            "title": "height",
-            "type": "integer"
-          },
-          "text": {
-            "description": "The detected text content. Line breaks are represented as \\n.",
-            "example": "Hello World",
-            "title": "text",
-            "type": "string"
-          },
-          "alignment": {
-            "description": "Detected text alignment.",
-            "enum": [
-              "left",
-              "center",
-              "right"
-            ],
-            "title": "alignment",
-            "type": "string"
-          },
-          "angle": {
-            "default": 0,
-            "description": "Rotation angle in degrees (clockwise). Defaults to 0.",
-            "format": "float",
-            "title": "angle",
-            "type": "number"
-          },
-          "font_name": {
-            "description": "Best-matching font name from the font library.",
-            "nullable": true,
-            "title": "font_name",
-            "type": "string"
-          },
-          "font_alternatives": {
-            "description": "Alternative font matches, ranked by similarity.",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true,
-            "title": "font_alternatives",
-            "type": "array"
-          },
-          "font_size": {
-            "description": "Detected font size in points.",
-            "nullable": true,
-            "title": "font_size",
-            "type": "integer"
-          },
-          "line_height": {
-            "description": "Line height multiplier (e.g., 1.2).",
-            "format": "float",
-            "nullable": true,
-            "title": "line_height",
-            "type": "number"
-          },
-          "color": {
-            "description": "Detected text color in hex format.",
-            "example": "#212121",
-            "nullable": true,
-            "pattern": "^#[0-9A-Fa-f]{6}$",
-            "title": "color",
-            "type": "string"
-          },
-          "formatting": {
-            "description": "Detected text formatting effects.",
-            "items": {
-              "enum": [
-                "bold",
-                "italic",
-                "underline",
-                "strikethrough",
-                "all_caps",
-                "small_caps",
-                "superscript",
-                "subscript"
-              ],
-              "type": "string"
-            },
-            "title": "formatting",
-            "type": "array"
-          },
-          "role": {
-            "description": "Inferred typographic role of this text block.",
-            "enum": [
-              "heading",
-              "subheading",
-              "body",
-              "caption"
-            ],
-            "nullable": true,
-            "title": "role",
-            "type": "string"
-          }
-        },
-        "required": [
-          "alignment",
-          "formatting",
-          "height",
-          "text",
-          "width",
-          "x",
-          "y"
-        ],
-        "title": "DetectedTextBlock",
         "type": "object"
       },
       "InternalBatchResultsResponse": {
@@ -17556,32 +17771,6 @@
         ],
         "type": "object"
       },
-      "GenerateVideoMinimaxH3Response": {
-        "description": "Acknowledgement returned by the MiniMax H3 video generation endpoints.\nVideo generation always runs asynchronously, so the generated video is\nnever part of this response: poll for it with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive it at the `webhook_url` you supplied.\n",
-        "example": {
-          "generation_id": "generation_id",
-          "created": "2000-01-23T04:56:07+00:00"
-        },
-        "properties": {
-          "generation_id": {
-            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
-            "title": "generation_id",
-            "type": "string"
-          },
-          "created": {
-            "description": "The time the request was accepted.",
-            "format": "date-time",
-            "title": "created",
-            "type": "string"
-          }
-        },
-        "required": [
-          "created",
-          "generation_id"
-        ],
-        "title": "GenerateVideoMinimaxH3Response",
-        "type": "object"
-      },
       "GenerateVideoMinimaxH3TextToVideoRequest": {
         "description": "Request body for MiniMax H3 text-to-video generation.",
         "example": {
@@ -17641,6 +17830,32 @@
           "prompt"
         ],
         "title": "GenerateVideoMinimaxH3TextToVideoRequest",
+        "type": "object"
+      },
+      "GenerateVideoMinimaxH3Response": {
+        "description": "Acknowledgement returned by the MiniMax H3 video generation endpoints.\nVideo generation always runs asynchronously, so the generated video is\nnever part of this response: poll for it with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive it at the `webhook_url` you supplied.\n",
+        "example": {
+          "generation_id": "generation_id",
+          "created": "2000-01-23T04:56:07+00:00"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time the request was accepted.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          }
+        },
+        "required": [
+          "created",
+          "generation_id"
+        ],
+        "title": "GenerateVideoMinimaxH3Response",
         "type": "object"
       },
       "GenerateVideoMinimaxH3ImageToVideoRequest": {
@@ -18028,6 +18243,85 @@
           "video_asset_identifier"
         ],
         "title": "EditVideoSeedDance2Request",
+        "type": "object"
+      },
+      "EditVideoMinimaxH3ReferenceToVideoRequest": {
+        "description": "Request body for MiniMax H3 reference-to-video. The prompt addresses\nreferences by position — `Image 1`, `Video 1`, and so on. Reference\nimages arrive either as `reference_image_asset_identifiers` or\n(multipart requests only) as raw `reference_images` bytes, never both.\nReference videos arrive only as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. Every reference is optional.\n",
+        "properties": {
+          "prompt": {
+            "description": "A natural-language prompt describing the video to produce. Reference media is addressed by position, as in \"Image 1 walks toward the camera with the motion of Video 1\".",
+            "example": "Image 1 walks through the snowy forest at dawn.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reference_image_asset_identifiers": {
+            "description": "Images already stored with Ideogram to use as references, by reference, in prompt order. Cannot be combined with `reference_images`. Only image assets are accepted.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 9,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_images": {
+            "description": "Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 9,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_video_asset_identifiers": {
+            "description": "Videos generated with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/MinimaxH3AspectRatio"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/MinimaxH3Resolution"
+          },
+          "duration": {
+            "default": 5,
+            "description": "The length of the generated video in seconds.",
+            "example": 5,
+            "maximum": 15,
+            "minimum": 5,
+            "title": "duration",
+            "type": "integer"
+          },
+          "prompt_expansion_mode": {
+            "$ref": "#/components/schemas/MinimaxH3PromptExpansionMode"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
         "type": "object"
       },
       "RemoveObjectFromV2AssetsResponse": {
@@ -19694,6 +19988,319 @@
             "format": "uri",
             "maxLength": 2048,
             "title": "webhook_url",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "LayerizeDesignIdeogramV3Response": {
+        "description": "Response returned by `POST /v2/design/layerize/ideogram-v3`.\nSynchronous requests (the default) include the layerized design in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "object_type": "layerized_image",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "base_image_url": "https://openapi-generator.tech",
+              "is_image_safe": true,
+              "text_blocks": [
+                {
+                  "role": "heading",
+                  "color": "#212121",
+                  "font_alternatives": [
+                    "font_alternatives",
+                    "font_alternatives"
+                  ],
+                  "font_size": 2,
+                  "font_name": "font_name",
+                  "line_height": 7.0614014,
+                  "x": 0,
+                  "width": 1,
+                  "y": 6,
+                  "angle": 5.637377,
+                  "text": "Hello World",
+                  "alignment": "left",
+                  "formatting": [
+                    "bold",
+                    "bold"
+                  ],
+                  "height": 5
+                },
+                {
+                  "role": "heading",
+                  "color": "#212121",
+                  "font_alternatives": [
+                    "font_alternatives",
+                    "font_alternatives"
+                  ],
+                  "font_size": 2,
+                  "font_name": "font_name",
+                  "line_height": 7.0614014,
+                  "x": 0,
+                  "width": 1,
+                  "y": 6,
+                  "angle": 5.637377,
+                  "text": "Hello World",
+                  "alignment": "left",
+                  "formatting": [
+                    "bold",
+                    "bold"
+                  ],
+                  "height": 5
+                }
+              ]
+            },
+            {
+              "seed": 12345,
+              "object_type": "layerized_image",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "base_image_url": "https://openapi-generator.tech",
+              "is_image_safe": true,
+              "text_blocks": [
+                {
+                  "role": "heading",
+                  "color": "#212121",
+                  "font_alternatives": [
+                    "font_alternatives",
+                    "font_alternatives"
+                  ],
+                  "font_size": 2,
+                  "font_name": "font_name",
+                  "line_height": 7.0614014,
+                  "x": 0,
+                  "width": 1,
+                  "y": 6,
+                  "angle": 5.637377,
+                  "text": "Hello World",
+                  "alignment": "left",
+                  "formatting": [
+                    "bold",
+                    "bold"
+                  ],
+                  "height": 5
+                },
+                {
+                  "role": "heading",
+                  "color": "#212121",
+                  "font_alternatives": [
+                    "font_alternatives",
+                    "font_alternatives"
+                  ],
+                  "font_size": 2,
+                  "font_name": "font_name",
+                  "line_height": 7.0614014,
+                  "x": 0,
+                  "width": 1,
+                  "y": 6,
+                  "angle": 5.637377,
+                  "text": "Hello World",
+                  "alignment": "left",
+                  "formatting": [
+                    "bold",
+                    "bold"
+                  ],
+                  "height": 5
+                }
+              ]
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The layerized design. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/LayerizedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "LayerizeDesignIdeogramV3Response",
+        "type": "object"
+      },
+      "LayerizedImageObject": {
+        "description": "One layerized design. Image links are available for a limited period\nof time; if you would like to keep an image, you must download it.\n",
+        "example": {
+          "seed": 12345,
+          "object_type": "layerized_image",
+          "resolution": "1024x1024",
+          "url": "https://openapi-generator.tech",
+          "base_image_url": "https://openapi-generator.tech",
+          "is_image_safe": true,
+          "text_blocks": [
+            {
+              "role": "heading",
+              "color": "#212121",
+              "font_alternatives": [
+                "font_alternatives",
+                "font_alternatives"
+              ],
+              "font_size": 2,
+              "font_name": "font_name",
+              "line_height": 7.0614014,
+              "x": 0,
+              "width": 1,
+              "y": 6,
+              "angle": 5.637377,
+              "text": "Hello World",
+              "alignment": "left",
+              "formatting": [
+                "bold",
+                "bold"
+              ],
+              "height": 5
+            },
+            {
+              "role": "heading",
+              "color": "#212121",
+              "font_alternatives": [
+                "font_alternatives",
+                "font_alternatives"
+              ],
+              "font_size": 2,
+              "font_name": "font_name",
+              "line_height": 7.0614014,
+              "x": 0,
+              "width": 1,
+              "y": 6,
+              "angle": 5.637377,
+              "text": "Hello World",
+              "alignment": "left",
+              "formatting": [
+                "bold",
+                "bold"
+              ],
+              "height": 5
+            }
+          ]
+        },
+        "properties": {
+          "object_type": {
+            "description": "Discriminates layerized results from other generation output types.",
+            "enum": [
+              "layerized_image"
+            ],
+            "title": "object_type",
+            "type": "string"
+          },
+          "url": {
+            "description": "The direct link to the design image with its text intact. Empty when the image did not pass safety checks.",
+            "format": "uri",
+            "nullable": true,
+            "title": "url",
+            "type": "string"
+          },
+          "base_image_url": {
+            "description": "The direct link to the base image with all detected text removed. Empty when the image did not pass safety checks.",
+            "format": "uri",
+            "nullable": true,
+            "title": "base_image_url",
+            "type": "string"
+          },
+          "resolution": {
+            "description": "The resolution of the design, formatted as \"WIDTHxHEIGHT\".",
+            "example": "1024x1024",
+            "title": "resolution",
+            "type": "string"
+          },
+          "is_image_safe": {
+            "description": "Whether the image passed safety checks. If false, the image links are empty.",
+            "title": "is_image_safe",
+            "type": "boolean"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "text_blocks": {
+            "description": "Flat list of detected text regions in the design.",
+            "items": {
+              "$ref": "#/components/schemas/DetectedTextBlock"
+            },
+            "title": "text_blocks",
+            "type": "array"
+          }
+        },
+        "required": [
+          "is_image_safe",
+          "object_type",
+          "resolution",
+          "seed",
+          "text_blocks"
+        ],
+        "title": "LayerizedImageObject",
+        "type": "object"
+      },
+      "LayerizeDesignIdeogramV3Request": {
+        "description": "Supply the source image either as an `image_asset_identifier`\nreference or (multipart requests only) as raw `image` bytes. Provide\nexactly one of the two forms; supplying both, or neither, is rejected\nwith a 400.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The source image to layerize (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.",
+            "format": "binary",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "A description of the image, used to guide text detection. When omitted, detection runs on the image alone.",
+            "maxLength": 10000,
+            "nullable": true,
+            "type": "string"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output is added to it when the request completes.",
             "type": "string"
           }
         },
@@ -22074,6 +22681,396 @@
           "prompt"
         ],
         "title": "GenerateImageIdeogram45Request",
+        "type": "object"
+      },
+      "GenerateImageGemini31FlashResponse": {
+        "description": "Response returned by `POST /v2/images/generate/gemini-3.1-flash`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The generated images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "GenerateImageGemini31FlashResponse",
+        "type": "object"
+      },
+      "GenerateImageGemini31FlashRequest": {
+        "example": {
+          "aspect_ratio": "aspect_ratio",
+          "async": false,
+          "private": true,
+          "seed": 12345,
+          "webhook_url": "https://api.example.com/webhooks/ideogram",
+          "target_collection_id": "target_collection_id",
+          "prompt": "prompt",
+          "num_images": 1
+        },
+        "properties": {
+          "prompt": {
+            "description": "The prompt to generate images from. The model consumes it directly, without rewriting.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "prompt",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". The output is served at the closest aspect ratio the model supports, at 1K resolution. Defaults to \"1:1\".",
+            "title": "aspect_ratio",
+            "type": "string"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "title": "num_images",
+            "type": "integer"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "title": "async",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "title": "private",
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateImageGemini31FlashRequest",
+        "type": "object"
+      },
+      "GenerateImageGemini30ProResponse": {
+        "description": "Response returned by `POST /v2/images/generate/gemini-3.0-pro`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The generated images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "GenerateImageGemini30ProResponse",
+        "type": "object"
+      },
+      "GenerateImageGemini30ProRequest": {
+        "example": {
+          "aspect_ratio": "aspect_ratio",
+          "async": false,
+          "private": true,
+          "seed": 12345,
+          "webhook_url": "https://api.example.com/webhooks/ideogram",
+          "target_collection_id": "target_collection_id",
+          "resolution_tier": "1K",
+          "prompt": "prompt",
+          "num_images": 1
+        },
+        "properties": {
+          "prompt": {
+            "description": "The prompt to generate images from. The model consumes it directly, without rewriting.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "prompt",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to \"1:1\".",
+            "title": "aspect_ratio",
+            "type": "string"
+          },
+          "resolution_tier": {
+            "default": "1K",
+            "description": "The output resolution tier.",
+            "enum": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "title": "resolution_tier",
+            "type": "string"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "title": "num_images",
+            "type": "integer"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "title": "async",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "title": "private",
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateImageGemini30ProRequest",
+        "type": "object"
+      },
+      "GenerateImageGptImage2Response": {
+        "description": "Response returned by `POST /v2/images/generate/gpt-image-2`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The generated images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "GenerateImageGptImage2Response",
+        "type": "object"
+      },
+      "GenerateImageGptImage2Request": {
+        "example": {
+          "aspect_ratio": "aspect_ratio",
+          "async": false,
+          "private": true,
+          "seed": 12345,
+          "webhook_url": "https://api.example.com/webhooks/ideogram",
+          "target_collection_id": "target_collection_id",
+          "prompt": "prompt",
+          "resolution": "resolution",
+          "num_images": 1
+        },
+        "properties": {
+          "prompt": {
+            "description": "The prompt to generate images from. The model consumes it directly, without rewriting.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "title": "prompt",
+            "type": "string"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "title": "num_images",
+            "type": "integer"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "aspect_ratio": {
+            "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". Ignored when `resolution` is provided. Defaults to \"1:1\".",
+            "title": "aspect_ratio",
+            "type": "string"
+          },
+          "resolution": {
+            "description": "Exact output resolution, formatted as \"WIDTHxHEIGHT\", for example\n\"2048x2048\" or \"1920x1088\". When provided, this takes precedence\nover `aspect_ratio`. The dimensions must satisfy GPT Image 2\nconstraints: each side is a multiple of 16, the largest side is at\nmost 3840px, the long:short ratio is at most 3:1, and total pixels\nare between 655360 and 8294400 inclusive.\n",
+            "title": "resolution",
+            "type": "string"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "title": "async",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "title": "private",
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateImageGptImage2Request",
         "type": "object"
       },
       "GenerateImageIdeogramV2Response": {
@@ -29088,6 +30085,153 @@
         "title": "LayeredAssetTextShadow",
         "type": "object"
       },
+      "DetectedTextBlock": {
+        "description": "A single detected text region with its position, content, font information, and styling.",
+        "example": {
+          "role": "heading",
+          "color": "#212121",
+          "font_alternatives": [
+            "font_alternatives",
+            "font_alternatives"
+          ],
+          "font_size": 2,
+          "font_name": "font_name",
+          "line_height": 7.0614014,
+          "x": 0,
+          "width": 1,
+          "y": 6,
+          "angle": 5.637377,
+          "text": "Hello World",
+          "alignment": "left",
+          "formatting": [
+            "bold",
+            "bold"
+          ],
+          "height": 5
+        },
+        "properties": {
+          "x": {
+            "description": "X coordinate in pixels from the top-left corner.",
+            "title": "x",
+            "type": "integer"
+          },
+          "y": {
+            "description": "Y coordinate in pixels from the top-left corner.",
+            "title": "y",
+            "type": "integer"
+          },
+          "width": {
+            "description": "Width of the text region in pixels.",
+            "title": "width",
+            "type": "integer"
+          },
+          "height": {
+            "description": "Height of the text region in pixels.",
+            "title": "height",
+            "type": "integer"
+          },
+          "text": {
+            "description": "The detected text content. Line breaks are represented as \\n.",
+            "example": "Hello World",
+            "title": "text",
+            "type": "string"
+          },
+          "alignment": {
+            "description": "Detected text alignment.",
+            "enum": [
+              "left",
+              "center",
+              "right"
+            ],
+            "title": "alignment",
+            "type": "string"
+          },
+          "angle": {
+            "default": 0,
+            "description": "Rotation angle in degrees (clockwise). Defaults to 0.",
+            "format": "float",
+            "title": "angle",
+            "type": "number"
+          },
+          "font_name": {
+            "description": "Best-matching font name from the font library.",
+            "nullable": true,
+            "title": "font_name",
+            "type": "string"
+          },
+          "font_alternatives": {
+            "description": "Alternative font matches, ranked by similarity.",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "title": "font_alternatives",
+            "type": "array"
+          },
+          "font_size": {
+            "description": "Detected font size in points.",
+            "nullable": true,
+            "title": "font_size",
+            "type": "integer"
+          },
+          "line_height": {
+            "description": "Line height multiplier (e.g., 1.2).",
+            "format": "float",
+            "nullable": true,
+            "title": "line_height",
+            "type": "number"
+          },
+          "color": {
+            "description": "Detected text color in hex format.",
+            "example": "#212121",
+            "nullable": true,
+            "pattern": "^#[0-9A-Fa-f]{6}$",
+            "title": "color",
+            "type": "string"
+          },
+          "formatting": {
+            "description": "Detected text formatting effects.",
+            "items": {
+              "enum": [
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "all_caps",
+                "small_caps",
+                "superscript",
+                "subscript"
+              ],
+              "type": "string"
+            },
+            "title": "formatting",
+            "type": "array"
+          },
+          "role": {
+            "description": "Inferred typographic role of this text block.",
+            "enum": [
+              "heading",
+              "subheading",
+              "body",
+              "caption"
+            ],
+            "nullable": true,
+            "title": "role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "alignment",
+          "formatting",
+          "height",
+          "text",
+          "width",
+          "x",
+          "y"
+        ],
+        "title": "DetectedTextBlock",
+        "type": "object"
+      },
       "SeedDance2AspectRatio": {
         "default": "AUTO",
         "description": "The aspect ratio of the generated video. `AUTO` lets the model choose the\nmost suitable ratio from the prompt; any other value pins the ratio.\n",
@@ -29239,6 +30383,18 @@
         "minimum": 0,
         "type": "number"
       },
+      "MinimaxH3PromptExpansionMode": {
+        "default": "balanced",
+        "description": "How much the model may rewrite the prompt before generating. `disabled`\nuses the prompt as written; the other modes trade latency for a richer\nrewrite.\n",
+        "enum": [
+          "disabled",
+          "fast",
+          "balanced",
+          "quality"
+        ],
+        "title": "MinimaxH3PromptExpansionMode",
+        "type": "string"
+      },
       "GptImage2Quality": {
         "description": "The quality tier for the image edit. Higher tiers may improve detail\nand take longer to complete.\n",
         "enum": [
@@ -29351,7 +30507,8 @@
           "mapping": {
             "image.without-prompt-or-seed": "#/components/schemas/ImageObjectWithoutPromptOrSeed",
             "image.generation": "#/components/schemas/ImageGenerationObject",
-            "video.generation": "#/components/schemas/VideoObject"
+            "video.generation": "#/components/schemas/VideoObject",
+            "layerized_image": "#/components/schemas/LayerizedImageObject"
           },
           "propertyName": "object_type"
         },
@@ -29364,6 +30521,9 @@
           },
           {
             "$ref": "#/components/schemas/VideoObject"
+          },
+          {
+            "$ref": "#/components/schemas/LayerizedImageObject"
           }
         ],
         "title": "GenerationResponse_data_inner"

@@ -37,6 +37,12 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_candidate_files")]
+        public global::System.Collections.Generic.IList<byte[]>? FontCandidateFiles { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -58,6 +64,9 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -65,12 +74,14 @@ namespace Ideogram
             byte[] image,
             string imagename,
             string? prompt,
-            int? seed)
+            int? seed,
+            global::System.Collections.Generic.IList<byte[]>? fontCandidateFiles)
         {
             this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
             this.Prompt = prompt;
             this.Seed = seed;
+            this.FontCandidateFiles = fontCandidateFiles;
         }
 
         /// <summary>

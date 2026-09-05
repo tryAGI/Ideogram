@@ -203,6 +203,24 @@ namespace Ideogram
                                     name: "\"seed\"");
 
                             }
+                            if (request.FontCandidateFiles != default)
+                            {
+
+                                for (var __iFontCandidateFiles = 0; __iFontCandidateFiles < request.FontCandidateFiles.Count; __iFontCandidateFiles++)
+                                {
+                                    var __contentFontCandidateFiles = new global::System.Net.Http.ByteArrayContent(request.FontCandidateFiles[__iFontCandidateFiles]);
+                                __contentFontCandidateFiles.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                                    __httpRequestContent.Add(
+                                        content: __contentFontCandidateFiles,
+                                        name: "\"font_candidate_files\"",
+                                        fileName: $"\"file{__iFontCandidateFiles}.bin\"");
+                                    if (__contentFontCandidateFiles.Headers.ContentDisposition != null)
+                                    {
+                                        __contentFontCandidateFiles.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
+
+                            }
 
                             __httpRequest.Content = __httpRequestContent;
 
@@ -608,6 +626,9 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -616,6 +637,7 @@ namespace Ideogram
             string imagename,
             string? prompt = default,
             int? seed = default,
+            global::System.Collections.Generic.IList<byte[]>? fontCandidateFiles = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -625,6 +647,7 @@ namespace Ideogram
                 Imagename = imagename,
                 Prompt = prompt,
                 Seed = seed,
+                FontCandidateFiles = fontCandidateFiles,
             };
 
             return await PostLayerizeTextV3Async(
@@ -653,6 +676,12 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </param>
+        /// <param name="fontCandidateFilesFileNames">
+        /// Optional file names to use for the multipart 'font_candidate_files' file parts.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
@@ -661,6 +690,8 @@ namespace Ideogram
             string imagename,
             string? prompt = default,
             int? seed = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? fontCandidateFiles = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? fontCandidateFilesFileNames = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -672,6 +703,7 @@ namespace Ideogram
                 Imagename = imagename,
                 Prompt = prompt,
                 Seed = seed,
+                FontCandidateFiles = new global::System.Collections.Generic.List<byte[]>(),
             };
             PrepareArguments(
                 client: HttpClient);
@@ -788,6 +820,56 @@ namespace Ideogram
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
+
+                            }
+                            if (fontCandidateFiles != default)
+                            {
+
+                                for (var __iFontCandidateFiles = 0; __iFontCandidateFiles < fontCandidateFiles.Count; __iFontCandidateFiles++)
+                                {
+                                    var __fileNameFontCandidateFiles = fontCandidateFilesFileNames != null &&
+                                        __iFontCandidateFiles < fontCandidateFilesFileNames.Count &&
+                                        fontCandidateFilesFileNames[__iFontCandidateFiles] != null
+                                        ? fontCandidateFilesFileNames[__iFontCandidateFiles]
+                                        : $"file{__iFontCandidateFiles}.bin";
+                                    var __contentFontCandidateFiles = new global::System.Net.Http.StreamContent(fontCandidateFiles[__iFontCandidateFiles]);
+                                __contentFontCandidateFiles.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    __fileNameFontCandidateFiles is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(__fileNameFontCandidateFiles) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                    __httpRequestContent.Add(
+                                        content: __contentFontCandidateFiles,
+                                        name: "\"font_candidate_files\"",
+                                        fileName: $"\"{__fileNameFontCandidateFiles}\"");
+                                    if (__contentFontCandidateFiles.Headers.ContentDisposition != null)
+                                    {
+                                        __contentFontCandidateFiles.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
 
                             }
 
@@ -1187,6 +1269,12 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files).
+        /// </param>
+        /// <param name="fontCandidateFilesFileNames">
+        /// Optional file names to use for the multipart 'font_candidate_files' file parts.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
@@ -1195,6 +1283,8 @@ namespace Ideogram
             string imagename,
             string? prompt = default,
             int? seed = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? fontCandidateFiles = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? fontCandidateFilesFileNames = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -1206,6 +1296,7 @@ namespace Ideogram
                 Imagename = imagename,
                 Prompt = prompt,
                 Seed = seed,
+                FontCandidateFiles = new global::System.Collections.Generic.List<byte[]>(),
             };
             PrepareArguments(
                 client: HttpClient);
@@ -1322,6 +1413,56 @@ namespace Ideogram
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
                                     name: "\"seed\"");
+
+                            }
+                            if (fontCandidateFiles != default)
+                            {
+
+                                for (var __iFontCandidateFiles = 0; __iFontCandidateFiles < fontCandidateFiles.Count; __iFontCandidateFiles++)
+                                {
+                                    var __fileNameFontCandidateFiles = fontCandidateFilesFileNames != null &&
+                                        __iFontCandidateFiles < fontCandidateFilesFileNames.Count &&
+                                        fontCandidateFilesFileNames[__iFontCandidateFiles] != null
+                                        ? fontCandidateFilesFileNames[__iFontCandidateFiles]
+                                        : $"file{__iFontCandidateFiles}.bin";
+                                    var __contentFontCandidateFiles = new global::System.Net.Http.StreamContent(fontCandidateFiles[__iFontCandidateFiles]);
+                                __contentFontCandidateFiles.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    __fileNameFontCandidateFiles is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(__fileNameFontCandidateFiles) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                    __httpRequestContent.Add(
+                                        content: __contentFontCandidateFiles,
+                                        name: "\"font_candidate_files\"",
+                                        fileName: $"\"{__fileNameFontCandidateFiles}\"");
+                                    if (__contentFontCandidateFiles.Headers.ContentDisposition != null)
+                                    {
+                                        __contentFontCandidateFiles.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
 
                             }
 
