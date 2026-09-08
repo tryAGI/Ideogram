@@ -102,6 +102,9 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files). Multipart requests only.
+        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
@@ -132,6 +135,7 @@ namespace Ideogram
             string? imagename = default,
             string? prompt = default,
             int? seed = default,
+            global::System.Collections.Generic.IList<byte[]>? fontCandidateFiles = default,
             bool? async = default,
             string? webhookUrl = default,
             bool? @private = default,
