@@ -46,6 +46,11 @@ namespace Ideogram
 
 
         /// <summary>
+        ///
+        /// </summary>
+        public AccountClient Account { get; }
+
+        /// <summary>
         /// Model-agnostic endpoints where the server selects the model for each<br/>
         /// request. Requests are JSON and return a generation id that can be<br/>
         /// polled via `GET /v1/generations/{generation_id}`.

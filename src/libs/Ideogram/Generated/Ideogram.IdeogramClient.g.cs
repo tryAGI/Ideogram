@@ -48,6 +48,15 @@ namespace Ideogram
 
 
         /// <summary>
+        ///
+        /// </summary>
+        public AccountClient Account => new AccountClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
         /// Model-agnostic endpoints where the server selects the model for each<br/>
         /// request. Requests are JSON and return a generation id that can be<br/>
         /// polled via `GET /v1/generations/{generation_id}`.

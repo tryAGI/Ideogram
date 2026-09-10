@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"assets":[{"delivery":"","media_type":"media_type","external_ref":"external_ref","width":1,"label":"label","height":1},{"delivery":"","media_type":"media_type","external_ref":"external_ref","width":1,"label":"label","height":1}]}
+    /// Example: {"assets":[{"delivery":"","metadata":{"key":"metadata"},"media_type":"media_type","external_ref":"external_ref","width":1,"label":"label","height":1},{"delivery":"","metadata":{"key":"metadata"},"media_type":"media_type","external_ref":"external_ref","width":1,"label":"label","height":1}]}
     /// </summary>
     public sealed partial class IntegrationAssetSearchResponse
     {

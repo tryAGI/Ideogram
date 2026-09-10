@@ -3,11 +3,11 @@
 
 namespace Ideogram
 {
-    public partial class IntegrationsClient
+    public partial class AccountClient
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostIntegrationAssetsSearchSecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_GetAccountInvoicesSecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,49 +21,40 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostIntegrationAssetsSearchSecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_GetAccountInvoicesSecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostIntegrationAssetsSearchSecurityRequirement0,
+            {                s_GetAccountInvoicesSecurityRequirement0,
             };
-        partial void PreparePostIntegrationAssetsSearchArguments(
+        partial void PrepareGetAccountInvoicesArguments(
+            global::System.Net.Http.HttpClient httpClient);
+        partial void PrepareGetAccountInvoicesRequest(
             global::System.Net.Http.HttpClient httpClient,
-            ref global::Ideogram.IntegrationType integrationType,
-            global::Ideogram.IntegrationAssetSearchRequest request);
-        partial void PreparePostIntegrationAssetsSearchRequest(
-            global::System.Net.Http.HttpClient httpClient,
-            global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.IntegrationType integrationType,
-            global::Ideogram.IntegrationAssetSearchRequest request);
-        partial void ProcessPostIntegrationAssetsSearchResponse(
+            global::System.Net.Http.HttpRequestMessage httpRequestMessage);
+        partial void ProcessGetAccountInvoicesResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostIntegrationAssetsSearchResponseContent(
+        partial void ProcessGetAccountInvoicesResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Search assets from an enabled integration type
+        /// List your organization's invoices<br/>
+        /// Returns your organization's invoices with their line items — the<br/>
+        /// billing record your usage reports reconcile against. Amounts are<br/>
+        /// decimal strings in the invoice's currency.<br/>
+        /// Requires an API key whose owner is an organization admin. Keys owned<br/>
+        /// by other members receive a 404.
         /// </summary>
-        /// <param name="integrationType">
-        /// A provider-neutral integration operation family.
-        /// </param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.IntegrationAssetSearchResponse> PostIntegrationAssetsSearchAsync(
-            global::Ideogram.IntegrationType integrationType,
-
-            global::Ideogram.IntegrationAssetSearchRequest request,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.ListAccountInvoicesResponse> GetAccountInvoicesAsync(
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await PostIntegrationAssetsSearchAsResponseAsync(
-                integrationType: integrationType,
-
-                request: request,
+            var __response = await GetAccountInvoicesAsResponseAsync(
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -71,36 +62,30 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Search assets from an enabled integration type
+        /// List your organization's invoices<br/>
+        /// Returns your organization's invoices with their line items — the<br/>
+        /// billing record your usage reports reconcile against. Amounts are<br/>
+        /// decimal strings in the invoice's currency.<br/>
+        /// Requires an API key whose owner is an organization admin. Keys owned<br/>
+        /// by other members receive a 404.
         /// </summary>
-        /// <param name="integrationType">
-        /// A provider-neutral integration operation family.
-        /// </param>
-        /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.IntegrationAssetSearchResponse>> PostIntegrationAssetsSearchAsResponseAsync(
-            global::Ideogram.IntegrationType integrationType,
-
-            global::Ideogram.IntegrationAssetSearchRequest request,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ListAccountInvoicesResponse>> GetAccountInvoicesAsResponseAsync(
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            request = request ?? throw new global::System.ArgumentNullException(nameof(request));
-
             PrepareArguments(
                 client: HttpClient);
-            PreparePostIntegrationAssetsSearchArguments(
-                httpClient: HttpClient,
-                integrationType: ref integrationType,
-                request: request);
+            PrepareGetAccountInvoicesArguments(
+                httpClient: HttpClient);
 
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostIntegrationAssetsSearchSecurityRequirements,
-                operationName: "PostIntegrationAssetsSearchAsync");
+                securityRequirements: s_GetAccountInvoicesSecurityRequirements,
+                operationName: "GetAccountInvoicesAsync");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -120,7 +105,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: $"/v2/integrations/{(global::System.Uri.EscapeDataString(integrationType.ToValueString()))}/assets/search",
+                                path: "/v2/account/invoices",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -128,7 +113,7 @@ namespace Ideogram
                     clientParameters: Options.QueryParameters,
                     requestParameters: requestOptions?.QueryParameters);
                 var __httpRequest = new global::System.Net.Http.HttpRequestMessage(
-                    method: global::System.Net.Http.HttpMethod.Post,
+                    method: global::System.Net.Http.HttpMethod.Get,
                     requestUri: new global::System.Uri(__path, global::System.UriKind.RelativeOrAbsolute));
 #if NET6_0_OR_GREATER
                 __httpRequest.Version = global::System.Net.HttpVersion.Version11;
@@ -151,12 +136,6 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
-                            __httpRequest.Content = __httpRequestContent;
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -165,11 +144,9 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostIntegrationAssetsSearchRequest(
+                PrepareGetAccountInvoicesRequest(
                     httpClient: HttpClient,
-                    httpRequestMessage: __httpRequest,
-                    integrationType: integrationType!,
-                    request: request);
+                    httpRequestMessage: __httpRequest);
 
                 return __httpRequest;
             }
@@ -186,10 +163,10 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostIntegrationAssetsSearch",
-                                methodName: "PostIntegrationAssetsSearchAsync",
-                                pathTemplate: "$\"/v2/integrations/{(global::System.Uri.EscapeDataString(integrationType.ToValueString()))}/assets/search\"",
-                                httpMethod: "POST",
+                                operationId: "GetAccountInvoices",
+                                methodName: "GetAccountInvoicesAsync",
+                                pathTemplate: "\"/v2/account/invoices\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -220,10 +197,10 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostIntegrationAssetsSearch",
-                                methodName: "PostIntegrationAssetsSearchAsync",
-                                pathTemplate: "$\"/v2/integrations/{(global::System.Uri.EscapeDataString(integrationType.ToValueString()))}/assets/search\"",
-                                httpMethod: "POST",
+                                operationId: "GetAccountInvoices",
+                                methodName: "GetAccountInvoicesAsync",
+                                pathTemplate: "\"/v2/account/invoices\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: null,
@@ -261,10 +238,10 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostIntegrationAssetsSearch",
-                                methodName: "PostIntegrationAssetsSearchAsync",
-                                pathTemplate: "$\"/v2/integrations/{(global::System.Uri.EscapeDataString(integrationType.ToValueString()))}/assets/search\"",
-                                httpMethod: "POST",
+                                operationId: "GetAccountInvoices",
+                                methodName: "GetAccountInvoicesAsync",
+                                pathTemplate: "\"/v2/account/invoices\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -301,7 +278,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostIntegrationAssetsSearchResponse(
+                ProcessGetAccountInvoicesResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -309,10 +286,10 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostIntegrationAssetsSearch",
-                                methodName: "PostIntegrationAssetsSearchAsync",
-                                pathTemplate: "$\"/v2/integrations/{(global::System.Uri.EscapeDataString(integrationType.ToValueString()))}/assets/search\"",
-                                httpMethod: "POST",
+                                operationId: "GetAccountInvoices",
+                                methodName: "GetAccountInvoicesAsync",
+                                pathTemplate: "\"/v2/account/invoices\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -331,10 +308,10 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostIntegrationAssetsSearch",
-                                methodName: "PostIntegrationAssetsSearchAsync",
-                                pathTemplate: "$\"/v2/integrations/{(global::System.Uri.EscapeDataString(integrationType.ToValueString()))}/assets/search\"",
-                                httpMethod: "POST",
+                                operationId: "GetAccountInvoices",
+                                methodName: "GetAccountInvoicesAsync",
+                                pathTemplate: "\"/v2/account/invoices\"",
+                                httpMethod: "GET",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
                                 response: __response,
@@ -348,43 +325,6 @@ namespace Ideogram
                                 retryReason: global::System.String.Empty,
                                 cancellationToken: __effectiveCancellationToken)).ConfigureAwait(false);
                 }
-                            // The integration type or search request is invalid.
-                            if ((int)__response.StatusCode == 400)
-                            {
-                                string? __content_400 = null;
-                                global::System.Exception? __exception_400 = null;
-                                global::Ideogram.IntegrationErrorResponse? __value_400 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_400 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_400, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_400 = __ex;
-                                }
-
-
-                                throw global::Ideogram.ApiException<global::Ideogram.IntegrationErrorResponse>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_400,
-                                    responseBody: __content_400,
-                                    responseObject: __value_400,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
                             //
                             if ((int)__response.StatusCode == 401)
                             {
@@ -417,61 +357,20 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // The caller is not allowed to search integrations or the mini-app token lacks the required existing asset-browsing scope.
-                            if ((int)__response.StatusCode == 403)
-                            {
-                                string? __content_403 = null;
-                                global::System.Exception? __exception_403 = null;
-                                global::Ideogram.IntegrationErrorResponse? __value_403 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_403 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_403 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_403, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_403 = __ex;
-                                }
-
-
-                                throw global::Ideogram.ApiException<global::Ideogram.IntegrationErrorResponse>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_403,
-                                    responseBody: __content_403,
-                                    responseObject: __value_403,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // The requested integration type is not configured.
+                            //
                             if ((int)__response.StatusCode == 404)
                             {
                                 string? __content_404 = null;
                                 global::System.Exception? __exception_404 = null;
-                                global::Ideogram.IntegrationErrorResponse? __value_404 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_404, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_404 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_404, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -480,49 +379,11 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException<global::Ideogram.IntegrationErrorResponse>.Create(
+                                throw global::Ideogram.ApiException.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_404,
                                     responseBody: __content_404,
-                                    responseObject: __value_404,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            // Integration search is not available.
-                            if ((int)__response.StatusCode == 503)
-                            {
-                                string? __content_503 = null;
-                                global::System.Exception? __exception_503 = null;
-                                global::Ideogram.IntegrationErrorResponse? __value_503 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                    else
-                                    {
-                                        __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-
-                                        __value_503 = global::Ideogram.IntegrationErrorResponse.FromJson(__content_503, JsonSerializerContext);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_503 = __ex;
-                                }
-
-
-                                throw global::Ideogram.ApiException<global::Ideogram.IntegrationErrorResponse>.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_503,
-                                    responseBody: __content_503,
-                                    responseObject: __value_503,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -541,7 +402,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostIntegrationAssetsSearchResponseContent(
+                                ProcessGetAccountInvoicesResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -550,9 +411,9 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Ideogram.IntegrationAssetSearchResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.ListAccountInvoicesResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.IntegrationAssetSearchResponse>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ListAccountInvoicesResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -582,9 +443,9 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Ideogram.IntegrationAssetSearchResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.ListAccountInvoicesResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.IntegrationAssetSearchResponse>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ListAccountInvoicesResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -623,40 +484,6 @@ namespace Ideogram
             {
                 __httpRequest?.Dispose();
             }
-        }
-        /// <summary>
-        /// Search assets from an enabled integration type
-        /// </summary>
-        /// <param name="integrationType">
-        /// A provider-neutral integration operation family.
-        /// </param>
-        /// <param name="limit">
-        /// Maximum number of assets to return, bounded by the configured runtime policy. The operation returns a single bounded result; pagination is a future extension that adds optional fields additively.
-        /// </param>
-        /// <param name="query">
-        /// Optional keyed lookup. For integrations whose upstream is a keyed catalog, this is the item key (for example a product style code); integrations without keyed lookup ignore it. Omitted means browse.
-        /// </param>
-        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
-        /// <param name="cancellationToken">The token to cancel the operation with</param>
-        /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.IntegrationAssetSearchResponse> PostIntegrationAssetsSearchAsync(
-            global::Ideogram.IntegrationType integrationType,
-            int limit,
-            string? query = default,
-            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
-            global::System.Threading.CancellationToken cancellationToken = default)
-        {
-            var __request = new global::Ideogram.IntegrationAssetSearchRequest
-            {
-                Limit = limit,
-                Query = query,
-            };
-
-            return await PostIntegrationAssetsSearchAsync(
-                integrationType: integrationType,
-                request: __request,
-                requestOptions: requestOptions,
-                cancellationToken: cancellationToken).ConfigureAwait(false);
         }
     }
 }
