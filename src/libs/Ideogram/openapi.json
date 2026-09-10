@@ -7205,6 +7205,199 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
       }
     },
+    "/v2/account/api-keys": {
+      "get": {
+        "description": "Lists the API keys in your organization. Key material is redacted —\nthe full key is only shown once, when it is created. Disabled and\narchived keys are included (see each key's `status`) so historical\nusage can always be matched to the key that generated it.\n\nRequires an API key whose owner is an organization admin. Keys owned\nby other members receive a 404.\n",
+        "operationId": "get_account_api_keys",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAccountApiKeysResponse"
+                }
+              }
+            },
+            "description": "The organization's API keys, redacted."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "No organization with billing access was found for this credential."
+          }
+        },
+        "summary": "List your organization's API keys",
+        "tags": [
+          "account"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.account_controller"
+      }
+    },
+    "/v2/account/invoices": {
+      "get": {
+        "description": "Returns your organization's invoices with their line items — the\nbilling record your usage reports reconcile against. Amounts are\ndecimal strings in the invoice's currency.\n\nRequires an API key whose owner is an organization admin. Keys owned\nby other members receive a 404.\n",
+        "operationId": "get_account_invoices",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAccountInvoicesResponse"
+                }
+              }
+            },
+            "description": "The organization's invoices. Empty when no billing history exists yet."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "No organization with billing access was found for this credential."
+          }
+        },
+        "summary": "List your organization's invoices",
+        "tags": [
+          "account"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.account_controller"
+      }
+    },
+    "/v2/account/usage": {
+      "get": {
+        "description": "Returns your organization's billed API usage as dense time buckets of\nline items. Every line item carries the billed dollar amount; products\nbilled per item also carry `billed_units` (unit, quantity, and unit\nprice, where `quantity × unit_price = cost_total`). Usage-priced\nproducts (billed by metered provider usage) report `cost_total` only.\n\nBuckets cover the requested range completely — a bucket with no line\nitems means no billed usage in that window. Line items are unique per\nbucket on (`product`, `dimensions`, `api_key.id`, unit price). Usage\nbilled without an API key (requests authenticated as a user session)\nis included with `api_key` absent, so totals always reconcile with\nyour invoices.\n`product` and `endpoint` are stable identifiers safe to aggregate on;\n`description` is display text and may be reworded at any time.\n\nUsage data may lag live traffic by a few minutes, and responses may be\ncached briefly, so this endpoint is for reporting rather than\nreal-time monitoring.\n\nRequires an API key whose owner is an organization admin. Keys owned\nby other members receive a 404.\n",
+        "operationId": "get_account_usage",
+        "parameters": [
+          {
+            "description": "Start of the reporting range (RFC 3339). Snapped down to the containing bucket boundary (UTC).",
+            "in": "query",
+            "name": "start_time",
+            "required": true,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "End of the reporting range (RFC 3339), exclusive. Snapped up to the next bucket boundary (UTC). Defaults to now.",
+            "in": "query",
+            "name": "end_time",
+            "required": false,
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "description": "Bucket granularity. `1d` allows ranges up to 92 days per request; `1h` allows up to 168 hours. Page through longer histories by moving `start_time` back across successive requests.",
+            "in": "query",
+            "name": "bucket_width",
+            "required": false,
+            "schema": {
+              "default": "1d",
+              "enum": [
+                "1d",
+                "1h"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Which billing sources to include. `api` is usage from API requests; `app` is web-app usage, attributed to the member who generated it. Defaults to both, so report totals reconcile with invoices.",
+            "explode": true,
+            "in": "query",
+            "name": "sources",
+            "required": false,
+            "schema": {
+              "default": [
+                "api",
+                "app"
+              ],
+              "items": {
+                "enum": [
+                  "api",
+                  "app"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "style": "form"
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "example": {
+                  "buckets": [
+                    {
+                      "start_time": "2026-09-01T00:00:00+00:00",
+                      "end_time": "2026-09-02T00:00:00+00:00",
+                      "line_items": [
+                        {
+                          "product": "ideogram_v4_generation",
+                          "endpoint": "/v2/images/generate/ideogram-v4",
+                          "description": "Ideogram v4 Generation",
+                          "dimensions": {
+                            "rendering_speed": "TURBO"
+                          },
+                          "cost_total": "84.00",
+                          "currency_code": "USD",
+                          "billed_units": {
+                            "unit": "image",
+                            "quantity": "2100",
+                            "unit_price": "0.04"
+                          },
+                          "api_key": {
+                            "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                            "redacted_key": "ATG5•••••••••••••",
+                            "label": "Live production environment"
+                          }
+                        },
+                        {
+                          "product": "gpt_image_2_edit",
+                          "endpoint": "/v2/images/edit/gpt-image-2",
+                          "description": "GPT Image 2 Edit",
+                          "cost_total": "3.47",
+                          "currency_code": "USD",
+                          "api_key": {
+                            "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                            "redacted_key": "ATG5•••••••••••••",
+                            "label": "Live production environment"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "schema": {
+                  "$ref": "#/components/schemas/GetAccountUsageResponse"
+                }
+              }
+            },
+            "description": "Bucketed usage for the requested range."
+          },
+          "400": {
+            "description": "Invalid time range, bucket width, or filters."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "404": {
+            "description": "No organization with billing access was found for this credential."
+          },
+          "429": {
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Retrieve your organization's API usage and spend over time",
+        "tags": [
+          "account"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.account_controller"
+      }
+    },
     "/v2/async/image-to-video/seed-dance-2.0": {
       "post": {
         "description": "Generates a video from a first-frame image and a text prompt using the\nSeedance 2.0 model. The request is always processed asynchronously: this\nendpoint returns immediately with a `generation_id` and an empty `data`\narray. Poll `/v1/generations/{generation_id}` with the returned\n`generation_id` to retrieve the video once it is ready, or supply\n`webhook_url` to have the result delivered to your server.\n\nSupply the first frame in exactly one of two ways: upload the image bytes\ndirectly in the `image` part, or reference an existing Ideogram asset you\nown with `image_asset_id`. Provide exactly one of `image` or\n`image_asset_id`; supplying neither or both is rejected.\n\nVideo links are available for a limited period of time; if you would like\nto keep the video, you must download it.\n",
@@ -18578,6 +18771,659 @@
         ],
         "type": "object"
       },
+      "ListAccountApiKeysResponse": {
+        "example": {
+          "api_keys": [
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "label": "Live production environment",
+              "redacted_api_key": "ATG56•••••••••••••",
+              "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+              "creator_display_label": "John Doe",
+              "status": null
+            },
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "label": "Live production environment",
+              "redacted_api_key": "ATG56•••••••••••••",
+              "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+              "creator_display_label": "John Doe",
+              "status": null
+            }
+          ]
+        },
+        "properties": {
+          "api_keys": {
+            "description": "All API keys in the organization, newest first.",
+            "items": {
+              "$ref": "#/components/schemas/ApiProfileApiKey"
+            },
+            "title": "api_keys",
+            "type": "array"
+          }
+        },
+        "required": [
+          "api_keys"
+        ],
+        "title": "ListAccountApiKeysResponse",
+        "type": "object"
+      },
+      "GetAccountUsageResponse": {
+        "example": {
+          "buckets": [
+            {
+              "start_time": "2000-01-23T04:56:07+00:00",
+              "end_time": "2000-01-23T04:56:07+00:00",
+              "line_items": [
+                {
+                  "product": "ideogram_v4_generation",
+                  "endpoint": "/v2/images/generate/ideogram-v4",
+                  "cost_total": "84.00",
+                  "user_email": "user_email",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "billed_units": {
+                    "unit": "image",
+                    "quantity": "2100",
+                    "unit_price": "0.04"
+                  },
+                  "source": "api",
+                  "currency_code": "USD",
+                  "dimensions": {
+                    "key": "dimensions"
+                  }
+                },
+                {
+                  "product": "ideogram_v4_generation",
+                  "endpoint": "/v2/images/generate/ideogram-v4",
+                  "cost_total": "84.00",
+                  "user_email": "user_email",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "billed_units": {
+                    "unit": "image",
+                    "quantity": "2100",
+                    "unit_price": "0.04"
+                  },
+                  "source": "api",
+                  "currency_code": "USD",
+                  "dimensions": {
+                    "key": "dimensions"
+                  }
+                }
+              ]
+            },
+            {
+              "start_time": "2000-01-23T04:56:07+00:00",
+              "end_time": "2000-01-23T04:56:07+00:00",
+              "line_items": [
+                {
+                  "product": "ideogram_v4_generation",
+                  "endpoint": "/v2/images/generate/ideogram-v4",
+                  "cost_total": "84.00",
+                  "user_email": "user_email",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "billed_units": {
+                    "unit": "image",
+                    "quantity": "2100",
+                    "unit_price": "0.04"
+                  },
+                  "source": "api",
+                  "currency_code": "USD",
+                  "dimensions": {
+                    "key": "dimensions"
+                  }
+                },
+                {
+                  "product": "ideogram_v4_generation",
+                  "endpoint": "/v2/images/generate/ideogram-v4",
+                  "cost_total": "84.00",
+                  "user_email": "user_email",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "billed_units": {
+                    "unit": "image",
+                    "quantity": "2100",
+                    "unit_price": "0.04"
+                  },
+                  "source": "api",
+                  "currency_code": "USD",
+                  "dimensions": {
+                    "key": "dimensions"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "properties": {
+          "buckets": {
+            "description": "Dense, chronological buckets covering the requested range.",
+            "items": {
+              "$ref": "#/components/schemas/AccountUsageBucket"
+            },
+            "title": "buckets",
+            "type": "array"
+          }
+        },
+        "required": [
+          "buckets"
+        ],
+        "title": "GetAccountUsageResponse",
+        "type": "object"
+      },
+      "AccountUsageBucket": {
+        "example": {
+          "start_time": "2000-01-23T04:56:07+00:00",
+          "end_time": "2000-01-23T04:56:07+00:00",
+          "line_items": [
+            {
+              "product": "ideogram_v4_generation",
+              "endpoint": "/v2/images/generate/ideogram-v4",
+              "cost_total": "84.00",
+              "user_email": "user_email",
+              "api_key": {
+                "redacted_key": "ATG5•••••••••••••",
+                "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                "label": "Live production environment"
+              },
+              "description": "Ideogram v4 Generation",
+              "billed_units": {
+                "unit": "image",
+                "quantity": "2100",
+                "unit_price": "0.04"
+              },
+              "source": "api",
+              "currency_code": "USD",
+              "dimensions": {
+                "key": "dimensions"
+              }
+            },
+            {
+              "product": "ideogram_v4_generation",
+              "endpoint": "/v2/images/generate/ideogram-v4",
+              "cost_total": "84.00",
+              "user_email": "user_email",
+              "api_key": {
+                "redacted_key": "ATG5•••••••••••••",
+                "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                "label": "Live production environment"
+              },
+              "description": "Ideogram v4 Generation",
+              "billed_units": {
+                "unit": "image",
+                "quantity": "2100",
+                "unit_price": "0.04"
+              },
+              "source": "api",
+              "currency_code": "USD",
+              "dimensions": {
+                "key": "dimensions"
+              }
+            }
+          ]
+        },
+        "properties": {
+          "start_time": {
+            "description": "Start of the bucket window (inclusive, UTC).",
+            "format": "date-time",
+            "title": "start_time",
+            "type": "string"
+          },
+          "end_time": {
+            "description": "End of the bucket window (exclusive, UTC).",
+            "format": "date-time",
+            "title": "end_time",
+            "type": "string"
+          },
+          "line_items": {
+            "description": "Usage billed in this window. Empty when nothing was billed.",
+            "items": {
+              "$ref": "#/components/schemas/AccountUsageLineItem"
+            },
+            "title": "line_items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "end_time",
+          "line_items",
+          "start_time"
+        ],
+        "title": "AccountUsageBucket",
+        "type": "object"
+      },
+      "AccountUsageLineItem": {
+        "description": "One billed rate for one billing actor within one time bucket.",
+        "example": {
+          "product": "ideogram_v4_generation",
+          "endpoint": "/v2/images/generate/ideogram-v4",
+          "cost_total": "84.00",
+          "user_email": "user_email",
+          "api_key": {
+            "redacted_key": "ATG5•••••••••••••",
+            "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+            "label": "Live production environment"
+          },
+          "description": "Ideogram v4 Generation",
+          "billed_units": {
+            "unit": "image",
+            "quantity": "2100",
+            "unit_price": "0.04"
+          },
+          "source": "api",
+          "currency_code": "USD",
+          "dimensions": {
+            "key": "dimensions"
+          }
+        },
+        "properties": {
+          "product": {
+            "description": "Stable identifier of the billed product, matching the public pricing catalog. `unknown` when a historical charge can no longer be attributed; its cost is still included.",
+            "example": "ideogram_v4_generation",
+            "title": "product",
+            "type": "string"
+          },
+          "endpoint": {
+            "description": "The API endpoint path this product belongs to.",
+            "example": "/v2/images/generate/ideogram-v4",
+            "title": "endpoint",
+            "type": "string"
+          },
+          "description": {
+            "description": "Display name of the billed product. Not an identifier.",
+            "example": "Ideogram v4 Generation",
+            "title": "description",
+            "type": "string"
+          },
+          "dimensions": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Pricing dimensions this line item was billed under, for products priced per dimension (for example rendering speed).",
+            "title": "dimensions",
+            "type": "object"
+          },
+          "cost_total": {
+            "description": "Total billed amount in `currency_code`, as a decimal string.",
+            "example": "84.00",
+            "title": "cost_total",
+            "type": "string"
+          },
+          "currency_code": {
+            "description": "ISO 4217 currency code of the amounts on this line item.",
+            "example": "USD",
+            "title": "currency_code",
+            "type": "string"
+          },
+          "source": {
+            "description": "Which billing surface the usage came through. `api` usage is attributed to an API key when one was used; `app` usage is attributed to the member who generated it.",
+            "enum": [
+              "api",
+              "app"
+            ],
+            "title": "source",
+            "type": "string"
+          },
+          "api_key": {
+            "$ref": "#/components/schemas/AccountUsageApiKey"
+          },
+          "user_email": {
+            "description": "Email address of the member who generated the usage. Only present on `app` usage.",
+            "nullable": true,
+            "title": "user_email",
+            "type": "string"
+          },
+          "billed_units": {
+            "$ref": "#/components/schemas/AccountUsageBilledUnits"
+          }
+        },
+        "required": [
+          "cost_total",
+          "currency_code",
+          "description",
+          "endpoint",
+          "product",
+          "source"
+        ],
+        "title": "AccountUsageLineItem",
+        "type": "object"
+      },
+      "AccountUsageApiKey": {
+        "description": "The API key the usage was billed to, in redacted form.",
+        "example": {
+          "redacted_key": "ATG5•••••••••••••",
+          "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+          "label": "Live production environment"
+        },
+        "properties": {
+          "id": {
+            "description": "The API key's id, as listed by `GET /v2/account/api-keys`.",
+            "example": "JRPVD7jWR1aTBYiJ0UFVOg",
+            "title": "id",
+            "type": "string"
+          },
+          "redacted_key": {
+            "description": "The first characters of the key followed by bullets.",
+            "example": "ATG5•••••••••••••",
+            "nullable": true,
+            "title": "redacted_key",
+            "type": "string"
+          },
+          "label": {
+            "description": "The key's user-supplied label, when one is set.",
+            "example": "Live production environment",
+            "nullable": true,
+            "title": "label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "AccountUsageApiKey",
+        "type": "object"
+      },
+      "AccountUsageBilledUnits": {
+        "description": "Per-unit detail for products billed per item. `quantity × unit_price` always equals the line item's `cost_total`.",
+        "example": {
+          "unit": "image",
+          "quantity": "2100",
+          "unit_price": "0.04"
+        },
+        "properties": {
+          "unit": {
+            "description": "What one billed unit is (for example `image`).",
+            "example": "image",
+            "title": "unit",
+            "type": "string"
+          },
+          "quantity": {
+            "description": "Number of units billed, as a decimal string.",
+            "example": "2100",
+            "title": "quantity",
+            "type": "string"
+          },
+          "unit_price": {
+            "description": "Price per unit in `currency_code`, as a decimal string.",
+            "example": "0.04",
+            "title": "unit_price",
+            "type": "string"
+          }
+        },
+        "required": [
+          "quantity",
+          "unit",
+          "unit_price"
+        ],
+        "title": "AccountUsageBilledUnits",
+        "type": "object"
+      },
+      "ListAccountInvoicesResponse": {
+        "example": {
+          "invoices": [
+            {
+              "start_time": "2000-01-23T04:56:07+00:00",
+              "total": "150.00",
+              "paid_time": "2000-01-23T04:56:07+00:00",
+              "end_time": "2000-01-23T04:56:07+00:00",
+              "line_items": [
+                {
+                  "cost_total": "84.00",
+                  "quantity": "2100",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "unit_price": "0.04",
+                  "currency_code": "USD"
+                },
+                {
+                  "cost_total": "84.00",
+                  "quantity": "2100",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "unit_price": "0.04",
+                  "currency_code": "USD"
+                }
+              ],
+              "issued_time": "2000-01-23T04:56:07+00:00",
+              "currency_code": "USD",
+              "status": "PAID"
+            },
+            {
+              "start_time": "2000-01-23T04:56:07+00:00",
+              "total": "150.00",
+              "paid_time": "2000-01-23T04:56:07+00:00",
+              "end_time": "2000-01-23T04:56:07+00:00",
+              "line_items": [
+                {
+                  "cost_total": "84.00",
+                  "quantity": "2100",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "unit_price": "0.04",
+                  "currency_code": "USD"
+                },
+                {
+                  "cost_total": "84.00",
+                  "quantity": "2100",
+                  "api_key": {
+                    "redacted_key": "ATG5•••••••••••••",
+                    "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                    "label": "Live production environment"
+                  },
+                  "description": "Ideogram v4 Generation",
+                  "unit_price": "0.04",
+                  "currency_code": "USD"
+                }
+              ],
+              "issued_time": "2000-01-23T04:56:07+00:00",
+              "currency_code": "USD",
+              "status": "PAID"
+            }
+          ]
+        },
+        "properties": {
+          "invoices": {
+            "description": "The organization's invoices.",
+            "items": {
+              "$ref": "#/components/schemas/AccountInvoice"
+            },
+            "title": "invoices",
+            "type": "array"
+          }
+        },
+        "required": [
+          "invoices"
+        ],
+        "title": "ListAccountInvoicesResponse",
+        "type": "object"
+      },
+      "AccountInvoice": {
+        "example": {
+          "start_time": "2000-01-23T04:56:07+00:00",
+          "total": "150.00",
+          "paid_time": "2000-01-23T04:56:07+00:00",
+          "end_time": "2000-01-23T04:56:07+00:00",
+          "line_items": [
+            {
+              "cost_total": "84.00",
+              "quantity": "2100",
+              "api_key": {
+                "redacted_key": "ATG5•••••••••••••",
+                "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                "label": "Live production environment"
+              },
+              "description": "Ideogram v4 Generation",
+              "unit_price": "0.04",
+              "currency_code": "USD"
+            },
+            {
+              "cost_total": "84.00",
+              "quantity": "2100",
+              "api_key": {
+                "redacted_key": "ATG5•••••••••••••",
+                "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+                "label": "Live production environment"
+              },
+              "description": "Ideogram v4 Generation",
+              "unit_price": "0.04",
+              "currency_code": "USD"
+            }
+          ],
+          "issued_time": "2000-01-23T04:56:07+00:00",
+          "currency_code": "USD",
+          "status": "PAID"
+        },
+        "properties": {
+          "start_time": {
+            "description": "Start of the invoice period.",
+            "format": "date-time",
+            "title": "start_time",
+            "type": "string"
+          },
+          "end_time": {
+            "description": "End of the invoice period.",
+            "format": "date-time",
+            "title": "end_time",
+            "type": "string"
+          },
+          "issued_time": {
+            "description": "When the invoice was issued, when it has been.",
+            "format": "date-time",
+            "nullable": true,
+            "title": "issued_time",
+            "type": "string"
+          },
+          "paid_time": {
+            "description": "When the invoice was paid, when it has been.",
+            "format": "date-time",
+            "nullable": true,
+            "title": "paid_time",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/InvoiceStatus"
+          },
+          "total": {
+            "description": "Invoice total in `currency_code`, as a decimal string.",
+            "example": "150.00",
+            "title": "total",
+            "type": "string"
+          },
+          "currency_code": {
+            "description": "ISO 4217 currency code of the amounts on this invoice.",
+            "example": "USD",
+            "title": "currency_code",
+            "type": "string"
+          },
+          "line_items": {
+            "description": "The invoice's charges.",
+            "items": {
+              "$ref": "#/components/schemas/AccountInvoiceLineItem"
+            },
+            "title": "line_items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "currency_code",
+          "end_time",
+          "line_items",
+          "start_time",
+          "status",
+          "total"
+        ],
+        "title": "AccountInvoice",
+        "type": "object"
+      },
+      "AccountInvoiceLineItem": {
+        "description": "One charged product on an invoice.",
+        "example": {
+          "cost_total": "84.00",
+          "quantity": "2100",
+          "api_key": {
+            "redacted_key": "ATG5•••••••••••••",
+            "id": "JRPVD7jWR1aTBYiJ0UFVOg",
+            "label": "Live production environment"
+          },
+          "description": "Ideogram v4 Generation",
+          "unit_price": "0.04",
+          "currency_code": "USD"
+        },
+        "properties": {
+          "description": {
+            "description": "Display name of the charged product. Not an identifier.",
+            "example": "Ideogram v4 Generation",
+            "title": "description",
+            "type": "string"
+          },
+          "quantity": {
+            "description": "Number of billed units, as a decimal string.",
+            "example": "2100",
+            "title": "quantity",
+            "type": "string"
+          },
+          "unit_price": {
+            "description": "Price per unit in `currency_code`, as a decimal string.",
+            "example": "0.04",
+            "title": "unit_price",
+            "type": "string"
+          },
+          "cost_total": {
+            "description": "Total charged amount in `currency_code`, as a decimal string.",
+            "example": "84.00",
+            "title": "cost_total",
+            "type": "string"
+          },
+          "currency_code": {
+            "description": "ISO 4217 currency code of the amounts on this line item.",
+            "example": "USD",
+            "title": "currency_code",
+            "type": "string"
+          },
+          "api_key": {
+            "$ref": "#/components/schemas/AccountUsageApiKey"
+          }
+        },
+        "required": [
+          "cost_total",
+          "currency_code",
+          "description",
+          "quantity",
+          "unit_price"
+        ],
+        "title": "AccountInvoiceLineItem",
+        "type": "object"
+      },
       "EditImageGptImage2Response": {
         "description": "Response returned by `POST /v2/images/edit/gpt-image-2`. Synchronous\nrequests (the default) include the edited images in `data`. Requests\nwith `async` set to true omit `data`; poll for completion and results\nwith `GET /v1/generations/{generation_id}` using the returned\n`generation_id`. The seed, width, and height report the values the\nrequest resolved to when the caller left them unset.\n",
         "example": {
@@ -28787,6 +29633,9 @@
           "assets": [
             {
               "delivery": "",
+              "metadata": {
+                "key": "metadata"
+              },
               "media_type": "media_type",
               "external_ref": "external_ref",
               "width": 1,
@@ -28795,6 +29644,9 @@
             },
             {
               "delivery": "",
+              "metadata": {
+                "key": "metadata"
+              },
               "media_type": "media_type",
               "external_ref": "external_ref",
               "width": 1,
@@ -28822,6 +29674,9 @@
         "additionalProperties": false,
         "example": {
           "delivery": "",
+          "metadata": {
+            "key": "metadata"
+          },
           "media_type": "media_type",
           "external_ref": "external_ref",
           "width": 1,
@@ -28864,6 +29719,14 @@
             "minimum": 1,
             "title": "height",
             "type": "integer"
+          },
+          "metadata": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Adapter-specific identifiers needed to organize the asset.",
+            "title": "metadata",
+            "type": "object"
           }
         },
         "required": [
@@ -28900,14 +29763,22 @@
       "IntegrationAssetSearchRequest": {
         "additionalProperties": false,
         "example": {
+          "query": "query",
           "limit": 1
         },
         "properties": {
           "limit": {
-            "description": "Maximum number of assets to return, bounded by the configured runtime policy. The operation returns a single bounded browse result; text search and pagination are future extensions that add optional fields additively.",
+            "description": "Maximum number of assets to return, bounded by the configured runtime policy. The operation returns a single bounded result; pagination is a future extension that adds optional fields additively.",
             "minimum": 1,
             "title": "limit",
             "type": "integer"
+          },
+          "query": {
+            "description": "Optional keyed lookup. For integrations whose upstream is a keyed catalog, this is the item key (for example a product style code); integrations without keyed lookup ignore it. Omitted means browse.",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "query",
+            "type": "string"
           }
         },
         "required": [

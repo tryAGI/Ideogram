@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"delivery":"","media_type":"media_type","external_ref":"external_ref","width":1,"label":"label","height":1}
+    /// Example: {"delivery":"","metadata":{"key":"metadata"},"media_type":"media_type","external_ref":"external_ref","width":1,"label":"label","height":1}
     /// </summary>
     public sealed partial class IntegrationAsset
     {
@@ -49,6 +49,12 @@ namespace Ideogram
         public int? Height { get; set; }
 
         /// <summary>
+        /// Adapter-specific identifiers needed to organize the asset.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
+        public global::System.Collections.Generic.Dictionary<string, string>? Metadata { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -75,6 +81,9 @@ namespace Ideogram
         /// <param name="height">
         /// Pixel height when supplied by the integration.
         /// </param>
+        /// <param name="metadata">
+        /// Adapter-specific identifiers needed to organize the asset.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -84,7 +93,8 @@ namespace Ideogram
             string label,
             string mediaType,
             int? width,
-            int? height)
+            int? height,
+            global::System.Collections.Generic.Dictionary<string, string>? metadata)
         {
             this.ExternalRef = externalRef ?? throw new global::System.ArgumentNullException(nameof(externalRef));
             this.Delivery = delivery ?? throw new global::System.ArgumentNullException(nameof(delivery));
@@ -92,6 +102,7 @@ namespace Ideogram
             this.MediaType = mediaType ?? throw new global::System.ArgumentNullException(nameof(mediaType));
             this.Width = width;
             this.Height = height;
+            this.Metadata = metadata;
         }
 
         /// <summary>
