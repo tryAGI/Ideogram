@@ -10,7 +10,7 @@ namespace Ideogram
     public sealed partial class AccountUsageLineItem
     {
         /// <summary>
-        /// Stable identifier of the billed product, matching the public pricing catalog. `unknown` when a historical charge can no longer be attributed; its cost is still included.<br/>
+        /// Stable identifier of the public pricing catalog entry this charge was billed under, at the granularity the pricing page prices it (for example one entry per quality and resolution). `unknown` when a historical charge can no longer be attributed; its cost is still included.<br/>
         /// Example: ideogram_v4_generation
         /// </summary>
         /// <example>ideogram_v4_generation</example>
@@ -28,7 +28,7 @@ namespace Ideogram
         public required string Endpoint { get; set; }
 
         /// <summary>
-        /// Display name of the billed product. Not an identifier.<br/>
+        /// Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.<br/>
         /// Example: Ideogram v4 Generation
         /// </summary>
         /// <example>Ideogram v4 Generation</example>
@@ -100,7 +100,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="AccountUsageLineItem" /> class.
         /// </summary>
         /// <param name="product">
-        /// Stable identifier of the billed product, matching the public pricing catalog. `unknown` when a historical charge can no longer be attributed; its cost is still included.<br/>
+        /// Stable identifier of the public pricing catalog entry this charge was billed under, at the granularity the pricing page prices it (for example one entry per quality and resolution). `unknown` when a historical charge can no longer be attributed; its cost is still included.<br/>
         /// Example: ideogram_v4_generation
         /// </param>
         /// <param name="endpoint">
@@ -108,7 +108,7 @@ namespace Ideogram
         /// Example: /v2/images/generate/ideogram-v4
         /// </param>
         /// <param name="description">
-        /// Display name of the billed product. Not an identifier.<br/>
+        /// Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.<br/>
         /// Example: Ideogram v4 Generation
         /// </param>
         /// <param name="costTotal">

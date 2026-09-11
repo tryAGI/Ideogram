@@ -19408,7 +19408,7 @@
         },
         "properties": {
           "product": {
-            "description": "Stable identifier of the billed product, matching the public pricing catalog. `unknown` when a historical charge can no longer be attributed; its cost is still included.",
+            "description": "Stable identifier of the public pricing catalog entry this charge was billed under, at the granularity the pricing page prices it (for example one entry per quality and resolution). `unknown` when a historical charge can no longer be attributed; its cost is still included.",
             "example": "ideogram_v4_generation",
             "title": "product",
             "type": "string"
@@ -19420,7 +19420,7 @@
             "type": "string"
           },
           "description": {
-            "description": "Display name of the billed product. Not an identifier.",
+            "description": "Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.",
             "example": "Ideogram v4 Generation",
             "title": "description",
             "type": "string"
