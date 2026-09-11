@@ -5,21 +5,30 @@ namespace Ideogram
     public partial interface IImagesRemixClient
     {
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
+        /// Remix an existing image with Ideogram 3.0, featuring a consistent character<br/>
         /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
-        /// prompt. Supply the source either as an `image_asset_identifier`<br/>
-        /// reference (an image already stored with Ideogram) or as raw `image`<br/>
-        /// bytes (multipart requests only). Supplying both is rejected rather<br/>
-        /// than one being ignored. `image_weight` controls how closely the<br/>
-        /// result follows the source; when omitted the server picks a value from<br/>
-        /// your prompt.<br/>
+        /// prompt and featuring a consistent character. Supply the source either<br/>
+        /// as an `image_asset_identifier` reference (an image already stored<br/>
+        /// with Ideogram) or as raw `image` bytes (multipart requests only).<br/>
+        /// Supplying both is rejected rather than one being ignored.<br/>
+        /// `image_weight` controls how closely the result follows the source;<br/>
+        /// when omitted the server picks a value from your prompt.<br/>
+        /// Supply the character as a saved character<br/>
+        /// (`character_reference_collection_id`), as<br/>
+        /// `character_reference_asset_identifiers` references, or as raw<br/>
+        /// `character_reference_images` bytes (multipart requests only, with an<br/>
+        /// optional `character_reference_mask` marking where the character is in<br/>
+        /// the reference). If more than one form is supplied, the collection<br/>
+        /// wins over the identifiers, and the identifiers win over the bytes.<br/>
         /// Omit `resolution` and `aspect_ratio` to keep the source image's<br/>
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
+        /// Style references may be supplied as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes, with the same precedence as the<br/>
+        /// character forms.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -33,27 +42,36 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3Response> PostRemixImageV2IdeogramV3Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CharacterResponse> PostRemixImageV2IdeogramV3CharacterAsync(
 
-            global::Ideogram.RemixImageIdeogramV3Request request,
+            global::Ideogram.RemixImageIdeogramV3CharacterRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
+        /// Remix an existing image with Ideogram 3.0, featuring a consistent character<br/>
         /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
-        /// prompt. Supply the source either as an `image_asset_identifier`<br/>
-        /// reference (an image already stored with Ideogram) or as raw `image`<br/>
-        /// bytes (multipart requests only). Supplying both is rejected rather<br/>
-        /// than one being ignored. `image_weight` controls how closely the<br/>
-        /// result follows the source; when omitted the server picks a value from<br/>
-        /// your prompt.<br/>
+        /// prompt and featuring a consistent character. Supply the source either<br/>
+        /// as an `image_asset_identifier` reference (an image already stored<br/>
+        /// with Ideogram) or as raw `image` bytes (multipart requests only).<br/>
+        /// Supplying both is rejected rather than one being ignored.<br/>
+        /// `image_weight` controls how closely the result follows the source;<br/>
+        /// when omitted the server picks a value from your prompt.<br/>
+        /// Supply the character as a saved character<br/>
+        /// (`character_reference_collection_id`), as<br/>
+        /// `character_reference_asset_identifiers` references, or as raw<br/>
+        /// `character_reference_images` bytes (multipart requests only, with an<br/>
+        /// optional `character_reference_mask` marking where the character is in<br/>
+        /// the reference). If more than one form is supplied, the collection<br/>
+        /// wins over the identifiers, and the identifiers win over the bytes.<br/>
         /// Omit `resolution` and `aspect_ratio` to keep the source image's<br/>
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
+        /// Style references may be supplied as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes, with the same precedence as the<br/>
+        /// character forms.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -67,27 +85,36 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3Response>> PostRemixImageV2IdeogramV3AsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3CharacterResponse>> PostRemixImageV2IdeogramV3CharacterAsResponseAsync(
 
-            global::Ideogram.RemixImageIdeogramV3Request request,
+            global::Ideogram.RemixImageIdeogramV3CharacterRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
+        /// Remix an existing image with Ideogram 3.0, featuring a consistent character<br/>
         /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
-        /// prompt. Supply the source either as an `image_asset_identifier`<br/>
-        /// reference (an image already stored with Ideogram) or as raw `image`<br/>
-        /// bytes (multipart requests only). Supplying both is rejected rather<br/>
-        /// than one being ignored. `image_weight` controls how closely the<br/>
-        /// result follows the source; when omitted the server picks a value from<br/>
-        /// your prompt.<br/>
+        /// prompt and featuring a consistent character. Supply the source either<br/>
+        /// as an `image_asset_identifier` reference (an image already stored<br/>
+        /// with Ideogram) or as raw `image` bytes (multipart requests only).<br/>
+        /// Supplying both is rejected rather than one being ignored.<br/>
+        /// `image_weight` controls how closely the result follows the source;<br/>
+        /// when omitted the server picks a value from your prompt.<br/>
+        /// Supply the character as a saved character<br/>
+        /// (`character_reference_collection_id`), as<br/>
+        /// `character_reference_asset_identifiers` references, or as raw<br/>
+        /// `character_reference_images` bytes (multipart requests only, with an<br/>
+        /// optional `character_reference_mask` marking where the character is in<br/>
+        /// the reference). If more than one form is supplied, the collection<br/>
+        /// wins over the identifiers, and the identifiers win over the bytes.<br/>
         /// Omit `resolution` and `aspect_ratio` to keep the source image's<br/>
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
+        /// Style references may be supplied as a saved style<br/>
+        /// (`style_reference_collection_id`), as<br/>
+        /// `style_reference_asset_identifiers` references, or as raw<br/>
+        /// `style_reference_images` bytes, with the same precedence as the<br/>
+        /// character forms.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -115,6 +142,24 @@ namespace Ideogram
         /// <param name="negativePrompt">
         /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
         /// </param>
+        /// <param name="characterReferenceCollectionId">
+        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_asset_identifiers` and `character_reference_images` if more than one is supplied.
+        /// </param>
+        /// <param name="characterReferenceCollectionVersionId">
+        /// Optional URL-safe base64 version id pinning a specific version of the `character_reference_collection_id` collection. Ignored without it.
+        /// </param>
+        /// <param name="characterReferenceAssetIdentifiers">
+        /// An existing upload or generated image asset to use as the character reference, by reference. Takes priority over `character_reference_images` if both are supplied.
+        /// </param>
+        /// <param name="characterReferenceImages">
+        /// An image to use as the character reference (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a character collection or asset identifier is also supplied.
+        /// </param>
+        /// <param name="characterReferenceMask">
+        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// </param>
+        /// <param name="characterReferenceMaskname">
+        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
@@ -138,32 +183,21 @@ namespace Ideogram
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
-        /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
-        /// </param>
-        /// <param name="styleCodes">
-        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
-        /// Example: [AAFF5733, 0133FF57, DE3357FF]
-        /// </param>
         /// <param name="styleType">
-        /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
-        /// </param>
-        /// <param name="stylePreset">
-        /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
+        /// The style type to remix the character with. Defaults to `AUTO`.<br/>
+        /// Default Value: AUTO
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
         /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
         /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
-        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -192,23 +226,26 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3Response> PostRemixImageV2IdeogramV3Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CharacterResponse> PostRemixImageV2IdeogramV3CharacterAsync(
             string prompt,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
             int? imageWeight = default,
             string? negativePrompt = default,
+            string? characterReferenceCollectionId = default,
+            string? characterReferenceCollectionVersionId = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? characterReferenceAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
+            byte[]? characterReferenceMask = default,
+            string? characterReferenceMaskname = default,
             int? seed = default,
             global::Ideogram.ResolutionV3? resolution = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
-            global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
             int? numImages = default,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
-            global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::Ideogram.StyleTypeV3? styleType = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
+            global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType? styleType = default,
             string? styleReferenceCollectionId = default,
             string? styleReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,

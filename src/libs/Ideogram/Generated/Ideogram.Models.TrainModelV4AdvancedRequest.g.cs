@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// Advanced training request for a custom Ideogram v4 model. Hyperparameters are optional and fall back to defaults when omitted.<br/>
-    /// Example: {"batch_size":8,"wandb_project":"my-wandb-project","model_name":"my-custom-model","lora_rank":64,"dataset_id":"abc123","ema":0.999,"training_steps":1000,"learning_rate":0.0001}
+    /// Example: {"batch_size":8,"wandb_project":"my-wandb-project","model_name":"my-custom-model","lora_rank":64,"base_variant":"distilled_gd","dataset_id":"abc123","ema":0.999,"training_steps":1000,"learning_rate":0.0001}
     /// </summary>
     public sealed partial class TrainModelV4AdvancedRequest
     {
@@ -76,6 +76,14 @@ namespace Ideogram
         public string? WandbProject { get; set; }
 
         /// <summary>
+        /// Frozen v4 backbone the custom LoRA is trained on. Must be one of `distilled_gd` (the guidance-distilled base, default) or `oldbase_farzad_fused` (the fused non-distilled base). Omit to use the default.<br/>
+        /// Example: distilled_gd
+        /// </summary>
+        /// <example>distilled_gd</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("base_variant")]
+        public string? BaseVariant { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -116,6 +124,10 @@ namespace Ideogram
         /// Weights &amp; Biases project to log this training run to. When set, the run streams metrics to this W&amp;B project; when omitted, no W&amp;B logging happens.<br/>
         /// Example: my-wandb-project
         /// </param>
+        /// <param name="baseVariant">
+        /// Frozen v4 backbone the custom LoRA is trained on. Must be one of `distilled_gd` (the guidance-distilled base, default) or `oldbase_farzad_fused` (the fused non-distilled base). Omit to use the default.<br/>
+        /// Example: distilled_gd
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -127,7 +139,8 @@ namespace Ideogram
             double? ema,
             double? learningRate,
             int? batchSize,
-            string? wandbProject)
+            string? wandbProject,
+            string? baseVariant)
         {
             this.DatasetId = datasetId ?? throw new global::System.ArgumentNullException(nameof(datasetId));
             this.ModelName = modelName ?? throw new global::System.ArgumentNullException(nameof(modelName));
@@ -137,6 +150,7 @@ namespace Ideogram
             this.LearningRate = learningRate;
             this.BatchSize = batchSize;
             this.WandbProject = wandbProject;
+            this.BaseVariant = baseVariant;
         }
 
         /// <summary>

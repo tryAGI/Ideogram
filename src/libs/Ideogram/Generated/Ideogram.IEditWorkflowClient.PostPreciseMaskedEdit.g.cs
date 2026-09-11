@@ -5,10 +5,12 @@ namespace Ideogram
     public partial interface IEditWorkflowClient
     {
         /// <summary>
-        /// Edit an image using a mask<br/>
-        /// Applies an instruction using a supplied mask. Optional reference images<br/>
-        /// can guide the requested appearance. Set `preserve_unmasked_pixels` to<br/>
-        /// keep decoded pixels outside the mask unchanged in the final image.<br/>
+        /// Edit an image, optionally using a mask<br/>
+        /// Applies an instruction to an image. When a mask is supplied, it identifies<br/>
+        /// the primary edit region. Without a mask, the model edits the full image.<br/>
+        /// Optional reference images can guide the requested appearance. Set<br/>
+        /// `preserve_unmasked_pixels` to keep decoded pixels outside a supplied mask<br/>
+        /// unchanged in the final image.<br/>
         /// The request runs asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
@@ -23,10 +25,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Edit an image using a mask<br/>
-        /// Applies an instruction using a supplied mask. Optional reference images<br/>
-        /// can guide the requested appearance. Set `preserve_unmasked_pixels` to<br/>
-        /// keep decoded pixels outside the mask unchanged in the final image.<br/>
+        /// Edit an image, optionally using a mask<br/>
+        /// Applies an instruction to an image. When a mask is supplied, it identifies<br/>
+        /// the primary edit region. Without a mask, the model edits the full image.<br/>
+        /// Optional reference images can guide the requested appearance. Set<br/>
+        /// `preserve_unmasked_pixels` to keep decoded pixels outside a supplied mask<br/>
+        /// unchanged in the final image.<br/>
         /// The request runs asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
@@ -41,14 +45,23 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Edit an image using a mask<br/>
-        /// Applies an instruction using a supplied mask. Optional reference images<br/>
-        /// can guide the requested appearance. Set `preserve_unmasked_pixels` to<br/>
-        /// keep decoded pixels outside the mask unchanged in the final image.<br/>
+        /// Edit an image, optionally using a mask<br/>
+        /// Applies an instruction to an image. When a mask is supplied, it identifies<br/>
+        /// the primary edit region. Without a mask, the model edits the full image.<br/>
+        /// Optional reference images can guide the requested appearance. Set<br/>
+        /// `preserve_unmasked_pixels` to keep decoded pixels outside a supplied mask<br/>
+        /// unchanged in the final image.<br/>
         /// The request runs asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
         /// </summary>
+        /// <param name="model">
+        /// The model used to apply the masked edit.
+        /// </param>
+        /// <param name="quality">
+        /// The generation quality level. Defaults to `HIGH`.<br/>
+        /// Default Value: HIGH
+        /// </param>
         /// <param name="sourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -67,7 +80,7 @@ namespace Ideogram
         /// Optional assets that show the desired appearance of the masked edit.
         /// </param>
         /// <param name="instruction">
-        /// Plain-language description of what to change inside the mask.
+        /// Plain-language description of the desired change.
         /// </param>
         /// <param name="seed">
         /// Optional seed for repeatable results.
@@ -81,8 +94,8 @@ namespace Ideogram
         /// </param>
         /// <param name="preserveUnmaskedPixels">
         /// When true, decoded pixels outside the mask are copied from the<br/>
-        /// source image into the final result. When false, the final result is<br/>
-        /// the model's full edited image.<br/>
+        /// source image into the final result. Requires `mask_asset_identifier`.<br/>
+        /// When false, the final result is the model's full edited image.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">
@@ -100,11 +113,13 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.PreciseMaskedEditResponse> PostPreciseMaskedEditAsync(
-            global::Ideogram.AssetIdentifier maskAssetIdentifier,
             string instruction,
+            global::Ideogram.PreciseMaskedEditModel? model = default,
+            global::Ideogram.GptImage2Quality? quality = default,
             global::Ideogram.AssetIdentifier? sourceAssetIdentifier = default,
             byte[]? sourceImage = default,
             string? sourceImagename = default,
+            global::Ideogram.AssetIdentifier? maskAssetIdentifier = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceAssetIdentifiers = default,
             int? seed = default,
             int? numImages = default,

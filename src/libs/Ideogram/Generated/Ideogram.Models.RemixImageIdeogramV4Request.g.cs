@@ -34,7 +34,7 @@ namespace Ideogram
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining image_weight with a resolution whose aspect ratio differs from the source's is rejected with a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_weight")]
         public int? ImageWeight { get; set; }
@@ -48,7 +48,9 @@ namespace Ideogram
 
         /// <summary>
         /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, the source image's shape is kept.
+        /// resolution. When omitted, the source image's shape is kept. A<br/>
+        /// resolution whose aspect ratio differs from the source's cannot<br/>
+        /// be combined with image_weight.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter))]
@@ -124,7 +126,7 @@ namespace Ideogram
         /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.
         /// </param>
         /// <param name="imageWeight">
-        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining image_weight with a resolution whose aspect ratio differs from the source's is rejected with a 400.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -132,7 +134,9 @@ namespace Ideogram
         /// </param>
         /// <param name="resolution">
         /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, the source image's shape is kept.
+        /// resolution. When omitted, the source image's shape is kept. A<br/>
+        /// resolution whose aspect ratio differs from the source's cannot<br/>
+        /// be combined with image_weight.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>

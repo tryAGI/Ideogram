@@ -33,16 +33,18 @@ namespace Ideogram
         /// Optional. How strongly the output should resemble the input image. Higher values keep<br/>
         /// the input image's structure; lower values allow the prompt to drive the output more.<br/>
         /// When omitted, the weight is chosen automatically from the edit instruction; supplying<br/>
-        /// a value overrides that automatic choice.
+        /// a value overrides that automatic choice. Only accepted when the output keeps the input<br/>
+        /// image's shape: combining image_weight with a resolution whose aspect ratio differs<br/>
+        /// from the input image's is rejected with a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_weight")]
         public int? ImageWeight { get; set; }
 
         /// <summary>
-        /// The 1K and 2K resolutions supported for Ideogram 4.0 image generation.<br/>
-        /// Example: 2048x2048
+        /// Optional. When supplied, the images are generated at this resolution. When omitted,<br/>
+        /// the input image's shape is kept. A resolution whose aspect ratio differs from the<br/>
+        /// input image's cannot be combined with image_weight.
         /// </summary>
-        /// <example>2048x2048</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter))]
         public global::Ideogram.ResolutionV4? Resolution { get; set; }
@@ -84,11 +86,14 @@ namespace Ideogram
         /// Optional. How strongly the output should resemble the input image. Higher values keep<br/>
         /// the input image's structure; lower values allow the prompt to drive the output more.<br/>
         /// When omitted, the weight is chosen automatically from the edit instruction; supplying<br/>
-        /// a value overrides that automatic choice.
+        /// a value overrides that automatic choice. Only accepted when the output keeps the input<br/>
+        /// image's shape: combining image_weight with a resolution whose aspect ratio differs<br/>
+        /// from the input image's is rejected with a 400.
         /// </param>
         /// <param name="resolution">
-        /// The 1K and 2K resolutions supported for Ideogram 4.0 image generation.<br/>
-        /// Example: 2048x2048
+        /// Optional. When supplied, the images are generated at this resolution. When omitted,<br/>
+        /// the input image's shape is kept. A resolution whose aspect ratio differs from the<br/>
+        /// input image's cannot be combined with image_weight.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>

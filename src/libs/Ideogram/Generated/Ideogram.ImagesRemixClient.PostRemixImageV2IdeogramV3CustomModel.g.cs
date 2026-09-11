@@ -7,7 +7,7 @@ namespace Ideogram
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostRemixImageV2IdeogramV3SecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostRemixImageV2IdeogramV3CustomModelSecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,29 +21,30 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostRemixImageV2IdeogramV3SecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostRemixImageV2IdeogramV3CustomModelSecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostRemixImageV2IdeogramV3SecurityRequirement0,
+            {                s_PostRemixImageV2IdeogramV3CustomModelSecurityRequirement0,
             };
-        partial void PreparePostRemixImageV2IdeogramV3Arguments(
+        partial void PreparePostRemixImageV2IdeogramV3CustomModelArguments(
             global::System.Net.Http.HttpClient httpClient,
-            global::Ideogram.RemixImageIdeogramV3Request request);
-        partial void PreparePostRemixImageV2IdeogramV3Request(
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequest request);
+        partial void PreparePostRemixImageV2IdeogramV3CustomModelRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
-            global::Ideogram.RemixImageIdeogramV3Request request);
-        partial void ProcessPostRemixImageV2IdeogramV3Response(
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequest request);
+        partial void ProcessPostRemixImageV2IdeogramV3CustomModelResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostRemixImageV2IdeogramV3ResponseContent(
+        partial void ProcessPostRemixImageV2IdeogramV3CustomModelResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
-        /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
+        /// Remix an existing image with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that the<br/>
+        /// authenticated user or organization can access, guided by a text<br/>
         /// prompt. Supply the source either as an `image_asset_identifier`<br/>
         /// reference (an image already stored with Ideogram) or as raw `image`<br/>
         /// bytes (multipart requests only). Supplying both is rejected rather<br/>
@@ -54,9 +55,6 @@ namespace Ideogram
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -70,13 +68,13 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3Response> PostRemixImageV2IdeogramV3Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CustomModelResponse> PostRemixImageV2IdeogramV3CustomModelAsync(
 
-            global::Ideogram.RemixImageIdeogramV3Request request,
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await PostRemixImageV2IdeogramV3AsResponseAsync(
+            var __response = await PostRemixImageV2IdeogramV3CustomModelAsResponseAsync(
 
                 request: request,
                 requestOptions: requestOptions,
@@ -86,8 +84,9 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
-        /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
+        /// Remix an existing image with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that the<br/>
+        /// authenticated user or organization can access, guided by a text<br/>
         /// prompt. Supply the source either as an `image_asset_identifier`<br/>
         /// reference (an image already stored with Ideogram) or as raw `image`<br/>
         /// bytes (multipart requests only). Supplying both is rejected rather<br/>
@@ -98,9 +97,6 @@ namespace Ideogram
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -114,9 +110,9 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3Response>> PostRemixImageV2IdeogramV3AsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3CustomModelResponse>> PostRemixImageV2IdeogramV3CustomModelAsResponseAsync(
 
-            global::Ideogram.RemixImageIdeogramV3Request request,
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -124,15 +120,15 @@ namespace Ideogram
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostRemixImageV2IdeogramV3Arguments(
+            PreparePostRemixImageV2IdeogramV3CustomModelArguments(
                 httpClient: HttpClient,
                 request: request);
 
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostRemixImageV2IdeogramV3SecurityRequirements,
-                operationName: "PostRemixImageV2IdeogramV3Async");
+                securityRequirements: s_PostRemixImageV2IdeogramV3CustomModelSecurityRequirements,
+                operationName: "PostRemixImageV2IdeogramV3CustomModelAsync");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -152,7 +148,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/remix/ideogram-v3",
+                                path: "/v2/images/remix/ideogram-v3-custom-model",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -188,6 +184,10 @@ namespace Ideogram
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
                                 name: "\"prompt\"");
+
+                            __httpRequestContent.Add(
+                                content: new global::System.Net.Http.StringContent(request.CustomModelUri ?? string.Empty),
+                                name: "\"custom_model_uri\"");
 
                             if (request.ImageAssetIdentifier != default)
                             {
@@ -319,36 +319,12 @@ namespace Ideogram
                                     name: "\"style_codes\"");
 
                             }
-                            if (request.StyleType != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.StyleType).HasValue ? (request.StyleType).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"style_type\"");
-
-                            }
                             if (request.StylePreset != default)
                             {
 
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.StylePreset).HasValue ? (request.StylePreset).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"style_preset\"");
-
-                            }
-                            if (request.StyleReferenceCollectionId != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.StyleReferenceCollectionId ?? string.Empty),
-                                    name: "\"style_reference_collection_id\"");
-
-                            }
-                            if (request.StyleReferenceCollectionVersionId != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.StyleReferenceCollectionVersionId ?? string.Empty),
-                                    name: "\"style_reference_collection_version_id\"");
 
                             }
                             if (request.StyleReferenceAssetIdentifiers != default)
@@ -428,7 +404,7 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostRemixImageV2IdeogramV3Request(
+                PreparePostRemixImageV2IdeogramV3CustomModelRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     request: request);
@@ -448,9 +424,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostRemixImageV2IdeogramV3",
-                                methodName: "PostRemixImageV2IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/remix/ideogram-v3\"",
+                                operationId: "PostRemixImageV2IdeogramV3CustomModel",
+                                methodName: "PostRemixImageV2IdeogramV3CustomModelAsync",
+                                pathTemplate: "\"/v2/images/remix/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -482,9 +458,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostRemixImageV2IdeogramV3",
-                                methodName: "PostRemixImageV2IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/remix/ideogram-v3\"",
+                                operationId: "PostRemixImageV2IdeogramV3CustomModel",
+                                methodName: "PostRemixImageV2IdeogramV3CustomModelAsync",
+                                pathTemplate: "\"/v2/images/remix/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -523,9 +499,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostRemixImageV2IdeogramV3",
-                                methodName: "PostRemixImageV2IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/remix/ideogram-v3\"",
+                                operationId: "PostRemixImageV2IdeogramV3CustomModel",
+                                methodName: "PostRemixImageV2IdeogramV3CustomModelAsync",
+                                pathTemplate: "\"/v2/images/remix/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -563,7 +539,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostRemixImageV2IdeogramV3Response(
+                ProcessPostRemixImageV2IdeogramV3CustomModelResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -571,9 +547,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostRemixImageV2IdeogramV3",
-                                methodName: "PostRemixImageV2IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/remix/ideogram-v3\"",
+                                operationId: "PostRemixImageV2IdeogramV3CustomModel",
+                                methodName: "PostRemixImageV2IdeogramV3CustomModelAsync",
+                                pathTemplate: "\"/v2/images/remix/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -593,9 +569,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostRemixImageV2IdeogramV3",
-                                methodName: "PostRemixImageV2IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/remix/ideogram-v3\"",
+                                operationId: "PostRemixImageV2IdeogramV3CustomModel",
+                                methodName: "PostRemixImageV2IdeogramV3CustomModelAsync",
+                                pathTemplate: "\"/v2/images/remix/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -706,6 +682,38 @@ namespace Ideogram
                                     innerException: __exception_402,
                                     responseBody: __content_402,
                                     responseObject: __value_402,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 403)
+                            {
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_403 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -889,7 +897,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostRemixImageV2IdeogramV3ResponseContent(
+                                ProcessPostRemixImageV2IdeogramV3CustomModelResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -898,9 +906,9 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Ideogram.RemixImageIdeogramV3Response.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.RemixImageIdeogramV3CustomModelResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3Response>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3CustomModelResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -930,9 +938,9 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Ideogram.RemixImageIdeogramV3Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.RemixImageIdeogramV3CustomModelResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3Response>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3CustomModelResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -973,8 +981,9 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
-        /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
+        /// Remix an existing image with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that the<br/>
+        /// authenticated user or organization can access, guided by a text<br/>
         /// prompt. Supply the source either as an `image_asset_identifier`<br/>
         /// reference (an image already stored with Ideogram) or as raw `image`<br/>
         /// bytes (multipart requests only). Supplying both is rejected rather<br/>
@@ -985,9 +994,6 @@ namespace Ideogram
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -999,6 +1005,10 @@ namespace Ideogram
         /// </summary>
         /// <param name="prompt">
         /// The prompt that guides the remix.
+        /// </param>
+        /// <param name="customModelUri">
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// Example: model/my-custom-model/version/1
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
@@ -1027,8 +1037,7 @@ namespace Ideogram
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
@@ -1045,25 +1054,14 @@ namespace Ideogram
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
-        /// <param name="styleType">
-        /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
-        /// </param>
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
         /// </param>
-        /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
-        /// </param>
-        /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
-        /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
-        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -1092,8 +1090,9 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3Response> PostRemixImageV2IdeogramV3Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CustomModelResponse> PostRemixImageV2IdeogramV3CustomModelAsync(
             string prompt,
+            string customModelUri,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -1102,15 +1101,12 @@ namespace Ideogram
             int? seed = default,
             global::Ideogram.ResolutionV3? resolution = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
-            global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
             int? numImages = default,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
-            string? styleReferenceCollectionId = default,
-            string? styleReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             bool? enableCopyrightDetection = default,
@@ -1121,9 +1117,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.RemixImageIdeogramV3Request
+            var __request = new global::Ideogram.RemixImageIdeogramV3CustomModelRequest
             {
                 Prompt = prompt,
+                CustomModelUri = customModelUri,
                 ImageAssetIdentifier = imageAssetIdentifier,
                 Image = image,
                 Imagename = imagename,
@@ -1137,10 +1134,7 @@ namespace Ideogram
                 NumImages = numImages,
                 ColorPalette = colorPalette,
                 StyleCodes = styleCodes,
-                StyleType = styleType,
                 StylePreset = stylePreset,
-                StyleReferenceCollectionId = styleReferenceCollectionId,
-                StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId,
                 StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers,
                 StyleReferenceImages = styleReferenceImages,
                 EnableCopyrightDetection = enableCopyrightDetection,
@@ -1150,7 +1144,7 @@ namespace Ideogram
                 TargetCollectionId = targetCollectionId,
             };
 
-            return await PostRemixImageV2IdeogramV3Async(
+            return await PostRemixImageV2IdeogramV3CustomModelAsync(
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
