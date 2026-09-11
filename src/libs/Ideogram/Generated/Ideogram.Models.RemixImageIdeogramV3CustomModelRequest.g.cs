@@ -6,7 +6,7 @@ namespace Ideogram
     /// <summary>
     ///
     /// </summary>
-    public sealed partial class RemixImageIdeogramV3Request
+    public sealed partial class RemixImageIdeogramV3CustomModelRequest
     {
         /// <summary>
         /// The prompt that guides the remix.
@@ -14,6 +14,15 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Prompt { get; set; }
+
+        /// <summary>
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// Example: model/my-custom-model/version/1
+        /// </summary>
+        /// <example>model/my-custom-model/version/1</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_uri")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string CustomModelUri { get; set; }
 
         /// <summary>
         /// The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
@@ -70,12 +79,11 @@ namespace Ideogram
         public global::Ideogram.AspectRatioV3? AspectRatio { get; set; }
 
         /// <summary>
-        /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RenderingSpeedJsonConverter))]
-        public global::Ideogram.RenderingSpeed? RenderingSpeed { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RemixImageIdeogramV3CustomModelRequestRenderingSpeedJsonConverter))]
+        public global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
@@ -108,16 +116,6 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
-        /// </summary>
-        /// <example>GENERAL</example>
-        [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
-        public global::Ideogram.StyleTypeV3? StyleType { get; set; }
-
-        /// <summary>
         /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
@@ -125,25 +123,13 @@ namespace Ideogram
         public global::Ideogram.StylePresetV3? StylePreset { get; set; }
 
         /// <summary>
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
-        public string? StyleReferenceCollectionId { get; set; }
-
-        /// <summary>
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_version_id")]
-        public string? StyleReferenceCollectionVersionId { get; set; }
-
-        /// <summary>
-        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_asset_identifiers")]
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -195,10 +181,14 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RemixImageIdeogramV3Request" /> class.
+        /// Initializes a new instance of the <see cref="RemixImageIdeogramV3CustomModelRequest" /> class.
         /// </summary>
         /// <param name="prompt">
         /// The prompt that guides the remix.
+        /// </param>
+        /// <param name="customModelUri">
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// Example: model/my-custom-model/version/1
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
@@ -227,8 +217,7 @@ namespace Ideogram
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
@@ -245,25 +234,14 @@ namespace Ideogram
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
-        /// <param name="styleType">
-        /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
-        /// </param>
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
         /// </param>
-        /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
-        /// </param>
-        /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
-        /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
-        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -292,8 +270,9 @@ namespace Ideogram
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public RemixImageIdeogramV3Request(
+        public RemixImageIdeogramV3CustomModelRequest(
             string prompt,
+            string customModelUri,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
@@ -302,15 +281,12 @@ namespace Ideogram
             int? seed,
             global::Ideogram.ResolutionV3? resolution,
             global::Ideogram.AspectRatioV3? aspectRatio,
-            global::Ideogram.RenderingSpeed? renderingSpeed,
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed? renderingSpeed,
             global::Ideogram.MagicPromptOption? magicPrompt,
             int? numImages,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
-            global::Ideogram.StyleTypeV3? styleType,
             global::Ideogram.StylePresetV3? stylePreset,
-            string? styleReferenceCollectionId,
-            string? styleReferenceCollectionVersionId,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             bool? enableCopyrightDetection,
@@ -320,6 +296,7 @@ namespace Ideogram
             string? targetCollectionId)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.CustomModelUri = customModelUri ?? throw new global::System.ArgumentNullException(nameof(customModelUri));
             this.ImageAssetIdentifier = imageAssetIdentifier;
             this.Image = image;
             this.Imagename = imagename;
@@ -333,10 +310,7 @@ namespace Ideogram
             this.NumImages = numImages;
             this.ColorPalette = colorPalette;
             this.StyleCodes = styleCodes;
-            this.StyleType = styleType;
             this.StylePreset = stylePreset;
-            this.StyleReferenceCollectionId = styleReferenceCollectionId;
-            this.StyleReferenceCollectionVersionId = styleReferenceCollectionVersionId;
             this.StyleReferenceAssetIdentifiers = styleReferenceAssetIdentifiers;
             this.StyleReferenceImages = styleReferenceImages;
             this.EnableCopyrightDetection = enableCopyrightDetection;
@@ -347,9 +321,9 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RemixImageIdeogramV3Request" /> class.
+        /// Initializes a new instance of the <see cref="RemixImageIdeogramV3CustomModelRequest" /> class.
         /// </summary>
-        public RemixImageIdeogramV3Request()
+        public RemixImageIdeogramV3CustomModelRequest()
         {
         }
 

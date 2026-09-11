@@ -5,8 +5,9 @@ namespace Ideogram
     public partial interface IImagesRemixClient
     {
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
-        /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
+        /// Remix an existing image with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that the<br/>
+        /// authenticated user or organization can access, guided by a text<br/>
         /// prompt. Supply the source either as an `image_asset_identifier`<br/>
         /// reference (an image already stored with Ideogram) or as raw `image`<br/>
         /// bytes (multipart requests only). Supplying both is rejected rather<br/>
@@ -17,9 +18,6 @@ namespace Ideogram
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -33,14 +31,15 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3Response> PostRemixImageV2IdeogramV3Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CustomModelResponse> PostRemixImageV2IdeogramV3CustomModelAsync(
 
-            global::Ideogram.RemixImageIdeogramV3Request request,
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
-        /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
+        /// Remix an existing image with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that the<br/>
+        /// authenticated user or organization can access, guided by a text<br/>
         /// prompt. Supply the source either as an `image_asset_identifier`<br/>
         /// reference (an image already stored with Ideogram) or as raw `image`<br/>
         /// bytes (multipart requests only). Supplying both is rejected rather<br/>
@@ -51,9 +50,6 @@ namespace Ideogram
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -67,14 +63,15 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3Response>> PostRemixImageV2IdeogramV3AsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3CustomModelResponse>> PostRemixImageV2IdeogramV3CustomModelAsResponseAsync(
 
-            global::Ideogram.RemixImageIdeogramV3Request request,
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequest request,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Remix an existing image with Ideogram 3.0, guided by a prompt<br/>
-        /// Transform an existing image with Ideogram 3.0, guided by a text<br/>
+        /// Remix an existing image with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that the<br/>
+        /// authenticated user or organization can access, guided by a text<br/>
         /// prompt. Supply the source either as an `image_asset_identifier`<br/>
         /// reference (an image already stored with Ideogram) or as raw `image`<br/>
         /// bytes (multipart requests only). Supplying both is rejected rather<br/>
@@ -85,9 +82,6 @@ namespace Ideogram
         /// shape. If you request a different shape, the source is center-cropped<br/>
         /// to fit it first, and whatever falls outside the new shape is<br/>
         /// discarded.<br/>
-        /// Optional style controls work as on the Ideogram 3.0 generate<br/>
-        /// endpoint: style codes, a style preset, a color palette, or style<br/>
-        /// reference images.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -99,6 +93,10 @@ namespace Ideogram
         /// </summary>
         /// <param name="prompt">
         /// The prompt that guides the remix.
+        /// </param>
+        /// <param name="customModelUri">
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// Example: model/my-custom-model/version/1
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
@@ -127,8 +125,7 @@ namespace Ideogram
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
@@ -145,25 +142,14 @@ namespace Ideogram
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
-        /// <param name="styleType">
-        /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
-        /// </param>
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
         /// </param>
-        /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
-        /// </param>
-        /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
-        /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
-        /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
+        /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `style_reference_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -192,8 +178,9 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3Response> PostRemixImageV2IdeogramV3Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CustomModelResponse> PostRemixImageV2IdeogramV3CustomModelAsync(
             string prompt,
+            string customModelUri,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -202,15 +189,12 @@ namespace Ideogram
             int? seed = default,
             global::Ideogram.ResolutionV3? resolution = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
-            global::Ideogram.RenderingSpeed? renderingSpeed = default,
+            global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
             int? numImages = default,
             global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::Ideogram.StyleTypeV3? styleType = default,
             global::Ideogram.StylePresetV3? stylePreset = default,
-            string? styleReferenceCollectionId = default,
-            string? styleReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             bool? enableCopyrightDetection = default,

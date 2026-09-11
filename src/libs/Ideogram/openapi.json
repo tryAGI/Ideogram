@@ -9573,9 +9573,190 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
       }
     },
+    "/v2/images/remix/ideogram-v3-character": {
+      "post": {
+        "description": "Transform an existing image with Ideogram 3.0, guided by a text\nprompt and featuring a consistent character. Supply the source either\nas an `image_asset_identifier` reference (an image already stored\nwith Ideogram) or as raw `image` bytes (multipart requests only).\nSupplying both is rejected rather than one being ignored.\n`image_weight` controls how closely the result follows the source;\nwhen omitted the server picks a value from your prompt.\n\nSupply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references, or as raw\n`character_reference_images` bytes (multipart requests only, with an\noptional `character_reference_mask` marking where the character is in\nthe reference). If more than one form is supplied, the collection\nwins over the identifiers, and the identifiers win over the bytes.\n\nOmit `resolution` and `aspect_ratio` to keep the source image's\nshape. If you request a different shape, the source is center-cropped\nto fit it first, and whatever falls outside the new shape is\ndiscarded.\n\nStyle references may be supplied as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references, or as raw\n`style_reference_images` bytes, with the same precedence as the\ncharacter forms.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_remix_image_v2_ideogram_v3_character",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "character_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "style_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/RemixImageIdeogramV3CharacterRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemixImageIdeogramV3CharacterRequest"
+              }
+            }
+          },
+          "description": "A request to remix one image with Ideogram 3.0, featuring a consistent character. Use `multipart/form-data` to upload `image`, `character_reference_images`, or `style_reference_images` bytes directly, or `application/json` (or multipart with the collection id or asset identifier forms) to reference saved characters, styles, or existing assets instead. Supplying both source forms is rejected rather than one being ignored.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixImageIdeogramV3CharacterResponse"
+                }
+              }
+            },
+            "description": "The remixed images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "A referenced asset or collection was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Remix an existing image with Ideogram 3.0, featuring a consistent character",
+        "tags": [
+          "images-remix"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
+      }
+    },
+    "/v2/images/remix/ideogram-v3-custom-model": {
+      "post": {
+        "description": "Transform an existing image with a custom Ideogram 3.0 model that the\nauthenticated user or organization can access, guided by a text\nprompt. Supply the source either as an `image_asset_identifier`\nreference (an image already stored with Ideogram) or as raw `image`\nbytes (multipart requests only). Supplying both is rejected rather\nthan one being ignored. `image_weight` controls how closely the\nresult follows the source; when omitted the server picks a value from\nyour prompt.\n\nOmit `resolution` and `aspect_ratio` to keep the source image's\nshape. If you request a different shape, the source is center-cropped\nto fit it first, and whatever falls outside the new shape is\ndiscarded.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_remix_image_v2_ideogram_v3_custom_model",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "color_palette": {
+                  "contentType": "application/json"
+                },
+                "style_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/RemixImageIdeogramV3CustomModelRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RemixImageIdeogramV3CustomModelRequest"
+              }
+            }
+          },
+          "description": "A request to remix one image with an accessible custom Ideogram 3.0 model. Use `multipart/form-data` to upload `image` or `style_reference_images` bytes directly, or `application/json` (or multipart with the `*_asset_identifier` fields) to reference existing assets instead. Supplying both source forms is rejected rather than one being ignored.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixImageIdeogramV3CustomModelResponse"
+                }
+              }
+            },
+            "description": "The remixed images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input or an unsupported model option."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "The custom model does not exist or is not accessible to this user or organization."
+          },
+          "404": {
+            "description": "The referenced source or style asset was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Remix an existing image with a custom Ideogram 3.0 model",
+        "tags": [
+          "images-remix"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
+      }
+    },
     "/v2/images/remix/ideogram-v4": {
       "post": {
-        "description": "Transform an existing image with Ideogram 4.0, guided by a text\nprompt. Supply the source either as an `image_asset_identifier`\nreference (an image already stored with Ideogram) or as raw `image`\nbytes (multipart requests only). Supplying both is rejected rather\nthan one being ignored. `image_weight` controls how closely the\nresult follows the source; when omitted the server picks a value from\nyour prompt.\n\nOmit `resolution` to keep the source image's shape.\n\nThe prompt is always interpreted by an instruction-editing model, so\nthere is no `magic_prompt` option. Remixes are not reproducible, so\nno seed is accepted; the response reports the seed the request\nresolved to.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Transform an existing image with Ideogram 4.0, guided by a text\nprompt. Supply the source either as an `image_asset_identifier`\nreference (an image already stored with Ideogram) or as raw `image`\nbytes (multipart requests only). Supplying both is rejected rather\nthan one being ignored. `image_weight` controls how closely the\nresult follows the source; when omitted the server picks a value from\nyour prompt.\n\nOmit `resolution` to keep the source image's shape. A `resolution`\nwhose aspect ratio differs from the source's cannot be combined with\n`image_weight` — that request is rejected with a 400.\n\nThe prompt is always interpreted by an instruction-editing model, so\nthere is no `magic_prompt` option. Remixes are not reproducible, so\nno seed is accepted; the response reports the seed the request\nresolved to.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_remix_image_v2_ideogram_v4",
         "requestBody": {
           "content": {
@@ -10183,6 +10364,107 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
+    "/v2/tool/ghost-mannequin": {
+      "post": {
+        "description": "Transforms one or more photographs of the same garment into a polished\nghost-mannequin product image on a clean white studio background. The\ngarment keeps its identity and construction while the source person,\nmannequin, hanger, environment, and other clothing are removed.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply one or more garment references. Use the directional fields when\nthe camera direction is known; each direction accepts either an\nexisting `AssetIdentifier` or one raw image, but not both. Additional\nunlabeled references can be supplied through exactly one transport:\n`garment_asset_identifiers`, or multipart `garment_images`.\n",
+        "operationId": "post_ghost_mannequin",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "garment_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "front_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "back_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "left_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "right_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "top_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "bottom_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GhostMannequinRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GhostMannequinRequest"
+              }
+            }
+          },
+          "description": "Garment references and the requested catalog presentation.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GhostMannequinResponse"
+                }
+              }
+            },
+            "description": "Ghost-mannequin generation accepted for asynchronous processing."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "Not authorized to create ghost-mannequin images."
+          },
+          "404": {
+            "description": "An input asset was not found or is not readable."
+          },
+          "413": {
+            "description": "The combined raw image uploads exceed 100 MB."
+          },
+          "422": {
+            "description": "The instruction did not pass prompt safety validation."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Create ghost-mannequin garment photography",
+        "tags": [
+          "edit-workflow"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
+      }
+    },
     "/v2/tool/image-to-image": {
       "post": {
         "description": "Transform one or more source images by describing the change in plain\nlanguage, without choosing a model. The server selects the model best\nsuited to the request and may route different requests to different\nmodels. Supply the sources either as `image_asset_identifiers`\nreferences (images already stored with Ideogram) or as raw `images`\nbytes (multipart requests only) — callers are never required to upload\nassets first. If both are supplied, the references win and the bytes\nare ignored.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n",
@@ -10574,6 +10856,81 @@
           "edit-workflow"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
+      }
+    },
+    "/v2/tool/remix": {
+      "post": {
+        "description": "Transform an existing image with a server-selected model, guided by a\ntext prompt. Supply the source as `image` bytes (multipart requests\nonly). `image_weight` controls how closely the result follows the\nsource; when omitted the selected model chooses its usual strength.\n\nThe server chooses a model that supports the requested remix controls:\nstyle references (ad hoc or saved), a color palette, style codes, a\nstyle preset, and a non-`AUTO` style type each\nrestrict the request to a compatible model and to the 1K tier;\nremixes without those controls use the default model. Omit\n`resolution` and `aspect_ratio` to keep the source image's shape.\nSupplying `image_weight` together with a `resolution` or\n`aspect_ratio` that changes the source's aspect ratio routes the\nrequest to a model that crops the source to the new shape; that\ncombination is served only at the 1K tier and is rejected at 2K.\n(The model-pinned remix endpoints such as\n`/v2/images/remix/ideogram-v4` reject the combination outright.)\n`seed` is honored only on the compatible model; the default model\nsynthesizes an unseeded instruction prompt, so results are not\nreproducible there.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
+        "operationId": "post_tool_remix",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "style_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "color_palette": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ToolRemixRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ToolRemixRequest"
+              }
+            }
+          },
+          "description": "A request to remix one image with a server-selected model. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead. Supplying both source forms is rejected rather than one being ignored.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ToolRemixResponse"
+                }
+              }
+            },
+            "description": "The remixed images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "A referenced source, reference asset, or saved collection was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Remix an existing image, letting the server pick the best model",
+        "tags": [
+          "auto-model"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.auto_model_controller"
       }
     },
     "/v2/tool/remove-background": {
@@ -11834,7 +12191,7 @@
     },
     "/v2/workflow/precise-masked-edit": {
       "post": {
-        "description": "Applies an instruction using a supplied mask. Optional reference images\ncan guide the requested appearance. Set `preserve_unmasked_pixels` to\nkeep decoded pixels outside the mask unchanged in the final image.\n\nThe request runs asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n",
+        "description": "Applies an instruction to an image. When a mask is supplied, it identifies\nthe primary edit region. Without a mask, the model edits the full image.\nOptional reference images can guide the requested appearance. Set\n`preserve_unmasked_pixels` to keep decoded pixels outside a supplied mask\nunchanged in the final image.\n\nThe request runs asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n",
         "operationId": "post_precise_masked_edit",
         "requestBody": {
           "content": {
@@ -11911,7 +12268,7 @@
             "description": "Precise masked editing is temporarily unavailable."
           }
         },
-        "summary": "Edit an image using a mask",
+        "summary": "Edit an image, optionally using a mask",
         "tags": [
           "edit-workflow"
         ],
@@ -12821,7 +13178,7 @@
             }
           },
           "image_weight": {
-            "description": "Optional. How strongly the output should resemble the input image. Higher values keep\nthe input image's structure; lower values allow the prompt to drive the output more.\nWhen omitted, the weight is chosen automatically from the edit instruction; supplying\na value overrides that automatic choice.\n",
+            "description": "Optional. How strongly the output should resemble the input image. Higher values keep\nthe input image's structure; lower values allow the prompt to drive the output more.\nWhen omitted, the weight is chosen automatically from the edit instruction; supplying\na value overrides that automatic choice. Only accepted when the output keeps the input\nimage's shape: combining image_weight with a resolution whose aspect ratio differs\nfrom the input image's is rejected with a 400.\n",
             "maximum": 100,
             "minimum": 1,
             "type": "integer",
@@ -12829,12 +13186,27 @@
               "label": "Image weight",
               "control": "slider",
               "order": 3,
-              "default": 50,
               "step": 1
             }
           },
           "resolution": {
-            "$ref": "#/components/schemas/ResolutionV4"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResolutionV4"
+              }
+            ],
+            "description": "Optional. When supplied, the images are generated at this resolution. When omitted,\nthe input image's shape is kept. A resolution whose aspect ratio differs from the\ninput image's cannot be combined with image_weight.\n",
+            "x-playground-field": {
+              "label": "Resolution",
+              "order": 4,
+              "default": "2048x2048",
+              "enum_subset": [
+                "2048x2048",
+                "1440x2880",
+                "2880x1440",
+                "1664x2496"
+              ]
+            }
           },
           "rendering_speed": {
             "$ref": "#/components/schemas/RenderingSpeed"
@@ -20051,6 +20423,145 @@
         "title": "PackshotView",
         "type": "string"
       },
+      "GhostMannequinResponse": {
+        "description": "Acknowledgement that the ghost-mannequin workflow was accepted. Poll\n`GET /v1/generations/{generation_id}` for status and results.\n",
+        "example": {
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID accepted by the generation polling endpoint.",
+            "title": "generation_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "generation_id"
+        ],
+        "title": "GhostMannequinResponse",
+        "type": "object"
+      },
+      "GhostMannequinRequest": {
+        "description": "Supply at least one garment reference. Directional references are\nnullable and accept at most one of their asset-identifier or multipart\nimage fields. Additional unlabeled references can use exactly one of\n`garment_asset_identifiers` or multipart `garment_images`. Every\ngarment image must depict the same primary garment. The total number\nof garment references must not exceed 15, and all raw image uploads\ncombined must not exceed 100 MB.\n",
+        "properties": {
+          "garment_asset_identifiers": {
+            "description": "Ordered uploaded or generated images of the same garment. Use\nmultiple angles when available so obscured construction can be\nreconstructed conservatively. Mutually exclusive with\n`garment_images`.\n",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 15,
+            "minItems": 1,
+            "type": "array"
+          },
+          "garment_images": {
+            "description": "Raw images of the same garment, up to 50 MB each. JPEG, PNG, WEBP,\nHEIF, AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart\nrequests only. Mutually exclusive with\n`garment_asset_identifiers`.\n",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 15,
+            "minItems": 1,
+            "type": "array"
+          },
+          "front_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "front_image": {
+            "description": "Optional raw front-view garment reference, up to 50 MB. Multipart\nrequests only. Mutually exclusive with `front_asset_identifier`.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "back_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "back_image": {
+            "description": "Optional raw back-view garment reference, up to 50 MB. Multipart\nrequests only. Mutually exclusive with `back_asset_identifier`.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "left_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "left_image": {
+            "description": "Optional raw left-view garment reference, up to 50 MB. Multipart\nrequests only. Mutually exclusive with `left_asset_identifier`.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "right_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "right_image": {
+            "description": "Optional raw right-view garment reference, up to 50 MB. Multipart\nrequests only. Mutually exclusive with `right_asset_identifier`.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "top_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "top_image": {
+            "description": "Optional raw top-view garment reference, up to 50 MB. Multipart\nrequests only. Mutually exclusive with `top_asset_identifier`.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "bottom_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "bottom_image": {
+            "description": "Optional raw bottom-view garment reference, up to 50 MB. Multipart\nrequests only. Mutually exclusive with\n`bottom_asset_identifier`.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "view": {
+            "description": "Camera view for the output garment.",
+            "enum": [
+              "FRONT",
+              "THREE_QUARTER",
+              "BACK"
+            ],
+            "type": "string"
+          },
+          "instruction": {
+            "description": "Optional reconstruction guidance or identity-critical garment\ndetails for the analyzer to verify. The output always uses the\nworkflow's clean white studio presentation.\n",
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "metadata": {
+            "description": "Optional JSON object serialized as a string containing factual\nproduct context, such as title, brand, category, color, material,\nitem code, and exact printed text. Metadata helps disambiguate the\ngarment references but does not add unsupported visual features.\n",
+            "maxLength": 8000,
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "description": "Output aspect ratio. Defaults to `1:1` when omitted. Supported\nvalues are `1:1`, `3:4`, `4:3`, `16:9`, and `9:16`.\n",
+            "pattern": "^(1:1|3:4|4:3|16:9|9:16)$",
+            "type": "string"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/GptImage2Quality"
+          },
+          "seed": {
+            "description": "Optional seed for repeatable results.",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "view"
+        ],
+        "type": "object"
+      },
       "PreciseMaskedEditResponse": {
         "description": "Acknowledgement that the workflow was accepted.",
         "example": {
@@ -20072,6 +20583,23 @@
       "PreciseMaskedEditRequest": {
         "description": "Exactly one source is normally supplied. Use `source_asset_identifier` for an existing asset or multipart `source_image` bytes. When both are present, `source_asset_identifier` takes precedence.",
         "properties": {
+          "model": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PreciseMaskedEditModel"
+              }
+            ],
+            "description": "The model used to apply the masked edit."
+          },
+          "quality": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/GptImage2Quality"
+              }
+            ],
+            "default": "HIGH",
+            "description": "The generation quality level. Defaults to `HIGH`."
+          },
           "source_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
           },
@@ -20092,7 +20620,7 @@
             "type": "array"
           },
           "instruction": {
-            "description": "Plain-language description of what to change inside the mask.",
+            "description": "Plain-language description of the desired change.",
             "maxLength": 4000,
             "minLength": 1,
             "type": "string"
@@ -20116,7 +20644,7 @@
           },
           "preserve_unmasked_pixels": {
             "default": false,
-            "description": "When true, decoded pixels outside the mask are copied from the\nsource image into the final result. When false, the final result is\nthe model's full edited image.\n",
+            "description": "When true, decoded pixels outside the mask are copied from the\nsource image into the final result. Requires `mask_asset_identifier`.\nWhen false, the final result is the model's full edited image.\n",
             "type": "boolean"
           },
           "webhook_url": {
@@ -20129,10 +20657,18 @@
           }
         },
         "required": [
-          "instruction",
-          "mask_asset_identifier"
+          "instruction"
         ],
         "type": "object"
+      },
+      "PreciseMaskedEditModel": {
+        "default": "GPT_IMAGE_2",
+        "description": "The model used to apply the masked edit.",
+        "enum": [
+          "GPT_IMAGE_2"
+        ],
+        "title": "PreciseMaskedEditModel",
+        "type": "string"
       },
       "VirtualTryOnResponse": {
         "description": "Acknowledgement that the try-on was accepted. Poll\n`GET /v1/generations/{generation_id}` for status and results.\n",
@@ -22547,6 +23083,219 @@
             ],
             "description": "A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references."
           },
+          "style_reference_collection_id": {
+            "description": "A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.",
+            "type": "string"
+          },
+          "style_reference_collection_version_id": {
+            "description": "Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.",
+            "type": "string"
+          },
+          "style_reference_asset_identifiers": {
+            "description": "Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "style_reference_images": {
+            "description": "Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "RemixImageIdeogramV3CustomModelResponse": {
+        "description": "Response returned by `POST /v2/images/remix/ideogram-v3-custom-model`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/RemixedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "RemixImageIdeogramV3CustomModelResponse",
+        "type": "object"
+      },
+      "RemixImageIdeogramV3CustomModelRequest": {
+        "properties": {
+          "prompt": {
+            "description": "The prompt that guides the remix.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "custom_model_uri": {
+            "description": "The custom model URI returned by the custom-model API, in the form `model/<model_name>/version/<version_name>`. The authenticated user or organization must have access to the model.",
+            "example": "model/my-custom-model/version/1",
+            "maxLength": 512,
+            "minLength": 1,
+            "pattern": "^model/[^/]+/version/[^/]+$",
+            "type": "string"
+          },
+          "image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first."
+          },
+          "image": {
+            "description": "The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.",
+            "format": "binary",
+            "type": "string"
+          },
+          "image_weight": {
+            "description": "Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "negative_prompt": {
+            "description": "Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.",
+            "maxLength": 10000,
+            "type": "string"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV3"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/AspectRatioV3"
+          },
+          "rendering_speed": {
+            "description": "The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.",
+            "enum": [
+              "TURBO",
+              "DEFAULT",
+              "QUALITY"
+            ],
+            "type": "string"
+          },
+          "magic_prompt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicPromptOption"
+              }
+            ],
+            "default": "AUTO",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "color_palette": {
+            "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+          },
+          "style_codes": {
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
+            "example": [
+              "AAFF5733",
+              "0133FF57",
+              "DE3357FF"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/StyleCode"
+            },
+            "type": "array"
+          },
+          "style_preset": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StylePresetV3"
+              }
+            ],
+            "description": "A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references."
+          },
           "style_reference_asset_identifiers": {
             "description": "Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.",
             "items": {
@@ -22594,6 +23343,7 @@
           }
         },
         "required": [
+          "custom_model_uri",
           "prompt"
         ],
         "type": "object"
@@ -22672,7 +23422,7 @@
             "type": "string"
           },
           "image_weight": {
-            "description": "Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.",
+            "description": "Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining image_weight with a resolution whose aspect ratio differs from the source's is rejected with a 400.",
             "maximum": 100,
             "minimum": 1,
             "type": "integer"
@@ -22690,7 +23440,7 @@
                 "$ref": "#/components/schemas/ResolutionV4"
               }
             ],
-            "description": "Optional. When supplied, the images are generated at this\nresolution. When omitted, the source image's shape is kept.\n"
+            "description": "Optional. When supplied, the images are generated at this\nresolution. When omitted, the source image's shape is kept. A\nresolution whose aspect ratio differs from the source's cannot\nbe combined with image_weight.\n"
           },
           "rendering_speed": {
             "default": "DEFAULT",
@@ -22701,6 +23451,231 @@
               "QUALITY"
             ],
             "type": "string"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "RemixImageIdeogramV3CharacterResponse": {
+        "description": "Response returned by `POST /v2/images/remix/ideogram-v3-character`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/RemixedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "RemixImageIdeogramV3CharacterResponse",
+        "type": "object"
+      },
+      "RemixImageIdeogramV3CharacterRequest": {
+        "description": "Supply the character as a saved character collection, as asset\nidentifiers, or (multipart requests only) as raw image bytes. Exactly\none character is supported per request; if more than one form is\ngiven, the collection is used over the identifiers, and the\nidentifiers over the bytes.\n",
+        "properties": {
+          "prompt": {
+            "description": "The prompt that guides the remix.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first."
+          },
+          "image": {
+            "description": "The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.",
+            "format": "binary",
+            "type": "string"
+          },
+          "image_weight": {
+            "description": "Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "negative_prompt": {
+            "description": "Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.",
+            "maxLength": 10000,
+            "type": "string"
+          },
+          "character_reference_collection_id": {
+            "description": "A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_asset_identifiers` and `character_reference_images` if more than one is supplied.",
+            "type": "string"
+          },
+          "character_reference_collection_version_id": {
+            "description": "Optional URL-safe base64 version id pinning a specific version of the `character_reference_collection_id` collection. Ignored without it.",
+            "type": "string"
+          },
+          "character_reference_asset_identifiers": {
+            "description": "An existing upload or generated image asset to use as the character reference, by reference. Takes priority over `character_reference_images` if both are supplied.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 1,
+            "minItems": 1,
+            "type": "array"
+          },
+          "character_reference_images": {
+            "description": "An image to use as the character reference (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a character collection or asset identifier is also supplied.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 1,
+            "type": "array"
+          },
+          "character_reference_mask": {
+            "description": "Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.",
+            "format": "binary",
+            "type": "string"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/ResolutionV3"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/AspectRatioV3"
+          },
+          "rendering_speed": {
+            "default": "DEFAULT",
+            "description": "The rendering speed to use.",
+            "enum": [
+              "TURBO",
+              "DEFAULT",
+              "QUALITY"
+            ],
+            "type": "string"
+          },
+          "magic_prompt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicPromptOption"
+              }
+            ],
+            "default": "AUTO",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "style_type": {
+            "default": "AUTO",
+            "description": "The style type to remix the character with. Defaults to `AUTO`.",
+            "enum": [
+              "AUTO",
+              "REALISTIC",
+              "FICTION"
+            ],
+            "type": "string"
+          },
+          "style_reference_collection_id": {
+            "description": "A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.",
+            "type": "string"
+          },
+          "style_reference_collection_version_id": {
+            "description": "Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.",
+            "type": "string"
+          },
+          "style_reference_asset_identifiers": {
+            "description": "Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "style_reference_images": {
+            "description": "Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array"
           },
           "enable_copyright_detection": {
             "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.",
@@ -25717,6 +26692,221 @@
             "default": false,
             "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
             "type": "boolean"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
+      "ToolRemixResponse": {
+        "description": "Response returned by `POST /v2/tool/remix`. Synchronous\nrequests (the default) include the remixed images in `data`.\nRequests with `async` set to true omit `data`; poll for completion\nand results with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`. The seed reports the server-assigned value\nattached to the request; AUTO remixes are not reproducible because the\nselected model may synthesize an unseeded instruction prompt.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": "",
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Seed"
+              }
+            ],
+            "description": "Server-assigned value attached to the request for tracing. This value does not make AUTO remixes reproducible because the selected model may synthesize an unseeded instruction prompt.",
+            "title": "seed"
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "ToolRemixResponse",
+        "type": "object"
+      },
+      "ToolRemixRequest": {
+        "properties": {
+          "prompt": {
+            "description": "The prompt that guides the remix.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "image_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape."
+          },
+          "image": {
+            "description": "The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are staged for this generation request and are not added to your account's image assets.",
+            "format": "binary",
+            "type": "string"
+          },
+          "image_weight": {
+            "description": "Optional. How closely the result should follow the source image, from 1 to 100. When omitted the selected model chooses its usual strength. Combining a weight with a `resolution` or `aspect_ratio` that changes the source's aspect ratio requires the 1K tier.",
+            "maximum": 100,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "negative_prompt": {
+            "description": "Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt. Not every model consults it.",
+            "maxLength": 10000,
+            "type": "string"
+          },
+          "resolution": {
+            "description": "The requested output resolution, formatted as \"WIDTHxHEIGHT\" (for example \"1280x800\"). The output is served at the closest resolution the selected model supports in the corresponding 1K or 2K tier. Omit `aspect_ratio` when supplying a resolution. If `resolution_tier` is also supplied, it must match the tier implied by these dimensions. Combining a shape-changing value with `image_weight` requires the 1K tier.",
+            "pattern": "^[1-9][0-9]{1,4}x[1-9][0-9]{1,4}$",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AspectRatioV4"
+              }
+            ],
+            "description": "The requested output aspect ratio. Omit it to keep the source image's shape. `AUTO` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier."
+          },
+          "resolution_tier": {
+            "description": "The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1K when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`AUTO` style type) currently support only 1K AUTO remixes.",
+            "enum": [
+              "1K",
+              "2K"
+            ],
+            "type": "string"
+          },
+          "magic_prompt": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MagicPromptOption"
+              }
+            ],
+            "default": "AUTO",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`. The selected model decides how to interpret it."
+          },
+          "seed": {
+            "description": "Optional. Honored when the server selects the model that supports deterministic remixes; the default model synthesizes its own prompt, so results are not reproducible there. The response reports the seed used.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "style_reference_asset_identifiers": {
+            "description": "Existing upload or generated image assets whose style should guide the remix, by reference. Supplying style references restricts the server to a model that supports them and requires the 1K resolution tier. Ignored if `style_reference_collection_id` is also supplied.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "style_reference_collection_id": {
+            "description": "A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers`. Restricts the server to a model that supports style references and requires the 1K resolution tier.",
+            "type": "string"
+          },
+          "style_reference_collection_version_id": {
+            "description": "Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.",
+            "type": "string"
+          },
+          "style_preset": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StylePresetV3"
+              }
+            ],
+            "description": "A predefined style preset to apply. Restricts the server to a model that supports it and requires the 1K resolution tier. Cannot be combined with style codes or style references."
+          },
+          "color_palette": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+              }
+            ],
+            "description": "A color palette to apply. Restricts the server to a model that supports palettes and requires the 1K resolution tier."
+          },
+          "style_codes": {
+            "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
+            "example": [
+              "AAFF5733",
+              "0133FF57",
+              "DE3357FF"
+            ],
+            "items": {
+              "$ref": "#/components/schemas/StyleCode"
+            },
+            "type": "array"
+          },
+          "style_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StyleTypeV3"
+              }
+            ],
+            "description": "The style type to generate with. A value other than `AUTO` restricts the server to a model that supports it and requires the 1K resolution tier."
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "enable_copyright_detection": {
+            "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "Whether the generated images should be kept private. Omitted or true keeps them private. False publishes them unless the caller's plan always generates privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "type": "string"
           }
         },
         "required": [
@@ -29006,6 +30196,7 @@
           "wandb_project": "my-wandb-project",
           "model_name": "my-custom-model",
           "lora_rank": 64,
+          "base_variant": "distilled_gd",
           "dataset_id": "abc123",
           "ema": 0.999,
           "training_steps": 1000,
@@ -29058,6 +30249,12 @@
             "description": "Weights & Biases project to log this training run to. When set, the run streams metrics to this W&B project; when omitted, no W&B logging happens.\n",
             "example": "my-wandb-project",
             "title": "wandb_project",
+            "type": "string"
+          },
+          "base_variant": {
+            "description": "Frozen v4 backbone the custom LoRA is trained on. Must be one of `distilled_gd` (the guidance-distilled base, default) or `oldbase_farzad_fused` (the fused non-distilled base). Omit to use the default.\n",
+            "example": "distilled_gd",
+            "title": "base_variant",
             "type": "string"
           }
         },

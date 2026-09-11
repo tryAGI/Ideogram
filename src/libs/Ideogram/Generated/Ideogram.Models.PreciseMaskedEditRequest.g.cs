@@ -9,6 +9,21 @@ namespace Ideogram
     public sealed partial class PreciseMaskedEditRequest
     {
         /// <summary>
+        /// The model used to apply the masked edit.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("model")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.PreciseMaskedEditModelJsonConverter))]
+        public global::Ideogram.PreciseMaskedEditModel? Model { get; set; }
+
+        /// <summary>
+        /// The generation quality level. Defaults to `HIGH`.<br/>
+        /// Default Value: HIGH
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
+        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+
+        /// <summary>
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </summary>
@@ -34,8 +49,7 @@ namespace Ideogram
         /// </summary>
         /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask_asset_identifier")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.AssetIdentifier MaskAssetIdentifier { get; set; }
+        public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
 
         /// <summary>
         /// Optional assets that show the desired appearance of the masked edit.
@@ -44,7 +58,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Plain-language description of what to change inside the mask.
+        /// Plain-language description of the desired change.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("instruction")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -71,8 +85,8 @@ namespace Ideogram
 
         /// <summary>
         /// When true, decoded pixels outside the mask are copied from the<br/>
-        /// source image into the final result. When false, the final result is<br/>
-        /// the model's full edited image.<br/>
+        /// source image into the final result. Requires `mask_asset_identifier`.<br/>
+        /// When false, the final result is the model's full edited image.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("preserve_unmasked_pixels")]
@@ -102,12 +116,15 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="PreciseMaskedEditRequest" /> class.
         /// </summary>
-        /// <param name="maskAssetIdentifier">
-        /// An identifier for an ideogram asset.<br/>
-        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
-        /// </param>
         /// <param name="instruction">
-        /// Plain-language description of what to change inside the mask.
+        /// Plain-language description of the desired change.
+        /// </param>
+        /// <param name="model">
+        /// The model used to apply the masked edit.
+        /// </param>
+        /// <param name="quality">
+        /// The generation quality level. Defaults to `HIGH`.<br/>
+        /// Default Value: HIGH
         /// </param>
         /// <param name="sourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -118,6 +135,10 @@ namespace Ideogram
         /// </param>
         /// <param name="sourceImagename">
         /// Raw source image bytes. Supported formats and the 50 MB limit match the image upload API. Available only with `multipart/form-data`.
+        /// </param>
+        /// <param name="maskAssetIdentifier">
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="referenceAssetIdentifiers">
         /// Optional assets that show the desired appearance of the masked edit.
@@ -134,8 +155,8 @@ namespace Ideogram
         /// </param>
         /// <param name="preserveUnmaskedPixels">
         /// When true, decoded pixels outside the mask are copied from the<br/>
-        /// source image into the final result. When false, the final result is<br/>
-        /// the model's full edited image.<br/>
+        /// source image into the final result. Requires `mask_asset_identifier`.<br/>
+        /// When false, the final result is the model's full edited image.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">
@@ -153,11 +174,13 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public PreciseMaskedEditRequest(
-            global::Ideogram.AssetIdentifier maskAssetIdentifier,
             string instruction,
+            global::Ideogram.PreciseMaskedEditModel? model,
+            global::Ideogram.GptImage2Quality? quality,
             global::Ideogram.AssetIdentifier? sourceAssetIdentifier,
             byte[]? sourceImage,
             string? sourceImagename,
+            global::Ideogram.AssetIdentifier? maskAssetIdentifier,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceAssetIdentifiers,
             int? seed,
             int? numImages,
@@ -165,10 +188,12 @@ namespace Ideogram
             bool? preserveUnmaskedPixels,
             string? webhookUrl)
         {
+            this.Model = model;
+            this.Quality = quality;
             this.SourceAssetIdentifier = sourceAssetIdentifier;
             this.SourceImage = sourceImage;
             this.SourceImagename = sourceImagename;
-            this.MaskAssetIdentifier = maskAssetIdentifier ?? throw new global::System.ArgumentNullException(nameof(maskAssetIdentifier));
+            this.MaskAssetIdentifier = maskAssetIdentifier;
             this.ReferenceAssetIdentifiers = referenceAssetIdentifiers;
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
             this.Seed = seed;

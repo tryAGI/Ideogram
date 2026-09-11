@@ -66,6 +66,10 @@ namespace Ideogram
         /// Weights &amp; Biases project to log this training run to. When set, the run streams metrics to this W&amp;B project; when omitted, no W&amp;B logging happens.<br/>
         /// Example: my-wandb-project
         /// </param>
+        /// <param name="baseVariant">
+        /// Frozen v4 backbone the custom LoRA is trained on. Must be one of `distilled_gd` (the guidance-distilled base, default) or `oldbase_farzad_fused` (the fused non-distilled base). Omit to use the default.<br/>
+        /// Example: distilled_gd
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -78,6 +82,7 @@ namespace Ideogram
             double? learningRate = default,
             int? batchSize = default,
             string? wandbProject = default,
+            string? baseVariant = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }
