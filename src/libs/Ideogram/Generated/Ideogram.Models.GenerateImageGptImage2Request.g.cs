@@ -4,16 +4,32 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"aspect_ratio":"aspect_ratio","async":false,"private":true,"seed":12345,"webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","prompt":"prompt","resolution":"resolution","num_images":1}
+    /// Source images are optional. When supplied (as `image_asset_identifiers`<br/>
+    /// references, or as raw `images` bytes in multipart requests), the prompt<br/>
+    /// is applied to the sources as an edit; if both forms are given, the<br/>
+    /// references are used and the bytes are ignored. Without source images<br/>
+    /// the prompt alone drives the generation.
     /// </summary>
     public sealed partial class GenerateImageGptImage2Request
     {
         /// <summary>
-        /// The prompt to generate images from. The model consumes it directly, without rewriting.
+        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Prompt { get; set; }
+
+        /// <summary>
+        /// Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("image_asset_identifiers")]
+        public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ImageAssetIdentifiers { get; set; }
+
+        /// <summary>
+        /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("images")]
+        public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -91,7 +107,13 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImageGptImage2Request" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to generate images from. The model consumes it directly, without rewriting.
+        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.
+        /// </param>
+        /// <param name="imageAssetIdentifiers">
+        /// Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.
+        /// </param>
+        /// <param name="images">
+        /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -138,6 +160,8 @@ namespace Ideogram
 #endif
         public GenerateImageGptImage2Request(
             string prompt,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
+            global::System.Collections.Generic.IList<byte[]>? images,
             int? numImages,
             int? seed,
             string? aspectRatio,
@@ -148,6 +172,8 @@ namespace Ideogram
             string? targetCollectionId)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.ImageAssetIdentifiers = imageAssetIdentifiers;
+            this.Images = images;
             this.NumImages = numImages;
             this.Seed = seed;
             this.AspectRatio = aspectRatio;

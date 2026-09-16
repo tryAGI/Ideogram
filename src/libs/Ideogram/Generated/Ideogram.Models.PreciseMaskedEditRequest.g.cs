@@ -52,7 +52,7 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Optional assets that show the desired appearance of the masked edit.
+        /// Optional assets that show the desired appearance of the edit. GPT Image 2 accepts up to 15. Ideogram 4.5 accepts up to 4 without a mask, or 3 when a mask is supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_asset_identifiers")]
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceAssetIdentifiers { get; set; }
@@ -141,7 +141,7 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="referenceAssetIdentifiers">
-        /// Optional assets that show the desired appearance of the masked edit.
+        /// Optional assets that show the desired appearance of the edit. GPT Image 2 accepts up to 15. Ideogram 4.5 accepts up to 4 without a mask, or 3 when a mask is supplied.
         /// </param>
         /// <param name="seed">
         /// Optional seed for repeatable results.

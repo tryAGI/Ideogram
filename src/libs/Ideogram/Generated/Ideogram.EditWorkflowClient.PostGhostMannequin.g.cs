@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostGhostMannequinArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.GhostMannequinRequest request);
         partial void PreparePostGhostMannequinRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.GhostMannequinRequest request);
         partial void ProcessPostGhostMannequinResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -56,6 +58,9 @@ namespace Ideogram
         /// unlabeled references can be supplied through exactly one transport:<br/>
         /// `garment_asset_identifiers`, or multipart `garment_images`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -63,12 +68,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GhostMannequinResponse> PostGhostMannequinAsync(
 
             global::Ideogram.GhostMannequinRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostGhostMannequinAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -90,6 +97,9 @@ namespace Ideogram
         /// unlabeled references can be supplied through exactly one transport:<br/>
         /// `garment_asset_identifiers`, or multipart `garment_images`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -97,6 +107,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GhostMannequinResponse>> PostGhostMannequinAsResponseAsync(
 
             global::Ideogram.GhostMannequinRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -106,6 +117,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostGhostMannequinArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -134,6 +146,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/tool/ghost-mannequin",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -565,6 +580,7 @@ namespace Ideogram
                 PreparePostGhostMannequinRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -1121,6 +1137,9 @@ namespace Ideogram
         /// unlabeled references can be supplied through exactly one transport:<br/>
         /// `garment_asset_identifiers`, or multipart `garment_images`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="garmentAssetIdentifiers">
         /// Ordered uploaded or generated images of the same garment. Use<br/>
         /// multiple angles when available so obscured construction can be<br/>
@@ -1251,6 +1270,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GhostMannequinResponse> PostGhostMannequinAsync(
             global::Ideogram.GhostMannequinRequestView view,
+            bool? dryRun = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? garmentAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? garmentImages = default,
             global::Ideogram.AssetIdentifier? frontAssetIdentifier = default,
@@ -1314,6 +1334,7 @@ namespace Ideogram
             };
 
             return await PostGhostMannequinAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

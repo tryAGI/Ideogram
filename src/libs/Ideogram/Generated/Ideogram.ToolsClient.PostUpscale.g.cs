@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostUpscaleArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.UpscaleToolRequest request);
         partial void PreparePostUpscaleRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.UpscaleToolRequest request);
         partial void ProcessPostUpscaleResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -63,6 +65,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -70,12 +75,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.UpscaleToolResponse> PostUpscaleAsync(
 
             global::Ideogram.UpscaleToolRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostUpscaleAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -104,6 +111,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -111,6 +121,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.UpscaleToolResponse>> PostUpscaleAsResponseAsync(
 
             global::Ideogram.UpscaleToolRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -120,6 +131,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostUpscaleArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -146,8 +158,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/tools/upscale",
+                                path: "/v2/image/upscale/auto",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -283,6 +298,7 @@ namespace Ideogram
                 PreparePostUpscaleRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -302,7 +318,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscale",
                                 methodName: "PostUpscaleAsync",
-                                pathTemplate: "\"/v2/tools/upscale\"",
+                                pathTemplate: "\"/v2/image/upscale/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -336,7 +352,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscale",
                                 methodName: "PostUpscaleAsync",
-                                pathTemplate: "\"/v2/tools/upscale\"",
+                                pathTemplate: "\"/v2/image/upscale/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -377,7 +393,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscale",
                                 methodName: "PostUpscaleAsync",
-                                pathTemplate: "\"/v2/tools/upscale\"",
+                                pathTemplate: "\"/v2/image/upscale/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -425,7 +441,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscale",
                                 methodName: "PostUpscaleAsync",
-                                pathTemplate: "\"/v2/tools/upscale\"",
+                                pathTemplate: "\"/v2/image/upscale/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -447,7 +463,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscale",
                                 methodName: "PostUpscaleAsync",
-                                pathTemplate: "\"/v2/tools/upscale\"",
+                                pathTemplate: "\"/v2/image/upscale/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -846,6 +862,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -887,6 +906,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.UpscaleToolResponse> PostUpscaleAsync(
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -911,6 +931,7 @@ namespace Ideogram
             };
 
             return await PostUpscaleAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

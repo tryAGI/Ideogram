@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PrepareIdeogramV3Arguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.ReframeImageIdeogramV3Request request);
         partial void PrepareIdeogramV3Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.ReframeImageIdeogramV3Request request);
         partial void ProcessIdeogramV3Response(
             global::System.Net.Http.HttpClient httpClient,
@@ -56,6 +58,9 @@ namespace Ideogram
         /// them in `data`. Set `async` to true to return immediately, then poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -63,12 +68,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageIdeogramV3Response> IdeogramV3Async(
 
             global::Ideogram.ReframeImageIdeogramV3Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await IdeogramV3AsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -90,6 +97,9 @@ namespace Ideogram
         /// them in `data`. Set `async` to true to return immediately, then poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -97,6 +107,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageIdeogramV3Response>> IdeogramV3AsResponseAsync(
 
             global::Ideogram.ReframeImageIdeogramV3Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -106,6 +117,7 @@ namespace Ideogram
                 client: HttpClient);
             PrepareIdeogramV3Arguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -132,8 +144,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/reframe/ideogram-v3",
+                                path: "/v2/image/reframe/ideogram-v3",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -315,6 +330,7 @@ namespace Ideogram
                 PrepareIdeogramV3Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -334,7 +350,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "IdeogramV3",
                                 methodName: "IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/reframe/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/reframe/ideogram-v3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -368,7 +384,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "IdeogramV3",
                                 methodName: "IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/reframe/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/reframe/ideogram-v3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -409,7 +425,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "IdeogramV3",
                                 methodName: "IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/reframe/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/reframe/ideogram-v3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -457,7 +473,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "IdeogramV3",
                                 methodName: "IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/reframe/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/reframe/ideogram-v3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -479,7 +495,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "IdeogramV3",
                                 methodName: "IdeogramV3Async",
-                                pathTemplate: "\"/v2/images/reframe/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/reframe/ideogram-v3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -839,6 +855,9 @@ namespace Ideogram
         /// them in `data`. Set `async` to true to return immediately, then poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -890,6 +909,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageIdeogramV3Response> IdeogramV3Async(
             global::Ideogram.ResolutionV3 resolution,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -923,6 +943,7 @@ namespace Ideogram
             };
 
             return await IdeogramV3Async(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

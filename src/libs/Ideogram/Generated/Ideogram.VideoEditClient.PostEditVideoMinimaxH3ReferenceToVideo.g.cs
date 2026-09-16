@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostEditVideoMinimaxH3ReferenceToVideoArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest request);
         partial void PreparePostEditVideoMinimaxH3ReferenceToVideoRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest request);
         partial void ProcessPostEditVideoMinimaxH3ReferenceToVideoResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -66,6 +68,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -73,12 +78,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoMinimaxH3Response> PostEditVideoMinimaxH3ReferenceToVideoAsync(
 
             global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostEditVideoMinimaxH3ReferenceToVideoAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -110,6 +117,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -117,6 +127,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateVideoMinimaxH3Response>> PostEditVideoMinimaxH3ReferenceToVideoAsResponseAsync(
 
             global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -126,6 +137,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostEditVideoMinimaxH3ReferenceToVideoArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -154,6 +166,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/video/edit/minimax-h3-reference-to-video",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -293,6 +308,7 @@ namespace Ideogram
                 PreparePostEditVideoMinimaxH3ReferenceToVideoRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -881,6 +897,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// A natural-language prompt describing the video to produce. Reference media is addressed by position, as in "Image 1 walks toward the camera with the motion of Video 1".<br/>
         /// Example: Image 1 walks through the snowy forest at dawn.
@@ -937,6 +956,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoMinimaxH3Response> PostEditVideoMinimaxH3ReferenceToVideoAsync(
             string prompt,
+            bool? dryRun = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? referenceImages = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceVideoAssetIdentifiers = default,
@@ -966,6 +986,7 @@ namespace Ideogram
             };
 
             return await PostEditVideoMinimaxH3ReferenceToVideoAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

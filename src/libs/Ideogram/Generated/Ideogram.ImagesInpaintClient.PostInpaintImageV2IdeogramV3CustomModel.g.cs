@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostInpaintImageV2IdeogramV3CustomModelArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequest request);
         partial void PreparePostInpaintImageV2IdeogramV3CustomModelRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequest request);
         partial void ProcessPostInpaintImageV2IdeogramV3CustomModelResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -59,6 +61,9 @@ namespace Ideogram
         /// to true to return after dispatch and poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -66,12 +71,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.InpaintImageIdeogramV3CustomModelResponse> PostInpaintImageV2IdeogramV3CustomModelAsync(
 
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostInpaintImageV2IdeogramV3CustomModelAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -96,6 +103,9 @@ namespace Ideogram
         /// to true to return after dispatch and poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -103,6 +113,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.InpaintImageIdeogramV3CustomModelResponse>> PostInpaintImageV2IdeogramV3CustomModelAsResponseAsync(
 
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -112,6 +123,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostInpaintImageV2IdeogramV3CustomModelArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -138,8 +150,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/inpaint/ideogram-v3-custom-model",
+                                path: "/v2/image/inpaint/ideogram-v3-custom-model",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -415,6 +430,7 @@ namespace Ideogram
                 PreparePostInpaintImageV2IdeogramV3CustomModelRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -434,7 +450,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -468,7 +484,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -509,7 +525,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -557,7 +573,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -579,7 +595,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -996,6 +1012,9 @@ namespace Ideogram
         /// to true to return after dispatch and poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt describing the repainted result.
         /// </param>
@@ -1074,6 +1093,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.InpaintImageIdeogramV3CustomModelResponse> PostInpaintImageV2IdeogramV3CustomModelAsync(
             string prompt,
             string customModelUri,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -1124,6 +1144,7 @@ namespace Ideogram
             };
 
             return await PostInpaintImageV2IdeogramV3CustomModelAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

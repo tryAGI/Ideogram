@@ -29,6 +29,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -36,6 +39,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV4Response> PostRemixImageV2IdeogramV4Async(
 
             global::Ideogram.RemixImageIdeogramV4Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -63,6 +67,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -70,6 +77,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV4Response>> PostRemixImageV2IdeogramV4AsResponseAsync(
 
             global::Ideogram.RemixImageIdeogramV4Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -97,6 +105,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt that guides the remix.
         /// </param>
@@ -155,6 +166,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV4Response> PostRemixImageV2IdeogramV4Async(
             string prompt,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,

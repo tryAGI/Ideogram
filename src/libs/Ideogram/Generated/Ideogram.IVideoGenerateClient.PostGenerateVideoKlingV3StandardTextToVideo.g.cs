@@ -16,6 +16,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -23,6 +26,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoKlingV3Response> PostGenerateVideoKlingV3StandardTextToVideoAsync(
 
             global::Ideogram.GenerateVideoKlingV3StandardTextToVideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -37,6 +41,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -44,6 +51,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateVideoKlingV3Response>> PostGenerateVideoKlingV3StandardTextToVideoAsResponseAsync(
 
             global::Ideogram.GenerateVideoKlingV3StandardTextToVideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -58,6 +66,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// A natural-language prompt describing the video to generate.<br/>
         /// Example: A red fox running through a snowy forest at dawn.
@@ -111,6 +122,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoKlingV3Response> PostGenerateVideoKlingV3StandardTextToVideoAsync(
             string prompt,
+            bool? dryRun = default,
             string? negativePrompt = default,
             global::Ideogram.KlingV3AspectRatio? aspectRatio = default,
             int? duration = default,

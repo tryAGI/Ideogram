@@ -19,6 +19,9 @@ namespace Ideogram
         /// them in `data`. Set `async` to true to return immediately, then poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -26,6 +29,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageIdeogramV3Response> IdeogramV3Async(
 
             global::Ideogram.ReframeImageIdeogramV3Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -43,6 +47,9 @@ namespace Ideogram
         /// them in `data`. Set `async` to true to return immediately, then poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -50,6 +57,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageIdeogramV3Response>> IdeogramV3AsResponseAsync(
 
             global::Ideogram.ReframeImageIdeogramV3Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -67,6 +75,9 @@ namespace Ideogram
         /// them in `data`. Set `async` to true to return immediately, then poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -118,6 +129,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageIdeogramV3Response> IdeogramV3Async(
             global::Ideogram.ResolutionV3 resolution,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,

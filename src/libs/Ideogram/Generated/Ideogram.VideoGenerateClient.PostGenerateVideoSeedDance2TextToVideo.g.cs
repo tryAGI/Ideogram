@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostGenerateVideoSeedDance2TextToVideoArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest request);
         partial void PreparePostGenerateVideoSeedDance2TextToVideoRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest request);
         partial void ProcessPostGenerateVideoSeedDance2TextToVideoResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -53,6 +55,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -60,12 +65,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoSeedDance2Response> PostGenerateVideoSeedDance2TextToVideoAsync(
 
             global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostGenerateVideoSeedDance2TextToVideoAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,6 +91,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -91,6 +101,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateVideoSeedDance2Response>> PostGenerateVideoSeedDance2TextToVideoAsResponseAsync(
 
             global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -100,6 +111,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostGenerateVideoSeedDance2TextToVideoArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -128,6 +140,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/video/generate/seedance-2-text-to-video",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -174,6 +189,7 @@ namespace Ideogram
                 PreparePostGenerateVideoSeedDance2TextToVideoRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -727,6 +743,9 @@ namespace Ideogram
         /// Video links are available for a limited period of time; download the<br/>
         /// video if you want to keep it.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// A natural-language prompt describing the video to generate.<br/>
         /// Example: A red fox running through a snowy forest at dawn.
@@ -772,6 +791,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoSeedDance2Response> PostGenerateVideoSeedDance2TextToVideoAsync(
             string prompt,
+            bool? dryRun = default,
             global::Ideogram.SeedDance2AspectRatio? aspectRatio = default,
             global::Ideogram.SeedDance2Resolution? resolution = default,
             int? duration = default,
@@ -795,6 +815,7 @@ namespace Ideogram
             };
 
             return await PostGenerateVideoSeedDance2TextToVideoAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostInpaintImageV2IdeogramV3CharacterArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequest request);
         partial void PreparePostInpaintImageV2IdeogramV3CharacterRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequest request);
         partial void ProcessPostInpaintImageV2IdeogramV3CharacterResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -77,6 +79,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -84,12 +89,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.InpaintImageIdeogramV3CharacterResponse> PostInpaintImageV2IdeogramV3CharacterAsync(
 
             global::Ideogram.InpaintImageIdeogramV3CharacterRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostInpaintImageV2IdeogramV3CharacterAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -132,6 +139,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -139,6 +149,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.InpaintImageIdeogramV3CharacterResponse>> PostInpaintImageV2IdeogramV3CharacterAsResponseAsync(
 
             global::Ideogram.InpaintImageIdeogramV3CharacterRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -148,6 +159,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostInpaintImageV2IdeogramV3CharacterArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -174,8 +186,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/inpaint/ideogram-v3-character",
+                                path: "/v2/image/inpaint/ideogram-v3-character",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -539,6 +554,7 @@ namespace Ideogram
                 PreparePostInpaintImageV2IdeogramV3CharacterRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -558,7 +574,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3Character",
                                 methodName: "PostInpaintImageV2IdeogramV3CharacterAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-character\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-character\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -592,7 +608,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3Character",
                                 methodName: "PostInpaintImageV2IdeogramV3CharacterAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-character\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-character\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -633,7 +649,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3Character",
                                 methodName: "PostInpaintImageV2IdeogramV3CharacterAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-character\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-character\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -681,7 +697,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3Character",
                                 methodName: "PostInpaintImageV2IdeogramV3CharacterAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-character\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-character\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -703,7 +719,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3Character",
                                 methodName: "PostInpaintImageV2IdeogramV3CharacterAsync",
-                                pathTemplate: "\"/v2/images/inpaint/ideogram-v3-character\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-character\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -1116,6 +1132,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt describing the repainted result.
         /// </param>
@@ -1222,6 +1241,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.InpaintImageIdeogramV3CharacterResponse> PostInpaintImageV2IdeogramV3CharacterAsync(
             string prompt,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -1285,6 +1305,7 @@ namespace Ideogram
             };
 
             return await PostInpaintImageV2IdeogramV3CharacterAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

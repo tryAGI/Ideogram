@@ -19,6 +19,9 @@ namespace Ideogram
         /// Bearer and Mini App callers inherit their plan's private-generation<br/>
         /// default; Enterprise generations are always private.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -26,6 +29,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.RemoveBackgroundV2Response> RemoveBackgroundAsync(
 
             global::Ideogram.RemoveBackgroundV2Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -43,6 +47,9 @@ namespace Ideogram
         /// Bearer and Mini App callers inherit their plan's private-generation<br/>
         /// default; Enterprise generations are always private.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -50,6 +57,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemoveBackgroundV2Response>> RemoveBackgroundAsResponseAsync(
 
             global::Ideogram.RemoveBackgroundV2Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -67,6 +75,9 @@ namespace Ideogram
         /// Bearer and Mini App callers inherit their plan's private-generation<br/>
         /// default; Enterprise generations are always private.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="image">
         /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
         /// </param>
@@ -92,6 +103,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.RemoveBackgroundV2Response> RemoveBackgroundAsync(
+            bool? dryRun = default,
             byte[]? image = default,
             string? imagename = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,

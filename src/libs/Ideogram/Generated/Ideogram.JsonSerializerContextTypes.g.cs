@@ -33,15 +33,15 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV4? Type0 { get; set; }
+        public global::Ideogram.PriceQuote? Type0 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public string? Type1 { get; set; }
+        public global::Ideogram.PriceQuoteObject? Type1 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4JsonPrompt? Type2 { get; set; }
+        public string? Type2 { get; set; }
         /// <summary>
         ///
         /// </summary>
@@ -49,2135 +49,2239 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResolutionV4? Type4 { get; set; }
+        public long? Type4 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RenderingSpeed? Type5 { get; set; }
+        public global::Ideogram.PriceQualifier? Type5 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public bool? Type6 { get; set; }
+        public global::Ideogram.GenerateImageRequestV4? Type6 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.OutputResolution? Type7 { get; set; }
+        public global::Ideogram.V4JsonPrompt? Type7 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RenderingSpeedV4? Type8 { get; set; }
+        public global::Ideogram.ResolutionV4? Type8 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateTransparentImageRequestV4? Type9 { get; set; }
+        public global::Ideogram.RenderingSpeed? Type9 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AspectRatioV4? Type10 { get; set; }
+        public bool? Type10 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV4Fp8? Type11 { get; set; }
+        public global::Ideogram.OutputResolution? Type11 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV4CfgDistilled? Type12 { get; set; }
+        public global::Ideogram.RenderingSpeedV4? Type12 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestPImage? Type13 { get; set; }
+        public global::Ideogram.GenerateTransparentImageRequestV4? Type13 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptOption? Type14 { get; set; }
+        public global::Ideogram.AspectRatioV4? Type14 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PImageResolution? Type15 { get; set; }
+        public global::Ideogram.GenerateImageRequestV4Fp8? Type15 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestPImageIdeogram? Type16 { get; set; }
+        public global::Ideogram.GenerateImageRequestV4CfgDistilled? Type16 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.Quality? Type17 { get; set; }
+        public global::Ideogram.GenerateImageRequestPImage? Type17 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AspectRatioV3? Type18 { get; set; }
+        public global::Ideogram.MagicPromptOption? Type18 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV4Stable? Type19 { get; set; }
+        public global::Ideogram.PImageResolution? Type19 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV4StableVersion? Type20 { get; set; }
+        public global::Ideogram.GenerateImageRequestPImageIdeogram? Type20 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestZImage? Type21 { get; set; }
+        public global::Ideogram.Quality? Type21 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestFlux2Klein? Type22 { get; set; }
+        public global::Ideogram.AspectRatioV3? Type22 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestFlux2KleinBase? Type23 { get; set; }
+        public global::Ideogram.GenerateImageRequestV4Stable? Type23 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestErnie? Type24 { get; set; }
+        public global::Ideogram.GenerateImageRequestV4StableVersion? Type24 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV4Im2Im? Type25 { get; set; }
+        public global::Ideogram.GenerateImageRequestZImage? Type25 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public byte[]? Type26 { get; set; }
+        public global::Ideogram.GenerateImageRequestFlux2Klein? Type26 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<byte[]>? Type27 { get; set; }
+        public global::Ideogram.GenerateImageRequestFlux2KleinBase? Type27 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResolutionV4ImageToImage? Type28 { get; set; }
+        public global::Ideogram.GenerateImageRequestErnie? Type28 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageRequestV4? Type29 { get; set; }
+        public global::Ideogram.GenerateImageRequestV4Im2Im? Type29 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateDesignRequestV4? Type30 { get; set; }
+        public byte[]? Type30 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResolutionV4Layout? Type31 { get; set; }
+        public global::System.Collections.Generic.IList<byte[]>? Type31 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel? Type32 { get; set; }
+        public global::Ideogram.ResolutionV4ImageToImage? Type32 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel? Type33 { get; set; }
+        public global::Ideogram.RemixImageRequestV4? Type33 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateDesignRequestV4Layout2imageVariant? Type34 { get; set; }
+        public global::Ideogram.GenerateDesignRequestV4? Type34 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateDesignRequestV4ResponseType? Type35 { get; set; }
+        public global::Ideogram.ResolutionV4Layout? Type35 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DescribeResponse? Type36 { get; set; }
+        public global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel? Type36 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.Description>? Type37 { get; set; }
+        public global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel? Type37 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.Description? Type38 { get; set; }
+        public global::Ideogram.GenerateDesignRequestV4Layout2imageVariant? Type38 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DescribeRequest? Type39 { get; set; }
+        public global::Ideogram.GenerateDesignRequestV4ResponseType? Type39 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DescribeModelVersion? Type40 { get; set; }
+        public global::Ideogram.DescribeResponse? Type40 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DescribeRequestV4? Type41 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.Description>? Type41 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DescribeResponseV4? Type42 { get; set; }
+        public global::Ideogram.Description? Type42 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageRequest? Type43 { get; set; }
+        public global::Ideogram.DescribeRequest? Type43 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ModelEnum? Type44 { get; set; }
+        public global::Ideogram.DescribeModelVersion? Type44 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.StyleType? Type45 { get; set; }
+        public global::Ideogram.DescribeRequestV4? Type45 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequest? Type46 { get; set; }
+        public global::Ideogram.DescribeResponseV4? Type46 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageRequest? Type47 { get; set; }
+        public global::Ideogram.EditImageRequest? Type47 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageRequestV3? Type48 { get; set; }
+        public global::Ideogram.ModelEnum? Type48 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResolutionV3? Type49 { get; set; }
+        public global::Ideogram.StyleType? Type49 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteWithPresetNameOrMembers? Type50 { get; set; }
+        public global::Ideogram.GenerateImageRequest? Type50 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<string>? Type51 { get; set; }
+        public global::Ideogram.ImageRequest? Type51 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.StyleTypeV3? Type52 { get; set; }
+        public global::Ideogram.GenerateImageRequestV3? Type52 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.StylePresetV3? Type53 { get; set; }
+        public global::Ideogram.ResolutionV3? Type53 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateGraphicRequestV3? Type54 { get; set; }
+        public global::Ideogram.ColorPaletteWithPresetNameOrMembers? Type54 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateDesignRequestV3? Type55 { get; set; }
+        public global::System.Collections.Generic.IList<string>? Type55 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizeDesignRequestV3? Type56 { get; set; }
+        public global::Ideogram.StyleTypeV3? Type56 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateTransparentImageRequestV3? Type57 { get; set; }
+        public global::Ideogram.StylePresetV3? Type57 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleFactor? Type58 { get; set; }
+        public global::Ideogram.GenerateGraphicRequestV3? Type58 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageRequestV3? Type59 { get; set; }
+        public global::Ideogram.GenerateDesignRequestV3? Type59 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageRequestV3? Type60 { get; set; }
+        public global::Ideogram.LayerizeDesignRequestV3? Type60 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V1EditImagesRequest? Type61 { get; set; }
+        public global::Ideogram.GenerateTransparentImageRequestV3? Type61 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TransparencyOption? Type62 { get; set; }
+        public global::Ideogram.UpscaleFactor? Type62 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AspectRatioEditLite? Type63 { get; set; }
+        public global::Ideogram.RemixImageRequestV3? Type63 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V1EditLiteImagesRequest? Type64 { get; set; }
+        public global::Ideogram.EditImageRequestV3? Type64 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TryOnRequestV3? Type65 { get; set; }
+        public global::Ideogram.V1EditImagesRequest? Type65 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReframeImageRequestV3? Type66 { get; set; }
+        public global::Ideogram.TransparencyOption? Type66 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReplaceBackgroundRequestV3? Type67 { get; set; }
+        public global::Ideogram.AspectRatioEditLite? Type67 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveBackgroundRequest? Type68 { get; set; }
+        public global::Ideogram.V1EditLiteImagesRequest? Type68 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveBackgroundResponse? Type69 { get; set; }
+        public global::Ideogram.TryOnRequestV3? Type69 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.DateTime? Type70 { get; set; }
+        public global::Ideogram.ReframeImageRequestV3? Type70 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.RemoveBackgroundImageObject>? Type71 { get; set; }
+        public global::Ideogram.ReplaceBackgroundRequestV3? Type71 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveBackgroundImageObject? Type72 { get; set; }
+        public global::Ideogram.RemoveBackgroundRequest? Type72 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveObjectRequest? Type73 { get; set; }
+        public global::Ideogram.RemoveBackgroundResponse? Type73 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public float? Type74 { get; set; }
+        public global::System.DateTime? Type74 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SnapMaskRequest? Type75 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.RemoveBackgroundImageObject>? Type75 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveObjectResponse? Type76 { get; set; }
+        public global::Ideogram.RemoveBackgroundImageObject? Type76 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.RemoveObjectImageObject>? Type77 { get; set; }
+        public global::Ideogram.RemoveObjectRequest? Type77 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveObjectImageObject? Type78 { get; set; }
+        public float? Type78 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalTestingRequest? Type79 { get; set; }
+        public global::Ideogram.SnapMaskRequest? Type79 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalTestingNestedObject? Type80 { get; set; }
+        public global::Ideogram.RemoveObjectResponse? Type80 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalTestingNestedObjectRequiredFields? Type81 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.RemoveObjectImageObject>? Type81 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? Type82 { get; set; }
+        public global::Ideogram.RemoveObjectImageObject? Type82 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalTestingEnumField? Type83 { get; set; }
+        public global::Ideogram.InternalTestingRequest? Type83 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageRequest? Type84 { get; set; }
+        public global::Ideogram.InternalTestingNestedObject? Type84 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InitialImageRequest? Type85 { get; set; }
+        public global::Ideogram.InternalTestingNestedObjectRequiredFields? Type85 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReframeImageRequest? Type86 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>? Type86 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.Resolution? Type87 { get; set; }
+        public global::Ideogram.InternalTestingEnumField? Type87 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleImageRequest? Type88 { get; set; }
+        public global::Ideogram.RemixImageRequest? Type88 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleInitialImageRequest? Type89 { get; set; }
+        public global::Ideogram.InitialImageRequest? Type89 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AspectRatio? Type90 { get; set; }
+        public global::Ideogram.ReframeImageRequest? Type90 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptVersionEnum? Type91 { get; set; }
+        public global::Ideogram.Resolution? Type91 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageResponse? Type92 { get; set; }
+        public global::Ideogram.UpscaleImageRequest? Type92 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ImageObject>? Type93 { get; set; }
+        public global::Ideogram.UpscaleInitialImageRequest? Type93 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageObject? Type94 { get; set; }
+        public global::Ideogram.AspectRatio? Type94 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV3? Type95 { get; set; }
+        public global::Ideogram.MagicPromptVersionEnum? Type95 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV3>? Type96 { get; set; }
+        public global::Ideogram.GenerateImageResponse? Type96 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationObjectV3? Type97 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageObject>? Type97 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V1EditImagesResponse? Type98 { get; set; }
+        public global::Ideogram.ImageObject? Type98 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.V1EditImageObject>? Type99 { get; set; }
+        public global::Ideogram.ImageGenerationResponseV3? Type99 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V1EditImageObject? Type100 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV3>? Type100 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV4? Type101 { get; set; }
+        public global::Ideogram.ImageGenerationObjectV3? Type101 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV4ResponseType? Type102 { get; set; }
+        public global::Ideogram.V1EditImagesResponse? Type102 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4>? Type103 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.V1EditImageObject>? Type103 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationObjectV4? Type104 { get; set; }
+        public global::Ideogram.V1EditImageObject? Type104 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AsyncImageGenerationResponseV4? Type105 { get; set; }
+        public global::Ideogram.ImageGenerationResponseV4? Type105 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponse? Type106 { get; set; }
+        public global::Ideogram.ImageGenerationResponseV4ResponseType? Type106 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponseStatus? Type107 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4>? Type107 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponseResponseType? Type108 { get; set; }
+        public global::Ideogram.ImageGenerationObjectV4? Type108 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public long? Type109 { get; set; }
+        public global::Ideogram.AsyncImageGenerationResponseV4? Type109 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.GenerationResponseDataInner>? Type110 { get; set; }
+        public global::Ideogram.GenerationResponse? Type110 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponseDataInner? Type111 { get; set; }
+        public global::Ideogram.GenerationResponseStatus? Type111 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageObjectWithoutPromptOrSeed? Type112 { get; set; }
+        public global::Ideogram.GenerationResponseResponseType? Type112 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType? Type113 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.GenerationResponseDataInner>? Type113 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationObject? Type114 { get; set; }
+        public global::Ideogram.GenerationResponseDataInner? Type114 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationObjectObjectType? Type115 { get; set; }
+        public global::Ideogram.ImageObjectWithoutPromptOrSeed? Type115 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponse? Type116 { get; set; }
+        public global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType? Type116 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObject>? Type117 { get; set; }
+        public global::Ideogram.ImageGenerationObject? Type117 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV4ImageToImage? Type118 { get; set; }
+        public global::Ideogram.ImageGenerationObjectObjectType? Type118 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType? Type119 { get; set; }
+        public global::Ideogram.ImageGenerationResponse? Type119 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4ImageToImage>? Type120 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObject>? Type120 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationObjectV4ImageToImage? Type121 { get; set; }
+        public global::Ideogram.ImageGenerationResponseV4ImageToImage? Type121 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV4Layout? Type122 { get; set; }
+        public global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType? Type122 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV4LayoutResponseType? Type123 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4ImageToImage>? Type123 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4Layout>? Type124 { get; set; }
+        public global::Ideogram.ImageGenerationObjectV4ImageToImage? Type124 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationObjectV4Layout? Type125 { get; set; }
+        public global::Ideogram.ImageGenerationResponseV4Layout? Type125 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayeredImageGenerationObjectV3? Type126 { get; set; }
+        public global::Ideogram.ImageGenerationResponseV4LayoutResponseType? Type126 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.TextContainerV3>? Type127 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4Layout>? Type127 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextContainerV3? Type128 { get; set; }
+        public global::Ideogram.ImageGenerationObjectV4Layout? Type128 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ImageLayerV3>? Type129 { get; set; }
+        public global::Ideogram.LayeredImageGenerationObjectV3? Type129 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageLayerV3? Type130 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.TextContainerV3>? Type130 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayeredImageGenerationResponseV3? Type131 { get; set; }
+        public global::Ideogram.TextContainerV3? Type131 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayeredImageGenerationResponseV3ResponseType? Type132 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ImageLayerV3>? Type132 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.LayeredImageGenerationObjectV3>? Type133 { get; set; }
+        public global::Ideogram.ImageLayerV3? Type133 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageSafetyError? Type134 { get; set; }
+        public global::Ideogram.LayeredImageGenerationResponseV3? Type134 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptRequest? Type135 { get; set; }
+        public global::Ideogram.LayeredImageGenerationResponseV3ResponseType? Type135 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.MagicPromptRequestMessagesInner>? Type136 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.LayeredImageGenerationObjectV3>? Type136 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptRequestMessagesInner? Type137 { get; set; }
+        public global::Ideogram.GenerateImageSafetyError? Type137 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptResponse? Type138 { get; set; }
+        public global::Ideogram.MagicPromptRequest? Type138 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptV4Request? Type139 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.MagicPromptRequestMessagesInner>? Type139 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptV4Response? Type140 { get; set; }
+        public global::Ideogram.MagicPromptRequestMessagesInner? Type140 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalBatchRequest? Type141 { get; set; }
+        public global::Ideogram.MagicPromptResponse? Type141 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SamplingRequestParams? Type142 { get; set; }
+        public global::Ideogram.MagicPromptV4Request? Type142 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalBatchResponse? Type143 { get; set; }
+        public global::Ideogram.MagicPromptV4Response? Type143 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextSpanV3? Type144 { get; set; }
+        public global::Ideogram.InternalBatchRequest? Type144 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.TextSpanV3FontFxItem>? Type145 { get; set; }
+        public global::Ideogram.SamplingRequestParams? Type145 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextSpanV3FontFxItem? Type146 { get; set; }
+        public global::Ideogram.InternalBatchResponse? Type146 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextItemV3? Type147 { get; set; }
+        public global::Ideogram.TextSpanV3? Type147 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextItemV3Alignment? Type148 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.TextSpanV3FontFxItem>? Type148 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextItemV3StyleClass? Type149 { get; set; }
+        public global::Ideogram.TextSpanV3FontFxItem? Type149 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextItemV3GlyphType? Type150 { get; set; }
+        public global::Ideogram.TextItemV3? Type150 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextItemV3TextTransform? Type151 { get; set; }
+        public global::Ideogram.TextItemV3Alignment? Type151 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextItemV3VerticalAlignment? Type152 { get; set; }
+        public global::Ideogram.TextItemV3StyleClass? Type152 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.LayeredAssetTextShadow>? Type153 { get; set; }
+        public global::Ideogram.TextItemV3GlyphType? Type153 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayeredAssetTextShadow? Type154 { get; set; }
+        public global::Ideogram.TextItemV3TextTransform? Type154 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.TextSpanV3>? Type155 { get; set; }
+        public global::Ideogram.TextItemV3VerticalAlignment? Type155 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.TextItemV3>? Type156 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.LayeredAssetTextShadow>? Type156 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizeLogosRequest? Type157 { get; set; }
+        public global::Ideogram.LayeredAssetTextShadow? Type157 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizeLogosResponse? Type158 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.TextSpanV3>? Type158 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizeTextRequest? Type159 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.TextItemV3>? Type159 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizeTextResponse? Type160 { get; set; }
+        public global::Ideogram.LayerizeLogosRequest? Type160 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlock>? Type161 { get; set; }
+        public global::Ideogram.LayerizeLogosResponse? Type161 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DetectedTextBlock? Type162 { get; set; }
+        public global::Ideogram.LayerizeTextRequest? Type162 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalBatchResultsResponse? Type163 { get; set; }
+        public global::Ideogram.LayerizeTextResponse? Type163 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.InternalBatchResultsResponseResultsInner>? Type164 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlock>? Type164 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InternalBatchResultsResponseResultsInner? Type165 { get; set; }
+        public global::Ideogram.DetectedTextBlock? Type165 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.VideoGenerationResponse? Type166 { get; set; }
+        public global::Ideogram.InternalBatchResultsResponse? Type166 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.VideoObject>? Type167 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.InternalBatchResultsResponseResultsInner>? Type167 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.VideoObject? Type168 { get; set; }
+        public global::Ideogram.InternalBatchResultsResponseResultsInner? Type168 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.VideoObjectObjectType? Type169 { get; set; }
+        public global::Ideogram.VideoGenerationResponse? Type169 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TextToVideoRequestSeedDance2? Type170 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.VideoObject>? Type170 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SeedDance2AspectRatio? Type171 { get; set; }
+        public global::Ideogram.VideoObject? Type171 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SeedDance2Resolution? Type172 { get; set; }
+        public global::Ideogram.VideoObjectObjectType? Type172 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageSafetyError? Type173 { get; set; }
+        public global::Ideogram.TextToVideoRequestSeedDance2? Type173 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationErrorResponse? Type174 { get; set; }
+        public global::Ideogram.SeedDance2AspectRatio? Type174 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationRejectReason? Type175 { get; set; }
+        public global::Ideogram.SeedDance2Resolution? Type175 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageToVideoRequestSeedDance2? Type176 { get; set; }
+        public global::Ideogram.ImageSafetyError? Type176 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AssetIdentifier? Type177 { get; set; }
+        public global::Ideogram.GenerationErrorResponse? Type177 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoSeedDance2Response? Type178 { get; set; }
+        public global::Ideogram.GenerationRejectReason? Type178 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest? Type179 { get; set; }
+        public global::Ideogram.ImageToVideoRequestSeedDance2? Type179 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoSeedDance2ImageToVideoRequest? Type180 { get; set; }
+        public global::Ideogram.AssetIdentifier? Type180 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoSeedDance25Response? Type181 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance2Response? Type181 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoSeedDance25TextToVideoRequest? Type182 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest? Type182 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SeedDance25Resolution? Type183 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance2ImageToVideoRequest? Type183 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoSeedDance25ImageToVideoRequest? Type184 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance25Response? Type184 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoMinimaxH3TextToVideoRequest? Type185 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance25TextToVideoRequest? Type185 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MinimaxH3AspectRatio? Type186 { get; set; }
+        public global::Ideogram.SeedDance25Resolution? Type186 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MinimaxH3Resolution? Type187 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance25ImageToVideoRequest? Type187 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoMinimaxH3Response? Type188 { get; set; }
+        public global::Ideogram.GenerateVideoMinimaxH3TextToVideoRequest? Type188 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoMinimaxH3ImageToVideoRequest? Type189 { get; set; }
+        public global::Ideogram.MinimaxH3AspectRatio? Type189 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoKlingV3Response? Type190 { get; set; }
+        public global::Ideogram.MinimaxH3Resolution? Type190 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoKlingV3StandardTextToVideoRequest? Type191 { get; set; }
+        public global::Ideogram.GenerateVideoMinimaxH3Response? Type191 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.KlingV3AspectRatio? Type192 { get; set; }
+        public global::Ideogram.GenerateVideoMinimaxH3ImageToVideoRequest? Type192 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.KlingV3ShotType? Type193 { get; set; }
+        public global::Ideogram.GenerateVideoKlingV3Response? Type193 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateVideoKlingV3StandardImageToVideoRequest? Type194 { get; set; }
+        public global::Ideogram.GenerateVideoKlingV3StandardTextToVideoRequest? Type194 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditVideoSeedDance2Request? Type195 { get; set; }
+        public global::Ideogram.KlingV3AspectRatio? Type195 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest? Type196 { get; set; }
+        public global::Ideogram.KlingV3ShotType? Type196 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? Type197 { get; set; }
+        public global::Ideogram.GenerateVideoKlingV3StandardImageToVideoRequest? Type197 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MinimaxH3PromptExpansionMode? Type198 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance2ReferenceToVideoRequest? Type198 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveObjectFromV2AssetsResponse? Type199 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? Type199 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveObjectFromV2AssetsRequest? Type200 { get; set; }
+        public global::Ideogram.GenerateVideoSeedDance25ReferenceToVideoRequest? Type200 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveBackgroundV2Response? Type201 { get; set; }
+        public global::Ideogram.EditVideoSeedDance2Request? Type201 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.BackgroundRemovedImageObject>? Type202 { get; set; }
+        public global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest? Type202 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.BackgroundRemovedImageObject? Type203 { get; set; }
+        public global::Ideogram.MinimaxH3PromptExpansionMode? Type203 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveBackgroundV2Request? Type204 { get; set; }
+        public global::Ideogram.RemoveObjectFromV2AssetsResponse? Type204 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveBackgroundV2AssetRequest? Type205 { get; set; }
+        public global::Ideogram.RemoveObjectFromV2AssetsRequest? Type205 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReplaceBackgroundResponse? Type206 { get; set; }
+        public global::Ideogram.RemoveBackgroundV2Response? Type206 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReplaceBackgroundRequest? Type207 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.BackgroundRemovedImageObject>? Type207 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GptImage2Quality? Type208 { get; set; }
+        public global::Ideogram.BackgroundRemovedImageObject? Type208 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ListAccountApiKeysResponse? Type209 { get; set; }
+        public global::Ideogram.RemoveBackgroundV2Request? Type209 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey>? Type210 { get; set; }
+        public global::Ideogram.RemoveBackgroundV2AssetRequest? Type210 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ApiProfileApiKey? Type211 { get; set; }
+        public global::Ideogram.ReplaceBackgroundResponse? Type211 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetAccountUsageResponse? Type212 { get; set; }
+        public global::Ideogram.ReplaceBackgroundRequest? Type212 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.AccountUsageBucket>? Type213 { get; set; }
+        public global::Ideogram.GptImage2Quality? Type213 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AccountUsageBucket? Type214 { get; set; }
+        public global::Ideogram.ReplaceBackgroundIdeogramV3Request? Type214 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.AccountUsageLineItem>? Type215 { get; set; }
+        public global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed? Type215 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AccountUsageLineItem? Type216 { get; set; }
+        public global::Ideogram.ListAccountApiKeysResponse? Type216 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.Dictionary<string, string>? Type217 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey>? Type217 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AccountUsageLineItemSource? Type218 { get; set; }
+        public global::Ideogram.ApiProfileApiKey? Type218 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AccountUsageApiKey? Type219 { get; set; }
+        public global::Ideogram.GetAccountUsageResponse? Type219 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AccountUsageBilledUnits? Type220 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.AccountUsageBucket>? Type220 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ListAccountInvoicesResponse? Type221 { get; set; }
+        public global::Ideogram.AccountUsageBucket? Type221 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.AccountInvoice>? Type222 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.AccountUsageLineItem>? Type222 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AccountInvoice? Type223 { get; set; }
+        public global::Ideogram.AccountUsageLineItem? Type223 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InvoiceStatus? Type224 { get; set; }
+        public global::System.Collections.Generic.Dictionary<string, string>? Type224 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem>? Type225 { get; set; }
+        public global::Ideogram.AccountUsageLineItemSource? Type225 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AccountInvoiceLineItem? Type226 { get; set; }
+        public global::Ideogram.AccountUsageApiKey? Type226 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageGptImage2Response? Type227 { get; set; }
+        public global::Ideogram.AccountUsageBilledUnits? Type227 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.EditImageObject>? Type228 { get; set; }
+        public global::Ideogram.ListAccountInvoicesResponse? Type228 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageObject? Type229 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.AccountInvoice>? Type229 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageGptImage2Request? Type230 { get; set; }
+        public global::Ideogram.AccountInvoice? Type230 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleImageTopazTextRefineResponse? Type231 { get; set; }
+        public global::Ideogram.InvoiceStatus? Type231 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.UpscaleImageObject>? Type232 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem>? Type232 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleImageObject? Type233 { get; set; }
+        public global::Ideogram.AccountInvoiceLineItem? Type233 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleImageTopazTextRefineRequest? Type234 { get; set; }
+        public global::Ideogram.UpscaleImageTopazTextRefineResponse? Type234 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor? Type235 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.UpscaleImageObject>? Type235 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LookbookResponse? Type236 { get; set; }
+        public global::Ideogram.UpscaleImageObject? Type236 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LookbookRequest? Type237 { get; set; }
+        public global::Ideogram.UpscaleImageTopazTextRefineRequest? Type237 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LookbookRequestCategory? Type238 { get; set; }
+        public global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor? Type238 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ModelPoseVariantsResponse? Type239 { get; set; }
+        public global::Ideogram.UpscaleImageTopazWonder35Response? Type239 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ModelPoseVariantsRequest? Type240 { get; set; }
+        public global::Ideogram.UpscaleImageTopazWonder35Request? Type240 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PackshotsResponse? Type241 { get; set; }
+        public global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor? Type241 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PackshotsRequest? Type242 { get; set; }
+        public global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength? Type242 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PackshotView? Type243 { get; set; }
+        public global::Ideogram.UpscaleImageTopazStandardV2Response? Type243 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GhostMannequinResponse? Type244 { get; set; }
+        public global::Ideogram.UpscaleImageTopazStandardV2Request? Type244 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GhostMannequinRequest? Type245 { get; set; }
+        public global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor? Type245 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GhostMannequinRequestView? Type246 { get; set; }
+        public global::Ideogram.UpscaleImageTopazBloom2Response? Type246 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PreciseMaskedEditResponse? Type247 { get; set; }
+        public global::Ideogram.UpscaleImageTopazBloom2Request? Type247 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PreciseMaskedEditRequest? Type248 { get; set; }
+        public global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor? Type248 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PreciseMaskedEditModel? Type249 { get; set; }
+        public global::Ideogram.UpscaleImageGemini3ProResponse? Type249 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.VirtualTryOnResponse? Type250 { get; set; }
+        public global::Ideogram.UpscaleImageGemini3ProRequest? Type250 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.VirtualTryOnRequest? Type251 { get; set; }
+        public global::Ideogram.UpscaleImageGemini3ProRequestResolutionTier? Type251 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorwaysResponse? Type252 { get; set; }
+        public global::Ideogram.LookbookResponse? Type252 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorwaysRequest? Type253 { get; set; }
+        public global::Ideogram.LookbookRequest? Type253 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AdResizerResponse? Type254 { get; set; }
+        public global::Ideogram.LookbookRequestCategory? Type254 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AdResizerRequest? Type255 { get; set; }
+        public global::Ideogram.ModelPoseVariantsResponse? Type255 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AdResizerRequestResolution? Type256 { get; set; }
+        public global::Ideogram.ModelPoseVariantsRequest? Type256 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AdResizerRequestPlatform? Type257 { get; set; }
+        public global::Ideogram.PackshotsResponse? Type257 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AdVariationsResponse? Type258 { get; set; }
+        public global::Ideogram.PackshotsRequest? Type258 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AdVariationsRequest? Type259 { get; set; }
+        public global::Ideogram.PackshotView? Type259 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AdVariationsRequestVariationType? Type260 { get; set; }
+        public global::Ideogram.GhostMannequinResponse? Type260 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SketchToRenderResponse? Type261 { get; set; }
+        public global::Ideogram.GhostMannequinRequest? Type261 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SketchToRenderRequest? Type262 { get; set; }
+        public global::Ideogram.GhostMannequinRequestView? Type262 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ModelSwapResponse? Type263 { get; set; }
+        public global::Ideogram.PreciseMaskedEditResponse? Type263 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ModelSwapRequest? Type264 { get; set; }
+        public global::Ideogram.PreciseMaskedEditRequest? Type264 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MaterialSwapResponse? Type265 { get; set; }
+        public global::Ideogram.PreciseMaskedEditModel? Type265 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MaterialSwapRequest? Type266 { get; set; }
+        public global::Ideogram.VirtualTryOnResponse? Type266 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleToolResponse? Type267 { get; set; }
+        public global::Ideogram.VirtualTryOnRequest? Type267 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleToolRequest? Type268 { get; set; }
+        public global::Ideogram.ColorwaysResponse? Type268 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpscaleToolRequestUpscaleFactor? Type269 { get; set; }
+        public global::Ideogram.ColorwaysRequest? Type269 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizeDesignIdeogramV3Response? Type270 { get; set; }
+        public global::Ideogram.AdResizerResponse? Type270 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.LayerizedImageObject>? Type271 { get; set; }
+        public global::Ideogram.AdResizerRequest? Type271 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizedImageObject? Type272 { get; set; }
+        public global::Ideogram.AdResizerRequestResolution? Type272 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizedImageObjectObjectType? Type273 { get; set; }
+        public global::Ideogram.AdResizerRequestPlatform? Type273 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizeDesignIdeogramV3Request? Type274 { get; set; }
+        public global::Ideogram.AdVariationsResponse? Type274 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageGemini31FlashResponse? Type275 { get; set; }
+        public global::Ideogram.AdVariationsRequest? Type275 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageGemini31FlashRequest? Type276 { get; set; }
+        public global::Ideogram.AdVariationsRequestVariationType? Type276 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageGemini30ProResponse? Type277 { get; set; }
+        public global::Ideogram.SketchToRenderResponse? Type277 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageGemini30ProRequest? Type278 { get; set; }
+        public global::Ideogram.SketchToRenderRequest? Type278 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageGemini30ProRequestResolutionTier? Type279 { get; set; }
+        public global::Ideogram.SoleSwapResponse? Type279 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageIdeogram45Response? Type280 { get; set; }
+        public global::Ideogram.SoleSwapRequest? Type280 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageIdeogram45Request? Type281 { get; set; }
+        public global::Ideogram.SoleSwapRequestBaseGenerationSize? Type281 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.EditImageIdeogram45RequestRenderingSpeed? Type282 { get; set; }
+        public global::Ideogram.SwapProductResponse? Type282 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3Response? Type283 { get; set; }
+        public global::Ideogram.SwapProductRequest? Type283 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>? Type284 { get; set; }
+        public global::Ideogram.SwapProductMode? Type284 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GeneratedImageObject? Type285 { get; set; }
+        public global::Ideogram.SkechersStyleEditResponse? Type285 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3Request? Type286 { get; set; }
+        public global::Ideogram.SkechersStyleEditRequest? Type286 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3CustomModelResponse? Type287 { get; set; }
+        public global::Ideogram.SkechersStyleEditRequestAspectRatio? Type287 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3CustomModelRequest? Type288 { get; set; }
+        public global::Ideogram.SkechersStyleEditRequestBaseGenerationSize? Type288 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed? Type289 { get; set; }
+        public global::Ideogram.SwanSLogoDesignResponse? Type289 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4Response? Type290 { get; set; }
+        public global::Ideogram.SwanSLogoDesignRequest? Type290 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4Request? Type291 { get; set; }
+        public global::Ideogram.SwanSLogoDesignRequestLogoStyle? Type291 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed? Type292 { get; set; }
+        public global::Ideogram.SwanSLogoDesignRequestSourceMode? Type292 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4CustomModelResponse? Type293 { get; set; }
+        public global::Ideogram.SwanSLogoInstallResponse? Type293 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4CustomModelRequest? Type294 { get; set; }
+        public global::Ideogram.SwanSLogoInstallRequest? Type294 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed? Type295 { get; set; }
+        public global::Ideogram.SwanSLogoInstallRequestLogoStyle? Type295 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3Response? Type296 { get; set; }
+        public global::Ideogram.ModelSwapResponse? Type296 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.RemixedImageObject>? Type297 { get; set; }
+        public global::Ideogram.ModelSwapRequest? Type297 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixedImageObject? Type298 { get; set; }
+        public global::Ideogram.MaterialSwapResponse? Type298 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3Request? Type299 { get; set; }
+        public global::Ideogram.MaterialSwapRequest? Type299 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3CustomModelResponse? Type300 { get; set; }
+        public global::Ideogram.UpscaleToolResponse? Type300 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3CustomModelRequest? Type301 { get; set; }
+        public global::Ideogram.UpscaleToolRequest? Type301 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed? Type302 { get; set; }
+        public global::Ideogram.UpscaleToolRequestUpscaleFactor? Type302 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV4Response? Type303 { get; set; }
+        public global::Ideogram.LayerizeDesignIdeogramV3Response? Type303 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV4Request? Type304 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.LayerizedImageObject>? Type304 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed? Type305 { get; set; }
+        public global::Ideogram.LayerizedImageObject? Type305 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3CharacterResponse? Type306 { get; set; }
+        public global::Ideogram.LayerizedImageObjectObjectType? Type306 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3CharacterRequest? Type307 { get; set; }
+        public global::Ideogram.LayerizeDesignIdeogramV3Request? Type307 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed? Type308 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3Response? Type308 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType? Type309 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>? Type309 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3TransparentResponse? Type310 { get; set; }
+        public global::Ideogram.GeneratedImageObject? Type310 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3TransparentRequest? Type311 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3Request? Type311 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4TransparentResponse? Type312 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3CustomModelResponse? Type312 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4TransparentRequest? Type313 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3CustomModelRequest? Type313 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution? Type314 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed? Type314 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed? Type315 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4Response? Type315 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImagePImageIdeogramResponse? Type316 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4Request? Type316 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImagePImageIdeogramRequest? Type317 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed? Type317 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImagePImageIdeogramRequestResolution? Type318 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4CustomModelResponse? Type318 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageZImageResponse? Type319 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4CustomModelRequest? Type319 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageZImageRequest? Type320 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed? Type320 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogram45Response? Type321 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3Response? Type321 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogram45Request? Type322 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.RemixedImageObject>? Type322 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? Type323 { get; set; }
+        public global::Ideogram.RemixedImageObject? Type323 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageGemini31FlashResponse? Type324 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3Request? Type324 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageGemini31FlashRequest? Type325 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3CustomModelResponse? Type325 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageGemini30ProResponse? Type326 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3CustomModelRequest? Type326 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageGemini30ProRequest? Type327 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed? Type327 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageGemini30ProRequestResolutionTier? Type328 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV4Response? Type328 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageGptImage2Response? Type329 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV4Request? Type329 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageGptImage2Request? Type330 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed? Type330 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV2Response? Type331 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3CharacterResponse? Type331 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV2Request? Type332 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3CharacterRequest? Type332 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed? Type333 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed? Type333 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.StyleTypeV2? Type334 { get; set; }
+        public global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType? Type334 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV2AResponse? Type335 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3TransparentResponse? Type335 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV2ARequest? Type336 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3TransparentRequest? Type336 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed? Type337 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4TransparentResponse? Type337 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3Response? Type338 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4TransparentRequest? Type338 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.InpaintedImageObject>? Type339 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution? Type339 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintedImageObject? Type340 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed? Type340 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3Request? Type341 { get; set; }
+        public global::Ideogram.GenerateImagePImageIdeogramResponse? Type341 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed? Type342 { get; set; }
+        public global::Ideogram.GenerateImagePImageIdeogramRequest? Type342 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3CustomModelResponse? Type343 { get; set; }
+        public global::Ideogram.GenerateImagePImageIdeogramRequestResolution? Type343 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3CustomModelRequest? Type344 { get; set; }
+        public global::Ideogram.GenerateImageZImageResponse? Type344 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed? Type345 { get; set; }
+        public global::Ideogram.GenerateImageZImageRequest? Type345 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReframeImageIdeogramV3Response? Type346 { get; set; }
+        public global::Ideogram.GenerateImageIdeogram45Response? Type346 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReframeImageIdeogramV3Request? Type347 { get; set; }
+        public global::Ideogram.GenerateImageIdeogram45Request? Type347 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed? Type348 { get; set; }
+        public global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? Type348 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReframeImageGemini31FlashImageResponse? Type349 { get; set; }
+        public global::Ideogram.GenerateImageGemini31FlashResponse? Type349 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ReframeImageGemini31FlashImageRequest? Type350 { get; set; }
+        public global::Ideogram.GenerateImageGemini31FlashRequest? Type350 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3CharacterResponse? Type351 { get; set; }
+        public global::Ideogram.GenerateImageGemini30ProResponse? Type351 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3CharacterRequest? Type352 { get; set; }
+        public global::Ideogram.GenerateImageGemini30ProRequest? Type352 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed? Type353 { get; set; }
+        public global::Ideogram.GenerateImageGemini30ProRequestResolutionTier? Type353 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType? Type354 { get; set; }
+        public global::Ideogram.GenerateImageGptImage2Response? Type354 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3CharacterResponse? Type355 { get; set; }
+        public global::Ideogram.GenerateImageGptImage2Request? Type355 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3CharacterRequest? Type356 { get; set; }
+        public global::Ideogram.GenerateImageGptImage25FlareResponse? Type356 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed? Type357 { get; set; }
+        public global::Ideogram.GenerateImageGptImage25FlareRequest? Type357 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType? Type358 { get; set; }
+        public global::Ideogram.GenerateImageGptImage25SunburstResponse? Type358 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolTextToImageResponse? Type359 { get; set; }
+        public global::Ideogram.GenerateImageGptImage25SunburstRequest? Type359 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolTextToImageRequest? Type360 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV2Response? Type360 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolTextToImageRequestResolutionTier? Type361 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV2Request? Type361 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolImageToImageResponse? Type362 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed? Type362 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolImageToImageRequest? Type363 { get; set; }
+        public global::Ideogram.StyleTypeV2? Type363 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolImageToImageRequestResolutionTier? Type364 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV2AResponse? Type364 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolRemixResponse? Type365 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV2ARequest? Type365 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolRemixRequest? Type366 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed? Type366 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolRemixRequestResolutionTier? Type367 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3Response? Type367 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResizeAdImageRequest? Type368 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.InpaintedImageObject>? Type368 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResizeAdImageRequestResolution? Type369 { get; set; }
+        public global::Ideogram.InpaintedImageObject? Type369 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResizeAdImageQuality? Type370 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3Request? Type370 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.WebhookSigningJwks? Type371 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed? Type371 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.WebhookSigningJwk>? Type372 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3CustomModelResponse? Type372 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.WebhookSigningJwk? Type373 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3CustomModelRequest? Type373 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ProvenanceVerifyResponse? Type374 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed? Type374 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ProvenanceVerifyResponseValidationState? Type375 { get; set; }
+        public global::Ideogram.ReframeImageIdeogramV3Response? Type375 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ProvenanceVerifyRequest? Type376 { get; set; }
+        public global::Ideogram.ReframeImageIdeogramV3Request? Type376 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ManageApiSubscriptionResponse? Type377 { get; set; }
+        public global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed? Type377 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MetronomeLinks? Type378 { get; set; }
+        public global::Ideogram.ReframeImageGemini31FlashImageResponse? Type378 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RechargeSettingsResponse? Type379 { get; set; }
+        public global::Ideogram.ReframeImageGemini31FlashImageRequest? Type379 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.Price? Type380 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3CharacterResponse? Type380 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RechargeSettings? Type381 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3CharacterRequest? Type381 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostApiSubscriptionResponse? Type382 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed? Type382 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostApiSubscriptionError? Type383 { get; set; }
+        public global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType? Type383 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostApiSubscriptionRequest? Type384 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3CharacterResponse? Type384 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ManageApiCreditSummaryResponse? Type385 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3CharacterRequest? Type385 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.CreditGrant>? Type386 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed? Type386 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.CreditGrant? Type387 { get; set; }
+        public global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType? Type387 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostApiReactivateResponse? Type388 { get; set; }
+        public global::Ideogram.GenerateImageV2AutoResponse? Type388 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetApiKeysResponse? Type389 { get; set; }
+        public global::Ideogram.GenerateImageV2AutoRequest? Type389 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.RedactedApiKey>? Type390 { get; set; }
+        public global::Ideogram.GenerateImageV2AutoRequestResolutionTier? Type390 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RedactedApiKey? Type391 { get; set; }
+        public global::Ideogram.ToolRemixResponse? Type391 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostApiKeyResponse? Type392 { get; set; }
+        public global::Ideogram.ToolRemixRequest? Type392 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.CreateApiKeyRequest? Type393 { get; set; }
+        public global::Ideogram.ToolRemixRequestResolutionTier? Type393 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ApiKeyStatus? Type394 { get; set; }
+        public global::Ideogram.ResizeAdImageRequest? Type394 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PatchApiKeyRequest? Type395 { get; set; }
+        public global::Ideogram.ResizeAdImageRequestResolution? Type395 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ManageApiStripeSubscriptionResponse? Type396 { get; set; }
+        public global::Ideogram.ResizeAdImageQuality? Type396 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ManageApiPaymentResponse? Type397 { get; set; }
+        public global::Ideogram.WebhookSigningJwks? Type397 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetApiTermsResponse? Type398 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.WebhookSigningJwk>? Type398 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ApiTerms? Type399 { get; set; }
+        public global::Ideogram.WebhookSigningJwk? Type399 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostApiTermsRequest? Type400 { get; set; }
+        public global::Ideogram.ProvenanceVerifyResponse? Type400 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostAddCreditsResponse? Type401 { get; set; }
+        public global::Ideogram.ProvenanceVerifyResponseValidationState? Type401 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostAddCreditsError? Type402 { get; set; }
+        public global::Ideogram.ProvenanceVerifyRequest? Type402 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostAddCreditsRequest? Type403 { get; set; }
+        public global::Ideogram.ManageApiSubscriptionResponse? Type403 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetUserCreditsResponse? Type404 { get; set; }
+        public global::Ideogram.MetronomeLinks? Type404 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SpendCommitInfoResponse? Type405 { get; set; }
+        public global::Ideogram.RechargeSettingsResponse? Type405 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.SpendCommitInfo>? Type406 { get; set; }
+        public global::Ideogram.Price? Type406 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SpendCommitInfo? Type407 { get; set; }
+        public global::Ideogram.RechargeSettings? Type407 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetUsageInfoResponse? Type408 { get; set; }
+        public global::Ideogram.PostApiSubscriptionResponse? Type408 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.UsageSegment>? Type409 { get; set; }
+        public global::Ideogram.PostApiSubscriptionError? Type409 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UsageSegment? Type410 { get; set; }
+        public global::Ideogram.PostApiSubscriptionRequest? Type410 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ToolUsage>? Type411 { get; set; }
+        public global::Ideogram.ManageApiCreditSummaryResponse? Type411 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolUsage? Type412 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.CreditGrant>? Type412 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ToolType? Type413 { get; set; }
+        public global::Ideogram.CreditGrant? Type413 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ModelVersion? Type414 { get; set; }
+        public global::Ideogram.PostApiReactivateResponse? Type414 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.SegmentBy? Type415 { get; set; }
+        public global::Ideogram.GetApiKeysResponse? Type415 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UsageSource? Type416 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.RedactedApiKey>? Type416 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetApiProfilesResponse? Type417 { get; set; }
+        public global::Ideogram.RedactedApiKey? Type417 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ApiProfile>? Type418 { get; set; }
+        public global::Ideogram.PostApiKeyResponse? Type418 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ApiProfile? Type419 { get; set; }
+        public global::Ideogram.CreateApiKeyRequest? Type419 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ApiProfileType? Type420 { get; set; }
+        public global::Ideogram.ApiKeyStatus? Type420 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ApiProfileRole? Type421 { get; set; }
+        public global::Ideogram.PatchApiKeyRequest? Type421 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpdateOrganizationApiPropertiesResponse? Type422 { get; set; }
+        public global::Ideogram.ManageApiStripeSubscriptionResponse? Type422 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UpdateOrganizationApiPropertiesRequest? Type423 { get; set; }
+        public global::Ideogram.ManageApiPaymentResponse? Type423 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetApiOrganizationUserSuggestionsResponse? Type424 { get; set; }
+        public global::Ideogram.GetApiTermsResponse? Type424 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ApiOrganizationUserSuggestion>? Type425 { get; set; }
+        public global::Ideogram.ApiTerms? Type425 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ApiOrganizationUserSuggestion? Type426 { get; set; }
+        public global::Ideogram.PostApiTermsRequest? Type426 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetOrganizationMembersResponse? Type427 { get; set; }
+        public global::Ideogram.PostAddCreditsResponse? Type427 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.OrganizationMember>? Type428 { get; set; }
+        public global::Ideogram.PostAddCreditsError? Type428 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.OrganizationMember? Type429 { get; set; }
+        public global::Ideogram.PostAddCreditsRequest? Type429 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.CreateApiKeyResponse? Type430 { get; set; }
+        public global::Ideogram.GetUserCreditsResponse? Type430 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetApiKeysV2Response? Type431 { get; set; }
+        public global::Ideogram.SpendCommitInfoResponse? Type431 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.OrganizationMemberOperationResponse? Type432 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.SpendCommitInfo>? Type432 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.OrganizationMemberOperationResult>? Type433 { get; set; }
+        public global::Ideogram.SpendCommitInfo? Type433 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.OrganizationMemberOperationResult? Type434 { get; set; }
+        public global::Ideogram.GetUsageInfoResponse? Type434 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AddOrganizationMembersRequest? Type435 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.UsageSegment>? Type435 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember>? Type436 { get; set; }
+        public global::Ideogram.UsageSegment? Type436 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LiteOrganizationMember? Type437 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ToolUsage>? Type437 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.RemoveOrganizationMembersRequest? Type438 { get; set; }
+        public global::Ideogram.ToolUsage? Type438 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PromoteOrganizationAdminsRequest? Type439 { get; set; }
+        public global::Ideogram.ToolType? Type439 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DemoteOrganizationAdminsRequest? Type440 { get; set; }
+        public global::Ideogram.ModelVersion? Type440 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.CancelOrganizationInviteRequest? Type441 { get; set; }
+        public global::Ideogram.SegmentBy? Type441 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ResendOrganizationInviteRequest? Type442 { get; set; }
+        public global::Ideogram.UsageSource? Type442 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ListOrganizationInvoicesResponse? Type443 { get; set; }
+        public global::Ideogram.GetApiProfilesResponse? Type443 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.Invoice>? Type444 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ApiProfile>? Type444 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.Invoice? Type445 { get; set; }
+        public global::Ideogram.ApiProfile? Type445 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem>? Type446 { get; set; }
+        public global::Ideogram.ApiProfileType? Type446 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.InvoiceLineItem? Type447 { get; set; }
+        public global::Ideogram.ApiProfileRole? Type447 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetOrganizationBillingPortalResponse? Type448 { get; set; }
+        public global::Ideogram.UpdateOrganizationApiPropertiesResponse? Type448 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ListDatasetsResponse? Type449 { get; set; }
+        public global::Ideogram.UpdateOrganizationApiPropertiesRequest? Type449 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.Dataset>? Type450 { get; set; }
+        public global::Ideogram.GetApiOrganizationUserSuggestionsResponse? Type450 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.Dataset? Type451 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.ApiOrganizationUserSuggestion>? Type451 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.CreateDatasetRequest? Type452 { get; set; }
+        public global::Ideogram.ApiOrganizationUserSuggestion? Type452 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetDatasetResponse? Type453 { get; set; }
+        public global::Ideogram.GetOrganizationMembersResponse? Type453 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.DatasetFile>? Type454 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.OrganizationMember>? Type454 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DatasetFile? Type455 { get; set; }
+        public global::Ideogram.OrganizationMember? Type455 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UploadDatasetAssetsResponse? Type456 { get; set; }
+        public global::Ideogram.CreateApiKeyResponse? Type456 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.DatasetUploadSucceededAsset>? Type457 { get; set; }
+        public global::Ideogram.GetApiKeysV2Response? Type457 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DatasetUploadSucceededAsset? Type458 { get; set; }
+        public global::Ideogram.OrganizationMemberOperationResponse? Type458 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.DatasetUploadFailedAsset>? Type459 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.OrganizationMemberOperationResult>? Type459 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DatasetUploadFailedAsset? Type460 { get; set; }
+        public global::Ideogram.OrganizationMemberOperationResult? Type460 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DatasetAssetFailureReason? Type461 { get; set; }
+        public global::Ideogram.AddOrganizationMembersRequest? Type461 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UploadDatasetAssetsRequest? Type462 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember>? Type462 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainDatasetModelResponse? Type463 { get; set; }
+        public global::Ideogram.LiteOrganizationMember? Type463 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainDatasetModelRequest? Type464 { get; set; }
+        public global::Ideogram.RemoveOrganizationMembersRequest? Type464 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ListModelsResponse? Type465 { get; set; }
+        public global::Ideogram.PromoteOrganizationAdminsRequest? Type465 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.CustomModel>? Type466 { get; set; }
+        public global::Ideogram.DemoteOrganizationAdminsRequest? Type466 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.CustomModel? Type467 { get; set; }
+        public global::Ideogram.CancelOrganizationInviteRequest? Type467 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ModelStatus? Type468 { get; set; }
+        public global::Ideogram.ResendOrganizationInviteRequest? Type468 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.TrainingRun>? Type469 { get; set; }
+        public global::Ideogram.ListOrganizationInvoicesResponse? Type469 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainingRun? Type470 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.Invoice>? Type470 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainingRunStatus? Type471 { get; set; }
+        public global::Ideogram.Invoice? Type471 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public double? Type472 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem>? Type472 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetModelResponse? Type473 { get; set; }
+        public global::Ideogram.InvoiceLineItem? Type473 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainModelV3Request? Type474 { get; set; }
+        public global::Ideogram.GetOrganizationBillingPortalResponse? Type474 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainModelV3AdvancedRequest? Type475 { get; set; }
+        public global::Ideogram.ListDatasetsResponse? Type475 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainModelV4Request? Type476 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.Dataset>? Type476 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.TrainModelV4AdvancedRequest? Type477 { get; set; }
+        public global::Ideogram.Dataset? Type477 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PublishMiniAppResponse? Type478 { get; set; }
+        public global::Ideogram.CreateDatasetRequest? Type478 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PublishMiniAppRequest? Type479 { get; set; }
+        public global::Ideogram.GetDatasetResponse? Type479 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PublishMiniAppRequestEmbed? Type480 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.DatasetFile>? Type480 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public object? Type481 { get; set; }
+        public global::Ideogram.DatasetFile? Type481 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MiniAppArtwork? Type482 { get; set; }
+        public global::Ideogram.UploadDatasetAssetsResponse? Type482 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PublishMiniAppPreviewResponse? Type483 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.DatasetUploadSucceededAsset>? Type483 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PublishMiniAppPreviewRequest? Type484 { get; set; }
+        public global::Ideogram.DatasetUploadSucceededAsset? Type484 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PublishMiniAppPreviewRequestEmbed? Type485 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.DatasetUploadFailedAsset>? Type485 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.UnpublishMiniAppPreviewResponse? Type486 { get; set; }
+        public global::Ideogram.DatasetUploadFailedAsset? Type486 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetStaleMiniAppPreviewsResponse? Type487 { get; set; }
+        public global::Ideogram.DatasetAssetFailureReason? Type487 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.MiniAppMarketingProjectionEntry>? Type488 { get; set; }
+        public global::Ideogram.UploadDatasetAssetsRequest? Type488 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MiniAppMarketingProjectionEntry? Type489 { get; set; }
+        public global::Ideogram.TrainDatasetModelResponse? Type489 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MiniAppMarketingProjectionEntryEmbed? Type490 { get; set; }
+        public global::Ideogram.TrainDatasetModelRequest? Type490 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetIntegrationsResponse? Type491 { get; set; }
+        public global::Ideogram.ListModelsResponse? Type491 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.IntegrationType>? Type492 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.CustomModel>? Type492 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IntegrationType? Type493 { get; set; }
+        public global::Ideogram.CustomModel? Type493 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IntegrationErrorResponse? Type494 { get; set; }
+        public global::Ideogram.ModelStatus? Type494 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IntegrationErrorResponseError? Type495 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.TrainingRun>? Type495 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IntegrationAssetSearchResponse? Type496 { get; set; }
+        public global::Ideogram.TrainingRun? Type496 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.IntegrationAsset>? Type497 { get; set; }
+        public global::Ideogram.TrainingRunStatus? Type497 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IntegrationAsset? Type498 { get; set; }
+        public double? Type498 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IntegrationAssetDelivery? Type499 { get; set; }
+        public global::Ideogram.GetModelResponse? Type499 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IntegrationAssetSearchRequest? Type500 { get; set; }
+        public global::Ideogram.TrainModelV3Request? Type500 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4StyleDescription? Type501 { get; set; }
+        public global::Ideogram.TrainModelV3AdvancedRequest? Type501 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4CompositionalDeconstruction? Type502 { get; set; }
+        public global::Ideogram.TrainModelV4Request? Type502 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.V4PromptElement>? Type503 { get; set; }
+        public global::Ideogram.TrainModelV4AdvancedRequest? Type503 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4PromptElement? Type504 { get; set; }
+        public global::Ideogram.PublishMiniAppResponse? Type504 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4ObjPromptElement? Type505 { get; set; }
+        public global::Ideogram.PublishMiniAppRequest? Type505 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4TextPromptElement? Type506 { get; set; }
+        public global::Ideogram.PublishMiniAppRequestEmbed? Type506 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4PromptElementDiscriminator? Type507 { get; set; }
+        public object? Type507 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4PromptElementDiscriminatorType? Type508 { get; set; }
+        public global::Ideogram.MiniAppArtwork? Type508 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4ObjPromptElementType? Type509 { get; set; }
+        public global::Ideogram.PublishMiniAppPreviewResponse? Type509 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<int>? Type510 { get; set; }
+        public global::Ideogram.PublishMiniAppPreviewRequest? Type510 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4TextPromptElementType? Type511 { get; set; }
+        public global::Ideogram.PublishMiniAppPreviewRequestEmbed? Type511 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteWithPresetName? Type512 { get; set; }
+        public global::Ideogram.UnpublishMiniAppPreviewResponse? Type512 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteWithMembers? Type513 { get; set; }
+        public global::Ideogram.GetStaleMiniAppPreviewsResponse? Type513 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPalettePresetName? Type514 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.MiniAppMarketingProjectionEntry>? Type514 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>? Type515 { get; set; }
+        public global::Ideogram.MiniAppMarketingProjectionEntry? Type515 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteMember? Type516 { get; set; }
+        public global::Ideogram.MiniAppMarketingProjectionEntryEmbed? Type516 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DetectedTextBlockAlignment? Type517 { get; set; }
+        public global::Ideogram.GetIntegrationsResponse? Type517 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItem>? Type518 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.IntegrationType>? Type518 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DetectedTextBlockFormattingItem? Type519 { get; set; }
+        public global::Ideogram.IntegrationType? Type519 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DetectedTextBlockRole? Type520 { get; set; }
+        public global::Ideogram.IntegrationErrorResponse? Type520 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AssetType? Type521 { get; set; }
+        public global::Ideogram.IntegrationErrorResponseError? Type521 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostGenerateDesignV4200Response? Type522 { get; set; }
+        public global::Ideogram.IntegrationAssetSearchResponse? Type522 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminator? Type523 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.IntegrationAsset>? Type523 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType? Type524 { get; set; }
+        public global::Ideogram.IntegrationAsset? Type524 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PostInternalTesting200Response? Type525 { get; set; }
+        public global::Ideogram.IntegrationAssetDelivery? Type525 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponseDataInnerDiscriminator? Type526 { get; set; }
+        public global::Ideogram.IntegrationAssetSearchRequest? Type526 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType? Type527 { get; set; }
+        public global::Ideogram.V4StyleDescription? Type527 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.MagicPromptRequestMessagesInnerRole? Type528 { get; set; }
+        public global::Ideogram.V4CompositionalDeconstruction? Type528 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.DatasetCoverAssetIdentifier? Type529 { get; set; }
+        public global::System.Collections.Generic.IList<global::Ideogram.V4PromptElement>? Type529 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? Type530 { get; set; }
+        public global::Ideogram.V4PromptElement? Type530 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ToolType>? Type531 { get; set; }
+        public global::Ideogram.V4ObjPromptElement? Type531 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ListCustomModelsScope? Type532 { get; set; }
+        public global::Ideogram.V4TextPromptElement? Type532 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.ModelStatus>? Type533 { get; set; }
+        public global::Ideogram.V4PromptElementDiscriminator? Type533 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetAccountUsageBucketWidth? Type534 { get; set; }
+        public global::Ideogram.V4PromptElementDiscriminatorType? Type534 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.IList<global::Ideogram.GetAccountUsageSource>? Type535 { get; set; }
+        public global::Ideogram.V4ObjPromptElementType? Type535 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GetAccountUsageSource? Type536 { get; set; }
+        public global::System.Collections.Generic.IList<int>? Type536 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.V4TextPromptElementType? Type537 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.ColorPaletteWithPresetName? Type538 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.ColorPaletteWithMembers? Type539 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.ColorPalettePresetName? Type540 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>? Type541 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.ColorPaletteMember? Type542 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.DetectedTextBlockAlignment? Type543 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItem>? Type544 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.DetectedTextBlockFormattingItem? Type545 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.DetectedTextBlockRole? Type546 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.AssetType? Type547 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.PostGenerateDesignV4200Response? Type548 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminator? Type549 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType? Type550 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.PostInternalTesting200Response? Type551 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.GenerationResponseDataInnerDiscriminator? Type552 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType? Type553 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.MagicPromptRequestMessagesInnerRole? Type554 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.DatasetCoverAssetIdentifier? Type555 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>? Type556 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ToolType>? Type557 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.ListCustomModelsScope? Type558 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.ModelStatus>? Type559 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.GetAccountUsageBucketWidth? Type560 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::System.Collections.Generic.IList<global::Ideogram.GetAccountUsageSource>? Type561 { get; set; }
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.GetAccountUsageSource? Type562 { get; set; }
 
         /// <summary>
         ///
@@ -2310,146 +2414,142 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.EditImageObject>? ListType32 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.UpscaleImageObject>? ListType32 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.UpscaleImageObject>? ListType33 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.LayerizedImageObject>? ListType33 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.LayerizedImageObject>? ListType34 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.GeneratedImageObject>? ListType34 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.GeneratedImageObject>? ListType35 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.RemixedImageObject>? ListType35 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.RemixedImageObject>? ListType36 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.InpaintedImageObject>? ListType36 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.InpaintedImageObject>? ListType37 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.WebhookSigningJwk>? ListType37 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.WebhookSigningJwk>? ListType38 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.CreditGrant>? ListType38 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.CreditGrant>? ListType39 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.RedactedApiKey>? ListType39 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.RedactedApiKey>? ListType40 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.SpendCommitInfo>? ListType40 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.SpendCommitInfo>? ListType41 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.UsageSegment>? ListType41 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.UsageSegment>? ListType42 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ToolUsage>? ListType42 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ToolUsage>? ListType43 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ApiProfile>? ListType43 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ApiProfile>? ListType44 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ApiOrganizationUserSuggestion>? ListType44 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ApiOrganizationUserSuggestion>? ListType45 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.OrganizationMember>? ListType45 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.OrganizationMember>? ListType46 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.OrganizationMemberOperationResult>? ListType46 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.OrganizationMemberOperationResult>? ListType47 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.LiteOrganizationMember>? ListType47 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.LiteOrganizationMember>? ListType48 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.Invoice>? ListType48 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.Invoice>? ListType49 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.InvoiceLineItem>? ListType49 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.InvoiceLineItem>? ListType50 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.Dataset>? ListType50 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.Dataset>? ListType51 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.DatasetFile>? ListType51 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.DatasetFile>? ListType52 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.DatasetUploadSucceededAsset>? ListType52 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.DatasetUploadSucceededAsset>? ListType53 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.DatasetUploadFailedAsset>? ListType53 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.DatasetUploadFailedAsset>? ListType54 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.CustomModel>? ListType54 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.CustomModel>? ListType55 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.TrainingRun>? ListType55 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.TrainingRun>? ListType56 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.MiniAppMarketingProjectionEntry>? ListType56 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.MiniAppMarketingProjectionEntry>? ListType57 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.IntegrationType>? ListType57 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.IntegrationType>? ListType58 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.IntegrationAsset>? ListType58 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.IntegrationAsset>? ListType59 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.V4PromptElement>? ListType59 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.V4PromptElement>? ListType60 { get; set; }
+        public global::System.Collections.Generic.List<int>? ListType60 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<int>? ListType61 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ColorPaletteMember>? ListType61 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ColorPaletteMember>? ListType62 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlockFormattingItem>? ListType62 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlockFormattingItem>? ListType63 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ModelVersion>? ListType63 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ModelVersion>? ListType64 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ToolType>? ListType64 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ToolType>? ListType65 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.ModelStatus>? ListType65 { get; set; }
         /// <summary>
         ///
         /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.ModelStatus>? ListType66 { get; set; }
-        /// <summary>
-        ///
-        /// </summary>
-        public global::System.Collections.Generic.List<global::Ideogram.GetAccountUsageSource>? ListType67 { get; set; }
+        public global::System.Collections.Generic.List<global::Ideogram.GetAccountUsageSource>? ListType66 { get; set; }
     }
 }

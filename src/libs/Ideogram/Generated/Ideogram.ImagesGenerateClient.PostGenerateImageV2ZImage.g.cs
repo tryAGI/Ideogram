@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostGenerateImageV2ZImageArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.GenerateImageZImageRequest request);
         partial void PreparePostGenerateImageV2ZImageRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.GenerateImageZImageRequest request);
         partial void ProcessPostGenerateImageV2ZImageResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -54,6 +56,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -61,12 +66,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageZImageResponse> PostGenerateImageV2ZImageAsync(
 
             global::Ideogram.GenerateImageZImageRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostGenerateImageV2ZImageAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -86,6 +93,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -93,6 +103,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageZImageResponse>> PostGenerateImageV2ZImageAsResponseAsync(
 
             global::Ideogram.GenerateImageZImageRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -102,6 +113,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostGenerateImageV2ZImageArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -128,8 +140,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/generate/z-image",
+                                path: "/v2/image/generate/z-image",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -176,6 +191,7 @@ namespace Ideogram
                 PreparePostGenerateImageV2ZImageRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -195,7 +211,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2ZImage",
                                 methodName: "PostGenerateImageV2ZImageAsync",
-                                pathTemplate: "\"/v2/images/generate/z-image\"",
+                                pathTemplate: "\"/v2/image/generate/z-image\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -229,7 +245,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2ZImage",
                                 methodName: "PostGenerateImageV2ZImageAsync",
-                                pathTemplate: "\"/v2/images/generate/z-image\"",
+                                pathTemplate: "\"/v2/image/generate/z-image\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -270,7 +286,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2ZImage",
                                 methodName: "PostGenerateImageV2ZImageAsync",
-                                pathTemplate: "\"/v2/images/generate/z-image\"",
+                                pathTemplate: "\"/v2/image/generate/z-image\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -318,7 +334,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2ZImage",
                                 methodName: "PostGenerateImageV2ZImageAsync",
-                                pathTemplate: "\"/v2/images/generate/z-image\"",
+                                pathTemplate: "\"/v2/image/generate/z-image\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -340,7 +356,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2ZImage",
                                 methodName: "PostGenerateImageV2ZImageAsync",
-                                pathTemplate: "\"/v2/images/generate/z-image\"",
+                                pathTemplate: "\"/v2/image/generate/z-image\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -698,6 +714,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt to generate images from.<br/>
         /// Example: A futuristic cityscape at golden hour, highly detailed.
@@ -745,6 +764,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageZImageResponse> PostGenerateImageV2ZImageAsync(
             string prompt,
+            bool? dryRun = default,
             string? resolution = default,
             int? numInferenceSteps = default,
             int? seed = default,
@@ -770,6 +790,7 @@ namespace Ideogram
             };
 
             return await PostGenerateImageV2ZImageAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

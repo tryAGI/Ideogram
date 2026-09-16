@@ -16,6 +16,9 @@ namespace Ideogram
         /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
         /// Supplying both or neither is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -23,6 +26,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.ReplaceBackgroundResponse> ReplaceBackgroundAsync(
 
             global::Ideogram.ReplaceBackgroundRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -37,6 +41,9 @@ namespace Ideogram
         /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
         /// Supplying both or neither is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -44,6 +51,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReplaceBackgroundResponse>> ReplaceBackgroundAsResponseAsync(
 
             global::Ideogram.ReplaceBackgroundRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -58,6 +66,9 @@ namespace Ideogram
         /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
         /// Supplying both or neither is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -102,6 +113,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ReplaceBackgroundResponse> ReplaceBackgroundAsync(
             string prompt,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,

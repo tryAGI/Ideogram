@@ -83,13 +83,6 @@ namespace Ideogram
         public GenerateClient Generate { get; }
 
         /// <summary>
-        /// Edit existing images from a plain-language instruction. Requests supply<br/>
-        /// sources by `AssetIdentifier` reference or as uploaded bytes and return a<br/>
-        /// generation id that can be polled via `GET /v1/generations/{generation_id}`.
-        /// </summary>
-        public ImagesEditClient ImagesEdit { get; }
-
-        /// <summary>
         /// Generate images with a specific model contract. Requests are JSON<br/>
         /// (Ideogram 3.0 also accepts multipart for style reference bytes) and<br/>
         /// return a generation id that can be polled via<br/>

@@ -19,6 +19,9 @@ namespace Ideogram
         /// unlabeled references can be supplied through exactly one transport:<br/>
         /// `garment_asset_identifiers`, or multipart `garment_images`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -26,6 +29,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.GhostMannequinResponse> PostGhostMannequinAsync(
 
             global::Ideogram.GhostMannequinRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -43,6 +47,9 @@ namespace Ideogram
         /// unlabeled references can be supplied through exactly one transport:<br/>
         /// `garment_asset_identifiers`, or multipart `garment_images`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -50,6 +57,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GhostMannequinResponse>> PostGhostMannequinAsResponseAsync(
 
             global::Ideogram.GhostMannequinRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -67,6 +75,9 @@ namespace Ideogram
         /// unlabeled references can be supplied through exactly one transport:<br/>
         /// `garment_asset_identifiers`, or multipart `garment_images`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="garmentAssetIdentifiers">
         /// Ordered uploaded or generated images of the same garment. Use<br/>
         /// multiple angles when available so obscured construction can be<br/>
@@ -197,6 +208,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GhostMannequinResponse> PostGhostMannequinAsync(
             global::Ideogram.GhostMannequinRequestView view,
+            bool? dryRun = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? garmentAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? garmentImages = default,
             global::Ideogram.AssetIdentifier? frontAssetIdentifier = default,

@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PrepareReplaceBackgroundArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.ReplaceBackgroundRequest request);
         partial void PrepareReplaceBackgroundRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.ReplaceBackgroundRequest request);
         partial void ProcessReplaceBackgroundResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -53,6 +55,9 @@ namespace Ideogram
         /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
         /// Supplying both or neither is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -60,12 +65,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.ReplaceBackgroundResponse> ReplaceBackgroundAsync(
 
             global::Ideogram.ReplaceBackgroundRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await ReplaceBackgroundAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -84,6 +91,9 @@ namespace Ideogram
         /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
         /// Supplying both or neither is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -91,6 +101,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReplaceBackgroundResponse>> ReplaceBackgroundAsResponseAsync(
 
             global::Ideogram.ReplaceBackgroundRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -100,6 +111,7 @@ namespace Ideogram
                 client: HttpClient);
             PrepareReplaceBackgroundArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -126,8 +138,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/tool/replace-background",
+                                path: "/v2/image/replace-background/gpt-image-2",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -259,6 +274,7 @@ namespace Ideogram
                 PrepareReplaceBackgroundRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -278,7 +294,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackground",
                                 methodName: "ReplaceBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/replace-background\"",
+                                pathTemplate: "\"/v2/image/replace-background/gpt-image-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -312,7 +328,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackground",
                                 methodName: "ReplaceBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/replace-background\"",
+                                pathTemplate: "\"/v2/image/replace-background/gpt-image-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -353,7 +369,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackground",
                                 methodName: "ReplaceBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/replace-background\"",
+                                pathTemplate: "\"/v2/image/replace-background/gpt-image-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -401,7 +417,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackground",
                                 methodName: "ReplaceBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/replace-background\"",
+                                pathTemplate: "\"/v2/image/replace-background/gpt-image-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -423,7 +439,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackground",
                                 methodName: "ReplaceBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/replace-background\"",
+                                pathTemplate: "\"/v2/image/replace-background/gpt-image-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -812,6 +828,9 @@ namespace Ideogram
         /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
         /// Supplying both or neither is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -856,6 +875,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ReplaceBackgroundResponse> ReplaceBackgroundAsync(
             string prompt,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -879,6 +899,7 @@ namespace Ideogram
             };
 
             return await ReplaceBackgroundAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

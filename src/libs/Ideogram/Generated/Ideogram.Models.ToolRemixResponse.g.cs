@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Response returned by `POST /v2/tool/remix`. Synchronous<br/>
+    /// Response returned by `POST /v2/image/remix/auto`. Synchronous<br/>
     /// requests (the default) include the remixed images in `data`.<br/>
     /// Requests with `async` set to true omit `data`; poll for completion<br/>
     /// and results with `GET /v1/generations/{generation_id}` using the<br/>

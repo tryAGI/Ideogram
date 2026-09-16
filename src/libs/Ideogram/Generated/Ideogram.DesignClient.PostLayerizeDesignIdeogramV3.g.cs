@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostLayerizeDesignIdeogramV3Arguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.LayerizeDesignIdeogramV3Request request);
         partial void PreparePostLayerizeDesignIdeogramV3Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.LayerizeDesignIdeogramV3Request request);
         partial void ProcessPostLayerizeDesignIdeogramV3Response(
             global::System.Net.Http.HttpClient httpClient,
@@ -62,6 +64,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -69,12 +74,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.LayerizeDesignIdeogramV3Response> PostLayerizeDesignIdeogramV3Async(
 
             global::Ideogram.LayerizeDesignIdeogramV3Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostLayerizeDesignIdeogramV3AsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -102,6 +109,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -109,6 +119,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.LayerizeDesignIdeogramV3Response>> PostLayerizeDesignIdeogramV3AsResponseAsync(
 
             global::Ideogram.LayerizeDesignIdeogramV3Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -118,6 +129,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostLayerizeDesignIdeogramV3Arguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -146,6 +158,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/design/layerize/ideogram-v3",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -307,6 +322,7 @@ namespace Ideogram
                 PreparePostLayerizeDesignIdeogramV3Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -859,6 +875,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -904,6 +923,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.LayerizeDesignIdeogramV3Response> PostLayerizeDesignIdeogramV3Async(
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -932,6 +952,7 @@ namespace Ideogram
             };
 
             return await PostLayerizeDesignIdeogramV3Async(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

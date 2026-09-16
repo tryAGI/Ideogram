@@ -4,18 +4,21 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"magic_prompt":"","async":false,"private":true,"rendering_speed":"DEFAULT","seed":12345,"webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","prompt":"prompt","resolution":"2048x2048","num_images":1}
+    /// Source images are optional. When supplied, the request becomes an<br/>
+    /// image-to-image transform: the prompt becomes optional guidance and<br/>
+    /// `size` defaults to "auto" (derived from the first source). Without<br/>
+    /// source images a prompt is required.
     /// </summary>
     public sealed partial class GenerateImageIdeogram45Request
     {
         /// <summary>
         /// The prompt to generate images from. Accepts either natural<br/>
         /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.
+        /// detects which was supplied. Required without source images; with<br/>
+        /// sources it is optional guidance and may be empty.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Prompt { get; set; }
+        public string? Prompt { get; set; }
 
         /// <summary>
         /// Controls magic prompt (automatic prompt rewriting). `AUTO` (the<br/>
@@ -30,12 +33,35 @@ namespace Ideogram
         public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
 
         /// <summary>
-        /// Exact output resolution, formatted as "WIDTHxHEIGHT". Ideogram 4.5 renders a fixed set of sizes across 1K and 2K tiers (for example 1024x1024, 2048x2048 or 1440x2880); an unsupported size is rejected with a 400. When omitted, the server picks a supported size automatically based on the prompt.<br/>
+        /// Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. The first source is the primary image; any further sources are additional references. Supplying sources turns the request into an image-to-image transform.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("image_asset_identifiers")]
+        public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ImageAssetIdentifiers { get; set; }
+
+        /// <summary>
+        /// The source images to transform (max 5, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("images")]
+        public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
+
+        /// <summary>
+        /// The output size: "auto" or an exact "WIDTHxHEIGHT".<br/>
+        /// Without source images, an exact size must be one of the supported<br/>
+        /// 1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);<br/>
+        /// "auto" or omitted lets the server pick a supported size based on<br/>
+        /// the prompt.<br/>
+        /// With source images, "auto" (the default) uses the supported<br/>
+        /// resolution closest to the first source's dimensions, and an exact<br/>
+        /// size must have both dimensions multiples of 32 and at least 256px,<br/>
+        /// the total size at most 2048x2048 pixels, and the aspect ratio at<br/>
+        /// most 6:1.<br/>
+        /// Pricing is tiered by the resolved output pixels: up to 1024x1024<br/>
+        /// bills as 1K, above that as 2K.<br/>
         /// Example: 2048x2048
         /// </summary>
         /// <example>2048x2048</example>
-        [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
-        public string? Resolution { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("size")]
+        public string? Size { get; set; }
 
         /// <summary>
         /// The rendering speed to use.<br/>
@@ -112,7 +138,8 @@ namespace Ideogram
         /// <param name="prompt">
         /// The prompt to generate images from. Accepts either natural<br/>
         /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.
+        /// detects which was supplied. Required without source images; with<br/>
+        /// sources it is optional guidance and may be empty.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). `AUTO` (the<br/>
@@ -122,8 +149,25 @@ namespace Ideogram
         /// receives your prompt verbatim.<br/>
         /// Default Value: AUTO
         /// </param>
-        /// <param name="resolution">
-        /// Exact output resolution, formatted as "WIDTHxHEIGHT". Ideogram 4.5 renders a fixed set of sizes across 1K and 2K tiers (for example 1024x1024, 2048x2048 or 1440x2880); an unsupported size is rejected with a 400. When omitted, the server picks a supported size automatically based on the prompt.<br/>
+        /// <param name="imageAssetIdentifiers">
+        /// Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. The first source is the primary image; any further sources are additional references. Supplying sources turns the request into an image-to-image transform.
+        /// </param>
+        /// <param name="images">
+        /// The source images to transform (max 5, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// </param>
+        /// <param name="size">
+        /// The output size: "auto" or an exact "WIDTHxHEIGHT".<br/>
+        /// Without source images, an exact size must be one of the supported<br/>
+        /// 1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);<br/>
+        /// "auto" or omitted lets the server pick a supported size based on<br/>
+        /// the prompt.<br/>
+        /// With source images, "auto" (the default) uses the supported<br/>
+        /// resolution closest to the first source's dimensions, and an exact<br/>
+        /// size must have both dimensions multiples of 32 and at least 256px,<br/>
+        /// the total size at most 2048x2048 pixels, and the aspect ratio at<br/>
+        /// most 6:1.<br/>
+        /// Pricing is tiered by the resolved output pixels: up to 1024x1024<br/>
+        /// bills as 1K, above that as 2K.<br/>
         /// Example: 2048x2048
         /// </param>
         /// <param name="renderingSpeed">
@@ -166,9 +210,11 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GenerateImageIdeogram45Request(
-            string prompt,
+            string? prompt,
             global::Ideogram.MagicPromptOption? magicPrompt,
-            string? resolution,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
+            global::System.Collections.Generic.IList<byte[]>? images,
+            string? size,
             global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? renderingSpeed,
             int? seed,
             int? numImages,
@@ -178,9 +224,11 @@ namespace Ideogram
             bool? @private,
             string? targetCollectionId)
         {
-            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.Prompt = prompt;
             this.MagicPrompt = magicPrompt;
-            this.Resolution = resolution;
+            this.ImageAssetIdentifiers = imageAssetIdentifiers;
+            this.Images = images;
+            this.Size = size;
             this.RenderingSpeed = renderingSpeed;
             this.Seed = seed;
             this.NumImages = numImages;
