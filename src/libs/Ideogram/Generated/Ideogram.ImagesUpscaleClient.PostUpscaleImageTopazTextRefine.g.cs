@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostUpscaleImageTopazTextRefineArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.UpscaleImageTopazTextRefineRequest request);
         partial void PreparePostUpscaleImageTopazTextRefineRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.UpscaleImageTopazTextRefineRequest request);
         partial void ProcessPostUpscaleImageTopazTextRefineResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -61,6 +63,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -68,12 +73,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.UpscaleImageTopazTextRefineResponse> PostUpscaleImageTopazTextRefineAsync(
 
             global::Ideogram.UpscaleImageTopazTextRefineRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostUpscaleImageTopazTextRefineAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -100,6 +107,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -107,6 +117,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.UpscaleImageTopazTextRefineResponse>> PostUpscaleImageTopazTextRefineAsResponseAsync(
 
             global::Ideogram.UpscaleImageTopazTextRefineRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -116,6 +127,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostUpscaleImageTopazTextRefineArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -142,8 +154,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/upscale/topaz-text-refine",
+                                path: "/v2/image/upscale/topaz-text-refine",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -287,6 +302,7 @@ namespace Ideogram
                 PreparePostUpscaleImageTopazTextRefineRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -306,7 +322,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazTextRefine",
                                 methodName: "PostUpscaleImageTopazTextRefineAsync",
-                                pathTemplate: "\"/v2/images/upscale/topaz-text-refine\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-text-refine\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -340,7 +356,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazTextRefine",
                                 methodName: "PostUpscaleImageTopazTextRefineAsync",
-                                pathTemplate: "\"/v2/images/upscale/topaz-text-refine\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-text-refine\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -381,7 +397,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazTextRefine",
                                 methodName: "PostUpscaleImageTopazTextRefineAsync",
-                                pathTemplate: "\"/v2/images/upscale/topaz-text-refine\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-text-refine\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -429,7 +445,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazTextRefine",
                                 methodName: "PostUpscaleImageTopazTextRefineAsync",
-                                pathTemplate: "\"/v2/images/upscale/topaz-text-refine\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-text-refine\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -451,7 +467,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazTextRefine",
                                 methodName: "PostUpscaleImageTopazTextRefineAsync",
-                                pathTemplate: "\"/v2/images/upscale/topaz-text-refine\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-text-refine\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -816,6 +832,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -859,6 +878,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.UpscaleImageTopazTextRefineResponse> PostUpscaleImageTopazTextRefineAsync(
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -885,6 +905,7 @@ namespace Ideogram
             };
 
             return await PostUpscaleImageTopazTextRefineAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

@@ -27,6 +27,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -34,6 +37,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV4TransparentResponse> PostGenerateImageV2IdeogramV4TransparentAsync(
 
             global::Ideogram.GenerateImageIdeogramV4TransparentRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -59,6 +63,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -66,6 +73,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV4TransparentResponse>> PostGenerateImageV2IdeogramV4TransparentAsResponseAsync(
 
             global::Ideogram.GenerateImageIdeogramV4TransparentRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -91,6 +99,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt to generate images from. Accepts either natural<br/>
         /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
@@ -164,6 +175,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV4TransparentResponse> PostGenerateImageV2IdeogramV4TransparentAsync(
             string prompt,
+            bool? dryRun = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
             int? seed = default,
             int? numImages = default,

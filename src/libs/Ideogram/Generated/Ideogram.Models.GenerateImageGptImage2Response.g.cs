@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Response returned by `POST /v2/images/generate/gpt-image-2`.<br/>
+    /// Response returned by `POST /v2/image/generate/gpt-image-2`.<br/>
     /// Synchronous requests (the default) include the generated images in<br/>
     /// `data`. Requests with `async` set to true omit `data`; poll for<br/>
     /// completion and results with `GET /v1/generations/{generation_id}`<br/>

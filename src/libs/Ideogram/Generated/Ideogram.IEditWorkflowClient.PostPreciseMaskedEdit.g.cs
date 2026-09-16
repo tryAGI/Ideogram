@@ -77,7 +77,7 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="referenceAssetIdentifiers">
-        /// Optional assets that show the desired appearance of the masked edit.
+        /// Optional assets that show the desired appearance of the edit. GPT Image 2 accepts up to 15. Ideogram 4.5 accepts up to 4 without a mask, or 3 when a mask is supplied.
         /// </param>
         /// <param name="instruction">
         /// Plain-language description of the desired change.

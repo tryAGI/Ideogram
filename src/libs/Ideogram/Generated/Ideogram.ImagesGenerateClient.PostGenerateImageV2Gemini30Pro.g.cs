@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostGenerateImageV2Gemini30ProArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.GenerateImageGemini30ProRequest request);
         partial void PreparePostGenerateImageV2Gemini30ProRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.GenerateImageGemini30ProRequest request);
         partial void ProcessPostGenerateImageV2Gemini30ProResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -42,9 +44,15 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Generate images with Gemini 3.0 Pro from a text prompt<br/>
+        /// Generate images with Gemini 3.0 Pro, from a text prompt or by editing source images<br/>
         /// Generate one or more images with Gemini 3.0 Pro. The prompt is<br/>
         /// consumed by the model directly, without rewriting.<br/>
+        /// Supplying source images turns the request into an edit: the model<br/>
+        /// applies the prompt to the sources. Provide them either as<br/>
+        /// `image_asset_identifiers` references (images already stored with<br/>
+        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
+        /// are supplied, the references win and the bytes are ignored. Without<br/>
+        /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
         /// at the requested `resolution_tier` (1K by default).<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -56,6 +64,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -63,12 +74,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageGemini30ProResponse> PostGenerateImageV2Gemini30ProAsync(
 
             global::Ideogram.GenerateImageGemini30ProRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostGenerateImageV2Gemini30ProAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -76,9 +89,15 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Generate images with Gemini 3.0 Pro from a text prompt<br/>
+        /// Generate images with Gemini 3.0 Pro, from a text prompt or by editing source images<br/>
         /// Generate one or more images with Gemini 3.0 Pro. The prompt is<br/>
         /// consumed by the model directly, without rewriting.<br/>
+        /// Supplying source images turns the request into an edit: the model<br/>
+        /// applies the prompt to the sources. Provide them either as<br/>
+        /// `image_asset_identifiers` references (images already stored with<br/>
+        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
+        /// are supplied, the references win and the bytes are ignored. Without<br/>
+        /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
         /// at the requested `resolution_tier` (1K by default).<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -90,6 +109,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -97,6 +119,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageGemini30ProResponse>> PostGenerateImageV2Gemini30ProAsResponseAsync(
 
             global::Ideogram.GenerateImageGemini30ProRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -106,6 +129,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostGenerateImageV2Gemini30ProArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -126,14 +150,17 @@ namespace Ideogram
             var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
                 clientOptions: Options,
                 requestOptions: requestOptions,
-                supportsRetry: true);
+                supportsRetry: false);
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/generate/gemini-3.0-pro",
+                                path: "/v2/image/generate/gemini-3.0-pro",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -163,12 +190,105 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
+
+                            var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            __httpRequestContent.Add(
+                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
+                                name: "\"prompt\"");
+
+                            if (request.ImageAssetIdentifiers != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.ImageAssetIdentifiers!, x => x.ToJson(JsonSerializerContext)))}]"),
+                                    name: "\"image_asset_identifiers\"");
+
+                            }
+                            if (request.Images != default)
+                            {
+
+                                for (var __iImages = 0; __iImages < request.Images.Count; __iImages++)
+                                {
+                                    var __contentImages = new global::System.Net.Http.ByteArrayContent(request.Images[__iImages]);
+                                __contentImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                                    __httpRequestContent.Add(
+                                        content: __contentImages,
+                                        name: "\"images\"",
+                                        fileName: $"\"file{__iImages}.bin\"");
+                                    if (__contentImages.Headers.ContentDisposition != null)
+                                    {
+                                        __contentImages.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
+
+                            }
+                            if (request.AspectRatio != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.AspectRatio ?? string.Empty),
+                                    name: "\"aspect_ratio\"");
+
+                            }
+                            if (request.ResolutionTier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.ResolutionTier).HasValue ? (request.ResolutionTier).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"resolution_tier\"");
+
+                            }
+                            if (request.NumImages != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"num_images\"");
+
+                            }
+                            if (request.Seed != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"seed\"");
+
+                            }
+                            if (request.Async != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Async, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"async\"");
+
+                            }
+                            if (request.WebhookUrl != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.WebhookUrl ?? string.Empty),
+                                    name: "\"webhook_url\"");
+
+                            }
+                            if (request.Private != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Private, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"private\"");
+
+                            }
+                            if (request.TargetCollectionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.TargetCollectionId ?? string.Empty),
+                                    name: "\"target_collection_id\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
+
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -180,6 +300,7 @@ namespace Ideogram
                 PreparePostGenerateImageV2Gemini30ProRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -199,7 +320,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Gemini30Pro",
                                 methodName: "PostGenerateImageV2Gemini30ProAsync",
-                                pathTemplate: "\"/v2/images/generate/gemini-3.0-pro\"",
+                                pathTemplate: "\"/v2/image/generate/gemini-3.0-pro\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -233,7 +354,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Gemini30Pro",
                                 methodName: "PostGenerateImageV2Gemini30ProAsync",
-                                pathTemplate: "\"/v2/images/generate/gemini-3.0-pro\"",
+                                pathTemplate: "\"/v2/image/generate/gemini-3.0-pro\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -274,7 +395,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Gemini30Pro",
                                 methodName: "PostGenerateImageV2Gemini30ProAsync",
-                                pathTemplate: "\"/v2/images/generate/gemini-3.0-pro\"",
+                                pathTemplate: "\"/v2/image/generate/gemini-3.0-pro\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -322,7 +443,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Gemini30Pro",
                                 methodName: "PostGenerateImageV2Gemini30ProAsync",
-                                pathTemplate: "\"/v2/images/generate/gemini-3.0-pro\"",
+                                pathTemplate: "\"/v2/image/generate/gemini-3.0-pro\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -344,7 +465,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Gemini30Pro",
                                 methodName: "PostGenerateImageV2Gemini30ProAsync",
-                                pathTemplate: "\"/v2/images/generate/gemini-3.0-pro\"",
+                                pathTemplate: "\"/v2/image/generate/gemini-3.0-pro\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -690,9 +811,15 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Generate images with Gemini 3.0 Pro from a text prompt<br/>
+        /// Generate images with Gemini 3.0 Pro, from a text prompt or by editing source images<br/>
         /// Generate one or more images with Gemini 3.0 Pro. The prompt is<br/>
         /// consumed by the model directly, without rewriting.<br/>
+        /// Supplying source images turns the request into an edit: the model<br/>
+        /// applies the prompt to the sources. Provide them either as<br/>
+        /// `image_asset_identifiers` references (images already stored with<br/>
+        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
+        /// are supplied, the references win and the bytes are ignored. Without<br/>
+        /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
         /// at the requested `resolution_tier` (1K by default).<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -704,8 +831,17 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
-        /// The prompt to generate images from. The model consumes it directly, without rewriting.
+        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.
+        /// </param>
+        /// <param name="imageAssetIdentifiers">
+        /// Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.
+        /// </param>
+        /// <param name="images">
+        /// The source images to edit (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to "1:1".
@@ -748,6 +884,9 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageGemini30ProResponse> PostGenerateImageV2Gemini30ProAsync(
             string prompt,
+            bool? dryRun = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? images = default,
             string? aspectRatio = default,
             global::Ideogram.GenerateImageGemini30ProRequestResolutionTier? resolutionTier = default,
             int? numImages = default,
@@ -762,6 +901,8 @@ namespace Ideogram
             var __request = new global::Ideogram.GenerateImageGemini30ProRequest
             {
                 Prompt = prompt,
+                ImageAssetIdentifiers = imageAssetIdentifiers,
+                Images = images,
                 AspectRatio = aspectRatio,
                 ResolutionTier = resolutionTier,
                 NumImages = numImages,
@@ -773,6 +914,7 @@ namespace Ideogram
             };
 
             return await PostGenerateImageV2Gemini30ProAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

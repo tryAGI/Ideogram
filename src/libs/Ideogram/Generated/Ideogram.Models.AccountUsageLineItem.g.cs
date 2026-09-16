@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// One billed rate for one billing actor within one time bucket.<br/>
-    /// Example: {"product":"ideogram_v4_generation","endpoint":"/v2/images/generate/ideogram-v4","cost_total":"84.00","user_email":"user_email","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","billed_units":{"unit":"image","quantity":"2100","unit_price":"0.04"},"source":"api","currency_code":"USD","dimensions":{"key":"dimensions"}}
+    /// Example: {"product":"ideogram_v4_generation","endpoint":"/v2/image/generate/ideogram-v4","cost_total":"84.00","user_email":"user_email","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","billed_units":{"unit":"image","quantity":"2100","unit_price":"0.04"},"source":"api","currency_code":"USD","dimensions":{"key":"dimensions"}}
     /// </summary>
     public sealed partial class AccountUsageLineItem
     {
@@ -20,9 +20,9 @@ namespace Ideogram
 
         /// <summary>
         /// The API endpoint path this product belongs to.<br/>
-        /// Example: /v2/images/generate/ideogram-v4
+        /// Example: /v2/image/generate/ideogram-v4
         /// </summary>
-        /// <example>/v2/images/generate/ideogram-v4</example>
+        /// <example>/v2/image/generate/ideogram-v4</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("endpoint")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Endpoint { get; set; }
@@ -105,7 +105,7 @@ namespace Ideogram
         /// </param>
         /// <param name="endpoint">
         /// The API endpoint path this product belongs to.<br/>
-        /// Example: /v2/images/generate/ideogram-v4
+        /// Example: /v2/image/generate/ideogram-v4
         /// </param>
         /// <param name="description">
         /// Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.<br/>

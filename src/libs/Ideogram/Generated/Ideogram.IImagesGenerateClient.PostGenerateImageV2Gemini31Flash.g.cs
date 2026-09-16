@@ -5,9 +5,15 @@ namespace Ideogram
     public partial interface IImagesGenerateClient
     {
         /// <summary>
-        /// Generate images with Gemini 3.1 Flash from a text prompt<br/>
+        /// Generate images with Gemini 3.1 Flash, from a text prompt or by editing source images<br/>
         /// Generate one or more images with Gemini 3.1 Flash. The prompt is<br/>
         /// consumed by the model directly, without rewriting.<br/>
+        /// Supplying source images turns the request into an edit: the model<br/>
+        /// applies the prompt to the sources. Provide them either as<br/>
+        /// `image_asset_identifiers` references (images already stored with<br/>
+        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
+        /// are supplied, the references win and the bytes are ignored. Without<br/>
+        /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
         /// at 1K resolution.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -19,6 +25,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -26,12 +35,19 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageGemini31FlashResponse> PostGenerateImageV2Gemini31FlashAsync(
 
             global::Ideogram.GenerateImageGemini31FlashRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with Gemini 3.1 Flash from a text prompt<br/>
+        /// Generate images with Gemini 3.1 Flash, from a text prompt or by editing source images<br/>
         /// Generate one or more images with Gemini 3.1 Flash. The prompt is<br/>
         /// consumed by the model directly, without rewriting.<br/>
+        /// Supplying source images turns the request into an edit: the model<br/>
+        /// applies the prompt to the sources. Provide them either as<br/>
+        /// `image_asset_identifiers` references (images already stored with<br/>
+        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
+        /// are supplied, the references win and the bytes are ignored. Without<br/>
+        /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
         /// at 1K resolution.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -43,6 +59,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -50,12 +69,19 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageGemini31FlashResponse>> PostGenerateImageV2Gemini31FlashAsResponseAsync(
 
             global::Ideogram.GenerateImageGemini31FlashRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with Gemini 3.1 Flash from a text prompt<br/>
+        /// Generate images with Gemini 3.1 Flash, from a text prompt or by editing source images<br/>
         /// Generate one or more images with Gemini 3.1 Flash. The prompt is<br/>
         /// consumed by the model directly, without rewriting.<br/>
+        /// Supplying source images turns the request into an edit: the model<br/>
+        /// applies the prompt to the sources. Provide them either as<br/>
+        /// `image_asset_identifiers` references (images already stored with<br/>
+        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
+        /// are supplied, the references win and the bytes are ignored. Without<br/>
+        /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
         /// at 1K resolution.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -67,8 +93,17 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
-        /// The prompt to generate images from. The model consumes it directly, without rewriting.
+        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.
+        /// </param>
+        /// <param name="imageAssetIdentifiers">
+        /// Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.
+        /// </param>
+        /// <param name="images">
+        /// The source images to edit (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at 1K resolution. Defaults to "1:1".
@@ -107,6 +142,9 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageGemini31FlashResponse> PostGenerateImageV2Gemini31FlashAsync(
             string prompt,
+            bool? dryRun = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? images = default,
             string? aspectRatio = default,
             int? numImages = default,
             int? seed = default,

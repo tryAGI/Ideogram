@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostGenerateImageV2IdeogramV3TransparentArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.GenerateImageIdeogramV3TransparentRequest request);
         partial void PreparePostGenerateImageV2IdeogramV3TransparentRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.GenerateImageIdeogramV3TransparentRequest request);
         partial void ProcessPostGenerateImageV2IdeogramV3TransparentResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -55,6 +57,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -62,12 +67,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV3TransparentResponse> PostGenerateImageV2IdeogramV3TransparentAsync(
 
             global::Ideogram.GenerateImageIdeogramV3TransparentRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostGenerateImageV2IdeogramV3TransparentAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -88,6 +95,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -95,6 +105,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV3TransparentResponse>> PostGenerateImageV2IdeogramV3TransparentAsResponseAsync(
 
             global::Ideogram.GenerateImageIdeogramV3TransparentRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -104,6 +115,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostGenerateImageV2IdeogramV3TransparentArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -130,8 +142,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/generate/ideogram-v3-transparent",
+                                path: "/v2/image/generate/ideogram-v3-transparent",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -178,6 +193,7 @@ namespace Ideogram
                 PreparePostGenerateImageV2IdeogramV3TransparentRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -197,7 +213,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV3Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV3TransparentAsync",
-                                pathTemplate: "\"/v2/images/generate/ideogram-v3-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-v3-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -231,7 +247,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV3Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV3TransparentAsync",
-                                pathTemplate: "\"/v2/images/generate/ideogram-v3-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-v3-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -272,7 +288,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV3Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV3TransparentAsync",
-                                pathTemplate: "\"/v2/images/generate/ideogram-v3-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-v3-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -320,7 +336,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV3Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV3TransparentAsync",
-                                pathTemplate: "\"/v2/images/generate/ideogram-v3-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-v3-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -342,7 +358,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV3Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV3TransparentAsync",
-                                pathTemplate: "\"/v2/images/generate/ideogram-v3-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-v3-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -701,6 +717,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt to generate images from.
         /// </param>
@@ -759,6 +778,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV3TransparentResponse> PostGenerateImageV2IdeogramV3TransparentAsync(
             string prompt,
+            bool? dryRun = default,
             string? negativePrompt = default,
             int? seed = default,
             global::Ideogram.UpscaleFactor? upscaleFactor = default,
@@ -792,6 +812,7 @@ namespace Ideogram
             };
 
             return await PostGenerateImageV2IdeogramV3TransparentAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

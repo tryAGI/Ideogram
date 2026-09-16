@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// Response returned by<br/>
-    /// `POST /v2/images/inpaint/ideogram-v3-custom-model`. Synchronous<br/>
+    /// `POST /v2/image/inpaint/ideogram-v3-custom-model`. Synchronous<br/>
     /// requests include the repainted images in `data`; asynchronous requests<br/>
     /// omit `data` and can be polled with<br/>
     /// `GET /v1/generations/{generation_id}`.<br/>

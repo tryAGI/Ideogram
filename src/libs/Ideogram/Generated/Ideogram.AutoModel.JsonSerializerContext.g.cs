@@ -35,12 +35,9 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GeneratedImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolTextToImageResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolTextToImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolTextToImageRequestResolutionTier), TypeInfoPropertyName = "ToolTextToImageRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolImageToImageResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolImageToImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolImageToImageRequestResolutionTier), TypeInfoPropertyName = "ToolImageToImageRequestResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier), TypeInfoPropertyName = "GenerateImageV2AutoRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixRequestResolutionTier), TypeInfoPropertyName = "ToolRemixRequestResolutionTier2")]
@@ -59,8 +56,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StyleTypeV3?), TypeInfoPropertyName = "NullableStyleTypeV32")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StylePresetV3?), TypeInfoPropertyName = "NullableStylePresetV32")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason?), TypeInfoPropertyName = "NullableGenerationRejectReason2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolTextToImageRequestResolutionTier?), TypeInfoPropertyName = "NullableToolTextToImageRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolImageToImageRequestResolutionTier?), TypeInfoPropertyName = "NullableToolImageToImageRequestResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageV2AutoRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixRequestResolutionTier?), TypeInfoPropertyName = "NullableToolRemixRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPalettePresetName?), TypeInfoPropertyName = "NullableColorPalettePresetName2")]
@@ -141,13 +137,9 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.GenerationRejectReason?)
 
-                    || typeToConvert == typeof(global::Ideogram.ToolTextToImageRequestResolutionTier)
+                    || typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier)
 
-                    || typeToConvert == typeof(global::Ideogram.ToolTextToImageRequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.ToolImageToImageRequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.ToolImageToImageRequestResolutionTier?)
+                    || typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier?)
 
                     || typeToConvert == typeof(global::Ideogram.ToolRemixRequestResolutionTier)
 
@@ -192,24 +184,14 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.GenerationRejectReasonNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.ToolTextToImageRequestResolutionTier))
+                if (typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier))
                 {
-                    return new global::Ideogram.JsonConverters.ToolTextToImageRequestResolutionTierJsonConverter();
+                    return new global::Ideogram.JsonConverters.GenerateImageV2AutoRequestResolutionTierJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.ToolTextToImageRequestResolutionTier?))
+                if (typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier?))
                 {
-                    return new global::Ideogram.JsonConverters.ToolTextToImageRequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ToolImageToImageRequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.ToolImageToImageRequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ToolImageToImageRequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.ToolImageToImageRequestResolutionTierNullableJsonConverter();
+                    return new global::Ideogram.JsonConverters.GenerateImageV2AutoRequestResolutionTierNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.ToolRemixRequestResolutionTier))

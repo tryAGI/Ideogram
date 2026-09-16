@@ -128,7 +128,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/object-removal",
+                                path: "/v2/image/remove-object/ideogram-v1",
                                 baseUri: HttpClient.BaseAddress);
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
@@ -310,7 +310,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemoveObjectFromV2Assets",
                                 methodName: "PostRemoveObjectFromV2AssetsAsync",
-                                pathTemplate: "\"/v2/object-removal\"",
+                                pathTemplate: "\"/v2/image/remove-object/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -344,7 +344,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemoveObjectFromV2Assets",
                                 methodName: "PostRemoveObjectFromV2AssetsAsync",
-                                pathTemplate: "\"/v2/object-removal\"",
+                                pathTemplate: "\"/v2/image/remove-object/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -385,7 +385,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemoveObjectFromV2Assets",
                                 methodName: "PostRemoveObjectFromV2AssetsAsync",
-                                pathTemplate: "\"/v2/object-removal\"",
+                                pathTemplate: "\"/v2/image/remove-object/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -433,7 +433,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemoveObjectFromV2Assets",
                                 methodName: "PostRemoveObjectFromV2AssetsAsync",
-                                pathTemplate: "\"/v2/object-removal\"",
+                                pathTemplate: "\"/v2/image/remove-object/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -455,7 +455,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemoveObjectFromV2Assets",
                                 methodName: "PostRemoveObjectFromV2AssetsAsync",
-                                pathTemplate: "\"/v2/object-removal\"",
+                                pathTemplate: "\"/v2/image/remove-object/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

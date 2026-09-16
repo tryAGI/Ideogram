@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PrepareGemini31FlashImageArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.ReframeImageGemini31FlashImageRequest request);
         partial void PrepareGemini31FlashImageRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.ReframeImageGemini31FlashImageRequest request);
         partial void ProcessGemini31FlashImageResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -51,6 +53,9 @@ namespace Ideogram
         /// accepted; poll `GET /v1/generations/{generation_id}` for completion<br/>
         /// and results.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -58,12 +63,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageGemini31FlashImageResponse> Gemini31FlashImageAsync(
 
             global::Ideogram.ReframeImageGemini31FlashImageRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await Gemini31FlashImageAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -80,6 +87,9 @@ namespace Ideogram
         /// accepted; poll `GET /v1/generations/{generation_id}` for completion<br/>
         /// and results.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -87,6 +97,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageGemini31FlashImageResponse>> Gemini31FlashImageAsResponseAsync(
 
             global::Ideogram.ReframeImageGemini31FlashImageRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -96,6 +107,7 @@ namespace Ideogram
                 client: HttpClient);
             PrepareGemini31FlashImageArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -122,8 +134,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/reframe/gemini-3.1-flash-image",
+                                path: "/v2/image/reframe/gemini-3.1-flash",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -247,6 +262,7 @@ namespace Ideogram
                 PrepareGemini31FlashImageRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -266,7 +282,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Gemini31FlashImage",
                                 methodName: "Gemini31FlashImageAsync",
-                                pathTemplate: "\"/v2/images/reframe/gemini-3.1-flash-image\"",
+                                pathTemplate: "\"/v2/image/reframe/gemini-3.1-flash\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -300,7 +316,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Gemini31FlashImage",
                                 methodName: "Gemini31FlashImageAsync",
-                                pathTemplate: "\"/v2/images/reframe/gemini-3.1-flash-image\"",
+                                pathTemplate: "\"/v2/image/reframe/gemini-3.1-flash\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -341,7 +357,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Gemini31FlashImage",
                                 methodName: "Gemini31FlashImageAsync",
-                                pathTemplate: "\"/v2/images/reframe/gemini-3.1-flash-image\"",
+                                pathTemplate: "\"/v2/image/reframe/gemini-3.1-flash\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -389,7 +405,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Gemini31FlashImage",
                                 methodName: "Gemini31FlashImageAsync",
-                                pathTemplate: "\"/v2/images/reframe/gemini-3.1-flash-image\"",
+                                pathTemplate: "\"/v2/image/reframe/gemini-3.1-flash\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -411,7 +427,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "Gemini31FlashImage",
                                 methodName: "Gemini31FlashImageAsync",
-                                pathTemplate: "\"/v2/images/reframe/gemini-3.1-flash-image\"",
+                                pathTemplate: "\"/v2/image/reframe/gemini-3.1-flash\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -766,6 +782,9 @@ namespace Ideogram
         /// accepted; poll `GET /v1/generations/{generation_id}` for completion<br/>
         /// and results.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -799,6 +818,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageGemini31FlashImageResponse> Gemini31FlashImageAsync(
             string aspectRatio,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -820,6 +840,7 @@ namespace Ideogram
             };
 
             return await Gemini31FlashImageAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

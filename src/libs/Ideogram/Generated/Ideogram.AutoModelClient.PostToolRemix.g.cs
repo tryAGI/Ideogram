@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostToolRemixArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.ToolRemixRequest request);
         partial void PreparePostToolRemixRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.ToolRemixRequest request);
         partial void ProcessPostToolRemixResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -58,7 +60,7 @@ namespace Ideogram
         /// request to a model that crops the source to the new shape; that<br/>
         /// combination is served only at the 1K tier and is rejected at 2K.<br/>
         /// (The model-pinned remix endpoints such as<br/>
-        /// `/v2/images/remix/ideogram-v4` reject the combination outright.)<br/>
+        /// `/v2/image/remix/ideogram-v4` reject the combination outright.)<br/>
         /// `seed` is honored only on the compatible model; the default model<br/>
         /// synthesizes an unseeded instruction prompt, so results are not<br/>
         /// reproducible there.<br/>
@@ -71,6 +73,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -78,12 +83,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.ToolRemixResponse> PostToolRemixAsync(
 
             global::Ideogram.ToolRemixRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostToolRemixAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -107,7 +114,7 @@ namespace Ideogram
         /// request to a model that crops the source to the new shape; that<br/>
         /// combination is served only at the 1K tier and is rejected at 2K.<br/>
         /// (The model-pinned remix endpoints such as<br/>
-        /// `/v2/images/remix/ideogram-v4` reject the combination outright.)<br/>
+        /// `/v2/image/remix/ideogram-v4` reject the combination outright.)<br/>
         /// `seed` is honored only on the compatible model; the default model<br/>
         /// synthesizes an unseeded instruction prompt, so results are not<br/>
         /// reproducible there.<br/>
@@ -120,6 +127,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -127,6 +137,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ToolRemixResponse>> PostToolRemixAsResponseAsync(
 
             global::Ideogram.ToolRemixRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -136,6 +147,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostToolRemixArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -162,8 +174,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/tool/remix",
+                                path: "/v2/image/remix/auto",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -423,6 +438,7 @@ namespace Ideogram
                 PreparePostToolRemixRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -442,7 +458,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostToolRemix",
                                 methodName: "PostToolRemixAsync",
-                                pathTemplate: "\"/v2/tool/remix\"",
+                                pathTemplate: "\"/v2/image/remix/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -476,7 +492,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostToolRemix",
                                 methodName: "PostToolRemixAsync",
-                                pathTemplate: "\"/v2/tool/remix\"",
+                                pathTemplate: "\"/v2/image/remix/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -517,7 +533,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostToolRemix",
                                 methodName: "PostToolRemixAsync",
-                                pathTemplate: "\"/v2/tool/remix\"",
+                                pathTemplate: "\"/v2/image/remix/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -565,7 +581,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostToolRemix",
                                 methodName: "PostToolRemixAsync",
-                                pathTemplate: "\"/v2/tool/remix\"",
+                                pathTemplate: "\"/v2/image/remix/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -587,7 +603,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostToolRemix",
                                 methodName: "PostToolRemixAsync",
-                                pathTemplate: "\"/v2/tool/remix\"",
+                                pathTemplate: "\"/v2/image/remix/auto\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -971,7 +987,7 @@ namespace Ideogram
         /// request to a model that crops the source to the new shape; that<br/>
         /// combination is served only at the 1K tier and is rejected at 2K.<br/>
         /// (The model-pinned remix endpoints such as<br/>
-        /// `/v2/images/remix/ideogram-v4` reject the combination outright.)<br/>
+        /// `/v2/image/remix/ideogram-v4` reject the combination outright.)<br/>
         /// `seed` is honored only on the compatible model; the default model<br/>
         /// synthesizes an unseeded instruction prompt, so results are not<br/>
         /// reproducible there.<br/>
@@ -984,6 +1000,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt that guides the remix.
         /// </param>
@@ -1074,6 +1093,7 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ToolRemixResponse> PostToolRemixAsync(
             string prompt,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -1129,6 +1149,7 @@ namespace Ideogram
             };
 
             return await PostToolRemixAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

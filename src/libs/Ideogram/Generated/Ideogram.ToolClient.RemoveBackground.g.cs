@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PrepareRemoveBackgroundArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.RemoveBackgroundV2Request request);
         partial void PrepareRemoveBackgroundRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.RemoveBackgroundV2Request request);
         partial void ProcessRemoveBackgroundResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -56,6 +58,9 @@ namespace Ideogram
         /// Bearer and Mini App callers inherit their plan's private-generation<br/>
         /// default; Enterprise generations are always private.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -63,12 +68,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.RemoveBackgroundV2Response> RemoveBackgroundAsync(
 
             global::Ideogram.RemoveBackgroundV2Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await RemoveBackgroundAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -90,6 +97,9 @@ namespace Ideogram
         /// Bearer and Mini App callers inherit their plan's private-generation<br/>
         /// default; Enterprise generations are always private.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -97,6 +107,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemoveBackgroundV2Response>> RemoveBackgroundAsResponseAsync(
 
             global::Ideogram.RemoveBackgroundV2Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -106,6 +117,7 @@ namespace Ideogram
                 client: HttpClient);
             PrepareRemoveBackgroundArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -132,8 +144,11 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/tool/remove-background",
+                                path: "/v2/image/remove-background/ideogram-v1",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -245,6 +260,7 @@ namespace Ideogram
                 PrepareRemoveBackgroundRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -264,7 +280,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RemoveBackground",
                                 methodName: "RemoveBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/remove-background\"",
+                                pathTemplate: "\"/v2/image/remove-background/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -298,7 +314,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RemoveBackground",
                                 methodName: "RemoveBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/remove-background\"",
+                                pathTemplate: "\"/v2/image/remove-background/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -339,7 +355,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RemoveBackground",
                                 methodName: "RemoveBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/remove-background\"",
+                                pathTemplate: "\"/v2/image/remove-background/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -387,7 +403,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RemoveBackground",
                                 methodName: "RemoveBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/remove-background\"",
+                                pathTemplate: "\"/v2/image/remove-background/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -409,7 +425,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "RemoveBackground",
                                 methodName: "RemoveBackgroundAsync",
-                                pathTemplate: "\"/v2/tool/remove-background\"",
+                                pathTemplate: "\"/v2/image/remove-background/ideogram-v1\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -801,6 +817,9 @@ namespace Ideogram
         /// Bearer and Mini App callers inherit their plan's private-generation<br/>
         /// default; Enterprise generations are always private.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="image">
         /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
         /// </param>
@@ -826,6 +845,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.RemoveBackgroundV2Response> RemoveBackgroundAsync(
+            bool? dryRun = default,
             byte[]? image = default,
             string? imagename = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
@@ -844,6 +864,7 @@ namespace Ideogram
             };
 
             return await RemoveBackgroundAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

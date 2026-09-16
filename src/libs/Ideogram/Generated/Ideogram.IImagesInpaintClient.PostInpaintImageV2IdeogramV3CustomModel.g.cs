@@ -22,6 +22,9 @@ namespace Ideogram
         /// to true to return after dispatch and poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -29,6 +32,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.InpaintImageIdeogramV3CustomModelResponse> PostInpaintImageV2IdeogramV3CustomModelAsync(
 
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -49,6 +53,9 @@ namespace Ideogram
         /// to true to return after dispatch and poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -56,6 +63,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.InpaintImageIdeogramV3CustomModelResponse>> PostInpaintImageV2IdeogramV3CustomModelAsResponseAsync(
 
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -76,6 +84,9 @@ namespace Ideogram
         /// to true to return after dispatch and poll<br/>
         /// `GET /v1/generations/{generation_id}`.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt describing the repainted result.
         /// </param>
@@ -154,6 +165,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.InpaintImageIdeogramV3CustomModelResponse> PostInpaintImageV2IdeogramV3CustomModelAsync(
             string prompt,
             string customModelUri,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,

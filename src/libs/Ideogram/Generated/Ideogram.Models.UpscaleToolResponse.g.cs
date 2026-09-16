@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Response returned by `POST /v2/tools/upscale`. Synchronous requests<br/>
+    /// Response returned by `POST /v2/image/upscale/auto`. Synchronous requests<br/>
     /// (the default) include the upscaled image in `data`. Requests with<br/>
     /// `async` set to true omit `data`; poll for completion and results with<br/>
     /// `GET /v1/generations/{generation_id}` using the returned<br/>

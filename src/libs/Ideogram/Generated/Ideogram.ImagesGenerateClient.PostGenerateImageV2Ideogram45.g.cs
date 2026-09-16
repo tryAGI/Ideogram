@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostGenerateImageV2Ideogram45Arguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.GenerateImageIdeogram45Request request);
         partial void PreparePostGenerateImageV2Ideogram45Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.GenerateImageIdeogram45Request request);
         partial void ProcessPostGenerateImageV2Ideogram45Response(
             global::System.Net.Http.HttpClient httpClient,
@@ -42,8 +44,14 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Generate images with Ideogram 4.5 from a text or structured prompt<br/>
-        /// Generate one or more images with Ideogram 4.5. The `prompt` accepts<br/>
+        /// Generate images with Ideogram 4.5, from a prompt or by transforming source images<br/>
+        /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
+        /// images turns the request into an image-to-image transform: the model<br/>
+        /// conditions on the sources, the prompt becomes optional guidance, and<br/>
+        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// Provide sources either as `image_asset_identifiers` references or as<br/>
+        /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
+        /// the references win and the bytes are ignored. The `prompt` accepts<br/>
         /// either natural language or a structured Ideogram 4.0 JSON prompt; the<br/>
         /// server detects which was supplied.<br/>
         /// `magic_prompt` controls automatic prompt rewriting: `AUTO` (the<br/>
@@ -51,7 +59,7 @@ namespace Ideogram
         /// already a valid structured JSON prompt is always consumed directly,<br/>
         /// and `OFF` disables rewriting entirely so the model receives your<br/>
         /// prompt verbatim.<br/>
-        /// Ideogram 4.5 renders a fixed set of output sizes. When `resolution`<br/>
+        /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
         /// the prompt.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -63,6 +71,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -70,12 +81,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogram45Response> PostGenerateImageV2Ideogram45Async(
 
             global::Ideogram.GenerateImageIdeogram45Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostGenerateImageV2Ideogram45AsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -83,8 +96,14 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Generate images with Ideogram 4.5 from a text or structured prompt<br/>
-        /// Generate one or more images with Ideogram 4.5. The `prompt` accepts<br/>
+        /// Generate images with Ideogram 4.5, from a prompt or by transforming source images<br/>
+        /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
+        /// images turns the request into an image-to-image transform: the model<br/>
+        /// conditions on the sources, the prompt becomes optional guidance, and<br/>
+        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// Provide sources either as `image_asset_identifiers` references or as<br/>
+        /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
+        /// the references win and the bytes are ignored. The `prompt` accepts<br/>
         /// either natural language or a structured Ideogram 4.0 JSON prompt; the<br/>
         /// server detects which was supplied.<br/>
         /// `magic_prompt` controls automatic prompt rewriting: `AUTO` (the<br/>
@@ -92,7 +111,7 @@ namespace Ideogram
         /// already a valid structured JSON prompt is always consumed directly,<br/>
         /// and `OFF` disables rewriting entirely so the model receives your<br/>
         /// prompt verbatim.<br/>
-        /// Ideogram 4.5 renders a fixed set of output sizes. When `resolution`<br/>
+        /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
         /// the prompt.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -104,6 +123,9 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -111,6 +133,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogram45Response>> PostGenerateImageV2Ideogram45AsResponseAsync(
 
             global::Ideogram.GenerateImageIdeogram45Request request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -120,6 +143,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostGenerateImageV2Ideogram45Arguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -140,14 +164,17 @@ namespace Ideogram
             var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
                 clientOptions: Options,
                 requestOptions: requestOptions,
-                supportsRetry: true);
+                supportsRetry: false);
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/images/generate/ideogram-4.5",
+                                path: "/v2/image/generate/ideogram-4.5",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -177,12 +204,125 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
+
+                            var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (request.Prompt != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
+                                    name: "\"prompt\"");
+
+                            }
+                            if (request.MagicPrompt != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.MagicPrompt).HasValue ? (request.MagicPrompt).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"magic_prompt\"");
+
+                            }
+                            if (request.ImageAssetIdentifiers != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.ImageAssetIdentifiers!, x => x.ToJson(JsonSerializerContext)))}]"),
+                                    name: "\"image_asset_identifiers\"");
+
+                            }
+                            if (request.Images != default)
+                            {
+
+                                for (var __iImages = 0; __iImages < request.Images.Count; __iImages++)
+                                {
+                                    var __contentImages = new global::System.Net.Http.ByteArrayContent(request.Images[__iImages]);
+                                __contentImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                                    __httpRequestContent.Add(
+                                        content: __contentImages,
+                                        name: "\"images\"",
+                                        fileName: $"\"file{__iImages}.bin\"");
+                                    if (__contentImages.Headers.ContentDisposition != null)
+                                    {
+                                        __contentImages.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
+
+                            }
+                            if (request.Size != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.Size ?? string.Empty),
+                                    name: "\"size\"");
+
+                            }
+                            if (request.RenderingSpeed != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.RenderingSpeed).HasValue ? (request.RenderingSpeed).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"rendering_speed\"");
+
+                            }
+                            if (request.Seed != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"seed\"");
+
+                            }
+                            if (request.NumImages != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"num_images\"");
+
+                            }
+                            if (request.EnableCopyrightDetection != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.EnableCopyrightDetection, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"enable_copyright_detection\"");
+
+                            }
+                            if (request.Async != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Async, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"async\"");
+
+                            }
+                            if (request.WebhookUrl != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.WebhookUrl ?? string.Empty),
+                                    name: "\"webhook_url\"");
+
+                            }
+                            if (request.Private != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Private, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"private\"");
+
+                            }
+                            if (request.TargetCollectionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.TargetCollectionId ?? string.Empty),
+                                    name: "\"target_collection_id\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
+
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -194,6 +334,7 @@ namespace Ideogram
                 PreparePostGenerateImageV2Ideogram45Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -213,7 +354,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/images/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -247,7 +388,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/images/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -288,7 +429,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/images/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -336,7 +477,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/images/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -358,7 +499,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/images/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -704,8 +845,14 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Generate images with Ideogram 4.5 from a text or structured prompt<br/>
-        /// Generate one or more images with Ideogram 4.5. The `prompt` accepts<br/>
+        /// Generate images with Ideogram 4.5, from a prompt or by transforming source images<br/>
+        /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
+        /// images turns the request into an image-to-image transform: the model<br/>
+        /// conditions on the sources, the prompt becomes optional guidance, and<br/>
+        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// Provide sources either as `image_asset_identifiers` references or as<br/>
+        /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
+        /// the references win and the bytes are ignored. The `prompt` accepts<br/>
         /// either natural language or a structured Ideogram 4.0 JSON prompt; the<br/>
         /// server detects which was supplied.<br/>
         /// `magic_prompt` controls automatic prompt rewriting: `AUTO` (the<br/>
@@ -713,7 +860,7 @@ namespace Ideogram
         /// already a valid structured JSON prompt is always consumed directly,<br/>
         /// and `OFF` disables rewriting entirely so the model receives your<br/>
         /// prompt verbatim.<br/>
-        /// Ideogram 4.5 renders a fixed set of output sizes. When `resolution`<br/>
+        /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
         /// the prompt.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
@@ -725,10 +872,14 @@ namespace Ideogram
         /// `async` says: the response returns as soon as the request is accepted,<br/>
         /// and the finished result is POSTed to that URL.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="prompt">
         /// The prompt to generate images from. Accepts either natural<br/>
         /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.
+        /// detects which was supplied. Required without source images; with<br/>
+        /// sources it is optional guidance and may be empty.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). `AUTO` (the<br/>
@@ -738,8 +889,25 @@ namespace Ideogram
         /// receives your prompt verbatim.<br/>
         /// Default Value: AUTO
         /// </param>
-        /// <param name="resolution">
-        /// Exact output resolution, formatted as "WIDTHxHEIGHT". Ideogram 4.5 renders a fixed set of sizes across 1K and 2K tiers (for example 1024x1024, 2048x2048 or 1440x2880); an unsupported size is rejected with a 400. When omitted, the server picks a supported size automatically based on the prompt.<br/>
+        /// <param name="imageAssetIdentifiers">
+        /// Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. The first source is the primary image; any further sources are additional references. Supplying sources turns the request into an image-to-image transform.
+        /// </param>
+        /// <param name="images">
+        /// The source images to transform (max 5, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// </param>
+        /// <param name="size">
+        /// The output size: "auto" or an exact "WIDTHxHEIGHT".<br/>
+        /// Without source images, an exact size must be one of the supported<br/>
+        /// 1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);<br/>
+        /// "auto" or omitted lets the server pick a supported size based on<br/>
+        /// the prompt.<br/>
+        /// With source images, "auto" (the default) uses the supported<br/>
+        /// resolution closest to the first source's dimensions, and an exact<br/>
+        /// size must have both dimensions multiples of 32 and at least 256px,<br/>
+        /// the total size at most 2048x2048 pixels, and the aspect ratio at<br/>
+        /// most 6:1.<br/>
+        /// Pricing is tiered by the resolved output pixels: up to 1024x1024<br/>
+        /// bills as 1K, above that as 2K.<br/>
         /// Example: 2048x2048
         /// </param>
         /// <param name="renderingSpeed">
@@ -782,9 +950,12 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogram45Response> PostGenerateImageV2Ideogram45Async(
-            string prompt,
+            bool? dryRun = default,
+            string? prompt = default,
             global::Ideogram.MagicPromptOption? magicPrompt = default,
-            string? resolution = default,
+            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? images = default,
+            string? size = default,
             global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? renderingSpeed = default,
             int? seed = default,
             int? numImages = default,
@@ -800,7 +971,9 @@ namespace Ideogram
             {
                 Prompt = prompt,
                 MagicPrompt = magicPrompt,
-                Resolution = resolution,
+                ImageAssetIdentifiers = imageAssetIdentifiers,
+                Images = images,
+                Size = size,
                 RenderingSpeed = renderingSpeed,
                 Seed = seed,
                 NumImages = numImages,
@@ -812,6 +985,7 @@ namespace Ideogram
             };
 
             return await PostGenerateImageV2Ideogram45Async(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);
