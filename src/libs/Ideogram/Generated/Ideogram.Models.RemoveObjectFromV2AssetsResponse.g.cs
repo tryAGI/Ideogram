@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement returned by `POST /v2/image/remove-object/ideogram-v1`. The request is<br/>
+    /// Acknowledgement returned by `POST /v2/image/remove-object/ideogram-1`. The request is<br/>
     /// accepted for asynchronous processing; poll for completion and results<br/>
     /// using `GET /v1/generations/{generation_id}` with the returned<br/>
     /// `generation_id`.<br/>

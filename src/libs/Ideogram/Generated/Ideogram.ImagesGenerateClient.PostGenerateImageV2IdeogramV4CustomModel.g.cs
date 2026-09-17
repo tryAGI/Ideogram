@@ -148,7 +148,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/generate/ideogram-v4-custom-model",
+                                path: "/v2/image/generate/ideogram-4-custom-model",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -219,7 +219,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4CustomModel",
                                 methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-custom-model\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -253,7 +253,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4CustomModel",
                                 methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-custom-model\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -294,7 +294,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4CustomModel",
                                 methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-custom-model\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -342,7 +342,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4CustomModel",
                                 methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-custom-model\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -364,7 +364,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4CustomModel",
                                 methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-custom-model\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

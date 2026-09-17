@@ -7337,7 +7337,7 @@
                       "line_items": [
                         {
                           "product": "ideogram_v4_generation",
-                          "endpoint": "/v2/image/generate/ideogram-v4",
+                          "endpoint": "/v2/image/generate/ideogram-4",
                           "description": "Ideogram v4 Generation",
                           "dimensions": {
                             "rendering_speed": "TURBO"
@@ -7818,7 +7818,7 @@
     },
     "/v2/image/generate/gemini-3.1-flash": {
       "post": {
-        "description": "Generate one or more images with Gemini 3.1 Flash. The prompt is\nconsumed by the model directly, without rewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output is served at the closest aspect ratio the model supports,\nat 1K resolution.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images with Gemini 3.1 Flash. The prompt is\nconsumed by the model directly, without rewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output is served at the closest aspect ratio the model supports,\nat the requested `resolution_tier` (1K by default).\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_gemini31_flash",
         "parameters": [
           {
@@ -8002,7 +8002,7 @@
     },
     "/v2/image/generate/gpt-image-2.5-flare": {
       "post": {
-        "description": "Generate one or more images with GPT Image 2.5 Flare — the fast\nvariant of GPT Image 2.5, optimized for speed at quality comparable\nto GPT Image 2. The prompt is consumed by the model directly, without\nrewriting.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images with GPT Image 2.5 Flare — the fast\nvariant of GPT Image 2.5, optimized for speed at quality comparable\nto GPT Image 2. The prompt is consumed by the model directly, without\nrewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_gpt_image25_flare",
         "parameters": [
           {
@@ -8018,15 +8018,25 @@
         ],
         "requestBody": {
           "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageGptImage25FlareRequest"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/GenerateImageGptImage25FlareRequest"
               }
             }
           },
-          "description": "A request to generate images with GPT Image 2.5 Flare.",
+          "description": "A request to generate images with GPT Image 2.5 Flare, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
           "required": true,
-          "x-body-name": "generate_image_gpt_image25_flare_request"
+          "x-body-name": "body"
         },
         "responses": {
           "200": {
@@ -8075,7 +8085,7 @@
             "description": "The endpoint is temporarily unavailable."
           }
         },
-        "summary": "Generate images with GPT Image 2.5 Flare from a text prompt",
+        "summary": "Generate images with GPT Image 2.5 Flare, from a text prompt or by editing source images",
         "tags": [
           "images-generate"
         ],
@@ -8084,7 +8094,7 @@
     },
     "/v2/image/generate/gpt-image-2.5-sunburst": {
       "post": {
-        "description": "Generate one or more images with GPT Image 2.5 Sunburst — the quality\nvariant of GPT Image 2.5, optimized for fine detail at higher\nlatency than Flare. The prompt is consumed by the model directly, without\nrewriting.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images with GPT Image 2.5 Sunburst — the quality\nvariant of GPT Image 2.5, optimized for fine detail at higher\nlatency than Flare. The prompt is consumed by the model directly, without\nrewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_gpt_image25_sunburst",
         "parameters": [
           {
@@ -8100,15 +8110,25 @@
         ],
         "requestBody": {
           "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageGptImage25SunburstRequest"
+              }
+            },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/GenerateImageGptImage25SunburstRequest"
               }
             }
           },
-          "description": "A request to generate images with GPT Image 2.5 Sunburst.",
+          "description": "A request to generate images with GPT Image 2.5 Sunburst, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
           "required": true,
-          "x-body-name": "generate_image_gpt_image25_sunburst_request"
+          "x-body-name": "body"
         },
         "responses": {
           "200": {
@@ -8157,106 +8177,14 @@
             "description": "The endpoint is temporarily unavailable."
           }
         },
-        "summary": "Generate images with GPT Image 2.5 Sunburst from a text prompt",
+        "summary": "Generate images with GPT Image 2.5 Sunburst, from a text prompt or by editing source images",
         "tags": [
           "images-generate"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-4.5": {
-      "post": {
-        "description": "Generate one or more images with Ideogram 4.5. Supplying source\nimages turns the request into an image-to-image transform: the model\nconditions on the sources, the prompt becomes optional guidance, and\n`size` may be \"auto\" to derive the output from the first source.\nProvide sources either as `image_asset_identifiers` references or as\nraw `images` bytes (multipart requests only); if both are supplied,\nthe references win and the bytes are ignored. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; the\nserver detects which was supplied.\n\n`magic_prompt` controls automatic prompt rewriting: `AUTO` (the\ndefault) and `ON` rewrite a natural-language prompt, a prompt that is\nalready a valid structured JSON prompt is always consumed directly,\nand `OFF` disables rewriting entirely so the model receives your\nprompt verbatim.\n\nIdeogram 4.5 renders a fixed set of output sizes. When `size`\nis omitted, the server picks a supported size automatically based on\nthe prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
-        "operationId": "post_generate_image_v2_ideogram45",
-        "parameters": [
-          {
-            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
-            "in": "query",
-            "name": "dry_run",
-            "required": false,
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "encoding": {
-                "image_asset_identifiers": {
-                  "contentType": "application/json"
-                }
-              },
-              "schema": {
-                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
-              }
-            }
-          },
-          "description": "A request to generate images with Ideogram 4.5, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
-          "required": true,
-          "x-body-name": "body"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerateImageIdeogram45Response"
-                }
-              }
-            },
-            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Unauthorized."
-          },
-          "402": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Insufficient credits or quota."
-          },
-          "422": {
-            "description": "The prompt did not pass safety checks."
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Too many requests."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "The endpoint is temporarily unavailable."
-          }
-        },
-        "summary": "Generate images with Ideogram 4.5, from a prompt or by transforming source images",
-        "tags": [
-          "images-generate"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
-      }
-    },
-    "/v2/image/generate/ideogram-v2": {
+    "/v2/image/generate/ideogram-2": {
       "post": {
         "description": "Generate one or more images from a text prompt with Ideogram 2.0,\nwith an optional style type and negative prompt. Set\n`rendering_speed` to `TURBO` for faster, lower-cost generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v2",
@@ -8338,7 +8266,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v2a": {
+    "/v2/image/generate/ideogram-2a": {
       "post": {
         "description": "Generate one or more images from a text prompt with Ideogram 2a, a\nfast, lower-cost model, with an optional style type. Set\n`rendering_speed` to `TURBO` for even faster generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v2_a",
@@ -8420,7 +8348,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v3": {
+    "/v2/image/generate/ideogram-3": {
       "post": {
         "description": "Generate one or more images from a text prompt with Ideogram 3.0,\nwith optional style controls: style codes, a style preset, a color\npalette, or style references. Supply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references (images already stored\nwith Ideogram), or as raw `style_reference_images` bytes (multipart\nrequests only). These three style reference forms cannot be combined.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_generate_image_v2_ideogram_v3",
@@ -8518,7 +8446,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v3-character": {
+    "/v2/image/generate/ideogram-3-character": {
       "post": {
         "description": "Generate one or more images featuring a consistent character with\nIdeogram 3.0. Supply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references (an image already\nstored with Ideogram), or as raw `character_reference_images` bytes\n(multipart requests only, with an optional\n`character_reference_mask` marking where the character is in the\nreference). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nStyle references may be combined with the character on accounts with\naccess; otherwise the combination returns a 400. Supply them as a\nsaved style (`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references, or as raw\n`style_reference_images` bytes, with the same precedence as the\ncharacter forms.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v3_character",
@@ -8616,7 +8544,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v3-custom-model": {
+    "/v2/image/generate/ideogram-3-custom-model": {
       "post": {
         "description": "Generate one or more images with a custom Ideogram 3.0 model that the\nauthenticated user or organization can access. The model registry\ncontrols the model's supported rendering speeds and whether it removes\nbackgrounds automatically.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v3_custom_model",
@@ -8717,7 +8645,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v3-transparent": {
+    "/v2/image/generate/ideogram-3-transparent": {
       "post": {
         "description": "Generate one or more images on a transparent background with\nIdeogram 3.0, delivered as PNGs with alpha. An optional\n`upscale_factor` increases the output size after generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v3_transparent",
@@ -8799,7 +8727,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v4": {
+    "/v2/image/generate/ideogram-4": {
       "post": {
         "description": "Generate one or more images from a prompt with Ideogram 4.0. The\n`prompt` accepts either natural language or a structured Ideogram 4.0\nJSON prompt; the server detects which was supplied. A structured JSON\nprompt is consumed by the model directly and skips magic prompt.\n\n`magic_prompt` controls how a natural-language prompt is prepared:\n`AUTO`/`ON` rewrite and expand the prompt before generation, while\n`OFF` keeps your wording and only converts the prompt into the\nstructured format the model consumes.\n\nWhen `resolution` is omitted, the server picks an aspect ratio\nautomatically based on the prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v4",
@@ -8881,7 +8809,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v4-custom-model": {
+    "/v2/image/generate/ideogram-4-custom-model": {
       "post": {
         "description": "Generate one or more images with a custom Ideogram 4.0 model that the\nauthenticated user or organization can access. The model registry\ncontrols the model's supported rendering speeds.\n\nThe `prompt` accepts either natural language or a structured Ideogram\n4.0 JSON prompt; the server detects which was supplied. A structured\nJSON prompt is consumed by the model directly and skips magic prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v4_custom_model",
@@ -8966,7 +8894,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-v4-transparent": {
+    "/v2/image/generate/ideogram-4-transparent": {
       "post": {
         "description": "Generate one or more images on a transparent background with\nIdeogram 4.0, delivered as PNGs with alpha. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; a\nstructured prompt is consumed directly and skips magic prompt, except\nthat its background description is replaced with a\ntransparent-background directive.\n\n`magic_prompt` controls how a natural-language prompt is prepared:\n`AUTO`/`ON` rewrite and expand the prompt before generation, while\n`OFF` keeps your wording and only converts the prompt into the\nstructured format the model consumes.\n\n`output_resolution` selects the output tier (1K to 8K); tiers above\n2K are produced by upscaling after generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v4_transparent",
@@ -9042,6 +8970,98 @@
           }
         },
         "summary": "Generate transparent-background images with Ideogram 4.0",
+        "tags": [
+          "images-generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
+      }
+    },
+    "/v2/image/generate/ideogram-4.5": {
+      "post": {
+        "description": "Generate one or more images with Ideogram 4.5. Supplying source\nimages turns the request into an image-to-image transform: the model\nconditions on the sources, the prompt becomes optional guidance, and\n`size` may be \"auto\" to derive the output from the first source.\nProvide sources either as `image_asset_identifiers` references or as\nraw `images` bytes (multipart requests only); if both are supplied,\nthe references win and the bytes are ignored. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; the\nserver detects which was supplied.\n\n`magic_prompt` controls automatic prompt rewriting: `AUTO` (the\ndefault) and `ON` rewrite a natural-language prompt, a prompt that is\nalready a valid structured JSON prompt is always consumed directly,\nand `OFF` disables rewriting entirely so the model receives your\nprompt verbatim.\n\nIdeogram 4.5 renders a fixed set of output sizes. When `size`\nis omitted, the server picks a supported size automatically based on\nthe prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_generate_image_v2_ideogram45",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
+              }
+            }
+          },
+          "description": "A request to generate images with Ideogram 4.5, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageIdeogram45Response"
+                }
+              }
+            },
+            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate images with Ideogram 4.5, from a prompt or by transforming source images",
         "tags": [
           "images-generate"
         ],
@@ -9212,7 +9232,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/inpaint/ideogram-v3": {
+    "/v2/image/inpaint/ideogram-3": {
       "post": {
         "description": "Repaint the masked region of a source image from a text prompt with\nIdeogram 3.0. For each of the source image and the mask, supply either\nan `AssetIdentifier` reference (`image_asset_identifier` /\n`mask_asset_identifier`) or the raw image bytes directly (`image` /\n`mask`, multipart requests only). If both a reference and bytes are\nsupplied for the same input, the reference wins and the bytes are\nignored.\n\nOptional style controls: style codes, a style preset, or style\nreference images.\nSupply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references (images already stored\nwith Ideogram), or as raw `style_reference_images` bytes (multipart\nrequests only). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_inpaint_image_v2_ideogram_v3",
@@ -9313,7 +9333,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
       }
     },
-    "/v2/image/inpaint/ideogram-v3-character": {
+    "/v2/image/inpaint/ideogram-3-character": {
       "post": {
         "description": "Repaint the masked region of a source image so it features a\nconsistent character, with Ideogram 3.0. For each of the source image\nand the mask, supply either an `AssetIdentifier` reference\n(`image_asset_identifier` / `mask_asset_identifier`) or the raw image\nbytes directly (`image` / `mask`, multipart requests only). If both a\nreference and bytes are supplied for the same input, the reference\nwins and the bytes are ignored.\n\nSupply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references (an image already\nstored with Ideogram), or as raw `character_reference_images` bytes\n(multipart requests only, with an optional\n`character_reference_mask` marking where the character is in the\nreference). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nOptional style controls may be combined with the character when\n`style_type` is `AUTO`. Supply either style codes or style references.\nSupply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references, or as raw\n`style_reference_images` bytes (multipart requests only). If more than\none reference form is supplied, the collection wins over the\nidentifiers, and the identifiers win over the bytes. API-key callers\nalso need access to the style-with-character API rollout.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_inpaint_image_v2_ideogram_v3_character",
@@ -9417,7 +9437,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
       }
     },
-    "/v2/image/inpaint/ideogram-v3-custom-model": {
+    "/v2/image/inpaint/ideogram-3-custom-model": {
       "post": {
         "description": "Repaint the masked region of a source image with a custom Ideogram 3.0\nmodel the authenticated user or organization can access. Supply the\nmodel URI returned by the custom-model API as `custom_model_uri`.\n\nFor each of the source image and mask, supply either an\n`AssetIdentifier` reference (`image_asset_identifier` /\n`mask_asset_identifier`) or raw bytes (`image` / `mask`, multipart\nrequests only). A reference wins if both forms are supplied.\n\nOptional style controls are style codes, a style preset, or style\nreference images. Supply style references as a saved style, existing\nasset identifiers, or raw image bytes. Only one style control may be\nused; when multiple reference forms are supplied, the collection wins\nover identifiers, and identifiers win over bytes.\n\nBy default the request blocks until the images are ready. Set `async`\nto true to return after dispatch and poll\n`GET /v1/generations/{generation_id}`.",
         "operationId": "post_inpaint_image_v2_ideogram_v3_custom_model",
@@ -9603,7 +9623,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_reframe_controller"
       }
     },
-    "/v2/image/reframe/ideogram-v3": {
+    "/v2/image/reframe/ideogram-3": {
       "post": {
         "description": "Expand an image to a new Ideogram 3.0 resolution. The source pixels\nare preserved in the center and Ideogram fills the new area. Supply\nexactly one source: an `AssetIdentifier` reference\n(`image_asset_identifier`) or raw image bytes (`image`, multipart\nrequests only). Supplying both forms, or neither, is rejected.\n\nOptional style controls are mutually exclusive. Supply at most one of\n`style_preset`, `style_codes`, `style_reference_asset_identifiers`, or\nraw `style_reference_images` (multipart requests only). Each style\nreference transport accepts at most 10 images.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately, then poll\n`GET /v1/generations/{generation_id}`.\n",
         "operationId": "post_reframe_image_v2_ideogram_v3",
@@ -9708,7 +9728,7 @@
     },
     "/v2/image/remix/auto": {
       "post": {
-        "description": "Transform an existing image with a server-selected model, guided by a\ntext prompt. Supply the source as `image` bytes (multipart requests\nonly). `image_weight` controls how closely the result follows the\nsource; when omitted the selected model chooses its usual strength.\n\nThe server chooses a model that supports the requested remix controls:\nstyle references (ad hoc or saved), a color palette, style codes, a\nstyle preset, and a non-`AUTO` style type each\nrestrict the request to a compatible model and to the 1K tier;\nremixes without those controls use the default model. Omit\n`resolution` and `aspect_ratio` to keep the source image's shape.\nSupplying `image_weight` together with a `resolution` or\n`aspect_ratio` that changes the source's aspect ratio routes the\nrequest to a model that crops the source to the new shape; that\ncombination is served only at the 1K tier and is rejected at 2K.\n(The model-pinned remix endpoints such as\n`/v2/image/remix/ideogram-v4` reject the combination outright.)\n`seed` is honored only on the compatible model; the default model\nsynthesizes an unseeded instruction prompt, so results are not\nreproducible there.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
+        "description": "Transform an existing image with a server-selected model, guided by a\ntext prompt. Supply the source as `image` bytes (multipart requests\nonly). `image_weight` controls how closely the result follows the\nsource; when omitted the selected model chooses its usual strength.\n\nThe server chooses a model that supports the requested remix controls:\nstyle references (ad hoc or saved), a color palette, style codes, a\nstyle preset, and a non-`AUTO` style type each\nrestrict the request to a compatible model and to the 1K tier;\nremixes without those controls use the default model. Omit\n`resolution` and `aspect_ratio` to keep the source image's shape.\nSupplying `image_weight` together with a `resolution` or\n`aspect_ratio` that changes the source's aspect ratio routes the\nrequest to a model that crops the source to the new shape; that\ncombination is served only at the 1K tier and is rejected at 2K.\n(The model-pinned remix endpoints such as\n`/v2/image/remix/ideogram-4` reject the combination outright.)\n`seed` is honored only on the compatible model; the default model\nsynthesizes an unseeded instruction prompt, so results are not\nreproducible there.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_tool_remix",
         "parameters": [
           {
@@ -9793,7 +9813,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.auto_model_controller"
       }
     },
-    "/v2/image/remix/ideogram-v3": {
+    "/v2/image/remix/ideogram-3": {
       "post": {
         "description": "Transform an existing image with Ideogram 3.0, guided by a text\nprompt. Supply the source either as an `image_asset_identifier`\nreference (an image already stored with Ideogram) or as raw `image`\nbytes (multipart requests only). Supplying both is rejected rather\nthan one being ignored. `image_weight` controls how closely the\nresult follows the source; when omitted the server picks a value from\nyour prompt.\n\nOmit `resolution` and `aspect_ratio` to keep the source image's\nshape. If you request a different shape, the source is center-cropped\nto fit it first, and whatever falls outside the new shape is\ndiscarded.\n\nOptional style controls work as on the Ideogram 3.0 generate\nendpoint: style codes, a style preset, a color palette, or style\nreference images.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_remix_image_v2_ideogram_v3",
@@ -9894,7 +9914,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
       }
     },
-    "/v2/image/remix/ideogram-v3-character": {
+    "/v2/image/remix/ideogram-3-character": {
       "post": {
         "description": "Transform an existing image with Ideogram 3.0, guided by a text\nprompt and featuring a consistent character. Supply the source either\nas an `image_asset_identifier` reference (an image already stored\nwith Ideogram) or as raw `image` bytes (multipart requests only).\nSupplying both is rejected rather than one being ignored.\n`image_weight` controls how closely the result follows the source;\nwhen omitted the server picks a value from your prompt.\n\nSupply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references, or as raw\n`character_reference_images` bytes (multipart requests only, with an\noptional `character_reference_mask` marking where the character is in\nthe reference). If more than one form is supplied, the collection\nwins over the identifiers, and the identifiers win over the bytes.\n\nOmit `resolution` and `aspect_ratio` to keep the source image's\nshape. If you request a different shape, the source is center-cropped\nto fit it first, and whatever falls outside the new shape is\ndiscarded.\n\nStyle references may be supplied as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references, or as raw\n`style_reference_images` bytes, with the same precedence as the\ncharacter forms.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_remix_image_v2_ideogram_v3_character",
@@ -9995,7 +10015,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
       }
     },
-    "/v2/image/remix/ideogram-v3-custom-model": {
+    "/v2/image/remix/ideogram-3-custom-model": {
       "post": {
         "description": "Transform an existing image with a custom Ideogram 3.0 model that the\nauthenticated user or organization can access, guided by a text\nprompt. Supply the source either as an `image_asset_identifier`\nreference (an image already stored with Ideogram) or as raw `image`\nbytes (multipart requests only). Supplying both is rejected rather\nthan one being ignored. `image_weight` controls how closely the\nresult follows the source; when omitted the server picks a value from\nyour prompt.\n\nOmit `resolution` and `aspect_ratio` to keep the source image's\nshape. If you request a different shape, the source is center-cropped\nto fit it first, and whatever falls outside the new shape is\ndiscarded.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_remix_image_v2_ideogram_v3_custom_model",
@@ -10099,7 +10119,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
       }
     },
-    "/v2/image/remix/ideogram-v4": {
+    "/v2/image/remix/ideogram-4": {
       "post": {
         "description": "Transform an existing image with Ideogram 4.0, guided by a text\nprompt. Supply the source either as an `image_asset_identifier`\nreference (an image already stored with Ideogram) or as raw `image`\nbytes (multipart requests only). Supplying both is rejected rather\nthan one being ignored. `image_weight` controls how closely the\nresult follows the source; when omitted the server picks a value from\nyour prompt.\n\nOmit `resolution` to keep the source image's shape. A `resolution`\nwhose aspect ratio differs from the source's cannot be combined with\n`image_weight` — that request is rejected with a 400.\n\nThe prompt is always interpreted by an instruction-editing model, so\nthere is no `magic_prompt` option. Remixes are not reproducible, so\nno seed is accepted; the response reports the seed the request\nresolved to.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_remix_image_v2_ideogram_v4",
@@ -10194,7 +10214,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_remix_controller"
       }
     },
-    "/v2/image/remove-background/ideogram-v1": {
+    "/v2/image/remove-background/ideogram-1": {
       "post": {
         "description": "Remove the background from one image and return a foreground PNG with\ntransparency. Supply exactly one source: raw `image` bytes in a\nmultipart request, or an existing `image_asset_identifier` in JSON or\nmultipart form.\n\nBy default the request blocks until the foreground image is ready and\nreturns it in `data`. Set `async` to true to return immediately after\nthe request is accepted, then poll `GET /v1/generations/{generation_id}`.\n\nAPI-key requests use the organization bound to the key. Firebase Bearer\nrequests use their selected organization, and Mini App context tokens\nremain bound to the organization in the token. When `private` is omitted,\nBearer and Mini App callers inherit their plan's private-generation\ndefault; Enterprise generations are always private.\n",
         "operationId": "post_remove_background_v2",
@@ -10295,7 +10315,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tool_controller"
       }
     },
-    "/v2/image/remove-object/ideogram-v1": {
+    "/v2/image/remove-object/ideogram-1": {
       "post": {
         "description": "Remove a masked object from an image. For each of the source image and the\nmask, supply either an `AssetIdentifier` reference (`image_asset_identifier`\n/ `mask_asset_identifier`) or the raw image bytes directly (`image` / `mask`,\nmultipart requests only) — callers are never required to call\n`POST /v2/assets` first. If both a reference and bytes are supplied for the\nsame input, the reference wins and the bytes are ignored.\n\nPoll for completion with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`.\n\nThis is the `/v2` capability-first shape; no `model` or `model_uri` field is\nexposed until a second backend exists.\n",
         "operationId": "post_remove_object_from_v2_assets",
@@ -10469,7 +10489,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
-    "/v2/image/replace-background/ideogram-v3": {
+    "/v2/image/replace-background/ideogram-3": {
       "post": {
         "description": "Replaces the background of one image from a text prompt while preserving\nthe foreground subject, generated by Ideogram 3.0 inpainting. The\nforeground mask is detected automatically; callers do not provide a mask.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply exactly one source transport: an existing `AssetIdentifier` in\n`image_asset_identifier`, or raw `image` bytes in a multipart request.\nSupplying both or neither is rejected with a 400. The source's longer\nside must be at most 3 times its shorter side; wider aspect ratios are\nrejected with a 400.\n",
         "operationId": "post_replace_background_ideogram_v3",
@@ -10851,7 +10871,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
       }
     },
-    "/v2/image/upscale/topaz-standard-v2": {
+    "/v2/image/upscale/topaz-standard-2": {
       "post": {
         "description": "Upscale one image to 2x, 4x, or 8x its original resolution, up to a\nmaximum output of 8192px per side. Supply the source either as an\n`image_asset_identifier` reference (an image already stored with\nIdeogram) or as raw `image` bytes (multipart requests only) — callers\nare never required to upload the asset first. If both are supplied,\nthe reference wins and the bytes are ignored. Uploaded bytes are used\nfor this request only and are not stored as an asset; upscales of a\nreferenced asset keep a visible link to their source image.\n\nUpscaling takes no prompt: the model enhances the source image as-is.\n\nBy default the request blocks until the upscaled image is ready and\nreturns it in `data`. Set `async` to true to return immediately after\nthe request is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_upscale_image_topaz_standard_v2",
@@ -12285,7 +12305,7 @@
     },
     "/v2/video/edit/minimax-h3-reference-to-video": {
       "post": {
-        "description": "Produce a video from a text prompt and reference media with MiniMax H3.\n\nThe prompt addresses the references by position: the first reference\nimage is `Image 1`, the second `Image 2`, the first reference video is\n`Video 1`, and so on. Supply reference images either as\n`reference_image_asset_identifiers` (images already stored with\nIdeogram) or as raw `reference_images` bytes (multipart requests only);\nsupplying both is rejected, and uploaded bytes are used for this request\nonly and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. At most 9 reference images and 3 reference\nvideos are accepted, and reference videos are capped again on clip\nlength.\n\nReferences are optional. With none, the video is produced from the\nprompt alone.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "description": "Produce a video from a text prompt and reference media with MiniMax H3.\n\nThe prompt addresses the references by position: the first reference\nimage is `Image 1`, the second `Image 2`, the first reference video is\n`Video 1`, and the first reference audio is `Audio 1`. Supply reference\nimages either as\n`reference_image_asset_identifiers` (images already stored with\nIdeogram) or as raw `reference_images` bytes (multipart requests only);\nsupplying both is rejected, and uploaded bytes are used for this request\nonly and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated or uploaded with Ideogram. At most 9 reference images and 3 reference\nvideos are accepted, and reference videos are capped again on clip\nlength. Optional `reference_audios` accepts MP3/WAV uploads alongside\nan image or video. Audio and video references must total at most 15\nseconds; at most 12 references are accepted across all media.\n\nReferences are optional. With none, the video is produced from the\nprompt alone.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
         "operationId": "post_edit_video_minimax_h3_reference_to_video",
         "parameters": [
           {
@@ -12363,7 +12383,7 @@
             "description": "The endpoint is temporarily unavailable."
           }
         },
-        "summary": "Produce a video from reference images and videos with MiniMax H3",
+        "summary": "Produce a video from reference media with MiniMax H3",
         "tags": [
           "video-edit"
         ],
@@ -12919,7 +12939,7 @@
     },
     "/v2/video/generate/seedance-2-5-reference-to-video": {
       "post": {
-        "description": "Produce a video from a text prompt and reference media with\nSeedance 2.5.\n\nThe prompt addresses the references by position: the first reference\nimage is `[Image1]`, the second\n`[Image2]`, the first reference video is\n`[Video1]`, and so on. Supply reference images\neither as `reference_image_asset_identifiers` (images already stored\nwith Ideogram) or as raw `reference_images` bytes (multipart requests\nonly); supplying both is rejected, and uploaded bytes are used for this\nrequest only and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. At most 9 reference images and 10\nreference videos are accepted, and reference videos are capped again on\nclip length: each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds.\n\nAt least one reference image or video is required: the model\nconditions every generation on the media it is given, so a request\nwith no references is rejected.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "description": "Produce a video from a text prompt and reference media with\nSeedance 2.5.\n\nThe prompt addresses the references by position: the first reference\nimage is `[Image1]`, the second\n`[Image2]`, the first reference video is\n`[Video1]`, and so on. Supply reference images\neither as `reference_image_asset_identifiers` (images already stored\nwith Ideogram) or as raw `reference_images` bytes (multipart requests\nonly); supplying both is rejected, and uploaded bytes are used for this\nrequest only and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 10\nreference videos are accepted, and reference videos are capped again on\nclip length: each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds.\nSupply up to 10 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.\nEach audio clip must be 2–30 seconds, with at most 30 seconds total. Reference\nthem as `[Audio1]`, `[Audio2]`, and so on. Audio is used for this request only.\n\nAt least one reference image or video is required: the model\nconditions every generation on the media it is given, so a request\nwith no references is rejected.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
         "operationId": "post_generate_video_seed_dance25_reference_to_video",
         "parameters": [
           {
@@ -13192,7 +13212,7 @@
     },
     "/v2/video/generate/seedance-2-reference-to-video": {
       "post": {
-        "description": "Produce a video from a text prompt and reference media with\nSeedance 2.0.\n\nThe prompt addresses the references by position: the first reference\nimage is `@Image1`, the second\n`@Image2`, the first reference video is\n`@Video1`, and so on. Supply reference images\neither as `reference_image_asset_identifiers` (images already stored\nwith Ideogram) or as raw `reference_images` bytes (multipart requests\nonly); supplying both is rejected, and uploaded bytes are used for this\nrequest only and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. At most 9 reference images and 3\nreference videos are accepted, and reference videos are capped again on\nclip length: each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds.\n\nAt least one reference image or video is required: the model\nconditions every generation on the media it is given, so a request\nwith no references is rejected.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "description": "Produce a video from a text prompt and reference media with\nSeedance 2.0.\n\nThe prompt addresses the references by position: the first reference\nimage is `@Image1`, the second\n`@Image2`, the first reference video is\n`@Video1`, and so on. Supply reference images\neither as `reference_image_asset_identifiers` (images already stored\nwith Ideogram) or as raw `reference_images` bytes (multipart requests\nonly); supplying both is rejected, and uploaded bytes are used for this\nrequest only and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 3\nreference videos are accepted, and reference videos are capped again on\nclip length: each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds.\nSupply up to 3 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.\nEach audio clip must be 2–15 seconds, with at most 15 seconds total. Reference\nthem as `@Audio1`, `@Audio2`, and so on. Audio is used for this request only.\nImages, videos, and audio combined must not exceed 12 references.\n\nAt least one reference image or video is required: the model\nconditions every generation on the media it is given, so a request\nwith no references is rejected.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
         "operationId": "post_generate_video_seed_dance2_reference_to_video",
         "parameters": [
           {
@@ -20010,7 +20030,7 @@
         "type": "object"
       },
       "GenerateVideoSeedDance2ReferenceToVideoRequest": {
-        "description": "Request body for Seedance 2.0 reference-to-video. The prompt\naddresses references by position — `@Image1`,\n`@Video1`, and so on. Reference images arrive either\nas `reference_image_asset_identifiers` or (multipart requests only) as\nraw `reference_images` bytes, never both. Reference videos arrive only\nas `reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. At least one reference image or video is\nrequired.\n",
+        "description": "Request body for Seedance 2.0 reference-to-video. The prompt\naddresses references by position — `@Image1`,\n`@Video1`, and so on. Reference images arrive either\nas `reference_image_asset_identifiers` or (multipart requests only) as\nraw `reference_images` bytes, never both. Reference videos arrive only\nas `reference_video_asset_identifiers`, which may reference uploaded or\ngenerated videos. At least one reference image or video is\nrequired.\n",
         "properties": {
           "prompt": {
             "description": "A natural-language prompt describing the video to produce. Reference media is addressed by position, as in \"@Image1 walks toward the camera with the motion of @Video1\".",
@@ -20039,9 +20059,19 @@
             "type": "array"
           },
           "reference_video_asset_identifiers": {
-            "description": "Videos generated with Ideogram to use as references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.",
+            "description": "Uploaded or generated videos to use as references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Upload video files first and pass their asset identifiers.",
             "items": {
               "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_audios": {
+            "description": "MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 15 seconds; combined duration must not exceed 15 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.",
+            "items": {
+              "format": "binary",
+              "type": "string"
             },
             "maxItems": 3,
             "minItems": 1,
@@ -20091,7 +20121,7 @@
         "type": "object"
       },
       "GenerateVideoSeedDance25ReferenceToVideoRequest": {
-        "description": "Request body for Seedance 2.5 reference-to-video. The prompt\naddresses references by position — `[Image1]`,\n`[Video1]`, and so on. Reference images arrive either\nas `reference_image_asset_identifiers` or (multipart requests only) as\nraw `reference_images` bytes, never both. Reference videos arrive only\nas `reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. At least one reference image or video is\nrequired.\n",
+        "description": "Request body for Seedance 2.5 reference-to-video. The prompt\naddresses references by position — `[Image1]`,\n`[Video1]`, and so on. Reference images arrive either\nas `reference_image_asset_identifiers` or (multipart requests only) as\nraw `reference_images` bytes, never both. Reference videos arrive only\nas `reference_video_asset_identifiers`, which may reference uploaded or\ngenerated videos. At least one reference image or video is\nrequired.\n",
         "properties": {
           "prompt": {
             "description": "A natural-language prompt describing the video to produce. Reference media is addressed by position, as in \"[Image1] walks toward the camera with the motion of [Video1]\".",
@@ -20120,9 +20150,19 @@
             "type": "array"
           },
           "reference_video_asset_identifiers": {
-            "description": "Videos generated with Ideogram to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Raw video uploads are not accepted.",
+            "description": "Uploaded or generated videos to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Upload video files first and pass their asset identifiers.",
             "items": {
               "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_audios": {
+            "description": "MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 30 seconds; combined duration must not exceed 30 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.",
+            "items": {
+              "format": "binary",
+              "type": "string"
             },
             "maxItems": 10,
             "minItems": 1,
@@ -20288,7 +20328,7 @@
         "type": "object"
       },
       "EditVideoMinimaxH3ReferenceToVideoRequest": {
-        "description": "Request body for MiniMax H3 reference-to-video. The prompt addresses\nreferences by position — `Image 1`, `Video 1`, and so on. Reference\nimages arrive either as `reference_image_asset_identifiers` or\n(multipart requests only) as raw `reference_images` bytes, never both.\nReference videos arrive only as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated with Ideogram. Every reference is optional.\n",
+        "description": "Request body for MiniMax H3 reference-to-video. The prompt addresses\nreferences by position — `Image 1`, `Video 1`, `Audio 1`, and so on. Reference\nimages arrive either as `reference_image_asset_identifiers` or\n(multipart requests only) as raw `reference_images` bytes, never both.\nReference videos arrive only as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated or uploaded with Ideogram. References are optional; audio\nrequires an image or video alongside it.\n",
         "properties": {
           "prompt": {
             "description": "A natural-language prompt describing the video to produce. Reference media is addressed by position, as in \"Image 1 walks toward the camera with the motion of Video 1\".",
@@ -20317,9 +20357,19 @@
             "type": "array"
           },
           "reference_video_asset_identifiers": {
-            "description": "Videos generated with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.",
+            "description": "Videos generated or uploaded with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.",
             "items": {
               "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_audios": {
+            "description": "MP3 or WAV audio references, in prompt order as Audio 1, Audio 2, and Audio 3. Multipart uploads only; up to 15 MB per file and 2–15 seconds each. Audio and video references must total no more than 15 seconds. Requires a reference image or video. At most 12 references across images, videos, and audio. Used only for this request and not saved as assets.",
+            "items": {
+              "format": "binary",
+              "type": "string"
             },
             "maxItems": 3,
             "minItems": 1,
@@ -20367,7 +20417,7 @@
         "type": "object"
       },
       "RemoveObjectFromV2AssetsResponse": {
-        "description": "Acknowledgement returned by `POST /v2/image/remove-object/ideogram-v1`. The request is\naccepted for asynchronous processing; poll for completion and results\nusing `GET /v1/generations/{generation_id}` with the returned\n`generation_id`.\n",
+        "description": "Acknowledgement returned by `POST /v2/image/remove-object/ideogram-1`. The request is\naccepted for asynchronous processing; poll for completion and results\nusing `GET /v1/generations/{generation_id}` with the returned\n`generation_id`.\n",
         "example": {
           "generation_id": "generation_id"
         },
@@ -20720,7 +20770,7 @@
               "line_items": [
                 {
                   "product": "ideogram_v4_generation",
-                  "endpoint": "/v2/image/generate/ideogram-v4",
+                  "endpoint": "/v2/image/generate/ideogram-4",
                   "cost_total": "84.00",
                   "user_email": "user_email",
                   "api_key": {
@@ -20742,7 +20792,7 @@
                 },
                 {
                   "product": "ideogram_v4_generation",
-                  "endpoint": "/v2/image/generate/ideogram-v4",
+                  "endpoint": "/v2/image/generate/ideogram-4",
                   "cost_total": "84.00",
                   "user_email": "user_email",
                   "api_key": {
@@ -20770,7 +20820,7 @@
               "line_items": [
                 {
                   "product": "ideogram_v4_generation",
-                  "endpoint": "/v2/image/generate/ideogram-v4",
+                  "endpoint": "/v2/image/generate/ideogram-4",
                   "cost_total": "84.00",
                   "user_email": "user_email",
                   "api_key": {
@@ -20792,7 +20842,7 @@
                 },
                 {
                   "product": "ideogram_v4_generation",
-                  "endpoint": "/v2/image/generate/ideogram-v4",
+                  "endpoint": "/v2/image/generate/ideogram-4",
                   "cost_total": "84.00",
                   "user_email": "user_email",
                   "api_key": {
@@ -20839,7 +20889,7 @@
           "line_items": [
             {
               "product": "ideogram_v4_generation",
-              "endpoint": "/v2/image/generate/ideogram-v4",
+              "endpoint": "/v2/image/generate/ideogram-4",
               "cost_total": "84.00",
               "user_email": "user_email",
               "api_key": {
@@ -20861,7 +20911,7 @@
             },
             {
               "product": "ideogram_v4_generation",
-              "endpoint": "/v2/image/generate/ideogram-v4",
+              "endpoint": "/v2/image/generate/ideogram-4",
               "cost_total": "84.00",
               "user_email": "user_email",
               "api_key": {
@@ -20917,7 +20967,7 @@
         "description": "One billed rate for one billing actor within one time bucket.",
         "example": {
           "product": "ideogram_v4_generation",
-          "endpoint": "/v2/image/generate/ideogram-v4",
+          "endpoint": "/v2/image/generate/ideogram-4",
           "cost_total": "84.00",
           "user_email": "user_email",
           "api_key": {
@@ -20946,7 +20996,7 @@
           },
           "endpoint": {
             "description": "The API endpoint path this product belongs to.",
-            "example": "/v2/image/generate/ideogram-v4",
+            "example": "/v2/image/generate/ideogram-4",
             "title": "endpoint",
             "type": "string"
           },
@@ -21618,7 +21668,7 @@
         "type": "object"
       },
       "UpscaleImageTopazStandardV2Response": {
-        "description": "Response returned by `POST /v2/image/upscale/topaz-standard-v2`.\nSynchronous requests (the default) include the upscaled image in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset; width and height\nreport the output dimensions.\n",
+        "description": "Response returned by `POST /v2/image/upscale/topaz-standard-2`.\nSynchronous requests (the default) include the upscaled image in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset; width and height\nreport the output dimensions.\n",
         "example": {
           "data": [
             {
@@ -24182,7 +24232,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV3Response": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-v3`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-3`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -24416,7 +24466,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV3CustomModelResponse": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-v3-custom-model`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-3-custom-model`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -24603,7 +24653,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV4Response": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-v4`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-4`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -24761,7 +24811,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV4CustomModelResponse": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-v4-custom-model`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-4-custom-model`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -24929,7 +24979,7 @@
         "type": "object"
       },
       "RemixImageIdeogramV3Response": {
-        "description": "Response returned by `POST /v2/image/remix/ideogram-v3`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/remix/ideogram-3`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -25182,7 +25232,7 @@
         "type": "object"
       },
       "RemixImageIdeogramV3CustomModelResponse": {
-        "description": "Response returned by `POST /v2/image/remix/ideogram-v3-custom-model`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/remix/ideogram-3-custom-model`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -25388,7 +25438,7 @@
         "type": "object"
       },
       "RemixImageIdeogramV4Response": {
-        "description": "Response returned by `POST /v2/image/remix/ideogram-v4`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to.\n",
+        "description": "Response returned by `POST /v2/image/remix/ideogram-4`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to.\n",
         "example": {
           "data": [
             {
@@ -25525,7 +25575,7 @@
         "type": "object"
       },
       "RemixImageIdeogramV3CharacterResponse": {
-        "description": "Response returned by `POST /v2/image/remix/ideogram-v3-character`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/remix/ideogram-3-character`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -25750,7 +25800,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV3TransparentResponse": {
-        "description": "Response returned by\n`POST /v2/image/generate/ideogram-v3-transparent`. Synchronous\nrequests (the default) include the generated images in `data`.\nRequests with `async` set to true omit `data`; poll for completion\nand results with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`. The seed reports the value the request\nresolved to when the caller left it unset.\n",
+        "description": "Response returned by\n`POST /v2/image/generate/ideogram-3-transparent`. Synchronous\nrequests (the default) include the generated images in `data`.\nRequests with `async` set to true omit `data`; poll for completion\nand results with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`. The seed reports the value the request\nresolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -25911,7 +25961,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV4TransparentResponse": {
-        "description": "Response returned by\n`POST /v2/image/generate/ideogram-v4-transparent`. Synchronous\nrequests (the default) include the generated images in `data`.\nRequests with `async` set to true omit `data`; poll for completion\nand results with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`. The seed reports the value the request\nresolved to when the caller left it unset.\n",
+        "description": "Response returned by\n`POST /v2/image/generate/ideogram-4-transparent`. Synchronous\nrequests (the default) include the generated images in `data`.\nRequests with `async` set to true omit `data`; poll for completion\nand results with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`. The seed reports the value the request\nresolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -26623,7 +26673,17 @@
             "type": "array"
           },
           "aspect_ratio": {
-            "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". The output is served at the closest aspect ratio the model supports, at 1K resolution. Defaults to \"1:1\".",
+            "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to \"1:1\".",
+            "type": "string"
+          },
+          "resolution_tier": {
+            "default": "1K",
+            "description": "The output resolution tier.",
+            "enum": [
+              "1K",
+              "2K",
+              "4K"
+            ],
             "type": "string"
           },
           "num_images": {
@@ -26988,31 +27048,37 @@
         "type": "object"
       },
       "GenerateImageGptImage25FlareRequest": {
-        "example": {
-          "aspect_ratio": "aspect_ratio",
-          "async": false,
-          "private": true,
-          "seed": 12345,
-          "webhook_url": "https://api.example.com/webhooks/ideogram",
-          "target_collection_id": "target_collection_id",
-          "prompt": "prompt",
-          "resolution": "resolution",
-          "num_images": 1
-        },
+        "description": "Source images are optional. When supplied (as `image_asset_identifiers`\nreferences, or as raw `images` bytes in multipart requests), the prompt\nis applied to the sources as an edit; if both forms are given, the\nreferences are used and the bytes are ignored. Without source images\nthe prompt alone drives the generation.\n",
         "properties": {
           "prompt": {
-            "description": "The prompt to generate images from. The model consumes it directly, without rewriting.",
+            "description": "The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.",
             "maxLength": 10000,
             "minLength": 1,
-            "title": "prompt",
             "type": "string"
+          },
+          "image_asset_identifiers": {
+            "description": "Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "type": "array"
+          },
+          "images": {
+            "description": "The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "type": "array"
           },
           "num_images": {
             "default": 1,
             "description": "The number of images to generate.",
             "maximum": 8,
             "minimum": 1,
-            "title": "num_images",
             "type": "integer"
           },
           "seed": {
@@ -27025,18 +27091,15 @@
           },
           "aspect_ratio": {
             "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". Ignored when `resolution` is provided. Defaults to \"1:1\".",
-            "title": "aspect_ratio",
             "type": "string"
           },
           "resolution": {
             "description": "Exact output resolution, formatted as \"WIDTHxHEIGHT\", for example\n\"2048x2048\" or \"1920x1088\". When provided, this takes precedence\nover `aspect_ratio`. The dimensions must satisfy GPT Image 2.5 Flare\nconstraints: each side is a multiple of 16, the largest side is at\nmost 3840px, the long:short ratio is at most 3:1, and total pixels\nare between 655360 and 8294400 inclusive.\n",
-            "title": "resolution",
             "type": "string"
           },
           "async": {
             "default": false,
             "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
-            "title": "async",
             "type": "boolean"
           },
           "webhook_url": {
@@ -27050,19 +27113,16 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "title": "private",
             "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "title": "target_collection_id",
             "type": "string"
           }
         },
         "required": [
           "prompt"
         ],
-        "title": "GenerateImageGptImage25FlareRequest",
         "type": "object"
       },
       "GenerateImageGptImage25SunburstResponse": {
@@ -27118,31 +27178,37 @@
         "type": "object"
       },
       "GenerateImageGptImage25SunburstRequest": {
-        "example": {
-          "aspect_ratio": "aspect_ratio",
-          "async": false,
-          "private": true,
-          "seed": 12345,
-          "webhook_url": "https://api.example.com/webhooks/ideogram",
-          "target_collection_id": "target_collection_id",
-          "prompt": "prompt",
-          "resolution": "resolution",
-          "num_images": 1
-        },
+        "description": "Source images are optional. When supplied (as `image_asset_identifiers`\nreferences, or as raw `images` bytes in multipart requests), the prompt\nis applied to the sources as an edit; if both forms are given, the\nreferences are used and the bytes are ignored. Without source images\nthe prompt alone drives the generation.\n",
         "properties": {
           "prompt": {
-            "description": "The prompt to generate images from. The model consumes it directly, without rewriting.",
+            "description": "The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.",
             "maxLength": 10000,
             "minLength": 1,
-            "title": "prompt",
             "type": "string"
+          },
+          "image_asset_identifiers": {
+            "description": "Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 16,
+            "minItems": 1,
+            "type": "array"
+          },
+          "images": {
+            "description": "The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 16,
+            "type": "array"
           },
           "num_images": {
             "default": 1,
             "description": "The number of images to generate.",
             "maximum": 8,
             "minimum": 1,
-            "title": "num_images",
             "type": "integer"
           },
           "seed": {
@@ -27155,18 +27221,15 @@
           },
           "aspect_ratio": {
             "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". Ignored when `resolution` is provided. Defaults to \"1:1\".",
-            "title": "aspect_ratio",
             "type": "string"
           },
           "resolution": {
             "description": "Exact output resolution, formatted as \"WIDTHxHEIGHT\", for example\n\"2048x2048\" or \"1920x1088\". When provided, this takes precedence\nover `aspect_ratio`. The dimensions must satisfy GPT Image 2.5 Sunburst\nconstraints: each side is a multiple of 16, the largest side is at\nmost 3840px, the long:short ratio is at most 3:1, and total pixels\nare between 655360 and 8294400 inclusive.\n",
-            "title": "resolution",
             "type": "string"
           },
           "async": {
             "default": false,
             "description": "When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
-            "title": "async",
             "type": "boolean"
           },
           "webhook_url": {
@@ -27180,23 +27243,20 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "title": "private",
             "type": "boolean"
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "title": "target_collection_id",
             "type": "string"
           }
         },
         "required": [
           "prompt"
         ],
-        "title": "GenerateImageGptImage25SunburstRequest",
         "type": "object"
       },
       "GenerateImageIdeogramV2Response": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-v2`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-2`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -27359,7 +27419,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV2AResponse": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-v2a`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-2a`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -27515,7 +27575,7 @@
         "type": "object"
       },
       "InpaintImageIdeogramV3Response": {
-        "description": "Response returned by `POST /v2/image/inpaint/ideogram-v3`.\nSynchronous requests (the default) include the repainted images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed, width, and height report\nthe values the request resolved to when the caller left them unset.\n",
+        "description": "Response returned by `POST /v2/image/inpaint/ideogram-3`.\nSynchronous requests (the default) include the repainted images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed, width, and height report\nthe values the request resolved to when the caller left them unset.\n",
         "example": {
           "data": [
             {
@@ -27773,7 +27833,7 @@
         "type": "object"
       },
       "InpaintImageIdeogramV3CustomModelResponse": {
-        "description": "Response returned by\n`POST /v2/image/inpaint/ideogram-v3-custom-model`. Synchronous\nrequests include the repainted images in `data`; asynchronous requests\nomit `data` and can be polled with\n`GET /v1/generations/{generation_id}`.\n",
+        "description": "Response returned by\n`POST /v2/image/inpaint/ideogram-3-custom-model`. Synchronous\nrequests include the repainted images in `data`; asynchronous requests\nomit `data` and can be polled with\n`GET /v1/generations/{generation_id}`.\n",
         "example": {
           "data": [
             {
@@ -28214,7 +28274,7 @@
         "type": "object"
       },
       "GenerateImageIdeogramV3CharacterResponse": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-v3-character`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-3-character`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -28420,7 +28480,7 @@
         "type": "object"
       },
       "InpaintImageIdeogramV3CharacterResponse": {
-        "description": "Response returned by `POST /v2/image/inpaint/ideogram-v3-character`.\nSynchronous requests (the default) include the repainted images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed, width, and height report\nthe values the request resolved to when the caller left them unset.\n",
+        "description": "Response returned by `POST /v2/image/inpaint/ideogram-3-character`.\nSynchronous requests (the default) include the repainted images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed, width, and height report\nthe values the request resolved to when the caller left them unset.\n",
         "example": {
           "data": [
             {

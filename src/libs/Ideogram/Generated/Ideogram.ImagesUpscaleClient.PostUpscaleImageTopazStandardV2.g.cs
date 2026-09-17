@@ -154,7 +154,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/upscale/topaz-standard-v2",
+                                path: "/v2/image/upscale/topaz-standard-2",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -314,7 +314,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazStandardV2",
                                 methodName: "PostUpscaleImageTopazStandardV2Async",
-                                pathTemplate: "\"/v2/image/upscale/topaz-standard-v2\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-standard-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -348,7 +348,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazStandardV2",
                                 methodName: "PostUpscaleImageTopazStandardV2Async",
-                                pathTemplate: "\"/v2/image/upscale/topaz-standard-v2\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-standard-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -389,7 +389,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazStandardV2",
                                 methodName: "PostUpscaleImageTopazStandardV2Async",
-                                pathTemplate: "\"/v2/image/upscale/topaz-standard-v2\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-standard-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -437,7 +437,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazStandardV2",
                                 methodName: "PostUpscaleImageTopazStandardV2Async",
-                                pathTemplate: "\"/v2/image/upscale/topaz-standard-v2\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-standard-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -459,7 +459,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostUpscaleImageTopazStandardV2",
                                 methodName: "PostUpscaleImageTopazStandardV2Async",
-                                pathTemplate: "\"/v2/image/upscale/topaz-standard-v2\"",
+                                pathTemplate: "\"/v2/image/upscale/topaz-standard-2\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

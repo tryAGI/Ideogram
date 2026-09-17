@@ -60,7 +60,7 @@ namespace Ideogram
         /// request to a model that crops the source to the new shape; that<br/>
         /// combination is served only at the 1K tier and is rejected at 2K.<br/>
         /// (The model-pinned remix endpoints such as<br/>
-        /// `/v2/image/remix/ideogram-v4` reject the combination outright.)<br/>
+        /// `/v2/image/remix/ideogram-4` reject the combination outright.)<br/>
         /// `seed` is honored only on the compatible model; the default model<br/>
         /// synthesizes an unseeded instruction prompt, so results are not<br/>
         /// reproducible there.<br/>
@@ -114,7 +114,7 @@ namespace Ideogram
         /// request to a model that crops the source to the new shape; that<br/>
         /// combination is served only at the 1K tier and is rejected at 2K.<br/>
         /// (The model-pinned remix endpoints such as<br/>
-        /// `/v2/image/remix/ideogram-v4` reject the combination outright.)<br/>
+        /// `/v2/image/remix/ideogram-4` reject the combination outright.)<br/>
         /// `seed` is honored only on the compatible model; the default model<br/>
         /// synthesizes an unseeded instruction prompt, so results are not<br/>
         /// reproducible there.<br/>
@@ -987,7 +987,7 @@ namespace Ideogram
         /// request to a model that crops the source to the new shape; that<br/>
         /// combination is served only at the 1K tier and is rejected at 2K.<br/>
         /// (The model-pinned remix endpoints such as<br/>
-        /// `/v2/image/remix/ideogram-v4` reject the combination outright.)<br/>
+        /// `/v2/image/remix/ideogram-4` reject the combination outright.)<br/>
         /// `seed` is honored only on the compatible model; the default model<br/>
         /// synthesizes an unseeded instruction prompt, so results are not<br/>
         /// reproducible there.<br/>

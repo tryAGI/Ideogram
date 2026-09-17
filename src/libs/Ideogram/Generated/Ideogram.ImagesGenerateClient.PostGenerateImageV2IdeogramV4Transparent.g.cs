@@ -160,7 +160,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/generate/ideogram-v4-transparent",
+                                path: "/v2/image/generate/ideogram-4-transparent",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -231,7 +231,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV4TransparentAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -265,7 +265,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV4TransparentAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -306,7 +306,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV4TransparentAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -354,7 +354,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV4TransparentAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -376,7 +376,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2IdeogramV4Transparent",
                                 methodName: "PostGenerateImageV2IdeogramV4TransparentAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-v4-transparent\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-transparent\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

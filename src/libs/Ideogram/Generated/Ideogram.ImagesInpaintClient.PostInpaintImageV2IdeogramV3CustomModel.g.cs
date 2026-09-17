@@ -150,7 +150,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/inpaint/ideogram-v3-custom-model",
+                                path: "/v2/image/inpaint/ideogram-3-custom-model",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -450,7 +450,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -484,7 +484,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -525,7 +525,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -573,7 +573,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -595,7 +595,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostInpaintImageV2IdeogramV3CustomModel",
                                 methodName: "PostInpaintImageV2IdeogramV3CustomModelAsync",
-                                pathTemplate: "\"/v2/image/inpaint/ideogram-v3-custom-model\"",
+                                pathTemplate: "\"/v2/image/inpaint/ideogram-3-custom-model\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
