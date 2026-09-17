@@ -164,7 +164,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/remix/ideogram-v4",
+                                path: "/v2/image/remix/ideogram-4",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -360,7 +360,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemixImageV2IdeogramV4",
                                 methodName: "PostRemixImageV2IdeogramV4Async",
-                                pathTemplate: "\"/v2/image/remix/ideogram-v4\"",
+                                pathTemplate: "\"/v2/image/remix/ideogram-4\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -394,7 +394,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemixImageV2IdeogramV4",
                                 methodName: "PostRemixImageV2IdeogramV4Async",
-                                pathTemplate: "\"/v2/image/remix/ideogram-v4\"",
+                                pathTemplate: "\"/v2/image/remix/ideogram-4\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -435,7 +435,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemixImageV2IdeogramV4",
                                 methodName: "PostRemixImageV2IdeogramV4Async",
-                                pathTemplate: "\"/v2/image/remix/ideogram-v4\"",
+                                pathTemplate: "\"/v2/image/remix/ideogram-4\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -483,7 +483,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemixImageV2IdeogramV4",
                                 methodName: "PostRemixImageV2IdeogramV4Async",
-                                pathTemplate: "\"/v2/image/remix/ideogram-v4\"",
+                                pathTemplate: "\"/v2/image/remix/ideogram-4\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -505,7 +505,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostRemixImageV2IdeogramV4",
                                 methodName: "PostRemixImageV2IdeogramV4Async",
-                                pathTemplate: "\"/v2/image/remix/ideogram-v4\"",
+                                pathTemplate: "\"/v2/image/remix/ideogram-4\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

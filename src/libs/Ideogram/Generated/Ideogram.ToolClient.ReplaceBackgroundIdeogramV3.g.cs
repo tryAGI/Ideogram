@@ -142,7 +142,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/replace-background/ideogram-v3",
+                                path: "/v2/image/replace-background/ideogram-3",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -298,7 +298,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackgroundIdeogramV3",
                                 methodName: "ReplaceBackgroundIdeogramV3Async",
-                                pathTemplate: "\"/v2/image/replace-background/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -332,7 +332,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackgroundIdeogramV3",
                                 methodName: "ReplaceBackgroundIdeogramV3Async",
-                                pathTemplate: "\"/v2/image/replace-background/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -373,7 +373,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackgroundIdeogramV3",
                                 methodName: "ReplaceBackgroundIdeogramV3Async",
-                                pathTemplate: "\"/v2/image/replace-background/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -421,7 +421,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackgroundIdeogramV3",
                                 methodName: "ReplaceBackgroundIdeogramV3Async",
-                                pathTemplate: "\"/v2/image/replace-background/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -443,7 +443,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "ReplaceBackgroundIdeogramV3",
                                 methodName: "ReplaceBackgroundIdeogramV3Async",
-                                pathTemplate: "\"/v2/image/replace-background/ideogram-v3\"",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

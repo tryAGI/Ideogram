@@ -32,10 +32,18 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at 1K resolution. Defaults to "1:1".
+        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to "1:1".
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         public string? AspectRatio { get; set; }
+
+        /// <summary>
+        /// The output resolution tier.<br/>
+        /// Default Value: 1K
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("resolution_tier")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageGemini31FlashRequestResolutionTierJsonConverter))]
+        public global::Ideogram.GenerateImageGemini31FlashRequestResolutionTier? ResolutionTier { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -105,7 +113,11 @@ namespace Ideogram
         /// The source images to edit (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at 1K resolution. Defaults to "1:1".
+        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to "1:1".
+        /// </param>
+        /// <param name="resolutionTier">
+        /// The output resolution tier.<br/>
+        /// Default Value: 1K
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -144,6 +156,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? images,
             string? aspectRatio,
+            global::Ideogram.GenerateImageGemini31FlashRequestResolutionTier? resolutionTier,
             int? numImages,
             int? seed,
             bool? async,
@@ -155,6 +168,7 @@ namespace Ideogram
             this.ImageAssetIdentifiers = imageAssetIdentifiers;
             this.Images = images;
             this.AspectRatio = aspectRatio;
+            this.ResolutionTier = resolutionTier;
             this.NumImages = numImages;
             this.Seed = seed;
             this.Async = async;

@@ -15,7 +15,7 @@ namespace Ideogram
         /// are supplied, the references win and the bytes are ignored. Without<br/>
         /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
-        /// at 1K resolution.<br/>
+        /// at the requested `resolution_tier` (1K by default).<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -49,7 +49,7 @@ namespace Ideogram
         /// are supplied, the references win and the bytes are ignored. Without<br/>
         /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
-        /// at 1K resolution.<br/>
+        /// at the requested `resolution_tier` (1K by default).<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -83,7 +83,7 @@ namespace Ideogram
         /// are supplied, the references win and the bytes are ignored. Without<br/>
         /// source images the prompt alone drives the generation.<br/>
         /// The output is served at the closest aspect ratio the model supports,<br/>
-        /// at 1K resolution.<br/>
+        /// at the requested `resolution_tier` (1K by default).<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -106,7 +106,11 @@ namespace Ideogram
         /// The source images to edit (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at 1K resolution. Defaults to "1:1".
+        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to "1:1".
+        /// </param>
+        /// <param name="resolutionTier">
+        /// The output resolution tier.<br/>
+        /// Default Value: 1K
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -146,6 +150,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
             string? aspectRatio = default,
+            global::Ideogram.GenerateImageGemini31FlashRequestResolutionTier? resolutionTier = default,
             int? numImages = default,
             int? seed = default,
             bool? async = default,

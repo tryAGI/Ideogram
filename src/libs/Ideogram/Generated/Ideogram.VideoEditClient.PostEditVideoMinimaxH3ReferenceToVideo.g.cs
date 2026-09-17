@@ -44,19 +44,22 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Produce a video from reference images and videos with MiniMax H3<br/>
+        /// Produce a video from reference media with MiniMax H3<br/>
         /// Produce a video from a text prompt and reference media with MiniMax H3.<br/>
         /// The prompt addresses the references by position: the first reference<br/>
         /// image is `Image 1`, the second `Image 2`, the first reference video is<br/>
-        /// `Video 1`, and so on. Supply reference images either as<br/>
+        /// `Video 1`, and the first reference audio is `Audio 1`. Supply reference<br/>
+        /// images either as<br/>
         /// `reference_image_asset_identifiers` (images already stored with<br/>
         /// Ideogram) or as raw `reference_images` bytes (multipart requests only);<br/>
         /// supplying both is rejected, and uploaded bytes are used for this request<br/>
         /// only and are not stored as an asset. Supply reference videos as<br/>
         /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated with Ideogram. At most 9 reference images and 3 reference<br/>
+        /// generated or uploaded with Ideogram. At most 9 reference images and 3 reference<br/>
         /// videos are accepted, and reference videos are capped again on clip<br/>
-        /// length.<br/>
+        /// length. Optional `reference_audios` accepts MP3/WAV uploads alongside<br/>
+        /// an image or video. Audio and video references must total at most 15<br/>
+        /// seconds; at most 12 references are accepted across all media.<br/>
         /// References are optional. With none, the video is produced from the<br/>
         /// prompt alone.<br/>
         /// Video generation always runs asynchronously: the response returns as<br/>
@@ -93,19 +96,22 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Produce a video from reference images and videos with MiniMax H3<br/>
+        /// Produce a video from reference media with MiniMax H3<br/>
         /// Produce a video from a text prompt and reference media with MiniMax H3.<br/>
         /// The prompt addresses the references by position: the first reference<br/>
         /// image is `Image 1`, the second `Image 2`, the first reference video is<br/>
-        /// `Video 1`, and so on. Supply reference images either as<br/>
+        /// `Video 1`, and the first reference audio is `Audio 1`. Supply reference<br/>
+        /// images either as<br/>
         /// `reference_image_asset_identifiers` (images already stored with<br/>
         /// Ideogram) or as raw `reference_images` bytes (multipart requests only);<br/>
         /// supplying both is rejected, and uploaded bytes are used for this request<br/>
         /// only and are not stored as an asset. Supply reference videos as<br/>
         /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated with Ideogram. At most 9 reference images and 3 reference<br/>
+        /// generated or uploaded with Ideogram. At most 9 reference images and 3 reference<br/>
         /// videos are accepted, and reference videos are capped again on clip<br/>
-        /// length.<br/>
+        /// length. Optional `reference_audios` accepts MP3/WAV uploads alongside<br/>
+        /// an image or video. Audio and video references must total at most 15<br/>
+        /// seconds; at most 12 references are accepted across all media.<br/>
         /// References are optional. With none, the video is produced from the<br/>
         /// prompt alone.<br/>
         /// Video generation always runs asynchronously: the response returns as<br/>
@@ -236,6 +242,24 @@ namespace Ideogram
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.ReferenceVideoAssetIdentifiers!, x => x.ToJson(JsonSerializerContext)))}]"),
                                     name: "\"reference_video_asset_identifiers\"");
+
+                            }
+                            if (request.ReferenceAudios != default)
+                            {
+
+                                for (var __iReferenceAudios = 0; __iReferenceAudios < request.ReferenceAudios.Count; __iReferenceAudios++)
+                                {
+                                    var __contentReferenceAudios = new global::System.Net.Http.ByteArrayContent(request.ReferenceAudios[__iReferenceAudios]);
+                                __contentReferenceAudios.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                                    __httpRequestContent.Add(
+                                        content: __contentReferenceAudios,
+                                        name: "\"reference_audios\"",
+                                        fileName: $"\"file{__iReferenceAudios}.bin\"");
+                                    if (__contentReferenceAudios.Headers.ContentDisposition != null)
+                                    {
+                                        __contentReferenceAudios.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
 
                             }
                             if (request.AspectRatio != default)
@@ -873,19 +897,22 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Produce a video from reference images and videos with MiniMax H3<br/>
+        /// Produce a video from reference media with MiniMax H3<br/>
         /// Produce a video from a text prompt and reference media with MiniMax H3.<br/>
         /// The prompt addresses the references by position: the first reference<br/>
         /// image is `Image 1`, the second `Image 2`, the first reference video is<br/>
-        /// `Video 1`, and so on. Supply reference images either as<br/>
+        /// `Video 1`, and the first reference audio is `Audio 1`. Supply reference<br/>
+        /// images either as<br/>
         /// `reference_image_asset_identifiers` (images already stored with<br/>
         /// Ideogram) or as raw `reference_images` bytes (multipart requests only);<br/>
         /// supplying both is rejected, and uploaded bytes are used for this request<br/>
         /// only and are not stored as an asset. Supply reference videos as<br/>
         /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated with Ideogram. At most 9 reference images and 3 reference<br/>
+        /// generated or uploaded with Ideogram. At most 9 reference images and 3 reference<br/>
         /// videos are accepted, and reference videos are capped again on clip<br/>
-        /// length.<br/>
+        /// length. Optional `reference_audios` accepts MP3/WAV uploads alongside<br/>
+        /// an image or video. Audio and video references must total at most 15<br/>
+        /// seconds; at most 12 references are accepted across all media.<br/>
         /// References are optional. With none, the video is produced from the<br/>
         /// prompt alone.<br/>
         /// Video generation always runs asynchronously: the response returns as<br/>
@@ -911,7 +938,10 @@ namespace Ideogram
         /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
         /// </param>
         /// <param name="referenceVideoAssetIdentifiers">
-        /// Videos generated with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.
+        /// Videos generated or uploaded with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.
+        /// </param>
+        /// <param name="referenceAudios">
+        /// MP3 or WAV audio references, in prompt order as Audio 1, Audio 2, and Audio 3. Multipart uploads only; up to 15 MB per file and 2–15 seconds each. Audio and video references must total no more than 15 seconds. Requires a reference image or video. At most 12 references across images, videos, and audio. Used only for this request and not saved as assets.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated video.<br/>
@@ -960,6 +990,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? referenceImages = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceVideoAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? referenceAudios = default,
             global::Ideogram.MinimaxH3AspectRatio? aspectRatio = default,
             global::Ideogram.MinimaxH3Resolution? resolution = default,
             int? duration = default,
@@ -976,6 +1007,7 @@ namespace Ideogram
                 ReferenceImageAssetIdentifiers = referenceImageAssetIdentifiers,
                 ReferenceImages = referenceImages,
                 ReferenceVideoAssetIdentifiers = referenceVideoAssetIdentifiers,
+                ReferenceAudios = referenceAudios,
                 AspectRatio = aspectRatio,
                 Resolution = resolution,
                 Duration = duration,

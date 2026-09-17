@@ -9,8 +9,8 @@ namespace Ideogram
     /// `[Video1]`, and so on. Reference images arrive either<br/>
     /// as `reference_image_asset_identifiers` or (multipart requests only) as<br/>
     /// raw `reference_images` bytes, never both. Reference videos arrive only<br/>
-    /// as `reference_video_asset_identifiers`, which must reference videos<br/>
-    /// generated with Ideogram. At least one reference image or video is<br/>
+    /// as `reference_video_asset_identifiers`, which may reference uploaded or<br/>
+    /// generated videos. At least one reference image or video is<br/>
     /// required.
     /// </summary>
     public sealed partial class GenerateVideoSeedDance25ReferenceToVideoRequest
@@ -37,10 +37,16 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? ReferenceImages { get; set; }
 
         /// <summary>
-        /// Videos generated with Ideogram to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Raw video uploads are not accepted.
+        /// Uploaded or generated videos to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Upload video files first and pass their asset identifiers.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_video_asset_identifiers")]
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceVideoAssetIdentifiers { get; set; }
+
+        /// <summary>
+        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 30 seconds; combined duration must not exceed 30 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("reference_audios")]
+        public global::System.Collections.Generic.IList<byte[]>? ReferenceAudios { get; set; }
 
         /// <summary>
         /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
@@ -123,7 +129,10 @@ namespace Ideogram
         /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
         /// </param>
         /// <param name="referenceVideoAssetIdentifiers">
-        /// Videos generated with Ideogram to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Raw video uploads are not accepted.
+        /// Uploaded or generated videos to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Upload video files first and pass their asset identifiers.
+        /// </param>
+        /// <param name="referenceAudios">
+        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 30 seconds; combined duration must not exceed 30 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
@@ -169,6 +178,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? referenceImages,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceVideoAssetIdentifiers,
+            global::System.Collections.Generic.IList<byte[]>? referenceAudios,
             global::Ideogram.SeedDance2AspectRatio? aspectRatio,
             global::Ideogram.SeedDance25Resolution? resolution,
             int? duration,
@@ -181,6 +191,7 @@ namespace Ideogram
             this.ReferenceImageAssetIdentifiers = referenceImageAssetIdentifiers;
             this.ReferenceImages = referenceImages;
             this.ReferenceVideoAssetIdentifiers = referenceVideoAssetIdentifiers;
+            this.ReferenceAudios = referenceAudios;
             this.AspectRatio = aspectRatio;
             this.Resolution = resolution;
             this.Duration = duration;

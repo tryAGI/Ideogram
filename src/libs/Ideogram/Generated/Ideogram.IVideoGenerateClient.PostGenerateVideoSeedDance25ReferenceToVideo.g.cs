@@ -16,10 +16,12 @@ namespace Ideogram
         /// with Ideogram) or as raw `reference_images` bytes (multipart requests<br/>
         /// only); supplying both is rejected, and uploaded bytes are used for this<br/>
         /// request only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated with Ideogram. At most 9 reference images and 10<br/>
+        /// `reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 10<br/>
         /// reference videos are accepted, and reference videos are capped again on<br/>
         /// clip length: each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds.<br/>
+        /// Supply up to 10 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.<br/>
+        /// Each audio clip must be 2–30 seconds, with at most 30 seconds total. Reference<br/>
+        /// them as `[Audio1]`, `[Audio2]`, and so on. Audio is used for this request only.<br/>
         /// At least one reference image or video is required: the model<br/>
         /// conditions every generation on the media it is given, so a request<br/>
         /// with no references is rejected.<br/>
@@ -57,10 +59,12 @@ namespace Ideogram
         /// with Ideogram) or as raw `reference_images` bytes (multipart requests<br/>
         /// only); supplying both is rejected, and uploaded bytes are used for this<br/>
         /// request only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated with Ideogram. At most 9 reference images and 10<br/>
+        /// `reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 10<br/>
         /// reference videos are accepted, and reference videos are capped again on<br/>
         /// clip length: each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds.<br/>
+        /// Supply up to 10 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.<br/>
+        /// Each audio clip must be 2–30 seconds, with at most 30 seconds total. Reference<br/>
+        /// them as `[Audio1]`, `[Audio2]`, and so on. Audio is used for this request only.<br/>
         /// At least one reference image or video is required: the model<br/>
         /// conditions every generation on the media it is given, so a request<br/>
         /// with no references is rejected.<br/>
@@ -98,10 +102,12 @@ namespace Ideogram
         /// with Ideogram) or as raw `reference_images` bytes (multipart requests<br/>
         /// only); supplying both is rejected, and uploaded bytes are used for this<br/>
         /// request only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated with Ideogram. At most 9 reference images and 10<br/>
+        /// `reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 10<br/>
         /// reference videos are accepted, and reference videos are capped again on<br/>
         /// clip length: each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds.<br/>
+        /// Supply up to 10 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.<br/>
+        /// Each audio clip must be 2–30 seconds, with at most 30 seconds total. Reference<br/>
+        /// them as `[Audio1]`, `[Audio2]`, and so on. Audio is used for this request only.<br/>
         /// At least one reference image or video is required: the model<br/>
         /// conditions every generation on the media it is given, so a request<br/>
         /// with no references is rejected.<br/>
@@ -128,7 +134,10 @@ namespace Ideogram
         /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
         /// </param>
         /// <param name="referenceVideoAssetIdentifiers">
-        /// Videos generated with Ideogram to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Raw video uploads are not accepted.
+        /// Uploaded or generated videos to use as references, by reference, in prompt order. Each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds. Upload video files first and pass their asset identifiers.
+        /// </param>
+        /// <param name="referenceAudios">
+        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 30 seconds; combined duration must not exceed 30 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
@@ -175,6 +184,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? referenceImages = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceVideoAssetIdentifiers = default,
+            global::System.Collections.Generic.IList<byte[]>? referenceAudios = default,
             global::Ideogram.SeedDance2AspectRatio? aspectRatio = default,
             global::Ideogram.SeedDance25Resolution? resolution = default,
             int? duration = default,
