@@ -7626,6 +7626,186 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.design_controller"
       }
     },
+    "/v2/image/describe/ideogram-3": {
+      "post": {
+        "description": "Generate a natural-language description of an image using Ideogram's\n3.0-generation image captioner (a fine-tune of the Qwen2-VL\nvision-language model).\n\nSupply the source either as an `image_asset_identifier` reference (an\nimage already stored with Ideogram) or as raw `image` bytes (multipart\nrequests only). Provide exactly one of the two forms; supplying both,\nor neither, is rejected with a 400.\n\nSupported image formats include JPEG, PNG, and WebP.\n",
+        "operationId": "post_describe_image_ideogram_v3",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/DescribeImageIdeogramV3Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DescribeImageIdeogramV3Request"
+              }
+            }
+          },
+          "description": "A request to describe one image. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DescribeImageIdeogramV3Response"
+                }
+              }
+            },
+            "description": "Description(s) generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "The referenced source asset was not found."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageSafetyError"
+                }
+              }
+            },
+            "description": "Image failed the safety check."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Describe with Ideogram 3.0",
+        "tags": [
+          "image-describe"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.image_describe_controller"
+      }
+    },
+    "/v2/image/describe/ideogram-4": {
+      "post": {
+        "description": "Describe an image using Ideogram's 4.0-generation image captioner (a\nfine-tune of the Qwen3-VL vision-language model) and return a\nstructured `V4JsonPrompt`. The\nreturned `json_prompt` is a working JSON prompt that can be passed\ndirectly as `json_prompt` to the `/v1/ideogram-v4/generate` family of\nendpoints.\n\nSupply the source either as an `image_asset_identifier` reference (an\nimage already stored with Ideogram) or as raw `image` bytes (multipart\nrequests only). Provide exactly one of the two forms; supplying both,\nor neither, is rejected with a 400.\n\nSupported image formats include JPEG, PNG, and WebP.\n",
+        "operationId": "post_describe_image_ideogram_v4",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/DescribeImageIdeogramV4Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DescribeImageIdeogramV4Request"
+              }
+            }
+          },
+          "description": "A request to describe one image. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DescribeImageIdeogramV4Response"
+                }
+              }
+            },
+            "description": "Structured prompt generated successfully."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "The referenced source asset was not found."
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageSafetyError"
+                }
+              }
+            },
+            "description": "Image failed the safety check."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Describe with Ideogram 4.0",
+        "tags": [
+          "image-describe"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.image_describe_controller"
+      }
+    },
     "/v2/image/generate/auto": {
       "post": {
         "description": "Generate one or more images without choosing a model. The server\nselects the model best suited to the request and may route different\nrequests to different models.\n\nSupplying source images turns the request into a transform: the server\npicks a model that can edit, and the prompt describes the change to\napply. Provide the sources either as `image_asset_identifiers`\nreferences (images already stored with Ideogram) or as raw `images`\nbytes (multipart requests only) — if both are supplied, the references\nwin and the bytes are ignored. `negative_prompt` and\n`style_reference_asset_identifiers` only apply without source images;\ncombining them with sources is rejected with a 422 rather than\nsilently ignored.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n",
@@ -24227,6 +24407,190 @@
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output is added to it when the request completes.",
             "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DescribeImageIdeogramV3Response": {
+        "description": "Response returned by `POST /v2/image/describe/ideogram-3`.",
+        "example": {
+          "description_id": "description_id",
+          "created": "2000-01-23T04:56:07+00:00",
+          "descriptions": [
+            {
+              "text": "text"
+            },
+            {
+              "text": "text"
+            }
+          ]
+        },
+        "properties": {
+          "description_id": {
+            "description": "URL-safe base64 ID of the description that was created.",
+            "title": "description_id",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time the request was created.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          },
+          "descriptions": {
+            "description": "The generated description(s) for the provided image.",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedDescription"
+            },
+            "title": "descriptions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "created",
+          "description_id",
+          "descriptions"
+        ],
+        "title": "DescribeImageIdeogramV3Response",
+        "type": "object"
+      },
+      "GeneratedDescription": {
+        "example": {
+          "text": "text"
+        },
+        "properties": {
+          "text": {
+            "description": "The generated description for the provided image.",
+            "title": "text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "GeneratedDescription",
+        "type": "object"
+      },
+      "DescribeImageIdeogramV3Request": {
+        "description": "Supply the source image either as an `image_asset_identifier`\nreference or (multipart requests only) as raw `image` bytes. Provide\nexactly one of the two forms; supplying both, or neither, is rejected\nwith a 400.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.",
+            "format": "binary",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DescribeImageIdeogramV4Response": {
+        "description": "Response returned by `POST /v2/image/describe/ideogram-4`.\nThe `json_prompt` field is a structured `V4JsonPrompt` that can be\npassed back as `json_prompt` to the `/v1/ideogram-v4/generate` family\nof endpoints.\n",
+        "example": {
+          "description_id": "description_id",
+          "created": "2000-01-23T04:56:07+00:00",
+          "json_prompt": {
+            "high_level_description": "high_level_description",
+            "style_description": {
+              "photo": "photo",
+              "art_style": "art_style",
+              "medium": "medium",
+              "aesthetics": "aesthetics",
+              "lighting": "lighting",
+              "color_palette": [
+                "#FFD700",
+                "#FFD700"
+              ]
+            },
+            "compositional_deconstruction": {
+              "background": "background",
+              "elements": [
+                {
+                  "bbox": [
+                    0,
+                    0,
+                    1000,
+                    1000
+                  ],
+                  "type": "obj",
+                  "desc": "desc",
+                  "color_palette": [
+                    "#FFD700",
+                    "#FFD700"
+                  ]
+                },
+                {
+                  "bbox": [
+                    0,
+                    0,
+                    1000,
+                    1000
+                  ],
+                  "type": "obj",
+                  "desc": "desc",
+                  "color_palette": [
+                    "#FFD700",
+                    "#FFD700"
+                  ]
+                }
+              ]
+            },
+            "tags": [
+              "tags",
+              "tags"
+            ]
+          }
+        },
+        "properties": {
+          "description_id": {
+            "description": "URL-safe base64 ID of the description that was created.",
+            "title": "description_id",
+            "type": "string"
+          },
+          "created": {
+            "description": "The time the request was created.",
+            "format": "date-time",
+            "title": "created",
+            "type": "string"
+          },
+          "json_prompt": {
+            "$ref": "#/components/schemas/V4JsonPrompt"
+          }
+        },
+        "required": [
+          "created",
+          "description_id",
+          "json_prompt"
+        ],
+        "title": "DescribeImageIdeogramV4Response",
+        "type": "object"
+      },
+      "DescribeImageIdeogramV4Request": {
+        "description": "Supply the source image either as an `image_asset_identifier`\nreference or (multipart requests only) as raw `image` bytes. Provide\nexactly one of the two forms; supplying both, or neither, is rejected\nwith a 400.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.",
+            "format": "binary",
+            "type": "string"
+          },
+          "include_bbox": {
+            "default": true,
+            "description": "Whether to include bounding boxes on the subjects and texts of the returned `json_prompt`. Defaults to true so the prompt preserves the spatial layout of the described image.",
+            "type": "boolean"
+          },
+          "include_style_descriptions": {
+            "default": false,
+            "description": "Whether to include a free-form style description on the returned `json_prompt`. Defaults to false.",
+            "type": "boolean"
+          },
+          "include_tags": {
+            "default": false,
+            "description": "Whether to include the captioner's free-form tags on the returned `json_prompt`. Defaults to false.",
+            "type": "boolean"
           }
         },
         "type": "object"

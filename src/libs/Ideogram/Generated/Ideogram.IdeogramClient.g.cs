@@ -113,6 +113,15 @@ namespace Ideogram
         };
 
         /// <summary>
+        ///
+        /// </summary>
+        public ImageDescribeClient ImageDescribe => new ImageDescribeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
         /// Generate images with a specific model contract. Requests are JSON<br/>
         /// (Ideogram 3.0 also accepts multipart for style reference bytes) and<br/>
         /// return a generation id that can be polled via<br/>
