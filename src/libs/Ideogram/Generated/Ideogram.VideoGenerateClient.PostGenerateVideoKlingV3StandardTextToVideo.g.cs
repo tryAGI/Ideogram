@@ -138,7 +138,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/video/generate/kling-v3-standard-text-to-video",
+                                path: "/v2/video/generate/kling-3-standard-text-to-video",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -209,7 +209,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateVideoKlingV3StandardTextToVideo",
                                 methodName: "PostGenerateVideoKlingV3StandardTextToVideoAsync",
-                                pathTemplate: "\"/v2/video/generate/kling-v3-standard-text-to-video\"",
+                                pathTemplate: "\"/v2/video/generate/kling-3-standard-text-to-video\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -243,7 +243,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateVideoKlingV3StandardTextToVideo",
                                 methodName: "PostGenerateVideoKlingV3StandardTextToVideoAsync",
-                                pathTemplate: "\"/v2/video/generate/kling-v3-standard-text-to-video\"",
+                                pathTemplate: "\"/v2/video/generate/kling-3-standard-text-to-video\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -284,7 +284,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateVideoKlingV3StandardTextToVideo",
                                 methodName: "PostGenerateVideoKlingV3StandardTextToVideoAsync",
-                                pathTemplate: "\"/v2/video/generate/kling-v3-standard-text-to-video\"",
+                                pathTemplate: "\"/v2/video/generate/kling-3-standard-text-to-video\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -332,7 +332,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateVideoKlingV3StandardTextToVideo",
                                 methodName: "PostGenerateVideoKlingV3StandardTextToVideoAsync",
-                                pathTemplate: "\"/v2/video/generate/kling-v3-standard-text-to-video\"",
+                                pathTemplate: "\"/v2/video/generate/kling-3-standard-text-to-video\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -354,7 +354,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateVideoKlingV3StandardTextToVideo",
                                 methodName: "PostGenerateVideoKlingV3StandardTextToVideoAsync",
-                                pathTemplate: "\"/v2/video/generate/kling-v3-standard-text-to-video\"",
+                                pathTemplate: "\"/v2/video/generate/kling-3-standard-text-to-video\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

@@ -4,10 +4,10 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The axis to vary while everything else stays on-brand. `PEOPLE`<br/>
-    /// replaces the people in the ad with different talent. `SETTING`<br/>
+    /// The axis to vary while everything else stays on-brand. `people`<br/>
+    /// replaces the people in the ad with different talent. `setting`<br/>
     /// moves the same subject and product to a different environment.<br/>
-    /// `GROUP_SIZE` changes how many people appear. `SCENE` shifts the<br/>
+    /// `group_size` changes how many people appear. `scene` shifts the<br/>
     /// moment or occasion (time of day, season, or activity).
     /// </summary>
     public enum AdVariationsRequestVariationType
@@ -42,10 +42,10 @@ namespace Ideogram
         {
             return value switch
             {
-                AdVariationsRequestVariationType.GroupSize => "GROUP_SIZE",
-                AdVariationsRequestVariationType.People => "PEOPLE",
-                AdVariationsRequestVariationType.Scene => "SCENE",
-                AdVariationsRequestVariationType.Setting => "SETTING",
+                AdVariationsRequestVariationType.GroupSize => "group_size",
+                AdVariationsRequestVariationType.People => "people",
+                AdVariationsRequestVariationType.Scene => "scene",
+                AdVariationsRequestVariationType.Setting => "setting",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -56,10 +56,10 @@ namespace Ideogram
         {
             return value switch
             {
-                "GROUP_SIZE" => AdVariationsRequestVariationType.GroupSize,
-                "PEOPLE" => AdVariationsRequestVariationType.People,
-                "SCENE" => AdVariationsRequestVariationType.Scene,
-                "SETTING" => AdVariationsRequestVariationType.Setting,
+                "group_size" => AdVariationsRequestVariationType.GroupSize,
+                "people" => AdVariationsRequestVariationType.People,
+                "scene" => AdVariationsRequestVariationType.Scene,
+                "setting" => AdVariationsRequestVariationType.Setting,
                 _ => null,
             };
         }

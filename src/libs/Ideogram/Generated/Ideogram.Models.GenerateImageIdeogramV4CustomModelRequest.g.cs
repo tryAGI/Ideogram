@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"magic_prompt":"","async":false,"private":true,"seed":12345,"rendering_speed":"TURBO","webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","prompt":"prompt","custom_model_uri":"model/my-custom-v4-model/version/1","resolution":"","num_images":1}
+    /// Example: {"magic_prompt":"","async":false,"private":true,"seed":12345,"rendering_speed":"turbo","webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","prompt":"prompt","custom_model_uri":"model/my-custom-v4-model/version/1","resolution":"","num_images":1}
     /// </summary>
     public sealed partial class GenerateImageIdeogramV4CustomModelRequest
     {
@@ -28,17 +28,17 @@ namespace Ideogram
         public required string CustomModelUri { get; set; }
 
         /// <summary>
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before generation.<br/>
-        /// `OFF` keeps your wording and only converts the prompt into the<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts the prompt into the<br/>
         /// structured format the model consumes. A prompt that is already a<br/>
         /// valid structured JSON prompt skips magic prompt entirely unless<br/>
-        /// `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -131,13 +131,13 @@ namespace Ideogram
         /// Example: model/my-custom-v4-model/version/1
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before generation.<br/>
-        /// `OFF` keeps your wording and only converts the prompt into the<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts the prompt into the<br/>
         /// structured format the model consumes. A prompt that is already a<br/>
         /// valid structured JSON prompt skips magic prompt entirely unless<br/>
-        /// `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -185,7 +185,7 @@ namespace Ideogram
         public GenerateImageIdeogramV4CustomModelRequest(
             string prompt,
             string customModelUri,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
             int? numImages,
             global::Ideogram.ResolutionV4? resolution,

@@ -42,8 +42,8 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Design Swan S logo candidates<br/>
-        /// Creates isolated logo candidates using either a shoe swatch or a supplied style reference. No shoe is required when using a supplied reference. 3D reference designs split the requested count between split and full coverage variants; completed variants remain available if another variant fails. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Design one Swan S logo candidate<br/>
+        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -65,8 +65,8 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Design Swan S logo candidates<br/>
-        /// Creates isolated logo candidates using either a shoe swatch or a supplied style reference. No shoe is required when using a supplied reference. 3D reference designs split the requested count between split and full coverage variants; completed variants remain available if another variant fails. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Design one Swan S logo candidate<br/>
+        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -626,12 +626,15 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Design Swan S logo candidates<br/>
-        /// Creates isolated logo candidates using either a shoe swatch or a supplied style reference. No shoe is required when using a supplied reference. 3D reference designs split the requested count between split and full coverage variants; completed variants remain available if another variant fails. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Design one Swan S logo candidate<br/>
+        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="logoStyle"></param>
         /// <param name="sourceMode">
         /// Use a shoe color swatch or an uploaded logo reference as the style source.
+        /// </param>
+        /// <param name="designVariant">
+        /// Required for 3D user_reference designs. Omit for other designs.
         /// </param>
         /// <param name="styleSourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -648,10 +651,6 @@ namespace Ideogram
         /// <param name="flatSilhouetteAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
-        /// </param>
-        /// <param name="numImages">
-        /// Number of images to create.<br/>
-        /// Default Value: 4
         /// </param>
         /// <param name="quality">
         /// The quality tier for the image edit. Higher tiers may improve detail<br/>
@@ -678,10 +677,10 @@ namespace Ideogram
             global::Ideogram.SwanSLogoDesignRequestLogoStyle logoStyle,
             global::Ideogram.SwanSLogoDesignRequestSourceMode sourceMode,
             global::Ideogram.AssetIdentifier styleSourceAssetIdentifier,
+            global::Ideogram.SwanSLogoDesignRequestDesignVariant? designVariant = default,
             global::Ideogram.AssetIdentifier? geometryHeroAssetIdentifier = default,
             global::Ideogram.AssetIdentifier? logoSpecificationAssetIdentifier = default,
             global::Ideogram.AssetIdentifier? flatSilhouetteAssetIdentifier = default,
-            int? numImages = default,
             global::Ideogram.GptImage2Quality? quality = default,
             bool? @private = default,
             string? webhookUrl = default,
@@ -692,11 +691,11 @@ namespace Ideogram
             {
                 LogoStyle = logoStyle,
                 SourceMode = sourceMode,
+                DesignVariant = designVariant,
                 StyleSourceAssetIdentifier = styleSourceAssetIdentifier,
                 GeometryHeroAssetIdentifier = geometryHeroAssetIdentifier,
                 LogoSpecificationAssetIdentifier = logoSpecificationAssetIdentifier,
                 FlatSilhouetteAssetIdentifier = flatSilhouetteAssetIdentifier,
-                NumImages = numImages,
                 Quality = quality,
                 Private = @private,
                 WebhookUrl = webhookUrl,

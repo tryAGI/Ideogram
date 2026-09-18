@@ -51,7 +51,7 @@ namespace Ideogram
         /// source; when omitted the selected model chooses its usual strength.<br/>
         /// The server chooses a model that supports the requested remix controls:<br/>
         /// style references (ad hoc or saved), a color palette, style codes, a<br/>
-        /// style preset, and a non-`AUTO` style type each<br/>
+        /// style preset, and a non-`auto` style type each<br/>
         /// restrict the request to a compatible model and to the 1K tier;<br/>
         /// remixes without those controls use the default model. Omit<br/>
         /// `resolution` and `aspect_ratio` to keep the source image's shape.<br/>
@@ -105,7 +105,7 @@ namespace Ideogram
         /// source; when omitted the selected model chooses its usual strength.<br/>
         /// The server chooses a model that supports the requested remix controls:<br/>
         /// style references (ad hoc or saved), a color palette, style codes, a<br/>
-        /// style preset, and a non-`AUTO` style type each<br/>
+        /// style preset, and a non-`auto` style type each<br/>
         /// restrict the request to a compatible model and to the 1K tier;<br/>
         /// remixes without those controls use the default model. Omit<br/>
         /// `resolution` and `aspect_ratio` to keep the source image's shape.<br/>
@@ -978,7 +978,7 @@ namespace Ideogram
         /// source; when omitted the selected model chooses its usual strength.<br/>
         /// The server chooses a model that supports the requested remix controls:<br/>
         /// style references (ad hoc or saved), a color palette, style codes, a<br/>
-        /// style preset, and a non-`AUTO` style type each<br/>
+        /// style preset, and a non-`auto` style type each<br/>
         /// restrict the request to a compatible model and to the 1K tier;<br/>
         /// remixes without those controls use the default model. Omit<br/>
         /// `resolution` and `aspect_ratio` to keep the source image's shape.<br/>
@@ -1025,14 +1025,14 @@ namespace Ideogram
         /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports in the corresponding 1K or 2K tier. Omit `aspect_ratio` when supplying a resolution. If `resolution_tier` is also supplied, it must match the tier implied by these dimensions. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio. Omit it to keep the source image's shape. `AUTO` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier.
+        /// The requested output aspect ratio. Omit it to keep the source image's shape. `auto` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </param>
         /// <param name="resolutionTier">
-        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1K when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`AUTO` style type) currently support only 1K AUTO remixes.
+        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1k when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`auto` style type) currently support only 1K AUTO remixes.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`. The selected model decides how to interpret it.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`. The selected model decides how to interpret it.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Optional. Honored when the server selects the model that supports deterministic remixes; the default model synthesizes its own prompt, so results are not reproducible there. The response reports the seed used.<br/>
@@ -1058,7 +1058,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate with. A value other than `AUTO` restricts the server to a model that supports it and requires the 1K resolution tier.
+        /// The style type to generate with. A value other than `auto` restricts the server to a model that supports it and requires the 1K resolution tier.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -1100,17 +1100,17 @@ namespace Ideogram
             int? imageWeight = default,
             string? negativePrompt = default,
             string? resolution = default,
-            global::Ideogram.AspectRatioV4? aspectRatio = default,
+            global::Ideogram.IdeogramV4AspectRatio? aspectRatio = default,
             global::Ideogram.ToolRemixRequestResolutionTier? resolutionTier = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? seed = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
             string? styleReferenceCollectionId = default,
             string? styleReferenceCollectionVersionId = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
+            global::Ideogram.IdeogramColorPalette? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::Ideogram.StyleTypeV3? styleType = default,
+            global::Ideogram.IdeogramV3StyleType? styleType = default,
             int? numImages = default,
             bool? enableCopyrightDetection = default,
             bool? async = default,

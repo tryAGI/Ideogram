@@ -137,7 +137,7 @@ namespace Ideogram
         /// </param>
         /// <param name="quality">
         /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing. `VERY_HIGH` generates multiple<br/>
+        /// or additional prompt processing. `very_high` generates multiple<br/>
         /// candidates internally and returns the strongest result, so it has<br/>
         /// noticeably higher latency and cost than the other levels.
         /// </param>
@@ -169,7 +169,7 @@ namespace Ideogram
             string? imagename = default,
             global::Ideogram.AdResizerRequestPlatform? platform = default,
             string? prompt = default,
-            global::Ideogram.Quality? quality = default,
+            global::Ideogram.GenerationQuality? quality = default,
             int? numImages = default,
             bool? @private = default,
             string? webhookUrl = default,

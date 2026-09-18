@@ -148,19 +148,19 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate the character with. Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// The style type to generate the character with. Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="styleReferenceCollectionId">
         /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
@@ -215,7 +215,7 @@ namespace Ideogram
             global::Ideogram.ResolutionV3? resolution = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
             global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
             global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType? styleType = default,
             string? styleReferenceCollectionId = default,

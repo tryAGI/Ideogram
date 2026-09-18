@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"start_time":"2000-01-23T04:56:07\u002B00:00","total":"150.00","paid_time":"2000-01-23T04:56:07\u002B00:00","end_time":"2000-01-23T04:56:07\u002B00:00","line_items":[{"cost_total":"84.00","quantity":"2100","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","unit_price":"0.04","currency_code":"USD"},{"cost_total":"84.00","quantity":"2100","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","unit_price":"0.04","currency_code":"USD"}],"issued_time":"2000-01-23T04:56:07\u002B00:00","currency_code":"USD","status":"PAID"}
+    /// Example: {"start_time":"2000-01-23T04:56:07\u002B00:00","total":"150.00","paid_time":"2000-01-23T04:56:07\u002B00:00","end_time":"2000-01-23T04:56:07\u002B00:00","line_items":[{"cost_total":"84.00","quantity":"2100","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","unit_price":"0.04","currency_code":"USD"},{"cost_total":"84.00","quantity":"2100","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","unit_price":"0.04","currency_code":"USD"}],"issued_time":"2000-01-23T04:56:07\u002B00:00","currency_code":"USD","status":"paid"}
     /// </summary>
     public sealed partial class AccountInvoice
     {
@@ -36,13 +36,13 @@ namespace Ideogram
 
         /// <summary>
         /// Status of the invoice<br/>
-        /// Example: PAID
+        /// Example: paid
         /// </summary>
-        /// <example>PAID</example>
+        /// <example>paid</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.InvoiceStatusJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AccountInvoiceStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.InvoiceStatus Status { get; set; }
+        public required global::Ideogram.AccountInvoiceStatus Status { get; set; }
 
         /// <summary>
         /// Invoice total in `currency_code`, as a decimal string.<br/>
@@ -86,7 +86,7 @@ namespace Ideogram
         /// </param>
         /// <param name="status">
         /// Status of the invoice<br/>
-        /// Example: PAID
+        /// Example: paid
         /// </param>
         /// <param name="total">
         /// Invoice total in `currency_code`, as a decimal string.<br/>
@@ -111,7 +111,7 @@ namespace Ideogram
         public AccountInvoice(
             global::System.DateTime startTime,
             global::System.DateTime endTime,
-            global::Ideogram.InvoiceStatus status,
+            global::Ideogram.AccountInvoiceStatus status,
             string total,
             string currencyCode,
             global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem> lineItems,

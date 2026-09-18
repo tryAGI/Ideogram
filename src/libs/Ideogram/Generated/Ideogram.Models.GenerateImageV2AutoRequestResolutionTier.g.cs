@@ -34,9 +34,9 @@ namespace Ideogram
         {
             return value switch
             {
-                GenerateImageV2AutoRequestResolutionTier.x1k => "1K",
-                GenerateImageV2AutoRequestResolutionTier.x2k => "2K",
-                GenerateImageV2AutoRequestResolutionTier.x4k => "4K",
+                GenerateImageV2AutoRequestResolutionTier.x1k => "1k",
+                GenerateImageV2AutoRequestResolutionTier.x2k => "2k",
+                GenerateImageV2AutoRequestResolutionTier.x4k => "4k",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "1K" => GenerateImageV2AutoRequestResolutionTier.x1k,
-                "2K" => GenerateImageV2AutoRequestResolutionTier.x2k,
-                "4K" => GenerateImageV2AutoRequestResolutionTier.x4k,
+                "1k" => GenerateImageV2AutoRequestResolutionTier.x1k,
+                "2k" => GenerateImageV2AutoRequestResolutionTier.x2k,
+                "4k" => GenerateImageV2AutoRequestResolutionTier.x4k,
                 _ => null,
             };
         }

@@ -118,8 +118,12 @@ namespace Ideogram
         /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
         /// </param>
         /// <param name="background">
-        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
-        /// Default Value: AUTO
+        /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="quality">
+        /// How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -172,6 +176,7 @@ namespace Ideogram
             byte[]? mask = default,
             string? maskname = default,
             global::Ideogram.GenerateImageGptImage25SunburstRequestBackground? background = default,
+            global::Ideogram.GenerateImageGptImage25SunburstRequestQuality? quality = default,
             int? numImages = default,
             int? seed = default,
             string? aspectRatio = default,

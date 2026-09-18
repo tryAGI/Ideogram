@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"aspect_ratio":null,"private":true,"seed":12345,"upscale_factor":"X2","rendering_speed":"","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","num_images":1,"magic_prompt":"","async":false,"negative_prompt":"negative_prompt","enable_copyright_detection":true,"prompt":"prompt"}
+    /// Example: {"aspect_ratio":null,"private":true,"seed":12345,"upscale_factor":"x1","rendering_speed":"default","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","num_images":1,"magic_prompt":"","async":false,"negative_prompt":"negative_prompt","enable_copyright_detection":true,"prompt":"prompt"}
     /// </summary>
     public sealed partial class GenerateImageIdeogramV3TransparentRequest
     {
@@ -30,14 +30,12 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
-        /// Upscale the initially generated image by the given factor. Upscale factors other than X1 will incur additional cost.<br/>
-        /// Default Value: X1<br/>
-        /// Example: X2
+        /// Optional enhancement factor applied after generation. `x1` (the default) delivers the base render.<br/>
+        /// Default Value: x1
         /// </summary>
-        /// <example>X2</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("upscale_factor")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.UpscaleFactorJsonConverter))]
-        public global::Ideogram.UpscaleFactor? UpscaleFactor { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestUpscaleFactorJsonConverter))]
+        public global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor? UpscaleFactor { get; set; }
 
         /// <summary>
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
@@ -47,19 +45,20 @@ namespace Ideogram
         public global::Ideogram.AspectRatioV3? AspectRatio { get; set; }
 
         /// <summary>
-        /// The rendering speed to use. `FLASH` is not supported for transparent generation and returns a 400.
+        /// The rendering speed to use.<br/>
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RenderingSpeedJsonConverter))]
-        public global::Ideogram.RenderingSpeed? RenderingSpeed { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestRenderingSpeedJsonConverter))]
+        public global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -128,19 +127,19 @@ namespace Ideogram
         /// Example: 12345
         /// </param>
         /// <param name="upscaleFactor">
-        /// Upscale the initially generated image by the given factor. Upscale factors other than X1 will incur additional cost.<br/>
-        /// Default Value: X1<br/>
-        /// Example: X2
+        /// Optional enhancement factor applied after generation. `x1` (the default) delivers the base render.<br/>
+        /// Default Value: x1
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use. `FLASH` is not supported for transparent generation and returns a 400.
+        /// The rendering speed to use.<br/>
+        /// Default Value: default
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -177,10 +176,10 @@ namespace Ideogram
             string prompt,
             string? negativePrompt,
             int? seed,
-            global::Ideogram.UpscaleFactor? upscaleFactor,
+            global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor? upscaleFactor,
             global::Ideogram.AspectRatioV3? aspectRatio,
-            global::Ideogram.RenderingSpeed? renderingSpeed,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed? renderingSpeed,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
             bool? enableCopyrightDetection,
             bool? async,

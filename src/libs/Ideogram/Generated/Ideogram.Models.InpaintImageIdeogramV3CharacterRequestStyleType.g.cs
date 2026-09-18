@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.<br/>
-    /// Default Value: AUTO
+    /// The style type to repaint the character with. Defaults to `auto`. `realistic` and `fiction` are supported for character-only requests; style codes or style references require `auto`.<br/>
+    /// Default Value: auto
     /// </summary>
     public enum InpaintImageIdeogramV3CharacterRequestStyleType
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                InpaintImageIdeogramV3CharacterRequestStyleType.Auto => "AUTO",
-                InpaintImageIdeogramV3CharacterRequestStyleType.Fiction => "FICTION",
-                InpaintImageIdeogramV3CharacterRequestStyleType.Realistic => "REALISTIC",
+                InpaintImageIdeogramV3CharacterRequestStyleType.Auto => "auto",
+                InpaintImageIdeogramV3CharacterRequestStyleType.Fiction => "fiction",
+                InpaintImageIdeogramV3CharacterRequestStyleType.Realistic => "realistic",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "AUTO" => InpaintImageIdeogramV3CharacterRequestStyleType.Auto,
-                "FICTION" => InpaintImageIdeogramV3CharacterRequestStyleType.Fiction,
-                "REALISTIC" => InpaintImageIdeogramV3CharacterRequestStyleType.Realistic,
+                "auto" => InpaintImageIdeogramV3CharacterRequestStyleType.Auto,
+                "fiction" => InpaintImageIdeogramV3CharacterRequestStyleType.Fiction,
+                "realistic" => InpaintImageIdeogramV3CharacterRequestStyleType.Realistic,
                 _ => null,
             };
         }

@@ -21,16 +21,16 @@ namespace Ideogram
         public string? Prompt { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). `AUTO` (the<br/>
-        /// default) and `ON` rewrite a natural-language prompt, while a<br/>
+        /// Controls magic prompt (automatic prompt rewriting). `auto` (the<br/>
+        /// default) and `on` rewrite a natural-language prompt, while a<br/>
         /// prompt that is already a valid structured JSON prompt is always<br/>
-        /// consumed directly. `OFF` disables rewriting entirely: the model<br/>
+        /// consumed directly. `off` disables rewriting entirely: the model<br/>
         /// receives your prompt verbatim.<br/>
-        /// Default Value: AUTO
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. The first source is the primary image; any further sources are additional references. Supplying sources turns the request into an image-to-image transform.
@@ -65,7 +65,7 @@ namespace Ideogram
 
         /// <summary>
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestRenderingSpeedJsonConverter))]
@@ -142,12 +142,12 @@ namespace Ideogram
         /// sources it is optional guidance and may be empty.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). `AUTO` (the<br/>
-        /// default) and `ON` rewrite a natural-language prompt, while a<br/>
+        /// Controls magic prompt (automatic prompt rewriting). `auto` (the<br/>
+        /// default) and `on` rewrite a natural-language prompt, while a<br/>
         /// prompt that is already a valid structured JSON prompt is always<br/>
-        /// consumed directly. `OFF` disables rewriting entirely: the model<br/>
+        /// consumed directly. `off` disables rewriting entirely: the model<br/>
         /// receives your prompt verbatim.<br/>
-        /// Default Value: AUTO
+        /// Default Value: auto
         /// </param>
         /// <param name="imageAssetIdentifiers">
         /// Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. The first source is the primary image; any further sources are additional references. Supplying sources turns the request into an image-to-image transform.
@@ -172,7 +172,7 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -211,7 +211,7 @@ namespace Ideogram
 #endif
         public GenerateImageIdeogram45Request(
             string? prompt,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? images,
             string? size,

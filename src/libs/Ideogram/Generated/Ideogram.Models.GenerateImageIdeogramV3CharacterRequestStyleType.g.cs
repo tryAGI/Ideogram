@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The style type to generate the character with. Defaults to `AUTO`.<br/>
-    /// Default Value: AUTO
+    /// The style type to generate the character with. Defaults to `auto`.<br/>
+    /// Default Value: auto
     /// </summary>
     public enum GenerateImageIdeogramV3CharacterRequestStyleType
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                GenerateImageIdeogramV3CharacterRequestStyleType.Auto => "AUTO",
-                GenerateImageIdeogramV3CharacterRequestStyleType.Fiction => "FICTION",
-                GenerateImageIdeogramV3CharacterRequestStyleType.Realistic => "REALISTIC",
+                GenerateImageIdeogramV3CharacterRequestStyleType.Auto => "auto",
+                GenerateImageIdeogramV3CharacterRequestStyleType.Fiction => "fiction",
+                GenerateImageIdeogramV3CharacterRequestStyleType.Realistic => "realistic",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "AUTO" => GenerateImageIdeogramV3CharacterRequestStyleType.Auto,
-                "FICTION" => GenerateImageIdeogramV3CharacterRequestStyleType.Fiction,
-                "REALISTIC" => GenerateImageIdeogramV3CharacterRequestStyleType.Realistic,
+                "auto" => GenerateImageIdeogramV3CharacterRequestStyleType.Auto,
+                "fiction" => GenerateImageIdeogramV3CharacterRequestStyleType.Fiction,
+                "realistic" => GenerateImageIdeogramV3CharacterRequestStyleType.Realistic,
                 _ => null,
             };
         }

@@ -33,7 +33,7 @@ namespace Ideogram
 
         /// <summary>
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
-        /// Default Value: X2
+        /// Default Value: x2
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("upscale_factor")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.UpscaleToolRequestUpscaleFactorJsonConverter))]
@@ -109,7 +109,7 @@ namespace Ideogram
         /// </param>
         /// <param name="upscaleFactor">
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
-        /// Default Value: X2
+        /// Default Value: x2
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>

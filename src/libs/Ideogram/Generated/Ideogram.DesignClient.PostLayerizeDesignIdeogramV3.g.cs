@@ -156,7 +156,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/design/layerize/ideogram-v3",
+                                path: "/v2/design/layerize/ideogram-3",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -342,7 +342,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostLayerizeDesignIdeogramV3",
                                 methodName: "PostLayerizeDesignIdeogramV3Async",
-                                pathTemplate: "\"/v2/design/layerize/ideogram-v3\"",
+                                pathTemplate: "\"/v2/design/layerize/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -376,7 +376,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostLayerizeDesignIdeogramV3",
                                 methodName: "PostLayerizeDesignIdeogramV3Async",
-                                pathTemplate: "\"/v2/design/layerize/ideogram-v3\"",
+                                pathTemplate: "\"/v2/design/layerize/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -417,7 +417,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostLayerizeDesignIdeogramV3",
                                 methodName: "PostLayerizeDesignIdeogramV3Async",
-                                pathTemplate: "\"/v2/design/layerize/ideogram-v3\"",
+                                pathTemplate: "\"/v2/design/layerize/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -465,7 +465,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostLayerizeDesignIdeogramV3",
                                 methodName: "PostLayerizeDesignIdeogramV3Async",
-                                pathTemplate: "\"/v2/design/layerize/ideogram-v3\"",
+                                pathTemplate: "\"/v2/design/layerize/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -487,7 +487,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostLayerizeDesignIdeogramV3",
                                 methodName: "PostLayerizeDesignIdeogramV3Async",
-                                pathTemplate: "\"/v2/design/layerize/ideogram-v3\"",
+                                pathTemplate: "\"/v2/design/layerize/ideogram-3\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,

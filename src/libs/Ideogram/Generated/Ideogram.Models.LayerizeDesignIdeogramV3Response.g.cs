@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Response returned by `POST /v2/design/layerize/ideogram-v3`.<br/>
+    /// Response returned by `POST /v2/design/layerize/ideogram-3`.<br/>
     /// Synchronous requests (the default) include the layerized design in<br/>
     /// `data`. Requests with `async` set to true omit `data`; poll for<br/>
     /// completion and results with `GET /v1/generations/{generation_id}`<br/>

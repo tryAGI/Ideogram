@@ -34,9 +34,9 @@ namespace Ideogram
         {
             return value switch
             {
-                GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Default => "DEFAULT",
-                GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Quality => "QUALITY",
-                GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Turbo => "TURBO",
+                GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Default => "default",
+                GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Quality => "quality",
+                GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Turbo => "turbo",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "DEFAULT" => GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Default,
-                "QUALITY" => GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Quality,
-                "TURBO" => GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Turbo,
+                "default" => GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Default,
+                "quality" => GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Quality,
+                "turbo" => GenerateImageIdeogramV3CustomModelRequestRenderingSpeed.Turbo,
                 _ => null,
             };
         }

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"aspect_ratio":"aspect_ratio","private":true,"seed":12345,"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2K","base_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"instruction":"instruction","num_images":0,"upper_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"quality":null}
+    /// Example: {"aspect_ratio":"aspect_ratio","private":true,"seed":12345,"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2k","base_asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"instruction":"instruction","num_images":0,"upper_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"quality":null}
     /// </summary>
     public sealed partial class SoleSwapRequest
     {
@@ -37,8 +37,8 @@ namespace Ideogram
         public string? AspectRatio { get; set; }
 
         /// <summary>
-        /// Output resolution tier. Defaults to 2K.<br/>
-        /// Default Value: 2K
+        /// Output resolution tier. Defaults to 2k.<br/>
+        /// Default Value: 2k
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("base_generation_size")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SoleSwapRequestBaseGenerationSizeJsonConverter))]
@@ -111,8 +111,8 @@ namespace Ideogram
         /// Output aspect ratio. When omitted, the closest supported ratio is derived from the sole-donor base image.
         /// </param>
         /// <param name="baseGenerationSize">
-        /// Output resolution tier. Defaults to 2K.<br/>
-        /// Default Value: 2K
+        /// Output resolution tier. Defaults to 2k.<br/>
+        /// Default Value: 2k
         /// </param>
         /// <param name="quality">
         /// The quality tier for the image edit. Higher tiers may improve detail<br/>

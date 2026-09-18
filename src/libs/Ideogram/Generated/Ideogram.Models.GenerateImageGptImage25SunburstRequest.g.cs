@@ -44,12 +44,20 @@ namespace Ideogram
         public string? Maskname { get; set; }
 
         /// <summary>
-        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
-        /// Default Value: AUTO
+        /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("background")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageGptImage25SunburstRequestBackgroundJsonConverter))]
         public global::Ideogram.GenerateImageGptImage25SunburstRequestBackground? Background { get; set; }
+
+        /// <summary>
+        /// How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.<br/>
+        /// Default Value: auto
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageGptImage25SunburstRequestQualityJsonConverter))]
+        public global::Ideogram.GenerateImageGptImage25SunburstRequestQuality? Quality { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -142,8 +150,12 @@ namespace Ideogram
         /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
         /// </param>
         /// <param name="background">
-        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
-        /// Default Value: AUTO
+        /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="quality">
+        /// How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -195,6 +207,7 @@ namespace Ideogram
             byte[]? mask,
             string? maskname,
             global::Ideogram.GenerateImageGptImage25SunburstRequestBackground? background,
+            global::Ideogram.GenerateImageGptImage25SunburstRequestQuality? quality,
             int? numImages,
             int? seed,
             string? aspectRatio,
@@ -210,6 +223,7 @@ namespace Ideogram
             this.Mask = mask;
             this.Maskname = maskname;
             this.Background = background;
+            this.Quality = quality;
             this.NumImages = numImages;
             this.Seed = seed;
             this.AspectRatio = aspectRatio;

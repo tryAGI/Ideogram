@@ -1,0 +1,60 @@
+#nullable enable
+
+namespace Ideogram.JsonConverters
+{
+    /// <inheritdoc />
+    public sealed class GenerateImageNanoBanana2RequestResolutionTierNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?>
+    {
+        /// <inheritdoc />
+        public override global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier? Read(
+            ref global::System.Text.Json.Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            switch (reader.TokenType)
+            {
+                case global::System.Text.Json.JsonTokenType.String:
+                {
+                    var stringValue = reader.GetString();
+                    if (stringValue != null)
+                    {
+                        return global::Ideogram.GenerateImageNanoBanana2RequestResolutionTierExtensions.ToEnum(stringValue);
+                    }
+
+                    break;
+                }
+                case global::System.Text.Json.JsonTokenType.Number:
+                {
+                    var numValue = reader.GetInt32();
+                    return (global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier)numValue;
+                }
+                case global::System.Text.Json.JsonTokenType.Null:
+                {
+                    return default(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?);
+                }
+                default:
+                    throw new global::System.ArgumentOutOfRangeException(nameof(reader));
+            }
+
+            return default;
+        }
+
+        /// <inheritdoc />
+        public override void Write(
+            global::System.Text.Json.Utf8JsonWriter writer,
+            global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier? value,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
+
+            if (value == null)
+            {
+                writer.WriteNullValue();
+            }
+            else
+            {
+                writer.WriteStringValue(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTierExtensions.ToValueString(value.Value));
+            }
+        }
+    }
+}

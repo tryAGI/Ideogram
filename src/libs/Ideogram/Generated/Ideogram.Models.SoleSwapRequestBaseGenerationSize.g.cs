@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Output resolution tier. Defaults to 2K.<br/>
-    /// Default Value: 2K
+    /// Output resolution tier. Defaults to 2k.<br/>
+    /// Default Value: 2k
     /// </summary>
     public enum SoleSwapRequestBaseGenerationSize
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                SoleSwapRequestBaseGenerationSize.x1k => "1K",
-                SoleSwapRequestBaseGenerationSize.x2k => "2K",
-                SoleSwapRequestBaseGenerationSize.x4k => "4K",
+                SoleSwapRequestBaseGenerationSize.x1k => "1k",
+                SoleSwapRequestBaseGenerationSize.x2k => "2k",
+                SoleSwapRequestBaseGenerationSize.x4k => "4k",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "1K" => SoleSwapRequestBaseGenerationSize.x1k,
-                "2K" => SoleSwapRequestBaseGenerationSize.x2k,
-                "4K" => SoleSwapRequestBaseGenerationSize.x4k,
+                "1k" => SoleSwapRequestBaseGenerationSize.x1k,
+                "2k" => SoleSwapRequestBaseGenerationSize.x2k,
+                "4k" => SoleSwapRequestBaseGenerationSize.x4k,
                 _ => null,
             };
         }

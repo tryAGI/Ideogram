@@ -772,13 +772,13 @@ namespace Ideogram
         /// Example: model/my-custom-v4-model/version/1
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before generation.<br/>
-        /// `OFF` keeps your wording and only converts the prompt into the<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts the prompt into the<br/>
         /// structured format the model consumes. A prompt that is already a<br/>
         /// valid structured JSON prompt skips magic prompt entirely unless<br/>
-        /// `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -827,7 +827,7 @@ namespace Ideogram
             string prompt,
             string customModelUri,
             bool? dryRun = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? seed = default,
             int? numImages = default,
             global::Ideogram.ResolutionV4? resolution = default,

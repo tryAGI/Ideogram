@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// The model used to apply the edit. For Ideogram 4.5, an optional mask is sent as one of the model's five image inputs and therefore reduces the reference-image limit by one.<br/>
-    /// Default Value: GPT_IMAGE_2
+    /// Default Value: gpt-image-2
     /// </summary>
     public enum PreciseMaskedEditModel
     {
@@ -31,8 +31,8 @@ namespace Ideogram
         {
             return value switch
             {
-                PreciseMaskedEditModel.GptImage2 => "GPT_IMAGE_2",
-                PreciseMaskedEditModel.Ideogram45 => "IDEOGRAM_4_5",
+                PreciseMaskedEditModel.GptImage2 => "gpt-image-2",
+                PreciseMaskedEditModel.Ideogram45 => "ideogram-4-5",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -43,8 +43,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "GPT_IMAGE_2" => PreciseMaskedEditModel.GptImage2,
-                "IDEOGRAM_4_5" => PreciseMaskedEditModel.Ideogram45,
+                "gpt-image-2" => PreciseMaskedEditModel.GptImage2,
+                "ideogram-4-5" => PreciseMaskedEditModel.Ideogram45,
                 _ => null,
             };
         }

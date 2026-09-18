@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"magic_prompt":"","aspect_ratio":null,"async":false,"private":true,"seed":12345,"rendering_speed":"DEFAULT","webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","output_resolution":"1K","prompt":"prompt","num_images":1}
+    /// Example: {"magic_prompt":"","aspect_ratio":null,"async":false,"private":true,"seed":12345,"rendering_speed":"default","webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","output_resolution":"1k","prompt":"prompt","num_images":1}
     /// </summary>
     public sealed partial class GenerateImageIdeogramV4TransparentRequest
     {
@@ -21,17 +21,17 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before<br/>
-        /// generation. `OFF` keeps your wording and only converts the prompt<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
         /// into the structured format the model consumes. A prompt that is<br/>
         /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -49,23 +49,23 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The aspect ratio for an Ideogram 4.0 magic prompt. `AUTO` lets the<br/>
+        /// The aspect ratio for an Ideogram 4.0 magic prompt. `auto` lets the<br/>
         /// model select the most suitable ratio from the prompt; any other value<br/>
-        /// pins the ratio. The non-AUTO values are the buckets the 4.0 model<br/>
+        /// pins the ratio. The non-auto values are the buckets the 4.0 model<br/>
         /// supports.<br/>
-        /// Default Value: AUTO
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV4JsonConverter))]
-        public global::Ideogram.AspectRatioV4? AspectRatio { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV4AspectRatioJsonConverter))]
+        public global::Ideogram.IdeogramV4AspectRatio? AspectRatio { get; set; }
 
         /// <summary>
         /// The output resolution tier for the generated images. Tiers are<br/>
         /// total-pixel budgets matching a square of the named size (for<br/>
-        /// example, `8K` delivers at most 8192x8192 total pixels); wide and<br/>
+        /// example, `8k` delivers at most 8192x8192 total pixels); wide and<br/>
         /// tall aspect ratios keep the same pixel budget, so a single<br/>
-        /// dimension may exceed the named size. Defaults to 1K.<br/>
-        /// Default Value: 1K
+        /// dimension may exceed the named size. Defaults to 1k.<br/>
+        /// Default Value: 1k
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("output_resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestOutputResolutionJsonConverter))]
@@ -73,7 +73,7 @@ namespace Ideogram
 
         /// <summary>
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestRenderingSpeedJsonConverter))]
@@ -137,13 +137,13 @@ namespace Ideogram
         /// directive.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before<br/>
-        /// generation. `OFF` keeps your wording and only converts the prompt<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
         /// into the structured format the model consumes. A prompt that is<br/>
         /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -154,23 +154,23 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio for an Ideogram 4.0 magic prompt. `AUTO` lets the<br/>
+        /// The aspect ratio for an Ideogram 4.0 magic prompt. `auto` lets the<br/>
         /// model select the most suitable ratio from the prompt; any other value<br/>
-        /// pins the ratio. The non-AUTO values are the buckets the 4.0 model<br/>
+        /// pins the ratio. The non-auto values are the buckets the 4.0 model<br/>
         /// supports.<br/>
-        /// Default Value: AUTO
+        /// Default Value: auto
         /// </param>
         /// <param name="outputResolution">
         /// The output resolution tier for the generated images. Tiers are<br/>
         /// total-pixel budgets matching a square of the named size (for<br/>
-        /// example, `8K` delivers at most 8192x8192 total pixels); wide and<br/>
+        /// example, `8k` delivers at most 8192x8192 total pixels); wide and<br/>
         /// tall aspect ratios keep the same pixel budget, so a single<br/>
-        /// dimension may exceed the named size. Defaults to 1K.<br/>
-        /// Default Value: 1K
+        /// dimension may exceed the named size. Defaults to 1k.<br/>
+        /// Default Value: 1k
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -201,10 +201,10 @@ namespace Ideogram
 #endif
         public GenerateImageIdeogramV4TransparentRequest(
             string prompt,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
             int? numImages,
-            global::Ideogram.AspectRatioV4? aspectRatio,
+            global::Ideogram.IdeogramV4AspectRatio? aspectRatio,
             global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution? outputResolution,
             global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed? renderingSpeed,
             bool? enableCopyrightDetection,

@@ -62,12 +62,12 @@ namespace Ideogram
         public global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -77,11 +77,11 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter))]
-        public global::Ideogram.ColorPaletteWithPresetNameOrMembers? ColorPalette { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramColorPaletteJsonConverter))]
+        public global::Ideogram.IdeogramColorPalette? ColorPalette { get; set; }
 
         /// <summary>
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -95,8 +95,8 @@ namespace Ideogram
         /// A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
-        public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter))]
+        public global::Ideogram.IdeogramV3StylePreset? StylePreset { get; set; }
 
         /// <summary>
         /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_images`.
@@ -184,15 +184,15 @@ namespace Ideogram
         /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -242,11 +242,11 @@ namespace Ideogram
             global::Ideogram.ResolutionV3? resolution,
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed? renderingSpeed,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
+            global::Ideogram.IdeogramColorPalette? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
-            global::Ideogram.StylePresetV3? stylePreset,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages,
             bool? enableCopyrightDetection,

@@ -30,8 +30,8 @@ namespace Ideogram
         {
             return value switch
             {
-                SwapProductMode.Recolor => "RECOLOR",
-                SwapProductMode.Replace => "REPLACE",
+                SwapProductMode.Recolor => "recolor",
+                SwapProductMode.Replace => "replace",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "RECOLOR" => SwapProductMode.Recolor,
-                "REPLACE" => SwapProductMode.Replace,
+                "recolor" => SwapProductMode.Recolor,
+                "replace" => SwapProductMode.Replace,
                 _ => null,
             };
         }

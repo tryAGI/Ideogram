@@ -881,14 +881,14 @@ namespace Ideogram
         /// Example: 12345
         /// </param>
         /// <param name="renderingSpeed">
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="stylePreset">
         /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
-        /// Example: BRIGHT_ART
+        /// Example: bright_art
         /// </param>
         /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -916,8 +916,8 @@ namespace Ideogram
             int? numImages = default,
             int? seed = default,
             global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed? renderingSpeed = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
+            global::Ideogram.IdeogramColorPalette? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,

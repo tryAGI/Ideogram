@@ -33,7 +33,7 @@ namespace Ideogram
 
         /// <summary>
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
-        /// Default Value: X2
+        /// Default Value: x2
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("upscale_factor")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestUpscaleFactorJsonConverter))]
@@ -151,7 +151,7 @@ namespace Ideogram
         /// </param>
         /// <param name="upscaleFactor">
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
-        /// Default Value: X2
+        /// Default Value: x2
         /// </param>
         /// <param name="strength">
         /// Overall intensity of the enhancement model, from 0.01 to 1. Higher values look crisper but can turn unrealistic. Omit to let Topaz choose per image.

@@ -85,8 +85,8 @@ namespace Ideogram
         /// Plain-language description of the desired new background.
         /// </param>
         /// <param name="quality">
-        /// The generation quality level. Defaults to `HIGH`.<br/>
-        /// Default Value: HIGH
+        /// The generation quality level. Defaults to `high`.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>

@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
-    /// Default Value: AUTO
+    /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
+    /// Default Value: auto
     /// </summary>
     public enum GenerateImageGptImage25FlareRequestBackground
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                GenerateImageGptImage25FlareRequestBackground.Auto => "AUTO",
-                GenerateImageGptImage25FlareRequestBackground.Opaque => "OPAQUE",
-                GenerateImageGptImage25FlareRequestBackground.Transparent => "TRANSPARENT",
+                GenerateImageGptImage25FlareRequestBackground.Auto => "auto",
+                GenerateImageGptImage25FlareRequestBackground.Opaque => "opaque",
+                GenerateImageGptImage25FlareRequestBackground.Transparent => "transparent",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "AUTO" => GenerateImageGptImage25FlareRequestBackground.Auto,
-                "OPAQUE" => GenerateImageGptImage25FlareRequestBackground.Opaque,
-                "TRANSPARENT" => GenerateImageGptImage25FlareRequestBackground.Transparent,
+                "auto" => GenerateImageGptImage25FlareRequestBackground.Auto,
+                "opaque" => GenerateImageGptImage25FlareRequestBackground.Opaque,
+                "transparent" => GenerateImageGptImage25FlareRequestBackground.Transparent,
                 _ => null,
             };
         }

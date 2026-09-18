@@ -50,8 +50,8 @@ namespace Ideogram
         /// JSON prompt; the server detects which was supplied. A structured JSON<br/>
         /// prompt is consumed by the model directly and skips magic prompt.<br/>
         /// `magic_prompt` controls how a natural-language prompt is prepared:<br/>
-        /// `AUTO`/`ON` rewrite and expand the prompt before generation, while<br/>
-        /// `OFF` keeps your wording and only converts the prompt into the<br/>
+        /// `auto`/`on` rewrite and expand the prompt before generation, while<br/>
+        /// `off` keeps your wording and only converts the prompt into the<br/>
         /// structured format the model consumes.<br/>
         /// When `resolution` is omitted, the server picks an aspect ratio<br/>
         /// automatically based on the prompt.<br/>
@@ -95,8 +95,8 @@ namespace Ideogram
         /// JSON prompt; the server detects which was supplied. A structured JSON<br/>
         /// prompt is consumed by the model directly and skips magic prompt.<br/>
         /// `magic_prompt` controls how a natural-language prompt is prepared:<br/>
-        /// `AUTO`/`ON` rewrite and expand the prompt before generation, while<br/>
-        /// `OFF` keeps your wording and only converts the prompt into the<br/>
+        /// `auto`/`on` rewrite and expand the prompt before generation, while<br/>
+        /// `off` keeps your wording and only converts the prompt into the<br/>
         /// structured format the model consumes.<br/>
         /// When `resolution` is omitted, the server picks an aspect ratio<br/>
         /// automatically based on the prompt.<br/>
@@ -724,8 +724,8 @@ namespace Ideogram
         /// JSON prompt; the server detects which was supplied. A structured JSON<br/>
         /// prompt is consumed by the model directly and skips magic prompt.<br/>
         /// `magic_prompt` controls how a natural-language prompt is prepared:<br/>
-        /// `AUTO`/`ON` rewrite and expand the prompt before generation, while<br/>
-        /// `OFF` keeps your wording and only converts the prompt into the<br/>
+        /// `auto`/`on` rewrite and expand the prompt before generation, while<br/>
+        /// `off` keeps your wording and only converts the prompt into the<br/>
         /// structured format the model consumes.<br/>
         /// When `resolution` is omitted, the server picks an aspect ratio<br/>
         /// automatically based on the prompt.<br/>
@@ -748,13 +748,13 @@ namespace Ideogram
         /// by the model directly and skips magic prompt.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before<br/>
-        /// generation. `OFF` keeps your wording and only converts the prompt<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
         /// into the structured format the model consumes. A prompt that is<br/>
         /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -771,7 +771,7 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -803,7 +803,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV4Response> PostGenerateImageV2IdeogramV4Async(
             string prompt,
             bool? dryRun = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? seed = default,
             int? numImages = default,
             global::Ideogram.ResolutionV4? resolution = default,

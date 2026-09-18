@@ -45,14 +45,14 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The output aspect ratio. `AUTO` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`AUTO` value.<br/>
-        /// Default Value: AUTO
+        /// The output aspect ratio. `auto` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`auto` value.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         public string? AspectRatio { get; set; }
 
         /// <summary>
-        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `AUTO`) when supplying a resolution.
+        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `auto`) when supplying a resolution.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         public string? Resolution { get; set; }
@@ -65,12 +65,12 @@ namespace Ideogram
         public global::Ideogram.GenerateImageV2AutoRequestResolutionTier? ResolutionTier { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -137,18 +137,18 @@ namespace Ideogram
         /// Existing upload or generated image assets whose style should guide the generation, by reference. Cannot be combined with source images.
         /// </param>
         /// <param name="aspectRatio">
-        /// The output aspect ratio. `AUTO` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`AUTO` value.<br/>
-        /// Default Value: AUTO
+        /// The output aspect ratio. `auto` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`auto` value.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="resolution">
-        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `AUTO`) when supplying a resolution.
+        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `auto`) when supplying a resolution.
         /// </param>
         /// <param name="resolutionTier">
         /// The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -183,7 +183,7 @@ namespace Ideogram
             string? aspectRatio,
             string? resolution,
             global::Ideogram.GenerateImageV2AutoRequestResolutionTier? resolutionTier,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
             int? seed,
             bool? @private,

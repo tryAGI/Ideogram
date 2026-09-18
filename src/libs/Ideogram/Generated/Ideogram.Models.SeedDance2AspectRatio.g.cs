@@ -6,7 +6,7 @@ namespace Ideogram
     /// <summary>
     /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
     /// most suitable ratio from the prompt; any other value pins the ratio.<br/>
-    /// Default Value: AUTO
+    /// Default Value: auto
     /// </summary>
     public enum SeedDance2AspectRatio
     {
@@ -58,7 +58,7 @@ namespace Ideogram
                 SeedDance2AspectRatio.x3x4 => "3x4",
                 SeedDance2AspectRatio.x4x3 => "4x3",
                 SeedDance2AspectRatio.x9x16 => "9x16",
-                SeedDance2AspectRatio.Auto => "AUTO",
+                SeedDance2AspectRatio.Auto => "auto",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -75,7 +75,7 @@ namespace Ideogram
                 "3x4" => SeedDance2AspectRatio.x3x4,
                 "4x3" => SeedDance2AspectRatio.x4x3,
                 "9x16" => SeedDance2AspectRatio.x9x16,
-                "AUTO" => SeedDance2AspectRatio.Auto,
+                "auto" => SeedDance2AspectRatio.Auto,
                 _ => null,
             };
         }

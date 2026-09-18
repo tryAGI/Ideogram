@@ -59,8 +59,8 @@ namespace Ideogram
         /// The model used to apply the masked edit.
         /// </param>
         /// <param name="quality">
-        /// The generation quality level. Defaults to `HIGH`.<br/>
-        /// Default Value: HIGH
+        /// The generation quality level. Defaults to `high`.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="sourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>

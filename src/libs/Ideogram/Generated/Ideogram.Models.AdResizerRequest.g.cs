@@ -66,13 +66,13 @@ namespace Ideogram
 
         /// <summary>
         /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing. `VERY_HIGH` generates multiple<br/>
+        /// or additional prompt processing. `very_high` generates multiple<br/>
         /// candidates internally and returns the strongest result, so it has<br/>
         /// noticeably higher latency and cost than the other levels.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.QualityJsonConverter))]
-        public global::Ideogram.Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerationQualityJsonConverter))]
+        public global::Ideogram.GenerationQuality? Quality { get; set; }
 
         /// <summary>
         /// The number of reframed variations to generate.<br/>
@@ -145,7 +145,7 @@ namespace Ideogram
         /// </param>
         /// <param name="quality">
         /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing. `VERY_HIGH` generates multiple<br/>
+        /// or additional prompt processing. `very_high` generates multiple<br/>
         /// candidates internally and returns the strongest result, so it has<br/>
         /// noticeably higher latency and cost than the other levels.
         /// </param>
@@ -177,7 +177,7 @@ namespace Ideogram
             string? imagename,
             global::Ideogram.AdResizerRequestPlatform? platform,
             string? prompt,
-            global::Ideogram.Quality? quality,
+            global::Ideogram.GenerationQuality? quality,
             int? numImages,
             bool? @private,
             string? webhookUrl)

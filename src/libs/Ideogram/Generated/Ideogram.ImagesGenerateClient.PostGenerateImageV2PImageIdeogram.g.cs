@@ -729,8 +729,8 @@ namespace Ideogram
         /// detects which was supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). `OFF` disables magic prompt entirely. Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). `off` disables magic prompt entirely. Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -741,11 +741,11 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="quality">
-        /// The generation quality level. Defaults to `MEDIUM`.<br/>
-        /// Default Value: MEDIUM
+        /// The generation quality level. Defaults to `medium`.<br/>
+        /// Default Value: medium
         /// </param>
         /// <param name="resolution">
-        /// The output-size tier; the server defaults to `1K` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+        /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
         /// </param>
         /// <param name="aspectRatio">
         /// The output aspect ratio. Defaults to `1x1`.<br/>
@@ -795,10 +795,10 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImagePImageIdeogramResponse> PostGenerateImageV2PImageIdeogramAsync(
             string prompt,
             bool? dryRun = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? seed = default,
             int? numImages = default,
-            global::Ideogram.Quality? quality = default,
+            global::Ideogram.GenerationQuality? quality = default,
             global::Ideogram.GenerateImagePImageIdeogramRequestResolution? resolution = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
             int? customWidth = default,

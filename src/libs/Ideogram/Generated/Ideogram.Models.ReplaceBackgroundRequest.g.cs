@@ -40,8 +40,8 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The generation quality level. Defaults to `HIGH`.<br/>
-        /// Default Value: HIGH
+        /// The generation quality level. Defaults to `high`.<br/>
+        /// Default Value: high
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
@@ -102,8 +102,8 @@ namespace Ideogram
         /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.
         /// </param>
         /// <param name="quality">
-        /// The generation quality level. Defaults to `HIGH`.<br/>
-        /// Default Value: HIGH
+        /// The generation quality level. Defaults to `high`.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
