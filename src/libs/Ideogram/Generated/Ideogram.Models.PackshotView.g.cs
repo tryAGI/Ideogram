@@ -38,10 +38,10 @@ namespace Ideogram
         {
             return value switch
             {
-                PackshotView.Back => "BACK",
-                PackshotView.Detail => "DETAIL",
-                PackshotView.Front => "FRONT",
-                PackshotView.ThreeQuarter => "THREE_QUARTER",
+                PackshotView.Back => "back",
+                PackshotView.Detail => "detail",
+                PackshotView.Front => "front",
+                PackshotView.ThreeQuarter => "three_quarter",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -52,10 +52,10 @@ namespace Ideogram
         {
             return value switch
             {
-                "BACK" => PackshotView.Back,
-                "DETAIL" => PackshotView.Detail,
-                "FRONT" => PackshotView.Front,
-                "THREE_QUARTER" => PackshotView.ThreeQuarter,
+                "back" => PackshotView.Back,
+                "detail" => PackshotView.Detail,
+                "front" => PackshotView.Front,
+                "three_quarter" => PackshotView.ThreeQuarter,
                 _ => null,
             };
         }

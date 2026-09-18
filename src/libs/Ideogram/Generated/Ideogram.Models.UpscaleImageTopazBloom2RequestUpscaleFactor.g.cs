@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
-    /// Default Value: X2
+    /// Default Value: x2
     /// </summary>
     public enum UpscaleImageTopazBloom2RequestUpscaleFactor
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                UpscaleImageTopazBloom2RequestUpscaleFactor.X2 => "X2",
-                UpscaleImageTopazBloom2RequestUpscaleFactor.X4 => "X4",
-                UpscaleImageTopazBloom2RequestUpscaleFactor.X8 => "X8",
+                UpscaleImageTopazBloom2RequestUpscaleFactor.X2 => "x2",
+                UpscaleImageTopazBloom2RequestUpscaleFactor.X4 => "x4",
+                UpscaleImageTopazBloom2RequestUpscaleFactor.X8 => "x8",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "X2" => UpscaleImageTopazBloom2RequestUpscaleFactor.X2,
-                "X4" => UpscaleImageTopazBloom2RequestUpscaleFactor.X4,
-                "X8" => UpscaleImageTopazBloom2RequestUpscaleFactor.X8,
+                "x2" => UpscaleImageTopazBloom2RequestUpscaleFactor.X2,
+                "x4" => UpscaleImageTopazBloom2RequestUpscaleFactor.X4,
+                "x8" => UpscaleImageTopazBloom2RequestUpscaleFactor.X8,
                 _ => null,
             };
         }

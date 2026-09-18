@@ -86,19 +86,19 @@ namespace Ideogram
         /// Example: 12345
         /// </param>
         /// <param name="upscaleFactor">
-        /// Upscale the initially generated image by the given factor. Upscale factors other than X1 will incur additional cost.<br/>
-        /// Default Value: X1<br/>
-        /// Example: X2
+        /// Optional enhancement factor applied after generation. `x1` (the default) delivers the base render.<br/>
+        /// Default Value: x1
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use. `FLASH` is not supported for transparent generation and returns a 400.
+        /// The rendering speed to use.<br/>
+        /// Default Value: default
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -136,10 +136,10 @@ namespace Ideogram
             bool? dryRun = default,
             string? negativePrompt = default,
             int? seed = default,
-            global::Ideogram.UpscaleFactor? upscaleFactor = default,
+            global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor? upscaleFactor = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
-            global::Ideogram.RenderingSpeed? renderingSpeed = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed? renderingSpeed = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
             bool? enableCopyrightDetection = default,
             bool? async = default,

@@ -59,10 +59,11 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The resolution tier of the generated video. `480p` and `768p` are<br/>
-        /// generated natively; `2k` and `4k` are upscaled from a `768p` result.<br/>
+        /// The resolution tier of the generated video, spelled the way MiniMax<br/>
+        /// spells it. `480P` and `768P` are generated natively; `2K` and `4K` are<br/>
+        /// upscaled from a `768P` result.<br/>
         /// Higher tiers cost more.<br/>
-        /// Default Value: 2k
+        /// Default Value: 2K
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MinimaxH3ResolutionJsonConverter))]
@@ -136,10 +137,11 @@ namespace Ideogram
         /// An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.
         /// </param>
         /// <param name="resolution">
-        /// The resolution tier of the generated video. `480p` and `768p` are<br/>
-        /// generated natively; `2k` and `4k` are upscaled from a `768p` result.<br/>
+        /// The resolution tier of the generated video, spelled the way MiniMax<br/>
+        /// spells it. `480P` and `768P` are generated natively; `2K` and `4K` are<br/>
+        /// upscaled from a `768P` result.<br/>
         /// Higher tiers cost more.<br/>
-        /// Default Value: 2k
+        /// Default Value: 2K
         /// </param>
         /// <param name="duration">
         /// The length of the generated video in seconds.<br/>

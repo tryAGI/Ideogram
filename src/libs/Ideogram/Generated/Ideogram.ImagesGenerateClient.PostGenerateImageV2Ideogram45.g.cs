@@ -54,10 +54,10 @@ namespace Ideogram
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
         /// either natural language or a structured Ideogram 4.0 JSON prompt; the<br/>
         /// server detects which was supplied.<br/>
-        /// `magic_prompt` controls automatic prompt rewriting: `AUTO` (the<br/>
-        /// default) and `ON` rewrite a natural-language prompt, a prompt that is<br/>
+        /// `magic_prompt` controls automatic prompt rewriting: `auto` (the<br/>
+        /// default) and `on` rewrite a natural-language prompt, a prompt that is<br/>
         /// already a valid structured JSON prompt is always consumed directly,<br/>
-        /// and `OFF` disables rewriting entirely so the model receives your<br/>
+        /// and `off` disables rewriting entirely so the model receives your<br/>
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
@@ -106,10 +106,10 @@ namespace Ideogram
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
         /// either natural language or a structured Ideogram 4.0 JSON prompt; the<br/>
         /// server detects which was supplied.<br/>
-        /// `magic_prompt` controls automatic prompt rewriting: `AUTO` (the<br/>
-        /// default) and `ON` rewrite a natural-language prompt, a prompt that is<br/>
+        /// `magic_prompt` controls automatic prompt rewriting: `auto` (the<br/>
+        /// default) and `on` rewrite a natural-language prompt, a prompt that is<br/>
         /// already a valid structured JSON prompt is always consumed directly,<br/>
-        /// and `OFF` disables rewriting entirely so the model receives your<br/>
+        /// and `off` disables rewriting entirely so the model receives your<br/>
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
@@ -170,7 +170,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/generate/ideogram-4.5",
+                                path: "/v2/image/generate/ideogram-4-5",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -354,7 +354,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -388,7 +388,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -429,7 +429,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -477,7 +477,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -499,7 +499,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2Ideogram45",
                                 methodName: "PostGenerateImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4.5\"",
+                                pathTemplate: "\"/v2/image/generate/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -855,10 +855,10 @@ namespace Ideogram
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
         /// either natural language or a structured Ideogram 4.0 JSON prompt; the<br/>
         /// server detects which was supplied.<br/>
-        /// `magic_prompt` controls automatic prompt rewriting: `AUTO` (the<br/>
-        /// default) and `ON` rewrite a natural-language prompt, a prompt that is<br/>
+        /// `magic_prompt` controls automatic prompt rewriting: `auto` (the<br/>
+        /// default) and `on` rewrite a natural-language prompt, a prompt that is<br/>
         /// already a valid structured JSON prompt is always consumed directly,<br/>
-        /// and `OFF` disables rewriting entirely so the model receives your<br/>
+        /// and `off` disables rewriting entirely so the model receives your<br/>
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
@@ -882,12 +882,12 @@ namespace Ideogram
         /// sources it is optional guidance and may be empty.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). `AUTO` (the<br/>
-        /// default) and `ON` rewrite a natural-language prompt, while a<br/>
+        /// Controls magic prompt (automatic prompt rewriting). `auto` (the<br/>
+        /// default) and `on` rewrite a natural-language prompt, while a<br/>
         /// prompt that is already a valid structured JSON prompt is always<br/>
-        /// consumed directly. `OFF` disables rewriting entirely: the model<br/>
+        /// consumed directly. `off` disables rewriting entirely: the model<br/>
         /// receives your prompt verbatim.<br/>
-        /// Default Value: AUTO
+        /// Default Value: auto
         /// </param>
         /// <param name="imageAssetIdentifiers">
         /// Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. The first source is the primary image; any further sources are additional references. Supplying sources turns the request into an image-to-image transform.
@@ -912,7 +912,7 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -952,7 +952,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogram45Response> PostGenerateImageV2Ideogram45Async(
             bool? dryRun = default,
             string? prompt = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
             string? size = default,

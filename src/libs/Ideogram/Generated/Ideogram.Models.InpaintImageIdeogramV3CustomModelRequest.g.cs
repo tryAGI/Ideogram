@@ -63,12 +63,12 @@ namespace Ideogram
         public string? Maskname { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -96,8 +96,8 @@ namespace Ideogram
         /// A predefined style preset. Cannot be combined with style codes or style references.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
-        public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter))]
+        public global::Ideogram.IdeogramV3StylePreset? StylePreset { get; set; }
 
         /// <summary>
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -191,8 +191,8 @@ namespace Ideogram
         /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -249,11 +249,11 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? maskAssetIdentifier,
             byte[]? mask,
             string? maskname,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
             int? seed,
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed? renderingSpeed,
-            global::Ideogram.StylePresetV3? stylePreset,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset,
             global::System.Collections.Generic.IList<string>? styleCodes,
             string? styleReferenceCollectionId,
             string? styleReferenceCollectionVersionId,

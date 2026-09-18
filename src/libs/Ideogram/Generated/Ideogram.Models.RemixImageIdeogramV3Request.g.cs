@@ -71,19 +71,19 @@ namespace Ideogram
 
         /// <summary>
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RenderingSpeedJsonConverter))]
-        public global::Ideogram.RenderingSpeed? RenderingSpeed { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RemixImageIdeogramV3RequestRenderingSpeedJsonConverter))]
+        public global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -93,11 +93,11 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter))]
-        public global::Ideogram.ColorPaletteWithPresetNameOrMembers? ColorPalette { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramColorPaletteJsonConverter))]
+        public global::Ideogram.IdeogramColorPalette? ColorPalette { get; set; }
 
         /// <summary>
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -109,20 +109,20 @@ namespace Ideogram
 
         /// <summary>
         /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
+        /// Default Value: general<br/>
+        /// Example: general
         /// </summary>
-        /// <example>GENERAL</example>
+        /// <example>general</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
-        public global::Ideogram.StyleTypeV3? StyleType { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StyleTypeJsonConverter))]
+        public global::Ideogram.IdeogramV3StyleType? StyleType { get; set; }
 
         /// <summary>
         /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
-        public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter))]
+        public global::Ideogram.IdeogramV3StylePreset? StylePreset { get; set; }
 
         /// <summary>
         /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
@@ -228,18 +228,18 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -247,8 +247,8 @@ namespace Ideogram
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
+        /// Default Value: general<br/>
+        /// Example: general
         /// </param>
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
@@ -302,13 +302,13 @@ namespace Ideogram
             int? seed,
             global::Ideogram.ResolutionV3? resolution,
             global::Ideogram.AspectRatioV3? aspectRatio,
-            global::Ideogram.RenderingSpeed? renderingSpeed,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed? renderingSpeed,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
+            global::Ideogram.IdeogramColorPalette? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
-            global::Ideogram.StyleTypeV3? styleType,
-            global::Ideogram.StylePresetV3? stylePreset,
+            global::Ideogram.IdeogramV3StyleType? styleType,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset,
             string? styleReferenceCollectionId,
             string? styleReferenceCollectionVersionId,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers,

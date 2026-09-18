@@ -160,7 +160,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/generate/gpt-image-2.5-flare",
+                                path: "/v2/image/generate/gpt-image-2-5-flare",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -276,6 +276,14 @@ namespace Ideogram
                                     name: "\"background\"");
 
                             }
+                            if (request.Quality != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"quality\"");
+
+                            }
                             if (request.NumImages != default)
                             {
 
@@ -374,7 +382,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2GptImage25Flare",
                                 methodName: "PostGenerateImageV2GptImage25FlareAsync",
-                                pathTemplate: "\"/v2/image/generate/gpt-image-2.5-flare\"",
+                                pathTemplate: "\"/v2/image/generate/gpt-image-2-5-flare\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -408,7 +416,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2GptImage25Flare",
                                 methodName: "PostGenerateImageV2GptImage25FlareAsync",
-                                pathTemplate: "\"/v2/image/generate/gpt-image-2.5-flare\"",
+                                pathTemplate: "\"/v2/image/generate/gpt-image-2-5-flare\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -449,7 +457,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2GptImage25Flare",
                                 methodName: "PostGenerateImageV2GptImage25FlareAsync",
-                                pathTemplate: "\"/v2/image/generate/gpt-image-2.5-flare\"",
+                                pathTemplate: "\"/v2/image/generate/gpt-image-2-5-flare\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -497,7 +505,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2GptImage25Flare",
                                 methodName: "PostGenerateImageV2GptImage25FlareAsync",
-                                pathTemplate: "\"/v2/image/generate/gpt-image-2.5-flare\"",
+                                pathTemplate: "\"/v2/image/generate/gpt-image-2-5-flare\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -519,7 +527,7 @@ namespace Ideogram
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
                                 operationId: "PostGenerateImageV2GptImage25Flare",
                                 methodName: "PostGenerateImageV2GptImage25FlareAsync",
-                                pathTemplate: "\"/v2/image/generate/gpt-image-2.5-flare\"",
+                                pathTemplate: "\"/v2/image/generate/gpt-image-2-5-flare\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest!,
@@ -906,8 +914,12 @@ namespace Ideogram
         /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
         /// </param>
         /// <param name="background">
-        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
-        /// Default Value: AUTO
+        /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="quality">
+        /// How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -960,6 +972,7 @@ namespace Ideogram
             byte[]? mask = default,
             string? maskname = default,
             global::Ideogram.GenerateImageGptImage25FlareRequestBackground? background = default,
+            global::Ideogram.GenerateImageGptImage25FlareRequestQuality? quality = default,
             int? numImages = default,
             int? seed = default,
             string? aspectRatio = default,
@@ -979,6 +992,7 @@ namespace Ideogram
                 Mask = mask,
                 Maskname = maskname,
                 Background = background,
+                Quality = quality,
                 NumImages = numImages,
                 Seed = seed,
                 AspectRatio = aspectRatio,

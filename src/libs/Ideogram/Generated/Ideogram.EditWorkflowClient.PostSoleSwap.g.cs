@@ -697,8 +697,8 @@ namespace Ideogram
         /// Output aspect ratio. When omitted, the closest supported ratio is derived from the sole-donor base image.
         /// </param>
         /// <param name="baseGenerationSize">
-        /// Output resolution tier. Defaults to 2K.<br/>
-        /// Default Value: 2K
+        /// Output resolution tier. Defaults to 2k.<br/>
+        /// Default Value: 2k
         /// </param>
         /// <param name="quality">
         /// The quality tier for the image edit. Higher tiers may improve detail<br/>

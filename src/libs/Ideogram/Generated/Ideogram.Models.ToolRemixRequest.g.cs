@@ -52,26 +52,26 @@ namespace Ideogram
         public string? Resolution { get; set; }
 
         /// <summary>
-        /// The requested output aspect ratio. Omit it to keep the source image's shape. `AUTO` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier.
+        /// The requested output aspect ratio. Omit it to keep the source image's shape. `auto` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV4JsonConverter))]
-        public global::Ideogram.AspectRatioV4? AspectRatio { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV4AspectRatioJsonConverter))]
+        public global::Ideogram.IdeogramV4AspectRatio? AspectRatio { get; set; }
 
         /// <summary>
-        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1K when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`AUTO` style type) currently support only 1K AUTO remixes.
+        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1k when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`auto` style type) currently support only 1K AUTO remixes.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution_tier")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ToolRemixRequestResolutionTierJsonConverter))]
         public global::Ideogram.ToolRemixRequestResolutionTier? ResolutionTier { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`. The selected model decides how to interpret it.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`. The selected model decides how to interpret it.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// Optional. Honored when the server selects the model that supports deterministic remixes; the default model synthesizes its own prompt, so results are not reproducible there. The response reports the seed used.<br/>
@@ -103,15 +103,15 @@ namespace Ideogram
         /// A predefined style preset to apply. Restricts the server to a model that supports it and requires the 1K resolution tier. Cannot be combined with style codes or style references.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
-        public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter))]
+        public global::Ideogram.IdeogramV3StylePreset? StylePreset { get; set; }
 
         /// <summary>
         /// A color palette to apply. Restricts the server to a model that supports palettes and requires the 1K resolution tier.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter))]
-        public global::Ideogram.ColorPaletteWithPresetNameOrMembers? ColorPalette { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramColorPaletteJsonConverter))]
+        public global::Ideogram.IdeogramColorPalette? ColorPalette { get; set; }
 
         /// <summary>
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -122,11 +122,11 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// The style type to generate with. A value other than `AUTO` restricts the server to a model that supports it and requires the 1K resolution tier.
+        /// The style type to generate with. A value other than `auto` restricts the server to a model that supports it and requires the 1K resolution tier.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
-        public global::Ideogram.StyleTypeV3? StyleType { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StyleTypeJsonConverter))]
+        public global::Ideogram.IdeogramV3StyleType? StyleType { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -206,14 +206,14 @@ namespace Ideogram
         /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports in the corresponding 1K or 2K tier. Omit `aspect_ratio` when supplying a resolution. If `resolution_tier` is also supplied, it must match the tier implied by these dimensions. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio. Omit it to keep the source image's shape. `AUTO` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier.
+        /// The requested output aspect ratio. Omit it to keep the source image's shape. `auto` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </param>
         /// <param name="resolutionTier">
-        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1K when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`AUTO` style type) currently support only 1K AUTO remixes.
+        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1k when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`auto` style type) currently support only 1K AUTO remixes.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`. The selected model decides how to interpret it.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`. The selected model decides how to interpret it.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Optional. Honored when the server selects the model that supports deterministic remixes; the default model synthesizes its own prompt, so results are not reproducible there. The response reports the seed used.<br/>
@@ -239,7 +239,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate with. A value other than `AUTO` restricts the server to a model that supports it and requires the 1K resolution tier.
+        /// The style type to generate with. A value other than `auto` restricts the server to a model that supports it and requires the 1K resolution tier.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -280,17 +280,17 @@ namespace Ideogram
             int? imageWeight,
             string? negativePrompt,
             string? resolution,
-            global::Ideogram.AspectRatioV4? aspectRatio,
+            global::Ideogram.IdeogramV4AspectRatio? aspectRatio,
             global::Ideogram.ToolRemixRequestResolutionTier? resolutionTier,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers,
             string? styleReferenceCollectionId,
             string? styleReferenceCollectionVersionId,
-            global::Ideogram.StylePresetV3? stylePreset,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset,
+            global::Ideogram.IdeogramColorPalette? colorPalette,
             global::System.Collections.Generic.IList<string>? styleCodes,
-            global::Ideogram.StyleTypeV3? styleType,
+            global::Ideogram.IdeogramV3StyleType? styleType,
             int? numImages,
             bool? enableCopyrightDetection,
             bool? async,

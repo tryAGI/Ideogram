@@ -47,7 +47,7 @@ namespace Ideogram
         /// Generate images with Ideogram 2.0 from a text prompt<br/>
         /// Generate one or more images from a text prompt with Ideogram 2.0,<br/>
         /// with an optional style type and negative prompt. Set<br/>
-        /// `rendering_speed` to `TURBO` for faster, lower-cost generation.<br/>
+        /// `rendering_speed` to `turbo` for faster, lower-cost generation.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -85,7 +85,7 @@ namespace Ideogram
         /// Generate images with Ideogram 2.0 from a text prompt<br/>
         /// Generate one or more images from a text prompt with Ideogram 2.0,<br/>
         /// with an optional style type and negative prompt. Set<br/>
-        /// `rendering_speed` to `TURBO` for faster, lower-cost generation.<br/>
+        /// `rendering_speed` to `turbo` for faster, lower-cost generation.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -707,7 +707,7 @@ namespace Ideogram
         /// Generate images with Ideogram 2.0 from a text prompt<br/>
         /// Generate one or more images from a text prompt with Ideogram 2.0,<br/>
         /// with an optional style type and negative prompt. Set<br/>
-        /// `rendering_speed` to `TURBO` for faster, lower-cost generation.<br/>
+        /// `rendering_speed` to `turbo` for faster, lower-cost generation.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -734,20 +734,20 @@ namespace Ideogram
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use. `TURBO` generates faster at a lower cost, while `QUALITY` prioritizes the highest-quality result.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result.<br/>
+        /// Default Value: default
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate with. When omitted, the model's default styling is used; pass AUTO to have a style selected automatically from the prompt.<br/>
-        /// Example: REALISTIC
+        /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.<br/>
+        /// Example: realistic
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -783,9 +783,9 @@ namespace Ideogram
             int? seed = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
             global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed? renderingSpeed = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
-            global::Ideogram.StyleTypeV2? styleType = default,
+            global::Ideogram.IdeogramV2StyleType? styleType = default,
             bool? enableCopyrightDetection = default,
             bool? async = default,
             string? webhookUrl = default,

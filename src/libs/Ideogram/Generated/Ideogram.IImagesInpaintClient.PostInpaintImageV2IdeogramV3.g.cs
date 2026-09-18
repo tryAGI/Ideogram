@@ -138,8 +138,8 @@ namespace Ideogram
         /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -151,12 +151,12 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
+        /// Default Value: general<br/>
+        /// Example: general
         /// </param>
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references.
@@ -213,12 +213,12 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? maskAssetIdentifier = default,
             byte[]? mask = default,
             string? maskname = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
             int? seed = default,
             global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed? renderingSpeed = default,
-            global::Ideogram.StyleTypeV3? styleType = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
+            global::Ideogram.IdeogramV3StyleType? styleType = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             string? styleReferenceCollectionId = default,
             string? styleReferenceCollectionVersionId = default,

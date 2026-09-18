@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"aspect_ratio":"","custom_height":1,"private":true,"seed":12345,"webhook_url":"https://api.example.com/webhooks/ideogram","custom_width":6,"target_collection_id":"target_collection_id","resolution":"1K","num_images":1,"quality":"","magic_prompt":"","async":false,"enable_copyright_detection":true,"prompt":"prompt"}
+    /// Example: {"aspect_ratio":"","custom_height":1,"private":true,"seed":12345,"webhook_url":"https://api.example.com/webhooks/ideogram","custom_width":6,"target_collection_id":"target_collection_id","resolution":"1k","num_images":1,"quality":"","magic_prompt":"","async":false,"enable_copyright_detection":true,"prompt":"prompt"}
     /// </summary>
     public sealed partial class GenerateImagePImageIdeogramRequest
     {
@@ -18,12 +18,12 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). `OFF` disables magic prompt entirely. Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). `off` disables magic prompt entirely. Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -41,15 +41,15 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The generation quality level. Defaults to `MEDIUM`.<br/>
-        /// Default Value: MEDIUM
+        /// The generation quality level. Defaults to `medium`.<br/>
+        /// Default Value: medium
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.QualityJsonConverter))]
-        public global::Ideogram.Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerationQualityJsonConverter))]
+        public global::Ideogram.GenerationQuality? Quality { get; set; }
 
         /// <summary>
-        /// The output-size tier; the server defaults to `1K` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+        /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImagePImageIdeogramRequestResolutionJsonConverter))]
@@ -138,8 +138,8 @@ namespace Ideogram
         /// detects which was supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). `OFF` disables magic prompt entirely. Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). `off` disables magic prompt entirely. Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -150,11 +150,11 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="quality">
-        /// The generation quality level. Defaults to `MEDIUM`.<br/>
-        /// Default Value: MEDIUM
+        /// The generation quality level. Defaults to `medium`.<br/>
+        /// Default Value: medium
         /// </param>
         /// <param name="resolution">
-        /// The output-size tier; the server defaults to `1K` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+        /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
         /// </param>
         /// <param name="aspectRatio">
         /// The output aspect ratio. Defaults to `1x1`.<br/>
@@ -203,10 +203,10 @@ namespace Ideogram
 #endif
         public GenerateImagePImageIdeogramRequest(
             string prompt,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
             int? numImages,
-            global::Ideogram.Quality? quality,
+            global::Ideogram.GenerationQuality? quality,
             global::Ideogram.GenerateImagePImageIdeogramRequestResolution? resolution,
             global::Ideogram.AspectRatioV3? aspectRatio,
             int? customWidth,

@@ -13,7 +13,7 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_keys")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey> ApiKeys { get; set; }
+        public required global::System.Collections.Generic.IList<global::Ideogram.AccountApiKey> ApiKeys { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -31,7 +31,7 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ListAccountApiKeysResponse(
-            global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey> apiKeys)
+            global::System.Collections.Generic.IList<global::Ideogram.AccountApiKey> apiKeys)
         {
             this.ApiKeys = apiKeys ?? throw new global::System.ArgumentNullException(nameof(apiKeys));
         }

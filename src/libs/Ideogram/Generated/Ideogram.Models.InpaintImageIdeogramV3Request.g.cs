@@ -61,12 +61,12 @@ namespace Ideogram
         public string? Maskname { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -85,7 +85,7 @@ namespace Ideogram
 
         /// <summary>
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.InpaintImageIdeogramV3RequestRenderingSpeedJsonConverter))]
@@ -93,20 +93,20 @@ namespace Ideogram
 
         /// <summary>
         /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
+        /// Default Value: general<br/>
+        /// Example: general
         /// </summary>
-        /// <example>GENERAL</example>
+        /// <example>general</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV3JsonConverter))]
-        public global::Ideogram.StyleTypeV3? StyleType { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StyleTypeJsonConverter))]
+        public global::Ideogram.IdeogramV3StyleType? StyleType { get; set; }
 
         /// <summary>
         /// A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StylePresetV3JsonConverter))]
-        public global::Ideogram.StylePresetV3? StylePreset { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter))]
+        public global::Ideogram.IdeogramV3StylePreset? StylePreset { get; set; }
 
         /// <summary>
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -213,8 +213,8 @@ namespace Ideogram
         /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -226,12 +226,12 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="styleType">
         /// The style type to generate with.<br/>
-        /// Default Value: GENERAL<br/>
-        /// Example: GENERAL
+        /// Default Value: general<br/>
+        /// Example: general
         /// </param>
         /// <param name="stylePreset">
         /// A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references.
@@ -287,12 +287,12 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? maskAssetIdentifier,
             byte[]? mask,
             string? maskname,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
             int? seed,
             global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed? renderingSpeed,
-            global::Ideogram.StyleTypeV3? styleType,
-            global::Ideogram.StylePresetV3? stylePreset,
+            global::Ideogram.IdeogramV3StyleType? styleType,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset,
             global::System.Collections.Generic.IList<string>? styleCodes,
             string? styleReferenceCollectionId,
             string? styleReferenceCollectionVersionId,

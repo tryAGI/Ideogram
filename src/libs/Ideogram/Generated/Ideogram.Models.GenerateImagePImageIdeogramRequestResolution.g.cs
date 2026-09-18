@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The output-size tier; the server defaults to `1K` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+    /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
     /// </summary>
     public enum GenerateImagePImageIdeogramRequestResolution
     {
@@ -30,8 +30,8 @@ namespace Ideogram
         {
             return value switch
             {
-                GenerateImagePImageIdeogramRequestResolution.x1k => "1K",
-                GenerateImagePImageIdeogramRequestResolution.x2k => "2K",
+                GenerateImagePImageIdeogramRequestResolution.x1k => "1k",
+                GenerateImagePImageIdeogramRequestResolution.x2k => "2k",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "1K" => GenerateImagePImageIdeogramRequestResolution.x1k,
-                "2K" => GenerateImagePImageIdeogramRequestResolution.x2k,
+                "1k" => GenerateImagePImageIdeogramRequestResolution.x1k,
+                "2k" => GenerateImagePImageIdeogramRequestResolution.x2k,
                 _ => null,
             };
         }

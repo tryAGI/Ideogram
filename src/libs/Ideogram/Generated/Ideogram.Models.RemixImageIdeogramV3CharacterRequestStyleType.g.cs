@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The style type to remix the character with. Defaults to `AUTO`.<br/>
-    /// Default Value: AUTO
+    /// The style type to remix the character with. Defaults to `auto`.<br/>
+    /// Default Value: auto
     /// </summary>
     public enum RemixImageIdeogramV3CharacterRequestStyleType
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                RemixImageIdeogramV3CharacterRequestStyleType.Auto => "AUTO",
-                RemixImageIdeogramV3CharacterRequestStyleType.Fiction => "FICTION",
-                RemixImageIdeogramV3CharacterRequestStyleType.Realistic => "REALISTIC",
+                RemixImageIdeogramV3CharacterRequestStyleType.Auto => "auto",
+                RemixImageIdeogramV3CharacterRequestStyleType.Fiction => "fiction",
+                RemixImageIdeogramV3CharacterRequestStyleType.Realistic => "realistic",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "AUTO" => RemixImageIdeogramV3CharacterRequestStyleType.Auto,
-                "FICTION" => RemixImageIdeogramV3CharacterRequestStyleType.Fiction,
-                "REALISTIC" => RemixImageIdeogramV3CharacterRequestStyleType.Realistic,
+                "auto" => RemixImageIdeogramV3CharacterRequestStyleType.Auto,
+                "fiction" => RemixImageIdeogramV3CharacterRequestStyleType.Fiction,
+                "realistic" => RemixImageIdeogramV3CharacterRequestStyleType.Realistic,
                 _ => null,
             };
         }

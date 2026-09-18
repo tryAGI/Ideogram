@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                GptImage2Quality.High => "HIGH",
-                GptImage2Quality.Low => "LOW",
-                GptImage2Quality.Medium => "MEDIUM",
+                GptImage2Quality.High => "high",
+                GptImage2Quality.Low => "low",
+                GptImage2Quality.Medium => "medium",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "HIGH" => GptImage2Quality.High,
-                "LOW" => GptImage2Quality.Low,
-                "MEDIUM" => GptImage2Quality.Medium,
+                "high" => GptImage2Quality.High,
+                "low" => GptImage2Quality.Low,
+                "medium" => GptImage2Quality.Medium,
                 _ => null,
             };
         }

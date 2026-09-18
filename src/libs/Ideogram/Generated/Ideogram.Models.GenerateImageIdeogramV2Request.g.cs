@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"aspect_ratio":null,"private":true,"seed":12345,"rendering_speed":"DEFAULT","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","num_images":1,"magic_prompt":"","async":false,"style_type":"REALISTIC","negative_prompt":"negative_prompt","enable_copyright_detection":true,"prompt":"prompt"}
+    /// Example: {"aspect_ratio":null,"private":true,"seed":12345,"rendering_speed":"default","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","num_images":1,"magic_prompt":"","async":false,"style_type":"realistic","negative_prompt":"negative_prompt","enable_copyright_detection":true,"prompt":"prompt"}
     /// </summary>
     public sealed partial class GenerateImageIdeogramV2Request
     {
@@ -37,20 +37,20 @@ namespace Ideogram
         public global::Ideogram.AspectRatioV3? AspectRatio { get; set; }
 
         /// <summary>
-        /// The rendering speed to use. `TURBO` generates faster at a lower cost, while `QUALITY` prioritizes the highest-quality result.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result.<br/>
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV2RequestRenderingSpeedJsonConverter))]
         public global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -60,13 +60,13 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The style type to generate with. When omitted, the model's default styling is used; pass AUTO to have a style selected automatically from the prompt.<br/>
-        /// Example: REALISTIC
+        /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.<br/>
+        /// Example: realistic
         /// </summary>
-        /// <example>REALISTIC</example>
+        /// <example>realistic</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.StyleTypeV2JsonConverter))]
-        public global::Ideogram.StyleTypeV2? StyleType { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV2StyleTypeJsonConverter))]
+        public global::Ideogram.IdeogramV2StyleType? StyleType { get; set; }
 
         /// <summary>
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -131,20 +131,20 @@ namespace Ideogram
         /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use. `TURBO` generates faster at a lower cost, while `QUALITY` prioritizes the highest-quality result.<br/>
-        /// Default Value: DEFAULT
+        /// The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result.<br/>
+        /// Default Value: default
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate with. When omitted, the model's default styling is used; pass AUTO to have a style selected automatically from the prompt.<br/>
-        /// Example: REALISTIC
+        /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.<br/>
+        /// Example: realistic
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -179,9 +179,9 @@ namespace Ideogram
             int? seed,
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed? renderingSpeed,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
-            global::Ideogram.StyleTypeV2? styleType,
+            global::Ideogram.IdeogramV2StyleType? styleType,
             bool? enableCopyrightDetection,
             bool? async,
             string? webhookUrl,

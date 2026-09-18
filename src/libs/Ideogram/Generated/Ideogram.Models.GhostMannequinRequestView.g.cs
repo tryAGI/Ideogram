@@ -34,9 +34,9 @@ namespace Ideogram
         {
             return value switch
             {
-                GhostMannequinRequestView.Back => "BACK",
-                GhostMannequinRequestView.Front => "FRONT",
-                GhostMannequinRequestView.ThreeQuarter => "THREE_QUARTER",
+                GhostMannequinRequestView.Back => "back",
+                GhostMannequinRequestView.Front => "front",
+                GhostMannequinRequestView.ThreeQuarter => "three_quarter",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -47,9 +47,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "BACK" => GhostMannequinRequestView.Back,
-                "FRONT" => GhostMannequinRequestView.Front,
-                "THREE_QUARTER" => GhostMannequinRequestView.ThreeQuarter,
+                "back" => GhostMannequinRequestView.Back,
+                "front" => GhostMannequinRequestView.Front,
+                "three_quarter" => GhostMannequinRequestView.ThreeQuarter,
                 _ => null,
             };
         }

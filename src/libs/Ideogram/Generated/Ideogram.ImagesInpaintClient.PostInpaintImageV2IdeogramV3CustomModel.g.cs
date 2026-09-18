@@ -1041,8 +1041,8 @@ namespace Ideogram
         /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -1100,11 +1100,11 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? maskAssetIdentifier = default,
             byte[]? mask = default,
             string? maskname = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
             int? seed = default,
             global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed? renderingSpeed = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
             string? styleReferenceCollectionId = default,
             string? styleReferenceCollectionVersionId = default,

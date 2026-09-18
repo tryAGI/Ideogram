@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"magic_prompt":"","async":false,"private":true,"seed":12345,"rendering_speed":"DEFAULT","webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","prompt":"prompt","resolution":"","num_images":1}
+    /// Example: {"magic_prompt":"","async":false,"private":true,"seed":12345,"rendering_speed":"default","webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","prompt":"prompt","resolution":"","num_images":1}
     /// </summary>
     public sealed partial class GenerateImageIdeogramV4Request
     {
@@ -19,17 +19,17 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before<br/>
-        /// generation. `OFF` keeps your wording and only converts the prompt<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
         /// into the structured format the model consumes. A prompt that is<br/>
         /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -57,7 +57,7 @@ namespace Ideogram
 
         /// <summary>
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4RequestRenderingSpeedJsonConverter))]
@@ -119,13 +119,13 @@ namespace Ideogram
         /// by the model directly and skips magic prompt.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls how a natural-language prompt is prepared. `AUTO` (the<br/>
-        /// default) and `ON` rewrite and expand the prompt before<br/>
-        /// generation. `OFF` keeps your wording and only converts the prompt<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
         /// into the structured format the model consumes. A prompt that is<br/>
         /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `ON`.<br/>
-        /// Default Value: AUTO
+        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -142,7 +142,7 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
@@ -173,7 +173,7 @@ namespace Ideogram
 #endif
         public GenerateImageIdeogramV4Request(
             string prompt,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
             int? numImages,
             global::Ideogram.ResolutionV4? resolution,

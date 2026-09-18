@@ -696,7 +696,7 @@ namespace Ideogram
         /// </param>
         /// <param name="baseGenerationSize">
         /// Output resolution tier; corresponds to the app's low, medium, and high settings.<br/>
-        /// Default Value: 2K
+        /// Default Value: 2k
         /// </param>
         /// <param name="numImages">
         /// Number of edited images to create.<br/>

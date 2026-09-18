@@ -111,19 +111,19 @@ namespace Ideogram
 
         /// <summary>
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RemixImageIdeogramV3CharacterRequestRenderingSpeedJsonConverter))]
         public global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter))]
-        public global::Ideogram.MagicPromptOption? MagicPrompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -133,8 +133,8 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The style type to remix the character with. Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// The style type to remix the character with. Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.RemixImageIdeogramV3CharacterRequestStyleTypeJsonConverter))]
@@ -262,19 +262,19 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="styleType">
-        /// The style type to remix the character with. Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// The style type to remix the character with. Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="styleReferenceCollectionId">
         /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
@@ -332,7 +332,7 @@ namespace Ideogram
             global::Ideogram.ResolutionV3? resolution,
             global::Ideogram.AspectRatioV3? aspectRatio,
             global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed,
-            global::Ideogram.MagicPromptOption? magicPrompt,
+            global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
             global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType? styleType,
             string? styleReferenceCollectionId,

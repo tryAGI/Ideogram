@@ -109,18 +109,18 @@ namespace Ideogram
         /// Existing upload or generated image assets whose style should guide the generation, by reference. Cannot be combined with source images.
         /// </param>
         /// <param name="aspectRatio">
-        /// The output aspect ratio. `AUTO` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`AUTO` value.<br/>
-        /// Default Value: AUTO
+        /// The output aspect ratio. `auto` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`auto` value.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="resolution">
-        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `AUTO`) when supplying a resolution.
+        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `auto`) when supplying a resolution.
         /// </param>
         /// <param name="resolutionTier">
         /// The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -156,7 +156,7 @@ namespace Ideogram
             string? aspectRatio = default,
             string? resolution = default,
             global::Ideogram.GenerateImageV2AutoRequestResolutionTier? resolutionTier = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
             int? seed = default,
             bool? @private = default,

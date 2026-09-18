@@ -824,10 +824,10 @@ namespace Ideogram
         /// Provide exactly one of `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="variationType">
-        /// The axis to vary while everything else stays on-brand. `PEOPLE`<br/>
-        /// replaces the people in the ad with different talent. `SETTING`<br/>
+        /// The axis to vary while everything else stays on-brand. `people`<br/>
+        /// replaces the people in the ad with different talent. `setting`<br/>
         /// moves the same subject and product to a different environment.<br/>
-        /// `GROUP_SIZE` changes how many people appear. `SCENE` shifts the<br/>
+        /// `group_size` changes how many people appear. `scene` shifts the<br/>
         /// moment or occasion (time of day, season, or activity).
         /// </param>
         /// <param name="prompt">

@@ -90,8 +90,7 @@ namespace Ideogram
             : throw new global::System.InvalidOperationException($"Expected union variant 'ImageGeneration' but the value was {ToString()}.");
 
         /// <summary>
-        /// A single generated video returned by the generation polling endpoint.<br/>
-        /// Example: {"duration":5,"aspect_ratio":969,"object_type":"video.generation","prompt":"prompt","resolution":"720p","url":"https://ideogram.ai/assets/video/lossless/response/xtdZiqPwRxqY1Y7NExFmzB.mp4?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89"}
+        /// A single generated video returned by the generation polling endpoint.
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Ideogram.VideoObject? VideoGeneration { get; init; }

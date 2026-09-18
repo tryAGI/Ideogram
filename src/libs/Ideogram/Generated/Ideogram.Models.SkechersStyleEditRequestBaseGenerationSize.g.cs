@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// Output resolution tier; corresponds to the app's low, medium, and high settings.<br/>
-    /// Default Value: 2K
+    /// Default Value: 2k
     /// </summary>
     public enum SkechersStyleEditRequestBaseGenerationSize
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                SkechersStyleEditRequestBaseGenerationSize.x1k => "1K",
-                SkechersStyleEditRequestBaseGenerationSize.x2k => "2K",
-                SkechersStyleEditRequestBaseGenerationSize.x4k => "4K",
+                SkechersStyleEditRequestBaseGenerationSize.x1k => "1k",
+                SkechersStyleEditRequestBaseGenerationSize.x2k => "2k",
+                SkechersStyleEditRequestBaseGenerationSize.x4k => "4k",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "1K" => SkechersStyleEditRequestBaseGenerationSize.x1k,
-                "2K" => SkechersStyleEditRequestBaseGenerationSize.x2k,
-                "4K" => SkechersStyleEditRequestBaseGenerationSize.x4k,
+                "1k" => SkechersStyleEditRequestBaseGenerationSize.x1k,
+                "2k" => SkechersStyleEditRequestBaseGenerationSize.x2k,
+                "4k" => SkechersStyleEditRequestBaseGenerationSize.x4k,
                 _ => null,
             };
         }

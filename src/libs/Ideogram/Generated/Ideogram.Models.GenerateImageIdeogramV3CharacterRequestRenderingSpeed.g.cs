@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// The rendering speed to use.<br/>
-    /// Default Value: DEFAULT
+    /// Default Value: default
     /// </summary>
     public enum GenerateImageIdeogramV3CharacterRequestRenderingSpeed
     {
@@ -35,9 +35,9 @@ namespace Ideogram
         {
             return value switch
             {
-                GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Default => "DEFAULT",
-                GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Quality => "QUALITY",
-                GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Turbo => "TURBO",
+                GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Default => "default",
+                GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Quality => "quality",
+                GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Turbo => "turbo",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -48,9 +48,9 @@ namespace Ideogram
         {
             return value switch
             {
-                "DEFAULT" => GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Default,
-                "QUALITY" => GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Quality,
-                "TURBO" => GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Turbo,
+                "default" => GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Default,
+                "quality" => GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Quality,
+                "turbo" => GenerateImageIdeogramV3CharacterRequestRenderingSpeed.Turbo,
                 _ => null,
             };
         }

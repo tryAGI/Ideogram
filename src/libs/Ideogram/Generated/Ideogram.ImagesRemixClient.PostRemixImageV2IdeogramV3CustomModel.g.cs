@@ -1059,15 +1059,15 @@ namespace Ideogram
         /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="colorPalette">
-        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members). Not supported by V_1, V_1_TURBO, V_2A and V_2A_TURBO models.
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -1122,11 +1122,11 @@ namespace Ideogram
             global::Ideogram.ResolutionV3? resolution = default,
             global::Ideogram.AspectRatioV3? aspectRatio = default,
             global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed? renderingSpeed = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
-            global::Ideogram.ColorPaletteWithPresetNameOrMembers? colorPalette = default,
+            global::Ideogram.IdeogramColorPalette? colorPalette = default,
             global::System.Collections.Generic.IList<string>? styleCodes = default,
-            global::Ideogram.StylePresetV3? stylePreset = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? styleReferenceAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
             bool? enableCopyrightDetection = default,

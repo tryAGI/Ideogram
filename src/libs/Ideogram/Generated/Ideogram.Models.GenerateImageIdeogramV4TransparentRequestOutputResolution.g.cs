@@ -6,10 +6,10 @@ namespace Ideogram
     /// <summary>
     /// The output resolution tier for the generated images. Tiers are<br/>
     /// total-pixel budgets matching a square of the named size (for<br/>
-    /// example, `8K` delivers at most 8192x8192 total pixels); wide and<br/>
+    /// example, `8k` delivers at most 8192x8192 total pixels); wide and<br/>
     /// tall aspect ratios keep the same pixel budget, so a single<br/>
-    /// dimension may exceed the named size. Defaults to 1K.<br/>
-    /// Default Value: 1K
+    /// dimension may exceed the named size. Defaults to 1k.<br/>
+    /// Default Value: 1k
     /// </summary>
     public enum GenerateImageIdeogramV4TransparentRequestOutputResolution
     {
@@ -43,10 +43,10 @@ namespace Ideogram
         {
             return value switch
             {
-                GenerateImageIdeogramV4TransparentRequestOutputResolution.x1k => "1K",
-                GenerateImageIdeogramV4TransparentRequestOutputResolution.x2k => "2K",
-                GenerateImageIdeogramV4TransparentRequestOutputResolution.x4k => "4K",
-                GenerateImageIdeogramV4TransparentRequestOutputResolution.x8k => "8K",
+                GenerateImageIdeogramV4TransparentRequestOutputResolution.x1k => "1k",
+                GenerateImageIdeogramV4TransparentRequestOutputResolution.x2k => "2k",
+                GenerateImageIdeogramV4TransparentRequestOutputResolution.x4k => "4k",
+                GenerateImageIdeogramV4TransparentRequestOutputResolution.x8k => "8k",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -57,10 +57,10 @@ namespace Ideogram
         {
             return value switch
             {
-                "1K" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x1k,
-                "2K" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x2k,
-                "4K" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x4k,
-                "8K" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x8k,
+                "1k" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x1k,
+                "2k" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x2k,
+                "4k" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x4k,
+                "8k" => GenerateImageIdeogramV4TransparentRequestOutputResolution.x8k,
                 _ => null,
             };
         }

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"base_description":"base_description","aspect_ratio":61,"private":true,"reference_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2K","base_asset_identifier":"","reference_descriptions":["reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions"],"resolved_instruction":"resolved_instruction","num_images":0}
+    /// Example: {"base_description":"base_description","aspect_ratio":61,"private":true,"reference_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2k","base_asset_identifier":"","reference_descriptions":["reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions"],"resolved_instruction":"resolved_instruction","num_images":0}
     /// </summary>
     public sealed partial class SkechersStyleEditRequest
     {
@@ -49,7 +49,7 @@ namespace Ideogram
 
         /// <summary>
         /// Output resolution tier; corresponds to the app's low, medium, and high settings.<br/>
-        /// Default Value: 2K
+        /// Default Value: 2k
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("base_generation_size")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SkechersStyleEditRequestBaseGenerationSizeJsonConverter))]
@@ -112,7 +112,7 @@ namespace Ideogram
         /// </param>
         /// <param name="baseGenerationSize">
         /// Output resolution tier; corresponds to the app's low, medium, and high settings.<br/>
-        /// Default Value: 2K
+        /// Default Value: 2k
         /// </param>
         /// <param name="numImages">
         /// Number of edited images to create.<br/>

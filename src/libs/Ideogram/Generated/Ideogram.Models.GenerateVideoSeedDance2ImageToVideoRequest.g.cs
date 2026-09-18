@@ -61,7 +61,7 @@ namespace Ideogram
         /// <summary>
         /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
         /// most suitable ratio from the prompt; any other value pins the ratio.<br/>
-        /// Default Value: AUTO
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SeedDance2AspectRatioJsonConverter))]
@@ -153,7 +153,7 @@ namespace Ideogram
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
         /// most suitable ratio from the prompt; any other value pins the ratio.<br/>
-        /// Default Value: AUTO
+        /// Default Value: auto
         /// </param>
         /// <param name="resolution">
         /// The resolution tier of the generated video.<br/>

@@ -27,10 +27,11 @@ namespace Ideogram
         public global::Ideogram.MinimaxH3AspectRatio? AspectRatio { get; set; }
 
         /// <summary>
-        /// The resolution tier of the generated video. `480p` and `768p` are<br/>
-        /// generated natively; `2k` and `4k` are upscaled from a `768p` result.<br/>
+        /// The resolution tier of the generated video, spelled the way MiniMax<br/>
+        /// spells it. `480P` and `768P` are generated natively; `2K` and `4K` are<br/>
+        /// upscaled from a `768P` result.<br/>
         /// Higher tiers cost more.<br/>
-        /// Default Value: 2k
+        /// Default Value: 2K
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MinimaxH3ResolutionJsonConverter))]
@@ -90,10 +91,11 @@ namespace Ideogram
         /// Default Value: 16x9
         /// </param>
         /// <param name="resolution">
-        /// The resolution tier of the generated video. `480p` and `768p` are<br/>
-        /// generated natively; `2k` and `4k` are upscaled from a `768p` result.<br/>
+        /// The resolution tier of the generated video, spelled the way MiniMax<br/>
+        /// spells it. `480P` and `768P` are generated natively; `2K` and `4K` are<br/>
+        /// upscaled from a `768P` result.<br/>
         /// Higher tiers cost more.<br/>
-        /// Default Value: 2k
+        /// Default Value: 2K
         /// </param>
         /// <param name="duration">
         /// The length of the generated video in seconds.<br/>

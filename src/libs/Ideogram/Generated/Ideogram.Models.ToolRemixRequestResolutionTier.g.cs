@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1K when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`AUTO` style type) currently support only 1K AUTO remixes.
+    /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1k when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`auto` style type) currently support only 1K AUTO remixes.
     /// </summary>
     public enum ToolRemixRequestResolutionTier
     {
@@ -30,8 +30,8 @@ namespace Ideogram
         {
             return value switch
             {
-                ToolRemixRequestResolutionTier.x1k => "1K",
-                ToolRemixRequestResolutionTier.x2k => "2K",
+                ToolRemixRequestResolutionTier.x1k => "1k",
+                ToolRemixRequestResolutionTier.x2k => "2k",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -42,8 +42,8 @@ namespace Ideogram
         {
             return value switch
             {
-                "1K" => ToolRemixRequestResolutionTier.x1k,
-                "2K" => ToolRemixRequestResolutionTier.x2k,
+                "1k" => ToolRemixRequestResolutionTier.x1k,
+                "2k" => ToolRemixRequestResolutionTier.x2k,
                 _ => null,
             };
         }

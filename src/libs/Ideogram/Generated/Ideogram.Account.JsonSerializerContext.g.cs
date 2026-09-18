@@ -21,8 +21,9 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountApiKeysResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileApiKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountApiKey>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus), TypeInfoPropertyName = "AccountApiKeyStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageBucket>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBucket))]
@@ -34,20 +35,19 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountInvoicesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoice))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InvoiceStatus), TypeInfoPropertyName = "InvoiceStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus), TypeInfoPropertyName = "AccountInvoiceStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceLineItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiKeyStatus), TypeInfoPropertyName = "ApiKeyStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageBucketWidth), TypeInfoPropertyName = "GetAccountUsageBucketWidth2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GetAccountUsageSource>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageSource), TypeInfoPropertyName = "GetAccountUsageSource2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus?), TypeInfoPropertyName = "NullableAccountApiKeyStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource?), TypeInfoPropertyName = "NullableAccountUsageLineItemSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InvoiceStatus?), TypeInfoPropertyName = "NullableInvoiceStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiKeyStatus?), TypeInfoPropertyName = "NullableApiKeyStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus?), TypeInfoPropertyName = "NullableAccountInvoiceStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageBucketWidth?), TypeInfoPropertyName = "NullableGetAccountUsageBucketWidth2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageSource?), TypeInfoPropertyName = "NullableGetAccountUsageSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ApiProfileApiKey>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountApiKey>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageBucket>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageLineItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoice>))]
@@ -119,17 +119,17 @@ namespace Ideogram
             public override bool CanConvert(global::System.Type typeToConvert)
             {
                 return
-                    typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource)
+                    typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus)
+
+                    || typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus?)
+
+                    || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource)
 
                     || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource?)
 
-                    || typeToConvert == typeof(global::Ideogram.ApiKeyStatus)
+                    || typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus)
 
-                    || typeToConvert == typeof(global::Ideogram.ApiKeyStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.InvoiceStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.InvoiceStatus?)
+                    || typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus?)
 
                     || typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth)
 
@@ -144,6 +144,16 @@ namespace Ideogram
                 global::System.Type typeToConvert,
                 global::System.Text.Json.JsonSerializerOptions options)
             {
+                if (typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus))
+                {
+                    return new global::Ideogram.JsonConverters.AccountApiKeyStatusJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus?))
+                {
+                    return new global::Ideogram.JsonConverters.AccountApiKeyStatusNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource))
                 {
                     return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceJsonConverter();
@@ -154,24 +164,14 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.ApiKeyStatus))
+                if (typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus))
                 {
-                    return new global::Ideogram.JsonConverters.ApiKeyStatusJsonConverter();
+                    return new global::Ideogram.JsonConverters.AccountInvoiceStatusJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.ApiKeyStatus?))
+                if (typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus?))
                 {
-                    return new global::Ideogram.JsonConverters.ApiKeyStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InvoiceStatus))
-                {
-                    return new global::Ideogram.JsonConverters.InvoiceStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InvoiceStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.InvoiceStatusNullableJsonConverter();
+                    return new global::Ideogram.JsonConverters.AccountInvoiceStatusNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth))

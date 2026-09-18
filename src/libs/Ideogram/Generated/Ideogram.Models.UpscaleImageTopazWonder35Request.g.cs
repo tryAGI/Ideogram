@@ -33,7 +33,7 @@ namespace Ideogram
 
         /// <summary>
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
-        /// Default Value: X2
+        /// Default Value: x2
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("upscale_factor")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.UpscaleImageTopazWonder35RequestUpscaleFactorJsonConverter))]
@@ -110,7 +110,7 @@ namespace Ideogram
         /// </param>
         /// <param name="upscaleFactor">
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
-        /// Default Value: X2
+        /// Default Value: x2
         /// </param>
         /// <param name="enhancementStrength">
         /// How strongly the generative model reconstructs detail while upscaling. Lower values stay closer to the source image; higher values produce a more enhanced result.<br/>

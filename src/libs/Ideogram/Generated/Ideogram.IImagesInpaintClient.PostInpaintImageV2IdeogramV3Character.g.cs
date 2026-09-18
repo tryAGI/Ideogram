@@ -22,7 +22,7 @@ namespace Ideogram
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
         /// Optional style controls may be combined with the character when<br/>
-        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// `style_type` is `auto`. Supply either style codes or style references.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references, or as raw<br/>
@@ -71,7 +71,7 @@ namespace Ideogram
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
         /// Optional style controls may be combined with the character when<br/>
-        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// `style_type` is `auto`. Supply either style codes or style references.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references, or as raw<br/>
@@ -120,7 +120,7 @@ namespace Ideogram
         /// reference). If more than one form is supplied, the collection wins<br/>
         /// over the identifiers, and the identifiers win over the bytes.<br/>
         /// Optional style controls may be combined with the character when<br/>
-        /// `style_type` is `AUTO`. Supply either style codes or style references.<br/>
+        /// `style_type` is `auto`. Supply either style codes or style references.<br/>
         /// Supply style references as a saved style<br/>
         /// (`style_reference_collection_id`), as<br/>
         /// `style_reference_asset_identifiers` references, or as raw<br/>
@@ -183,8 +183,8 @@ namespace Ideogram
         /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -196,11 +196,11 @@ namespace Ideogram
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
-        /// Default Value: DEFAULT
+        /// Default Value: default
         /// </param>
         /// <param name="styleType">
-        /// The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.<br/>
-        /// Default Value: AUTO
+        /// The style type to repaint the character with. Defaults to `auto`. `realistic` and `fiction` are supported for character-only requests; style codes or style references require `auto`.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
@@ -260,7 +260,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
             byte[]? characterReferenceMask = default,
             string? characterReferenceMaskname = default,
-            global::Ideogram.MagicPromptOption? magicPrompt = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
             int? seed = default,
             global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed = default,

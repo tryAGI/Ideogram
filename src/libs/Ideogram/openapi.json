@@ -7398,154 +7398,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.account_controller"
       }
     },
-    "/v2/async/image-to-video/seed-dance-2.0": {
-      "post": {
-        "description": "Generates a video from a first-frame image and a text prompt using the\nSeedance 2.0 model. The request is always processed asynchronously: this\nendpoint returns immediately with a `generation_id` and an empty `data`\narray. Poll `/v1/generations/{generation_id}` with the returned\n`generation_id` to retrieve the video once it is ready, or supply\n`webhook_url` to have the result delivered to your server.\n\nSupply the first frame in exactly one of two ways: upload the image bytes\ndirectly in the `image` part, or reference an existing Ideogram asset you\nown with `image_asset_id`. Provide exactly one of `image` or\n`image_asset_id`; supplying neither or both is rejected.\n\nVideo links are available for a limited period of time; if you would like\nto keep the video, you must download it.\n",
-        "operationId": "post_image_to_video_seed_dance2",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "webhook_url",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/WebhookUrl"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "encoding": {
-                "image_asset_id": {
-                  "contentType": "application/json"
-                }
-              },
-              "schema": {
-                "$ref": "#/components/schemas/ImageToVideoRequestSeedDance2"
-              }
-            }
-          },
-          "description": "A request to generate a video from a first-frame image with Seedance 2.0.",
-          "required": true,
-          "x-body-name": "body"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VideoGenerationResponse"
-                }
-              }
-            },
-            "description": "Request accepted; poll or await the webhook for the result."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Not authorized."
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImageSafetyError"
-                }
-              }
-            },
-            "description": "Prompt failed the safety check."
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Too many requests."
-          }
-        },
-        "summary": "Generate a video from an image with Seedance 2.0",
-        "tags": [
-          "generate"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
-      }
-    },
-    "/v2/async/text-to-video/seed-dance-2.0": {
-      "post": {
-        "description": "Generates a video from a text prompt using the Seedance 2.0 model. The\nrequest is always processed asynchronously: this endpoint returns\nimmediately with a `generation_id` and an empty `data` array. Poll\n`/v1/generations/{generation_id}` with the returned `generation_id` to\nretrieve the video once it is ready, or supply `webhook_url` to have the\nresult delivered to your server.\n\nVideo links are available for a limited period of time; if you would like\nto keep the video, you must download it.\n",
-        "operationId": "post_text_to_video_seed_dance2",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "webhook_url",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/WebhookUrl"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TextToVideoRequestSeedDance2"
-              }
-            }
-          },
-          "description": "A request to generate a video from a text prompt with Seedance 2.0.",
-          "required": true,
-          "x-body-name": "text_to_video_request_seed_dance2"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VideoGenerationResponse"
-                }
-              }
-            },
-            "description": "Request accepted; poll or await the webhook for the result."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Not authorized."
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ImageSafetyError"
-                }
-              }
-            },
-            "description": "Prompt failed the safety check."
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Too many requests."
-          }
-        },
-        "summary": "Generate a video from text with Seedance 2.0",
-        "tags": [
-          "generate"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.generate_controller"
-      }
-    },
-    "/v2/design/layerize/ideogram-v3": {
+    "/v2/design/layerize/ideogram-3": {
       "post": {
         "description": "Decompose a flat image into an editable design: the text in the image\nis detected, erased from the image, and returned as positioned text\nblocks with matched fonts, sizes, and colors, alongside a text-free\nbase image.\n\nSupply the source either as an `image_asset_identifier` reference (an\nimage already stored with Ideogram) or as raw `image` bytes (multipart\nrequests only). Provide exactly one of the two forms; supplying both,\nor neither, is rejected with a 400.\n\nA `prompt` describing the image can guide text detection; when\nomitted, detection runs on the image alone.\n\nBy default the request blocks until layerization is complete and\nreturns the result in `data`. Set `async` to true to return\nimmediately after the request is accepted, then poll for completion\nand results with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_layerize_design_ideogram_v3",
@@ -7904,190 +7757,6 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.auto_model_controller"
       }
     },
-    "/v2/image/generate/gemini-3.0-pro": {
-      "post": {
-        "description": "Generate one or more images with Gemini 3.0 Pro. The prompt is\nconsumed by the model directly, without rewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output is served at the closest aspect ratio the model supports,\nat the requested `resolution_tier` (1K by default).\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
-        "operationId": "post_generate_image_v2_gemini30_pro",
-        "parameters": [
-          {
-            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
-            "in": "query",
-            "name": "dry_run",
-            "required": false,
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "encoding": {
-                "image_asset_identifiers": {
-                  "contentType": "application/json"
-                }
-              },
-              "schema": {
-                "$ref": "#/components/schemas/GenerateImageGemini30ProRequest"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GenerateImageGemini30ProRequest"
-              }
-            }
-          },
-          "description": "A request to generate images with Gemini 3.0 Pro, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
-          "required": true,
-          "x-body-name": "body"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerateImageGemini30ProResponse"
-                }
-              }
-            },
-            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Unauthorized."
-          },
-          "402": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Insufficient credits or quota."
-          },
-          "422": {
-            "description": "The prompt did not pass safety checks."
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Too many requests."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "The endpoint is temporarily unavailable."
-          }
-        },
-        "summary": "Generate images with Gemini 3.0 Pro, from a text prompt or by editing source images",
-        "tags": [
-          "images-generate"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
-      }
-    },
-    "/v2/image/generate/gemini-3.1-flash": {
-      "post": {
-        "description": "Generate one or more images with Gemini 3.1 Flash. The prompt is\nconsumed by the model directly, without rewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output is served at the closest aspect ratio the model supports,\nat the requested `resolution_tier` (1K by default).\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
-        "operationId": "post_generate_image_v2_gemini31_flash",
-        "parameters": [
-          {
-            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
-            "in": "query",
-            "name": "dry_run",
-            "required": false,
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "encoding": {
-                "image_asset_identifiers": {
-                  "contentType": "application/json"
-                }
-              },
-              "schema": {
-                "$ref": "#/components/schemas/GenerateImageGemini31FlashRequest"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GenerateImageGemini31FlashRequest"
-              }
-            }
-          },
-          "description": "A request to generate images with Gemini 3.1 Flash, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
-          "required": true,
-          "x-body-name": "body"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerateImageGemini31FlashResponse"
-                }
-              }
-            },
-            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Unauthorized."
-          },
-          "402": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Insufficient credits or quota."
-          },
-          "422": {
-            "description": "The prompt did not pass safety checks."
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Too many requests."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "The endpoint is temporarily unavailable."
-          }
-        },
-        "summary": "Generate images with Gemini 3.1 Flash, from a text prompt or by editing source images",
-        "tags": [
-          "images-generate"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
-      }
-    },
     "/v2/image/generate/gpt-image-2": {
       "post": {
         "description": "Generate one or more images with GPT Image 2. The prompt is consumed\nby the model directly, without rewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
@@ -8180,7 +7849,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/gpt-image-2.5-flare": {
+    "/v2/image/generate/gpt-image-2-5-flare": {
       "post": {
         "description": "Generate one or more images with GPT Image 2.5 Flare — the fast\nvariant of GPT Image 2.5, optimized for speed at quality comparable\nto GPT Image 2. The prompt is consumed by the model directly, without\nrewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_gpt_image25_flare",
@@ -8272,7 +7941,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/gpt-image-2.5-sunburst": {
+    "/v2/image/generate/gpt-image-2-5-sunburst": {
       "post": {
         "description": "Generate one or more images with GPT Image 2.5 Sunburst — the quality\nvariant of GPT Image 2.5, optimized for fine detail at higher\nlatency than Flare. The prompt is consumed by the model directly, without\nrewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output size follows `resolution` when provided, otherwise the\nclosest size the model supports for `aspect_ratio`.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_gpt_image25_sunburst",
@@ -8366,7 +8035,7 @@
     },
     "/v2/image/generate/ideogram-2": {
       "post": {
-        "description": "Generate one or more images from a text prompt with Ideogram 2.0,\nwith an optional style type and negative prompt. Set\n`rendering_speed` to `TURBO` for faster, lower-cost generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images from a text prompt with Ideogram 2.0,\nwith an optional style type and negative prompt. Set\n`rendering_speed` to `turbo` for faster, lower-cost generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v2",
         "parameters": [
           {
@@ -8448,7 +8117,7 @@
     },
     "/v2/image/generate/ideogram-2a": {
       "post": {
-        "description": "Generate one or more images from a text prompt with Ideogram 2a, a\nfast, lower-cost model, with an optional style type. Set\n`rendering_speed` to `TURBO` for even faster generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images from a text prompt with Ideogram 2a, a\nfast, lower-cost model, with an optional style type. Set\n`rendering_speed` to `turbo` for even faster generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v2_a",
         "parameters": [
           {
@@ -8909,7 +8578,7 @@
     },
     "/v2/image/generate/ideogram-4": {
       "post": {
-        "description": "Generate one or more images from a prompt with Ideogram 4.0. The\n`prompt` accepts either natural language or a structured Ideogram 4.0\nJSON prompt; the server detects which was supplied. A structured JSON\nprompt is consumed by the model directly and skips magic prompt.\n\n`magic_prompt` controls how a natural-language prompt is prepared:\n`AUTO`/`ON` rewrite and expand the prompt before generation, while\n`OFF` keeps your wording and only converts the prompt into the\nstructured format the model consumes.\n\nWhen `resolution` is omitted, the server picks an aspect ratio\nautomatically based on the prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images from a prompt with Ideogram 4.0. The\n`prompt` accepts either natural language or a structured Ideogram 4.0\nJSON prompt; the server detects which was supplied. A structured JSON\nprompt is consumed by the model directly and skips magic prompt.\n\n`magic_prompt` controls how a natural-language prompt is prepared:\n`auto`/`on` rewrite and expand the prompt before generation, while\n`off` keeps your wording and only converts the prompt into the\nstructured format the model consumes.\n\nWhen `resolution` is omitted, the server picks an aspect ratio\nautomatically based on the prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v4",
         "parameters": [
           {
@@ -8983,6 +8652,98 @@
           }
         },
         "summary": "Generate images with Ideogram 4.0 from a text or structured prompt",
+        "tags": [
+          "images-generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
+      }
+    },
+    "/v2/image/generate/ideogram-4-5": {
+      "post": {
+        "description": "Generate one or more images with Ideogram 4.5. Supplying source\nimages turns the request into an image-to-image transform: the model\nconditions on the sources, the prompt becomes optional guidance, and\n`size` may be \"auto\" to derive the output from the first source.\nProvide sources either as `image_asset_identifiers` references or as\nraw `images` bytes (multipart requests only); if both are supplied,\nthe references win and the bytes are ignored. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; the\nserver detects which was supplied.\n\n`magic_prompt` controls automatic prompt rewriting: `auto` (the\ndefault) and `on` rewrite a natural-language prompt, a prompt that is\nalready a valid structured JSON prompt is always consumed directly,\nand `off` disables rewriting entirely so the model receives your\nprompt verbatim.\n\nIdeogram 4.5 renders a fixed set of output sizes. When `size`\nis omitted, the server picks a supported size automatically based on\nthe prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_generate_image_v2_ideogram45",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
+              }
+            }
+          },
+          "description": "A request to generate images with Ideogram 4.5, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageIdeogram45Response"
+                }
+              }
+            },
+            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate images with Ideogram 4.5, from a prompt or by transforming source images",
         "tags": [
           "images-generate"
         ],
@@ -9076,7 +8837,7 @@
     },
     "/v2/image/generate/ideogram-4-transparent": {
       "post": {
-        "description": "Generate one or more images on a transparent background with\nIdeogram 4.0, delivered as PNGs with alpha. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; a\nstructured prompt is consumed directly and skips magic prompt, except\nthat its background description is replaced with a\ntransparent-background directive.\n\n`magic_prompt` controls how a natural-language prompt is prepared:\n`AUTO`/`ON` rewrite and expand the prompt before generation, while\n`OFF` keeps your wording and only converts the prompt into the\nstructured format the model consumes.\n\n`output_resolution` selects the output tier (1K to 8K); tiers above\n2K are produced by upscaling after generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images on a transparent background with\nIdeogram 4.0, delivered as PNGs with alpha. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; a\nstructured prompt is consumed directly and skips magic prompt, except\nthat its background description is replaced with a\ntransparent-background directive.\n\n`magic_prompt` controls how a natural-language prompt is prepared:\n`auto`/`on` rewrite and expand the prompt before generation, while\n`off` keeps your wording and only converts the prompt into the\nstructured format the model consumes.\n\n`output_resolution` selects the output tier (1k to 8k); tiers above\n2K are produced by upscaling after generation.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram_v4_transparent",
         "parameters": [
           {
@@ -9156,10 +8917,10 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
-    "/v2/image/generate/ideogram-4.5": {
+    "/v2/image/generate/nano-banana-2": {
       "post": {
-        "description": "Generate one or more images with Ideogram 4.5. Supplying source\nimages turns the request into an image-to-image transform: the model\nconditions on the sources, the prompt becomes optional guidance, and\n`size` may be \"auto\" to derive the output from the first source.\nProvide sources either as `image_asset_identifiers` references or as\nraw `images` bytes (multipart requests only); if both are supplied,\nthe references win and the bytes are ignored. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; the\nserver detects which was supplied.\n\n`magic_prompt` controls automatic prompt rewriting: `AUTO` (the\ndefault) and `ON` rewrite a natural-language prompt, a prompt that is\nalready a valid structured JSON prompt is always consumed directly,\nand `OFF` disables rewriting entirely so the model receives your\nprompt verbatim.\n\nIdeogram 4.5 renders a fixed set of output sizes. When `size`\nis omitted, the server picks a supported size automatically based on\nthe prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
-        "operationId": "post_generate_image_v2_ideogram45",
+        "description": "Generate one or more images with Nano Banana 2. The prompt is\nconsumed by the model directly, without rewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output is served at the closest aspect ratio the model supports,\nat the requested `resolution_tier` (1K by default).\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_generate_image_v2_nano_banana2",
         "parameters": [
           {
             "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
@@ -9181,16 +8942,16 @@
                 }
               },
               "schema": {
-                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
+                "$ref": "#/components/schemas/GenerateImageNanoBanana2Request"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GenerateImageIdeogram45Request"
+                "$ref": "#/components/schemas/GenerateImageNanoBanana2Request"
               }
             }
           },
-          "description": "A request to generate images with Ideogram 4.5, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
+          "description": "A request to generate images with Nano Banana 2, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
           "required": true,
           "x-body-name": "body"
         },
@@ -9199,7 +8960,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GenerateImageIdeogram45Response"
+                  "$ref": "#/components/schemas/GenerateImageNanoBanana2Response"
                 }
               }
             },
@@ -9241,7 +9002,99 @@
             "description": "The endpoint is temporarily unavailable."
           }
         },
-        "summary": "Generate images with Ideogram 4.5, from a prompt or by transforming source images",
+        "summary": "Generate images with Nano Banana 2, from a text prompt or by editing source images",
+        "tags": [
+          "images-generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
+      }
+    },
+    "/v2/image/generate/nano-banana-pro": {
+      "post": {
+        "description": "Generate one or more images with Nano Banana Pro. The prompt is\nconsumed by the model directly, without rewriting.\n\nSupplying source images turns the request into an edit: the model\napplies the prompt to the sources. Provide them either as\n`image_asset_identifiers` references (images already stored with\nIdeogram) or as raw `images` bytes (multipart requests only) — if both\nare supplied, the references win and the bytes are ignored. Without\nsource images the prompt alone drives the generation.\n\nThe output is served at the closest aspect ratio the model supports,\nat the requested `resolution_tier` (1K by default).\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_generate_image_v2_nano_banana_pro",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageNanoBananaProRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageNanoBananaProRequest"
+              }
+            }
+          },
+          "description": "A request to generate images with Nano Banana Pro, optionally conditioned on source images. Use `multipart/form-data` to upload `images` bytes directly, or `application/json` (or multipart with `image_asset_identifiers`) to reference existing assets instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageNanoBananaProResponse"
+                }
+              }
+            },
+            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate images with Nano Banana Pro, from a text prompt or by editing source images",
         "tags": [
           "images-generate"
         ],
@@ -9515,7 +9368,7 @@
     },
     "/v2/image/inpaint/ideogram-3-character": {
       "post": {
-        "description": "Repaint the masked region of a source image so it features a\nconsistent character, with Ideogram 3.0. For each of the source image\nand the mask, supply either an `AssetIdentifier` reference\n(`image_asset_identifier` / `mask_asset_identifier`) or the raw image\nbytes directly (`image` / `mask`, multipart requests only). If both a\nreference and bytes are supplied for the same input, the reference\nwins and the bytes are ignored.\n\nSupply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references (an image already\nstored with Ideogram), or as raw `character_reference_images` bytes\n(multipart requests only, with an optional\n`character_reference_mask` marking where the character is in the\nreference). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nOptional style controls may be combined with the character when\n`style_type` is `AUTO`. Supply either style codes or style references.\nSupply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references, or as raw\n`style_reference_images` bytes (multipart requests only). If more than\none reference form is supplied, the collection wins over the\nidentifiers, and the identifiers win over the bytes. API-key callers\nalso need access to the style-with-character API rollout.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
+        "description": "Repaint the masked region of a source image so it features a\nconsistent character, with Ideogram 3.0. For each of the source image\nand the mask, supply either an `AssetIdentifier` reference\n(`image_asset_identifier` / `mask_asset_identifier`) or the raw image\nbytes directly (`image` / `mask`, multipart requests only). If both a\nreference and bytes are supplied for the same input, the reference\nwins and the bytes are ignored.\n\nSupply the character as a saved character\n(`character_reference_collection_id`), as\n`character_reference_asset_identifiers` references (an image already\nstored with Ideogram), or as raw `character_reference_images` bytes\n(multipart requests only, with an optional\n`character_reference_mask` marking where the character is in the\nreference). If more than one form is supplied, the collection wins\nover the identifiers, and the identifiers win over the bytes.\n\nOptional style controls may be combined with the character when\n`style_type` is `auto`. Supply either style codes or style references.\nSupply style references as a saved style\n(`style_reference_collection_id`), as\n`style_reference_asset_identifiers` references, or as raw\n`style_reference_images` bytes (multipart requests only). If more than\none reference form is supplied, the collection wins over the\nidentifiers, and the identifiers win over the bytes. API-key callers\nalso need access to the style-with-character API rollout.\n\nThe output matches the size of the source image (snapped to the\nnearest resolution the model renders). By default the request blocks\nuntil the images are ready and returns them in `data`. Set `async` to\ntrue to return immediately after the request is accepted, then poll\nfor completion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_inpaint_image_v2_ideogram_v3_character",
         "parameters": [
           {
@@ -9707,102 +9560,6 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_inpaint_controller"
       }
     },
-    "/v2/image/reframe/gemini-3.1-flash": {
-      "post": {
-        "description": "Expand one image to a new aspect ratio with Gemini 3.1 Flash Image.\nSupply either an existing Ideogram image asset or raw image bytes,\nbut not both. The requested aspect ratio is resolved to the closest\nsupported 1K output dimensions.\n\nThis operation is asynchronous. It returns as soon as the request is\naccepted; poll `GET /v1/generations/{generation_id}` for completion\nand results.\n",
-        "operationId": "post_reframe_image_gemini31_flash_image",
-        "parameters": [
-          {
-            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
-            "in": "query",
-            "name": "dry_run",
-            "required": false,
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "encoding": {
-                "image_asset_identifier": {
-                  "contentType": "application/json"
-                }
-              },
-              "schema": {
-                "$ref": "#/components/schemas/ReframeImageGemini31FlashImageRequest"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ReframeImageGemini31FlashImageRequest"
-              }
-            }
-          },
-          "required": true,
-          "x-body-name": "body"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReframeImageGemini31FlashImageResponse"
-                }
-              }
-            },
-            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Unauthorized."
-          },
-          "402": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Insufficient credits or quota."
-          },
-          "404": {
-            "description": "The referenced source asset was not found."
-          },
-          "429": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerationErrorResponse"
-                }
-              }
-            },
-            "description": "Too many requests."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "The endpoint is temporarily unavailable."
-          }
-        },
-        "summary": "Reframe an image with Gemini 3.1 Flash Image",
-        "tags": [
-          "images-reframe"
-        ],
-        "x-fern-sdk-group-name": [
-          "image",
-          "reframe"
-        ],
-        "x-fern-sdk-method-name": "gemini31FlashImage",
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_reframe_controller"
-      }
-    },
     "/v2/image/reframe/ideogram-3": {
       "post": {
         "description": "Expand an image to a new Ideogram 3.0 resolution. The source pixels\nare preserved in the center and Ideogram fills the new area. Supply\nexactly one source: an `AssetIdentifier` reference\n(`image_asset_identifier`) or raw image bytes (`image`, multipart\nrequests only). Supplying both forms, or neither, is rejected.\n\nOptional style controls are mutually exclusive. Supply at most one of\n`style_preset`, `style_codes`, `style_reference_asset_identifiers`, or\nraw `style_reference_images` (multipart requests only). Each style\nreference transport accepts at most 10 images.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately, then poll\n`GET /v1/generations/{generation_id}`.\n",
@@ -9906,9 +9663,105 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_reframe_controller"
       }
     },
+    "/v2/image/reframe/nano-banana-2": {
+      "post": {
+        "description": "Expand one image to a new aspect ratio with Nano Banana 2.\nSupply either an existing Ideogram image asset or raw image bytes,\nbut not both. The requested aspect ratio is resolved to the closest\nsupported 1K output dimensions.\n\nThis operation is asynchronous. It returns as soon as the request is\naccepted; poll `GET /v1/generations/{generation_id}` for completion\nand results.\n",
+        "operationId": "post_reframe_image_nano_banana2",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ReframeImageNanoBanana2Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReframeImageNanoBanana2Request"
+              }
+            }
+          },
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReframeImageNanoBanana2Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "The referenced source asset was not found."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Reframe an image with Nano Banana 2",
+        "tags": [
+          "images-reframe"
+        ],
+        "x-fern-sdk-group-name": [
+          "image",
+          "reframe"
+        ],
+        "x-fern-sdk-method-name": "nanoBanana2",
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_reframe_controller"
+      }
+    },
     "/v2/image/remix/auto": {
       "post": {
-        "description": "Transform an existing image with a server-selected model, guided by a\ntext prompt. Supply the source as `image` bytes (multipart requests\nonly). `image_weight` controls how closely the result follows the\nsource; when omitted the selected model chooses its usual strength.\n\nThe server chooses a model that supports the requested remix controls:\nstyle references (ad hoc or saved), a color palette, style codes, a\nstyle preset, and a non-`AUTO` style type each\nrestrict the request to a compatible model and to the 1K tier;\nremixes without those controls use the default model. Omit\n`resolution` and `aspect_ratio` to keep the source image's shape.\nSupplying `image_weight` together with a `resolution` or\n`aspect_ratio` that changes the source's aspect ratio routes the\nrequest to a model that crops the source to the new shape; that\ncombination is served only at the 1K tier and is rejected at 2K.\n(The model-pinned remix endpoints such as\n`/v2/image/remix/ideogram-4` reject the combination outright.)\n`seed` is honored only on the compatible model; the default model\nsynthesizes an unseeded instruction prompt, so results are not\nreproducible there.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
+        "description": "Transform an existing image with a server-selected model, guided by a\ntext prompt. Supply the source as `image` bytes (multipart requests\nonly). `image_weight` controls how closely the result follows the\nsource; when omitted the selected model chooses its usual strength.\n\nThe server chooses a model that supports the requested remix controls:\nstyle references (ad hoc or saved), a color palette, style codes, a\nstyle preset, and a non-`auto` style type each\nrestrict the request to a compatible model and to the 1K tier;\nremixes without those controls use the default model. Omit\n`resolution` and `aspect_ratio` to keep the source image's shape.\nSupplying `image_weight` together with a `resolution` or\n`aspect_ratio` that changes the source's aspect ratio routes the\nrequest to a model that crops the source to the new shape; that\ncombination is served only at the 1K tier and is rejected at 2K.\n(The model-pinned remix endpoints such as\n`/v2/image/remix/ideogram-4` reject the combination outright.)\n`seed` is honored only on the compatible model; the default model\nsynthesizes an unseeded instruction prompt, so results are not\nreproducible there.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
         "operationId": "post_tool_remix",
         "parameters": [
           {
@@ -10554,6 +10407,12 @@
           "403": {
             "description": "Not authorized to remove an object."
           },
+          "404": {
+            "description": "A referenced source or mask asset was not found."
+          },
+          "413": {
+            "description": "An uploaded source or mask image is too large."
+          },
           "429": {
             "content": {
               "application/json": {
@@ -10563,6 +10422,9 @@
               }
             },
             "description": "Too many requests."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
           }
         },
         "summary": "Remove a masked object from an image, by asset id or by uploaded bytes",
@@ -10861,10 +10723,10 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tools_controller"
       }
     },
-    "/v2/image/upscale/gemini-3-pro": {
+    "/v2/image/upscale/nano-banana-pro": {
       "post": {
         "description": "Regenerate the source image at a higher resolution tier (1K, 2K, or\n4K) while preserving its content, composition, and style. Supply the\nsource either as an `image_asset_identifier` reference (an image\nalready stored with Ideogram) or as raw `image` bytes (multipart\nrequests only) — callers are never required to upload the asset\nfirst. If both are supplied, the reference wins and the bytes are\nignored. Uploaded bytes are used for this request only and are not\nstored as an asset; upscales of a referenced asset keep a visible\nlink to their source image.\n\nAn optional `prompt` adds short guidance for the enhancement; the\nimage is otherwise upscaled as-is. The source must be smaller than\nthe requested `resolution_tier`.\n\nBy default the request blocks until the upscaled image is ready and\nreturns it in `data`. Set `async` to true to return immediately after\nthe request is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
-        "operationId": "post_upscale_image_gemini3_pro",
+        "operationId": "post_upscale_image_nano_banana_pro",
         "parameters": [
           {
             "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
@@ -10886,16 +10748,16 @@
                 }
               },
               "schema": {
-                "$ref": "#/components/schemas/UpscaleImageGemini3ProRequest"
+                "$ref": "#/components/schemas/UpscaleImageNanoBananaProRequest"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpscaleImageGemini3ProRequest"
+                "$ref": "#/components/schemas/UpscaleImageNanoBananaProRequest"
               }
             }
           },
-          "description": "A request to upscale one image with Gemini 3 Pro. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "description": "A request to upscale one image with Nano Banana Pro. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
           "required": true,
           "x-body-name": "body"
         },
@@ -10904,7 +10766,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpscaleImageGemini3ProResponse"
+                  "$ref": "#/components/schemas/UpscaleImageNanoBananaProResponse"
                 }
               }
             },
@@ -10949,7 +10811,7 @@
             "description": "The endpoint is temporarily unavailable."
           }
         },
-        "summary": "Upscale an image with Gemini 3 Pro, by asset id or by uploaded bytes",
+        "summary": "Upscale an image with Nano Banana Pro, by asset id or by uploaded bytes",
         "tags": [
           "images-upscale"
         ],
@@ -12295,6 +12157,79 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
+    "/v2/tool/product-360-video": {
+      "post": {
+        "description": "Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.\nVideo generation runs asynchronously. Poll `GET /v1/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.",
+        "operationId": "post_product360_video",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Product360VideoRequest"
+              }
+            }
+          },
+          "description": "The product image and requested turntable motion.",
+          "required": true,
+          "x-body-name": "product360_video_request"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoSeedDance25Response"
+                }
+              }
+            },
+            "description": "Product video accepted for asynchronous processing."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to product video generation."
+          },
+          "404": {
+            "description": "The product image was not found or is not readable."
+          },
+          "422": {
+            "description": "The product description did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Create a looping 360-degree product video",
+        "tags": [
+          "video-generate"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
+      }
+    },
     "/v2/tool/skechers-style-editor": {
       "post": {
         "description": "Edits the base image while preserving details the instruction does not\nchange. Image 1 is the base; reference images are numbered from image 2\nin the supplied order. Resolve image mentions to these numbers before\nsubmitting. Descriptions identify the selected view or reference.\n\nPoll GET /v1/generations/{generation_id} with the returned generation_id\nuntil the workflow completes or fails.\n",
@@ -12501,7 +12436,7 @@
     },
     "/v2/tool/swan-s-logo-design": {
       "post": {
-        "description": "Creates isolated logo candidates using either a shoe swatch or a supplied style reference. No shoe is required when using a supplied reference. 3D reference designs split the requested count between split and full coverage variants; completed variants remain available if another variant fails. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.",
+        "description": "Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.",
         "operationId": "post_swan_s_logo_design",
         "requestBody": {
           "content": {
@@ -12544,7 +12479,7 @@
             "description": "Too many requests."
           }
         },
-        "summary": "Design Swan S logo candidates",
+        "summary": "Design one Swan S logo candidate",
         "tags": [
           "edit-workflow"
         ],
@@ -12658,93 +12593,6 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
-    "/v2/video/edit/minimax-h3-reference-to-video": {
-      "post": {
-        "description": "Produce a video from a text prompt and reference media with MiniMax H3.\n\nThe prompt addresses the references by position: the first reference\nimage is `Image 1`, the second `Image 2`, the first reference video is\n`Video 1`, and the first reference audio is `Audio 1`. Supply reference\nimages either as\n`reference_image_asset_identifiers` (images already stored with\nIdeogram) or as raw `reference_images` bytes (multipart requests only);\nsupplying both is rejected, and uploaded bytes are used for this request\nonly and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated or uploaded with Ideogram. At most 9 reference images and 3 reference\nvideos are accepted, and reference videos are capped again on clip\nlength. Optional `reference_audios` accepts MP3/WAV uploads alongside\nan image or video. Audio and video references must total at most 15\nseconds; at most 12 references are accepted across all media.\n\nReferences are optional. With none, the video is produced from the\nprompt alone.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
-        "operationId": "post_edit_video_minimax_h3_reference_to_video",
-        "parameters": [
-          {
-            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
-            "in": "query",
-            "name": "dry_run",
-            "required": false,
-            "schema": {
-              "default": false,
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "encoding": {
-                "reference_image_asset_identifiers": {
-                  "contentType": "application/json"
-                },
-                "reference_video_asset_identifiers": {
-                  "contentType": "application/json"
-                }
-              },
-              "schema": {
-                "$ref": "#/components/schemas/EditVideoMinimaxH3ReferenceToVideoRequest"
-              }
-            },
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EditVideoMinimaxH3ReferenceToVideoRequest"
-              }
-            }
-          },
-          "description": "A request to produce a video from reference media with MiniMax H3. Use `multipart/form-data` to upload `reference_images` bytes directly, or `application/json` (or multipart with the asset identifier fields) to reference existing assets instead.",
-          "required": true,
-          "x-body-name": "body"
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GenerateVideoMinimaxH3Response"
-                }
-              }
-            },
-            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
-          },
-          "400": {
-            "description": "Invalid input provided."
-          },
-          "401": {
-            "description": "Unauthorized."
-          },
-          "402": {
-            "description": "Insufficient credits or quota."
-          },
-          "403": {
-            "description": "This account does not have access to this model."
-          },
-          "404": {
-            "description": "A referenced asset was not found."
-          },
-          "422": {
-            "description": "The prompt did not pass safety checks."
-          },
-          "429": {
-            "description": "Too many requests."
-          },
-          "500": {
-            "description": "Internal server error."
-          },
-          "503": {
-            "description": "The endpoint is temporarily unavailable."
-          }
-        },
-        "summary": "Produce a video from reference media with MiniMax H3",
-        "tags": [
-          "video-edit"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_edit_controller"
-      }
-    },
     "/v2/video/edit/seedance-2": {
       "post": {
         "description": "Edit a video you already have stored with Ideogram by replacing part of\nit. Reference the source video with `video_asset_identifier` and mark the\nspan to replace with `start_frame_time` and `end_frame_time`, in seconds.\nSeedance 2.0 generates a new clip for that span from your prompt, and the\nresult is the source video with the generated clip spliced in over the\nspan: everything before `start_frame_time`, then the generated clip, then\neverything from `end_frame_time` on. That edited video is the asset the\nrequest produces.\n\n`is_start_frame_included` and `is_end_frame_included` anchor the generated\nclip on the span's own end frames, so it joins the surrounding footage\ninstead of cutting to something unrelated. Anchoring the start opens the\nclip on the frame already at `start_frame_time`; anchoring the end lands\nit on the frame at `end_frame_time`; anchoring both joins at each seam. At\nleast one must be anchored.\n\nThe generated clip is used at its own length, which the model rarely makes\nexactly the span's, so the edited video is usually a different length from\nthe source. Request a `duration` close to the span to keep them near each\nother. The clip is scaled and cropped to fill the source's frame and\nconformed to its frame rate, so resolution and aspect ratio follow the\nsource rather than being requested.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
@@ -12819,7 +12667,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_edit_controller"
       }
     },
-    "/v2/video/generate/kling-v3-standard-image-to-video": {
+    "/v2/video/generate/kling-3-standard-image-to-video": {
       "post": {
         "description": "Generate a video from a first-frame image and a text prompt with Kling\nv3 Standard. Supply the first frame either as an\n`image_asset_identifier` reference (an image already stored with\nIdeogram) or as raw `image` bytes (multipart requests only) — callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: `end_image_asset_identifier` or\n`end_image`. The final frame is optional and follows the same\none-form-only rule.\n\nThe generated video takes its aspect ratio from the first frame, so\nthere is no aspect ratio to set.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
         "operationId": "post_generate_video_kling_v3_standard_image_to_video",
@@ -12920,7 +12768,7 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
       }
     },
-    "/v2/video/generate/kling-v3-standard-text-to-video": {
+    "/v2/video/generate/kling-3-standard-text-to-video": {
       "post": {
         "description": "Generate a video from a text prompt with Kling v3 Standard.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
         "operationId": "post_generate_video_kling_v3_standard_text_to_video",
@@ -13104,6 +12952,93 @@
           "video-generate"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_generate_controller"
+      }
+    },
+    "/v2/video/generate/minimax-h3-reference-to-video": {
+      "post": {
+        "description": "Produce a video from a text prompt and reference media with MiniMax H3.\n\nThe prompt addresses the references by position: the first reference\nimage is `Image 1`, the second `Image 2`, the first reference video is\n`Video 1`, and the first reference audio is `Audio 1`. Supply reference\nimages either as\n`reference_image_asset_identifiers` (images already stored with\nIdeogram) or as raw `reference_images` bytes (multipart requests only);\nsupplying both is rejected, and uploaded bytes are used for this request\nonly and are not stored as an asset. Supply reference videos as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated or uploaded with Ideogram. At most 9 reference images and 3 reference\nvideos are accepted, and reference videos are capped again on clip\nlength. Optional `reference_audios` accepts MP3/WAV uploads alongside\nan image or video. Audio and video references must total at most 15\nseconds; at most 12 references are accepted across all media.\n\nReferences are optional. With none, the video is produced from the\nprompt alone.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a `generation_id`.\nPoll for completion and results with\n`GET /v1/generations/{generation_id}` using that id, or supply a\n`webhook_url` to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.\n",
+        "operationId": "post_edit_video_minimax_h3_reference_to_video",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "reference_image_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "reference_video_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/EditVideoMinimaxH3ReferenceToVideoRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditVideoMinimaxH3ReferenceToVideoRequest"
+              }
+            }
+          },
+          "description": "A request to produce a video from reference media with MiniMax H3. Use `multipart/form-data` to upload `reference_images` bytes directly, or `application/json` (or multipart with the asset identifier fields) to reference existing assets instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoMinimaxH3Response"
+                }
+              }
+            },
+            "description": "An acknowledgement to poll with `GET /v1/generations/{generation_id}`."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account does not have access to this model."
+          },
+          "404": {
+            "description": "A referenced asset was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Produce a video from reference media with MiniMax H3",
+        "tags": [
+          "video-edit"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.video_edit_controller"
       }
     },
     "/v2/video/generate/minimax-h3-text-to-video": {
@@ -19396,276 +19331,6 @@
         "title": "webhook_url",
         "type": "string"
       },
-      "VideoGenerationResponse": {
-        "description": "Acknowledgement returned by the Seedance 2.0 video endpoints. The request\nis accepted for asynchronous processing, so `data` is always empty in this\nresponse; the generated video is retrieved by polling\n`/v1/generations/{generation_id}` or delivered to `webhook_url`.\n",
-        "example": {
-          "data": [
-            {
-              "duration": 5,
-              "aspect_ratio": 969,
-              "object_type": "video.generation",
-              "prompt": "prompt",
-              "resolution": "720p",
-              "url": "https://ideogram.ai/assets/video/lossless/response/xtdZiqPwRxqY1Y7NExFmzB.mp4?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89"
-            },
-            {
-              "duration": 5,
-              "aspect_ratio": 969,
-              "object_type": "video.generation",
-              "prompt": "prompt",
-              "resolution": "720p",
-              "url": "https://ideogram.ai/assets/video/lossless/response/xtdZiqPwRxqY1Y7NExFmzB.mp4?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89"
-            }
-          ],
-          "generation_id": "generation_id",
-          "created": "2000-01-23T04:56:07+00:00"
-        },
-        "properties": {
-          "generation_id": {
-            "description": "URL-safe base64 ID of the accepted generation. Poll\n`/v1/generations/{generation_id}` with this id to retrieve the result.\n",
-            "title": "generation_id",
-            "type": "string"
-          },
-          "created": {
-            "description": "The time the request was created.",
-            "format": "date-time",
-            "title": "created",
-            "type": "string"
-          },
-          "data": {
-            "description": "Always empty for this asynchronous acknowledgement.",
-            "items": {
-              "$ref": "#/components/schemas/VideoObject"
-            },
-            "title": "data",
-            "type": "array"
-          }
-        },
-        "required": [
-          "created",
-          "data",
-          "generation_id"
-        ],
-        "title": "VideoGenerationResponse",
-        "type": "object"
-      },
-      "VideoObject": {
-        "description": "A single generated video returned by the generation polling endpoint.",
-        "example": {
-          "duration": 5,
-          "aspect_ratio": 969,
-          "object_type": "video.generation",
-          "prompt": "prompt",
-          "resolution": "720p",
-          "url": "https://ideogram.ai/assets/video/lossless/response/xtdZiqPwRxqY1Y7NExFmzB.mp4?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89"
-        },
-        "properties": {
-          "object_type": {
-            "description": "Discriminator marking this entry as a generated video in the polling endpoint's mixed data array.",
-            "enum": [
-              "video.generation"
-            ],
-            "title": "object_type",
-            "type": "string"
-          },
-          "url": {
-            "description": "The direct link to the generated video.",
-            "example": "https://ideogram.ai/assets/video/lossless/response/xtdZiqPwRxqY1Y7NExFmzB.mp4?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
-            "format": "uri",
-            "nullable": true,
-            "title": "url",
-            "type": "string"
-          },
-          "prompt": {
-            "description": "The prompt used for the generation.",
-            "title": "prompt",
-            "type": "string"
-          },
-          "resolution": {
-            "description": "The resolution tier of the generated video.",
-            "example": "720p",
-            "title": "resolution",
-            "type": "string"
-          },
-          "aspect_ratio": {
-            "description": "The actual aspect ratio of the produced video, formatted as \"{width}:{height}\".",
-            "example": 969,
-            "title": "aspect_ratio",
-            "type": "string"
-          },
-          "duration": {
-            "description": "The actual measured length of the produced video in seconds.",
-            "example": 5,
-            "title": "duration",
-            "type": "integer"
-          }
-        },
-        "required": [
-          "aspect_ratio",
-          "duration",
-          "prompt",
-          "resolution"
-        ],
-        "title": "VideoObject",
-        "type": "object"
-      },
-      "TextToVideoRequestSeedDance2": {
-        "description": "Request body for the Seedance 2.0 text-to-video endpoint.",
-        "example": {
-          "duration": 5,
-          "aspect_ratio": null,
-          "num_videos": 1,
-          "generate_audio": false,
-          "prompt": "A red fox running through a snowy forest at dawn.",
-          "resolution": null
-        },
-        "properties": {
-          "prompt": {
-            "description": "A natural-language prompt describing the video to generate.",
-            "example": "A red fox running through a snowy forest at dawn.",
-            "maxLength": 2000,
-            "title": "prompt",
-            "type": "string"
-          },
-          "aspect_ratio": {
-            "$ref": "#/components/schemas/SeedDance2AspectRatio"
-          },
-          "resolution": {
-            "$ref": "#/components/schemas/SeedDance2Resolution"
-          },
-          "duration": {
-            "description": "The length of the generated video in seconds. When omitted, the model\npicks the best duration for the prompt (\"auto\").\n",
-            "example": 5,
-            "maximum": 15,
-            "minimum": 4,
-            "title": "duration",
-            "type": "integer"
-          },
-          "num_videos": {
-            "default": 1,
-            "description": "How many videos to generate for this request. Each video is generated\nand billed independently.\n",
-            "maximum": 4,
-            "minimum": 1,
-            "title": "num_videos",
-            "type": "integer"
-          },
-          "generate_audio": {
-            "default": false,
-            "description": "Whether to generate an audio track for the video. Audio roughly\ndoubles the provider cost and is subject to stricter output moderation.\n",
-            "title": "generate_audio",
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "prompt"
-        ],
-        "title": "TextToVideoRequestSeedDance2",
-        "type": "object"
-      },
-      "NumVideos": {
-        "default": 1,
-        "description": "How many videos to generate for this request. Each video is generated\nand billed independently.\n",
-        "maximum": 4,
-        "minimum": 1,
-        "title": "num_videos",
-        "type": "integer"
-      },
-      "ImageSafetyError": {
-        "example": {
-          "error": "Image provided failed safety check due to the inclusion of prohibited content."
-        },
-        "properties": {
-          "error": {
-            "example": "Image provided failed safety check due to the inclusion of prohibited content.",
-            "title": "error",
-            "type": "string"
-          }
-        },
-        "required": [
-          "error"
-        ],
-        "title": "ImageSafetyError",
-        "type": "object"
-      },
-      "GenerationErrorResponse": {
-        "description": "A generation request rejected by an account or usage limit.",
-        "example": {
-          "reject_reason": null,
-          "error": "error"
-        },
-        "properties": {
-          "error": {
-            "description": "A message describing why the generation request was rejected.",
-            "title": "error",
-            "type": "string"
-          },
-          "reject_reason": {
-            "$ref": "#/components/schemas/GenerationRejectReason"
-          }
-        },
-        "required": [
-          "error",
-          "reject_reason"
-        ],
-        "title": "GenerationErrorResponse",
-        "type": "object"
-      },
-      "GenerationRejectReason": {
-        "description": "The account or usage limit that rejected a generation request.",
-        "enum": [
-          "insufficient_funds",
-          "subscription_required",
-          "daily_limit",
-          "priority_credit_required",
-          "inflight_limit",
-          "feature_limit"
-        ],
-        "title": "GenerationRejectReason",
-        "type": "string"
-      },
-      "ImageToVideoRequestSeedDance2": {
-        "description": "Request body for the Seedance 2.0 image-to-video endpoint. Provide the\nfirst frame with exactly one of `image` or `image_asset_id`.\n",
-        "properties": {
-          "image": {
-            "description": "The first-frame image binary (max 25MB); only JPEG, WebP and PNG\nformats are supported. Provide this or `image_asset_id`, not both.\n",
-            "format": "binary",
-            "type": "string"
-          },
-          "image_asset_id": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/AssetIdentifier"
-              }
-            ],
-            "description": "A reference to an existing Ideogram asset you own to use as the first\nframe, in place of uploading `image`. Only image assets (an uploaded\nimage or a generated image) are accepted. Provide this or `image`,\nnot both.\n"
-          },
-          "prompt": {
-            "description": "A natural-language prompt describing how the first frame should animate.",
-            "example": "The camera slowly pans right as the waves roll in.",
-            "maxLength": 2000,
-            "type": "string"
-          },
-          "aspect_ratio": {
-            "$ref": "#/components/schemas/SeedDance2AspectRatio"
-          },
-          "resolution": {
-            "$ref": "#/components/schemas/SeedDance2Resolution"
-          },
-          "duration": {
-            "$ref": "#/components/schemas/VideoDurationSeconds"
-          },
-          "num_videos": {
-            "$ref": "#/components/schemas/NumVideos"
-          },
-          "generate_audio": {
-            "$ref": "#/components/schemas/GenerateVideoAudio"
-          }
-        },
-        "required": [
-          "prompt"
-        ],
-        "type": "object"
-      },
       "GenerateVideoSeedDance2Response": {
         "description": "Acknowledgement returned by the Seedance 2.0 video endpoints. Video\ngeneration always runs asynchronously, so the\ngenerated videos are never part of this response: poll for them with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`, or receive them at the `webhook_url` you supplied.\n",
         "example": {
@@ -19758,6 +19423,42 @@
         ],
         "title": "GenerateVideoSeedDance2TextToVideoRequest",
         "type": "object"
+      },
+      "GenerationErrorResponse": {
+        "description": "A generation request rejected by an account or usage limit.",
+        "example": {
+          "reject_reason": null,
+          "error": "error"
+        },
+        "properties": {
+          "error": {
+            "description": "A message describing why the generation request was rejected.",
+            "title": "error",
+            "type": "string"
+          },
+          "reject_reason": {
+            "$ref": "#/components/schemas/GenerationRejectReason"
+          }
+        },
+        "required": [
+          "error",
+          "reject_reason"
+        ],
+        "title": "GenerationErrorResponse",
+        "type": "object"
+      },
+      "GenerationRejectReason": {
+        "description": "The account or usage limit that rejected a generation request.",
+        "enum": [
+          "insufficient_funds",
+          "subscription_required",
+          "daily_limit",
+          "priority_credit_required",
+          "inflight_limit",
+          "feature_limit"
+        ],
+        "title": "GenerationRejectReason",
+        "type": "string"
       },
       "GenerateVideoSeedDance2ImageToVideoRequest": {
         "description": "Request body for Seedance 2.0 image-to-video generation. Supply the\nfirst frame either as an `image_asset_identifier` reference or\n(multipart requests only) as raw `image` bytes. Exactly one source is\nrequired. An optional final frame may be supplied the same way, with\n`end_image_asset_identifier` or `end_image`, to generate a transition\nbetween the two stills.\n",
@@ -20566,6 +20267,95 @@
         ],
         "type": "object"
       },
+      "EditVideoMinimaxH3ReferenceToVideoRequest": {
+        "description": "Request body for MiniMax H3 reference-to-video. The prompt addresses\nreferences by position — `Image 1`, `Video 1`, `Audio 1`, and so on. Reference\nimages arrive either as `reference_image_asset_identifiers` or\n(multipart requests only) as raw `reference_images` bytes, never both.\nReference videos arrive only as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated or uploaded with Ideogram. References are optional; audio\nrequires an image or video alongside it.\n",
+        "properties": {
+          "prompt": {
+            "description": "A natural-language prompt describing the video to produce. Reference media is addressed by position, as in \"Image 1 walks toward the camera with the motion of Video 1\".",
+            "example": "Image 1 walks through the snowy forest at dawn.",
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "reference_image_asset_identifiers": {
+            "description": "Images already stored with Ideogram to use as references, by reference, in prompt order. Cannot be combined with `reference_images`. Only image assets are accepted.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 9,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_images": {
+            "description": "Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 9,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_video_asset_identifiers": {
+            "description": "Videos generated or uploaded with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          },
+          "reference_audios": {
+            "description": "MP3 or WAV audio references, in prompt order as Audio 1, Audio 2, and Audio 3. Multipart uploads only; up to 15 MB per file and 2–15 seconds each. Audio and video references must total no more than 15 seconds. Requires a reference image or video. At most 12 references across images, videos, and audio. Used only for this request and not saved as assets.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 3,
+            "minItems": 1,
+            "type": "array"
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/MinimaxH3AspectRatio"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/MinimaxH3Resolution"
+          },
+          "duration": {
+            "default": 5,
+            "description": "The length of the generated video in seconds.",
+            "example": 5,
+            "maximum": 15,
+            "minimum": 5,
+            "title": "duration",
+            "type": "integer"
+          },
+          "prompt_expansion_mode": {
+            "$ref": "#/components/schemas/MinimaxH3PromptExpansionMode"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object"
+      },
       "EditVideoSeedDance2Request": {
         "description": "Request body for a Seedance 2.0 video edit. `video_asset_identifier`\nnames the video being edited and `start_frame_time`/`end_frame_time` mark\nthe span of it the generated clip replaces. The two `is_*_included` flags\nanchor the generated clip on the span's own end frames; at least one must\nbe anchored.\n",
         "example": {
@@ -20682,95 +20472,6 @@
         "title": "EditVideoSeedDance2Request",
         "type": "object"
       },
-      "EditVideoMinimaxH3ReferenceToVideoRequest": {
-        "description": "Request body for MiniMax H3 reference-to-video. The prompt addresses\nreferences by position — `Image 1`, `Video 1`, `Audio 1`, and so on. Reference\nimages arrive either as `reference_image_asset_identifiers` or\n(multipart requests only) as raw `reference_images` bytes, never both.\nReference videos arrive only as\n`reference_video_asset_identifiers`, which must reference videos\ngenerated or uploaded with Ideogram. References are optional; audio\nrequires an image or video alongside it.\n",
-        "properties": {
-          "prompt": {
-            "description": "A natural-language prompt describing the video to produce. Reference media is addressed by position, as in \"Image 1 walks toward the camera with the motion of Video 1\".",
-            "example": "Image 1 walks through the snowy forest at dawn.",
-            "maxLength": 2000,
-            "minLength": 1,
-            "type": "string"
-          },
-          "reference_image_asset_identifiers": {
-            "description": "Images already stored with Ideogram to use as references, by reference, in prompt order. Cannot be combined with `reference_images`. Only image assets are accepted.",
-            "items": {
-              "$ref": "#/components/schemas/AssetIdentifier"
-            },
-            "maxItems": 9,
-            "minItems": 1,
-            "type": "array"
-          },
-          "reference_images": {
-            "description": "Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.",
-            "items": {
-              "format": "binary",
-              "type": "string"
-            },
-            "maxItems": 9,
-            "minItems": 1,
-            "type": "array"
-          },
-          "reference_video_asset_identifiers": {
-            "description": "Videos generated or uploaded with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.",
-            "items": {
-              "$ref": "#/components/schemas/AssetIdentifier"
-            },
-            "maxItems": 3,
-            "minItems": 1,
-            "type": "array"
-          },
-          "reference_audios": {
-            "description": "MP3 or WAV audio references, in prompt order as Audio 1, Audio 2, and Audio 3. Multipart uploads only; up to 15 MB per file and 2–15 seconds each. Audio and video references must total no more than 15 seconds. Requires a reference image or video. At most 12 references across images, videos, and audio. Used only for this request and not saved as assets.",
-            "items": {
-              "format": "binary",
-              "type": "string"
-            },
-            "maxItems": 3,
-            "minItems": 1,
-            "type": "array"
-          },
-          "aspect_ratio": {
-            "$ref": "#/components/schemas/MinimaxH3AspectRatio"
-          },
-          "resolution": {
-            "$ref": "#/components/schemas/MinimaxH3Resolution"
-          },
-          "duration": {
-            "default": 5,
-            "description": "The length of the generated video in seconds.",
-            "example": 5,
-            "maximum": 15,
-            "minimum": 5,
-            "title": "duration",
-            "type": "integer"
-          },
-          "prompt_expansion_mode": {
-            "$ref": "#/components/schemas/MinimaxH3PromptExpansionMode"
-          },
-          "webhook_url": {
-            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
-            "example": "https://api.example.com/webhooks/ideogram",
-            "format": "uri",
-            "maxLength": 2048,
-            "title": "webhook_url",
-            "type": "string"
-          },
-          "private": {
-            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
-            "nullable": true,
-            "type": "boolean"
-          },
-          "target_collection_id": {
-            "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
-            "type": "string"
-          }
-        },
-        "required": [
-          "prompt"
-        ],
-        "type": "object"
-      },
       "RemoveObjectFromV2AssetsResponse": {
         "description": "Acknowledgement returned by `POST /v2/image/remove-object/ideogram-1`. The request is\naccepted for asynchronous processing; poll for completion and results\nusing `GET /v1/generations/{generation_id}` with the returned\n`generation_id`.\n",
         "example": {
@@ -20796,7 +20497,7 @@
             "$ref": "#/components/schemas/AssetIdentifier"
           },
           "image": {
-            "description": "The source image to remove an object from (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.",
+            "description": "The source image to remove an object from (max size 50MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.",
             "format": "binary",
             "type": "string"
           },
@@ -20804,7 +20505,7 @@
             "$ref": "#/components/schemas/AssetIdentifier"
           },
           "mask": {
-            "description": "A binary mask the same size as the image, as raw bytes; white (>= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.",
+            "description": "A binary mask the same size as the image (max size 50MB), as raw bytes; white (>= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.",
             "format": "binary",
             "type": "string"
           },
@@ -20996,8 +20697,8 @@
                 "$ref": "#/components/schemas/GptImage2Quality"
               }
             ],
-            "default": "HIGH",
-            "description": "The generation quality level. Defaults to `HIGH`."
+            "default": "high",
+            "description": "The generation quality level. Defaults to `high`."
           },
           "num_images": {
             "default": 1,
@@ -21044,12 +20745,12 @@
             "type": "string"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
@@ -21104,7 +20805,7 @@
           "api_keys": {
             "description": "All API keys in the organization, newest first.",
             "items": {
-              "$ref": "#/components/schemas/ApiProfileApiKey"
+              "$ref": "#/components/schemas/AccountApiKey"
             },
             "title": "api_keys",
             "type": "array"
@@ -21115,6 +20816,70 @@
         ],
         "title": "ListAccountApiKeysResponse",
         "type": "object"
+      },
+      "AccountApiKey": {
+        "example": {
+          "creation_time": "2000-01-23T04:56:07+00:00",
+          "label": "Live production environment",
+          "redacted_api_key": "ATG56•••••••••••••",
+          "api_key_id": "JRPVD7jWR1aTBYiJ0UFVOg",
+          "creator_display_label": "John Doe",
+          "status": null
+        },
+        "properties": {
+          "api_key_id": {
+            "description": "Base64 encoded API key ID",
+            "example": "JRPVD7jWR1aTBYiJ0UFVOg",
+            "title": "api_key_id",
+            "type": "string"
+          },
+          "redacted_api_key": {
+            "description": "A redacted text snippet of the API key. Contains the first 4 characters of the API key",
+            "example": "ATG56•••••••••••••",
+            "title": "redacted_api_key",
+            "type": "string"
+          },
+          "creation_time": {
+            "description": "The date at which the API key was created",
+            "format": "date-time",
+            "title": "creation_time",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AccountApiKeyStatus"
+          },
+          "label": {
+            "description": "An optional user-supplied label for managing the API key",
+            "example": "Live production environment",
+            "nullable": true,
+            "title": "label",
+            "type": "string"
+          },
+          "creator_display_label": {
+            "description": "Name of the member who created the key, falling back to their display handle when no name is set. Null on keys created before creators were recorded, and on workspace types whose keys are shared rather than owned by one member.",
+            "example": "John Doe",
+            "nullable": true,
+            "title": "creator_display_label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "api_key_id",
+          "creation_time",
+          "redacted_api_key",
+          "status"
+        ],
+        "title": "AccountApiKey",
+        "type": "object"
+      },
+      "AccountApiKeyStatus": {
+        "enum": [
+          "active",
+          "disabled",
+          "archived"
+        ],
+        "title": "AccountApiKeyStatus",
+        "type": "string"
       },
       "GetAccountUsageResponse": {
         "example": {
@@ -21520,7 +21285,7 @@
               ],
               "issued_time": "2000-01-23T04:56:07+00:00",
               "currency_code": "USD",
-              "status": "PAID"
+              "status": "paid"
             },
             {
               "start_time": "2000-01-23T04:56:07+00:00",
@@ -21555,7 +21320,7 @@
               ],
               "issued_time": "2000-01-23T04:56:07+00:00",
               "currency_code": "USD",
-              "status": "PAID"
+              "status": "paid"
             }
           ]
         },
@@ -21609,7 +21374,7 @@
           ],
           "issued_time": "2000-01-23T04:56:07+00:00",
           "currency_code": "USD",
-          "status": "PAID"
+          "status": "paid"
         },
         "properties": {
           "start_time": {
@@ -21639,7 +21404,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/InvoiceStatus"
+            "$ref": "#/components/schemas/AccountInvoiceStatus"
           },
           "total": {
             "description": "Invoice total in `currency_code`, as a decimal string.",
@@ -21672,6 +21437,18 @@
         ],
         "title": "AccountInvoice",
         "type": "object"
+      },
+      "AccountInvoiceStatus": {
+        "description": "Status of the invoice",
+        "enum": [
+          "draft",
+          "pending_payment",
+          "paid",
+          "voided"
+        ],
+        "example": "paid",
+        "title": "AccountInvoiceStatus",
+        "type": "string"
       },
       "AccountInvoiceLineItem": {
         "description": "One charged product on an invoice.",
@@ -21852,12 +21629,12 @@
             "type": "string"
           },
           "upscale_factor": {
-            "default": "X2",
+            "default": "x2",
             "description": "How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.",
             "enum": [
-              "X2",
-              "X4",
-              "X8"
+              "x2",
+              "x4",
+              "x8"
             ],
             "type": "string"
           },
@@ -22025,12 +21802,12 @@
             "type": "string"
           },
           "upscale_factor": {
-            "default": "X2",
+            "default": "x2",
             "description": "How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.",
             "enum": [
-              "X2",
-              "X4",
-              "X8"
+              "x2",
+              "x4",
+              "x8"
             ],
             "type": "string"
           },
@@ -22153,12 +21930,12 @@
             "type": "string"
           },
           "upscale_factor": {
-            "default": "X2",
+            "default": "x2",
             "description": "How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.",
             "enum": [
-              "X2",
-              "X4",
-              "X8"
+              "x2",
+              "x4",
+              "x8"
             ],
             "type": "string"
           },
@@ -22318,12 +22095,12 @@
             "type": "string"
           },
           "upscale_factor": {
-            "default": "X2",
+            "default": "x2",
             "description": "How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.",
             "enum": [
-              "X2",
-              "X4",
-              "X8"
+              "x2",
+              "x4",
+              "x8"
             ],
             "type": "string"
           },
@@ -22454,12 +22231,12 @@
             "type": "string"
           },
           "upscale_factor": {
-            "default": "X2",
+            "default": "x2",
             "description": "How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.",
             "enum": [
-              "X2",
-              "X4",
-              "X8"
+              "x2",
+              "x4",
+              "x8"
             ],
             "type": "string"
           },
@@ -22574,8 +22351,8 @@
         },
         "type": "object"
       },
-      "UpscaleImageGemini3ProResponse": {
-        "description": "Response returned by `POST /v2/image/upscale/gemini-3-pro`.\nSynchronous requests (the default) include the upscaled image in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset; width and height\nreport the output dimensions.\n",
+      "UpscaleImageNanoBananaProResponse": {
+        "description": "Response returned by `POST /v2/image/upscale/nano-banana-pro`.\nSynchronous requests (the default) include the upscaled image in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset; width and height\nreport the output dimensions.\n",
         "example": {
           "data": [
             {
@@ -22635,10 +22412,10 @@
           "seed",
           "width"
         ],
-        "title": "UpscaleImageGemini3ProResponse",
+        "title": "UpscaleImageNanoBananaProResponse",
         "type": "object"
       },
-      "UpscaleImageGemini3ProRequest": {
+      "UpscaleImageNanoBananaProRequest": {
         "description": "Supply the source image either as an `image_asset_identifier`\nreference or (multipart requests only) as raw `image` bytes. Exactly\none source is required; if both forms are given, the reference is\nused and the bytes are ignored.\n",
         "properties": {
           "image_asset_identifier": {
@@ -22905,7 +22682,7 @@
               "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
             }
           ],
-          "view": "FRONT"
+          "view": "front"
         },
         "properties": {
           "product_asset_identifiers": {
@@ -22959,10 +22736,10 @@
       "PackshotView": {
         "description": "Product view to generate.",
         "enum": [
-          "DETAIL",
-          "THREE_QUARTER",
-          "FRONT",
-          "BACK"
+          "detail",
+          "three_quarter",
+          "front",
+          "back"
         ],
         "title": "PackshotView",
         "type": "string"
@@ -23058,9 +22835,9 @@
           "view": {
             "description": "Camera view for the output garment.",
             "enum": [
-              "FRONT",
-              "THREE_QUARTER",
-              "BACK"
+              "front",
+              "three_quarter",
+              "back"
             ],
             "type": "string"
           },
@@ -23106,6 +22883,64 @@
         ],
         "type": "object"
       },
+      "Product360VideoRequest": {
+        "example": {
+          "duration": 5,
+          "target_collection_id": "target_collection_id",
+          "image_asset_identifier": {
+            "asset_type": "RESPONSE",
+            "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
+          },
+          "product_description": "product_description",
+          "resolution": null,
+          "direction": null
+        },
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/Product360VideoDirection"
+          },
+          "product_description": {
+            "description": "Optional factual description of the product in the source image.",
+            "maxLength": 200,
+            "title": "product_description",
+            "type": "string"
+          },
+          "resolution": {
+            "$ref": "#/components/schemas/SeedDance25Resolution"
+          },
+          "duration": {
+            "description": "The length of the generated video in seconds. When omitted, the model\npicks the best duration for the prompt (\"auto\").\n",
+            "example": 5,
+            "maximum": 30,
+            "minimum": 4,
+            "title": "duration",
+            "type": "integer"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
+            "title": "target_collection_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "direction",
+          "image_asset_identifier"
+        ],
+        "title": "Product360VideoRequest",
+        "type": "object"
+      },
+      "Product360VideoDirection": {
+        "description": "Direction the product rotates around its vertical axis.",
+        "enum": [
+          "clockwise",
+          "counter-clockwise"
+        ],
+        "title": "Product360VideoDirection",
+        "type": "string"
+      },
       "PreciseMaskedEditResponse": {
         "description": "Acknowledgement that the workflow was accepted.",
         "example": {
@@ -23141,8 +22976,8 @@
                 "$ref": "#/components/schemas/GptImage2Quality"
               }
             ],
-            "default": "HIGH",
-            "description": "The generation quality level. Defaults to `HIGH`."
+            "default": "high",
+            "description": "The generation quality level. Defaults to `high`."
           },
           "source_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
@@ -23206,11 +23041,11 @@
         "type": "object"
       },
       "PreciseMaskedEditModel": {
-        "default": "GPT_IMAGE_2",
+        "default": "gpt-image-2",
         "description": "The model used to apply the edit. For Ideogram 4.5, an optional mask is sent as one of the model's five image inputs and therefore reduces the reference-image limit by one.",
         "enum": [
-          "GPT_IMAGE_2",
-          "IDEOGRAM_4_5"
+          "gpt-image-2",
+          "ideogram-4-5"
         ],
         "title": "PreciseMaskedEditModel",
         "type": "string"
@@ -23555,7 +23390,7 @@
             "type": "string"
           },
           "quality": {
-            "$ref": "#/components/schemas/Quality"
+            "$ref": "#/components/schemas/GenerationQuality"
           },
           "num_images": {
             "default": 1,
@@ -23612,12 +23447,12 @@
             "type": "string"
           },
           "variation_type": {
-            "description": "The axis to vary while everything else stays on-brand. `PEOPLE`\nreplaces the people in the ad with different talent. `SETTING`\nmoves the same subject and product to a different environment.\n`GROUP_SIZE` changes how many people appear. `SCENE` shifts the\nmoment or occasion (time of day, season, or activity).\n",
+            "description": "The axis to vary while everything else stays on-brand. `people`\nreplaces the people in the ad with different talent. `setting`\nmoves the same subject and product to a different environment.\n`group_size` changes how many people appear. `scene` shifts the\nmoment or occasion (time of day, season, or activity).\n",
             "enum": [
-              "PEOPLE",
-              "SETTING",
-              "GROUP_SIZE",
-              "SCENE"
+              "people",
+              "setting",
+              "group_size",
+              "scene"
             ],
             "type": "string"
           },
@@ -23751,7 +23586,7 @@
           "private": true,
           "seed": 12345,
           "webhook_url": "https://api.example.com/webhooks/ideogram",
-          "base_generation_size": "2K",
+          "base_generation_size": "2k",
           "base_asset_identifier": {
             "asset_type": "RESPONSE",
             "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
@@ -23809,12 +23644,12 @@
             "type": "string"
           },
           "base_generation_size": {
-            "default": "2K",
-            "description": "Output resolution tier. Defaults to 2K.",
+            "default": "2k",
+            "description": "Output resolution tier. Defaults to 2k.",
             "enum": [
-              "1K",
-              "2K",
-              "4K"
+              "1k",
+              "2k",
+              "4k"
             ],
             "title": "base_generation_size",
             "type": "string"
@@ -23986,8 +23821,8 @@
       "SwapProductMode": {
         "description": "Replace the footwear or match its colorway to the references.",
         "enum": [
-          "REPLACE",
-          "RECOLOR"
+          "replace",
+          "recolor"
         ],
         "title": "SwapProductMode",
         "type": "string"
@@ -24037,7 +23872,7 @@
             }
           ],
           "webhook_url": "https://api.example.com/webhooks/ideogram",
-          "base_generation_size": "2K",
+          "base_generation_size": "2k",
           "base_asset_identifier": "",
           "reference_descriptions": [
             "reference_descriptions",
@@ -24105,12 +23940,12 @@
             "type": "string"
           },
           "base_generation_size": {
-            "default": "2K",
+            "default": "2k",
             "description": "Output resolution tier; corresponds to the app's low, medium, and high settings.",
             "enum": [
-              "1K",
-              "2K",
-              "4K"
+              "1k",
+              "2k",
+              "4k"
             ],
             "title": "base_generation_size",
             "type": "string"
@@ -24178,6 +24013,7 @@
             "asset_type": "RESPONSE",
             "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
           },
+          "design_variant": "split_coverage",
           "style_source_asset_identifier": {
             "asset_type": "RESPONSE",
             "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
@@ -24186,7 +24022,6 @@
             "asset_type": "RESPONSE",
             "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
           },
-          "num_images": 0,
           "quality": null
         },
         "properties": {
@@ -24207,6 +24042,15 @@
             "title": "source_mode",
             "type": "string"
           },
+          "design_variant": {
+            "description": "Required for 3D user_reference designs. Omit for other designs.",
+            "enum": [
+              "split_coverage",
+              "full_coverage"
+            ],
+            "title": "design_variant",
+            "type": "string"
+          },
           "style_source_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
           },
@@ -24218,17 +24062,6 @@
           },
           "flat_silhouette_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
-          },
-          "num_images": {
-            "default": 4,
-            "description": "Number of images to create.",
-            "enum": [
-              1,
-              2,
-              4
-            ],
-            "title": "num_images",
-            "type": "integer"
           },
           "quality": {
             "$ref": "#/components/schemas/GptImage2Quality"
@@ -24631,12 +24464,12 @@
             "type": "string"
           },
           "upscale_factor": {
-            "default": "X2",
+            "default": "x2",
             "description": "How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.",
             "enum": [
-              "X2",
-              "X4",
-              "X8"
+              "x2",
+              "x4",
+              "x8"
             ],
             "type": "string"
           },
@@ -24679,7 +24512,7 @@
         "type": "object"
       },
       "LayerizeDesignIdeogramV3Response": {
-        "description": "Response returned by `POST /v2/design/layerize/ideogram-v3`.\nSynchronous requests (the default) include the layerized design in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/design/layerize/ideogram-3`.\nSynchronous requests (the default) include the layerized design in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -25073,6 +24906,23 @@
         },
         "type": "object"
       },
+      "ImageSafetyError": {
+        "example": {
+          "error": "Image provided failed safety check due to the inclusion of prohibited content."
+        },
+        "properties": {
+          "error": {
+            "example": "Image provided failed safety check due to the inclusion of prohibited content.",
+            "title": "error",
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ImageSafetyError",
+        "type": "object"
+      },
       "DescribeImageIdeogramV4Response": {
         "description": "Response returned by `POST /v2/image/describe/ideogram-4`.\nThe `json_prompt` field is a structured `V4JsonPrompt` that can be\npassed back as `json_prompt` to the `/v1/ideogram-v4/generate` family\nof endpoints.\n",
         "example": {
@@ -25314,16 +25164,23 @@
             "$ref": "#/components/schemas/AspectRatioV3"
           },
           "rendering_speed": {
-            "$ref": "#/components/schemas/RenderingSpeed"
+            "default": "default",
+            "description": "The rendering speed to use.",
+            "enum": [
+              "turbo",
+              "default",
+              "quality"
+            ],
+            "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -25333,7 +25190,7 @@
             "type": "integer"
           },
           "color_palette": {
-            "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+            "$ref": "#/components/schemas/IdeogramColorPalette"
           },
           "style_codes": {
             "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
@@ -25348,12 +25205,12 @@
             "type": "array"
           },
           "style_type": {
-            "$ref": "#/components/schemas/StyleTypeV3"
+            "$ref": "#/components/schemas/IdeogramV3StyleType"
           },
           "style_preset": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StylePresetV3"
+                "$ref": "#/components/schemas/IdeogramV3StylePreset"
               }
             ],
             "description": "A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references."
@@ -25507,20 +25364,20 @@
           "rendering_speed": {
             "description": "The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -25530,7 +25387,7 @@
             "type": "integer"
           },
           "color_palette": {
-            "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+            "$ref": "#/components/schemas/IdeogramColorPalette"
           },
           "style_codes": {
             "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
@@ -25547,7 +25404,7 @@
           "style_preset": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StylePresetV3"
+                "$ref": "#/components/schemas/IdeogramV3StylePreset"
               }
             ],
             "description": "A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references."
@@ -25662,7 +25519,7 @@
           "async": false,
           "private": true,
           "seed": 12345,
-          "rendering_speed": "DEFAULT",
+          "rendering_speed": "default",
           "webhook_url": "https://api.example.com/webhooks/ideogram",
           "enable_copyright_detection": true,
           "target_collection_id": "target_collection_id",
@@ -25681,11 +25538,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls how a natural-language prompt is prepared. `AUTO` (the\ndefault) and `ON` rewrite and expand the prompt before\ngeneration. `OFF` keeps your wording and only converts the prompt\ninto the structured format the model consumes. A prompt that is\nalready a valid structured JSON prompt skips magic prompt\nentirely unless `magic_prompt` is `ON`.\n",
+            "default": "auto",
+            "description": "Controls how a natural-language prompt is prepared. `auto` (the\ndefault) and `on` rewrite and expand the prompt before\ngeneration. `off` keeps your wording and only converts the prompt\ninto the structured format the model consumes. A prompt that is\nalready a valid structured JSON prompt skips magic prompt\nentirely unless `magic_prompt` is `on`.\n",
             "title": "magic_prompt"
           },
           "seed": {
@@ -25714,12 +25571,12 @@
             "title": "resolution"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "title": "rendering_speed",
             "type": "string"
@@ -25820,7 +25677,7 @@
           "async": false,
           "private": true,
           "seed": 12345,
-          "rendering_speed": "TURBO",
+          "rendering_speed": "turbo",
           "webhook_url": "https://api.example.com/webhooks/ideogram",
           "enable_copyright_detection": true,
           "target_collection_id": "target_collection_id",
@@ -25849,11 +25706,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls how a natural-language prompt is prepared. `AUTO` (the\ndefault) and `ON` rewrite and expand the prompt before generation.\n`OFF` keeps your wording and only converts the prompt into the\nstructured format the model consumes. A prompt that is already a\nvalid structured JSON prompt skips magic prompt entirely unless\n`magic_prompt` is `ON`.\n",
+            "default": "auto",
+            "description": "Controls how a natural-language prompt is prepared. `auto` (the\ndefault) and `on` rewrite and expand the prompt before generation.\n`off` keeps your wording and only converts the prompt into the\nstructured format the model consumes. A prompt that is already a\nvalid structured JSON prompt skips magic prompt entirely unless\n`magic_prompt` is `on`.\n",
             "title": "magic_prompt"
           },
           "seed": {
@@ -25884,9 +25741,9 @@
           "rendering_speed": {
             "description": "The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "title": "rendering_speed",
             "type": "string"
@@ -26080,16 +25937,23 @@
             "$ref": "#/components/schemas/AspectRatioV3"
           },
           "rendering_speed": {
-            "$ref": "#/components/schemas/RenderingSpeed"
+            "default": "default",
+            "description": "The rendering speed to use.",
+            "enum": [
+              "turbo",
+              "default",
+              "quality"
+            ],
+            "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -26099,7 +25963,7 @@
             "type": "integer"
           },
           "color_palette": {
-            "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+            "$ref": "#/components/schemas/IdeogramColorPalette"
           },
           "style_codes": {
             "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
@@ -26114,12 +25978,12 @@
             "type": "array"
           },
           "style_type": {
-            "$ref": "#/components/schemas/StyleTypeV3"
+            "$ref": "#/components/schemas/IdeogramV3StyleType"
           },
           "style_preset": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StylePresetV3"
+                "$ref": "#/components/schemas/IdeogramV3StylePreset"
               }
             ],
             "description": "A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references."
@@ -26292,20 +26156,20 @@
           "rendering_speed": {
             "description": "The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -26315,7 +26179,7 @@
             "type": "integer"
           },
           "color_palette": {
-            "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+            "$ref": "#/components/schemas/IdeogramColorPalette"
           },
           "style_codes": {
             "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
@@ -26332,7 +26196,7 @@
           "style_preset": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StylePresetV3"
+                "$ref": "#/components/schemas/IdeogramV3StylePreset"
               }
             ],
             "description": "A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references."
@@ -26484,12 +26348,12 @@
             "description": "Optional. When supplied, the images are generated at this\nresolution. When omitted, the source image's shape is kept. A\nresolution whose aspect ratio differs from the source's cannot\nbe combined with image_weight.\n"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
@@ -26657,23 +26521,23 @@
             "$ref": "#/components/schemas/AspectRatioV3"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -26683,12 +26547,12 @@
             "type": "integer"
           },
           "style_type": {
-            "default": "AUTO",
-            "description": "The style type to remix the character with. Defaults to `AUTO`.",
+            "default": "auto",
+            "description": "The style type to remix the character with. Defaults to `auto`.",
             "enum": [
-              "AUTO",
-              "REALISTIC",
-              "FICTION"
+              "auto",
+              "realistic",
+              "fiction"
             ],
             "type": "string"
           },
@@ -26808,8 +26672,8 @@
           "aspect_ratio": null,
           "private": true,
           "seed": 12345,
-          "upscale_factor": "X2",
-          "rendering_speed": "",
+          "upscale_factor": "x1",
+          "rendering_speed": "default",
           "webhook_url": "https://api.example.com/webhooks/ideogram",
           "target_collection_id": "target_collection_id",
           "num_images": 1,
@@ -26842,28 +26706,38 @@
             "type": "integer"
           },
           "upscale_factor": {
-            "$ref": "#/components/schemas/UpscaleFactor"
+            "default": "x1",
+            "description": "Optional enhancement factor applied after generation. `x1` (the default) delivers the base render.",
+            "enum": [
+              "x1",
+              "x2",
+              "x4"
+            ],
+            "title": "upscale_factor",
+            "type": "string"
           },
           "aspect_ratio": {
             "$ref": "#/components/schemas/AspectRatioV3"
           },
           "rendering_speed": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RenderingSpeed"
-              }
+            "default": "default",
+            "description": "The rendering speed to use.",
+            "enum": [
+              "turbo",
+              "default",
+              "quality"
             ],
-            "description": "The rendering speed to use. `FLASH` is not supported for transparent generation and returns a 400.",
-            "title": "rendering_speed"
+            "title": "rendering_speed",
+            "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.",
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.",
             "title": "magic_prompt"
           },
           "num_images": {
@@ -26971,11 +26845,11 @@
           "async": false,
           "private": true,
           "seed": 12345,
-          "rendering_speed": "DEFAULT",
+          "rendering_speed": "default",
           "webhook_url": "https://api.example.com/webhooks/ideogram",
           "enable_copyright_detection": true,
           "target_collection_id": "target_collection_id",
-          "output_resolution": "1K",
+          "output_resolution": "1k",
           "prompt": "prompt",
           "num_images": 1
         },
@@ -26990,11 +26864,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls how a natural-language prompt is prepared. `AUTO` (the\ndefault) and `ON` rewrite and expand the prompt before\ngeneration. `OFF` keeps your wording and only converts the prompt\ninto the structured format the model consumes. A prompt that is\nalready a valid structured JSON prompt skips magic prompt\nentirely unless `magic_prompt` is `ON`.\n",
+            "default": "auto",
+            "description": "Controls how a natural-language prompt is prepared. `auto` (the\ndefault) and `on` rewrite and expand the prompt before\ngeneration. `off` keeps your wording and only converts the prompt\ninto the structured format the model consumes. A prompt that is\nalready a valid structured JSON prompt skips magic prompt\nentirely unless `magic_prompt` is `on`.\n",
             "title": "magic_prompt"
           },
           "seed": {
@@ -27014,27 +26888,27 @@
             "type": "integer"
           },
           "aspect_ratio": {
-            "$ref": "#/components/schemas/AspectRatioV4"
+            "$ref": "#/components/schemas/IdeogramV4AspectRatio"
           },
           "output_resolution": {
-            "default": "1K",
-            "description": "The output resolution tier for the generated images. Tiers are\ntotal-pixel budgets matching a square of the named size (for\nexample, `8K` delivers at most 8192x8192 total pixels); wide and\ntall aspect ratios keep the same pixel budget, so a single\ndimension may exceed the named size. Defaults to 1K.\n",
+            "default": "1k",
+            "description": "The output resolution tier for the generated images. Tiers are\ntotal-pixel budgets matching a square of the named size (for\nexample, `8k` delivers at most 8192x8192 total pixels); wide and\ntall aspect ratios keep the same pixel budget, so a single\ndimension may exceed the named size. Defaults to 1k.\n",
             "enum": [
-              "1K",
-              "2K",
-              "4K",
-              "8K"
+              "1k",
+              "2k",
+              "4k",
+              "8k"
             ],
             "title": "output_resolution",
             "type": "string"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "title": "rendering_speed",
             "type": "string"
@@ -27138,7 +27012,7 @@
           "webhook_url": "https://api.example.com/webhooks/ideogram",
           "custom_width": 6,
           "target_collection_id": "target_collection_id",
-          "resolution": "1K",
+          "resolution": "1k",
           "num_images": 1,
           "quality": "",
           "magic_prompt": "",
@@ -27157,11 +27031,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). `OFF` disables magic prompt entirely. Defaults to `AUTO`.",
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). `off` disables magic prompt entirely. Defaults to `auto`.",
             "title": "magic_prompt"
           },
           "seed": {
@@ -27183,18 +27057,18 @@
           "quality": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/Quality"
+                "$ref": "#/components/schemas/GenerationQuality"
               }
             ],
-            "default": "MEDIUM",
-            "description": "The generation quality level. Defaults to `MEDIUM`.",
+            "default": "medium",
+            "description": "The generation quality level. Defaults to `medium`.",
             "title": "quality"
           },
           "resolution": {
-            "description": "The output-size tier; the server defaults to `1K` when omitted. Cannot be combined with `custom_width`/`custom_height`.",
+            "description": "The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.",
             "enum": [
-              "1K",
-              "2K"
+              "1k",
+              "2k"
             ],
             "nullable": true,
             "title": "resolution",
@@ -27398,7 +27272,7 @@
         "type": "object"
       },
       "GenerateImageIdeogram45Response": {
-        "description": "Response returned by `POST /v2/image/generate/ideogram-4.5`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/ideogram-4-5`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -27460,11 +27334,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). `AUTO` (the\ndefault) and `ON` rewrite a natural-language prompt, while a\nprompt that is already a valid structured JSON prompt is always\nconsumed directly. `OFF` disables rewriting entirely: the model\nreceives your prompt verbatim.\n"
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). `auto` (the\ndefault) and `on` rewrite a natural-language prompt, while a\nprompt that is already a valid structured JSON prompt is always\nconsumed directly. `off` disables rewriting entirely: the model\nreceives your prompt verbatim.\n"
           },
           "image_asset_identifiers": {
             "description": "Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. The first source is the primary image; any further sources are additional references. Supplying sources turns the request into an image-to-image transform.",
@@ -27491,12 +27365,12 @@
             "type": "string"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
@@ -27545,8 +27419,8 @@
         },
         "type": "object"
       },
-      "GenerateImageGemini31FlashResponse": {
-        "description": "Response returned by `POST /v2/image/generate/gemini-3.1-flash`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+      "GenerateImageNanoBanana2Response": {
+        "description": "Response returned by `POST /v2/image/generate/nano-banana-2`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -27594,10 +27468,10 @@
           "generation_id",
           "seed"
         ],
-        "title": "GenerateImageGemini31FlashResponse",
+        "title": "GenerateImageNanoBanana2Response",
         "type": "object"
       },
-      "GenerateImageGemini31FlashRequest": {
+      "GenerateImageNanoBanana2Request": {
         "description": "Source images are optional. When supplied (as `image_asset_identifiers`\nreferences, or as raw `images` bytes in multipart requests), the prompt\nis applied to the sources as an edit; if both forms are given, the\nreferences are used and the bytes are ignored. Without source images\nthe prompt alone drives the generation.\n",
         "properties": {
           "prompt": {
@@ -27681,8 +27555,8 @@
         ],
         "type": "object"
       },
-      "GenerateImageGemini30ProResponse": {
-        "description": "Response returned by `POST /v2/image/generate/gemini-3.0-pro`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+      "GenerateImageNanoBananaProResponse": {
+        "description": "Response returned by `POST /v2/image/generate/nano-banana-pro`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -27730,10 +27604,10 @@
           "generation_id",
           "seed"
         ],
-        "title": "GenerateImageGemini30ProResponse",
+        "title": "GenerateImageNanoBananaProResponse",
         "type": "object"
       },
-      "GenerateImageGemini30ProRequest": {
+      "GenerateImageNanoBananaProRequest": {
         "description": "Source images are optional. When supplied (as `image_asset_identifiers`\nreferences, or as raw `images` bytes in multipart requests), the prompt\nis applied to the sources as an edit; if both forms are given, the\nreferences are used and the bytes are ignored. Without source images\nthe prompt alone drives the generation.\n",
         "properties": {
           "prompt": {
@@ -27948,7 +27822,7 @@
         "type": "object"
       },
       "GenerateImageGptImage25FlareResponse": {
-        "description": "Response returned by `POST /v2/image/generate/gpt-image-2.5-flare`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/gpt-image-2-5-flare`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -28032,12 +27906,23 @@
             "type": "string"
           },
           "background": {
-            "default": "AUTO",
-            "description": "The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.",
+            "default": "auto",
+            "description": "The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.",
             "enum": [
-              "AUTO",
-              "TRANSPARENT",
-              "OPAQUE"
+              "auto",
+              "transparent",
+              "opaque"
+            ],
+            "type": "string"
+          },
+          "quality": {
+            "default": "auto",
+            "description": "How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.",
+            "enum": [
+              "auto",
+              "low",
+              "medium",
+              "high"
             ],
             "type": "string"
           },
@@ -28093,7 +27978,7 @@
         "type": "object"
       },
       "GenerateImageGptImage25SunburstResponse": {
-        "description": "Response returned by `POST /v2/image/generate/gpt-image-2.5-sunburst`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
+        "description": "Response returned by `POST /v2/image/generate/gpt-image-2-5-sunburst`.\nSynchronous requests (the default) include the generated images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "example": {
           "data": [
             {
@@ -28177,12 +28062,23 @@
             "type": "string"
           },
           "background": {
-            "default": "AUTO",
-            "description": "The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.",
+            "default": "auto",
+            "description": "The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.",
             "enum": [
-              "AUTO",
-              "TRANSPARENT",
-              "OPAQUE"
+              "auto",
+              "transparent",
+              "opaque"
+            ],
+            "type": "string"
+          },
+          "quality": {
+            "default": "auto",
+            "description": "How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.",
+            "enum": [
+              "auto",
+              "low",
+              "medium",
+              "high"
             ],
             "type": "string"
           },
@@ -28294,13 +28190,13 @@
           "aspect_ratio": null,
           "private": true,
           "seed": 12345,
-          "rendering_speed": "DEFAULT",
+          "rendering_speed": "default",
           "webhook_url": "https://api.example.com/webhooks/ideogram",
           "target_collection_id": "target_collection_id",
           "num_images": 1,
           "magic_prompt": "",
           "async": false,
-          "style_type": "REALISTIC",
+          "style_type": "realistic",
           "negative_prompt": "negative_prompt",
           "enable_copyright_detection": true,
           "prompt": "prompt"
@@ -28331,12 +28227,12 @@
             "$ref": "#/components/schemas/AspectRatioV3"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
-            "description": "The rendering speed to use. `TURBO` generates faster at a lower cost, while `QUALITY` prioritizes the highest-quality result.",
+            "default": "default",
+            "description": "The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "title": "rendering_speed",
             "type": "string"
@@ -28344,11 +28240,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.",
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.",
             "title": "magic_prompt"
           },
           "num_images": {
@@ -28360,7 +28256,7 @@
             "type": "integer"
           },
           "style_type": {
-            "$ref": "#/components/schemas/StyleTypeV2"
+            "$ref": "#/components/schemas/IdeogramV2StyleType"
           },
           "enable_copyright_detection": {
             "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.",
@@ -28457,10 +28353,10 @@
           "magic_prompt": "",
           "aspect_ratio": null,
           "async": false,
-          "style_type": "REALISTIC",
+          "style_type": "realistic",
           "private": true,
           "seed": 12345,
-          "rendering_speed": "DEFAULT",
+          "rendering_speed": "default",
           "webhook_url": "https://api.example.com/webhooks/ideogram",
           "enable_copyright_detection": true,
           "target_collection_id": "target_collection_id",
@@ -28487,12 +28383,12 @@
             "$ref": "#/components/schemas/AspectRatioV3"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
-            "description": "The rendering speed to use. `TURBO` generates faster at a lower cost, while `QUALITY` prioritizes the highest-quality result.",
+            "default": "default",
+            "description": "The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "title": "rendering_speed",
             "type": "string"
@@ -28500,11 +28396,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`.",
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.",
             "title": "magic_prompt"
           },
           "num_images": {
@@ -28516,7 +28412,7 @@
             "type": "integer"
           },
           "style_type": {
-            "$ref": "#/components/schemas/StyleTypeV2"
+            "$ref": "#/components/schemas/IdeogramV2StyleType"
           },
           "enable_copyright_detection": {
             "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.",
@@ -28701,11 +28597,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -28723,22 +28619,22 @@
             "type": "integer"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "style_type": {
-            "$ref": "#/components/schemas/StyleTypeV3"
+            "$ref": "#/components/schemas/IdeogramV3StyleType"
           },
           "style_preset": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StylePresetV3"
+                "$ref": "#/components/schemas/IdeogramV3StylePreset"
               }
             ],
             "description": "A predefined style preset to apply to the repainted images. Cannot be combined with style codes or style references."
@@ -28926,11 +28822,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -28950,16 +28846,16 @@
           "rendering_speed": {
             "description": "The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "style_preset": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StylePresetV3"
+                "$ref": "#/components/schemas/IdeogramV3StylePreset"
               }
             ],
             "description": "A predefined style preset. Cannot be combined with style codes or style references."
@@ -29112,19 +29008,19 @@
             "type": "integer"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "style_preset": {
-            "$ref": "#/components/schemas/StylePresetV3"
+            "$ref": "#/components/schemas/IdeogramV3StylePreset"
           },
           "color_palette": {
-            "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+            "$ref": "#/components/schemas/IdeogramColorPalette"
           },
           "style_codes": {
             "description": "A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.",
@@ -29168,7 +29064,7 @@
         ],
         "type": "object"
       },
-      "ReframeImageGemini31FlashImageResponse": {
+      "ReframeImageNanoBanana2Response": {
         "description": "Acknowledges an accepted asynchronous Reframe request. Poll\n`GET /v1/generations/{generation_id}` for completion and output\nimages. The seed, width, and height report the values the request\nresolved to when the caller left them unset.\n",
         "example": {
           "seed": 12345,
@@ -29207,10 +29103,10 @@
           "seed",
           "width"
         ],
-        "title": "ReframeImageGemini31FlashImageResponse",
+        "title": "ReframeImageNanoBanana2Response",
         "type": "object"
       },
-      "ReframeImageGemini31FlashImageRequest": {
+      "ReframeImageNanoBanana2Request": {
         "additionalProperties": false,
         "description": "Supply exactly one source: `image_asset_identifier` for an existing\nIdeogram asset, or `image` for a raw upload. Supplying both or neither\nis rejected with a 400.\n",
         "properties": {
@@ -29223,7 +29119,7 @@
             "type": "string"
           },
           "aspect_ratio": {
-            "description": "The requested output aspect ratio. It resolves to the closest dimensions Gemini supports at the 1K output tier.",
+            "description": "The requested output aspect ratio. It resolves to the closest dimensions the model supports at the 1K output tier.",
             "example": 969,
             "maxLength": 21,
             "minLength": 3,
@@ -29367,23 +29263,23 @@
             "$ref": "#/components/schemas/AspectRatioV3"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -29393,12 +29289,12 @@
             "type": "integer"
           },
           "style_type": {
-            "default": "AUTO",
-            "description": "The style type to generate the character with. Defaults to `AUTO`.",
+            "default": "auto",
+            "description": "The style type to generate the character with. Defaults to `auto`.",
             "enum": [
-              "AUTO",
-              "REALISTIC",
-              "FICTION"
+              "auto",
+              "realistic",
+              "fiction"
             ],
             "type": "string"
           },
@@ -29586,11 +29482,11 @@
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -29608,22 +29504,22 @@
             "type": "integer"
           },
           "rendering_speed": {
-            "default": "DEFAULT",
+            "default": "default",
             "description": "The rendering speed to use.",
             "enum": [
-              "TURBO",
-              "DEFAULT",
-              "QUALITY"
+              "turbo",
+              "default",
+              "quality"
             ],
             "type": "string"
           },
           "style_type": {
-            "default": "AUTO",
-            "description": "The style type to repaint the character with. Defaults to `AUTO`. `REALISTIC` and `FICTION` are supported for character-only requests; style codes or style references require `AUTO`.",
+            "default": "auto",
+            "description": "The style type to repaint the character with. Defaults to `auto`. `realistic` and `fiction` are supported for character-only requests; style codes or style references require `auto`.",
             "enum": [
-              "AUTO",
-              "REALISTIC",
-              "FICTION"
+              "auto",
+              "realistic",
+              "fiction"
             ],
             "type": "string"
           },
@@ -29792,33 +29688,33 @@
             "type": "array"
           },
           "aspect_ratio": {
-            "default": "AUTO",
-            "description": "The output aspect ratio. `AUTO` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example \"16x9\" or \"1x1\"); with source images any \"WIDTHxHEIGHT\" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`AUTO` value.",
-            "pattern": "^(AUTO|[1-9][0-9]{0,4}x[1-9][0-9]{0,4})$",
+            "default": "auto",
+            "description": "The output aspect ratio. `auto` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example \"16x9\" or \"1x1\"); with source images any \"WIDTHxHEIGHT\" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`auto` value.",
+            "pattern": "^(auto|[1-9][0-9]{0,4}x[1-9][0-9]{0,4})$",
             "type": "string"
           },
           "resolution": {
-            "description": "The requested output resolution, formatted as \"WIDTHxHEIGHT\" (for example \"1280x800\"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `AUTO`) when supplying a resolution.",
+            "description": "The requested output resolution, formatted as \"WIDTHxHEIGHT\" (for example \"1280x800\"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `auto`) when supplying a resolution.",
             "pattern": "^[1-9][0-9]{1,4}x[1-9][0-9]{1,4}$",
             "type": "string"
           },
           "resolution_tier": {
             "description": "The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.",
             "enum": [
-              "1K",
-              "2K",
-              "4K"
+              "1k",
+              "2k",
+              "4k"
             ],
             "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
           },
           "num_images": {
             "default": 1,
@@ -29954,27 +29850,27 @@
           "aspect_ratio": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/AspectRatioV4"
+                "$ref": "#/components/schemas/IdeogramV4AspectRatio"
               }
             ],
-            "description": "The requested output aspect ratio. Omit it to keep the source image's shape. `AUTO` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier."
+            "description": "The requested output aspect ratio. Omit it to keep the source image's shape. `auto` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier."
           },
           "resolution_tier": {
-            "description": "The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1K when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`AUTO` style type) currently support only 1K AUTO remixes.",
+            "description": "The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1k when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`auto` style type) currently support only 1K AUTO remixes.",
             "enum": [
-              "1K",
-              "2K"
+              "1k",
+              "2k"
             ],
             "type": "string"
           },
           "magic_prompt": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/MagicPromptOption"
+                "$ref": "#/components/schemas/MagicPromptMode"
               }
             ],
-            "default": "AUTO",
-            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `AUTO`. The selected model decides how to interpret it."
+            "default": "auto",
+            "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`. The selected model decides how to interpret it."
           },
           "seed": {
             "description": "Optional. Honored when the server selects the model that supports deterministic remixes; the default model synthesizes its own prompt, so results are not reproducible there. The response reports the seed used.",
@@ -30003,7 +29899,7 @@
           "style_preset": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StylePresetV3"
+                "$ref": "#/components/schemas/IdeogramV3StylePreset"
               }
             ],
             "description": "A predefined style preset to apply. Restricts the server to a model that supports it and requires the 1K resolution tier. Cannot be combined with style codes or style references."
@@ -30011,7 +29907,7 @@
           "color_palette": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/ColorPaletteWithPresetNameOrMembers"
+                "$ref": "#/components/schemas/IdeogramColorPalette"
               }
             ],
             "description": "A color palette to apply. Restricts the server to a model that supports palettes and requires the 1K resolution tier."
@@ -30031,10 +29927,10 @@
           "style_type": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/StyleTypeV3"
+                "$ref": "#/components/schemas/IdeogramV3StyleType"
               }
             ],
-            "description": "The style type to generate with. A value other than `AUTO` restricts the server to a model that supports it and requires the 1K resolution tier."
+            "description": "The style type to generate with. A value other than `auto` restricts the server to a model that supports it and requires the 1K resolution tier."
           },
           "num_images": {
             "default": 1,
@@ -35276,6 +35172,58 @@
         "title": "FreeformResolution",
         "type": "string"
       },
+      "VideoObject": {
+        "description": "A single generated video returned by the generation polling endpoint.",
+        "properties": {
+          "object_type": {
+            "description": "Discriminator marking this entry as a generated video in the polling endpoint's mixed data array.",
+            "enum": [
+              "video.generation"
+            ],
+            "title": "object_type",
+            "type": "string"
+          },
+          "url": {
+            "description": "The direct link to the generated video.",
+            "example": "https://ideogram.ai/assets/video/lossless/response/xtdZiqPwRxqY1Y7NExFmzB.mp4?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
+            "format": "uri",
+            "nullable": true,
+            "title": "url",
+            "type": "string"
+          },
+          "prompt": {
+            "description": "The prompt used for the generation.",
+            "title": "prompt",
+            "type": "string"
+          },
+          "resolution": {
+            "description": "The resolution tier of the generated video.",
+            "example": "720p",
+            "title": "resolution",
+            "type": "string"
+          },
+          "aspect_ratio": {
+            "description": "The actual aspect ratio of the produced video, formatted as \"{width}:{height}\".",
+            "example": 969,
+            "title": "aspect_ratio",
+            "type": "string"
+          },
+          "duration": {
+            "description": "The actual measured length of the produced video in seconds.",
+            "example": 5,
+            "title": "duration",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "aspect_ratio",
+          "duration",
+          "prompt",
+          "resolution"
+        ],
+        "title": "VideoObject",
+        "type": "object"
+      },
       "LayeredAssetTextShadow": {
         "description": "Single CSS shadow for V4 vector text. Used by text_shadows and box_shadow. offset_x, offset_y, and blur are in px.",
         "example": {
@@ -35468,10 +35416,10 @@
         "type": "object"
       },
       "SeedDance2AspectRatio": {
-        "default": "AUTO",
+        "default": "auto",
         "description": "The aspect ratio of the generated video. `AUTO` lets the model choose the\nmost suitable ratio from the prompt; any other value pins the ratio.\n",
         "enum": [
-          "AUTO",
+          "auto",
           "21x9",
           "16x9",
           "4x3",
@@ -35553,13 +35501,13 @@
         "type": "string"
       },
       "MinimaxH3Resolution": {
-        "default": "2k",
-        "description": "The resolution tier of the generated video. `480p` and `768p` are\ngenerated natively; `2k` and `4k` are upscaled from a `768p` result.\nHigher tiers cost more.\n",
+        "default": "2K",
+        "description": "The resolution tier of the generated video, spelled the way MiniMax\nspells it. `480P` and `768P` are generated natively; `2K` and `4K` are\nupscaled from a `768P` result.\nHigher tiers cost more.\n",
         "enum": [
-          "480p",
-          "768p",
-          "2k",
-          "4k"
+          "480P",
+          "768P",
+          "2K",
+          "4K"
         ],
         "title": "MinimaxH3Resolution",
         "type": "string"
@@ -35611,13 +35559,6 @@
         "title": "cfg_scale",
         "type": "number"
       },
-      "VideoFrameTimeSeconds": {
-        "description": "A position within a source video, in seconds from its start. The frame\nshown at that position is the one selected; a position past the end of\nthe video is rejected.\n",
-        "example": 1.5,
-        "format": "float",
-        "minimum": 0,
-        "type": "number"
-      },
       "MinimaxH3PromptExpansionMode": {
         "default": "balanced",
         "description": "How much the model may rewrite the prompt before generating. `disabled`\nuses the prompt as written; the other modes trade latency for a richer\nrewrite.\n",
@@ -35630,28 +35571,214 @@
         "title": "MinimaxH3PromptExpansionMode",
         "type": "string"
       },
+      "VideoFrameTimeSeconds": {
+        "description": "A position within a source video, in seconds from its start. The frame\nshown at that position is the one selected; a position past the end of\nthe video is rejected.\n",
+        "example": 1.5,
+        "format": "float",
+        "minimum": 0,
+        "type": "number"
+      },
       "GptImage2Quality": {
         "description": "The quality tier for the image edit. Higher tiers may improve detail\nand take longer to complete.\n",
         "enum": [
-          "LOW",
-          "MEDIUM",
-          "HIGH"
+          "low",
+          "medium",
+          "high"
         ],
         "title": "GptImage2Quality",
         "type": "string"
       },
-      "StyleTypeV2": {
-        "description": "The style type to generate with. When omitted, the model's default styling is used; pass AUTO to have a style selected automatically from the prompt.",
+      "GenerationQuality": {
+        "description": "The generation quality level. Higher levels may use more inference steps\nor additional prompt processing. `very_high` generates multiple\ncandidates internally and returns the strongest result, so it has\nnoticeably higher latency and cost than the other levels.\n",
         "enum": [
-          "AUTO",
-          "GENERAL",
-          "REALISTIC",
-          "DESIGN",
-          "RENDER_3D",
-          "ANIME"
+          "very_low",
+          "low",
+          "medium",
+          "high",
+          "very_high"
         ],
-        "example": "REALISTIC",
-        "title": "StyleTypeV2",
+        "title": "GenerationQuality",
+        "type": "string"
+      },
+      "MagicPromptMode": {
+        "description": "Determine if MagicPrompt should be used in generating the request or not.",
+        "enum": [
+          "auto",
+          "on",
+          "off"
+        ],
+        "example": "on",
+        "externalDocs": {
+          "url": "https://docs.ideogram.ai/using-ideogram/ideogram-features/magic-prompt"
+        },
+        "title": "MagicPromptMode",
+        "type": "string"
+      },
+      "IdeogramColorPalette": {
+        "description": "A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IdeogramColorPaletteWithPresetName"
+          },
+          {
+            "$ref": "#/components/schemas/ColorPaletteWithMembers"
+          }
+        ],
+        "title": "IdeogramColorPalette"
+      },
+      "IdeogramColorPaletteWithPresetName": {
+        "description": "A color palette specified only via its name. Cannot be used in conjunction with members.",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/IdeogramColorPalettePresetName"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "IdeogramColorPaletteWithPresetName",
+        "type": "object"
+      },
+      "IdeogramColorPalettePresetName": {
+        "description": "A color palette preset value.",
+        "enum": [
+          "ember",
+          "fresh",
+          "jungle",
+          "magic",
+          "melon",
+          "mosaic",
+          "pastel",
+          "ultramarine"
+        ],
+        "example": "pastel",
+        "title": "IdeogramColorPalettePresetName",
+        "type": "string"
+      },
+      "IdeogramV3StyleType": {
+        "default": "general",
+        "description": "The style type to generate with.",
+        "enum": [
+          "auto",
+          "general",
+          "realistic",
+          "design",
+          "custom",
+          "fiction",
+          "stylized"
+        ],
+        "example": "general",
+        "title": "IdeogramV3StyleType",
+        "type": "string"
+      },
+      "IdeogramV3StylePreset": {
+        "description": "A predefined style preset that applies a specific artistic style to the generated image.",
+        "enum": [
+          "80s_illustration",
+          "90s_nostalgia",
+          "abstract_organic",
+          "analog_nostalgia",
+          "art_brut",
+          "art_deco",
+          "art_poster",
+          "aura",
+          "avant_garde",
+          "bauhaus",
+          "blueprint",
+          "blurry_motion",
+          "bright_art",
+          "c4d_cartoon",
+          "childrens_book",
+          "collage",
+          "coloring_book_i",
+          "coloring_book_ii",
+          "cubism",
+          "dark_aura",
+          "doodle",
+          "double_exposure",
+          "dramatic_cinema",
+          "editorial",
+          "emotional_minimal",
+          "ethereal_party",
+          "expired_film",
+          "flat_art",
+          "flat_vector",
+          "forest_reverie",
+          "geo_minimalist",
+          "glass_prism",
+          "golden_hour",
+          "graffiti_i",
+          "graffiti_ii",
+          "halftone_print",
+          "high_contrast",
+          "hippie_era",
+          "iconic",
+          "japandi_fusion",
+          "jazzy",
+          "long_exposure",
+          "magazine_editorial",
+          "minimal_illustration",
+          "mixed_media",
+          "monochrome",
+          "nightlife",
+          "oil_painting",
+          "old_cartoons",
+          "paint_gesture",
+          "pop_art",
+          "retro_etching",
+          "riviera_pop",
+          "spotlight_80s",
+          "stylized_red",
+          "surreal_collage",
+          "travel_poster",
+          "vintage_geo",
+          "vintage_poster",
+          "watercolor",
+          "weird",
+          "woodblock_print"
+        ],
+        "example": "bright_art",
+        "title": "IdeogramV3StylePreset",
+        "type": "string"
+      },
+      "IdeogramV4AspectRatio": {
+        "default": "auto",
+        "description": "The aspect ratio for an Ideogram 4.0 magic prompt. `auto` lets the\nmodel select the most suitable ratio from the prompt; any other value\npins the ratio. The non-auto values are the buckets the 4.0 model\nsupports.\n",
+        "enum": [
+          "auto",
+          "1x4",
+          "1x3",
+          "1x2",
+          "9x16",
+          "10x16",
+          "2x3",
+          "3x4",
+          "4x5",
+          "1x1",
+          "5x4",
+          "4x3",
+          "3x2",
+          "16x10",
+          "16x9",
+          "2x1",
+          "3x1",
+          "4x1"
+        ],
+        "title": "IdeogramV4AspectRatio",
+        "type": "string"
+      },
+      "IdeogramV2StyleType": {
+        "description": "The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.",
+        "enum": [
+          "auto",
+          "general",
+          "realistic",
+          "design",
+          "render_3d",
+          "anime"
+        ],
+        "example": "realistic",
+        "title": "IdeogramV2StyleType",
         "type": "string"
       },
       "Price": {
