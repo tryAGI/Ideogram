@@ -22,6 +22,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(float))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason), TypeInfoPropertyName = "GenerationRejectReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetIdentifier))]
@@ -30,6 +31,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageObject))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazTextRefineRequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection), TypeInfoPropertyName = "UpscaleImageTopazTextRefineRequestSubjectDetection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazWonder35RequestUpscaleFactor2")]
@@ -37,21 +39,31 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazStandardV2RequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection), TypeInfoPropertyName = "UpscaleImageTopazStandardV2RequestSubjectDetection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazBloom2RequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazRedefineRequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection), TypeInfoPropertyName = "UpscaleImageTopazRedefineRequestSubjectDetection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageGemini3ProResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageGemini3ProRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageGemini3ProRequestResolutionTier), TypeInfoPropertyName = "UpscaleImageGemini3ProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType), TypeInfoPropertyName = "AssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(float?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason?), TypeInfoPropertyName = "NullableGenerationRejectReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazTextRefineRequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection?), TypeInfoPropertyName = "NullableUpscaleImageTopazTextRefineRequestSubjectDetection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazWonder35RequestUpscaleFactor2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength?), TypeInfoPropertyName = "NullableUpscaleImageTopazWonder35RequestEnhancementStrength2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazStandardV2RequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection?), TypeInfoPropertyName = "NullableUpscaleImageTopazStandardV2RequestSubjectDetection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazBloom2RequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazRedefineRequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection?), TypeInfoPropertyName = "NullableUpscaleImageTopazRedefineRequestSubjectDetection2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageGemini3ProRequestResolutionTier?), TypeInfoPropertyName = "NullableUpscaleImageGemini3ProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType?), TypeInfoPropertyName = "NullableAssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.UpscaleImageObject>))]
@@ -129,6 +141,10 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor?)
 
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection)
+
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection?)
+
                     || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor)
 
                     || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor?)
@@ -141,9 +157,21 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor?)
 
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection)
+
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection?)
+
                     || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor)
 
                     || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor?)
+
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor)
+
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor?)
+
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection)
+
+                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection?)
 
                     || typeToConvert == typeof(global::Ideogram.UpscaleImageGemini3ProRequestResolutionTier)
 
@@ -178,6 +206,16 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestUpscaleFactorNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestSubjectDetectionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection?))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestSubjectDetectionNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor))
                 {
                     return new global::Ideogram.JsonConverters.UpscaleImageTopazWonder35RequestUpscaleFactorJsonConverter();
@@ -208,6 +246,16 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.UpscaleImageTopazStandardV2RequestUpscaleFactorNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazStandardV2RequestSubjectDetectionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection?))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazStandardV2RequestSubjectDetectionNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor))
                 {
                     return new global::Ideogram.JsonConverters.UpscaleImageTopazBloom2RequestUpscaleFactorJsonConverter();
@@ -216,6 +264,26 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor?))
                 {
                     return new global::Ideogram.JsonConverters.UpscaleImageTopazBloom2RequestUpscaleFactorNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestUpscaleFactorJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor?))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestUpscaleFactorNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestSubjectDetectionJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection?))
+                {
+                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestSubjectDetectionNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.UpscaleImageGemini3ProRequestResolutionTier))

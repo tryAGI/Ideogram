@@ -226,6 +226,56 @@ namespace Ideogram
                                 }
 
                             }
+                            if (request.Mask != default)
+                            {
+
+                                var __contentMask = new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>());
+                                __contentMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.Maskname is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.Maskname) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                __httpRequestContent.Add(
+                                    content: __contentMask,
+                                    name: "\"mask\"",
+                                    fileName: request.Maskname != null ? $"\"{request.Maskname}\"" : string.Empty);
+                                if (__contentMask.Headers.ContentDisposition != null)
+                                {
+                                    __contentMask.Headers.ContentDisposition.FileNameStar = null;
+                                }
+
+                            }
+                            if (request.Background != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Background).HasValue ? (request.Background).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"background\"");
+
+                            }
                             if (request.NumImages != default)
                             {
 
@@ -849,6 +899,16 @@ namespace Ideogram
         /// <param name="images">
         /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
+        /// <param name="mask">
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </param>
+        /// <param name="maskname">
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </param>
+        /// <param name="background">
+        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
+        /// Default Value: AUTO
+        /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
@@ -897,6 +957,9 @@ namespace Ideogram
             bool? dryRun = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
+            byte[]? mask = default,
+            string? maskname = default,
+            global::Ideogram.GenerateImageGptImage25FlareRequestBackground? background = default,
             int? numImages = default,
             int? seed = default,
             string? aspectRatio = default,
@@ -913,6 +976,9 @@ namespace Ideogram
                 Prompt = prompt,
                 ImageAssetIdentifiers = imageAssetIdentifiers,
                 Images = images,
+                Mask = mask,
+                Maskname = maskname,
+                Background = background,
                 NumImages = numImages,
                 Seed = seed,
                 AspectRatio = aspectRatio,

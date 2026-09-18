@@ -248,6 +248,70 @@ namespace Ideogram
                                     name: "\"upscale_factor\"");
 
                             }
+                            if (request.Strength != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Strength, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"strength\"");
+
+                            }
+                            if (request.Sharpen != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Sharpen, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"sharpen\"");
+
+                            }
+                            if (request.Denoise != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Denoise, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"denoise\"");
+
+                            }
+                            if (request.FixCompression != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.FixCompression, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"fix_compression\"");
+
+                            }
+                            if (request.FaceEnhancement != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.FaceEnhancement, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"face_enhancement\"");
+
+                            }
+                            if (request.FaceEnhancementStrength != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.FaceEnhancementStrength, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"face_enhancement_strength\"");
+
+                            }
+                            if (request.FaceEnhancementCreativity != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.FaceEnhancementCreativity, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"face_enhancement_creativity\"");
+
+                            }
+                            if (request.SubjectDetection != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.SubjectDetection).HasValue ? (request.SubjectDetection).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"subject_detection\"");
+
+                            }
                             if (request.Seed != default)
                             {
 
@@ -849,6 +913,30 @@ namespace Ideogram
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
         /// Default Value: X2
         /// </param>
+        /// <param name="strength">
+        /// Overall intensity of the enhancement model, from 0.01 to 1. Higher values look crisper but can turn unrealistic. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="sharpen">
+        /// Edge sharpening applied after enlarging, from 0 to 1. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="denoise">
+        /// Noise and grain reduction, from 0 to 1. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="fixCompression">
+        /// Compression artifact removal, from 0 to 1. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="faceEnhancement">
+        /// Recover detail in faces. When true, `face_enhancement_strength` and `face_enhancement_creativity` are required.
+        /// </param>
+        /// <param name="faceEnhancementStrength">
+        /// How strongly faces are recovered, from 0 to 1.
+        /// </param>
+        /// <param name="faceEnhancementCreativity">
+        /// How freely face recovery may reinterpret features, from 0 (faithful) to 1 (creative).
+        /// </param>
+        /// <param name="subjectDetection">
+        /// Where enhancements apply. Omit to let Topaz choose per image.
+        /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
@@ -883,6 +971,14 @@ namespace Ideogram
             byte[]? image = default,
             string? imagename = default,
             global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor? upscaleFactor = default,
+            float? strength = default,
+            float? sharpen = default,
+            float? denoise = default,
+            float? fixCompression = default,
+            bool? faceEnhancement = default,
+            float? faceEnhancementStrength = default,
+            float? faceEnhancementCreativity = default,
+            global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection? subjectDetection = default,
             int? seed = default,
             bool? async = default,
             string? webhookUrl = default,
@@ -897,6 +993,14 @@ namespace Ideogram
                 Image = image,
                 Imagename = imagename,
                 UpscaleFactor = upscaleFactor,
+                Strength = strength,
+                Sharpen = sharpen,
+                Denoise = denoise,
+                FixCompression = fixCompression,
+                FaceEnhancement = faceEnhancement,
+                FaceEnhancementStrength = faceEnhancementStrength,
+                FaceEnhancementCreativity = faceEnhancementCreativity,
+                SubjectDetection = subjectDetection,
                 Seed = seed,
                 Async = async,
                 WebhookUrl = webhookUrl,

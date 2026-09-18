@@ -30,7 +30,7 @@ namespace Ideogram
         public string? Description { get; set; }
 
         /// <summary>
-        /// How the mini-app runs. Iframe and MFE apps use hosted deployments; native apps are bundled into the Ideogram frontend.
+        /// How the mini-app runs. Iframe apps use hosted deployments; native apps are bundled into the Ideogram frontend.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("embed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.MiniAppMarketingProjectionEntryEmbedJsonConverter))]
@@ -109,7 +109,7 @@ namespace Ideogram
         /// Human-readable mini-app name.
         /// </param>
         /// <param name="embed">
-        /// How the mini-app runs. Iframe and MFE apps use hosted deployments; native apps are bundled into the Ideogram frontend.
+        /// How the mini-app runs. Iframe apps use hosted deployments; native apps are bundled into the Ideogram frontend.
         /// </param>
         /// <param name="website">
         /// Structured metadata used to build the mini-app marketing page.

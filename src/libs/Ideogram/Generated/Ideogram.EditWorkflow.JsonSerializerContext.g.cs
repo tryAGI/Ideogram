@@ -52,6 +52,9 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VirtualTryOnRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerRequestLanguage), TypeInfoPropertyName = "AdLocalizerRequestLanguage2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestResolution), TypeInfoPropertyName = "AdResizerRequestResolution2")]
@@ -93,6 +96,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotView?), TypeInfoPropertyName = "NullablePackshotView2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinRequestView?), TypeInfoPropertyName = "NullableGhostMannequinRequestView2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseMaskedEditModel?), TypeInfoPropertyName = "NullablePreciseMaskedEditModel2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerRequestLanguage?), TypeInfoPropertyName = "NullableAdLocalizerRequestLanguage2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestResolution?), TypeInfoPropertyName = "NullableAdResizerRequestResolution2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestPlatform?), TypeInfoPropertyName = "NullableAdResizerRequestPlatform2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsRequestVariationType?), TypeInfoPropertyName = "NullableAdVariationsRequestVariationType2")]
@@ -196,6 +200,10 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.PreciseMaskedEditModel)
 
                     || typeToConvert == typeof(global::Ideogram.PreciseMaskedEditModel?)
+
+                    || typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage)
+
+                    || typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage?)
 
                     || typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution)
 
@@ -312,6 +320,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.PreciseMaskedEditModel?))
                 {
                     return new global::Ideogram.JsonConverters.PreciseMaskedEditModelNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage))
+                {
+                    return new global::Ideogram.JsonConverters.AdLocalizerRequestLanguageJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage?))
+                {
+                    return new global::Ideogram.JsonConverters.AdLocalizerRequestLanguageNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution))

@@ -40,6 +40,55 @@ namespace Ideogram
         public global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor? UpscaleFactor { get; set; }
 
         /// <summary>
+        /// Overall intensity of the enhancement model, from 0.01 to 1. Higher values look crisper but can turn unrealistic. Omit to let Topaz choose per image.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("strength")]
+        public float? Strength { get; set; }
+
+        /// <summary>
+        /// Edge sharpening applied after enlarging, from 0 to 1. Omit to let Topaz choose per image.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("sharpen")]
+        public float? Sharpen { get; set; }
+
+        /// <summary>
+        /// Noise and grain reduction, from 0 to 1. Omit to let Topaz choose per image.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("denoise")]
+        public float? Denoise { get; set; }
+
+        /// <summary>
+        /// Compression artifact removal, from 0 to 1. Omit to let Topaz choose per image.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("fix_compression")]
+        public float? FixCompression { get; set; }
+
+        /// <summary>
+        /// Recover detail in faces. When true, `face_enhancement_strength` and `face_enhancement_creativity` are required.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("face_enhancement")]
+        public bool? FaceEnhancement { get; set; }
+
+        /// <summary>
+        /// How strongly faces are recovered, from 0 to 1.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("face_enhancement_strength")]
+        public float? FaceEnhancementStrength { get; set; }
+
+        /// <summary>
+        /// How freely face recovery may reinterpret features, from 0 (faithful) to 1 (creative).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("face_enhancement_creativity")]
+        public float? FaceEnhancementCreativity { get; set; }
+
+        /// <summary>
+        /// Where enhancements apply. Omit to let Topaz choose per image.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("subject_detection")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestSubjectDetectionJsonConverter))]
+        public global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection? SubjectDetection { get; set; }
+
+        /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
@@ -104,6 +153,30 @@ namespace Ideogram
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
         /// Default Value: X2
         /// </param>
+        /// <param name="strength">
+        /// Overall intensity of the enhancement model, from 0.01 to 1. Higher values look crisper but can turn unrealistic. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="sharpen">
+        /// Edge sharpening applied after enlarging, from 0 to 1. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="denoise">
+        /// Noise and grain reduction, from 0 to 1. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="fixCompression">
+        /// Compression artifact removal, from 0 to 1. Omit to let Topaz choose per image.
+        /// </param>
+        /// <param name="faceEnhancement">
+        /// Recover detail in faces. When true, `face_enhancement_strength` and `face_enhancement_creativity` are required.
+        /// </param>
+        /// <param name="faceEnhancementStrength">
+        /// How strongly faces are recovered, from 0 to 1.
+        /// </param>
+        /// <param name="faceEnhancementCreativity">
+        /// How freely face recovery may reinterpret features, from 0 (faithful) to 1 (creative).
+        /// </param>
+        /// <param name="subjectDetection">
+        /// Where enhancements apply. Omit to let Topaz choose per image.
+        /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
@@ -137,6 +210,14 @@ namespace Ideogram
             byte[]? image,
             string? imagename,
             global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor? upscaleFactor,
+            float? strength,
+            float? sharpen,
+            float? denoise,
+            float? fixCompression,
+            bool? faceEnhancement,
+            float? faceEnhancementStrength,
+            float? faceEnhancementCreativity,
+            global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection? subjectDetection,
             int? seed,
             bool? async,
             string? webhookUrl,
@@ -147,6 +228,14 @@ namespace Ideogram
             this.Image = image;
             this.Imagename = imagename;
             this.UpscaleFactor = upscaleFactor;
+            this.Strength = strength;
+            this.Sharpen = sharpen;
+            this.Denoise = denoise;
+            this.FixCompression = fixCompression;
+            this.FaceEnhancement = faceEnhancement;
+            this.FaceEnhancementStrength = faceEnhancementStrength;
+            this.FaceEnhancementCreativity = faceEnhancementCreativity;
+            this.SubjectDetection = subjectDetection;
             this.Seed = seed;
             this.Async = async;
             this.WebhookUrl = webhookUrl;

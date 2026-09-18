@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame; `mfe` loads it as a micro-frontend module.
+    /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame.
     /// </summary>
     public enum PublishMiniAppPreviewRequestEmbed
     {
@@ -12,10 +12,6 @@ namespace Ideogram
         ///
         /// </summary>
         Iframe,
-        /// <summary>
-        ///
-        /// </summary>
-        Mfe,
     }
 
     /// <summary>
@@ -31,7 +27,6 @@ namespace Ideogram
             return value switch
             {
                 PublishMiniAppPreviewRequestEmbed.Iframe => "iframe",
-                PublishMiniAppPreviewRequestEmbed.Mfe => "mfe",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -43,7 +38,6 @@ namespace Ideogram
             return value switch
             {
                 "iframe" => PublishMiniAppPreviewRequestEmbed.Iframe,
-                "mfe" => PublishMiniAppPreviewRequestEmbed.Mfe,
                 _ => null,
             };
         }
