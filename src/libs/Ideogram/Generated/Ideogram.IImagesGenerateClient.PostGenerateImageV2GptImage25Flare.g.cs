@@ -111,6 +111,16 @@ namespace Ideogram
         /// <param name="images">
         /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
+        /// <param name="mask">
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </param>
+        /// <param name="maskname">
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </param>
+        /// <param name="background">
+        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
+        /// Default Value: AUTO
+        /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
@@ -159,6 +169,9 @@ namespace Ideogram
             bool? dryRun = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
+            byte[]? mask = default,
+            string? maskname = default,
+            global::Ideogram.GenerateImageGptImage25FlareRequestBackground? background = default,
             int? numImages = default,
             int? seed = default,
             string? aspectRatio = default,

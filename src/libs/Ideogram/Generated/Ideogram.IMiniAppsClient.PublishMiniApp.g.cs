@@ -44,7 +44,7 @@ namespace Ideogram
         /// Short description of what the mini-app does.
         /// </param>
         /// <param name="embed">
-        /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame; `mfe` loads it as a micro-frontend module.
+        /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame.
         /// </param>
         /// <param name="scopes">
         /// Permission scopes the mini-app requests.
@@ -70,9 +70,9 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.PublishMiniAppResponse> PublishMiniAppAsync(
             string slug,
             string label,
-            global::Ideogram.PublishMiniAppRequestEmbed embed,
             global::System.Collections.Generic.IList<string> scopes,
             string? description = default,
+            global::Ideogram.PublishMiniAppRequestEmbed embed = default,
             bool? acceptsImageInput = default,
             string? deploymentUrl = default,
             string? deploymentCommit = default,

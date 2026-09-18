@@ -136,6 +136,12 @@ namespace Ideogram
         /// private and loopback hosts and the cloud metadata service are rejected.<br/>
         /// Example: https://api.example.com/webhooks/ideogram
         /// </param>
+        /// <param name="private">
+        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
+        /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
+        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
@@ -149,6 +155,8 @@ namespace Ideogram
             bool? @internal = default,
             bool? async = default,
             string? webhookUrl = default,
+            bool? @private = default,
+            string? targetCollectionId = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

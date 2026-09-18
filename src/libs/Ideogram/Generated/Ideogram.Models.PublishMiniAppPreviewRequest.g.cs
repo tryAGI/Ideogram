@@ -36,12 +36,11 @@ namespace Ideogram
         public string? Description { get; set; }
 
         /// <summary>
-        /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame; `mfe` loads it as a micro-frontend module.
+        /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("embed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.PublishMiniAppPreviewRequestEmbedJsonConverter))]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::Ideogram.PublishMiniAppPreviewRequestEmbed Embed { get; set; }
+        public global::Ideogram.PublishMiniAppPreviewRequestEmbed Embed { get; set; }
 
         /// <summary>
         /// Permission scopes the mini-app preview requests.
@@ -96,9 +95,6 @@ namespace Ideogram
         /// <param name="label">
         /// Human-readable display name shown for the preview.
         /// </param>
-        /// <param name="embed">
-        /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame; `mfe` loads it as a micro-frontend module.
-        /// </param>
         /// <param name="scopes">
         /// Permission scopes the mini-app preview requests.
         /// </param>
@@ -110,6 +106,9 @@ namespace Ideogram
         /// </param>
         /// <param name="description">
         /// Short description of what the mini-app does.
+        /// </param>
+        /// <param name="embed">
+        /// How the mini-app is embedded. `iframe` loads the app in a sandboxed frame.
         /// </param>
         /// <param name="acceptsImageInput">
         /// Optional on publish. Whether the app can receive an existing image as its initial input. Omit this field to preserve the current value when re-publishing an existing preview; new previews default to false.
@@ -129,11 +128,11 @@ namespace Ideogram
         public PublishMiniAppPreviewRequest(
             string previewId,
             string label,
-            global::Ideogram.PublishMiniAppPreviewRequestEmbed embed,
             global::System.Collections.Generic.IList<string> scopes,
             string deploymentUrl,
             string? slug,
             string? description,
+            global::Ideogram.PublishMiniAppPreviewRequestEmbed embed,
             bool? acceptsImageInput,
             string? deploymentCommit,
             global::System.DateTime? deploymentTime,

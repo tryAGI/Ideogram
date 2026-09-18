@@ -77,6 +77,18 @@ namespace Ideogram
         public string? WebhookUrl { get; set; }
 
         /// <summary>
+        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("private")]
+        public bool? Private { get; set; }
+
+        /// <summary>
+        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
+        public string? TargetCollectionId { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -122,6 +134,12 @@ namespace Ideogram
         /// private and loopback hosts and the cloud metadata service are rejected.<br/>
         /// Example: https://api.example.com/webhooks/ideogram
         /// </param>
+        /// <param name="private">
+        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
+        /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -133,7 +151,9 @@ namespace Ideogram
             int? seed,
             bool? @internal,
             bool? async,
-            string? webhookUrl)
+            string? webhookUrl,
+            bool? @private,
+            string? targetCollectionId)
         {
             this.ImageAssetIdentifier = imageAssetIdentifier;
             this.Image = image;
@@ -143,6 +163,8 @@ namespace Ideogram
             this.Internal = @internal;
             this.Async = async;
             this.WebhookUrl = webhookUrl;
+            this.Private = @private;
+            this.TargetCollectionId = targetCollectionId;
         }
 
         /// <summary>

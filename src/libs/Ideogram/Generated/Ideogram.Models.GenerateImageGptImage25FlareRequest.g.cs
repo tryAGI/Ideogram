@@ -32,6 +32,26 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
+        public byte[]? Mask { get; set; }
+
+        /// <summary>
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
+        public string? Maskname { get; set; }
+
+        /// <summary>
+        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
+        /// Default Value: AUTO
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("background")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageGptImage25FlareRequestBackgroundJsonConverter))]
+        public global::Ideogram.GenerateImageGptImage25FlareRequestBackground? Background { get; set; }
+
+        /// <summary>
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
@@ -115,6 +135,16 @@ namespace Ideogram
         /// <param name="images">
         /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
+        /// <param name="mask">
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </param>
+        /// <param name="maskname">
+        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// </param>
+        /// <param name="background">
+        /// The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.<br/>
+        /// Default Value: AUTO
+        /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
@@ -162,6 +192,9 @@ namespace Ideogram
             string prompt,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? images,
+            byte[]? mask,
+            string? maskname,
+            global::Ideogram.GenerateImageGptImage25FlareRequestBackground? background,
             int? numImages,
             int? seed,
             string? aspectRatio,
@@ -174,6 +207,9 @@ namespace Ideogram
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.ImageAssetIdentifiers = imageAssetIdentifiers;
             this.Images = images;
+            this.Mask = mask;
+            this.Maskname = maskname;
+            this.Background = background;
             this.NumImages = numImages;
             this.Seed = seed;
             this.AspectRatio = aspectRatio;

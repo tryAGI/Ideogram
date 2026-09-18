@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// How the mini-app runs. Iframe and MFE apps use hosted deployments; native apps are bundled into the Ideogram frontend.
+    /// How the mini-app runs. Iframe apps use hosted deployments; native apps are bundled into the Ideogram frontend.
     /// </summary>
     public enum MiniAppMarketingProjectionEntryEmbed
     {
@@ -12,10 +12,6 @@ namespace Ideogram
         ///
         /// </summary>
         Iframe,
-        /// <summary>
-        ///
-        /// </summary>
-        Mfe,
         /// <summary>
         ///
         /// </summary>
@@ -35,7 +31,6 @@ namespace Ideogram
             return value switch
             {
                 MiniAppMarketingProjectionEntryEmbed.Iframe => "iframe",
-                MiniAppMarketingProjectionEntryEmbed.Mfe => "mfe",
                 MiniAppMarketingProjectionEntryEmbed.Native => "native",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -48,7 +43,6 @@ namespace Ideogram
             return value switch
             {
                 "iframe" => MiniAppMarketingProjectionEntryEmbed.Iframe,
-                "mfe" => MiniAppMarketingProjectionEntryEmbed.Mfe,
                 "native" => MiniAppMarketingProjectionEntryEmbed.Native,
                 _ => null,
             };

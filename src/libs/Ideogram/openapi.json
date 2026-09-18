@@ -11051,6 +11051,101 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
       }
     },
+    "/v2/image/upscale/topaz-redefine": {
+      "post": {
+        "description": "Creatively upscale one image to 2x, 4x, or 8x its original resolution,\nup to a maximum output of 8192px per side. Supply the source either as\nan `image_asset_identifier` reference (an image already stored with\nIdeogram) or as raw `image` bytes (multipart requests only) — callers\nare never required to upload the asset first. If both are supplied,\nthe reference wins and the bytes are ignored. Uploaded bytes are used\nfor this request only and are not stored as an asset; upscales of a\nreferenced asset keep a visible link to their source image.\n\nAn optional `prompt` guides the regenerated detail, or `autoprompt`\nlets the model describe the image itself. `creativity` controls how\nstrongly the model reinterprets the source, `texture` how much fine\ntexture it adds, and the precision knobs (sharpen, denoise, detail,\nface enhancement, subject detection) refine the result.\n\nBy default the request blocks until the upscaled image is ready and\nreturns it in `data`. Set `async` to true to return immediately after\nthe request is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "operationId": "post_upscale_image_topaz_redefine",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/UpscaleImageTopazRedefineRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpscaleImageTopazRedefineRequest"
+              }
+            }
+          },
+          "description": "A request to upscale one image with Topaz Redefine. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpscaleImageTopazRedefineResponse"
+                }
+              }
+            },
+            "description": "The upscaled image (synchronous requests), or an acknowledgement to poll with `GET /v1/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided, or the output would exceed the 8K limit."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "404": {
+            "description": "The referenced source asset was not found."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Upscale an image with Topaz Redefine, by asset id or by uploaded bytes",
+        "tags": [
+          "images-upscale"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
+      }
+    },
     "/v2/image/upscale/topaz-standard-2": {
       "post": {
         "description": "Upscale one image to 2x, 4x, or 8x its original resolution, up to a\nmaximum output of 8192px per side. Supply the source either as an\n`image_asset_identifier` reference (an image already stored with\nIdeogram) or as raw `image` bytes (multipart requests only) — callers\nare never required to upload the asset first. If both are supplied,\nthe reference wins and the bytes are ignored. Uploaded bytes are used\nfor this request only and are not stored as an asset; upscales of a\nreferenced asset keep a visible link to their source image.\n\nUpscaling takes no prompt: the model enhances the source image as-is.\n\nBy default the request blocks until the upscaled image is ready and\nreturns it in `data`. Set `async` to true to return immediately after\nthe request is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
@@ -11458,6 +11553,86 @@
           "integrations"
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.integrations_controller"
+      }
+    },
+    "/v2/tool/ad-localizer": {
+      "post": {
+        "description": "Rebuilds the source advertisement for one target language. Layout,\nlogos, brand type, and the product are preserved; the visible marketing\ncopy is what changes.\n\nWithout `exact_copy` the copy is translated. Supply `exact_copy` to\nplace wording that has already been approved, character for character,\ninstead of translating it.\n\nThe output keeps the source advertisement's own shape and is generated\nat a frame derived from it, so neither the shape nor the size is asked\nfor.\n\nOne request localizes into one language. Localize into several languages\nby submitting one request per language.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed.\n\nSupply the source advertisement as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n",
+        "operationId": "post_ad_localizer",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/AdLocalizerRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdLocalizerRequest"
+              }
+            }
+          },
+          "description": "The source advertisement and the target language. Use `multipart/form-data` to upload `image` bytes directly, or `application/json` (or multipart with `image_asset_identifier`) to reference an existing asset instead.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdLocalizerResponse"
+                }
+              }
+            },
+            "description": "Ad localization accepted for asynchronous processing."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "This account or mini app is not authorized to use Ad Localizer."
+          },
+          "404": {
+            "description": "An input asset was not found or is not readable."
+          },
+          "422": {
+            "description": "The instruction did not pass prompt safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          }
+        },
+        "summary": "Rebuild an advertisement in another language",
+        "tags": [
+          "edit-workflow"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
     "/v2/tool/ad-resizer": {
@@ -21686,6 +21861,61 @@
             ],
             "type": "string"
           },
+          "strength": {
+            "description": "Overall intensity of the enhancement model, from 0.01 to 1. Higher values look crisper but can turn unrealistic. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0.01,
+            "type": "number"
+          },
+          "sharpen": {
+            "description": "Edge sharpening applied after enlarging, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "denoise": {
+            "description": "Noise and grain reduction, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "fix_compression": {
+            "description": "Compression artifact removal, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "face_enhancement": {
+            "description": "Recover detail in faces. When true, `face_enhancement_strength` and `face_enhancement_creativity` are required.",
+            "type": "boolean"
+          },
+          "face_enhancement_strength": {
+            "description": "How strongly faces are recovered, from 0 to 1.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "face_enhancement_creativity": {
+            "description": "How freely face recovery may reinterpret features, from 0 (faithful) to 1 (creative).",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "subject_detection": {
+            "description": "Where enhancements apply. Omit to let Topaz choose per image.",
+            "enum": [
+              "all",
+              "foreground",
+              "background"
+            ],
+            "type": "string"
+          },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
             "example": 12345,
@@ -21932,6 +22162,61 @@
             ],
             "type": "string"
           },
+          "strength": {
+            "description": "Overall intensity of the enhancement model, from 0.01 to 1. Higher values look crisper but can turn unrealistic. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0.01,
+            "type": "number"
+          },
+          "sharpen": {
+            "description": "Edge sharpening applied after enlarging, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "denoise": {
+            "description": "Noise and grain reduction, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "fix_compression": {
+            "description": "Compression artifact removal, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "face_enhancement": {
+            "description": "Recover detail in faces. When true, `face_enhancement_strength` and `face_enhancement_creativity` are required.",
+            "type": "boolean"
+          },
+          "face_enhancement_strength": {
+            "description": "How strongly faces are recovered, from 0 to 1.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "face_enhancement_creativity": {
+            "description": "How freely face recovery may reinterpret features, from 0 (faithful) to 1 (creative).",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "subject_detection": {
+            "description": "Where enhancements apply. Omit to let Topaz choose per image.",
+            "enum": [
+              "all",
+              "foreground",
+              "background"
+            ],
+            "type": "string"
+          },
           "async": {
             "default": false,
             "description": "When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
@@ -22059,6 +22344,202 @@
             "default": true,
             "description": "When true (the default), the output keeps the source image's colors. Set to false to let the model adjust colors while enhancing.",
             "type": "boolean"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UpscaleImageTopazRedefineResponse": {
+        "description": "Response returned by `POST /v2/image/upscale/topaz-redefine`.\nSynchronous requests (the default) include the upscaled image in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v1/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset; width and height\nreport the output dimensions.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "resolution": "2048x2048",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "resolution": "2048x2048",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id",
+          "width": 0,
+          "height": 6
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v1/generations/{generation_id}` polling endpoint.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The upscaled image. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/UpscaleImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "width": {
+            "description": "The output width in pixels.",
+            "title": "width",
+            "type": "integer"
+          },
+          "height": {
+            "description": "The output height in pixels.",
+            "title": "height",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "generation_id",
+          "height",
+          "seed",
+          "width"
+        ],
+        "title": "UpscaleImageTopazRedefineResponse",
+        "type": "object"
+      },
+      "UpscaleImageTopazRedefineRequest": {
+        "description": "Supply the source image either as an `image_asset_identifier`\nreference or (multipart requests only) as raw `image` bytes. Exactly\none source is required; if both forms are given, the reference is\nused and the bytes are ignored.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The source image to upscale (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied. The bytes are used for this request only and are not stored as an asset.",
+            "format": "binary",
+            "type": "string"
+          },
+          "upscale_factor": {
+            "default": "X2",
+            "description": "How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.",
+            "enum": [
+              "X2",
+              "X4",
+              "X8"
+            ],
+            "type": "string"
+          },
+          "prompt": {
+            "default": "",
+            "description": "An optional prompt guiding the detail the model regenerates while enlarging the image. Leave empty to enhance the source image as-is.",
+            "maxLength": 1024,
+            "type": "string"
+          },
+          "creativity": {
+            "default": 3,
+            "description": "How strongly the model reinterprets the source while enlarging it, from 1 (most faithful) to 9 (most creative).",
+            "maximum": 9,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "autoprompt": {
+            "default": false,
+            "description": "When true, the model describes the image itself and any `prompt` is ignored.",
+            "type": "boolean"
+          },
+          "texture": {
+            "default": 1,
+            "description": "How much fine texture the model adds, from 1 to 5. Keep it low at low creativity.",
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "detail": {
+            "default": false,
+            "description": "Apply a detail adjustment after rendering. When true, `detail_strength` sets how much.",
+            "type": "boolean"
+          },
+          "detail_strength": {
+            "description": "Detail adjustment intensity, from 0 to 10.",
+            "format": "float",
+            "maximum": 10,
+            "minimum": 0,
+            "type": "number"
+          },
+          "sharpen": {
+            "description": "Edge sharpening applied after enlarging, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "denoise": {
+            "description": "Noise and grain reduction, from 0 to 1. Omit to let Topaz choose per image.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "face_enhancement": {
+            "description": "Recover detail in faces. When true, `face_enhancement_strength` and `face_enhancement_creativity` are required.",
+            "type": "boolean"
+          },
+          "face_enhancement_strength": {
+            "description": "How strongly faces are recovered, from 0 to 1.",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "face_enhancement_creativity": {
+            "description": "How freely face recovery may reinterpret features, from 0 (faithful) to 1 (creative).",
+            "format": "float",
+            "maximum": 1,
+            "minimum": 0,
+            "type": "number"
+          },
+          "subject_detection": {
+            "description": "Where enhancements apply. Omit to let Topaz choose per image.",
+            "enum": [
+              "all",
+              "foreground",
+              "background"
+            ],
+            "type": "string"
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -22892,6 +23373,104 @@
         },
         "required": [
           "colors"
+        ],
+        "type": "object"
+      },
+      "AdLocalizerResponse": {
+        "description": "Acknowledgement that the workflow was accepted.",
+        "example": {
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID accepted by the generation polling endpoint.",
+            "title": "generation_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "generation_id"
+        ],
+        "title": "AdLocalizerResponse",
+        "type": "object"
+      },
+      "AdLocalizerRequest": {
+        "description": "Supply the source advertisement as either an `AssetIdentifier` reference\nor (multipart requests only) raw image bytes; provide exactly one of the\ntwo forms. Supplying both, or neither, is rejected with a 400.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The source advertisement to localize (max size 25MB), as raw bytes;\nonly JPEG, PNG, and WEBP formats are supported. Multipart requests\nonly. Provide exactly one of `image_asset_identifier` or `image`.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "language": {
+            "description": "The target language the copy is rebuilt in. Arabic is rendered right-to-left.",
+            "enum": [
+              "ar",
+              "cs",
+              "da",
+              "de",
+              "en",
+              "es",
+              "fi",
+              "fr",
+              "fr-ca",
+              "hu",
+              "it",
+              "ja",
+              "nl",
+              "no",
+              "pl",
+              "pt",
+              "sv"
+            ],
+            "type": "string"
+          },
+          "exact_copy": {
+            "description": "Pre-approved wording, one `original => replacement` mapping per line. Each mapping names the text element showing `original` and sets it to `replacement`, placed character for character rather than translated. Any text element not listed is left as it is in the source. When omitted, all visible marketing copy is translated.",
+            "maxLength": 4000,
+            "type": "string"
+          },
+          "prompt": {
+            "description": "Optional additional direction for the localization, for example \"keep the badge in English\". It takes priority over the preservation rules for anything it explicitly asks to change.",
+            "maxLength": 2000,
+            "type": "string"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/GptImage2Quality"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "Number of localized variations to create for this language.",
+            "maximum": 4,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "language"
         ],
         "type": "object"
       },
@@ -24085,6 +24664,15 @@
             "format": "uri",
             "maxLength": 2048,
             "title": "webhook_url",
+            "type": "string"
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
             "type": "string"
           }
         },
@@ -27438,6 +28026,21 @@
             "maxItems": 16,
             "type": "array"
           },
+          "mask": {
+            "description": "An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.",
+            "format": "binary",
+            "type": "string"
+          },
+          "background": {
+            "default": "AUTO",
+            "description": "The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.",
+            "enum": [
+              "AUTO",
+              "TRANSPARENT",
+              "OPAQUE"
+            ],
+            "type": "string"
+          },
           "num_images": {
             "default": 1,
             "description": "The number of images to generate.",
@@ -27567,6 +28170,21 @@
             },
             "maxItems": 16,
             "type": "array"
+          },
+          "mask": {
+            "description": "An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.",
+            "format": "binary",
+            "type": "string"
+          },
+          "background": {
+            "default": "AUTO",
+            "description": "The output background. `TRANSPARENT` returns images with an alpha channel, `OPAQUE` forces a solid background, and `AUTO` lets the model decide from the prompt.",
+            "enum": [
+              "AUTO",
+              "TRANSPARENT",
+              "OPAQUE"
+            ],
+            "type": "string"
           },
           "num_images": {
             "default": 1,
@@ -32906,10 +33524,9 @@
             "type": "string"
           },
           "embed": {
-            "description": "How the mini-app is embedded. `iframe` loads the app in a sandboxed frame; `mfe` loads it as a micro-frontend module.\n",
+            "description": "How the mini-app is embedded. `iframe` loads the app in a sandboxed frame.\n",
             "enum": [
-              "iframe",
-              "mfe"
+              "iframe"
             ],
             "title": "embed",
             "type": "string"
@@ -33050,10 +33667,9 @@
             "type": "string"
           },
           "embed": {
-            "description": "How the mini-app is embedded. `iframe` loads the app in a sandboxed frame; `mfe` loads it as a micro-frontend module.\n",
+            "description": "How the mini-app is embedded. `iframe` loads the app in a sandboxed frame.\n",
             "enum": [
-              "iframe",
-              "mfe"
+              "iframe"
             ],
             "title": "embed",
             "type": "string"
@@ -33200,10 +33816,9 @@
             "type": "string"
           },
           "embed": {
-            "description": "How the mini-app runs. Iframe and MFE apps use hosted deployments; native apps are bundled into the Ideogram frontend.",
+            "description": "How the mini-app runs. Iframe apps use hosted deployments; native apps are bundled into the Ideogram frontend.",
             "enum": [
               "iframe",
-              "mfe",
               "native"
             ],
             "title": "embed",
