@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// A single generated image. Model-agnostic shape returned by the generation polling endpoint.<br/>
-    /// Example: {"seed":12345,"object_type":"image.generation","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}
+    /// Example: {"seed":12345,"object_type":"image.generation","asset_id":"asset_id","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}
     /// </summary>
     public sealed partial class ImageGenerationObject
     {
@@ -23,6 +23,12 @@ namespace Ideogram
         /// <example>https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&amp;sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("url")]
         public string? Url { get; set; }
+
+        /// <summary>
+        /// The base64url-encoded identifier of the generated image asset. Present for safe workflow-owned outputs.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("asset_id")]
+        public string? AssetId { get; set; }
 
         /// <summary>
         /// The prompt used for the generation. This may be different from the original prompt.
@@ -86,6 +92,9 @@ namespace Ideogram
         /// The direct link to the image generated.<br/>
         /// Example: https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&amp;sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89
         /// </param>
+        /// <param name="assetId">
+        /// The base64url-encoded identifier of the generated image asset. Present for safe workflow-owned outputs.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -95,10 +104,12 @@ namespace Ideogram
             bool isImageSafe,
             int seed,
             global::Ideogram.ImageGenerationObjectObjectType? objectType,
-            string? url)
+            string? url,
+            string? assetId)
         {
             this.ObjectType = objectType;
             this.Url = url;
+            this.AssetId = assetId;
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Resolution = resolution ?? throw new global::System.ArgumentNullException(nameof(resolution));
             this.IsImageSafe = isImageSafe;

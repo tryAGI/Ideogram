@@ -53,7 +53,7 @@ namespace Ideogram
 
         /// <summary>
         /// A single generated image. Model-agnostic shape returned by the generation polling endpoint.<br/>
-        /// Example: {"seed":12345,"object_type":"image.generation","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}
+        /// Example: {"seed":12345,"object_type":"image.generation","asset_id":"asset_id","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Ideogram.ImageGenerationObject? ImageGeneration { get; init; }

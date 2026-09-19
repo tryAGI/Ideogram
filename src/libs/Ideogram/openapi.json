@@ -17121,6 +17121,7 @@
         "example": {
           "seed": 12345,
           "object_type": "image.generation",
+          "asset_id": "asset_id",
           "prompt": "prompt",
           "resolution": "2048x2048",
           "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
@@ -17141,6 +17142,12 @@
             "format": "uri",
             "nullable": true,
             "title": "url",
+            "type": "string"
+          },
+          "asset_id": {
+            "description": "The base64url-encoded identifier of the generated image asset. Present for safe workflow-owned outputs.",
+            "nullable": true,
+            "title": "asset_id",
             "type": "string"
           },
           "prompt": {
@@ -17235,6 +17242,7 @@
             {
               "seed": 12345,
               "object_type": "image.generation",
+              "asset_id": "asset_id",
               "prompt": "prompt",
               "resolution": "2048x2048",
               "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",
@@ -17243,6 +17251,7 @@
             {
               "seed": 12345,
               "object_type": "image.generation",
+              "asset_id": "asset_id",
               "prompt": "prompt",
               "resolution": "2048x2048",
               "url": "https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804&sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89",

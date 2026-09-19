@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// The response for self-hosted open-source model generation endpoints. Uses a free-form resolution string (not a grid enum) because these models accept arbitrary dimensions.<br/>
-    /// Example: {"data":[{"seed":12345,"object_type":"image.generation","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true},{"seed":12345,"object_type":"image.generation","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}],"created":"2000-01-23T04:56:07\u002B00:00"}
+    /// Example: {"data":[{"seed":12345,"object_type":"image.generation","asset_id":"asset_id","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true},{"seed":12345,"object_type":"image.generation","asset_id":"asset_id","prompt":"prompt","resolution":"2048x2048","url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89","is_image_safe":true}],"created":"2000-01-23T04:56:07\u002B00:00"}
     /// </summary>
     public sealed partial class ImageGenerationResponse
     {
