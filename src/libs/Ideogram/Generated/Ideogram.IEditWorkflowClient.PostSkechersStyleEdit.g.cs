@@ -71,6 +71,10 @@ namespace Ideogram
         /// Output resolution tier; corresponds to the app's low, medium, and high settings.<br/>
         /// Default Value: 2k
         /// </param>
+        /// <param name="quality">
+        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
+        /// and take longer to complete.
+        /// </param>
         /// <param name="numImages">
         /// Number of edited images to create.<br/>
         /// Default Value: 1
@@ -100,6 +104,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? referenceDescriptions = default,
             global::Ideogram.SkechersStyleEditRequestAspectRatio? aspectRatio = default,
             global::Ideogram.SkechersStyleEditRequestBaseGenerationSize? baseGenerationSize = default,
+            global::Ideogram.GptImage2Quality? quality = default,
             int? numImages = default,
             bool? @private = default,
             string? webhookUrl = default,
