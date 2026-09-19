@@ -23891,7 +23891,8 @@
             "reference_descriptions"
           ],
           "resolved_instruction": "resolved_instruction",
-          "num_images": 0
+          "num_images": 0,
+          "quality": null
         },
         "properties": {
           "base_asset_identifier": {
@@ -23958,6 +23959,9 @@
             ],
             "title": "base_generation_size",
             "type": "string"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/GptImage2Quality"
           },
           "num_images": {
             "default": 1,

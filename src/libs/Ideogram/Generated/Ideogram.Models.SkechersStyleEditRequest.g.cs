@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"base_description":"base_description","aspect_ratio":61,"private":true,"reference_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2k","base_asset_identifier":"","reference_descriptions":["reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions"],"resolved_instruction":"resolved_instruction","num_images":0}
+    /// Example: {"base_description":"base_description","aspect_ratio":61,"private":true,"reference_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2k","base_asset_identifier":"","reference_descriptions":["reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions"],"resolved_instruction":"resolved_instruction","num_images":0,"quality":null}
     /// </summary>
     public sealed partial class SkechersStyleEditRequest
     {
@@ -54,6 +54,14 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("base_generation_size")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SkechersStyleEditRequestBaseGenerationSizeJsonConverter))]
         public global::Ideogram.SkechersStyleEditRequestBaseGenerationSize? BaseGenerationSize { get; set; }
+
+        /// <summary>
+        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
+        /// and take longer to complete.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
+        public global::Ideogram.GptImage2Quality? Quality { get; set; }
 
         /// <summary>
         /// Number of edited images to create.<br/>
@@ -114,6 +122,10 @@ namespace Ideogram
         /// Output resolution tier; corresponds to the app's low, medium, and high settings.<br/>
         /// Default Value: 2k
         /// </param>
+        /// <param name="quality">
+        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
+        /// and take longer to complete.
+        /// </param>
         /// <param name="numImages">
         /// Number of edited images to create.<br/>
         /// Default Value: 1
@@ -143,6 +155,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? referenceDescriptions,
             global::Ideogram.SkechersStyleEditRequestAspectRatio? aspectRatio,
             global::Ideogram.SkechersStyleEditRequestBaseGenerationSize? baseGenerationSize,
+            global::Ideogram.GptImage2Quality? quality,
             int? numImages,
             bool? @private,
             string? webhookUrl)
@@ -154,6 +167,7 @@ namespace Ideogram
             this.ReferenceDescriptions = referenceDescriptions;
             this.AspectRatio = aspectRatio;
             this.BaseGenerationSize = baseGenerationSize;
+            this.Quality = quality;
             this.NumImages = numImages;
             this.Private = @private;
             this.WebhookUrl = webhookUrl;
