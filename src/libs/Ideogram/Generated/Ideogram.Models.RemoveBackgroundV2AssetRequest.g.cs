@@ -18,6 +18,12 @@ namespace Ideogram
         public required global::Ideogram.AssetIdentifier ImageAssetIdentifier { get; set; }
 
         /// <summary>
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
+        public string? TargetCollectionId { get; set; }
+
+        /// <summary>
         /// Whether to keep the result out of the public gallery. Enterprise generations are always private.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
@@ -43,6 +49,9 @@ namespace Ideogram
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// Whether to keep the result out of the public gallery. Enterprise generations are always private.
         /// </param>
@@ -55,10 +64,12 @@ namespace Ideogram
 #endif
         public RemoveBackgroundV2AssetRequest(
             global::Ideogram.AssetIdentifier imageAssetIdentifier,
+            string? targetCollectionId,
             bool? @private,
             bool? async)
         {
             this.ImageAssetIdentifier = imageAssetIdentifier ?? throw new global::System.ArgumentNullException(nameof(imageAssetIdentifier));
+            this.TargetCollectionId = targetCollectionId;
             this.Private = @private;
             this.Async = async;
         }

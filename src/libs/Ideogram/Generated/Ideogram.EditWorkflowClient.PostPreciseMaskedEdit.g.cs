@@ -259,6 +259,14 @@ namespace Ideogram
                                     name: "\"num_images\"");
 
                             }
+                            if (request.TargetCollectionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.TargetCollectionId ?? string.Empty),
+                                    name: "\"target_collection_id\"");
+
+                            }
                             if (request.Private != default)
                             {
 
@@ -851,6 +859,9 @@ namespace Ideogram
         /// Number of edited images to create.<br/>
         /// Default Value: 1
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
         /// </param>
@@ -885,6 +896,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceAssetIdentifiers = default,
             int? seed = default,
             int? numImages = default,
+            string? targetCollectionId = default,
             bool? @private = default,
             bool? preserveUnmaskedPixels = default,
             string? webhookUrl = default,
@@ -903,6 +915,7 @@ namespace Ideogram
                 Instruction = instruction,
                 Seed = seed,
                 NumImages = numImages,
+                TargetCollectionId = targetCollectionId,
                 Private = @private,
                 PreserveUnmaskedPixels = preserveUnmaskedPixels,
                 WebhookUrl = webhookUrl,

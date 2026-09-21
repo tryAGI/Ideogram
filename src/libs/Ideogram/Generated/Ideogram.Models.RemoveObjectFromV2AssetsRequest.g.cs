@@ -61,6 +61,12 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
+        public string? TargetCollectionId { get; set; }
+
+        /// <summary>
         /// Whether to store resulting generation assets on Ideogram. Defaults to `false` for<br/>
         /// API developers; first-party mini-apps should pass `true`. Reserved in the schema for<br/>
         /// an upcoming storage-control rollout — currently accepted but not yet enforced.<br/>
@@ -102,6 +108,9 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="storeAssets">
         /// Whether to store resulting generation assets on Ideogram. Defaults to `false` for<br/>
         /// API developers; first-party mini-apps should pass `true`. Reserved in the schema for<br/>
@@ -119,6 +128,7 @@ namespace Ideogram
             byte[]? mask,
             string? maskname,
             int? seed,
+            string? targetCollectionId,
             bool? storeAssets)
         {
             this.ImageAssetIdentifier = imageAssetIdentifier;
@@ -128,6 +138,7 @@ namespace Ideogram
             this.Mask = mask;
             this.Maskname = maskname;
             this.Seed = seed;
+            this.TargetCollectionId = targetCollectionId;
             this.StoreAssets = storeAssets;
         }
 

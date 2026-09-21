@@ -213,6 +213,12 @@ namespace Ideogram
         public int? Seed { get; set; }
 
         /// <summary>
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
+        public string? TargetCollectionId { get; set; }
+
+        /// <summary>
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
@@ -353,6 +359,9 @@ namespace Ideogram
         /// <param name="seed">
         /// Optional seed for repeatable results.
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
         /// </param>
@@ -397,6 +406,7 @@ namespace Ideogram
             string? aspectRatio,
             global::Ideogram.GptImage2Quality? quality,
             int? seed,
+            string? targetCollectionId,
             bool? @private,
             string? webhookUrl)
         {
@@ -426,6 +436,7 @@ namespace Ideogram
             this.AspectRatio = aspectRatio;
             this.Quality = quality;
             this.Seed = seed;
+            this.TargetCollectionId = targetCollectionId;
             this.Private = @private;
             this.WebhookUrl = webhookUrl;
         }

@@ -85,6 +85,9 @@ namespace Ideogram
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="storeAssets">
         /// Whether to store resulting generation assets on Ideogram. Defaults to `false` for<br/>
         /// API developers; first-party mini-apps should pass `true`. Reserved in the schema for<br/>
@@ -102,6 +105,7 @@ namespace Ideogram
             byte[]? mask = default,
             string? maskname = default,
             int? seed = default,
+            string? targetCollectionId = default,
             bool? storeAssets = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
