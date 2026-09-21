@@ -20526,6 +20526,10 @@
             "title": "Seed",
             "type": "integer"
           },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
+          },
           "store_assets": {
             "default": false,
             "description": "Whether to store resulting generation assets on Ideogram. Defaults to `false` for\nAPI developers; first-party mini-apps should pass `true`. Reserved in the schema for\nan upcoming storage-control rollout — currently accepted but not yet enforced.\n",
@@ -20609,6 +20613,10 @@
           "image_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
           },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
+          },
           "private": {
             "description": "Whether to keep the result out of the public gallery. When omitted,\nFirebase Bearer and Mini App callers inherit their plan entitlement.\nEnterprise generations are always private. API keys use their bound\norganization and otherwise default to public when no subscription\nentitlement is available.\n",
             "type": "boolean",
@@ -20648,6 +20656,10 @@
         "properties": {
           "image_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
           },
           "private": {
             "description": "Whether to keep the result out of the public gallery. Enterprise generations are always private.",
@@ -22874,6 +22886,10 @@
             "minimum": 0,
             "type": "integer"
           },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
+          },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "type": "boolean"
@@ -23025,6 +23041,10 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
@@ -23202,6 +23222,10 @@
           "quality": {
             "$ref": "#/components/schemas/GptImage2Quality"
           },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
+          },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "type": "boolean"
@@ -23299,6 +23323,10 @@
             "maximum": 4,
             "minimum": 1,
             "type": "integer"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
@@ -23407,6 +23435,10 @@
             "maximum": 4,
             "minimum": 1,
             "type": "integer"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
@@ -24385,6 +24417,10 @@
           },
           "quality": {
             "$ref": "#/components/schemas/GptImage2Quality"
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.",
+            "type": "string"
           },
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",

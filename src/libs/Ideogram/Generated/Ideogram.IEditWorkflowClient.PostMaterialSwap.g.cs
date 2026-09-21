@@ -139,6 +139,9 @@ namespace Ideogram
         /// The quality tier for the image edit. Higher tiers may improve detail<br/>
         /// and take longer to complete.
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
         /// </param>
@@ -166,6 +169,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? materials = default,
             string? aspectRatio = default,
             global::Ideogram.GptImage2Quality? quality = default,
+            string? targetCollectionId = default,
             bool? @private = default,
             string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,

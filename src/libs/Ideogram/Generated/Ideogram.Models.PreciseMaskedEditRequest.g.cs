@@ -78,6 +78,12 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
+        public string? TargetCollectionId { get; set; }
+
+        /// <summary>
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
@@ -150,6 +156,9 @@ namespace Ideogram
         /// Number of edited images to create.<br/>
         /// Default Value: 1
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
         /// </param>
@@ -184,6 +193,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceAssetIdentifiers,
             int? seed,
             int? numImages,
+            string? targetCollectionId,
             bool? @private,
             bool? preserveUnmaskedPixels,
             string? webhookUrl)
@@ -198,6 +208,7 @@ namespace Ideogram
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
             this.Seed = seed;
             this.NumImages = numImages;
+            this.TargetCollectionId = targetCollectionId;
             this.Private = @private;
             this.PreserveUnmaskedPixels = preserveUnmaskedPixels;
             this.WebhookUrl = webhookUrl;

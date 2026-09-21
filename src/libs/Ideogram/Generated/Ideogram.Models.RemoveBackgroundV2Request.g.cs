@@ -29,6 +29,12 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
+        public string? TargetCollectionId { get; set; }
+
+        /// <summary>
         /// Whether to keep the result out of the public gallery. When omitted,<br/>
         /// Firebase Bearer and Mini App callers inherit their plan entitlement.<br/>
         /// Enterprise generations are always private. API keys use their bound<br/>
@@ -64,6 +70,9 @@ namespace Ideogram
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// Whether to keep the result out of the public gallery. When omitted,<br/>
         /// Firebase Bearer and Mini App callers inherit their plan entitlement.<br/>
@@ -82,12 +91,14 @@ namespace Ideogram
             byte[]? image,
             string? imagename,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
+            string? targetCollectionId,
             bool? @private,
             bool? async)
         {
             this.Image = image;
             this.Imagename = imagename;
             this.ImageAssetIdentifier = imageAssetIdentifier;
+            this.TargetCollectionId = targetCollectionId;
             this.Private = @private;
             this.Async = async;
         }

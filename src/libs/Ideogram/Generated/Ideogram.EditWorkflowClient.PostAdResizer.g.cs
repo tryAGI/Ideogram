@@ -275,6 +275,14 @@ namespace Ideogram
                                     name: "\"num_images\"");
 
                             }
+                            if (request.TargetCollectionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.TargetCollectionId ?? string.Empty),
+                                    name: "\"target_collection_id\"");
+
+                            }
                             if (request.Private != default)
                             {
 
@@ -883,6 +891,9 @@ namespace Ideogram
         /// The number of reframed variations to generate.<br/>
         /// Default Value: 1
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
         /// </param>
@@ -909,6 +920,7 @@ namespace Ideogram
             string? prompt = default,
             global::Ideogram.GenerationQuality? quality = default,
             int? numImages = default,
+            string? targetCollectionId = default,
             bool? @private = default,
             string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
@@ -924,6 +936,7 @@ namespace Ideogram
                 Prompt = prompt,
                 Quality = quality,
                 NumImages = numImages,
+                TargetCollectionId = targetCollectionId,
                 Private = @private,
                 WebhookUrl = webhookUrl,
             };

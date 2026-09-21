@@ -230,6 +230,14 @@ namespace Ideogram
                                     name: "\"image_asset_identifier\"");
 
                             }
+                            if (request.TargetCollectionId != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.TargetCollectionId ?? string.Empty),
+                                    name: "\"target_collection_id\"");
+
+                            }
                             if (request.Private != default)
                             {
 
@@ -830,6 +838,9 @@ namespace Ideogram
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
+        /// <param name="targetCollectionId">
+        /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
+        /// </param>
         /// <param name="private">
         /// Whether to keep the result out of the public gallery. When omitted,<br/>
         /// Firebase Bearer and Mini App callers inherit their plan entitlement.<br/>
@@ -849,6 +860,7 @@ namespace Ideogram
             byte[]? image = default,
             string? imagename = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
+            string? targetCollectionId = default,
             bool? @private = default,
             bool? async = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
@@ -859,6 +871,7 @@ namespace Ideogram
                 Image = image,
                 Imagename = imagename,
                 ImageAssetIdentifier = imageAssetIdentifier,
+                TargetCollectionId = targetCollectionId,
                 Private = @private,
                 Async = async,
             };
