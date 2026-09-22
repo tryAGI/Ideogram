@@ -58,8 +58,8 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="private">
         /// Results are private by default. Set false to request public results.<br/>
@@ -86,7 +86,7 @@ namespace Ideogram
             string? instruction = default,
             string? aspectRatio = default,
             int? numImages = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.SwapProductQuality? quality = default,
             bool? @private = default,
             string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,

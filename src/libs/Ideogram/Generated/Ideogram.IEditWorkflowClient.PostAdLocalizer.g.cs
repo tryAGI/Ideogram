@@ -25,6 +25,9 @@ namespace Ideogram
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -32,6 +35,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AdLocalizerResponse> PostAdLocalizerAsync(
 
             global::Ideogram.AdLocalizerRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -55,6 +59,9 @@ namespace Ideogram
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -62,6 +69,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.AdLocalizerResponse>> PostAdLocalizerAsResponseAsync(
 
             global::Ideogram.AdLocalizerRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -85,6 +93,9 @@ namespace Ideogram
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -109,8 +120,8 @@ namespace Ideogram
         /// Optional additional direction for the localization, for example "keep the badge in English". It takes priority over the preservation rules for anything it explicitly asks to change.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -142,12 +153,13 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.AdLocalizerResponse> PostAdLocalizerAsync(
             global::Ideogram.AdLocalizerRequestLanguage language,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
             string? exactCopy = default,
             string? prompt = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.AdLocalizerQuality? quality = default,
             int? seed = default,
             int? numImages = default,
             string? targetCollectionId = default,

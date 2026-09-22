@@ -834,8 +834,8 @@ namespace Ideogram
         /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Takes priority over the default preservation rules for anything it explicitly asks to change.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="numImages">
         /// The number of variations to generate along the requested axis.<br/>
@@ -864,7 +864,7 @@ namespace Ideogram
             byte[]? image = default,
             string? imagename = default,
             string? prompt = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.AdVariationsQuality? quality = default,
             int? numImages = default,
             bool? @private = default,
             string? webhookUrl = default,

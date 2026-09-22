@@ -53,12 +53,12 @@ namespace Ideogram
         public string? Prompt { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdVariationsQualityJsonConverter))]
+        public global::Ideogram.AdVariationsQuality? Quality { get; set; }
 
         /// <summary>
         /// The number of variations to generate along the requested axis.<br/>
@@ -122,8 +122,8 @@ namespace Ideogram
         /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Takes priority over the default preservation rules for anything it explicitly asks to change.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="numImages">
         /// The number of variations to generate along the requested axis.<br/>
@@ -152,7 +152,7 @@ namespace Ideogram
             byte[]? image,
             string? imagename,
             string? prompt,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.AdVariationsQuality? quality,
             int? numImages,
             bool? @private,
             string? webhookUrl)

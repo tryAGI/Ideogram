@@ -44,8 +44,8 @@ namespace Ideogram
         /// Default Value: high
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ReplaceBackgroundQualityJsonConverter))]
+        public global::Ideogram.ReplaceBackgroundQuality? Quality { get; set; }
 
         /// <summary>
         /// The number of images to generate.<br/>
@@ -133,7 +133,7 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.ReplaceBackgroundQuality? quality,
             int? numImages,
             bool? @private,
             string? webhookUrl)

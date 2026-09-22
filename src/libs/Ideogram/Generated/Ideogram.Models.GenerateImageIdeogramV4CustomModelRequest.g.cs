@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"magic_prompt":"","async":false,"private":true,"seed":12345,"rendering_speed":"turbo","webhook_url":"https://api.example.com/webhooks/ideogram","enable_copyright_detection":true,"target_collection_id":"target_collection_id","prompt":"prompt","custom_model_uri":"model/my-custom-v4-model/version/1","resolution":"","num_images":1}
+    /// Example: {"private":true,"seed":12345,"rendering_speed":"turbo","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","custom_model_uri":"model/my-custom-v4-model/version/1","resolution":"","num_images":1,"magic_prompt":"","async":false,"enable_copyright_detection":true,"stacked_custom_models":[{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}],"prompt":"prompt"}
     /// </summary>
     public sealed partial class GenerateImageIdeogramV4CustomModelRequest
     {
@@ -26,6 +26,14 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_uri")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string CustomModelUri { get; set; }
+
+        /// <summary>
+        /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
+        /// Example: [{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]
+        /// </summary>
+        /// <example>[{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("stacked_custom_models")]
+        public global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>? StackedCustomModels { get; set; }
 
         /// <summary>
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
@@ -130,6 +138,10 @@ namespace Ideogram
         /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
         /// Example: model/my-custom-v4-model/version/1
         /// </param>
+        /// <param name="stackedCustomModels">
+        /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
+        /// Example: [{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]
+        /// </param>
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
         /// default) and `on` rewrite and expand the prompt before generation.<br/>
@@ -185,6 +197,7 @@ namespace Ideogram
         public GenerateImageIdeogramV4CustomModelRequest(
             string prompt,
             string customModelUri,
+            global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>? stackedCustomModels,
             global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
             int? numImages,
@@ -198,6 +211,7 @@ namespace Ideogram
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.CustomModelUri = customModelUri ?? throw new global::System.ArgumentNullException(nameof(customModelUri));
+            this.StackedCustomModels = stackedCustomModels;
             this.MagicPrompt = magicPrompt;
             this.Seed = seed;
             this.NumImages = numImages;

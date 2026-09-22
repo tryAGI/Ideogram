@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostAdResizerArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.AdResizerRequest request);
         partial void PreparePostAdResizerRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.AdResizerRequest request);
         partial void ProcessPostAdResizerResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -68,6 +70,9 @@ namespace Ideogram
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -75,12 +80,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AdResizerResponse> PostAdResizerAsync(
 
             global::Ideogram.AdResizerRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostAdResizerAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -114,6 +121,9 @@ namespace Ideogram
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -121,6 +131,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.AdResizerResponse>> PostAdResizerAsResponseAsync(
 
             global::Ideogram.AdResizerRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -130,6 +141,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostAdResizerArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -158,6 +170,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/tool/ad-resizer",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -313,6 +328,7 @@ namespace Ideogram
                 PreparePostAdResizerRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -849,6 +865,9 @@ namespace Ideogram
         /// multipart requests only). Provide exactly one of the two forms;<br/>
         /// supplying both, or neither, is rejected with a 400.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -882,10 +901,8 @@ namespace Ideogram
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".
         /// </param>
         /// <param name="quality">
-        /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing. `very_high` generates multiple<br/>
-        /// candidates internally and returns the strongest result, so it has<br/>
-        /// noticeably higher latency and cost than the other levels.
+        /// The quality tier for the reframe. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="numImages">
         /// The number of reframed variations to generate.<br/>
@@ -913,12 +930,13 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.AdResizerResponse> PostAdResizerAsync(
             global::Ideogram.AdResizerRequestResolution resolution,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
             global::Ideogram.AdResizerRequestPlatform? platform = default,
             string? prompt = default,
-            global::Ideogram.GenerationQuality? quality = default,
+            global::Ideogram.AdResizerQuality? quality = default,
             int? numImages = default,
             string? targetCollectionId = default,
             bool? @private = default,
@@ -942,6 +960,7 @@ namespace Ideogram
             };
 
             return await PostAdResizerAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

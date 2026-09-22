@@ -72,8 +72,8 @@ namespace Ideogram
         /// Default Value: 2k
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="numImages">
         /// Number of edited images to create.<br/>
@@ -104,7 +104,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? referenceDescriptions = default,
             global::Ideogram.SkechersStyleEditRequestAspectRatio? aspectRatio = default,
             global::Ideogram.SkechersStyleEditRequestBaseGenerationSize? baseGenerationSize = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.SkechersStyleEditQuality? quality = default,
             int? numImages = default,
             bool? @private = default,
             string? webhookUrl = default,

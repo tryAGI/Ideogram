@@ -94,6 +94,10 @@ namespace Ideogram
         /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
         /// Example: model/my-custom-v4-model/version/1
         /// </param>
+        /// <param name="stackedCustomModels">
+        /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
+        /// Example: [{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]
+        /// </param>
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
         /// default) and `on` rewrite and expand the prompt before generation.<br/>
@@ -150,6 +154,7 @@ namespace Ideogram
             string prompt,
             string customModelUri,
             bool? dryRun = default,
+            global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>? stackedCustomModels = default,
             global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? seed = default,
             int? numImages = default,

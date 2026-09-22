@@ -94,8 +94,8 @@ namespace Ideogram
         /// `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="seed">
         /// Optional seed for repeatable results.
@@ -128,7 +128,7 @@ namespace Ideogram
             string? sourceImagename = default,
             global::Ideogram.AssetIdentifier? poseReferenceAssetIdentifier = default,
             string? aspectRatio = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.ModelPoseVariantsQuality? quality = default,
             int? seed = default,
             int? numImages = default,
             bool? @private = default,

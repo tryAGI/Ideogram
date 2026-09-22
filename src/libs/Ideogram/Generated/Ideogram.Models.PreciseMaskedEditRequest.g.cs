@@ -20,8 +20,8 @@ namespace Ideogram
         /// Default Value: high
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.PreciseMaskedEditQualityJsonConverter))]
+        public global::Ideogram.PreciseMaskedEditQuality? Quality { get; set; }
 
         /// <summary>
         /// An identifier for an ideogram asset.<br/>
@@ -185,7 +185,7 @@ namespace Ideogram
         public PreciseMaskedEditRequest(
             string instruction,
             global::Ideogram.PreciseMaskedEditModel? model,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.PreciseMaskedEditQuality? quality,
             global::Ideogram.AssetIdentifier? sourceAssetIdentifier,
             byte[]? sourceImage,
             string? sourceImagename,

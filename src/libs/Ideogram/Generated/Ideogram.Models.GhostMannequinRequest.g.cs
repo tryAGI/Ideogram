@@ -199,12 +199,12 @@ namespace Ideogram
         public string? AspectRatio { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GhostMannequinQualityJsonConverter))]
+        public global::Ideogram.GhostMannequinQuality? Quality { get; set; }
 
         /// <summary>
         /// Optional seed for repeatable results.
@@ -353,8 +353,8 @@ namespace Ideogram
         /// values are `1:1`, `3:4`, `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="seed">
         /// Optional seed for repeatable results.
@@ -404,7 +404,7 @@ namespace Ideogram
             string? instruction,
             string? metadata,
             string? aspectRatio,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.GhostMannequinQuality? quality,
             int? seed,
             string? targetCollectionId,
             bool? @private,

@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostColorwaysArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.ColorwaysRequest request);
         partial void PreparePostColorwaysRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.ColorwaysRequest request);
         partial void ProcessPostColorwaysResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -60,6 +62,9 @@ namespace Ideogram
         /// supported: opaque pixels mark the region to recolor and transparent<br/>
         /// pixels are preserved.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -67,12 +72,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.ColorwaysResponse> PostColorwaysAsync(
 
             global::Ideogram.ColorwaysRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostColorwaysAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -98,6 +105,9 @@ namespace Ideogram
         /// supported: opaque pixels mark the region to recolor and transparent<br/>
         /// pixels are preserved.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -105,6 +115,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ColorwaysResponse>> PostColorwaysAsResponseAsync(
 
             global::Ideogram.ColorwaysRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -114,6 +125,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostColorwaysArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -142,6 +154,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/tool/colorways",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -307,6 +322,7 @@ namespace Ideogram
                 PreparePostColorwaysRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -771,6 +787,9 @@ namespace Ideogram
         /// supported: opaque pixels mark the region to recolor and transparent<br/>
         /// pixels are preserved.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// The product photo to recolor, by reference. Everything outside<br/>
         /// the masked region is preserved. Provide exactly one of<br/>
@@ -816,8 +835,8 @@ namespace Ideogram
         /// `3:4`, `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="targetCollectionId">
         /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
@@ -841,13 +860,14 @@ namespace Ideogram
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.ColorwaysResponse> PostColorwaysAsync(
             global::System.Collections.Generic.IList<string> colors,
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? maskAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? masks = default,
             string? aspectRatio = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.ColorwaysQuality? quality = default,
             string? targetCollectionId = default,
             bool? @private = default,
             string? webhookUrl = default,
@@ -870,6 +890,7 @@ namespace Ideogram
             };
 
             return await PostColorwaysAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

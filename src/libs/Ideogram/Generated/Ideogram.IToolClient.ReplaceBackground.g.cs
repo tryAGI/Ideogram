@@ -117,7 +117,7 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.ReplaceBackgroundQuality? quality = default,
             int? numImages = default,
             bool? @private = default,
             string? webhookUrl = default,

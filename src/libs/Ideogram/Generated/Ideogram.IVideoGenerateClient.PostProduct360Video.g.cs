@@ -9,6 +9,9 @@ namespace Ideogram
         /// Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.<br/>
         /// Video generation runs asynchronously. Poll `GET /v1/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -16,6 +19,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoSeedDance25Response> PostProduct360VideoAsync(
 
             global::Ideogram.Product360VideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -23,6 +27,9 @@ namespace Ideogram
         /// Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.<br/>
         /// Video generation runs asynchronously. Poll `GET /v1/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -30,6 +37,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateVideoSeedDance25Response>> PostProduct360VideoAsResponseAsync(
 
             global::Ideogram.Product360VideoRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -37,6 +45,9 @@ namespace Ideogram
         /// Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.<br/>
         /// Video generation runs asynchronously. Poll `GET /v1/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -65,6 +76,7 @@ namespace Ideogram
         global::System.Threading.Tasks.Task<global::Ideogram.GenerateVideoSeedDance25Response> PostProduct360VideoAsync(
             global::Ideogram.AssetIdentifier imageAssetIdentifier,
             global::Ideogram.Product360VideoDirection direction,
+            bool? dryRun = default,
             string? productDescription = default,
             global::Ideogram.SeedDance25Resolution? resolution = default,
             int? duration = default,
