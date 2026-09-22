@@ -48,12 +48,12 @@ namespace Ideogram
         public string? AspectRatio { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ModelSwapQualityJsonConverter))]
+        public global::Ideogram.ModelSwapQuality? Quality { get; set; }
 
         /// <summary>
         /// Optional seed for repeatable results.
@@ -118,8 +118,8 @@ namespace Ideogram
         /// Output aspect ratio. When omitted, the closest supported ratio is derived from the working image.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="seed">
         /// Optional seed for repeatable results.
@@ -152,7 +152,7 @@ namespace Ideogram
             string? sourceImagename,
             string? instruction,
             string? aspectRatio,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.ModelSwapQuality? quality,
             int? seed,
             int? numImages,
             bool? @private,

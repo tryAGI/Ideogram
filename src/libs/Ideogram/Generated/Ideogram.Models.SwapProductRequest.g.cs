@@ -52,12 +52,12 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SwapProductQualityJsonConverter))]
+        public global::Ideogram.SwapProductQuality? Quality { get; set; }
 
         /// <summary>
         /// Results are private by default. Set false to request public results.<br/>
@@ -111,8 +111,8 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="private">
         /// Results are private by default. Set false to request public results.<br/>
@@ -139,7 +139,7 @@ namespace Ideogram
             string? instruction,
             string? aspectRatio,
             int? numImages,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.SwapProductQuality? quality,
             bool? @private,
             string? webhookUrl)
         {

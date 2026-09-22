@@ -55,12 +55,12 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SwanSLogoQualityJsonConverter))]
+        public global::Ideogram.SwanSLogoQuality? Quality { get; set; }
 
         /// <summary>
         /// When true or omitted, keep outputs private. Enterprise accounts always generate privately.
@@ -110,8 +110,8 @@ namespace Ideogram
         /// Default Value: 4
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="private">
         /// When true or omitted, keep outputs private. Enterprise accounts always generate privately.
@@ -137,7 +137,7 @@ namespace Ideogram
             string aspectRatio,
             global::Ideogram.AssetIdentifier? logoSpecificationAssetIdentifier,
             int? numImages,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.SwanSLogoQuality? quality,
             bool? @private,
             string? webhookUrl)
         {

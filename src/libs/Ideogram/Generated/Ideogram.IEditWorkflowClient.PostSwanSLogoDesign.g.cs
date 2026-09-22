@@ -58,8 +58,8 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="private">
         /// When true or omitted, keep outputs private. Enterprise accounts always generate privately.
@@ -86,7 +86,7 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? geometryHeroAssetIdentifier = default,
             global::Ideogram.AssetIdentifier? logoSpecificationAssetIdentifier = default,
             global::Ideogram.AssetIdentifier? flatSilhouetteAssetIdentifier = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.SwanSLogoQuality? quality = default,
             bool? @private = default,
             string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,

@@ -45,12 +45,12 @@ namespace Ideogram
         public global::Ideogram.SoleSwapRequestBaseGenerationSize? BaseGenerationSize { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SoleSwapQualityJsonConverter))]
+        public global::Ideogram.SoleSwapQuality? Quality { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -115,8 +115,8 @@ namespace Ideogram
         /// Default Value: 2k
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -149,7 +149,7 @@ namespace Ideogram
             string? instruction,
             string? aspectRatio,
             global::Ideogram.SoleSwapRequestBaseGenerationSize? baseGenerationSize,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.SoleSwapQuality? quality,
             int? seed,
             int? numImages,
             bool? @private,

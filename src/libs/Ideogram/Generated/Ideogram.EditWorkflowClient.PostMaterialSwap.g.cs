@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostMaterialSwapArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.MaterialSwapRequest request);
         partial void PreparePostMaterialSwapRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.MaterialSwapRequest request);
         partial void ProcessPostMaterialSwapResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -61,6 +63,9 @@ namespace Ideogram
         /// pixels are preserved. Send either one material, which every mask<br/>
         /// takes, or exactly one material per mask, paired by position.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -68,12 +73,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.MaterialSwapResponse> PostMaterialSwapAsync(
 
             global::Ideogram.MaterialSwapRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostMaterialSwapAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -100,6 +107,9 @@ namespace Ideogram
         /// pixels are preserved. Send either one material, which every mask<br/>
         /// takes, or exactly one material per mask, paired by position.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -107,6 +117,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.MaterialSwapResponse>> PostMaterialSwapAsResponseAsync(
 
             global::Ideogram.MaterialSwapRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -116,6 +127,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostMaterialSwapArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -144,6 +156,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/tool/material-swap",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -331,6 +346,7 @@ namespace Ideogram
                 PreparePostMaterialSwapRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -796,6 +812,9 @@ namespace Ideogram
         /// pixels are preserved. Send either one material, which every mask<br/>
         /// takes, or exactly one material per mask, paired by position.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// The product photo to edit, by reference. Everything outside the<br/>
         /// masked region is preserved. Provide exactly one of<br/>
@@ -850,8 +869,8 @@ namespace Ideogram
         /// `3:4`, `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="targetCollectionId">
         /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
@@ -874,6 +893,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.MaterialSwapResponse> PostMaterialSwapAsync(
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -882,7 +902,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? materialAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? materials = default,
             string? aspectRatio = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.MaterialSwapQuality? quality = default,
             string? targetCollectionId = default,
             bool? @private = default,
             string? webhookUrl = default,
@@ -906,6 +926,7 @@ namespace Ideogram
             };
 
             return await PostMaterialSwapAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

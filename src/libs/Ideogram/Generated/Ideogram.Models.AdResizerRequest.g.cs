@@ -65,14 +65,12 @@ namespace Ideogram
         public string? Prompt { get; set; }
 
         /// <summary>
-        /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing. `very_high` generates multiple<br/>
-        /// candidates internally and returns the strongest result, so it has<br/>
-        /// noticeably higher latency and cost than the other levels.
+        /// The quality tier for the reframe. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerationQualityJsonConverter))]
-        public global::Ideogram.GenerationQuality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdResizerQualityJsonConverter))]
+        public global::Ideogram.AdResizerQuality? Quality { get; set; }
 
         /// <summary>
         /// The number of reframed variations to generate.<br/>
@@ -150,10 +148,8 @@ namespace Ideogram
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".
         /// </param>
         /// <param name="quality">
-        /// The generation quality level. Higher levels may use more inference steps<br/>
-        /// or additional prompt processing. `very_high` generates multiple<br/>
-        /// candidates internally and returns the strongest result, so it has<br/>
-        /// noticeably higher latency and cost than the other levels.
+        /// The quality tier for the reframe. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="numImages">
         /// The number of reframed variations to generate.<br/>
@@ -186,7 +182,7 @@ namespace Ideogram
             string? imagename,
             global::Ideogram.AdResizerRequestPlatform? platform,
             string? prompt,
-            global::Ideogram.GenerationQuality? quality,
+            global::Ideogram.AdResizerQuality? quality,
             int? numImages,
             string? targetCollectionId,
             bool? @private,

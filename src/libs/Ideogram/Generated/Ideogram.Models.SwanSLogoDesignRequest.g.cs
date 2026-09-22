@@ -65,12 +65,12 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? FlatSilhouetteAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SwanSLogoQualityJsonConverter))]
+        public global::Ideogram.SwanSLogoQuality? Quality { get; set; }
 
         /// <summary>
         /// When true or omitted, keep outputs private. Enterprise accounts always generate privately.
@@ -126,8 +126,8 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="private">
         /// When true or omitted, keep outputs private. Enterprise accounts always generate privately.
@@ -154,7 +154,7 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? geometryHeroAssetIdentifier,
             global::Ideogram.AssetIdentifier? logoSpecificationAssetIdentifier,
             global::Ideogram.AssetIdentifier? flatSilhouetteAssetIdentifier,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.SwanSLogoQuality? quality,
             bool? @private,
             string? webhookUrl)
         {

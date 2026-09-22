@@ -55,12 +55,12 @@ namespace Ideogram
         public string? Prompt { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdLocalizerQualityJsonConverter))]
+        public global::Ideogram.AdLocalizerQuality? Quality { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -137,8 +137,8 @@ namespace Ideogram
         /// Optional additional direction for the localization, for example "keep the badge in English". It takes priority over the preservation rules for anything it explicitly asks to change.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -175,7 +175,7 @@ namespace Ideogram
             string? imagename,
             string? exactCopy,
             string? prompt,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.AdLocalizerQuality? quality,
             int? seed,
             int? numImages,
             string? targetCollectionId,

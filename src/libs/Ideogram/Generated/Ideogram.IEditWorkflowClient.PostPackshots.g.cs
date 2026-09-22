@@ -74,8 +74,8 @@ namespace Ideogram
         /// `1:1`, `3:4`, `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="private">
         /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
@@ -100,7 +100,7 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? styleReferenceAssetIdentifier = default,
             string? instruction = default,
             string? aspectRatio = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.PackshotsQuality? quality = default,
             bool? @private = default,
             string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,

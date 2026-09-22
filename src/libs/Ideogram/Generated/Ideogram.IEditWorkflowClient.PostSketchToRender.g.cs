@@ -80,8 +80,8 @@ namespace Ideogram
         /// Aspect ratio of each output image. Defaults to `1:1` when omitted.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="seed">
         /// Optional seed for repeatable results.
@@ -113,7 +113,7 @@ namespace Ideogram
             byte[]? sketchImage = default,
             string? sketchImagename = default,
             string? aspectRatio = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.SketchToRenderQuality? quality = default,
             int? seed = default,
             int? numImages = default,
             bool? @private = default,
