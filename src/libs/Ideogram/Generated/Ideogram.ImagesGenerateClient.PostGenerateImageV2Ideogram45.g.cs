@@ -48,7 +48,8 @@ namespace Ideogram
         /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
         /// images turns the request into an image-to-image transform: the model<br/>
         /// conditions on the sources, the prompt becomes optional guidance, and<br/>
-        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// `size` may be "source" to keep the first source's own size or "auto"<br/>
+        /// to let the server pick the canvas from the sources and the prompt.<br/>
         /// Provide sources either as `image_asset_identifiers` references or as<br/>
         /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
@@ -61,7 +62,7 @@ namespace Ideogram
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
-        /// the prompt.<br/>
+        /// the prompt, and on the source images when there are any.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -100,7 +101,8 @@ namespace Ideogram
         /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
         /// images turns the request into an image-to-image transform: the model<br/>
         /// conditions on the sources, the prompt becomes optional guidance, and<br/>
-        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// `size` may be "source" to keep the first source's own size or "auto"<br/>
+        /// to let the server pick the canvas from the sources and the prompt.<br/>
         /// Provide sources either as `image_asset_identifiers` references or as<br/>
         /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
@@ -113,7 +115,7 @@ namespace Ideogram
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
-        /// the prompt.<br/>
+        /// the prompt, and on the source images when there are any.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -294,12 +296,12 @@ namespace Ideogram
                                     name: "\"size\"");
 
                             }
-                            if (request.RenderingSpeed != default)
+                            if (request.Quality != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.RenderingSpeed).HasValue ? (request.RenderingSpeed).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"rendering_speed\"");
+                                    content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"quality\"");
 
                             }
                             if (request.Seed != default)
@@ -887,7 +889,8 @@ namespace Ideogram
         /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
         /// images turns the request into an image-to-image transform: the model<br/>
         /// conditions on the sources, the prompt becomes optional guidance, and<br/>
-        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// `size` may be "source" to keep the first source's own size or "auto"<br/>
+        /// to let the server pick the canvas from the sources and the prompt.<br/>
         /// Provide sources either as `image_asset_identifiers` references or as<br/>
         /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
@@ -900,7 +903,7 @@ namespace Ideogram
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
-        /// the prompt.<br/>
+        /// the prompt, and on the source images when there are any.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -943,27 +946,30 @@ namespace Ideogram
         /// An optional mask confining the edit to part of the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as the first source image, and must contain both black and white areas. Requires source images uploaded as raw `images` bytes; masks cannot be combined with `image_asset_identifiers`. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three other source images. Supplying a mask fixes the output to the first source's own size, so `size` is rejected alongside it.
         /// </param>
         /// <param name="size">
-        /// The output size: "auto" or an exact "WIDTHxHEIGHT".<br/>
+        /// The output size: "auto", "source" or an exact "WIDTHxHEIGHT".<br/>
         /// Without source images, an exact size must be one of the supported<br/>
         /// 1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);<br/>
         /// "auto" or omitted lets the server pick a supported size based on<br/>
-        /// the prompt.<br/>
-        /// With source images, "auto" (the default) returns the output at the<br/>
-        /// first source image's own width and height. A source too large for<br/>
-        /// the model is scaled down to fit while keeping its exact proportion,<br/>
-        /// and a source whose aspect ratio is outside 1:6 to 6:1 is rejected,<br/>
-        /// because serving it would mean reshaping an image you did not ask to<br/>
-        /// reshape — name an exact size if that is what you want.<br/>
+        /// the prompt. "source" is rejected because there is no source image<br/>
+        /// to size from.<br/>
+        /// With source images, "auto" (the default) lets the server pick a<br/>
+        /// supported 2K size from the source images and the prompt, and<br/>
+        /// "source" returns the output at the first source image's own width<br/>
+        /// and height. With "source", a source too large for the model is<br/>
+        /// scaled down to fit while keeping its exact proportion. Whatever the<br/>
+        /// size, every source image's aspect ratio must be between 1:6 and<br/>
+        /// 6:1; the model does not accept a reference outside that range.<br/>
         /// An exact size must have both dimensions multiples of 32 and at least<br/>
         /// 256px, the total size at most 2048x2048 pixels, and the aspect ratio<br/>
         /// at most 6:1. Naming one reshapes the source to it.<br/>
         /// Pricing is tiered by the resolved output pixels: up to 1024x1024<br/>
-        /// bills as 1K, above that as 2K.<br/>
+        /// bills as 1K, above that as 2K. An "auto" size bills as 2K.<br/>
+        /// Default Value: auto<br/>
         /// Example: 2048x2048
         /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: default
+        /// <param name="quality">
+        /// The rendering quality to use. Higher quality renders take longer.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -1009,7 +1015,7 @@ namespace Ideogram
             byte[]? mask = default,
             string? maskname = default,
             string? size = default,
-            global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? renderingSpeed = default,
+            global::Ideogram.GenerateImageIdeogram45RequestQuality? quality = default,
             int? seed = default,
             int? numImages = default,
             bool? enableCopyrightDetection = default,
@@ -1029,7 +1035,7 @@ namespace Ideogram
                 Mask = mask,
                 Maskname = maskname,
                 Size = size,
-                RenderingSpeed = renderingSpeed,
+                Quality = quality,
                 Seed = seed,
                 NumImages = numImages,
                 EnableCopyrightDetection = enableCopyrightDetection,
