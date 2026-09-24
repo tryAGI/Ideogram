@@ -146,6 +146,15 @@ namespace Ideogram
         };
 
         /// <summary>
+        /// Edit source images at the source's own width and height. These endpoints never reframe: the output always matches the image you sent.
+        /// </summary>
+        public ImagesPreciseEditClient ImagesPreciseEdit => new ImagesPreciseEditClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        {
+            ReadResponseAsString = ReadResponseAsString,
+            JsonSerializerContextProvider = JsonSerializerContextProvider,
+        };
+
+        /// <summary>
         /// Expand an existing image to a new model-specific output shape while<br/>
         /// preserving the source content and filling the new area.
         /// </summary>
