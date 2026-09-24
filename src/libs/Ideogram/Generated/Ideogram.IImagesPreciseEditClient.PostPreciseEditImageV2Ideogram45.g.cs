@@ -14,6 +14,10 @@ namespace Ideogram
         /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
         /// the output always matches the image being edited, so the edit drops<br/>
         /// back into whatever it came from without reframing.<br/>
+        /// Pixels the edit did not meaningfully change are restored exactly from<br/>
+        /// the image being edited, with the edited region blended smoothly into<br/>
+        /// its surroundings — untouched areas stay identical across repeated<br/>
+        /// edits.<br/>
         /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
         /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
         /// reference wins and the bytes are ignored. Add up to four more images<br/>
@@ -60,6 +64,10 @@ namespace Ideogram
         /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
         /// the output always matches the image being edited, so the edit drops<br/>
         /// back into whatever it came from without reframing.<br/>
+        /// Pixels the edit did not meaningfully change are restored exactly from<br/>
+        /// the image being edited, with the edited region blended smoothly into<br/>
+        /// its surroundings — untouched areas stay identical across repeated<br/>
+        /// edits.<br/>
         /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
         /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
         /// reference wins and the bytes are ignored. Add up to four more images<br/>
@@ -106,6 +114,10 @@ namespace Ideogram
         /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
         /// the output always matches the image being edited, so the edit drops<br/>
         /// back into whatever it came from without reframing.<br/>
+        /// Pixels the edit did not meaningfully change are restored exactly from<br/>
+        /// the image being edited, with the edited region blended smoothly into<br/>
+        /// its surroundings — untouched areas stay identical across repeated<br/>
+        /// edits.<br/>
         /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
         /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
         /// reference wins and the bytes are ignored. Add up to four more images<br/>
@@ -160,9 +172,9 @@ namespace Ideogram
         /// <param name="maskname">
         /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
         /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use. `ultra` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `quality`, is priced higher, and supports at most 4 images per request.<br/>
-        /// Default Value: default
+        /// <param name="quality">
+        /// The rendering quality to use. `very_high` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `high`, is priced higher, and supports at most 4 images per request.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -209,7 +221,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? referenceImages = default,
             byte[]? mask = default,
             string? maskname = default,
-            global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed? renderingSpeed = default,
+            global::Ideogram.PreciseEditImageIdeogram45RequestQuality? quality = default,
             int? seed = default,
             int? numImages = default,
             bool? enableCopyrightDetection = default,

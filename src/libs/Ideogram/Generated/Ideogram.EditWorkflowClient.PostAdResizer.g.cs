@@ -44,7 +44,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Advertisement Resizer<br/>
+        /// Advertisement Resizer v2<br/>
         /// Reframes the source creative to the exact requested ad resolution,<br/>
         /// regenerating the layout so text and key elements stay legible at the<br/>
         /// target size.<br/>
@@ -55,11 +55,17 @@ namespace Ideogram
         /// space around it is filled in so the returned image is still exactly the<br/>
         /// requested resolution. Omit `platform` and the advertisement fills the<br/>
         /// whole frame.<br/>
-        /// Safe zones are published per aspect ratio, and not every platform<br/>
-        /// publishes one for every ratio. `google` and `tiktok` publish `16:9`,<br/>
-        /// `1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A<br/>
-        /// `platform` combined with a `resolution` that platform has no safe zone<br/>
-        /// for is rejected with a 400.<br/>
+        /// Each platform accepts only the resolutions for which it publishes a<br/>
+        /// safe zone:<br/>
+        /// | Platform | Accepted resolutions |<br/>
+        /// | --- | --- |<br/>
+        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` | `1080x1920`, `2160x3840` |<br/>
+        /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
+        /// A `platform` combined with any other `resolution` is rejected with a<br/>
+        /// 400. When `platform` is omitted, every resolution in the request schema<br/>
+        /// is accepted.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. The completed generation<br/>
@@ -95,7 +101,7 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Advertisement Resizer<br/>
+        /// Advertisement Resizer v2<br/>
         /// Reframes the source creative to the exact requested ad resolution,<br/>
         /// regenerating the layout so text and key elements stay legible at the<br/>
         /// target size.<br/>
@@ -106,11 +112,17 @@ namespace Ideogram
         /// space around it is filled in so the returned image is still exactly the<br/>
         /// requested resolution. Omit `platform` and the advertisement fills the<br/>
         /// whole frame.<br/>
-        /// Safe zones are published per aspect ratio, and not every platform<br/>
-        /// publishes one for every ratio. `google` and `tiktok` publish `16:9`,<br/>
-        /// `1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A<br/>
-        /// `platform` combined with a `resolution` that platform has no safe zone<br/>
-        /// for is rejected with a 400.<br/>
+        /// Each platform accepts only the resolutions for which it publishes a<br/>
+        /// safe zone:<br/>
+        /// | Platform | Accepted resolutions |<br/>
+        /// | --- | --- |<br/>
+        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` | `1080x1920`, `2160x3840` |<br/>
+        /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
+        /// A `platform` combined with any other `resolution` is rejected with a<br/>
+        /// 400. When `platform` is omitted, every resolution in the request schema<br/>
+        /// is accepted.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. The completed generation<br/>
@@ -839,7 +851,7 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Advertisement Resizer<br/>
+        /// Advertisement Resizer v2<br/>
         /// Reframes the source creative to the exact requested ad resolution,<br/>
         /// regenerating the layout so text and key elements stay legible at the<br/>
         /// target size.<br/>
@@ -850,11 +862,17 @@ namespace Ideogram
         /// space around it is filled in so the returned image is still exactly the<br/>
         /// requested resolution. Omit `platform` and the advertisement fills the<br/>
         /// whole frame.<br/>
-        /// Safe zones are published per aspect ratio, and not every platform<br/>
-        /// publishes one for every ratio. `google` and `tiktok` publish `16:9`,<br/>
-        /// `1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A<br/>
-        /// `platform` combined with a `resolution` that platform has no safe zone<br/>
-        /// for is rejected with a 400.<br/>
+        /// Each platform accepts only the resolutions for which it publishes a<br/>
+        /// safe zone:<br/>
+        /// | Platform | Accepted resolutions |<br/>
+        /// | --- | --- |<br/>
+        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` | `1080x1920`, `2160x3840` |<br/>
+        /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
+        /// A `platform` combined with any other `resolution` is rejected with a<br/>
+        /// 400. When `platform` is omitted, every resolution in the request schema<br/>
+        /// is accepted.<br/>
         /// The request is processed asynchronously. Poll<br/>
         /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. The completed generation<br/>

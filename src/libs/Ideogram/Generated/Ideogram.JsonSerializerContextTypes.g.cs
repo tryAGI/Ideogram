@@ -1593,7 +1593,7 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? Type390 { get; set; }
+        public global::Ideogram.GenerateImageIdeogram45RequestQuality? Type390 { get; set; }
         /// <summary>
         ///
         /// </summary>
@@ -1605,7 +1605,7 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed? Type393 { get; set; }
+        public global::Ideogram.PreciseEditImageIdeogram45RequestQuality? Type393 { get; set; }
         /// <summary>
         ///
         /// </summary>

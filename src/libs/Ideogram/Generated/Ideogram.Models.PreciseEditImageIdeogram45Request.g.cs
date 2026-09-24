@@ -65,12 +65,12 @@ namespace Ideogram
         public string? Maskname { get; set; }
 
         /// <summary>
-        /// The rendering speed to use. `ultra` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `quality`, is priced higher, and supports at most 4 images per request.<br/>
-        /// Default Value: default
+        /// The rendering quality to use. `very_high` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `high`, is priced higher, and supports at most 4 images per request.<br/>
+        /// Default Value: high
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestRenderingSpeedJsonConverter))]
-        public global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed? RenderingSpeed { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestQualityJsonConverter))]
+        public global::Ideogram.PreciseEditImageIdeogram45RequestQuality? Quality { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -164,9 +164,9 @@ namespace Ideogram
         /// <param name="maskname">
         /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
         /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use. `ultra` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `quality`, is priced higher, and supports at most 4 images per request.<br/>
-        /// Default Value: default
+        /// <param name="quality">
+        /// The rendering quality to use. `very_high` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `high`, is priced higher, and supports at most 4 images per request.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -212,7 +212,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<byte[]>? referenceImages,
             byte[]? mask,
             string? maskname,
-            global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed? renderingSpeed,
+            global::Ideogram.PreciseEditImageIdeogram45RequestQuality? quality,
             int? seed,
             int? numImages,
             bool? enableCopyrightDetection,
@@ -229,7 +229,7 @@ namespace Ideogram
             this.ReferenceImages = referenceImages;
             this.Mask = mask;
             this.Maskname = maskname;
-            this.RenderingSpeed = renderingSpeed;
+            this.Quality = quality;
             this.Seed = seed;
             this.NumImages = numImages;
             this.EnableCopyrightDetection = enableCopyrightDetection;

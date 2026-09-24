@@ -31,12 +31,12 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GeneratedImageObject))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed), TypeInfoPropertyName = "PreciseEditImageIdeogram45RequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality), TypeInfoPropertyName = "PreciseEditImageIdeogram45RequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType), TypeInfoPropertyName = "AssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason?), TypeInfoPropertyName = "NullableGenerationRejectReason2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed?), TypeInfoPropertyName = "NullablePreciseEditImageIdeogram45RequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?), TypeInfoPropertyName = "NullablePreciseEditImageIdeogram45RequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType?), TypeInfoPropertyName = "NullableAssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<byte[]>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AssetIdentifier>))]
@@ -111,9 +111,9 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.GenerationRejectReason?)
 
-                    || typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed)
+                    || typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality)
 
-                    || typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed?)
+                    || typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?)
 
                     || typeToConvert == typeof(global::Ideogram.AssetType)
 
@@ -134,14 +134,14 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.GenerationRejectReasonNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed))
+                if (typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality))
                 {
-                    return new global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestRenderingSpeedJsonConverter();
+                    return new global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestQualityJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestRenderingSpeed?))
+                if (typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?))
                 {
-                    return new global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestRenderingSpeedNullableJsonConverter();
+                    return new global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestQualityNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.AssetType))

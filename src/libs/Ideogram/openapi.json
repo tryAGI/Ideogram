@@ -8664,7 +8664,7 @@
     },
     "/v2/image/generate/ideogram-4-5": {
       "post": {
-        "description": "Generate one or more images with Ideogram 4.5. Supplying source\nimages turns the request into an image-to-image transform: the model\nconditions on the sources, the prompt becomes optional guidance, and\n`size` may be \"auto\" to derive the output from the first source.\nProvide sources either as `image_asset_identifiers` references or as\nraw `images` bytes (multipart requests only); if both are supplied,\nthe references win and the bytes are ignored. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; the\nserver detects which was supplied.\n\n`magic_prompt` controls automatic prompt rewriting: `auto` (the\ndefault) and `on` rewrite a natural-language prompt, a prompt that is\nalready a valid structured JSON prompt is always consumed directly,\nand `off` disables rewriting entirely so the model receives your\nprompt verbatim.\n\nIdeogram 4.5 renders a fixed set of output sizes. When `size`\nis omitted, the server picks a supported size automatically based on\nthe prompt.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Generate one or more images with Ideogram 4.5. Supplying source\nimages turns the request into an image-to-image transform: the model\nconditions on the sources, the prompt becomes optional guidance, and\n`size` may be \"source\" to keep the first source's own size or \"auto\"\nto let the server pick the canvas from the sources and the prompt.\nProvide sources either as `image_asset_identifiers` references or as\nraw `images` bytes (multipart requests only); if both are supplied,\nthe references win and the bytes are ignored. The `prompt` accepts\neither natural language or a structured Ideogram 4.0 JSON prompt; the\nserver detects which was supplied.\n\n`magic_prompt` controls automatic prompt rewriting: `auto` (the\ndefault) and `on` rewrite a natural-language prompt, a prompt that is\nalready a valid structured JSON prompt is always consumed directly,\nand `off` disables rewriting entirely so the model receives your\nprompt verbatim.\n\nIdeogram 4.5 renders a fixed set of output sizes. When `size`\nis omitted, the server picks a supported size automatically based on\nthe prompt, and on the source images when there are any.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_generate_image_v2_ideogram45",
         "parameters": [
           {
@@ -9566,7 +9566,7 @@
     },
     "/v2/image/precise-edit/ideogram-4-5": {
       "post": {
-        "description": "Edit an image with Ideogram 4.5, returning output at that image's exact\nwidth and height. An image too large for the model is scaled down to\nfit while keeping its exact proportion, and one whose aspect ratio is\noutside 1:6 to 6:1 is rejected — this endpoint never reshapes, so there\nis no size to reshape it to. Unlike\n`POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:\nthe output always matches the image being edited, so the edit drops\nback into whatever it came from without reframing.\n\nSupply the image to edit as an `image_asset_identifier` reference or as\nraw `image` bytes (multipart requests only); if both are supplied, the\nreference wins and the bytes are ignored. Add up to four more images\nvia `reference_image_asset_identifiers` or `reference_images` to guide\nthe edit — those are never edited themselves.\n\nSupply a `mask` to confine the edit to part of the image being edited.\nThe mask is optional — without one the prompt is applied to the whole\nimage. Masks are read as an additional reference image, so a masked\nrequest may carry at most three `reference_images`.\n\nThe `prompt` is the edit instruction. It accepts either natural\nlanguage or a structured JSON prompt; the server detects which was\nsupplied. A natural-language instruction is automatically rewritten\ninto the model's structured edit contract, while a prompt that is\nalready valid structured JSON is consumed directly.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Edit an image with Ideogram 4.5, returning output at that image's exact\nwidth and height. An image too large for the model is scaled down to\nfit while keeping its exact proportion, and one whose aspect ratio is\noutside 1:6 to 6:1 is rejected — this endpoint never reshapes, so there\nis no size to reshape it to. Unlike\n`POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:\nthe output always matches the image being edited, so the edit drops\nback into whatever it came from without reframing.\n\nPixels the edit did not meaningfully change are restored exactly from\nthe image being edited, with the edited region blended smoothly into\nits surroundings — untouched areas stay identical across repeated\nedits.\n\nSupply the image to edit as an `image_asset_identifier` reference or as\nraw `image` bytes (multipart requests only); if both are supplied, the\nreference wins and the bytes are ignored. Add up to four more images\nvia `reference_image_asset_identifiers` or `reference_images` to guide\nthe edit — those are never edited themselves.\n\nSupply a `mask` to confine the edit to part of the image being edited.\nThe mask is optional — without one the prompt is applied to the whole\nimage. Masks are read as an additional reference image, so a masked\nrequest may carry at most three `reference_images`.\n\nThe `prompt` is the edit instruction. It accepts either natural\nlanguage or a structured JSON prompt; the server detects which was\nsupplied. A natural-language instruction is automatically rewritten\ninto the model's structured edit contract, while a prompt that is\nalready valid structured JSON is consumed directly.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_precise_edit_image_v2_ideogram45",
         "parameters": [
           {
@@ -11610,7 +11610,7 @@
     },
     "/v2/tool/ad-resizer": {
       "post": {
-        "description": "Reframes the source creative to the exact requested ad resolution,\nregenerating the layout so text and key elements stay legible at the\ntarget size.\n\nSupply `platform` to keep the whole advertisement clear of that\nplatform's own interface. The advertisement is generated at the largest\nrectangle that fits inside the platform's published safe zone for the\nrequested aspect ratio, placed at that rectangle's position, and the\nspace around it is filled in so the returned image is still exactly the\nrequested resolution. Omit `platform` and the advertisement fills the\nwhole frame.\n\nSafe zones are published per aspect ratio, and not every platform\npublishes one for every ratio. `google` and `tiktok` publish `16:9`,\n`1:1`, and `9:16`; `meta` and `snapchat` publish `9:16` only. A\n`platform` combined with a `resolution` that platform has no safe zone\nfor is rejected with a 400.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed. The completed generation\nreports the exact amount billed for the request in\n`usage_cost_usd_micros`.\n\nSupply the source creative as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.\n",
+        "description": "Reframes the source creative to the exact requested ad resolution,\nregenerating the layout so text and key elements stay legible at the\ntarget size.\n\nSupply `platform` to keep the whole advertisement clear of that\nplatform's own interface. The advertisement is generated at the largest\nrectangle that fits inside the platform's published safe zone for the\nrequested aspect ratio, placed at that rectangle's position, and the\nspace around it is filled in so the returned image is still exactly the\nrequested resolution. Omit `platform` and the advertisement fills the\nwhole frame.\n\nEach platform accepts only the resolutions for which it publishes a\nsafe zone:\n\n| Platform | Accepted resolutions |\n| --- | --- |\n| `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |\n| `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |\n| `meta` | `1080x1920`, `2160x3840` |\n| `snapchat` | `1080x1920`, `2160x3840` |\n\nA `platform` combined with any other `resolution` is rejected with a\n400. When `platform` is omitted, every resolution in the request schema\nis accepted.\n\nThe request is processed asynchronously. Poll\n`GET /v1/generations/{generation_id}` with the returned `generation_id`\nuntil the generation is completed or failed. The completed generation\nreports the exact amount billed for the request in\n`usage_cost_usd_micros`.\n\nSupply the source creative as either an `AssetIdentifier` reference\n(`image_asset_identifier`) or the raw image bytes directly (`image`,\nmultipart requests only). Provide exactly one of the two forms;\nsupplying both, or neither, is rejected with a 400.",
         "operationId": "post_ad_resizer",
         "parameters": [
           {
@@ -11693,9 +11693,34 @@
             "description": "Too many requests."
           }
         },
-        "summary": "Advertisement Resizer",
+        "summary": "Advertisement Resizer v2",
         "tags": [
           "edit-workflow"
+        ],
+        "x-fern-examples": [
+          {
+            "request": {
+              "resolution": "1080x1920",
+              "platform": "tiktok",
+              "quality": "high",
+              "num_images": 1
+            },
+            "response": {
+              "body": {
+                "generation_id": "ZGVtb19nZW5lcmF0aW9uX2lk"
+              }
+            },
+            "code-samples": [
+              {
+                "sdk": "curl",
+                "code": "curl -X POST https://api.ideogram.ai/v2/tool/ad-resizer \\\n  -H \"Api-Key: <apiKey>\" \\\n  -H \"Content-Type: multipart/form-data\" \\\n  -F image=@<file1> \\\n  -F resolution=1080x1920 \\\n  -F platform=tiktok \\\n  -F quality=high \\\n  -F num_images=1\n"
+              },
+              {
+                "sdk": "python",
+                "code": "import requests\n\nresponse = requests.post(\n  \"https://api.ideogram.ai/v2/tool/ad-resizer\",\n  headers={\"Api-Key\": \"<apiKey>\"},\n  data={\n    \"resolution\": \"1080x1920\",\n    \"platform\": \"tiktok\",\n    \"quality\": \"high\",\n    \"num_images\": 1,\n  },\n  files={\"image\": open(\"<file1>\", \"rb\")},\n)\nprint(response.json())\n"
+              }
+            ]
+          }
         ],
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
@@ -27783,18 +27808,19 @@
             "type": "string"
           },
           "size": {
-            "description": "The output size: \"auto\" or an exact \"WIDTHxHEIGHT\".\n\nWithout source images, an exact size must be one of the supported\n1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);\n\"auto\" or omitted lets the server pick a supported size based on\nthe prompt.\n\nWith source images, \"auto\" (the default) returns the output at the\nfirst source image's own width and height. A source too large for\nthe model is scaled down to fit while keeping its exact proportion,\nand a source whose aspect ratio is outside 1:6 to 6:1 is rejected,\nbecause serving it would mean reshaping an image you did not ask to\nreshape — name an exact size if that is what you want.\n\nAn exact size must have both dimensions multiples of 32 and at least\n256px, the total size at most 2048x2048 pixels, and the aspect ratio\nat most 6:1. Naming one reshapes the source to it.\n\nPricing is tiered by the resolved output pixels: up to 1024x1024\nbills as 1K, above that as 2K.\n",
+            "default": "auto",
+            "description": "The output size: \"auto\", \"source\" or an exact \"WIDTHxHEIGHT\".\n\nWithout source images, an exact size must be one of the supported\n1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);\n\"auto\" or omitted lets the server pick a supported size based on\nthe prompt. \"source\" is rejected because there is no source image\nto size from.\n\nWith source images, \"auto\" (the default) lets the server pick a\nsupported 2K size from the source images and the prompt, and\n\"source\" returns the output at the first source image's own width\nand height. With \"source\", a source too large for the model is\nscaled down to fit while keeping its exact proportion. Whatever the\nsize, every source image's aspect ratio must be between 1:6 and\n6:1; the model does not accept a reference outside that range.\n\nAn exact size must have both dimensions multiples of 32 and at least\n256px, the total size at most 2048x2048 pixels, and the aspect ratio\nat most 6:1. Naming one reshapes the source to it.\n\nPricing is tiered by the resolved output pixels: up to 1024x1024\nbills as 1K, above that as 2K. An \"auto\" size bills as 2K.\n",
             "example": "2048x2048",
             "nullable": true,
             "type": "string"
           },
-          "rendering_speed": {
-            "default": "default",
-            "description": "The rendering speed to use.",
+          "quality": {
+            "default": "high",
+            "description": "The rendering quality to use. Higher quality renders take longer.",
             "enum": [
-              "turbo",
-              "default",
-              "quality"
+              "low",
+              "medium",
+              "high"
             ],
             "type": "string"
           },
@@ -27936,14 +27962,14 @@
             "format": "binary",
             "type": "string"
           },
-          "rendering_speed": {
-            "default": "default",
-            "description": "The rendering speed to use. `ultra` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `quality`, is priced higher, and supports at most 4 images per request.",
+          "quality": {
+            "default": "high",
+            "description": "The rendering quality to use. `very_high` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `high`, is priced higher, and supports at most 4 images per request.",
             "enum": [
-              "turbo",
-              "default",
-              "quality",
-              "ultra"
+              "low",
+              "medium",
+              "high",
+              "very_high"
             ],
             "type": "string"
           },
