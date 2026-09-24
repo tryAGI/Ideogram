@@ -38,11 +38,14 @@ namespace Ideogram
         public global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor? UpscaleFactor { get; set; }
 
         /// <summary>
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// The aspect ratio for an Ideogram 3.x or 2.x generation. `auto` lets the<br/>
+        /// model select a ratio from the prompt; any other value pins the ratio.<br/>
+        /// Cannot be combined with `resolution`. Omitting the field is not `auto`:<br/>
+        /// it uses `1x1`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter))]
-        public global::Ideogram.AspectRatioV3? AspectRatio { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3AspectRatioJsonConverter))]
+        public global::Ideogram.IdeogramV3AspectRatio? AspectRatio { get; set; }
 
         /// <summary>
         /// The rendering speed to use.<br/>
@@ -131,7 +134,10 @@ namespace Ideogram
         /// Default Value: x1
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// The aspect ratio for an Ideogram 3.x or 2.x generation. `auto` lets the<br/>
+        /// model select a ratio from the prompt; any other value pins the ratio.<br/>
+        /// Cannot be combined with `resolution`. Omitting the field is not `auto`:<br/>
+        /// it uses `1x1`.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
@@ -177,7 +183,7 @@ namespace Ideogram
             string? negativePrompt,
             int? seed,
             global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor? upscaleFactor,
-            global::Ideogram.AspectRatioV3? aspectRatio,
+            global::Ideogram.IdeogramV3AspectRatio? aspectRatio,
             global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed? renderingSpeed,
             global::Ideogram.MagicPromptMode? magicPrompt,
             int? numImages,
