@@ -5,27 +5,30 @@ namespace Ideogram
 {
     /// <summary>
     /// Source images are optional. When supplied, the request becomes an<br/>
-    /// image-to-image transform: the prompt becomes optional guidance and<br/>
-    /// `size` defaults to "auto" (derived from the first source). Without<br/>
-    /// source images a prompt is required.
+    /// image-to-image transform and `size` defaults to "auto" (derived from<br/>
+    /// the first source). A prompt is required either way.
     /// </summary>
     public sealed partial class GenerateImageIdeogram45Request
     {
         /// <summary>
-        /// The prompt to generate images from. Accepts either natural<br/>
+        /// The prompt to generate images from, or the edit instruction to<br/>
+        /// apply when source images are supplied. Accepts either natural<br/>
         /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. Required without source images; with<br/>
-        /// sources it is optional guidance and may be empty.
+        /// detects which was supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
-        public string? Prompt { get; set; }
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Prompt { get; set; }
 
         /// <summary>
-        /// Controls magic prompt (automatic prompt rewriting). `auto` (the<br/>
-        /// default) and `on` rewrite a natural-language prompt, while a<br/>
-        /// prompt that is already a valid structured JSON prompt is always<br/>
-        /// consumed directly. `off` disables rewriting entirely: the model<br/>
-        /// receives your prompt verbatim.<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
+        /// into the structured format the model consumes. A prompt that is<br/>
+        /// already a valid structured JSON prompt skips magic prompt<br/>
+        /// entirely unless `magic_prompt` is `on`. With source images the<br/>
+        /// prompt is an edit instruction, and every mode converts it into<br/>
+        /// the structured edit contract the model consumes.<br/>
         /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
@@ -45,18 +48,37 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
-        /// The output size: "auto" or an exact "WIDTHxHEIGHT".<br/>
+        /// An optional mask confining the edit to part of the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as the first source image, and must contain both black and white areas. Requires source images uploaded as raw `images` bytes; masks cannot be combined with `image_asset_identifiers`. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three other source images. Supplying a mask fixes the output to the first source's own size, so `size` is rejected alongside it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
+        public byte[]? Mask { get; set; }
+
+        /// <summary>
+        /// An optional mask confining the edit to part of the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as the first source image, and must contain both black and white areas. Requires source images uploaded as raw `images` bytes; masks cannot be combined with `image_asset_identifiers`. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three other source images. Supplying a mask fixes the output to the first source's own size, so `size` is rejected alongside it.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
+        public string? Maskname { get; set; }
+
+        /// <summary>
+        /// The output size: "auto", "source" or an exact "WIDTHxHEIGHT".<br/>
         /// Without source images, an exact size must be one of the supported<br/>
         /// 1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);<br/>
         /// "auto" or omitted lets the server pick a supported size based on<br/>
-        /// the prompt.<br/>
-        /// With source images, "auto" (the default) uses the supported<br/>
-        /// resolution closest to the first source's dimensions, and an exact<br/>
-        /// size must have both dimensions multiples of 32 and at least 256px,<br/>
-        /// the total size at most 2048x2048 pixels, and the aspect ratio at<br/>
-        /// most 6:1.<br/>
+        /// the prompt. "source" is rejected because there is no source image<br/>
+        /// to size from.<br/>
+        /// With source images, "auto" (the default) lets the server pick a<br/>
+        /// supported 2K size from the source images and the prompt, and<br/>
+        /// "source" returns the output at the first source image's own width<br/>
+        /// and height. With "source", a source too large for the model is<br/>
+        /// scaled down to fit while keeping its exact proportion. Whatever the<br/>
+        /// size, every source image's aspect ratio must be between 1:6 and<br/>
+        /// 6:1; the model does not accept a reference outside that range.<br/>
+        /// An exact size must have both dimensions multiples of 32 and at least<br/>
+        /// 256px, the total size at most 2048x2048 pixels, and the aspect ratio<br/>
+        /// at most 6:1. Naming one reshapes the source to it.<br/>
         /// Pricing is tiered by the resolved output pixels: up to 1024x1024<br/>
-        /// bills as 1K, above that as 2K.<br/>
+        /// bills as 1K, above that as 2K. An "auto" size bills as 2K.<br/>
+        /// Default Value: auto<br/>
         /// Example: 2048x2048
         /// </summary>
         /// <example>2048x2048</example>
@@ -64,12 +86,12 @@ namespace Ideogram
         public string? Size { get; set; }
 
         /// <summary>
-        /// The rendering speed to use.<br/>
-        /// Default Value: default
+        /// The rendering quality to use. Higher quality renders take longer.<br/>
+        /// Default Value: high
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestRenderingSpeedJsonConverter))]
-        public global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? RenderingSpeed { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestQualityJsonConverter))]
+        public global::Ideogram.GenerateImageIdeogram45RequestQuality? Quality { get; set; }
 
         /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
@@ -136,17 +158,20 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImageIdeogram45Request" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
+        /// The prompt to generate images from, or the edit instruction to<br/>
+        /// apply when source images are supplied. Accepts either natural<br/>
         /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. Required without source images; with<br/>
-        /// sources it is optional guidance and may be empty.
+        /// detects which was supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). `auto` (the<br/>
-        /// default) and `on` rewrite a natural-language prompt, while a<br/>
-        /// prompt that is already a valid structured JSON prompt is always<br/>
-        /// consumed directly. `off` disables rewriting entirely: the model<br/>
-        /// receives your prompt verbatim.<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
+        /// into the structured format the model consumes. A prompt that is<br/>
+        /// already a valid structured JSON prompt skips magic prompt<br/>
+        /// entirely unless `magic_prompt` is `on`. With source images the<br/>
+        /// prompt is an edit instruction, and every mode converts it into<br/>
+        /// the structured edit contract the model consumes.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="imageAssetIdentifiers">
@@ -155,24 +180,37 @@ namespace Ideogram
         /// <param name="images">
         /// The source images to transform (max 5, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
+        /// <param name="mask">
+        /// An optional mask confining the edit to part of the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as the first source image, and must contain both black and white areas. Requires source images uploaded as raw `images` bytes; masks cannot be combined with `image_asset_identifiers`. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three other source images. Supplying a mask fixes the output to the first source's own size, so `size` is rejected alongside it.
+        /// </param>
+        /// <param name="maskname">
+        /// An optional mask confining the edit to part of the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as the first source image, and must contain both black and white areas. Requires source images uploaded as raw `images` bytes; masks cannot be combined with `image_asset_identifiers`. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three other source images. Supplying a mask fixes the output to the first source's own size, so `size` is rejected alongside it.
+        /// </param>
         /// <param name="size">
-        /// The output size: "auto" or an exact "WIDTHxHEIGHT".<br/>
+        /// The output size: "auto", "source" or an exact "WIDTHxHEIGHT".<br/>
         /// Without source images, an exact size must be one of the supported<br/>
         /// 1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);<br/>
         /// "auto" or omitted lets the server pick a supported size based on<br/>
-        /// the prompt.<br/>
-        /// With source images, "auto" (the default) uses the supported<br/>
-        /// resolution closest to the first source's dimensions, and an exact<br/>
-        /// size must have both dimensions multiples of 32 and at least 256px,<br/>
-        /// the total size at most 2048x2048 pixels, and the aspect ratio at<br/>
-        /// most 6:1.<br/>
+        /// the prompt. "source" is rejected because there is no source image<br/>
+        /// to size from.<br/>
+        /// With source images, "auto" (the default) lets the server pick a<br/>
+        /// supported 2K size from the source images and the prompt, and<br/>
+        /// "source" returns the output at the first source image's own width<br/>
+        /// and height. With "source", a source too large for the model is<br/>
+        /// scaled down to fit while keeping its exact proportion. Whatever the<br/>
+        /// size, every source image's aspect ratio must be between 1:6 and<br/>
+        /// 6:1; the model does not accept a reference outside that range.<br/>
+        /// An exact size must have both dimensions multiples of 32 and at least<br/>
+        /// 256px, the total size at most 2048x2048 pixels, and the aspect ratio<br/>
+        /// at most 6:1. Naming one reshapes the source to it.<br/>
         /// Pricing is tiered by the resolved output pixels: up to 1024x1024<br/>
-        /// bills as 1K, above that as 2K.<br/>
+        /// bills as 1K, above that as 2K. An "auto" size bills as 2K.<br/>
+        /// Default Value: auto<br/>
         /// Example: 2048x2048
         /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: default
+        /// <param name="quality">
+        /// The rendering quality to use. Higher quality renders take longer.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -210,12 +248,14 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GenerateImageIdeogram45Request(
-            string? prompt,
+            string prompt,
             global::Ideogram.MagicPromptMode? magicPrompt,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? images,
+            byte[]? mask,
+            string? maskname,
             string? size,
-            global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? renderingSpeed,
+            global::Ideogram.GenerateImageIdeogram45RequestQuality? quality,
             int? seed,
             int? numImages,
             bool? enableCopyrightDetection,
@@ -224,12 +264,14 @@ namespace Ideogram
             bool? @private,
             string? targetCollectionId)
         {
-            this.Prompt = prompt;
+            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.MagicPrompt = magicPrompt;
             this.ImageAssetIdentifiers = imageAssetIdentifiers;
             this.Images = images;
+            this.Mask = mask;
+            this.Maskname = maskname;
             this.Size = size;
-            this.RenderingSpeed = renderingSpeed;
+            this.Quality = quality;
             this.Seed = seed;
             this.NumImages = numImages;
             this.EnableCopyrightDetection = enableCopyrightDetection;

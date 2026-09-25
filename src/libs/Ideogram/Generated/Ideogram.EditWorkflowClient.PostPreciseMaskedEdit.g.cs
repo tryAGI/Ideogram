@@ -888,7 +888,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.PreciseMaskedEditResponse> PostPreciseMaskedEditAsync(
             string instruction,
             global::Ideogram.PreciseMaskedEditModel? model = default,
-            global::Ideogram.GptImage2Quality? quality = default,
+            global::Ideogram.PreciseMaskedEditQuality? quality = default,
             global::Ideogram.AssetIdentifier? sourceAssetIdentifier = default,
             byte[]? sourceImage = default,
             string? sourceImagename = default,

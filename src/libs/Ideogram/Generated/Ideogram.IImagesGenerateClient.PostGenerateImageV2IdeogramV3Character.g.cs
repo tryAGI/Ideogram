@@ -144,7 +144,10 @@ namespace Ideogram
         /// Example: 1280x800
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// The aspect ratio for an Ideogram 3.x or 2.x generation. `auto` lets the<br/>
+        /// model select a ratio from the prompt; any other value pins the ratio.<br/>
+        /// Cannot be combined with `resolution`. Omitting the field is not `auto`:<br/>
+        /// it uses `1x1`.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
@@ -213,7 +216,7 @@ namespace Ideogram
             string? characterReferenceMaskname = default,
             int? seed = default,
             global::Ideogram.ResolutionV3? resolution = default,
-            global::Ideogram.AspectRatioV3? aspectRatio = default,
+            global::Ideogram.IdeogramV3AspectRatio? aspectRatio = default,
             global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed? renderingSpeed = default,
             global::Ideogram.MagicPromptMode? magicPrompt = default,
             int? numImages = default,

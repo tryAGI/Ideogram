@@ -56,12 +56,12 @@ namespace Ideogram
         public global::Ideogram.SkechersStyleEditRequestBaseGenerationSize? BaseGenerationSize { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.SkechersStyleEditQualityJsonConverter))]
+        public global::Ideogram.SkechersStyleEditQuality? Quality { get; set; }
 
         /// <summary>
         /// Number of edited images to create.<br/>
@@ -123,8 +123,8 @@ namespace Ideogram
         /// Default Value: 2k
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="numImages">
         /// Number of edited images to create.<br/>
@@ -155,7 +155,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<string>? referenceDescriptions,
             global::Ideogram.SkechersStyleEditRequestAspectRatio? aspectRatio,
             global::Ideogram.SkechersStyleEditRequestBaseGenerationSize? baseGenerationSize,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.SkechersStyleEditQuality? quality,
             int? numImages,
             bool? @private,
             string? webhookUrl)

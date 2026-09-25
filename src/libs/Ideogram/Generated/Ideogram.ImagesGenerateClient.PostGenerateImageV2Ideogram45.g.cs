@@ -48,7 +48,8 @@ namespace Ideogram
         /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
         /// images turns the request into an image-to-image transform: the model<br/>
         /// conditions on the sources, the prompt becomes optional guidance, and<br/>
-        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// `size` may be "source" to keep the first source's own size or "auto"<br/>
+        /// to let the server pick the canvas from the sources and the prompt.<br/>
         /// Provide sources either as `image_asset_identifiers` references or as<br/>
         /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
@@ -61,7 +62,7 @@ namespace Ideogram
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
-        /// the prompt.<br/>
+        /// the prompt, and on the source images when there are any.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -100,7 +101,8 @@ namespace Ideogram
         /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
         /// images turns the request into an image-to-image transform: the model<br/>
         /// conditions on the sources, the prompt becomes optional guidance, and<br/>
-        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// `size` may be "source" to keep the first source's own size or "auto"<br/>
+        /// to let the server pick the canvas from the sources and the prompt.<br/>
         /// Provide sources either as `image_asset_identifiers` references or as<br/>
         /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
@@ -113,7 +115,7 @@ namespace Ideogram
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
-        /// the prompt.<br/>
+        /// the prompt, and on the source images when there are any.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -206,14 +208,10 @@ namespace Ideogram
             }
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            if (request.Prompt != default)
-                            {
+                            __httpRequestContent.Add(
+                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
+                                name: "\"prompt\"");
 
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
-                                    name: "\"prompt\"");
-
-                            }
                             if (request.MagicPrompt != default)
                             {
 
@@ -248,6 +246,48 @@ namespace Ideogram
                                 }
 
                             }
+                            if (request.Mask != default)
+                            {
+
+                                var __contentMask = new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>());
+                                __contentMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.Maskname is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.Maskname) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                __httpRequestContent.Add(
+                                    content: __contentMask,
+                                    name: "\"mask\"",
+                                    fileName: request.Maskname != null ? $"\"{request.Maskname}\"" : string.Empty);
+                                if (__contentMask.Headers.ContentDisposition != null)
+                                {
+                                    __contentMask.Headers.ContentDisposition.FileNameStar = null;
+                                }
+
+                            }
                             if (request.Size != default)
                             {
 
@@ -256,12 +296,12 @@ namespace Ideogram
                                     name: "\"size\"");
 
                             }
-                            if (request.RenderingSpeed != default)
+                            if (request.Quality != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.RenderingSpeed).HasValue ? (request.RenderingSpeed).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"rendering_speed\"");
+                                    content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"quality\"");
 
                             }
                             if (request.Seed != default)
@@ -849,7 +889,8 @@ namespace Ideogram
         /// Generate one or more images with Ideogram 4.5. Supplying source<br/>
         /// images turns the request into an image-to-image transform: the model<br/>
         /// conditions on the sources, the prompt becomes optional guidance, and<br/>
-        /// `size` may be "auto" to derive the output from the first source.<br/>
+        /// `size` may be "source" to keep the first source's own size or "auto"<br/>
+        /// to let the server pick the canvas from the sources and the prompt.<br/>
         /// Provide sources either as `image_asset_identifiers` references or as<br/>
         /// raw `images` bytes (multipart requests only); if both are supplied,<br/>
         /// the references win and the bytes are ignored. The `prompt` accepts<br/>
@@ -862,7 +903,7 @@ namespace Ideogram
         /// prompt verbatim.<br/>
         /// Ideogram 4.5 renders a fixed set of output sizes. When `size`<br/>
         /// is omitted, the server picks a supported size automatically based on<br/>
-        /// the prompt.<br/>
+        /// the prompt, and on the source images when there are any.<br/>
         /// By default the request blocks until the images are ready and returns<br/>
         /// them in `data`. Set `async` to true to return immediately after the<br/>
         /// request is accepted, then poll for completion and results with<br/>
@@ -876,17 +917,20 @@ namespace Ideogram
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
+        /// The prompt to generate images from, or the edit instruction to<br/>
+        /// apply when source images are supplied. Accepts either natural<br/>
         /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. Required without source images; with<br/>
-        /// sources it is optional guidance and may be empty.
+        /// detects which was supplied.
         /// </param>
         /// <param name="magicPrompt">
-        /// Controls magic prompt (automatic prompt rewriting). `auto` (the<br/>
-        /// default) and `on` rewrite a natural-language prompt, while a<br/>
-        /// prompt that is already a valid structured JSON prompt is always<br/>
-        /// consumed directly. `off` disables rewriting entirely: the model<br/>
-        /// receives your prompt verbatim.<br/>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before<br/>
+        /// generation. `off` keeps your wording and only converts the prompt<br/>
+        /// into the structured format the model consumes. A prompt that is<br/>
+        /// already a valid structured JSON prompt skips magic prompt<br/>
+        /// entirely unless `magic_prompt` is `on`. With source images the<br/>
+        /// prompt is an edit instruction, and every mode converts it into<br/>
+        /// the structured edit contract the model consumes.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="imageAssetIdentifiers">
@@ -895,24 +939,37 @@ namespace Ideogram
         /// <param name="images">
         /// The source images to transform (max 5, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
         /// </param>
+        /// <param name="mask">
+        /// An optional mask confining the edit to part of the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as the first source image, and must contain both black and white areas. Requires source images uploaded as raw `images` bytes; masks cannot be combined with `image_asset_identifiers`. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three other source images. Supplying a mask fixes the output to the first source's own size, so `size` is rejected alongside it.
+        /// </param>
+        /// <param name="maskname">
+        /// An optional mask confining the edit to part of the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as the first source image, and must contain both black and white areas. Requires source images uploaded as raw `images` bytes; masks cannot be combined with `image_asset_identifiers`. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three other source images. Supplying a mask fixes the output to the first source's own size, so `size` is rejected alongside it.
+        /// </param>
         /// <param name="size">
-        /// The output size: "auto" or an exact "WIDTHxHEIGHT".<br/>
+        /// The output size: "auto", "source" or an exact "WIDTHxHEIGHT".<br/>
         /// Without source images, an exact size must be one of the supported<br/>
         /// 1K/2K presets (for example 1024x1024, 2048x2048 or 1440x2880);<br/>
         /// "auto" or omitted lets the server pick a supported size based on<br/>
-        /// the prompt.<br/>
-        /// With source images, "auto" (the default) uses the supported<br/>
-        /// resolution closest to the first source's dimensions, and an exact<br/>
-        /// size must have both dimensions multiples of 32 and at least 256px,<br/>
-        /// the total size at most 2048x2048 pixels, and the aspect ratio at<br/>
-        /// most 6:1.<br/>
+        /// the prompt. "source" is rejected because there is no source image<br/>
+        /// to size from.<br/>
+        /// With source images, "auto" (the default) lets the server pick a<br/>
+        /// supported 2K size from the source images and the prompt, and<br/>
+        /// "source" returns the output at the first source image's own width<br/>
+        /// and height. With "source", a source too large for the model is<br/>
+        /// scaled down to fit while keeping its exact proportion. Whatever the<br/>
+        /// size, every source image's aspect ratio must be between 1:6 and<br/>
+        /// 6:1; the model does not accept a reference outside that range.<br/>
+        /// An exact size must have both dimensions multiples of 32 and at least<br/>
+        /// 256px, the total size at most 2048x2048 pixels, and the aspect ratio<br/>
+        /// at most 6:1. Naming one reshapes the source to it.<br/>
         /// Pricing is tiered by the resolved output pixels: up to 1024x1024<br/>
-        /// bills as 1K, above that as 2K.<br/>
+        /// bills as 1K, above that as 2K. An "auto" size bills as 2K.<br/>
+        /// Default Value: auto<br/>
         /// Example: 2048x2048
         /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use.<br/>
-        /// Default Value: default
+        /// <param name="quality">
+        /// The rendering quality to use. Higher quality renders take longer.<br/>
+        /// Default Value: high
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -950,13 +1007,15 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogram45Response> PostGenerateImageV2Ideogram45Async(
+            string prompt,
             bool? dryRun = default,
-            string? prompt = default,
             global::Ideogram.MagicPromptMode? magicPrompt = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
+            byte[]? mask = default,
+            string? maskname = default,
             string? size = default,
-            global::Ideogram.GenerateImageIdeogram45RequestRenderingSpeed? renderingSpeed = default,
+            global::Ideogram.GenerateImageIdeogram45RequestQuality? quality = default,
             int? seed = default,
             int? numImages = default,
             bool? enableCopyrightDetection = default,
@@ -973,8 +1032,10 @@ namespace Ideogram
                 MagicPrompt = magicPrompt,
                 ImageAssetIdentifiers = imageAssetIdentifiers,
                 Images = images,
+                Mask = mask,
+                Maskname = maskname,
                 Size = size,
-                RenderingSpeed = renderingSpeed,
+                Quality = quality,
                 Seed = seed,
                 NumImages = numImages,
                 EnableCopyrightDetection = enableCopyrightDetection,

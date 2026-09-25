@@ -77,12 +77,12 @@ namespace Ideogram
         public string? AspectRatio { get; set; }
 
         /// <summary>
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GptImage2QualityJsonConverter))]
-        public global::Ideogram.GptImage2Quality? Quality { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ColorwaysQualityJsonConverter))]
+        public global::Ideogram.ColorwaysQuality? Quality { get; set; }
 
         /// <summary>
         /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
@@ -165,8 +165,8 @@ namespace Ideogram
         /// `3:4`, `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
-        /// The quality tier for the image edit. Higher tiers may improve detail<br/>
-        /// and take longer to complete.
+        /// The quality tier for the edit. Higher tiers may improve detail and<br/>
+        /// take longer to complete.
         /// </param>
         /// <param name="targetCollectionId">
         /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
@@ -196,7 +196,7 @@ namespace Ideogram
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? maskAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? masks,
             string? aspectRatio,
-            global::Ideogram.GptImage2Quality? quality,
+            global::Ideogram.ColorwaysQuality? quality,
             string? targetCollectionId,
             bool? @private,
             string? webhookUrl)
