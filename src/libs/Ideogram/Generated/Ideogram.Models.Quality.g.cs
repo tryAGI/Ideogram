@@ -5,9 +5,8 @@ namespace Ideogram
 {
     /// <summary>
     /// The generation quality level. Higher levels may use more inference steps<br/>
-    /// or additional prompt processing. `VERY_HIGH` generates multiple<br/>
-    /// candidates internally and returns the strongest result, so it has<br/>
-    /// noticeably higher latency and cost than the other levels.
+    /// or additional prompt processing. `VERY_HIGH` has noticeably higher latency<br/>
+    /// and cost than the other levels.
     /// </summary>
     public enum Quality
     {

@@ -4,13 +4,13 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The rendering quality to use. Higher quality renders take longer.<br/>
+    /// The rendering quality to use. Higher quality renders take longer. `very_high` requires source images and an explicit `size` or `size: source`, supports at most 4 images per request, takes longer than `high`, and is priced higher.<br/>
     /// Default Value: high
     /// </summary>
     public enum GenerateImageIdeogram45RequestQuality
     {
         /// <summary>
-        ///
+        /// source`, supports at most 4 images per request, takes longer than `high`, and is priced higher.
         /// </summary>
         High,
         /// <summary>
@@ -21,6 +21,10 @@ namespace Ideogram
         ///
         /// </summary>
         Medium,
+        /// <summary>
+        /// source`, supports at most 4 images per request, takes longer than `high`, and is priced higher.
+        /// </summary>
+        VeryHigh,
     }
 
     /// <summary>
@@ -38,6 +42,7 @@ namespace Ideogram
                 GenerateImageIdeogram45RequestQuality.High => "high",
                 GenerateImageIdeogram45RequestQuality.Low => "low",
                 GenerateImageIdeogram45RequestQuality.Medium => "medium",
+                GenerateImageIdeogram45RequestQuality.VeryHigh => "very_high",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -51,6 +56,7 @@ namespace Ideogram
                 "high" => GenerateImageIdeogram45RequestQuality.High,
                 "low" => GenerateImageIdeogram45RequestQuality.Low,
                 "medium" => GenerateImageIdeogram45RequestQuality.Medium,
+                "very_high" => GenerateImageIdeogram45RequestQuality.VeryHigh,
                 _ => null,
             };
         }

@@ -19620,6 +19620,8 @@
       "GenerationErrorResponse": {
         "description": "A generation request rejected by an account or usage limit.",
         "example": {
+          "max_inflight_requests": 8,
+          "task_completion_speed": "fast",
           "reject_reason": null,
           "error": "error"
         },
@@ -19631,6 +19633,22 @@
           },
           "reject_reason": {
             "$ref": "#/components/schemas/GenerationRejectReason"
+          },
+          "max_inflight_requests": {
+            "description": "How many generations the account may have in progress at once on\nthe queue this request resolved to. Present when `reject_reason`\nis `inflight_limit`.\n",
+            "example": 8,
+            "minimum": 1,
+            "title": "max_inflight_requests",
+            "type": "integer"
+          },
+          "task_completion_speed": {
+            "description": "The queue this request resolved to. Present when `reject_reason`\nis `inflight_limit`.\n",
+            "enum": [
+              "fast",
+              "slow"
+            ],
+            "title": "task_completion_speed",
+            "type": "string"
           }
         },
         "required": [
@@ -27816,11 +27834,12 @@
           },
           "quality": {
             "default": "high",
-            "description": "The rendering quality to use. Higher quality renders take longer.",
+            "description": "The rendering quality to use. Higher quality renders take longer. `very_high` requires source images and an explicit `size` or `size: source`, supports at most 4 images per request, takes longer than `high`, and is priced higher.",
             "enum": [
               "low",
               "medium",
-              "high"
+              "high",
+              "very_high"
             ],
             "type": "string"
           },
@@ -27964,7 +27983,7 @@
           },
           "quality": {
             "default": "high",
-            "description": "The rendering quality to use. `very_high` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `high`, is priced higher, and supports at most 4 images per request.",
+            "description": "The rendering quality to use. `very_high` takes longer than `high`, is priced higher, and supports at most 4 images per request.",
             "enum": [
               "low",
               "medium",
@@ -35106,7 +35125,7 @@
         "type": "string"
       },
       "Quality": {
-        "description": "The generation quality level. Higher levels may use more inference steps\nor additional prompt processing. `VERY_HIGH` generates multiple\ncandidates internally and returns the strongest result, so it has\nnoticeably higher latency and cost than the other levels.\n",
+        "description": "The generation quality level. Higher levels may use more inference steps\nor additional prompt processing. `VERY_HIGH` has noticeably higher latency\nand cost than the other levels.\n",
         "enum": [
           "VERY_LOW",
           "LOW",
@@ -36371,7 +36390,7 @@
         "type": "string"
       },
       "GenerationQuality": {
-        "description": "The generation quality level. Higher levels may use more inference steps\nor additional prompt processing. `very_high` generates multiple\ncandidates internally and returns the strongest result, so it has\nnoticeably higher latency and cost than the other levels.\n",
+        "description": "The generation quality level. Higher levels may use more inference steps\nor additional prompt processing. `very_high` has noticeably higher latency\nand cost than the other levels.\n",
         "enum": [
           "very_low",
           "low",

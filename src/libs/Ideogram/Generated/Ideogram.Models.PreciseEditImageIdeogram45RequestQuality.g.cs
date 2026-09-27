@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The rendering quality to use. `very_high` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `high`, is priced higher, and supports at most 4 images per request.<br/>
+    /// The rendering quality to use. `very_high` takes longer than `high`, is priced higher, and supports at most 4 images per request.<br/>
     /// Default Value: high
     /// </summary>
     public enum PreciseEditImageIdeogram45RequestQuality
