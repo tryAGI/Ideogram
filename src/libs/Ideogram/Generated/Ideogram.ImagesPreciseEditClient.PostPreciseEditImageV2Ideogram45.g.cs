@@ -1003,7 +1003,7 @@ namespace Ideogram
         /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
         /// </param>
         /// <param name="quality">
-        /// The rendering quality to use. `very_high` renders multiple candidate edits internally and returns the one that best applies the instruction; it takes longer than `high`, is priced higher, and supports at most 4 images per request.<br/>
+        /// The rendering quality to use. `very_high` takes longer than `high`, is priced higher, and supports at most 4 images per request.<br/>
         /// Default Value: high
         /// </param>
         /// <param name="seed">

@@ -172,7 +172,7 @@ namespace Ideogram
         /// Example: 2048x2048
         /// </param>
         /// <param name="quality">
-        /// The rendering quality to use. Higher quality renders take longer.<br/>
+        /// The rendering quality to use. Higher quality renders take longer. `very_high` requires source images and an explicit `size` or `size: source`, supports at most 4 images per request, takes longer than `high`, and is priced higher.<br/>
         /// Default Value: high
         /// </param>
         /// <param name="seed">
