@@ -77,25 +77,25 @@ namespace Ideogram.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageObjectWithoutPromptOrSeed?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ImageWithoutPromptOrSeed!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickImageWithoutPromptOrSeed(), typeInfo);
             }
             else if (value.IsImageGeneration)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageGenerationObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageGenerationObject?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ImageGenerationObject).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.ImageGeneration!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickImageGeneration(), typeInfo);
             }
             else if (value.IsVideoGeneration)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.VideoObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.VideoObject?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.VideoObject).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.VideoGeneration!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickVideoGeneration(), typeInfo);
             }
             else if (value.IsLayerizedImage)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.LayerizedImageObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.LayerizedImageObject?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.LayerizedImageObject).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.LayerizedImage!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickLayerizedImage(), typeInfo);
             }
         }
     }

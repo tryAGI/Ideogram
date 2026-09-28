@@ -47,8 +47,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageObjectWithoutPromptOrSeed PickImageWithoutPromptOrSeed() => IsImageWithoutPromptOrSeed
-            ? ImageWithoutPromptOrSeed!
+        public global::Ideogram.ImageObjectWithoutPromptOrSeed PickImageWithoutPromptOrSeed() => ImageWithoutPromptOrSeed is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ImageWithoutPromptOrSeed' but the value was {ToString()}.");
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationObject PickImageGeneration() => IsImageGeneration
-            ? ImageGeneration!
+        public global::Ideogram.ImageGenerationObject PickImageGeneration() => ImageGeneration is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ImageGeneration' but the value was {ToString()}.");
 
         /// <summary>
@@ -122,8 +122,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.VideoObject PickVideoGeneration() => IsVideoGeneration
-            ? VideoGeneration!
+        public global::Ideogram.VideoObject PickVideoGeneration() => VideoGeneration is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'VideoGeneration' but the value was {ToString()}.");
 
         /// <summary>
@@ -161,8 +161,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayerizedImageObject PickLayerizedImage() => IsLayerizedImage
-            ? LayerizedImage!
+        public global::Ideogram.LayerizedImageObject PickLayerizedImage() => LayerizedImage is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'LayerizedImage' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -318,21 +318,21 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsImageWithoutPromptOrSeed && imageWithoutPromptOrSeed != null)
+            if (ImageWithoutPromptOrSeed is { } __value0 && imageWithoutPromptOrSeed != null)
             {
-                return imageWithoutPromptOrSeed(ImageWithoutPromptOrSeed!);
+                return imageWithoutPromptOrSeed(__value0);
             }
-            else if (IsImageGeneration && imageGeneration != null)
+            else if (ImageGeneration is { } __value1 && imageGeneration != null)
             {
-                return imageGeneration(ImageGeneration!);
+                return imageGeneration(__value1);
             }
-            else if (IsVideoGeneration && videoGeneration != null)
+            else if (VideoGeneration is { } __value2 && videoGeneration != null)
             {
-                return videoGeneration(VideoGeneration!);
+                return videoGeneration(__value2);
             }
-            else if (IsLayerizedImage && layerizedImage != null)
+            else if (LayerizedImage is { } __value3 && layerizedImage != null)
             {
-                return layerizedImage(LayerizedImage!);
+                return layerizedImage(__value3);
             }
 
             return default(TResult);
@@ -356,21 +356,21 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsImageWithoutPromptOrSeed)
+            if (ImageWithoutPromptOrSeed is { } __value0)
             {
-                imageWithoutPromptOrSeed?.Invoke(ImageWithoutPromptOrSeed!);
+                imageWithoutPromptOrSeed?.Invoke(__value0);
             }
-            else if (IsImageGeneration)
+            else if (ImageGeneration is { } __value1)
             {
-                imageGeneration?.Invoke(ImageGeneration!);
+                imageGeneration?.Invoke(__value1);
             }
-            else if (IsVideoGeneration)
+            else if (VideoGeneration is { } __value2)
             {
-                videoGeneration?.Invoke(VideoGeneration!);
+                videoGeneration?.Invoke(__value2);
             }
-            else if (IsLayerizedImage)
+            else if (LayerizedImage is { } __value3)
             {
-                layerizedImage?.Invoke(LayerizedImage!);
+                layerizedImage?.Invoke(__value3);
             }
         }
 
@@ -389,21 +389,21 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsImageWithoutPromptOrSeed)
+            if (ImageWithoutPromptOrSeed is { } __value0)
             {
-                imageWithoutPromptOrSeed?.Invoke(ImageWithoutPromptOrSeed!);
+                imageWithoutPromptOrSeed?.Invoke(__value0);
             }
-            else if (IsImageGeneration)
+            else if (ImageGeneration is { } __value1)
             {
-                imageGeneration?.Invoke(ImageGeneration!);
+                imageGeneration?.Invoke(__value1);
             }
-            else if (IsVideoGeneration)
+            else if (VideoGeneration is { } __value2)
             {
-                videoGeneration?.Invoke(VideoGeneration!);
+                videoGeneration?.Invoke(__value2);
             }
-            else if (IsLayerizedImage)
+            else if (LayerizedImage is { } __value3)
             {
-                layerizedImage?.Invoke(LayerizedImage!);
+                layerizedImage?.Invoke(__value3);
             }
         }
 

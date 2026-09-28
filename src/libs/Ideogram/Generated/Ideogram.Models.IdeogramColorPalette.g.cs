@@ -42,8 +42,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.IdeogramColorPaletteWithPresetName PickIdeogramColorPaletteWithPresetName() => IsIdeogramColorPaletteWithPresetName
-            ? IdeogramColorPaletteWithPresetName!
+        public global::Ideogram.IdeogramColorPaletteWithPresetName PickIdeogramColorPaletteWithPresetName() => IdeogramColorPaletteWithPresetName is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'IdeogramColorPaletteWithPresetName' but the value was {ToString()}.");
 
         /// <summary>
@@ -79,8 +79,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ColorPaletteWithMembers PickColorPaletteWithMembers() => IsColorPaletteWithMembers
-            ? ColorPaletteWithMembers!
+        public global::Ideogram.ColorPaletteWithMembers PickColorPaletteWithMembers() => ColorPaletteWithMembers is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'ColorPaletteWithMembers' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -177,13 +177,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsIdeogramColorPaletteWithPresetName && ideogramColorPaletteWithPresetName != null)
+            if (IdeogramColorPaletteWithPresetName is { } __value0 && ideogramColorPaletteWithPresetName != null)
             {
-                return ideogramColorPaletteWithPresetName(IdeogramColorPaletteWithPresetName!);
+                return ideogramColorPaletteWithPresetName(__value0);
             }
-            else if (IsColorPaletteWithMembers && colorPaletteWithMembers != null)
+            else if (ColorPaletteWithMembers is { } __value1 && colorPaletteWithMembers != null)
             {
-                return colorPaletteWithMembers(ColorPaletteWithMembers!);
+                return colorPaletteWithMembers(__value1);
             }
 
             return default(TResult);
@@ -203,13 +203,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsIdeogramColorPaletteWithPresetName)
+            if (IdeogramColorPaletteWithPresetName is { } __value0)
             {
-                ideogramColorPaletteWithPresetName?.Invoke(IdeogramColorPaletteWithPresetName!);
+                ideogramColorPaletteWithPresetName?.Invoke(__value0);
             }
-            else if (IsColorPaletteWithMembers)
+            else if (ColorPaletteWithMembers is { } __value1)
             {
-                colorPaletteWithMembers?.Invoke(ColorPaletteWithMembers!);
+                colorPaletteWithMembers?.Invoke(__value1);
             }
         }
 
@@ -226,13 +226,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsIdeogramColorPaletteWithPresetName)
+            if (IdeogramColorPaletteWithPresetName is { } __value0)
             {
-                ideogramColorPaletteWithPresetName?.Invoke(IdeogramColorPaletteWithPresetName!);
+                ideogramColorPaletteWithPresetName?.Invoke(__value0);
             }
-            else if (IsColorPaletteWithMembers)
+            else if (ColorPaletteWithMembers is { } __value1)
             {
-                colorPaletteWithMembers?.Invoke(ColorPaletteWithMembers!);
+                colorPaletteWithMembers?.Invoke(__value1);
             }
         }
 

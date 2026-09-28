@@ -49,8 +49,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.LayeredImageGenerationResponseV3 PickLayered() => IsLayered
-            ? Layered!
+        public global::Ideogram.LayeredImageGenerationResponseV3 PickLayered() => Layered is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Layered' but the value was {ToString()}.");
 
         /// <summary>
@@ -87,8 +87,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.ImageGenerationResponseV4Layout PickUrl() => IsUrl
-            ? Url!
+        public global::Ideogram.ImageGenerationResponseV4Layout PickUrl() => Url is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Url' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -188,13 +188,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsLayered && layered != null)
+            if (Layered is { } __value0 && layered != null)
             {
-                return layered(Layered!);
+                return layered(__value0);
             }
-            else if (IsUrl && url != null)
+            else if (Url is { } __value1 && url != null)
             {
-                return url(Url!);
+                return url(__value1);
             }
 
             return default(TResult);
@@ -214,13 +214,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsLayered)
+            if (Layered is { } __value0)
             {
-                layered?.Invoke(Layered!);
+                layered?.Invoke(__value0);
             }
-            else if (IsUrl)
+            else if (Url is { } __value1)
             {
-                url?.Invoke(Url!);
+                url?.Invoke(__value1);
             }
         }
 
@@ -237,13 +237,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsLayered)
+            if (Layered is { } __value0)
             {
-                layered?.Invoke(Layered!);
+                layered?.Invoke(__value0);
             }
-            else if (IsUrl)
+            else if (Url is { } __value1)
             {
-                url?.Invoke(Url!);
+                url?.Invoke(__value1);
             }
         }
 
