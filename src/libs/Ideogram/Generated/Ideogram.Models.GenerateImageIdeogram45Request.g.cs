@@ -86,8 +86,7 @@ namespace Ideogram
         public string? Size { get; set; }
 
         /// <summary>
-        /// The rendering quality to use. Higher quality renders take longer. `very_low` requires source images and is the fastest and cheapest. `very_high` and `ultra` require source images. `very_high` supports at most 4 images per request, takes longer than `high`, and is priced higher. `ultra` returns one image per request, takes longer than `very_high`, and is priced higher again.<br/>
-        /// Default Value: high
+        /// The rendering quality to use. Higher quality renders take longer. With source images it defaults to `medium`, and `high` takes longer and is priced higher; `very_low` requires source images and is the fastest and cheapest. Without source images it defaults to `high`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestQualityJsonConverter))]
@@ -209,8 +208,7 @@ namespace Ideogram
         /// Example: 2048x2048
         /// </param>
         /// <param name="quality">
-        /// The rendering quality to use. Higher quality renders take longer. `very_low` requires source images and is the fastest and cheapest. `very_high` and `ultra` require source images. `very_high` supports at most 4 images per request, takes longer than `high`, and is priced higher. `ultra` returns one image per request, takes longer than `very_high`, and is priced higher again.<br/>
-        /// Default Value: high
+        /// The rendering quality to use. Higher quality renders take longer. With source images it defaults to `medium`, and `high` takes longer and is priced higher; `very_low` requires source images and is the fastest and cheapest. Without source images it defaults to `high`.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>

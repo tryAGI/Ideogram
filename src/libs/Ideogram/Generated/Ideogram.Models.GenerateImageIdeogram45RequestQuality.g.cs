@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The rendering quality to use. Higher quality renders take longer. `very_low` requires source images and is the fastest and cheapest. `very_high` and `ultra` require source images. `very_high` supports at most 4 images per request, takes longer than `high`, and is priced higher. `ultra` returns one image per request, takes longer than `very_high`, and is priced higher again.<br/>
-    /// Default Value: high
+    /// The rendering quality to use. Higher quality renders take longer. With source images it defaults to `medium`, and `high` takes longer and is priced higher; `very_low` requires source images and is the fastest and cheapest. Without source images it defaults to `high`.
     /// </summary>
     public enum GenerateImageIdeogram45RequestQuality
     {
@@ -21,14 +20,6 @@ namespace Ideogram
         ///
         /// </summary>
         Medium,
-        /// <summary>
-        ///
-        /// </summary>
-        Ultra,
-        /// <summary>
-        ///
-        /// </summary>
-        VeryHigh,
         /// <summary>
         ///
         /// </summary>
@@ -50,8 +41,6 @@ namespace Ideogram
                 GenerateImageIdeogram45RequestQuality.High => "high",
                 GenerateImageIdeogram45RequestQuality.Low => "low",
                 GenerateImageIdeogram45RequestQuality.Medium => "medium",
-                GenerateImageIdeogram45RequestQuality.Ultra => "ultra",
-                GenerateImageIdeogram45RequestQuality.VeryHigh => "very_high",
                 GenerateImageIdeogram45RequestQuality.VeryLow => "very_low",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -66,8 +55,6 @@ namespace Ideogram
                 "high" => GenerateImageIdeogram45RequestQuality.High,
                 "low" => GenerateImageIdeogram45RequestQuality.Low,
                 "medium" => GenerateImageIdeogram45RequestQuality.Medium,
-                "ultra" => GenerateImageIdeogram45RequestQuality.Ultra,
-                "very_high" => GenerateImageIdeogram45RequestQuality.VeryHigh,
                 "very_low" => GenerateImageIdeogram45RequestQuality.VeryLow,
                 _ => null,
             };
