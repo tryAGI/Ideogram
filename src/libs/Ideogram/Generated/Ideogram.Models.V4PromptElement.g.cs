@@ -49,8 +49,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4ObjPromptElement PickObj() => IsObj
-            ? Obj!
+        public global::Ideogram.V4ObjPromptElement PickObj() => Obj is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Obj' but the value was {ToString()}.");
 
         /// <summary>
@@ -86,8 +86,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4TextPromptElement PickText() => IsText
-            ? Text!
+        public global::Ideogram.V4TextPromptElement PickText() => Text is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Text' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -187,13 +187,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsObj && obj != null)
+            if (Obj is { } __value0 && obj != null)
             {
-                return obj(Obj!);
+                return obj(__value0);
             }
-            else if (IsText && text != null)
+            else if (Text is { } __value1 && text != null)
             {
-                return text(Text!);
+                return text(__value1);
             }
 
             return default(TResult);
@@ -213,13 +213,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsObj)
+            if (Obj is { } __value0)
             {
-                obj?.Invoke(Obj!);
+                obj?.Invoke(__value0);
             }
-            else if (IsText)
+            else if (Text is { } __value1)
             {
-                text?.Invoke(Text!);
+                text?.Invoke(__value1);
             }
         }
 
@@ -236,13 +236,13 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsObj)
+            if (Obj is { } __value0)
             {
-                obj?.Invoke(Obj!);
+                obj?.Invoke(__value0);
             }
-            else if (IsText)
+            else if (Text is { } __value1)
             {
-                text?.Invoke(Text!);
+                text?.Invoke(__value1);
             }
         }
 

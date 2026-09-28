@@ -59,13 +59,13 @@ namespace Ideogram.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4ObjPromptElement), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4ObjPromptElement?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V4ObjPromptElement).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Obj!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickObj(), typeInfo);
             }
             else if (value.IsText)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4TextPromptElement), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4TextPromptElement?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V4TextPromptElement).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Text!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickText(), typeInfo);
             }
         }
     }

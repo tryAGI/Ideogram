@@ -59,13 +59,13 @@ namespace Ideogram.JsonConverters
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.LayeredImageGenerationResponseV3), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.LayeredImageGenerationResponseV3?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.LayeredImageGenerationResponseV3).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Layered!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickLayered(), typeInfo);
             }
             else if (value.IsUrl)
             {
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageGenerationResponseV4Layout), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageGenerationResponseV4Layout?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ImageGenerationResponseV4Layout).Name}");
-                global::System.Text.Json.JsonSerializer.Serialize(writer, value.Url!, typeInfo);
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickUrl(), typeInfo);
             }
         }
     }

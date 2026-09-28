@@ -254,7 +254,7 @@ namespace Ideogram
                 PreparePostGenerateImageV4CfgDistilledAsyncRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
-                    webhookUrl: webhookUrl!,
+                    webhookUrl: webhookUrl,
                     request: request);
 
                 return __httpRequest;
@@ -277,7 +277,7 @@ namespace Ideogram
                                 pathTemplate: "\"/v1/ideogram-v4-cfg-distilled/async/generate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: null,
                                 clientOptions: Options,
@@ -311,7 +311,7 @@ namespace Ideogram
                                 pathTemplate: "\"/v1/ideogram-v4-cfg-distilled/async/generate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: null,
                                 exception: __exception,
                                 clientOptions: Options,
@@ -352,7 +352,7 @@ namespace Ideogram
                                 pathTemplate: "\"/v1/ideogram-v4-cfg-distilled/async/generate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -400,7 +400,7 @@ namespace Ideogram
                                 pathTemplate: "\"/v1/ideogram-v4-cfg-distilled/async/generate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,
@@ -422,7 +422,7 @@ namespace Ideogram
                                 pathTemplate: "\"/v1/ideogram-v4-cfg-distilled/async/generate\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
-                                request: __httpRequest!,
+                                request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
                                 response: __response,
                                 exception: null,
                                 clientOptions: Options,

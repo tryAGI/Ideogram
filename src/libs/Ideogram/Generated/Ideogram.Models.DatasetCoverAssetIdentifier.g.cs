@@ -44,8 +44,8 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.AssetIdentifier PickAssetIdentifier() => IsAssetIdentifier
-            ? AssetIdentifier!
+        public global::Ideogram.AssetIdentifier PickAssetIdentifier() => AssetIdentifier is { } value
+            ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'AssetIdentifier' but the value was {ToString()}.");
         /// <summary>
         ///
@@ -104,9 +104,9 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsAssetIdentifier && assetIdentifier != null)
+            if (AssetIdentifier is { } __value0 && assetIdentifier != null)
             {
-                return assetIdentifier(AssetIdentifier!);
+                return assetIdentifier(__value0);
             }
 
             return default(TResult);
@@ -124,9 +124,9 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsAssetIdentifier)
+            if (AssetIdentifier is { } __value0)
             {
-                assetIdentifier?.Invoke(AssetIdentifier!);
+                assetIdentifier?.Invoke(__value0);
             }
         }
 
@@ -142,9 +142,9 @@ namespace Ideogram
                 Validate();
             }
 
-            if (IsAssetIdentifier)
+            if (AssetIdentifier is { } __value0)
             {
-                assetIdentifier?.Invoke(AssetIdentifier!);
+                assetIdentifier?.Invoke(__value0);
             }
         }
 
