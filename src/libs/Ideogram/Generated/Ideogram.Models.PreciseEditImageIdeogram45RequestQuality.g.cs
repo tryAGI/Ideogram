@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The rendering quality to use. `very_high` takes longer than `high` and is priced higher.<br/>
-    /// Default Value: high
+    /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
+    /// Default Value: medium
     /// </summary>
     public enum PreciseEditImageIdeogram45RequestQuality
     {
@@ -24,7 +24,7 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        VeryHigh,
+        VeryLow,
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ namespace Ideogram
                 PreciseEditImageIdeogram45RequestQuality.High => "high",
                 PreciseEditImageIdeogram45RequestQuality.Low => "low",
                 PreciseEditImageIdeogram45RequestQuality.Medium => "medium",
-                PreciseEditImageIdeogram45RequestQuality.VeryHigh => "very_high",
+                PreciseEditImageIdeogram45RequestQuality.VeryLow => "very_low",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -56,7 +56,7 @@ namespace Ideogram
                 "high" => PreciseEditImageIdeogram45RequestQuality.High,
                 "low" => PreciseEditImageIdeogram45RequestQuality.Low,
                 "medium" => PreciseEditImageIdeogram45RequestQuality.Medium,
-                "very_high" => PreciseEditImageIdeogram45RequestQuality.VeryHigh,
+                "very_low" => PreciseEditImageIdeogram45RequestQuality.VeryLow,
                 _ => null,
             };
         }

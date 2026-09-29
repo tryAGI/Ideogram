@@ -1159,9 +1159,9 @@
       "Order": 106,
       "Title": "Edit an image with Ideogram 4.5, keeping the source\u0027s exact geometry",
       "Slug": "post-precise-edit-image-v2-ideogram45",
-      "Description": "Edit an image with Ideogram 4.5, returning output at that image\u0027s exact\nwidth and height. An image too large for the model is scaled down to\nfit while keeping its exact proportion, and one whose aspect ratio is\noutside 1:6 to 6:1 is rejected \u2014 this endpoint never reshapes, so there\nis no size to reshape it to. Unlike\n\u0060POST /v2/image/generate/ideogram-4-5\u0060, this endpoint takes no \u0060size\u0060:\nthe output always matches the image being edited, so the edit drops\nback into whatever it came from without reframing.\n\nPixels the edit did not meaningfully change are restored exactly from\nthe image being edited, with the edited region blended smoothly into\nits surroundings \u2014 untouched areas stay identical across repeated\nedits.\n\nSupply the image to edit as an \u0060image_asset_identifier\u0060 reference or as\nraw \u0060image\u0060 bytes (multipart requests only); if both are supplied, the\nreference wins and the bytes are ignored. Add up to four more images\nvia \u0060reference_image_asset_identifiers\u0060 or \u0060reference_images\u0060 to guide\nthe edit \u2014 those are never edited themselves.\n\nSupply a \u0060mask\u0060 to confine the edit to part of the image being edited.\nThe mask is optional \u2014 without one the prompt is applied to the whole\nimage. Masks are read as an additional reference image, so a masked\nrequest may carry at most three \u0060reference_images\u0060.\n\nThe \u0060prompt\u0060 is the edit instruction. It accepts either natural\nlanguage or a structured JSON prompt; the server detects which was\nsupplied. A natural-language instruction is automatically rewritten\ninto the model\u0027s structured edit contract, while a prompt that is\nalready valid structured JSON is consumed directly.\n\nBy default the request blocks until the images are ready and returns\nthem in \u0060data\u0060. Set \u0060async\u0060 to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using the returned\n\u0060generation_id\u0060.\n\nSupplying a \u0060webhook_url\u0060 makes the request asynchronous whatever\n\u0060async\u0060 says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
+      "Description": "Edit an image with Ideogram 4.5, returning output at that image\u0027s exact\nwidth and height. An image too large for the model is scaled down to\nfit while keeping its exact proportion, and one whose aspect ratio is\noutside 1:6 to 6:1 is rejected \u2014 this endpoint never reshapes, so there\nis no size to reshape it to. Unlike\n\u0060POST /v2/image/generate/ideogram-4-5\u0060, this endpoint takes no \u0060size\u0060:\nthe output always matches the image being edited, so the edit drops\nback into whatever it came from without reframing.\n\nWhen the output is delivered at the image\u0027s own size (every image the\nmodel can hold), pixels the edit did not meaningfully change are\nrestored exactly from the image being edited, with the edited region\nblended smoothly into its surroundings \u2014 untouched areas stay\nidentical across repeated edits. An image too large for the model is\ndelivered at the scaled-down size, where every pixel is resampled, so\nit is returned as rendered.\n\nSupply the image to edit as an \u0060image_asset_identifier\u0060 reference or as\nraw \u0060image\u0060 bytes (multipart requests only); if both are supplied, the\nreference wins and the bytes are ignored. Add up to four more images\nvia \u0060reference_image_asset_identifiers\u0060 or \u0060reference_images\u0060 to guide\nthe edit \u2014 those are never edited themselves.\n\nSupply a \u0060mask\u0060 to confine the edit to part of the image being edited.\nThe mask is optional \u2014 without one the prompt is applied to the whole\nimage. Masks are read as an additional reference image, so a masked\nrequest may carry at most three \u0060reference_images\u0060.\n\nThe \u0060prompt\u0060 is the edit instruction. It accepts either natural\nlanguage or a structured JSON prompt; the server detects which was\nsupplied. A natural-language instruction is automatically rewritten\ninto the model\u0027s structured edit contract, while a prompt that is\nalready valid structured JSON is consumed directly.\n\nBy default the request blocks until the images are ready and returns\nthem in \u0060data\u0060. Set \u0060async\u0060 to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using the returned\n\u0060generation_id\u0060.\n\nSupplying a \u0060webhook_url\u0060 makes the request asynchronous whatever\n\u0060async\u0060 says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
       "Language": "http",
-      "Code": "### Edit an image with Ideogram 4.5, keeping the source\u0027s exact geometry\n# @name post_precise_edit_image_v2_ideogram45\nPOST {{host}}/v2/image/precise-edit/ideogram-4-5?dry_run=false\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data; boundary=AutoSDKBoundary\nAccept: application/json\n\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022prompt\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022image_asset_identifier\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022image\u0022; filename=\u0022image.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./image.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022reference_image_asset_identifiers\u0022\n\n{\u0022asset_type\u0022:\u0022RESPONSE\u0022,\u0022asset_id\u0022:\u00227uS_VESkRI6O3-sVgHQp_A\u0022}\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022reference_images\u0022; filename=\u0022reference_images.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./reference_images.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022mask\u0022; filename=\u0022mask.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./mask.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022quality\u0022\n\nhigh\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022seed\u0022\n\n12345\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022num_images\u0022\n\n1\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022enable_copyright_detection\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022async\u0022\n\nfalse\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022webhook_url\u0022\n\nhttps://api.example.com/webhooks/ideogram\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022private\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022target_collection_id\u0022\n\nstring\n--AutoSDKBoundary--\n\n## Responses\n# 200\n# Description: The edited images (synchronous requests), or an acknowledgement to poll with \u0060GET /v1/generations/{generation_id}\u0060 (\u0060async\u0060 requests).\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Unauthorized.\n# 402\n# Description: Insufficient credits or quota.\n# Content-Type: application/json\n# 422\n# Description: The prompt did not pass safety checks.\n# 429\n# Description: Too many requests.\n# Content-Type: application/json\n# 500\n# Description: Internal server error.\n# 503\n# Description: The endpoint is temporarily unavailable.",
+      "Code": "### Edit an image with Ideogram 4.5, keeping the source\u0027s exact geometry\n# @name post_precise_edit_image_v2_ideogram45\nPOST {{host}}/v2/image/precise-edit/ideogram-4-5?dry_run=false\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data; boundary=AutoSDKBoundary\nAccept: application/json\n\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022prompt\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022image_asset_identifier\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022image\u0022; filename=\u0022image.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./image.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022reference_image_asset_identifiers\u0022\n\n{\u0022asset_type\u0022:\u0022RESPONSE\u0022,\u0022asset_id\u0022:\u00227uS_VESkRI6O3-sVgHQp_A\u0022}\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022reference_images\u0022; filename=\u0022reference_images.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./reference_images.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022mask\u0022; filename=\u0022mask.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./mask.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022quality\u0022\n\nmedium\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022seed\u0022\n\n12345\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022num_images\u0022\n\n1\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022enable_copyright_detection\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022async\u0022\n\nfalse\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022webhook_url\u0022\n\nhttps://api.example.com/webhooks/ideogram\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022private\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022target_collection_id\u0022\n\nstring\n--AutoSDKBoundary--\n\n## Responses\n# 200\n# Description: The edited images (synchronous requests), or an acknowledgement to poll with \u0060GET /v1/generations/{generation_id}\u0060 (\u0060async\u0060 requests).\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Unauthorized.\n# 402\n# Description: Insufficient credits or quota.\n# Content-Type: application/json\n# 422\n# Description: The prompt did not pass safety checks.\n# 429\n# Description: Too many requests.\n# Content-Type: application/json\n# 500\n# Description: Internal server error.\n# 503\n# Description: The endpoint is temporarily unavailable.",
       "Format": "http",
       "OperationId": "post_precise_edit_image_v2_ideogram45",
       "Setup": null
@@ -1619,17 +1619,6 @@
     },
     {
       "Order": 148,
-      "Title": "Reactivates a subscription by attempting to re-enable Metronome billing.",
-      "Slug": "reactivate-subscription",
-      "Description": "Generated from OpenAPI examples.",
-      "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\nvar response = await client.Manage.ReactivateSubscriptionAsync();\n\n// Example response:\n// {\n//   \u0022recharge_settings\u0022: {\n//     \u0022is_active\u0022: true\n//   }\n// }",
-      "Format": "sdk",
-      "OperationId": "reactivate_subscription",
-      "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
-    },
-    {
-      "Order": 149,
       "Title": "Remove members from a specific organization",
       "Slug": "remove-organization-members",
       "Description": "Generated from OpenAPI examples.",
@@ -1640,7 +1629,7 @@
       "Setup": null
     },
     {
-      "Order": 150,
+      "Order": 149,
       "Title": "Resend a pending invite for an organization",
       "Slug": "resend-organization-invite",
       "Description": "Generated from OpenAPI examples.",
@@ -1651,7 +1640,7 @@
       "Setup": null
     },
     {
-      "Order": 151,
+      "Order": 150,
       "Title": "Update a single field on an organization\u0027s API properties.",
       "Slug": "update-organization-api-properties",
       "Description": "Lets an organization owner toggle API-only settings such as\ncopyright_detection_enabled. Updates only the fields explicitly present\nin the request body; absent fields are left unchanged.",
@@ -1662,7 +1651,7 @@
       "Setup": null
     },
     {
-      "Order": 152,
+      "Order": 151,
       "Title": "Update an API key\u0027s user-supplied label.",
       "Slug": "update-single-api-key",
       "Description": "Generated from OpenAPI examples.",
@@ -1673,7 +1662,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 153,
+      "Order": 152,
       "Title": "Get stale mini-app preview entries",
       "Slug": "get-stale-preview-mini-apps",
       "Description": "Returns preview ids whose most recent successful publish is older than the cutoff. This read-only endpoint does not delete preview entries.",
@@ -1684,7 +1673,7 @@
       "Setup": null
     },
     {
-      "Order": 154,
+      "Order": 153,
       "Title": "Publish a mini-app catalog entry",
       "Slug": "publish-mini-app",
       "Description": "Publishes a mini-app\u0027s catalog entry. Called by the mini-apps deploy pipeline after a deploy to register or refresh a single app, keyed by its unique slug. Re-publishing an existing app refreshes the deploy-managed fields (label, description, embed mode, scopes, image-input support, deployment details, and website) while leaving administrator-managed settings and artwork untouched. Artwork from the request is used only when creating a new app.",
@@ -1695,7 +1684,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 155,
+      "Order": 154,
       "Title": "Publish a mini-app preview entry",
       "Slug": "publish-preview-mini-app",
       "Description": "Publishes a mini-app preview entry. Called by the mini-apps preview deploy pipeline to register a throwaway preview deploy, keyed by its unique preview id. Re-publishing an existing preview id refreshes every deploy-managed field. Preview entries are independent from the main catalog: they carry no slug, owner, or membership gating, and anyone with the preview link can access the app.",
@@ -1706,7 +1695,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 156,
+      "Order": 155,
       "Title": "Unpublish a mini-app preview entry",
       "Slug": "unpublish-preview-mini-app",
       "Description": "Deletes a mini-app preview entry by its preview id. Repeated requests succeed when the entry is already absent, so preview teardown can retry safely.",
@@ -1717,7 +1706,7 @@
       "Setup": null
     },
     {
-      "Order": 157,
+      "Order": 156,
       "Title": "Get model details",
       "Slug": "get-custom-model",
       "Description": "Get detailed information about a specific custom model. The user must either own the model or the model must be shared with the user\u0027s organization via the model registry. Returns 404 if the model is not found or not accessible.",
@@ -1728,7 +1717,7 @@
       "Setup": null
     },
     {
-      "Order": 158,
+      "Order": 157,
       "Title": "List models",
       "Slug": "list-custom-models",
       "Description": "Lists custom models for the authenticated user. Use the \u0060scope\u0060 parameter to control which models are returned. If omitted, returns both owned models and models shared with the user\u0027s organization via the model registry. \u0060owned\u0060 returns only models created by the user. \u0060shared\u0060 returns only models shared via the model registry, excluding the user\u0027s own models.",
@@ -1739,7 +1728,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 159,
+      "Order": 158,
       "Title": "Train a custom Ideogram v3 model",
       "Slug": "train-model-v3",
       "Description": "Start training a custom Ideogram v3 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.",
@@ -1750,7 +1739,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 160,
+      "Order": 159,
       "Title": "Train a custom Ideogram v3 model with advanced hyperparameters",
       "Slug": "train-model-v3-advanced",
       "Description": "Start training a custom Ideogram v3 model from a dataset with caller-supplied hyperparameters (training steps, LoRA rank, EMA decay, learning rate). All hyperparameters are optional and fall back to defaults when omitted. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.",
@@ -1761,7 +1750,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 161,
+      "Order": 160,
       "Title": "Train a custom Ideogram v4 model",
       "Slug": "train-model-v4",
       "Description": "Start training a custom Ideogram v4 model from a dataset using default hyperparameters. The dataset must contain at least 15 images and a maximum of 100 images.",
@@ -1772,7 +1761,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 162,
+      "Order": 161,
       "Title": "Train a custom Ideogram v4 model with advanced hyperparameters",
       "Slug": "train-model-v4-advanced",
       "Description": "Start training a custom Ideogram v4 model from a dataset with caller-supplied hyperparameters (training steps, LoRA rank, EMA decay, learning rate). All hyperparameters are optional and fall back to defaults when omitted. The dataset must contain at least 15 images and a maximum of 100 images. Returns the model ID and training status.",
@@ -1783,7 +1772,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 163,
+      "Order": 162,
       "Title": "Remove a masked object from an image, by asset id or by uploaded bytes",
       "Slug": "post-remove-object-from-v2-assets",
       "Description": "Remove a masked object from an image. For each of the source image and the\nmask, supply either an \u0060AssetIdentifier\u0060 reference (\u0060image_asset_identifier\u0060\n/ \u0060mask_asset_identifier\u0060) or the raw image bytes directly (\u0060image\u0060 / \u0060mask\u0060,\nmultipart requests only) \u2014 callers are never required to call\n\u0060POST /v2/assets\u0060 first. If both a reference and bytes are supplied for the\nsame input, the reference wins and the bytes are ignored.\n\nPoll for completion with \u0060GET /v1/generations/{generation_id}\u0060 using the\nreturned \u0060generation_id\u0060.\n\nThis is the \u0060/v2\u0060 capability-first shape; no \u0060model\u0060 or \u0060model_uri\u0060 field is\nexposed until a second backend exists.",
@@ -1794,7 +1783,7 @@
       "Setup": null
     },
     {
-      "Order": 164,
+      "Order": 163,
       "Title": "Generate Magic Prompt",
       "Slug": "post-magic-prompt",
       "Description": "Transforms basic prompts into a magic prompt. Internal use only (feature flagged). TODO: update description if enabled externally.",
@@ -1805,7 +1794,7 @@
       "Setup": null
     },
     {
-      "Order": 165,
+      "Order": 164,
       "Title": "Generate a Magic Prompt with Ideogram 4.0",
       "Slug": "post-magic-prompt-v4",
       "Description": "Transforms a basic prompt into an enhanced Ideogram 4.0 magic prompt.\nThe magic prompt model version is fixed; callers cannot select it.\nWhen \u0060aspect_ratio\u0060 is \u0060AUTO\u0060 (the default), the model selects the most\nsuitable aspect ratio for the prompt and returns it in the response.",
@@ -1816,7 +1805,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 166,
+      "Order": 165,
       "Title": "Check whether content was created by Ideogram",
       "Slug": "post-provenance-verify",
       "Description": "Checks image content for an Ideogram provenance manifest (C2PA Content\nCredentials) and returns the disclosure it carries: the provider name,\nthe generating system and its version, the creation time, and the\ncontent\u0027s unique identifier.\n\nUpload the image to verify as the \u0060content\u0060 part.\n\nThis endpoint is public and unauthenticated \u2014 no API key is required.\nSubmitted content is analyzed in memory and never stored.",
@@ -1827,7 +1816,7 @@
       "Setup": null
     },
     {
-      "Order": 167,
+      "Order": 166,
       "Title": "Remove an image background",
       "Slug": "post-remove-background-v2",
       "Description": "Remove the background from one image and return a foreground PNG with\ntransparency. Supply exactly one source: raw \u0060image\u0060 bytes in a\nmultipart request, or an existing \u0060image_asset_identifier\u0060 in JSON or\nmultipart form.\n\nBy default the request blocks until the foreground image is ready and\nreturns it in \u0060data\u0060. Set \u0060async\u0060 to true to return immediately after\nthe request is accepted, then poll \u0060GET /v1/generations/{generation_id}\u0060.\n\nAPI-key requests use the organization bound to the key. Firebase Bearer\nrequests use their selected organization, and Mini App context tokens\nremain bound to the organization in the token. When \u0060private\u0060 is omitted,\nBearer and Mini App callers inherit their plan\u0027s private-generation\ndefault; Enterprise generations are always private.",
@@ -1838,7 +1827,7 @@
       "Setup": null
     },
     {
-      "Order": 168,
+      "Order": 167,
       "Title": "Replace an image background",
       "Slug": "post-replace-background",
       "Description": "Replaces the background of one image from a text prompt while preserving\nthe foreground subject. The foreground mask is detected automatically;\ncallers do not provide a mask.\n\nThe request is processed asynchronously. Poll\n\u0060GET /v1/generations/{generation_id}\u0060 with the returned \u0060generation_id\u0060\nuntil the generation is completed or failed.\n\nSupply exactly one source transport: an existing \u0060AssetIdentifier\u0060 in\n\u0060image_asset_identifier\u0060, or raw \u0060image\u0060 bytes in a multipart request.\nSupplying both or neither is rejected with a 400.",
@@ -1849,7 +1838,7 @@
       "Setup": null
     },
     {
-      "Order": 169,
+      "Order": 168,
       "Title": "Replace an image background with Ideogram 3.0",
       "Slug": "post-replace-background-ideogram-v3",
       "Description": "Replaces the background of one image from a text prompt while preserving\nthe foreground subject, generated by Ideogram 3.0 inpainting. The\nforeground mask is detected automatically; callers do not provide a mask.\n\nThe request is processed asynchronously. Poll\n\u0060GET /v1/generations/{generation_id}\u0060 with the returned \u0060generation_id\u0060\nuntil the generation is completed or failed.\n\nSupply exactly one source transport: an existing \u0060AssetIdentifier\u0060 in\n\u0060image_asset_identifier\u0060, or raw \u0060image\u0060 bytes in a multipart request.\nSupplying both or neither is rejected with a 400. The source\u0027s longer\nside must be at most 3 times its shorter side; wider aspect ratios are\nrejected with a 400.",
@@ -1860,7 +1849,7 @@
       "Setup": null
     },
     {
-      "Order": 170,
+      "Order": 169,
       "Title": "Upscale an image",
       "Slug": "post-upscale",
       "Description": "Upscale one image to 2x, 4x, or 8x its original resolution, up to a\nmaximum output of 8192px per side. Ideogram selects the best upscaling\nmodel for each request, and the selection may change over time; callers\nnever choose a model.\n\nSupply the source either as an \u0060image_asset_identifier\u0060 reference (an\nimage already stored with Ideogram) or as raw \u0060image\u0060 bytes (multipart\nrequests only). Provide exactly one of the two forms; supplying both,\nor neither, is rejected with a 400. Uploaded bytes are used for this\nrequest only and are not stored as an asset; upscales of a referenced\nasset keep a visible link to their source image.\n\nUpscaling takes no prompt: the source image is enhanced as-is.\n\nBy default the request blocks until the upscaled image is ready and\nreturns it in \u0060data\u0060. Set \u0060async\u0060 to true to return immediately after\nthe request is accepted, then poll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using the returned\n\u0060generation_id\u0060.\n\nSupplying a \u0060webhook_url\u0060 makes the request asynchronous whatever\n\u0060async\u0060 says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.",
@@ -1871,7 +1860,7 @@
       "Setup": null
     },
     {
-      "Order": 171,
+      "Order": 170,
       "Title": "Produce a video from reference media with MiniMax H3",
       "Slug": "post-edit-video-minimax-h3-reference-to-video",
       "Description": "Produce a video from a text prompt and reference media with MiniMax H3.\n\nThe prompt addresses the references by position: the first reference\nimage is \u0060Image 1\u0060, the second \u0060Image 2\u0060, the first reference video is\n\u0060Video 1\u0060, and the first reference audio is \u0060Audio 1\u0060. Supply reference\nimages either as\n\u0060reference_image_asset_identifiers\u0060 (images already stored with\nIdeogram) or as raw \u0060reference_images\u0060 bytes (multipart requests only);\nsupplying both is rejected, and uploaded bytes are used for this request\nonly and are not stored as an asset. Supply reference videos as\n\u0060reference_video_asset_identifiers\u0060, which must reference videos\ngenerated or uploaded with Ideogram. At most 9 reference images and 3 reference\nvideos are accepted, and reference videos are capped again on clip\nlength. Optional \u0060reference_audios\u0060 accepts MP3/WAV uploads alongside\nan image or video. Audio and video references must total at most 15\nseconds; at most 12 references are accepted across all media.\n\nReferences are optional. With none, the video is produced from the\nprompt alone.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1882,7 +1871,7 @@
       "Setup": null
     },
     {
-      "Order": 172,
+      "Order": 171,
       "Title": "Edit a video with Seedance 2.0 by regenerating from frames of it",
       "Slug": "post-edit-video-seed-dance2",
       "Description": "Edit a video you already have stored with Ideogram by replacing part of\nit. Reference the source video with \u0060video_asset_identifier\u0060 and mark the\nspan to replace with \u0060start_frame_time\u0060 and \u0060end_frame_time\u0060, in seconds.\nSeedance 2.0 generates a new clip for that span from your prompt, and the\nresult is the source video with the generated clip spliced in over the\nspan: everything before \u0060start_frame_time\u0060, then the generated clip, then\neverything from \u0060end_frame_time\u0060 on. That edited video is the asset the\nrequest produces.\n\n\u0060is_start_frame_included\u0060 and \u0060is_end_frame_included\u0060 anchor the generated\nclip on the span\u0027s own end frames, so it joins the surrounding footage\ninstead of cutting to something unrelated. Anchoring the start opens the\nclip on the frame already at \u0060start_frame_time\u0060; anchoring the end lands\nit on the frame at \u0060end_frame_time\u0060; anchoring both joins at each seam. At\nleast one must be anchored.\n\nThe generated clip is used at its own length, which the model rarely makes\nexactly the span\u0027s, so the edited video is usually a different length from\nthe source. Request a \u0060duration\u0060 close to the span to keep them near each\nother. The clip is scaled and cropped to fill the source\u0027s frame and\nconformed to its frame rate, so resolution and aspect ratio follow the\nsource rather than being requested.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1893,7 +1882,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 173,
+      "Order": 172,
       "Title": "Generate a video from a first frame with Kling v3 Standard, by asset id or by uploaded bytes",
       "Slug": "post-generate-video-kling-v3-standard-image-to-video",
       "Description": "Generate a video from a first-frame image and a text prompt with Kling\nv3 Standard. Supply the first frame either as an\n\u0060image_asset_identifier\u0060 reference (an image already stored with\nIdeogram) or as raw \u0060image\u0060 bytes (multipart requests only) \u2014 callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: \u0060end_image_asset_identifier\u0060 or\n\u0060end_image\u0060. The final frame is optional and follows the same\none-form-only rule.\n\nThe generated video takes its aspect ratio from the first frame, so\nthere is no aspect ratio to set.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1904,7 +1893,7 @@
       "Setup": null
     },
     {
-      "Order": 174,
+      "Order": 173,
       "Title": "Generate a video from a text prompt with Kling v3 Standard",
       "Slug": "post-generate-video-kling-v3-standard-text-to-video",
       "Description": "Generate a video from a text prompt with Kling v3 Standard.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1915,7 +1904,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 175,
+      "Order": 174,
       "Title": "Generate a video from a first frame with MiniMax H3, by asset id or by uploaded bytes",
       "Slug": "post-generate-video-minimax-h3-image-to-video",
       "Description": "Generate a video from a first-frame image and a text prompt with\nMiniMax H3. Supply the first frame either as an\n\u0060image_asset_identifier\u0060 reference (an image already stored with\nIdeogram) or as raw \u0060image\u0060 bytes (multipart requests only) \u2014 callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: \u0060end_image_asset_identifier\u0060 or\n\u0060end_image\u0060. The final frame is optional and follows the same\none-form-only rule.\n\nThe generated video takes its aspect ratio from the first frame, so\nthis endpoint accepts no \u0060aspect_ratio\u0060.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1926,7 +1915,7 @@
       "Setup": null
     },
     {
-      "Order": 176,
+      "Order": 175,
       "Title": "Generate a video from a text prompt with MiniMax H3",
       "Slug": "post-generate-video-minimax-h3-text-to-video",
       "Description": "Generate a video from a text prompt with MiniMax H3.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1937,7 +1926,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 177,
+      "Order": 176,
       "Title": "Generate a video from a first frame with Seedance 2.5, by asset id or by uploaded bytes",
       "Slug": "post-generate-video-seed-dance25-image-to-video",
       "Description": "Generate a video from a first-frame image and a text prompt with\nSeedance 2.5. Supply the first frame either as an\n\u0060image_asset_identifier\u0060 reference (an image already stored with\nIdeogram) or as raw \u0060image\u0060 bytes (multipart requests only) \u2014 callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: \u0060end_image_asset_identifier\u0060 or\n\u0060end_image\u0060. The final frame is optional and follows the same\none-form-only rule.\n\nSeedance 2.5 always derives an image-to-video result\u0027s aspect ratio\nfrom its first frame, so this endpoint takes no \u0060aspect_ratio\u0060.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1948,7 +1937,7 @@
       "Setup": null
     },
     {
-      "Order": 178,
+      "Order": 177,
       "Title": "Produce a video from reference images and videos with Seedance 2.5",
       "Slug": "post-generate-video-seed-dance25-reference-to-video",
       "Description": "Produce a video from a text prompt and reference media with\nSeedance 2.5.\n\nThe prompt addresses the references by position: the first reference\nimage is \u0060[Image1]\u0060, the second\n\u0060[Image2]\u0060, the first reference video is\n\u0060[Video1]\u0060, and so on. Supply reference images\neither as \u0060reference_image_asset_identifiers\u0060 (images already stored\nwith Ideogram) or as raw \u0060reference_images\u0060 bytes (multipart requests\nonly); supplying both is rejected, and uploaded bytes are used for this\nrequest only and are not stored as an asset. Supply reference videos as\n\u0060reference_video_asset_identifiers\u0060, which can reference uploaded or generated videos. At most 9 reference images and 10\nreference videos are accepted, and reference videos are capped again on\nclip length: each clip must be between 2 and 30 seconds long, and the clips must total no more than 30 seconds.\nSupply up to 10 MP3/WAV \u0060reference_audios\u0060 as multipart files, at most 15 MB each.\nEach audio clip must be 2\u201330 seconds, with at most 30 seconds total. Reference\nthem as \u0060[Audio1]\u0060, \u0060[Audio2]\u0060, and so on. Audio is used for this request only.\n\nAt least one reference image or video is required: the model\nconditions every generation on the media it is given, so a request\nwith no references is rejected.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1959,7 +1948,7 @@
       "Setup": null
     },
     {
-      "Order": 179,
+      "Order": 178,
       "Title": "Generate a video from a text prompt with Seedance 2.5",
       "Slug": "post-generate-video-seed-dance25-text-to-video",
       "Description": "Generate a video from a text prompt with Seedance 2.5, which serves\nresolutions up to 1080p and durations up to 30 seconds.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1970,7 +1959,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 180,
+      "Order": 179,
       "Title": "Generate a video from a first frame with Seedance 2.0, by asset id or by uploaded bytes",
       "Slug": "post-generate-video-seed-dance2-image-to-video",
       "Description": "Generate one or more videos from a first-frame image and a text prompt\nwith Seedance 2.0. Supply the first frame either as an\n\u0060image_asset_identifier\u0060 reference (an image already stored with\nIdeogram) or as raw \u0060image\u0060 bytes (multipart requests only) \u2014 callers\nare never required to upload the asset first. Exactly one source is\nrequired; supplying neither or both is rejected. Only image assets are\naccepted as a first frame. Uploaded bytes are used for this request\nonly and are not stored as an asset.\n\nTo generate a transition between two stills, supply a final frame as\nwell, in either of the same two forms: \u0060end_image_asset_identifier\u0060 or\n\u0060end_image\u0060. The final frame is optional, follows the same one-form-only\nrule, and requires a first frame.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1981,7 +1970,7 @@
       "Setup": null
     },
     {
-      "Order": 181,
+      "Order": 180,
       "Title": "Produce a video from reference images and videos with Seedance 2.0",
       "Slug": "post-generate-video-seed-dance2-reference-to-video",
       "Description": "Produce a video from a text prompt and reference media with\nSeedance 2.0.\n\nThe prompt addresses the references by position: the first reference\nimage is \u0060@Image1\u0060, the second\n\u0060@Image2\u0060, the first reference video is\n\u0060@Video1\u0060, and so on. Supply reference images\neither as \u0060reference_image_asset_identifiers\u0060 (images already stored\nwith Ideogram) or as raw \u0060reference_images\u0060 bytes (multipart requests\nonly); supplying both is rejected, and uploaded bytes are used for this\nrequest only and are not stored as an asset. Supply reference videos as\n\u0060reference_video_asset_identifiers\u0060, which can reference uploaded or generated videos. At most 9 reference images and 3\nreference videos are accepted, and reference videos are capped again on\nclip length: each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds.\nSupply up to 3 MP3/WAV \u0060reference_audios\u0060 as multipart files, at most 15 MB each.\nEach audio clip must be 2\u201315 seconds, with at most 15 seconds total. Reference\nthem as \u0060@Audio1\u0060, \u0060@Audio2\u0060, and so on. Audio is used for this request only.\nImages, videos, and audio combined must not exceed 12 references.\n\nAt least one reference image or video is required: the model\nconditions every generation on the media it is given, so a request\nwith no references is rejected.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1992,7 +1981,7 @@
       "Setup": null
     },
     {
-      "Order": 182,
+      "Order": 181,
       "Title": "Generate a video from a text prompt with Seedance 2.0",
       "Slug": "post-generate-video-seed-dance2-text-to-video",
       "Description": "Generate one or more videos from a text prompt with Seedance 2.0.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v1/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -2003,7 +1992,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 183,
+      "Order": 182,
       "Title": "Create a looping 360-degree product video",
       "Slug": "post-product360-video",
       "Description": "Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.\nVideo generation runs asynchronously. Poll \u0060GET /v1/generations/{generation_id}\u0060 with the returned \u0060generation_id\u0060 until the generation completes or fails.",
@@ -2014,7 +2003,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 184,
+      "Order": 183,
       "Title": "Describe",
       "Slug": "post-describe",
       "Description": "Describe an image.\n\nSupported image formats include JPEG, PNG, and WebP.",
@@ -2025,7 +2014,7 @@
       "Setup": null
     },
     {
-      "Order": 185,
+      "Order": 184,
       "Title": "Describe with Ideogram 4.0",
       "Slug": "post-describe-v4",
       "Description": "Describe an image with Ideogram 4.0 and return a structured\n\u0060V4JsonPrompt\u0060. The returned \u0060json_prompt\u0060 is a working JSON prompt\nthat can be passed directly as \u0060json_prompt\u0060 to the\n\u0060/v1/ideogram-v4/generate\u0060 family of endpoints.\n\nSupported image formats include JPEG, PNG, and WebP.",
@@ -2036,7 +2025,7 @@
       "Setup": null
     },
     {
-      "Order": 186,
+      "Order": 185,
       "Title": "Get the public keys used to verify webhook signatures",
       "Slug": "get-webhook-signing-jwks",
       "Description": "Returns the set of Ed25519 public keys Ideogram uses to sign outbound\nwebhook payloads. Customers verify incoming webhooks by recomputing the\ncanonical signed message (\u0060request_id\\nuser_id\\ntimestamp\\nsha256_hex(body)\u0060)\nand checking the \u0060X-Ideogram-Webhook-Signature\u0060 header against any key\nin this document.\n\nThe document includes the current signing key plus any keys recently\nrotated out, so signatures already in flight remain verifiable across\nrotations. Cache for up to 24 hours; refresh sooner if a signature\nfails to verify against the cached set.\n\nThis endpoint is public and unauthenticated \u2014 no API key is required.",

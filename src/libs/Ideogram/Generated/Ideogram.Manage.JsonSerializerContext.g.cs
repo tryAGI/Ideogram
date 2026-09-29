@@ -30,7 +30,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiCreditSummaryResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.CreditGrant>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreditGrant))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiReactivateResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiKeysResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.RedactedApiKey>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RedactedApiKey))]

@@ -477,7 +477,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiCreditSummaryResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.CreditGrant>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreditGrant))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiReactivateResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiKeysResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.RedactedApiKey>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RedactedApiKey))]
@@ -509,6 +508,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UsageSource), TypeInfoPropertyName = "UsageSource2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiProfilesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ApiProfile>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfile))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -519,7 +519,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
     )]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfile))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileType), TypeInfoPropertyName = "ApiProfileType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileRole), TypeInfoPropertyName = "ApiProfileRole2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey>))]
