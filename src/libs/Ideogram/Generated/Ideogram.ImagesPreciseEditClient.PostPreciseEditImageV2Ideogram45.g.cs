@@ -53,10 +53,13 @@ namespace Ideogram
         /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
         /// the output always matches the image being edited, so the edit drops<br/>
         /// back into whatever it came from without reframing.<br/>
-        /// Pixels the edit did not meaningfully change are restored exactly from<br/>
-        /// the image being edited, with the edited region blended smoothly into<br/>
-        /// its surroundings — untouched areas stay identical across repeated<br/>
-        /// edits.<br/>
+        /// When the output is delivered at the image's own size (every image the<br/>
+        /// model can hold), pixels the edit did not meaningfully change are<br/>
+        /// restored exactly from the image being edited, with the edited region<br/>
+        /// blended smoothly into its surroundings — untouched areas stay<br/>
+        /// identical across repeated edits. An image too large for the model is<br/>
+        /// delivered at the scaled-down size, where every pixel is resampled, so<br/>
+        /// it is returned as rendered.<br/>
         /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
         /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
         /// reference wins and the bytes are ignored. Add up to four more images<br/>
@@ -114,10 +117,13 @@ namespace Ideogram
         /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
         /// the output always matches the image being edited, so the edit drops<br/>
         /// back into whatever it came from without reframing.<br/>
-        /// Pixels the edit did not meaningfully change are restored exactly from<br/>
-        /// the image being edited, with the edited region blended smoothly into<br/>
-        /// its surroundings — untouched areas stay identical across repeated<br/>
-        /// edits.<br/>
+        /// When the output is delivered at the image's own size (every image the<br/>
+        /// model can hold), pixels the edit did not meaningfully change are<br/>
+        /// restored exactly from the image being edited, with the edited region<br/>
+        /// blended smoothly into its surroundings — untouched areas stay<br/>
+        /// identical across repeated edits. An image too large for the model is<br/>
+        /// delivered at the scaled-down size, where every pixel is resampled, so<br/>
+        /// it is returned as rendered.<br/>
         /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
         /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
         /// reference wins and the bytes are ignored. Add up to four more images<br/>
@@ -944,10 +950,13 @@ namespace Ideogram
         /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
         /// the output always matches the image being edited, so the edit drops<br/>
         /// back into whatever it came from without reframing.<br/>
-        /// Pixels the edit did not meaningfully change are restored exactly from<br/>
-        /// the image being edited, with the edited region blended smoothly into<br/>
-        /// its surroundings — untouched areas stay identical across repeated<br/>
-        /// edits.<br/>
+        /// When the output is delivered at the image's own size (every image the<br/>
+        /// model can hold), pixels the edit did not meaningfully change are<br/>
+        /// restored exactly from the image being edited, with the edited region<br/>
+        /// blended smoothly into its surroundings — untouched areas stay<br/>
+        /// identical across repeated edits. An image too large for the model is<br/>
+        /// delivered at the scaled-down size, where every pixel is resampled, so<br/>
+        /// it is returned as rendered.<br/>
         /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
         /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
         /// reference wins and the bytes are ignored. Add up to four more images<br/>
@@ -1003,8 +1012,8 @@ namespace Ideogram
         /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
         /// </param>
         /// <param name="quality">
-        /// The rendering quality to use. `very_high` takes longer than `high` and is priced higher.<br/>
-        /// Default Value: high
+        /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
+        /// Default Value: medium
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>

@@ -65,8 +65,8 @@ namespace Ideogram
         public string? Maskname { get; set; }
 
         /// <summary>
-        /// The rendering quality to use. `very_high` takes longer than `high` and is priced higher.<br/>
-        /// Default Value: high
+        /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
+        /// Default Value: medium
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestQualityJsonConverter))]
@@ -165,8 +165,8 @@ namespace Ideogram
         /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
         /// </param>
         /// <param name="quality">
-        /// The rendering quality to use. `very_high` takes longer than `high` and is priced higher.<br/>
-        /// Default Value: high
+        /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
+        /// Default Value: medium
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>

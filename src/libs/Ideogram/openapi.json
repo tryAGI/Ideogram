@@ -2149,42 +2149,6 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
       }
     },
-    "/manage/api/reactivate": {
-      "post": {
-        "operationId": "reactivate_subscription",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PostApiReactivateResponse"
-                }
-              }
-            },
-            "description": "API subscription content"
-          },
-          "401": {
-            "description": "Not authorized"
-          },
-          "402": {
-            "description": "Payment is required; is your payment method setup?"
-          },
-          "404": {
-            "description": "User does not have a subscription to reactivate."
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ],
-        "summary": "Reactivates a subscription by attempting to re-enable Metronome billing.",
-        "tags": [
-          "manage"
-        ],
-        "x-openapi-router-controller": "external_api.generated.openapi.controllers.manage_controller"
-      }
-    },
     "/manage/api/spend_commit": {
       "get": {
         "operationId": "get_user_spend_commit_info",
@@ -9566,7 +9530,7 @@
     },
     "/v2/image/precise-edit/ideogram-4-5": {
       "post": {
-        "description": "Edit an image with Ideogram 4.5, returning output at that image's exact\nwidth and height. An image too large for the model is scaled down to\nfit while keeping its exact proportion, and one whose aspect ratio is\noutside 1:6 to 6:1 is rejected — this endpoint never reshapes, so there\nis no size to reshape it to. Unlike\n`POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:\nthe output always matches the image being edited, so the edit drops\nback into whatever it came from without reframing.\n\nPixels the edit did not meaningfully change are restored exactly from\nthe image being edited, with the edited region blended smoothly into\nits surroundings — untouched areas stay identical across repeated\nedits.\n\nSupply the image to edit as an `image_asset_identifier` reference or as\nraw `image` bytes (multipart requests only); if both are supplied, the\nreference wins and the bytes are ignored. Add up to four more images\nvia `reference_image_asset_identifiers` or `reference_images` to guide\nthe edit — those are never edited themselves.\n\nSupply a `mask` to confine the edit to part of the image being edited.\nThe mask is optional — without one the prompt is applied to the whole\nimage. Masks are read as an additional reference image, so a masked\nrequest may carry at most three `reference_images`.\n\nThe `prompt` is the edit instruction. It accepts either natural\nlanguage or a structured JSON prompt; the server detects which was\nsupplied. A natural-language instruction is automatically rewritten\ninto the model's structured edit contract, while a prompt that is\nalready valid structured JSON is consumed directly.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
+        "description": "Edit an image with Ideogram 4.5, returning output at that image's exact\nwidth and height. An image too large for the model is scaled down to\nfit while keeping its exact proportion, and one whose aspect ratio is\noutside 1:6 to 6:1 is rejected — this endpoint never reshapes, so there\nis no size to reshape it to. Unlike\n`POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:\nthe output always matches the image being edited, so the edit drops\nback into whatever it came from without reframing.\n\nWhen the output is delivered at the image's own size (every image the\nmodel can hold), pixels the edit did not meaningfully change are\nrestored exactly from the image being edited, with the edited region\nblended smoothly into its surroundings — untouched areas stay\nidentical across repeated edits. An image too large for the model is\ndelivered at the scaled-down size, where every pixel is resampled, so\nit is returned as rendered.\n\nSupply the image to edit as an `image_asset_identifier` reference or as\nraw `image` bytes (multipart requests only); if both are supplied, the\nreference wins and the bytes are ignored. Add up to four more images\nvia `reference_image_asset_identifiers` or `reference_images` to guide\nthe edit — those are never edited themselves.\n\nSupply a `mask` to confine the edit to part of the image being edited.\nThe mask is optional — without one the prompt is applied to the whole\nimage. Masks are read as an additional reference image, so a masked\nrequest may carry at most three `reference_images`.\n\nThe `prompt` is the edit instruction. It accepts either natural\nlanguage or a structured JSON prompt; the server detects which was\nsupplied. A natural-language instruction is automatically rewritten\ninto the model's structured edit contract, while a prompt that is\nalready valid structured JSON is consumed directly.\n\nBy default the request blocks until the images are ready and returns\nthem in `data`. Set `async` to true to return immediately after the\nrequest is accepted, then poll for completion and results with\n`GET /v1/generations/{generation_id}` using the returned\n`generation_id`.\n\nSupplying a `webhook_url` makes the request asynchronous whatever\n`async` says: the response returns as soon as the request is accepted,\nand the finished result is POSTed to that URL.\n",
         "operationId": "post_precise_edit_image_v2_ideogram45",
         "parameters": [
           {
@@ -27981,13 +27945,13 @@
             "type": "string"
           },
           "quality": {
-            "default": "high",
-            "description": "The rendering quality to use. `very_high` takes longer than `high` and is priced higher.",
+            "default": "medium",
+            "description": "The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.",
             "enum": [
+              "very_low",
               "low",
               "medium",
-              "high",
-              "very_high"
+              "high"
             ],
             "type": "string"
           },
@@ -31214,21 +31178,6 @@
           "name"
         ],
         "title": "CreditGrant",
-        "type": "object"
-      },
-      "PostApiReactivateResponse": {
-        "description": "Response to re-activating API settings.",
-        "example": {
-          "recharge_settings": {
-            "is_active": true
-          }
-        },
-        "properties": {
-          "recharge_settings": {
-            "$ref": "#/components/schemas/RechargeSettingsResponse"
-          }
-        },
-        "title": "PostApiReactivateResponse",
         "type": "object"
       },
       "GetApiKeysResponse": {
