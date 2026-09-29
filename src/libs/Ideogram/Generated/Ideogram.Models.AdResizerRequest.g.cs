@@ -48,11 +48,15 @@ namespace Ideogram
         /// <summary>
         /// The ad platform whose published safe zone the advertisement must<br/>
         /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
-        /// `meta` covers Facebook and Instagram. When supplied, the<br/>
-        /// advertisement is generated inside that platform's safe zone for the<br/>
-        /// requested aspect ratio and the remaining space is filled in around<br/>
-        /// it. When omitted, the advertisement fills the whole frame. Any other<br/>
-        /// value is rejected with a 400.
+        /// use `meta_stories` or `meta_reels` for the placement-specific Meta<br/>
+        /// generation bounds. Reels uses the largest rectangle contained by<br/>
+        /// its notched safe-zone polygon. The legacy `meta` value remains<br/>
+        /// supported for existing callers with its conservative safe zone.<br/>
+        /// When supplied, the advertisement is generated inside that<br/>
+        /// platform's safe zone for the requested aspect ratio and the<br/>
+        /// remaining space is filled in around it. When omitted, the<br/>
+        /// advertisement fills the whole frame. Any other value is rejected<br/>
+        /// with a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("platform")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdResizerRequestPlatformJsonConverter))]
@@ -138,11 +142,15 @@ namespace Ideogram
         /// <param name="platform">
         /// The ad platform whose published safe zone the advertisement must<br/>
         /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
-        /// `meta` covers Facebook and Instagram. When supplied, the<br/>
-        /// advertisement is generated inside that platform's safe zone for the<br/>
-        /// requested aspect ratio and the remaining space is filled in around<br/>
-        /// it. When omitted, the advertisement fills the whole frame. Any other<br/>
-        /// value is rejected with a 400.
+        /// use `meta_stories` or `meta_reels` for the placement-specific Meta<br/>
+        /// generation bounds. Reels uses the largest rectangle contained by<br/>
+        /// its notched safe-zone polygon. The legacy `meta` value remains<br/>
+        /// supported for existing callers with its conservative safe zone.<br/>
+        /// When supplied, the advertisement is generated inside that<br/>
+        /// platform's safe zone for the requested aspect ratio and the<br/>
+        /// remaining space is filled in around it. When omitted, the<br/>
+        /// advertisement fills the whole frame. Any other value is rejected<br/>
+        /// with a 400.
         /// </param>
         /// <param name="prompt">
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".

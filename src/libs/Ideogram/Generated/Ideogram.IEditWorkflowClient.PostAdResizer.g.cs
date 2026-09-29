@@ -22,7 +22,9 @@ namespace Ideogram
         /// | --- | --- |<br/>
         /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
         /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `meta` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
         /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
         /// A `platform` combined with any other `resolution` is rejected with a<br/>
         /// 400. When `platform` is omitted, every resolution in the request schema<br/>
@@ -68,7 +70,9 @@ namespace Ideogram
         /// | --- | --- |<br/>
         /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
         /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `meta` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
         /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
         /// A `platform` combined with any other `resolution` is rejected with a<br/>
         /// 400. When `platform` is omitted, every resolution in the request schema<br/>
@@ -114,7 +118,9 @@ namespace Ideogram
         /// | --- | --- |<br/>
         /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
         /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `meta` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
         /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
         /// A `platform` combined with any other `resolution` is rejected with a<br/>
         /// 400. When `platform` is omitted, every resolution in the request schema<br/>
@@ -155,11 +161,15 @@ namespace Ideogram
         /// <param name="platform">
         /// The ad platform whose published safe zone the advertisement must<br/>
         /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
-        /// `meta` covers Facebook and Instagram. When supplied, the<br/>
-        /// advertisement is generated inside that platform's safe zone for the<br/>
-        /// requested aspect ratio and the remaining space is filled in around<br/>
-        /// it. When omitted, the advertisement fills the whole frame. Any other<br/>
-        /// value is rejected with a 400.
+        /// use `meta_stories` or `meta_reels` for the placement-specific Meta<br/>
+        /// generation bounds. Reels uses the largest rectangle contained by<br/>
+        /// its notched safe-zone polygon. The legacy `meta` value remains<br/>
+        /// supported for existing callers with its conservative safe zone.<br/>
+        /// When supplied, the advertisement is generated inside that<br/>
+        /// platform's safe zone for the requested aspect ratio and the<br/>
+        /// remaining space is filled in around it. When omitted, the<br/>
+        /// advertisement fills the whole frame. Any other value is rejected<br/>
+        /// with a 400.
         /// </param>
         /// <param name="prompt">
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".

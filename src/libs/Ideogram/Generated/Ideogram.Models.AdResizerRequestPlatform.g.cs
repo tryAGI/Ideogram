@@ -6,11 +6,15 @@ namespace Ideogram
     /// <summary>
     /// The ad platform whose published safe zone the advertisement must<br/>
     /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
-    /// `meta` covers Facebook and Instagram. When supplied, the<br/>
-    /// advertisement is generated inside that platform's safe zone for the<br/>
-    /// requested aspect ratio and the remaining space is filled in around<br/>
-    /// it. When omitted, the advertisement fills the whole frame. Any other<br/>
-    /// value is rejected with a 400.
+    /// use `meta_stories` or `meta_reels` for the placement-specific Meta<br/>
+    /// generation bounds. Reels uses the largest rectangle contained by<br/>
+    /// its notched safe-zone polygon. The legacy `meta` value remains<br/>
+    /// supported for existing callers with its conservative safe zone.<br/>
+    /// When supplied, the advertisement is generated inside that<br/>
+    /// platform's safe zone for the requested aspect ratio and the<br/>
+    /// remaining space is filled in around it. When omitted, the<br/>
+    /// advertisement fills the whole frame. Any other value is rejected<br/>
+    /// with a 400.
     /// </summary>
     public enum AdResizerRequestPlatform
     {
@@ -22,6 +26,14 @@ namespace Ideogram
         ///
         /// </summary>
         Meta,
+        /// <summary>
+        ///
+        /// </summary>
+        MetaReels,
+        /// <summary>
+        ///
+        /// </summary>
+        MetaStories,
         /// <summary>
         ///
         /// </summary>
@@ -46,6 +58,8 @@ namespace Ideogram
             {
                 AdResizerRequestPlatform.Google => "google",
                 AdResizerRequestPlatform.Meta => "meta",
+                AdResizerRequestPlatform.MetaReels => "meta_reels",
+                AdResizerRequestPlatform.MetaStories => "meta_stories",
                 AdResizerRequestPlatform.Snapchat => "snapchat",
                 AdResizerRequestPlatform.Tiktok => "tiktok",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
@@ -60,6 +74,8 @@ namespace Ideogram
             {
                 "google" => AdResizerRequestPlatform.Google,
                 "meta" => AdResizerRequestPlatform.Meta,
+                "meta_reels" => AdResizerRequestPlatform.MetaReels,
+                "meta_stories" => AdResizerRequestPlatform.MetaStories,
                 "snapchat" => AdResizerRequestPlatform.Snapchat,
                 "tiktok" => AdResizerRequestPlatform.Tiktok,
                 _ => null,
