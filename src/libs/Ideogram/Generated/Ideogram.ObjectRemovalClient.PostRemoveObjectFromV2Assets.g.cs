@@ -27,10 +27,12 @@ namespace Ideogram
             };
         partial void PreparePostRemoveObjectFromV2AssetsArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? dryRun,
             global::Ideogram.RemoveObjectFromV2AssetsRequest request);
         partial void PreparePostRemoveObjectFromV2AssetsRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? dryRun,
             global::Ideogram.RemoveObjectFromV2AssetsRequest request);
         partial void ProcessPostRemoveObjectFromV2AssetsResponse(
             global::System.Net.Http.HttpClient httpClient,
@@ -54,6 +56,9 @@ namespace Ideogram
         /// This is the `/v2` capability-first shape; no `model` or `model_uri` field is<br/>
         /// exposed until a second backend exists.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -61,12 +66,14 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.RemoveObjectFromV2AssetsResponse> PostRemoveObjectFromV2AssetsAsync(
 
             global::Ideogram.RemoveObjectFromV2AssetsRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
             var __response = await PostRemoveObjectFromV2AssetsAsResponseAsync(
 
                 request: request,
+                dryRun: dryRun,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
             ).ConfigureAwait(false);
@@ -86,6 +93,9 @@ namespace Ideogram
         /// This is the `/v2` capability-first shape; no `model` or `model_uri` field is<br/>
         /// exposed until a second backend exists.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -93,6 +103,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemoveObjectFromV2AssetsResponse>> PostRemoveObjectFromV2AssetsAsResponseAsync(
 
             global::Ideogram.RemoveObjectFromV2AssetsRequest request,
+            bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
@@ -102,6 +113,7 @@ namespace Ideogram
                 client: HttpClient);
             PreparePostRemoveObjectFromV2AssetsArguments(
                 httpClient: HttpClient,
+                dryRun: ref dryRun,
                 request: request);
 
 
@@ -130,6 +142,9 @@ namespace Ideogram
                             var __pathBuilder = new global::Ideogram.PathBuilder(
                                 path: "/v2/image/remove-object/ideogram-1",
                                 baseUri: HttpClient.BaseAddress);
+                            __pathBuilder
+                                .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
+                                ;
                             var __path = __pathBuilder.ToString();
                 __path = global::Ideogram.AutoSDKRequestOptionsSupport.AppendQueryParameters(
                     path: __path,
@@ -299,6 +314,7 @@ namespace Ideogram
                 PreparePostRemoveObjectFromV2AssetsRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    dryRun: dryRun,
                     request: request);
 
                 return __httpRequest;
@@ -853,6 +869,9 @@ namespace Ideogram
         /// This is the `/v2` capability-first shape; no `model` or `model_uri` field is<br/>
         /// exposed until a second backend exists.
         /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
@@ -890,6 +909,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         public async global::System.Threading.Tasks.Task<global::Ideogram.RemoveObjectFromV2AssetsResponse> PostRemoveObjectFromV2AssetsAsync(
+            bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
@@ -916,6 +936,7 @@ namespace Ideogram
             };
 
             return await PostRemoveObjectFromV2AssetsAsync(
+                dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken).ConfigureAwait(false);

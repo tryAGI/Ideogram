@@ -10415,6 +10415,18 @@
       "post": {
         "description": "Remove a masked object from an image. For each of the source image and the\nmask, supply either an `AssetIdentifier` reference (`image_asset_identifier`\n/ `mask_asset_identifier`) or the raw image bytes directly (`image` / `mask`,\nmultipart requests only) — callers are never required to call\n`POST /v2/assets` first. If both a reference and bytes are supplied for the\nsame input, the reference wins and the bytes are ignored.\n\nPoll for completion with `GET /v1/generations/{generation_id}` using the\nreturned `generation_id`.\n\nThis is the `/v2` capability-first shape; no `model` or `model_uri` field is\nexposed until a second backend exists.\n",
         "operationId": "post_remove_object_from_v2_assets",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
