@@ -11,7 +11,7 @@ namespace Ideogram
         /// <summary>
         /// The prompt to generate images from, in natural language or as a<br/>
         /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
-        /// used as is and skips magic prompt.
+        /// used as is and skips magic prompt unless `magic_prompt` is `on`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -113,7 +113,7 @@ namespace Ideogram
         /// <param name="prompt">
         /// The prompt to generate images from, in natural language or as a<br/>
         /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
-        /// used as is and skips magic prompt.
+        /// used as is and skips magic prompt unless `magic_prompt` is `on`.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>

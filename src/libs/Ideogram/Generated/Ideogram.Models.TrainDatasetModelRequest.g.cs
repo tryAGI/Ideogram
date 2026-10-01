@@ -10,7 +10,7 @@ namespace Ideogram
     public sealed partial class TrainDatasetModelRequest
     {
         /// <summary>
-        /// Name for the trained model. Must be 5-30 characters, alphanumeric with spaces and hyphens allowed.<br/>
+        /// Name after trimming surrounding whitespace: 5–30 Unicode letters, numbers, spaces, underscores, parentheses, periods, or hyphens.<br/>
         /// Example: my-custom-model
         /// </summary>
         /// <example>my-custom-model</example>
@@ -28,7 +28,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="TrainDatasetModelRequest" /> class.
         /// </summary>
         /// <param name="modelName">
-        /// Name for the trained model. Must be 5-30 characters, alphanumeric with spaces and hyphens allowed.<br/>
+        /// Name after trimming surrounding whitespace: 5–30 Unicode letters, numbers, spaces, underscores, parentheses, periods, or hyphens.<br/>
         /// Example: my-custom-model
         /// </param>
 #if NET7_0_OR_GREATER

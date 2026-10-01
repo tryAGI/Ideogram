@@ -178,6 +178,9 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPalettePresetName), TypeInfoPropertyName = "ColorPalettePresetName2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteMember))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectObjectType), TypeInfoPropertyName = "SvgGenerationObjectObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectMimeType), TypeInfoPropertyName = "SvgGenerationObjectMimeType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObject))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObjectObjectType), TypeInfoPropertyName = "VideoObjectObjectType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockAlignment), TypeInfoPropertyName = "DetectedTextBlockAlignment2")]
@@ -247,6 +250,8 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4ObjPromptElementType?), TypeInfoPropertyName = "NullableV4ObjPromptElementType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4TextPromptElementType?), TypeInfoPropertyName = "NullableV4TextPromptElementType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPalettePresetName?), TypeInfoPropertyName = "NullableColorPalettePresetName2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectObjectType?), TypeInfoPropertyName = "NullableSvgGenerationObjectObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectMimeType?), TypeInfoPropertyName = "NullableSvgGenerationObjectMimeType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObjectObjectType?), TypeInfoPropertyName = "NullableVideoObjectObjectType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockAlignment?), TypeInfoPropertyName = "NullableDetectedTextBlockAlignment2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockFormattingItem?), TypeInfoPropertyName = "NullableDetectedTextBlockFormattingItem2")]
@@ -543,6 +548,14 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.MagicPromptVersionEnum)
 
                     || typeToConvert == typeof(global::Ideogram.MagicPromptVersionEnum?)
+
+                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType)
+
+                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType?)
+
+                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType)
+
+                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType?)
 
                     || typeToConvert == typeof(global::Ideogram.VideoObjectObjectType)
 
@@ -1055,6 +1068,26 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.MagicPromptVersionEnum?))
                 {
                     return new global::Ideogram.JsonConverters.MagicPromptVersionEnumNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType))
+                {
+                    return new global::Ideogram.JsonConverters.SvgGenerationObjectObjectTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType?))
+                {
+                    return new global::Ideogram.JsonConverters.SvgGenerationObjectObjectTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType))
+                {
+                    return new global::Ideogram.JsonConverters.SvgGenerationObjectMimeTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType?))
+                {
+                    return new global::Ideogram.JsonConverters.SvgGenerationObjectMimeTypeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.VideoObjectObjectType))

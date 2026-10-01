@@ -69,7 +69,7 @@ namespace Ideogram
         public global::Ideogram.ResolutionV3? Resolution { get; set; }
 
         /// <summary>
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// Output aspect ratio. Cannot be combined with resolution. Generation defaults to 1x1; remix keeps the source ratio when both fields are omitted.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter))]
@@ -123,7 +123,7 @@ namespace Ideogram
         /// Example: 1280x800
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// Output aspect ratio. Cannot be combined with resolution. Generation defaults to 1x1; remix keeps the source ratio when both fields are omitted.
         /// </param>
         /// <param name="transparentBackground">
         /// Whether the output should have a transparent background. Default false.<br/>

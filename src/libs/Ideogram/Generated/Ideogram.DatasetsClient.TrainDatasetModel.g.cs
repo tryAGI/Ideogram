@@ -544,7 +544,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="datasetId"></param>
         /// <param name="modelName">
-        /// Name for the trained model. Must be 5-30 characters, alphanumeric with spaces and hyphens allowed.<br/>
+        /// Name after trimming surrounding whitespace: 5–30 Unicode letters, numbers, spaces, underscores, parentheses, periods, or hyphens.<br/>
         /// Example: my-custom-model
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

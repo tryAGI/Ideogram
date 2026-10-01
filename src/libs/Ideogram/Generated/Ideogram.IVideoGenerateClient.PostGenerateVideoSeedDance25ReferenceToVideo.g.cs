@@ -74,7 +74,7 @@ namespace Ideogram
         /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 30 seconds long, with a combined duration of at most 30 seconds. Requires at least one reference image. Audio is used for this request only and is not saved to your library.
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
+        /// The aspect ratio of the generated video. `auto` lets the model choose the<br/>
         /// most suitable ratio from the prompt; any other value pins the ratio.<br/>
         /// Default Value: auto
         /// </param>
