@@ -42,16 +42,13 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Replace the model in a commerce image<br/>
-        /// Re-casts a fashion commerce image with the identity shown in one or<br/>
-        /// more ordered target-model references. The workflow uses the working<br/>
-        /// image for the product, pose, scene, lighting, framing, and camera, and<br/>
-        /// uses the target references only for identity, hair, skin tone, and body<br/>
-        /// proportions. Results are full-frame edits; exact pixel preservation is<br/>
-        /// not guaranteed.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.
+        /// Model Swap<br/>
+        /// Replaces the model in a fashion image with the person shown in one to<br/>
+        /// four target-model references, keeping the product, pose, scene,<br/>
+        /// lighting, and framing. Upload the working image as `source_image` using<br/>
+        /// `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -73,16 +70,13 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Replace the model in a commerce image<br/>
-        /// Re-casts a fashion commerce image with the identity shown in one or<br/>
-        /// more ordered target-model references. The workflow uses the working<br/>
-        /// image for the product, pose, scene, lighting, framing, and camera, and<br/>
-        /// uses the target references only for identity, hair, skin tone, and body<br/>
-        /// proportions. Results are full-frame edits; exact pixel preservation is<br/>
-        /// not guaranteed.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.
+        /// Model Swap<br/>
+        /// Replaces the model in a fashion image with the person shown in one to<br/>
+        /// four target-model references, keeping the product, pose, scene,<br/>
+        /// lighting, and framing. Upload the working image as `source_image` using<br/>
+        /// `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -793,26 +787,23 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Replace the model in a commerce image<br/>
-        /// Re-casts a fashion commerce image with the identity shown in one or<br/>
-        /// more ordered target-model references. The workflow uses the working<br/>
-        /// image for the product, pose, scene, lighting, framing, and camera, and<br/>
-        /// uses the target references only for identity, hair, skin tone, and body<br/>
-        /// proportions. Results are full-frame edits; exact pixel preservation is<br/>
-        /// not guaranteed.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.
+        /// Model Swap<br/>
+        /// Replaces the model in a fashion image with the person shown in one to<br/>
+        /// four target-model references, keeping the product, pose, scene,<br/>
+        /// lighting, and framing. Upload the working image as `source_image` using<br/>
+        /// `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="sourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="sourceImage">
-        /// Raw working-image bytes. Supported formats and the 50 MB limit match the image upload API. Available only with `multipart/form-data`.
+        /// The working image whose product, pose, scene, lighting, framing, and camera are preserved. Supported formats and the 50 MB limit match the image upload API. Multipart requests only.
         /// </param>
         /// <param name="sourceImagename">
-        /// Raw working-image bytes. Supported formats and the 50 MB limit match the image upload API. Available only with `multipart/form-data`.
+        /// The working image whose product, pose, scene, lighting, framing, and camera are preserved. Supported formats and the 50 MB limit match the image upload API. Multipart requests only.
         /// </param>
         /// <param name="modelAssetIdentifiers">
         /// Ordered target-model identity and angle references. These images supply only identity, hair, skin tone, and body proportions.

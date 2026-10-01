@@ -5,24 +5,13 @@ namespace Ideogram
     public partial interface IEditWorkflowClient
     {
         /// <summary>
-        /// Product Material Change<br/>
-        /// Re-renders the masked regions of the product photo in the materials<br/>
-        /// shown by the reference images — matching each one's color, texture,<br/>
-        /// pattern scale, and orientation — while preserving the product's<br/>
-        /// silhouette, construction, seams, and shading, and keeping every region<br/>
-        /// outside the masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo, the masks marking the regions to<br/>
-        /// re-material, and the material reference images as raw bytes (`image`,<br/>
-        /// `masks`, and `materials`) via `multipart/form-data` — up to 4 masks; a<br/>
-        /// single-region edit is a one-item list. Every mask must have the same<br/>
-        /// pixel dimensions as the product photo. White pixels mark the region to<br/>
-        /// change; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to change and transparent<br/>
-        /// pixels are preserved. Send either one material, which every mask<br/>
-        /// takes, or exactly one material per mask, paired by position.
+        /// Material Swap<br/>
+        /// Re-renders masked regions of a product photo in the materials shown in<br/>
+        /// reference images, preserving the product's construction and everything<br/>
+        /// outside the masks. Upload the `image`, up to 4 `masks`, and the<br/>
+        /// `materials` using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -38,24 +27,13 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Product Material Change<br/>
-        /// Re-renders the masked regions of the product photo in the materials<br/>
-        /// shown by the reference images — matching each one's color, texture,<br/>
-        /// pattern scale, and orientation — while preserving the product's<br/>
-        /// silhouette, construction, seams, and shading, and keeping every region<br/>
-        /// outside the masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo, the masks marking the regions to<br/>
-        /// re-material, and the material reference images as raw bytes (`image`,<br/>
-        /// `masks`, and `materials`) via `multipart/form-data` — up to 4 masks; a<br/>
-        /// single-region edit is a one-item list. Every mask must have the same<br/>
-        /// pixel dimensions as the product photo. White pixels mark the region to<br/>
-        /// change; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to change and transparent<br/>
-        /// pixels are preserved. Send either one material, which every mask<br/>
-        /// takes, or exactly one material per mask, paired by position.
+        /// Material Swap<br/>
+        /// Re-renders masked regions of a product photo in the materials shown in<br/>
+        /// reference images, preserving the product's construction and everything<br/>
+        /// outside the masks. Upload the `image`, up to 4 `masks`, and the<br/>
+        /// `materials` using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -71,24 +49,13 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Product Material Change<br/>
-        /// Re-renders the masked regions of the product photo in the materials<br/>
-        /// shown by the reference images — matching each one's color, texture,<br/>
-        /// pattern scale, and orientation — while preserving the product's<br/>
-        /// silhouette, construction, seams, and shading, and keeping every region<br/>
-        /// outside the masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo, the masks marking the regions to<br/>
-        /// re-material, and the material reference images as raw bytes (`image`,<br/>
-        /// `masks`, and `materials`) via `multipart/form-data` — up to 4 masks; a<br/>
-        /// single-region edit is a one-item list. Every mask must have the same<br/>
-        /// pixel dimensions as the product photo. White pixels mark the region to<br/>
-        /// change; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to change and transparent<br/>
-        /// pixels are preserved. Send either one material, which every mask<br/>
-        /// takes, or exactly one material per mask, paired by position.
+        /// Material Swap<br/>
+        /// Re-renders masked regions of a product photo in the materials shown in<br/>
+        /// reference images, preserving the product's construction and everything<br/>
+        /// outside the masks. Upload the `image`, up to 4 `masks`, and the<br/>
+        /// `materials` using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -99,12 +66,12 @@ namespace Ideogram
         /// `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
-        /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to edit (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="imagename">
-        /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to edit (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="maskAssetIdentifiers">
         /// The masks marking the regions of the product photo to change, by<br/>
@@ -116,13 +83,11 @@ namespace Ideogram
         /// `masks`.
         /// </param>
         /// <param name="masks">
-        /// The masks marking the regions of the product photo to change (max<br/>
-        /// 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP<br/>
-        /// formats are supported. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// change; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to change and transparent<br/>
-        /// pixels are preserved.
+        /// Masks marking the regions to change (max 4, max size 25MB each).<br/>
+        /// JPEG, PNG, and WEBP formats are supported. Every mask must have the<br/>
+        /// same pixel dimensions as the product photo. White pixels mark the<br/>
+        /// region to change and black pixels are preserved; alpha-only masks<br/>
+        /// also work (opaque = change, transparent = preserve).
         /// </param>
         /// <param name="materialAssetIdentifiers">
         /// The material reference images, by reference. Only their material —<br/>
@@ -132,19 +97,18 @@ namespace Ideogram
         /// `material_asset_identifiers` or `materials`.
         /// </param>
         /// <param name="materials">
-        /// The material reference images (max size 25MB each), as raw bytes;<br/>
-        /// only JPEG, PNG, and WEBP formats are supported. Only their material<br/>
-        /// — color, texture, pattern scale, and orientation — is applied to<br/>
-        /// the masked regions. Send one material, which every mask takes, or<br/>
-        /// exactly one per mask paired by position.
+        /// Material reference images (max size 25MB each). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Only their material (color, texture, pattern<br/>
+        /// scale, and orientation) is applied to the masked regions. Send one<br/>
+        /// material for every mask, or exactly one per mask, paired by<br/>
+        /// position.
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio of the generated image. Defaults to the aspect<br/>
-        /// ratio of the product photo when omitted, which preserves the<br/>
-        /// original framing exactly. When a different ratio is requested, the<br/>
-        /// scene is extended to fill the new shape rather than cropped, so<br/>
-        /// part of the frame is newly generated. Supported values are `1:1`,<br/>
-        /// `3:4`, `4:3`, `16:9`, and `9:16`.
+        /// Output aspect ratio. Defaults to the product photo's aspect ratio,<br/>
+        /// which keeps the original framing. A different ratio extends the<br/>
+        /// scene to fill the new shape rather than cropping, so part of the<br/>
+        /// frame is newly generated. Supported values are `1:1`, `3:4`,<br/>
+        /// `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>

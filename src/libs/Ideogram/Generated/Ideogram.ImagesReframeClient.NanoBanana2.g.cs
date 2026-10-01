@@ -44,14 +44,11 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Reframe an image with Nano Banana 2<br/>
-        /// Expand one image to a new aspect ratio with Nano Banana 2.<br/>
-        /// Supply either an existing Ideogram image asset or raw image bytes,<br/>
-        /// but not both. The requested aspect ratio is resolved to the closest<br/>
-        /// supported 1K output dimensions.<br/>
-        /// This operation is asynchronous. It returns as soon as the request is<br/>
-        /// accepted; poll `GET /v1/generations/{generation_id}` for completion<br/>
-        /// and results.
+        /// Reframe with Nano Banana 2<br/>
+        /// Expand an image to a new aspect ratio with Nano Banana 2. Upload the<br/>
+        /// source `image` using `multipart/form-data`. Always asynchronous:<br/>
+        /// returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// for results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -78,14 +75,11 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Reframe an image with Nano Banana 2<br/>
-        /// Expand one image to a new aspect ratio with Nano Banana 2.<br/>
-        /// Supply either an existing Ideogram image asset or raw image bytes,<br/>
-        /// but not both. The requested aspect ratio is resolved to the closest<br/>
-        /// supported 1K output dimensions.<br/>
-        /// This operation is asynchronous. It returns as soon as the request is<br/>
-        /// accepted; poll `GET /v1/generations/{generation_id}` for completion<br/>
-        /// and results.
+        /// Reframe with Nano Banana 2<br/>
+        /// Expand an image to a new aspect ratio with Nano Banana 2. Upload the<br/>
+        /// source `image` using `multipart/form-data`. Always asynchronous:<br/>
+        /// returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// for results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -773,14 +767,11 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Reframe an image with Nano Banana 2<br/>
-        /// Expand one image to a new aspect ratio with Nano Banana 2.<br/>
-        /// Supply either an existing Ideogram image asset or raw image bytes,<br/>
-        /// but not both. The requested aspect ratio is resolved to the closest<br/>
-        /// supported 1K output dimensions.<br/>
-        /// This operation is asynchronous. It returns as soon as the request is<br/>
-        /// accepted; poll `GET /v1/generations/{generation_id}` for completion<br/>
-        /// and results.
+        /// Reframe with Nano Banana 2<br/>
+        /// Expand an image to a new aspect ratio with Nano Banana 2. Upload the<br/>
+        /// source `image` using `multipart/form-data`. Always asynchronous:<br/>
+        /// returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// for results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false

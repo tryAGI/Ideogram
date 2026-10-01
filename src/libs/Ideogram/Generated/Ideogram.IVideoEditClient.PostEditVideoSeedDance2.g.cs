@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IVideoEditClient
     {
         /// <summary>
-        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit video with Seedance 2.0<br/>
         /// Edit a video you already have stored with Ideogram by replacing part of<br/>
         /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
         /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
@@ -29,7 +29,7 @@ namespace Ideogram
         /// Video generation always runs asynchronously: the response returns as<br/>
         /// soon as the request is accepted and carries only a `generation_id`.<br/>
         /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `GET /v2/generations/{generation_id}` using that id, or supply a<br/>
         /// `webhook_url` to have the finished result POSTed to your server<br/>
         /// instead.<br/>
         /// Video links are available for a limited period of time; download the<br/>
@@ -49,7 +49,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit video with Seedance 2.0<br/>
         /// Edit a video you already have stored with Ideogram by replacing part of<br/>
         /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
         /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
@@ -73,7 +73,7 @@ namespace Ideogram
         /// Video generation always runs asynchronously: the response returns as<br/>
         /// soon as the request is accepted and carries only a `generation_id`.<br/>
         /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `GET /v2/generations/{generation_id}` using that id, or supply a<br/>
         /// `webhook_url` to have the finished result POSTed to your server<br/>
         /// instead.<br/>
         /// Video links are available for a limited period of time; download the<br/>
@@ -93,7 +93,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit video with Seedance 2.0<br/>
         /// Edit a video you already have stored with Ideogram by replacing part of<br/>
         /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
         /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
@@ -117,7 +117,7 @@ namespace Ideogram
         /// Video generation always runs asynchronously: the response returns as<br/>
         /// soon as the request is accepted and carries only a `generation_id`.<br/>
         /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `GET /v2/generations/{generation_id}` using that id, or supply a<br/>
         /// `webhook_url` to have the finished result POSTed to your server<br/>
         /// instead.<br/>
         /// Video links are available for a limited period of time; download the<br/>

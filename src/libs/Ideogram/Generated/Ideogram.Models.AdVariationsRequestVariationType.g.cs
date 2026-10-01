@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The axis to vary while everything else stays on-brand. `people`<br/>
+    /// The axis to vary. `people`<br/>
     /// replaces the people in the ad with different talent. `setting`<br/>
     /// moves the same subject and product to a different environment.<br/>
     /// `group_size` changes how many people appear. `scene` shifts the<br/>

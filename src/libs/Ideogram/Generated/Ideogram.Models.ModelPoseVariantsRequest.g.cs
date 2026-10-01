@@ -4,9 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Provide exactly one of `source_asset_identifier` or `source_image`.<br/>
-    /// A pose reference can supplement the required instruction but cannot<br/>
-    /// replace it. The edit is full-frame; scene preservation is best effort.
+    /// The edit is full-frame; scene preservation is best effort.
     /// </summary>
     public sealed partial class ModelPoseVariantsRequest
     {
@@ -19,19 +17,17 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? SourceAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Fashion image to edit (max size 50MB), as raw bytes. JPEG, PNG,<br/>
-        /// WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO formats are supported.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `source_asset_identifier` or `source_image`.
+        /// Fashion image to edit (max size 50MB). JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO formats are supported. Multipart<br/>
+        /// requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_image")]
         public byte[]? SourceImage { get; set; }
 
         /// <summary>
-        /// Fashion image to edit (max size 50MB), as raw bytes. JPEG, PNG,<br/>
-        /// WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO formats are supported.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `source_asset_identifier` or `source_image`.
+        /// Fashion image to edit (max size 50MB). JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO formats are supported. Multipart<br/>
+        /// requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_imagename")]
         public string? SourceImagename { get; set; }
@@ -45,8 +41,8 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? PoseReferenceAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Required plain-language pose or camera direction, such as a<br/>
-        /// front-facing catalog stance or right-facing walking profile.
+        /// Plain-language pose or camera direction, such as a front-facing<br/>
+        /// catalog stance or right-facing walking profile.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("instruction")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -112,24 +108,22 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ModelPoseVariantsRequest" /> class.
         /// </summary>
         /// <param name="instruction">
-        /// Required plain-language pose or camera direction, such as a<br/>
-        /// front-facing catalog stance or right-facing walking profile.
+        /// Plain-language pose or camera direction, such as a front-facing<br/>
+        /// catalog stance or right-facing walking profile.
         /// </param>
         /// <param name="sourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="sourceImage">
-        /// Fashion image to edit (max size 50MB), as raw bytes. JPEG, PNG,<br/>
-        /// WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO formats are supported.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `source_asset_identifier` or `source_image`.
+        /// Fashion image to edit (max size 50MB). JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO formats are supported. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="sourceImagename">
-        /// Fashion image to edit (max size 50MB), as raw bytes. JPEG, PNG,<br/>
-        /// WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO formats are supported.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `source_asset_identifier` or `source_image`.
+        /// Fashion image to edit (max size 50MB). JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO formats are supported. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="poseReferenceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>

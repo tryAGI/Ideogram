@@ -44,17 +44,11 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Remove a masked object from an image, by asset id or by uploaded bytes<br/>
-        /// Remove a masked object from an image. For each of the source image and the<br/>
-        /// mask, supply either an `AssetIdentifier` reference (`image_asset_identifier`<br/>
-        /// / `mask_asset_identifier`) or the raw image bytes directly (`image` / `mask`,<br/>
-        /// multipart requests only) — callers are never required to call<br/>
-        /// `POST /v2/assets` first. If both a reference and bytes are supplied for the<br/>
-        /// same input, the reference wins and the bytes are ignored.<br/>
-        /// Poll for completion with `GET /v1/generations/{generation_id}` using the<br/>
-        /// returned `generation_id`.<br/>
-        /// This is the `/v2` capability-first shape; no `model` or `model_uri` field is<br/>
-        /// exposed until a second backend exists.
+        /// Remove an object<br/>
+        /// Remove a masked object from an image. Upload the source `image` and a<br/>
+        /// `mask` of the same size using `multipart/form-data`. Returns a<br/>
+        /// `generation_id`; poll `GET /v2/generations/{generation_id}` for the<br/>
+        /// result.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -81,17 +75,11 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Remove a masked object from an image, by asset id or by uploaded bytes<br/>
-        /// Remove a masked object from an image. For each of the source image and the<br/>
-        /// mask, supply either an `AssetIdentifier` reference (`image_asset_identifier`<br/>
-        /// / `mask_asset_identifier`) or the raw image bytes directly (`image` / `mask`,<br/>
-        /// multipart requests only) — callers are never required to call<br/>
-        /// `POST /v2/assets` first. If both a reference and bytes are supplied for the<br/>
-        /// same input, the reference wins and the bytes are ignored.<br/>
-        /// Poll for completion with `GET /v1/generations/{generation_id}` using the<br/>
-        /// returned `generation_id`.<br/>
-        /// This is the `/v2` capability-first shape; no `model` or `model_uri` field is<br/>
-        /// exposed until a second backend exists.
+        /// Remove an object<br/>
+        /// Remove a masked object from an image. Upload the source `image` and a<br/>
+        /// `mask` of the same size using `multipart/form-data`. Returns a<br/>
+        /// `generation_id`; poll `GET /v2/generations/{generation_id}` for the<br/>
+        /// result.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -857,17 +845,11 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Remove a masked object from an image, by asset id or by uploaded bytes<br/>
-        /// Remove a masked object from an image. For each of the source image and the<br/>
-        /// mask, supply either an `AssetIdentifier` reference (`image_asset_identifier`<br/>
-        /// / `mask_asset_identifier`) or the raw image bytes directly (`image` / `mask`,<br/>
-        /// multipart requests only) — callers are never required to call<br/>
-        /// `POST /v2/assets` first. If both a reference and bytes are supplied for the<br/>
-        /// same input, the reference wins and the bytes are ignored.<br/>
-        /// Poll for completion with `GET /v1/generations/{generation_id}` using the<br/>
-        /// returned `generation_id`.<br/>
-        /// This is the `/v2` capability-first shape; no `model` or `model_uri` field is<br/>
-        /// exposed until a second backend exists.
+        /// Remove an object<br/>
+        /// Remove a masked object from an image. Upload the source `image` and a<br/>
+        /// `mask` of the same size using `multipart/form-data`. Returns a<br/>
+        /// `generation_id`; poll `GET /v2/generations/{generation_id}` for the<br/>
+        /// result.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -877,20 +859,20 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source image to remove an object from (max size 50MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to remove an object from. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source image to remove an object from (max size 50MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to remove an object from. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="maskAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="mask">
-        /// A binary mask the same size as the image (max size 50MB), as raw bytes; white (&gt;= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the image; white (&gt;= 128) marks the region to remove. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="maskname">
-        /// A binary mask the same size as the image (max size 50MB), as raw bytes; white (&gt;= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the image; white (&gt;= 128) marks the region to remove. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -900,9 +882,8 @@ namespace Ideogram
         /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
         /// </param>
         /// <param name="storeAssets">
-        /// Whether to store resulting generation assets on Ideogram. Defaults to `false` for<br/>
-        /// API developers; first-party mini-apps should pass `true`. Reserved in the schema for<br/>
-        /// an upcoming storage-control rollout — currently accepted but not yet enforced.<br/>
+        /// Whether to store the resulting images on Ideogram. Defaults to `false`.<br/>
+        /// Currently accepted but not yet enforced.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

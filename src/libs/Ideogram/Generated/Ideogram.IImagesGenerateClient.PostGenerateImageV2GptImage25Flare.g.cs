@@ -5,27 +5,12 @@ namespace Ideogram
     public partial interface IImagesGenerateClient
     {
         /// <summary>
-        /// Generate images with GPT Image 2.5 Flare, from a text prompt or by editing source images<br/>
-        /// Generate one or more images with GPT Image 2.5 Flare — the fast<br/>
-        /// variant of GPT Image 2.5, optimized for speed at quality comparable<br/>
-        /// to GPT Image 2. The prompt is consumed by the model directly, without<br/>
-        /// rewriting.<br/>
-        /// Supplying source images turns the request into an edit: the model<br/>
-        /// applies the prompt to the sources. Provide them either as<br/>
-        /// `image_asset_identifiers` references (images already stored with<br/>
-        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
-        /// are supplied, the references win and the bytes are ignored. Without<br/>
-        /// source images the prompt alone drives the generation.<br/>
-        /// The output size follows `resolution` when provided, otherwise the<br/>
-        /// closest size the model supports for `aspect_ratio`.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with GPT Image 2.5 Flare<br/>
+        /// Generate images with GPT Image 2.5 Flare, the fast variant of GPT Image<br/>
+        /// 2.5. Optionally upload source images as `images` using<br/>
+        /// `multipart/form-data` to edit them with the prompt. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -41,27 +26,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with GPT Image 2.5 Flare, from a text prompt or by editing source images<br/>
-        /// Generate one or more images with GPT Image 2.5 Flare — the fast<br/>
-        /// variant of GPT Image 2.5, optimized for speed at quality comparable<br/>
-        /// to GPT Image 2. The prompt is consumed by the model directly, without<br/>
-        /// rewriting.<br/>
-        /// Supplying source images turns the request into an edit: the model<br/>
-        /// applies the prompt to the sources. Provide them either as<br/>
-        /// `image_asset_identifiers` references (images already stored with<br/>
-        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
-        /// are supplied, the references win and the bytes are ignored. Without<br/>
-        /// source images the prompt alone drives the generation.<br/>
-        /// The output size follows `resolution` when provided, otherwise the<br/>
-        /// closest size the model supports for `aspect_ratio`.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with GPT Image 2.5 Flare<br/>
+        /// Generate images with GPT Image 2.5 Flare, the fast variant of GPT Image<br/>
+        /// 2.5. Optionally upload source images as `images` using<br/>
+        /// `multipart/form-data` to edit them with the prompt. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -77,45 +47,30 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with GPT Image 2.5 Flare, from a text prompt or by editing source images<br/>
-        /// Generate one or more images with GPT Image 2.5 Flare — the fast<br/>
-        /// variant of GPT Image 2.5, optimized for speed at quality comparable<br/>
-        /// to GPT Image 2. The prompt is consumed by the model directly, without<br/>
-        /// rewriting.<br/>
-        /// Supplying source images turns the request into an edit: the model<br/>
-        /// applies the prompt to the sources. Provide them either as<br/>
-        /// `image_asset_identifiers` references (images already stored with<br/>
-        /// Ideogram) or as raw `images` bytes (multipart requests only) — if both<br/>
-        /// are supplied, the references win and the bytes are ignored. Without<br/>
-        /// source images the prompt alone drives the generation.<br/>
-        /// The output size follows `resolution` when provided, otherwise the<br/>
-        /// closest size the model supports for `aspect_ratio`.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with GPT Image 2.5 Flare<br/>
+        /// Generate images with GPT Image 2.5 Flare, the fast variant of GPT Image<br/>
+        /// 2.5. Optionally upload source images as `images` using<br/>
+        /// `multipart/form-data` to edit them with the prompt. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.
+        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. It is passed to the model as written.
         /// </param>
         /// <param name="imageAssetIdentifiers">
         /// Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.
         /// </param>
         /// <param name="images">
-        /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="mask">
-        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
         /// </param>
         /// <param name="background">
         /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
@@ -145,7 +100,7 @@ namespace Ideogram
         /// are between 655360 and 8294400 inclusive.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

@@ -9,9 +9,8 @@ namespace Ideogram
     public sealed partial class GenerateImagePImageIdeogramRequest
     {
         /// <summary>
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -49,7 +48,7 @@ namespace Ideogram
         public global::Ideogram.GenerationQuality? Quality { get; set; }
 
         /// <summary>
-        /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+        /// The output size tier. Defaults to `1k`. Cannot be combined with `custom_width`/`custom_height`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImagePImageIdeogramRequestResolutionJsonConverter))]
@@ -84,13 +83,13 @@ namespace Ideogram
         public int? CustomHeight { get; set; }
 
         /// <summary>
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -133,9 +132,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImagePImageIdeogramRequest" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). `off` disables magic prompt entirely. Defaults to `auto`.<br/>
@@ -154,7 +152,7 @@ namespace Ideogram
         /// Default Value: medium
         /// </param>
         /// <param name="resolution">
-        /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+        /// The output size tier. Defaults to `1k`. Cannot be combined with `custom_width`/`custom_height`.
         /// </param>
         /// <param name="aspectRatio">
         /// The output aspect ratio. Defaults to `1x1`.<br/>
@@ -175,10 +173,10 @@ namespace Ideogram
         /// billing behavior.
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

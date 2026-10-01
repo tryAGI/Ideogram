@@ -4,18 +4,18 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply exactly one image source. `image` is available only in multipart requests; `image_asset_identifier` accepts an existing upload or generated image that is readable in the active organization.
+    /// Upload the source `image` using `multipart/form-data`.
     /// </summary>
     public sealed partial class RemoveBackgroundV2Request
     {
         /// <summary>
-        /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
+        /// The source image. JPEG, PNG, or WebP, up to 25MB. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
+        /// The source image. JPEG, PNG, or WebP, up to 25MB. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -36,16 +36,14 @@ namespace Ideogram
 
         /// <summary>
         /// Whether to keep the result out of the public gallery. When omitted,<br/>
-        /// Firebase Bearer and Mini App callers inherit their plan entitlement.<br/>
-        /// Enterprise generations are always private. API keys use their bound<br/>
-        /// organization and otherwise default to public when no subscription<br/>
-        /// entitlement is available.
+        /// defaults to your plan's setting, or public if your plan has none.<br/>
+        /// Enterprise generations are always private.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
         public bool? Private { get; set; }
 
         /// <summary>
-        /// When false (the default), wait for and return the foreground image. When true, return after acceptance and poll `GET /v1/generations/{generation_id}`.<br/>
+        /// When false (the default), wait for and return the foreground image. When true, return as soon as the request is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -61,10 +59,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="RemoveBackgroundV2Request" /> class.
         /// </summary>
         /// <param name="image">
-        /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
+        /// The source image. JPEG, PNG, or WebP, up to 25MB. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
+        /// The source image. JPEG, PNG, or WebP, up to 25MB. Multipart requests only.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -75,13 +73,11 @@ namespace Ideogram
         /// </param>
         /// <param name="private">
         /// Whether to keep the result out of the public gallery. When omitted,<br/>
-        /// Firebase Bearer and Mini App callers inherit their plan entitlement.<br/>
-        /// Enterprise generations are always private. API keys use their bound<br/>
-        /// organization and otherwise default to public when no subscription<br/>
-        /// entitlement is available.
+        /// defaults to your plan's setting, or public if your plan has none.<br/>
+        /// Enterprise generations are always private.
         /// </param>
         /// <param name="async">
-        /// When false (the default), wait for and return the foreground image. When true, return after acceptance and poll `GET /v1/generations/{generation_id}`.<br/>
+        /// When false (the default), wait for and return the foreground image. When true, return as soon as the request is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </param>
 #if NET7_0_OR_GREATER

@@ -4,11 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source image and the mask each as either an `AssetIdentifier`<br/>
-    /// reference or (multipart requests only) raw image bytes. At least one of<br/>
-    /// `image_asset_identifier` / `image` is required, and likewise at least one of<br/>
-    /// `mask_asset_identifier` / `mask`; if both a reference and bytes are given for<br/>
-    /// the same input, the reference is used and the bytes are ignored.
+    /// Upload both the source `image` and the `mask` using `multipart/form-data`.
     /// </summary>
     public sealed partial class RemoveObjectFromV2AssetsRequest
     {
@@ -21,13 +17,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source image to remove an object from (max size 50MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to remove an object from. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source image to remove an object from (max size 50MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to remove an object from. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -41,13 +37,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
 
         /// <summary>
-        /// A binary mask the same size as the image (max size 50MB), as raw bytes; white (&gt;= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the image; white (&gt;= 128) marks the region to remove. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         public byte[]? Mask { get; set; }
 
         /// <summary>
-        /// A binary mask the same size as the image (max size 50MB), as raw bytes; white (&gt;= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the image; white (&gt;= 128) marks the region to remove. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         public string? Maskname { get; set; }
@@ -67,9 +63,8 @@ namespace Ideogram
         public string? TargetCollectionId { get; set; }
 
         /// <summary>
-        /// Whether to store resulting generation assets on Ideogram. Defaults to `false` for<br/>
-        /// API developers; first-party mini-apps should pass `true`. Reserved in the schema for<br/>
-        /// an upcoming storage-control rollout — currently accepted but not yet enforced.<br/>
+        /// Whether to store the resulting images on Ideogram. Defaults to `false`.<br/>
+        /// Currently accepted but not yet enforced.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("store_assets")]
@@ -89,20 +84,20 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source image to remove an object from (max size 50MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to remove an object from. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source image to remove an object from (max size 50MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to remove an object from. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="maskAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="mask">
-        /// A binary mask the same size as the image (max size 50MB), as raw bytes; white (&gt;= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the image; white (&gt;= 128) marks the region to remove. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="maskname">
-        /// A binary mask the same size as the image (max size 50MB), as raw bytes; white (&gt;= 128) marks the region to remove. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the image; white (&gt;= 128) marks the region to remove. JPEG, PNG, or WEBP, up to 50MB. Multipart requests only.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -112,9 +107,8 @@ namespace Ideogram
         /// A collection you can write to, by its URL-safe base64 collection id. Completed outputs are added to it automatically.
         /// </param>
         /// <param name="storeAssets">
-        /// Whether to store resulting generation assets on Ideogram. Defaults to `false` for<br/>
-        /// API developers; first-party mini-apps should pass `true`. Reserved in the schema for<br/>
-        /// an upcoming storage-control rollout — currently accepted but not yet enforced.<br/>
+        /// Whether to store the resulting images on Ideogram. Defaults to `false`.<br/>
+        /// Currently accepted but not yet enforced.<br/>
         /// Default Value: false
         /// </param>
 #if NET7_0_OR_GREATER

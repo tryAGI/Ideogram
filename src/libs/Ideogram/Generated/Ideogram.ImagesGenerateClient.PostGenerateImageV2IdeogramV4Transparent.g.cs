@@ -44,27 +44,11 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Generate transparent-background images with Ideogram 4.0<br/>
-        /// Generate one or more images on a transparent background with<br/>
-        /// Ideogram 4.0, delivered as PNGs with alpha. The `prompt` accepts<br/>
-        /// either natural language or a structured Ideogram 4.0 JSON prompt; a<br/>
-        /// structured prompt is consumed directly and skips magic prompt, except<br/>
-        /// that its background description is replaced with a<br/>
-        /// transparent-background directive.<br/>
-        /// `magic_prompt` controls how a natural-language prompt is prepared:<br/>
-        /// `auto`/`on` rewrite and expand the prompt before generation, while<br/>
-        /// `off` keeps your wording and only converts the prompt into the<br/>
-        /// structured format the model consumes.<br/>
-        /// `output_resolution` selects the output tier (1k to 8k); tiers above<br/>
-        /// 2K are produced by upscaling after generation.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate transparent images with Ideogram 4.0<br/>
+        /// Generate images on a transparent background with Ideogram 4.0, delivered<br/>
+        /// as PNGs with alpha. Returns results directly by default; set `async` or<br/>
+        /// supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -91,27 +75,11 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Generate transparent-background images with Ideogram 4.0<br/>
-        /// Generate one or more images on a transparent background with<br/>
-        /// Ideogram 4.0, delivered as PNGs with alpha. The `prompt` accepts<br/>
-        /// either natural language or a structured Ideogram 4.0 JSON prompt; a<br/>
-        /// structured prompt is consumed directly and skips magic prompt, except<br/>
-        /// that its background description is replaced with a<br/>
-        /// transparent-background directive.<br/>
-        /// `magic_prompt` controls how a natural-language prompt is prepared:<br/>
-        /// `auto`/`on` rewrite and expand the prompt before generation, while<br/>
-        /// `off` keeps your wording and only converts the prompt into the<br/>
-        /// structured format the model consumes.<br/>
-        /// `output_resolution` selects the output tier (1k to 8k); tiers above<br/>
-        /// 2K are produced by upscaling after generation.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate transparent images with Ideogram 4.0<br/>
+        /// Generate images on a transparent background with Ideogram 4.0, delivered<br/>
+        /// as PNGs with alpha. Returns results directly by default; set `async` or<br/>
+        /// supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -722,46 +690,27 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Generate transparent-background images with Ideogram 4.0<br/>
-        /// Generate one or more images on a transparent background with<br/>
-        /// Ideogram 4.0, delivered as PNGs with alpha. The `prompt` accepts<br/>
-        /// either natural language or a structured Ideogram 4.0 JSON prompt; a<br/>
-        /// structured prompt is consumed directly and skips magic prompt, except<br/>
-        /// that its background description is replaced with a<br/>
-        /// transparent-background directive.<br/>
-        /// `magic_prompt` controls how a natural-language prompt is prepared:<br/>
-        /// `auto`/`on` rewrite and expand the prompt before generation, while<br/>
-        /// `off` keeps your wording and only converts the prompt into the<br/>
-        /// structured format the model consumes.<br/>
-        /// `output_resolution` selects the output tier (1k to 8k); tiers above<br/>
-        /// 2K are produced by upscaling after generation.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate transparent images with Ideogram 4.0<br/>
+        /// Generate images on a transparent background with Ideogram 4.0, delivered<br/>
+        /// as PNGs with alpha. Returns results directly by default; set `async` or<br/>
+        /// supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. A structured JSON prompt is consumed<br/>
-        /// by the model directly and skips magic prompt, except that its<br/>
-        /// background description is replaced with a transparent-background<br/>
-        /// directive.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt, except that its background<br/>
+        /// description is replaced with a transparent background.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
-        /// default) and `on` rewrite and expand the prompt before<br/>
-        /// generation. `off` keeps your wording and only converts the prompt<br/>
-        /// into the structured format the model consumes. A prompt that is<br/>
-        /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
+        /// `magic_prompt` is `on`.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="seed">
@@ -780,11 +729,11 @@ namespace Ideogram
         /// Default Value: auto
         /// </param>
         /// <param name="outputResolution">
-        /// The output resolution tier for the generated images. Tiers are<br/>
-        /// total-pixel budgets matching a square of the named size (for<br/>
-        /// example, `8k` delivers at most 8192x8192 total pixels); wide and<br/>
-        /// tall aspect ratios keep the same pixel budget, so a single<br/>
-        /// dimension may exceed the named size. Defaults to 1k.<br/>
+        /// The output resolution tier. Each tier is a total pixel budget equal<br/>
+        /// to a square of the named size (for example, `8k` delivers at most<br/>
+        /// 8192x8192 pixels in total). Wide and tall aspect ratios keep the<br/>
+        /// same budget, so one side may exceed the named size. Tiers above<br/>
+        /// 2k are produced by upscaling after generation. Defaults to 1k.<br/>
         /// Default Value: 1k
         /// </param>
         /// <param name="renderingSpeed">
@@ -792,10 +741,10 @@ namespace Ideogram
         /// Default Value: default
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

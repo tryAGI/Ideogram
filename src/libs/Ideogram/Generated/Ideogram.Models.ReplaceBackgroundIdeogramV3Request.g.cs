@@ -4,9 +4,9 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply exactly one of `image_asset_identifier` or multipart `image`<br/>
-    /// bytes. The prompt describes only the desired new background; the<br/>
-    /// foreground subject is detected and preserved automatically.
+    /// Upload the source `image` using `multipart/form-data`. The prompt<br/>
+    /// describes only the new background; the foreground subject is detected<br/>
+    /// and kept automatically.
     /// </summary>
     public sealed partial class ReplaceBackgroundIdeogramV3Request
     {
@@ -19,15 +19,19 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Raw source-image bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Multipart requests only.<br/>
+        /// The longer side must be at most 3 times the shorter side; wider<br/>
+        /// aspect ratios are rejected with a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// Raw source-image bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Multipart requests only.<br/>
+        /// The longer side must be at most 3 times the shorter side; wider<br/>
+        /// aspect ratios are rejected with a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -55,9 +59,8 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// If true, the user is requesting private generation. If omitted,<br/>
-        /// this defaults to the user's plan entitlement. Enterprise<br/>
-        /// generations are always private.
+        /// Whether to keep the result private. When omitted, defaults to your<br/>
+        /// plan's setting. Enterprise generations are always private.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
         public bool? Private { get; set; }
@@ -94,12 +97,16 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// Raw source-image bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Multipart requests only.<br/>
+        /// The longer side must be at most 3 times the shorter side; wider<br/>
+        /// aspect ratios are rejected with a 400.
         /// </param>
         /// <param name="imagename">
-        /// Raw source-image bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Multipart requests only.<br/>
+        /// The longer side must be at most 3 times the shorter side; wider<br/>
+        /// aspect ratios are rejected with a 400.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
@@ -110,9 +117,8 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="private">
-        /// If true, the user is requesting private generation. If omitted,<br/>
-        /// this defaults to the user's plan entitlement. Enterprise<br/>
-        /// generations are always private.
+        /// Whether to keep the result private. When omitted, defaults to your<br/>
+        /// plan's setting. Enterprise generations are always private.
         /// </param>
         /// <param name="webhookUrl">
         /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>

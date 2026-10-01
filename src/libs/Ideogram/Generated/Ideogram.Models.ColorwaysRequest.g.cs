@@ -4,9 +4,9 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the product photo as raw `image` bytes, and up to 4 masks with<br/>
-    /// one color per mask; a single-region edit is a one-item `masks` list<br/>
-    /// with a one-item `colors` list.
+    /// Upload the product photo as `image` and up to 4 `masks`, with one<br/>
+    /// entry in `colors` per mask. For a single region, send one mask and one<br/>
+    /// color.
     /// </summary>
     public sealed partial class ColorwaysRequest
     {
@@ -19,15 +19,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to recolor (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to recolor (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -45,13 +45,12 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? MaskAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The masks marking the regions of the product photo to recolor<br/>
-        /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
-        /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
-        /// mask must have the same pixel dimensions as the product photo.<br/>
-        /// White pixels mark the region to recolor; black pixels are<br/>
-        /// preserved. Alpha-only masks are also supported: opaque pixels<br/>
-        /// mark the region to recolor and transparent pixels are preserved.
+        /// Masks marking the regions to recolor (max 4, max size 25MB each),<br/>
+        /// paired by position with `colors`. JPEG, PNG, and WEBP formats are<br/>
+        /// supported. Every mask must have the same pixel dimensions as the<br/>
+        /// product photo. White pixels mark the region to recolor and black<br/>
+        /// pixels are preserved; alpha-only masks also work (opaque =<br/>
+        /// recolor, transparent = preserve).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("masks")]
         public global::System.Collections.Generic.IList<byte[]>? Masks { get; set; }
@@ -66,12 +65,11 @@ namespace Ideogram
         public required global::System.Collections.Generic.IList<string> Colors { get; set; }
 
         /// <summary>
-        /// The aspect ratio of the generated image. Defaults to the aspect<br/>
-        /// ratio of the product photo when omitted, which preserves the<br/>
-        /// original framing exactly. When a different ratio is requested, the<br/>
-        /// scene is extended to fill the new shape rather than cropped, so<br/>
-        /// part of the frame is newly generated. Supported values are `1:1`,<br/>
-        /// `3:4`, `4:3`, `16:9`, and `9:16`.
+        /// Output aspect ratio. Defaults to the product photo's aspect ratio,<br/>
+        /// which keeps the original framing. A different ratio extends the<br/>
+        /// scene to fill the new shape rather than cropping, so part of the<br/>
+        /// frame is newly generated. Supported values are `1:1`, `3:4`,<br/>
+        /// `4:3`, `16:9`, and `9:16`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         public string? AspectRatio { get; set; }
@@ -131,12 +129,12 @@ namespace Ideogram
         /// `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to recolor (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="imagename">
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to recolor (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="maskAssetIdentifiers">
         /// The masks marking the regions of the product photo to recolor, by<br/>
@@ -148,21 +146,19 @@ namespace Ideogram
         /// exactly one of `mask_asset_identifiers` or `masks`.
         /// </param>
         /// <param name="masks">
-        /// The masks marking the regions of the product photo to recolor<br/>
-        /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
-        /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
-        /// mask must have the same pixel dimensions as the product photo.<br/>
-        /// White pixels mark the region to recolor; black pixels are<br/>
-        /// preserved. Alpha-only masks are also supported: opaque pixels<br/>
-        /// mark the region to recolor and transparent pixels are preserved.
+        /// Masks marking the regions to recolor (max 4, max size 25MB each),<br/>
+        /// paired by position with `colors`. JPEG, PNG, and WEBP formats are<br/>
+        /// supported. Every mask must have the same pixel dimensions as the<br/>
+        /// product photo. White pixels mark the region to recolor and black<br/>
+        /// pixels are preserved; alpha-only masks also work (opaque =<br/>
+        /// recolor, transparent = preserve).
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio of the generated image. Defaults to the aspect<br/>
-        /// ratio of the product photo when omitted, which preserves the<br/>
-        /// original framing exactly. When a different ratio is requested, the<br/>
-        /// scene is extended to fill the new shape rather than cropped, so<br/>
-        /// part of the frame is newly generated. Supported values are `1:1`,<br/>
-        /// `3:4`, `4:3`, `16:9`, and `9:16`.
+        /// Output aspect ratio. Defaults to the product photo's aspect ratio,<br/>
+        /// which keeps the original framing. A different ratio extends the<br/>
+        /// scene to fill the new shape rather than cropping, so part of the<br/>
+        /// frame is newly generated. Supported values are `1:1`, `3:4`,<br/>
+        /// `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>

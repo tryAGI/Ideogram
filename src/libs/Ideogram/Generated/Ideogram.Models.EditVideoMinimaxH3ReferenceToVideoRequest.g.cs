@@ -5,13 +5,10 @@ namespace Ideogram
 {
     /// <summary>
     /// Request body for MiniMax H3 reference-to-video. The prompt addresses<br/>
-    /// references by position — `Image 1`, `Video 1`, `Audio 1`, and so on. Reference<br/>
-    /// images arrive either as `reference_image_asset_identifiers` or<br/>
-    /// (multipart requests only) as raw `reference_images` bytes, never both.<br/>
-    /// Reference videos arrive only as<br/>
-    /// `reference_video_asset_identifiers`, which must reference videos<br/>
-    /// generated or uploaded with Ideogram. References are optional; audio<br/>
-    /// requires an image or video alongside it.
+    /// references by position: `Image 1`, `Audio 1`, and so on. References<br/>
+    /// are optional; with none, the video is produced from the prompt alone.<br/>
+    /// Audio requires an image alongside it, and audio references must total<br/>
+    /// at most 15 seconds.
     /// </summary>
     public sealed partial class EditVideoMinimaxH3ReferenceToVideoRequest
     {
@@ -31,7 +28,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceImageAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
+        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Uploaded images are used for this request only and are not stored.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? ReferenceImages { get; set; }
@@ -130,7 +127,7 @@ namespace Ideogram
         /// Images already stored with Ideogram to use as references, by reference, in prompt order. Cannot be combined with `reference_images`. Only image assets are accepted.
         /// </param>
         /// <param name="referenceImages">
-        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
+        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Uploaded images are used for this request only and are not stored.
         /// </param>
         /// <param name="referenceVideoAssetIdentifiers">
         /// Videos generated or uploaded with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.

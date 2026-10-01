@@ -44,17 +44,10 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Generate a video from a text prompt with Seedance 2.5<br/>
-        /// Generate a video from a text prompt with Seedance 2.5, which serves<br/>
-        /// resolutions up to 1080p and durations up to 30 seconds.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Text to video with Seedance 2.5<br/>
+        /// Generate a video from a text prompt with Seedance 2.5, at up to 1080p and<br/>
+        /// 30 seconds. Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -81,17 +74,10 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Generate a video from a text prompt with Seedance 2.5<br/>
-        /// Generate a video from a text prompt with Seedance 2.5, which serves<br/>
-        /// resolutions up to 1080p and durations up to 30 seconds.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Text to video with Seedance 2.5<br/>
+        /// Generate a video from a text prompt with Seedance 2.5, at up to 1080p and<br/>
+        /// 30 seconds. Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -734,17 +720,10 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Generate a video from a text prompt with Seedance 2.5<br/>
-        /// Generate a video from a text prompt with Seedance 2.5, which serves<br/>
-        /// resolutions up to 1080p and durations up to 30 seconds.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Text to video with Seedance 2.5<br/>
+        /// Generate a video from a text prompt with Seedance 2.5, at up to 1080p and<br/>
+        /// 30 seconds. Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false

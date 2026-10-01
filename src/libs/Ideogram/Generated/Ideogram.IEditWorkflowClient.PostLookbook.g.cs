@@ -10,7 +10,7 @@ namespace Ideogram
         /// references and an aesthetic reference. Each generated shoot is returned<br/>
         /// as four individual lookbook images.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
         /// </summary>
         /// <param name="request"></param>
@@ -28,7 +28,7 @@ namespace Ideogram
         /// references and an aesthetic reference. Each generated shoot is returned<br/>
         /// as four individual lookbook images.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
         /// </summary>
         /// <param name="request"></param>
@@ -46,7 +46,7 @@ namespace Ideogram
         /// references and an aesthetic reference. Each generated shoot is returned<br/>
         /// as four individual lookbook images.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
         /// </summary>
         /// <param name="productAssetIdentifiers">

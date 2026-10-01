@@ -20,6 +20,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<byte[]>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(float))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetIdentifier))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2AspectRatio), TypeInfoPropertyName = "SeedDance2AspectRatio2")]
@@ -28,7 +29,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason), TypeInfoPropertyName = "GenerationRejectReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed), TypeInfoPropertyName = "GenerationErrorResponseTaskCompletionSpeed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2ImageToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetIdentifier))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25TextToVideoRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance25Resolution), TypeInfoPropertyName = "SeedDance25Resolution2")]
@@ -48,6 +48,9 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25ReferenceToVideoRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Product360VideoRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Product360VideoDirection), TypeInfoPropertyName = "Product360VideoDirection2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageQuality), TypeInfoPropertyName = "LivingImageQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType), TypeInfoPropertyName = "AssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
@@ -63,6 +66,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3AspectRatio?), TypeInfoPropertyName = "NullableKlingV3AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3ShotType?), TypeInfoPropertyName = "NullableKlingV3ShotType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Product360VideoDirection?), TypeInfoPropertyName = "NullableProduct360VideoDirection2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageQuality?), TypeInfoPropertyName = "NullableLivingImageQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType?), TypeInfoPropertyName = "NullableAssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<byte[]>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AssetIdentifier>))]
@@ -151,6 +155,14 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.Product360VideoDirection?)
 
+                    || typeToConvert == typeof(global::Ideogram.LivingImageQuality)
+
+                    || typeToConvert == typeof(global::Ideogram.LivingImageQuality?)
+
+                    || typeToConvert == typeof(global::Ideogram.AssetType)
+
+                    || typeToConvert == typeof(global::Ideogram.AssetType?)
+
                     || typeToConvert == typeof(global::Ideogram.SeedDance2AspectRatio)
 
                     || typeToConvert == typeof(global::Ideogram.SeedDance2AspectRatio?)
@@ -158,10 +170,6 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.SeedDance2Resolution)
 
                     || typeToConvert == typeof(global::Ideogram.SeedDance2Resolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.AssetType)
-
-                    || typeToConvert == typeof(global::Ideogram.AssetType?)
 
                     || typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio)
 
@@ -224,6 +232,26 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.Product360VideoDirectionNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Ideogram.LivingImageQuality))
+                {
+                    return new global::Ideogram.JsonConverters.LivingImageQualityJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.LivingImageQuality?))
+                {
+                    return new global::Ideogram.JsonConverters.LivingImageQualityNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AssetType))
+                {
+                    return new global::Ideogram.JsonConverters.AssetTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AssetType?))
+                {
+                    return new global::Ideogram.JsonConverters.AssetTypeNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Ideogram.SeedDance2AspectRatio))
                 {
                     return new global::Ideogram.JsonConverters.SeedDance2AspectRatioJsonConverter();
@@ -242,16 +270,6 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.SeedDance2Resolution?))
                 {
                     return new global::Ideogram.JsonConverters.SeedDance2ResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AssetType))
-                {
-                    return new global::Ideogram.JsonConverters.AssetTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AssetType?))
-                {
-                    return new global::Ideogram.JsonConverters.AssetTypeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio))

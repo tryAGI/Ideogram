@@ -9,7 +9,7 @@ namespace Ideogram
     public sealed partial class SwanSLogoInstallResponse
     {
         /// <summary>
-        /// URL-safe base64 ID accepted by GET /v1/generations/{generation_id}.
+        /// URL-safe base64 ID accepted by GET /v2/generations/{generation_id}.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -25,7 +25,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="SwanSLogoInstallResponse" /> class.
         /// </summary>
         /// <param name="generationId">
-        /// URL-safe base64 ID accepted by GET /v1/generations/{generation_id}.
+        /// URL-safe base64 ID accepted by GET /v2/generations/{generation_id}.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

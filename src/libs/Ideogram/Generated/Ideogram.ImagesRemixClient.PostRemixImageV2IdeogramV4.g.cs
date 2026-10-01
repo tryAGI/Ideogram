@@ -44,29 +44,12 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Remix an existing image with Ideogram 4.0, guided by a prompt<br/>
+        /// Remix with Ideogram 4.0<br/>
         /// Transform an existing image with Ideogram 4.0, guided by a text<br/>
-        /// prompt. Supply the source either as an `image_asset_identifier`<br/>
-        /// reference (an image already stored with Ideogram) or as raw `image`<br/>
-        /// bytes (multipart requests only). Supplying both is rejected rather<br/>
-        /// than one being ignored. `image_weight` controls how closely the<br/>
-        /// result follows the source; when omitted the server picks a value from<br/>
-        /// your prompt.<br/>
-        /// Omit `resolution` to keep the source image's shape. A `resolution`<br/>
-        /// whose aspect ratio differs from the source's cannot be combined with<br/>
-        /// `image_weight` — that request is rejected with a 400.<br/>
-        /// The prompt is always interpreted by an instruction-editing model, so<br/>
-        /// there is no `magic_prompt` option. Remixes are not reproducible, so<br/>
-        /// no seed is accepted; the response reports the seed the request<br/>
-        /// resolved to.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// prompt. Upload the source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -93,29 +76,12 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Remix an existing image with Ideogram 4.0, guided by a prompt<br/>
+        /// Remix with Ideogram 4.0<br/>
         /// Transform an existing image with Ideogram 4.0, guided by a text<br/>
-        /// prompt. Supply the source either as an `image_asset_identifier`<br/>
-        /// reference (an image already stored with Ideogram) or as raw `image`<br/>
-        /// bytes (multipart requests only). Supplying both is rejected rather<br/>
-        /// than one being ignored. `image_weight` controls how closely the<br/>
-        /// result follows the source; when omitted the server picks a value from<br/>
-        /// your prompt.<br/>
-        /// Omit `resolution` to keep the source image's shape. A `resolution`<br/>
-        /// whose aspect ratio differs from the source's cannot be combined with<br/>
-        /// `image_weight` — that request is rejected with a 400.<br/>
-        /// The prompt is always interpreted by an instruction-editing model, so<br/>
-        /// there is no `magic_prompt` option. Remixes are not reproducible, so<br/>
-        /// no seed is accepted; the response reports the seed the request<br/>
-        /// resolved to.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// prompt. Upload the source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -883,47 +849,30 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Remix an existing image with Ideogram 4.0, guided by a prompt<br/>
+        /// Remix with Ideogram 4.0<br/>
         /// Transform an existing image with Ideogram 4.0, guided by a text<br/>
-        /// prompt. Supply the source either as an `image_asset_identifier`<br/>
-        /// reference (an image already stored with Ideogram) or as raw `image`<br/>
-        /// bytes (multipart requests only). Supplying both is rejected rather<br/>
-        /// than one being ignored. `image_weight` controls how closely the<br/>
-        /// result follows the source; when omitted the server picks a value from<br/>
-        /// your prompt.<br/>
-        /// Omit `resolution` to keep the source image's shape. A `resolution`<br/>
-        /// whose aspect ratio differs from the source's cannot be combined with<br/>
-        /// `image_weight` — that request is rejected with a 400.<br/>
-        /// The prompt is always interpreted by an instruction-editing model, so<br/>
-        /// there is no `magic_prompt` option. Remixes are not reproducible, so<br/>
-        /// no seed is accepted; the response reports the seed the request<br/>
-        /// resolved to.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// prompt. Upload the source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// The prompt that guides the remix.
+        /// The prompt that guides the remix. It is always read as an editing instruction, so there is no `magic_prompt` option.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` to keep its shape.
         /// </param>
         /// <param name="image">
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` to keep its shape.
         /// </param>
         /// <param name="imagename">
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` to keep its shape.
         /// </param>
         /// <param name="imageWeight">
-        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining image_weight with a resolution whose aspect ratio differs from the source's is rejected with a 400.
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining `image_weight` with a `resolution` whose aspect ratio differs from the source's is rejected with a 400.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -933,7 +882,7 @@ namespace Ideogram
         /// Optional. When supplied, the images are generated at this<br/>
         /// resolution. When omitted, the source image's shape is kept. A<br/>
         /// resolution whose aspect ratio differs from the source's cannot<br/>
-        /// be combined with image_weight.
+        /// be combined with `image_weight`.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
@@ -943,7 +892,7 @@ namespace Ideogram
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

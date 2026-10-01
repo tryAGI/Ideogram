@@ -4,9 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source image and mask as either `AssetIdentifier` references<br/>
-    /// or raw bytes. At least one form of each input is required; references<br/>
-    /// take priority over bytes when both are supplied.
+    /// The source `image` and its `mask` are both required and must be<br/>
+    /// uploaded in a multipart request.
     /// </summary>
     public sealed partial class InpaintImageIdeogramV3CustomModelRequest
     {
@@ -33,13 +32,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source image to repaint (max size 25MB), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored when `image_asset_identifier` is supplied.
+        /// The source image to repaint (max 25MB), as JPEG, PNG, or WEBP. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source image to repaint (max size 25MB), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored when `image_asset_identifier` is supplied.
+        /// The source image to repaint (max 25MB), as JPEG, PNG, or WEBP. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -51,13 +50,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
 
         /// <summary>
-        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
+        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP. Black marks the region to repaint. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         public byte[]? Mask { get; set; }
 
         /// <summary>
-        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
+        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP. Black marks the region to repaint. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         public string? Maskname { get; set; }
@@ -108,7 +107,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// A saved style, by its URL-safe base64 collection id. Takes priority over asset identifiers and raw style reference images.
+        /// A saved style, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
         public string? StyleReferenceCollectionId { get; set; }
@@ -126,7 +125,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as style references (max 10, max size 25MB each), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored if a collection or asset identifiers are supplied.
+        /// Images to use as style references (max 10, max 25MB each), as JPEG, PNG, or WEBP.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -138,7 +137,7 @@ namespace Ideogram
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false, block until the images are ready. When true, return after dispatch and poll `GET /v1/generations/{generation_id}`.<br/>
+        /// When false, wait until the images are ready. When true, return as soon as the request is accepted and poll `GET /v2/generations/{generation_id}`.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -176,19 +175,19 @@ namespace Ideogram
         /// The source image asset to repaint. Takes priority over `image`.
         /// </param>
         /// <param name="image">
-        /// The source image to repaint (max size 25MB), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored when `image_asset_identifier` is supplied.
+        /// The source image to repaint (max 25MB), as JPEG, PNG, or WEBP. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source image to repaint (max size 25MB), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored when `image_asset_identifier` is supplied.
+        /// The source image to repaint (max 25MB), as JPEG, PNG, or WEBP. Multipart requests only.
         /// </param>
         /// <param name="maskAssetIdentifier">
         /// A black-and-white mask asset the same size as the source image. Black marks the region to repaint. Takes priority over `mask`.
         /// </param>
         /// <param name="mask">
-        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
+        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP. Black marks the region to repaint. Multipart requests only.
         /// </param>
         /// <param name="maskname">
-        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
+        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP. Black marks the region to repaint. Multipart requests only.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
@@ -213,7 +212,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style, by its URL-safe base64 collection id. Takes priority over asset identifiers and raw style reference images.
+        /// A saved style, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
         /// Optional URL-safe base64 version id for the saved style. Ignored without `style_reference_collection_id`.
@@ -222,13 +221,13 @@ namespace Ideogram
         /// Existing upload or generated image assets to use as style references. Takes priority over raw style reference images.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB each), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored if a collection or asset identifiers are supplied.
+        /// Images to use as style references (max 10, max 25MB each), as JPEG, PNG, or WEBP.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images return `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false, block until the images are ready. When true, return after dispatch and poll `GET /v1/generations/{generation_id}`.<br/>
+        /// When false, wait until the images are ready. When true, return as soon as the request is accepted and poll `GET /v2/generations/{generation_id}`.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="private">

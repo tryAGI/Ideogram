@@ -40,7 +40,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// List your organization's invoices<br/>
+        /// List invoices<br/>
         /// Returns your organization's invoices with their line items — the<br/>
         /// billing record your usage reports reconcile against. Amounts are<br/>
         /// decimal strings in the invoice's currency.<br/>
@@ -62,7 +62,7 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// List your organization's invoices<br/>
+        /// List invoices<br/>
         /// Returns your organization's invoices with their line items — the<br/>
         /// billing record your usage reports reconcile against. Amounts are<br/>
         /// decimal strings in the invoice's currency.<br/>

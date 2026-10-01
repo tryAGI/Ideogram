@@ -4,9 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source creative as either an `AssetIdentifier` reference or<br/>
-    /// (multipart requests only) raw image bytes; provide exactly one of the<br/>
-    /// two forms. Supplying both, or neither, is rejected with a 400.
+    /// Upload the source creative as `image` and choose a target `resolution`.
     /// </summary>
     public sealed partial class AdResizerRequest
     {
@@ -19,26 +17,23 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source creative to reframe (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to reframe (max size 25MB). JPEG, PNG, and<br/>
+        /// WEBP formats are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source creative to reframe (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to reframe (max size 25MB). JPEG, PNG, and<br/>
+        /// WEBP formats are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>
-        /// the supported ad resolutions listed above; any other value is<br/>
-        /// rejected with a 400. Each returned image has exactly these pixel<br/>
-        /// dimensions, whether or not a `platform` was supplied.
+        /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Any value not in<br/>
+        /// the list is rejected with a 400. Each output image has exactly these<br/>
+        /// pixel dimensions, with or without a `platform`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdResizerRequestResolutionJsonConverter))]
@@ -46,17 +41,27 @@ namespace Ideogram
         public required global::Ideogram.AdResizerRequestResolution Resolution { get; set; }
 
         /// <summary>
-        /// The ad platform whose published safe zone the advertisement must<br/>
-        /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
-        /// use `meta_stories` or `meta_reels` for the placement-specific Meta<br/>
-        /// generation bounds. Reels uses the largest rectangle contained by<br/>
-        /// its notched safe-zone polygon. The legacy `meta` value remains<br/>
-        /// supported for existing callers with its conservative safe zone.<br/>
-        /// When supplied, the advertisement is generated inside that<br/>
-        /// platform's safe zone for the requested aspect ratio and the<br/>
-        /// remaining space is filled in around it. When omitted, the<br/>
-        /// advertisement fills the whole frame. Any other value is rejected<br/>
-        /// with a 400.
+        /// The ad platform whose published safe zone the ad must stay inside.<br/>
+        /// The ad is generated inside the largest rectangle that fits the<br/>
+        /// platform's safe zone for the requested aspect ratio, and the space<br/>
+        /// around it is filled in so the output is still exactly the requested<br/>
+        /// `resolution`. `google` covers YouTube and Google Ads placements.<br/>
+        /// Use `meta_stories` or `meta_reels` for Meta placements; Reels uses<br/>
+        /// the largest rectangle inside its notched safe zone. The legacy<br/>
+        /// `meta` value is still supported and uses a more conservative safe<br/>
+        /// zone. When omitted, the ad fills the whole frame and every<br/>
+        /// supported `resolution` is accepted. Any other value is rejected<br/>
+        /// with a 400.<br/>
+        /// Each platform accepts only the resolutions for which it publishes a<br/>
+        /// safe zone; any other `resolution` is rejected with a 400:<br/>
+        /// | Platform | Accepted resolutions |<br/>
+        /// | --- | --- |<br/>
+        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
+        /// | `snapchat` | `1080x1920`, `2160x3840` |
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("platform")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdResizerRequestPlatformJsonConverter))]
@@ -120,37 +125,44 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="AdResizerRequest" /> class.
         /// </summary>
         /// <param name="resolution">
-        /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>
-        /// the supported ad resolutions listed above; any other value is<br/>
-        /// rejected with a 400. Each returned image has exactly these pixel<br/>
-        /// dimensions, whether or not a `platform` was supplied.
+        /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Any value not in<br/>
+        /// the list is rejected with a 400. Each output image has exactly these<br/>
+        /// pixel dimensions, with or without a `platform`.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source creative to reframe (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to reframe (max size 25MB). JPEG, PNG, and<br/>
+        /// WEBP formats are supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source creative to reframe (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to reframe (max size 25MB). JPEG, PNG, and<br/>
+        /// WEBP formats are supported. Multipart requests only.
         /// </param>
         /// <param name="platform">
-        /// The ad platform whose published safe zone the advertisement must<br/>
-        /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
-        /// use `meta_stories` or `meta_reels` for the placement-specific Meta<br/>
-        /// generation bounds. Reels uses the largest rectangle contained by<br/>
-        /// its notched safe-zone polygon. The legacy `meta` value remains<br/>
-        /// supported for existing callers with its conservative safe zone.<br/>
-        /// When supplied, the advertisement is generated inside that<br/>
-        /// platform's safe zone for the requested aspect ratio and the<br/>
-        /// remaining space is filled in around it. When omitted, the<br/>
-        /// advertisement fills the whole frame. Any other value is rejected<br/>
-        /// with a 400.
+        /// The ad platform whose published safe zone the ad must stay inside.<br/>
+        /// The ad is generated inside the largest rectangle that fits the<br/>
+        /// platform's safe zone for the requested aspect ratio, and the space<br/>
+        /// around it is filled in so the output is still exactly the requested<br/>
+        /// `resolution`. `google` covers YouTube and Google Ads placements.<br/>
+        /// Use `meta_stories` or `meta_reels` for Meta placements; Reels uses<br/>
+        /// the largest rectangle inside its notched safe zone. The legacy<br/>
+        /// `meta` value is still supported and uses a more conservative safe<br/>
+        /// zone. When omitted, the ad fills the whole frame and every<br/>
+        /// supported `resolution` is accepted. Any other value is rejected<br/>
+        /// with a 400.<br/>
+        /// Each platform accepts only the resolutions for which it publishes a<br/>
+        /// safe zone; any other `resolution` is rejected with a 400:<br/>
+        /// | Platform | Accepted resolutions |<br/>
+        /// | --- | --- |<br/>
+        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
+        /// | `snapchat` | `1080x1920`, `2160x3840` |
         /// </param>
         /// <param name="prompt">
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".

@@ -4,9 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source creative as either an `AssetIdentifier` reference or<br/>
-    /// (multipart requests only) raw image bytes; provide exactly one of the<br/>
-    /// two forms. Supplying both, or neither, is rejected with a 400.
+    /// Upload the source creative as `image` and choose a `variation_type`.
     /// </summary>
     public sealed partial class AdVariationsRequest
     {
@@ -19,23 +17,25 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source creative to vary (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to vary (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Multipart requests only. Each output keeps<br/>
+        /// the source's aspect ratio, capped at 3:1 between the long and short<br/>
+        /// sides.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source creative to vary (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to vary (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Multipart requests only. Each output keeps<br/>
+        /// the source's aspect ratio, capped at 3:1 between the long and short<br/>
+        /// sides.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// The axis to vary while everything else stays on-brand. `people`<br/>
+        /// The axis to vary. `people`<br/>
         /// replaces the people in the ad with different talent. `setting`<br/>
         /// moves the same subject and product to a different environment.<br/>
         /// `group_size` changes how many people appear. `scene` shifts the<br/>
@@ -47,7 +47,7 @@ namespace Ideogram
         public required global::Ideogram.AdVariationsRequestVariationType VariationType { get; set; }
 
         /// <summary>
-        /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Takes priority over the default preservation rules for anything it explicitly asks to change.
+        /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Anything it explicitly asks to change takes priority over the default preservation rules.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         public string? Prompt { get; set; }
@@ -98,7 +98,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="AdVariationsRequest" /> class.
         /// </summary>
         /// <param name="variationType">
-        /// The axis to vary while everything else stays on-brand. `people`<br/>
+        /// The axis to vary. `people`<br/>
         /// replaces the people in the ad with different talent. `setting`<br/>
         /// moves the same subject and product to a different environment.<br/>
         /// `group_size` changes how many people appear. `scene` shifts the<br/>
@@ -109,17 +109,19 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source creative to vary (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to vary (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Multipart requests only. Each output keeps<br/>
+        /// the source's aspect ratio, capped at 3:1 between the long and short<br/>
+        /// sides.
         /// </param>
         /// <param name="imagename">
-        /// The source creative to vary (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to vary (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Multipart requests only. Each output keeps<br/>
+        /// the source's aspect ratio, capped at 3:1 between the long and short<br/>
+        /// sides.
         /// </param>
         /// <param name="prompt">
-        /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Takes priority over the default preservation rules for anything it explicitly asks to change.
+        /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Anything it explicitly asks to change takes priority over the default preservation rules.
         /// </param>
         /// <param name="quality">
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>

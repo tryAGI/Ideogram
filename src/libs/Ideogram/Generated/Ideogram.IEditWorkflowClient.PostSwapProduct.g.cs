@@ -5,9 +5,9 @@ namespace Ideogram
     public partial interface IEditWorkflowClient
     {
         /// <summary>
-        /// Replace or recolor footwear in an advertisement<br/>
+        /// Swap Product<br/>
         /// Edits the footwear in a source advertisement using ordered product references.<br/>
-        /// Poll `GET /v1/generations/{generation_id}` for status and image results.
+        /// Poll `GET /v2/generations/{generation_id}` for status and image results.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -19,9 +19,9 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Replace or recolor footwear in an advertisement<br/>
+        /// Swap Product<br/>
         /// Edits the footwear in a source advertisement using ordered product references.<br/>
-        /// Poll `GET /v1/generations/{generation_id}` for status and image results.
+        /// Poll `GET /v2/generations/{generation_id}` for status and image results.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -33,9 +33,9 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Replace or recolor footwear in an advertisement<br/>
+        /// Swap Product<br/>
         /// Edits the footwear in a source advertisement using ordered product references.<br/>
-        /// Poll `GET /v1/generations/{generation_id}` for status and image results.
+        /// Poll `GET /v2/generations/{generation_id}` for status and image results.
         /// </summary>
         /// <param name="sourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>

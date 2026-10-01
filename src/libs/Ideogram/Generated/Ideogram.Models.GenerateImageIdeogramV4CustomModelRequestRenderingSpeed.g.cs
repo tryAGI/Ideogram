@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+    /// The rendering speed to use. When omitted, a speed supported by the custom model is used.
     /// </summary>
     public enum GenerateImageIdeogramV4CustomModelRequestRenderingSpeed
     {

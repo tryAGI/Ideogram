@@ -5,29 +5,12 @@ namespace Ideogram
     public partial interface IVideoGenerateClient
     {
         /// <summary>
-        /// Generate a video from a first frame with MiniMax H3, by asset id or by uploaded bytes<br/>
+        /// Image to video with MiniMax H3<br/>
         /// Generate a video from a first-frame image and a text prompt with<br/>
-        /// MiniMax H3. Supply the first frame either as an<br/>
-        /// `image_asset_identifier` reference (an image already stored with<br/>
-        /// Ideogram) or as raw `image` bytes (multipart requests only) — callers<br/>
-        /// are never required to upload the asset first. Exactly one source is<br/>
-        /// required; supplying neither or both is rejected. Only image assets are<br/>
-        /// accepted as a first frame. Uploaded bytes are used for this request<br/>
-        /// only and are not stored as an asset.<br/>
-        /// To generate a transition between two stills, supply a final frame as<br/>
-        /// well, in either of the same two forms: `end_image_asset_identifier` or<br/>
-        /// `end_image`. The final frame is optional and follows the same<br/>
-        /// one-form-only rule.<br/>
-        /// The generated video takes its aspect ratio from the first frame, so<br/>
-        /// this endpoint accepts no `aspect_ratio`.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// MiniMax H3. Upload the first frame as `image`, and optionally a final<br/>
+        /// frame as `end_image`, using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -43,29 +26,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate a video from a first frame with MiniMax H3, by asset id or by uploaded bytes<br/>
+        /// Image to video with MiniMax H3<br/>
         /// Generate a video from a first-frame image and a text prompt with<br/>
-        /// MiniMax H3. Supply the first frame either as an<br/>
-        /// `image_asset_identifier` reference (an image already stored with<br/>
-        /// Ideogram) or as raw `image` bytes (multipart requests only) — callers<br/>
-        /// are never required to upload the asset first. Exactly one source is<br/>
-        /// required; supplying neither or both is rejected. Only image assets are<br/>
-        /// accepted as a first frame. Uploaded bytes are used for this request<br/>
-        /// only and are not stored as an asset.<br/>
-        /// To generate a transition between two stills, supply a final frame as<br/>
-        /// well, in either of the same two forms: `end_image_asset_identifier` or<br/>
-        /// `end_image`. The final frame is optional and follows the same<br/>
-        /// one-form-only rule.<br/>
-        /// The generated video takes its aspect ratio from the first frame, so<br/>
-        /// this endpoint accepts no `aspect_ratio`.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// MiniMax H3. Upload the first frame as `image`, and optionally a final<br/>
+        /// frame as `end_image`, using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -81,29 +47,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate a video from a first frame with MiniMax H3, by asset id or by uploaded bytes<br/>
+        /// Image to video with MiniMax H3<br/>
         /// Generate a video from a first-frame image and a text prompt with<br/>
-        /// MiniMax H3. Supply the first frame either as an<br/>
-        /// `image_asset_identifier` reference (an image already stored with<br/>
-        /// Ideogram) or as raw `image` bytes (multipart requests only) — callers<br/>
-        /// are never required to upload the asset first. Exactly one source is<br/>
-        /// required; supplying neither or both is rejected. Only image assets are<br/>
-        /// accepted as a first frame. Uploaded bytes are used for this request<br/>
-        /// only and are not stored as an asset.<br/>
-        /// To generate a transition between two stills, supply a final frame as<br/>
-        /// well, in either of the same two forms: `end_image_asset_identifier` or<br/>
-        /// `end_image`. The final frame is optional and follows the same<br/>
-        /// one-form-only rule.<br/>
-        /// The generated video takes its aspect ratio from the first frame, so<br/>
-        /// this endpoint accepts no `aspect_ratio`.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// MiniMax H3. Upload the first frame as `image`, and optionally a final<br/>
+        /// frame as `end_image`, using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -112,19 +61,19 @@ namespace Ideogram
         /// A reference to an image already stored with Ideogram to use as the first frame, in place of uploading `image`. Only image assets are accepted.
         /// </param>
         /// <param name="image">
-        /// The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.
+        /// The first-frame image to animate, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </param>
         /// <param name="imagename">
-        /// The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.
+        /// The first-frame image to animate, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </param>
         /// <param name="endImageAssetIdentifier">
         /// An optional final frame, as a reference to an image already stored with Ideogram. When supplied, the generated video transitions from the first frame to this one. Only image assets are accepted.
         /// </param>
         /// <param name="endImage">
-        /// An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.
+        /// An optional final frame, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. When supplied, the video transitions from the first frame to this one.
         /// </param>
         /// <param name="endImagename">
-        /// An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.
+        /// An optional final frame, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. When supplied, the video transitions from the first frame to this one.
         /// </param>
         /// <param name="prompt">
         /// A natural-language prompt describing how the first frame should animate.<br/>

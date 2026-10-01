@@ -44,19 +44,11 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Remove an image background<br/>
-        /// Remove the background from one image and return a foreground PNG with<br/>
-        /// transparency. Supply exactly one source: raw `image` bytes in a<br/>
-        /// multipart request, or an existing `image_asset_identifier` in JSON or<br/>
-        /// multipart form.<br/>
-        /// By default the request blocks until the foreground image is ready and<br/>
-        /// returns it in `data`. Set `async` to true to return immediately after<br/>
-        /// the request is accepted, then poll `GET /v1/generations/{generation_id}`.<br/>
-        /// API-key requests use the organization bound to the key. Firebase Bearer<br/>
-        /// requests use their selected organization, and Mini App context tokens<br/>
-        /// remain bound to the organization in the token. When `private` is omitted,<br/>
-        /// Bearer and Mini App callers inherit their plan's private-generation<br/>
-        /// default; Enterprise generations are always private.
+        /// Remove background<br/>
+        /// Remove the background from an image and return the foreground as a<br/>
+        /// transparent PNG. Upload the source `image` using `multipart/form-data`.<br/>
+        /// Returns the result directly by default; set `async` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -83,19 +75,11 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Remove an image background<br/>
-        /// Remove the background from one image and return a foreground PNG with<br/>
-        /// transparency. Supply exactly one source: raw `image` bytes in a<br/>
-        /// multipart request, or an existing `image_asset_identifier` in JSON or<br/>
-        /// multipart form.<br/>
-        /// By default the request blocks until the foreground image is ready and<br/>
-        /// returns it in `data`. Set `async` to true to return immediately after<br/>
-        /// the request is accepted, then poll `GET /v1/generations/{generation_id}`.<br/>
-        /// API-key requests use the organization bound to the key. Firebase Bearer<br/>
-        /// requests use their selected organization, and Mini App context tokens<br/>
-        /// remain bound to the organization in the token. When `private` is omitted,<br/>
-        /// Bearer and Mini App callers inherit their plan's private-generation<br/>
-        /// default; Enterprise generations are always private.
+        /// Remove background<br/>
+        /// Remove the background from an image and return the foreground as a<br/>
+        /// transparent PNG. Upload the source `image` using `multipart/form-data`.<br/>
+        /// Returns the result directly by default; set `async` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -811,28 +795,20 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Remove an image background<br/>
-        /// Remove the background from one image and return a foreground PNG with<br/>
-        /// transparency. Supply exactly one source: raw `image` bytes in a<br/>
-        /// multipart request, or an existing `image_asset_identifier` in JSON or<br/>
-        /// multipart form.<br/>
-        /// By default the request blocks until the foreground image is ready and<br/>
-        /// returns it in `data`. Set `async` to true to return immediately after<br/>
-        /// the request is accepted, then poll `GET /v1/generations/{generation_id}`.<br/>
-        /// API-key requests use the organization bound to the key. Firebase Bearer<br/>
-        /// requests use their selected organization, and Mini App context tokens<br/>
-        /// remain bound to the organization in the token. When `private` is omitted,<br/>
-        /// Bearer and Mini App callers inherit their plan's private-generation<br/>
-        /// default; Enterprise generations are always private.
+        /// Remove background<br/>
+        /// Remove the background from an image and return the foreground as a<br/>
+        /// transparent PNG. Upload the source `image` using `multipart/form-data`.<br/>
+        /// Returns the result directly by default; set `async` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="image">
-        /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
+        /// The source image. JPEG, PNG, or WebP, up to 25MB. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// Raw JPEG, PNG, or WebP image bytes (max 25MB). Multipart requests only.
+        /// The source image. JPEG, PNG, or WebP, up to 25MB. Multipart requests only.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -843,13 +819,11 @@ namespace Ideogram
         /// </param>
         /// <param name="private">
         /// Whether to keep the result out of the public gallery. When omitted,<br/>
-        /// Firebase Bearer and Mini App callers inherit their plan entitlement.<br/>
-        /// Enterprise generations are always private. API keys use their bound<br/>
-        /// organization and otherwise default to public when no subscription<br/>
-        /// entitlement is available.
+        /// defaults to your plan's setting, or public if your plan has none.<br/>
+        /// Enterprise generations are always private.
         /// </param>
         /// <param name="async">
-        /// When false (the default), wait for and return the foreground image. When true, return after acceptance and poll `GET /v1/generations/{generation_id}`.<br/>
+        /// When false (the default), wait for and return the foreground image. When true, return as soon as the request is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

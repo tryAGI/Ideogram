@@ -4,19 +4,15 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Request body for Seedance 2.0 reference-to-video. The prompt<br/>
-    /// addresses references by position — `@Image1`,<br/>
-    /// `@Video1`, and so on. Reference images arrive either<br/>
-    /// as `reference_image_asset_identifiers` or (multipart requests only) as<br/>
-    /// raw `reference_images` bytes, never both. Reference videos arrive only<br/>
-    /// as `reference_video_asset_identifiers`, which may reference uploaded or<br/>
-    /// generated videos. At least one reference image or video is<br/>
-    /// required.
+    /// Request body for Seedance 2.0 reference-to-video. Upload<br/>
+    /// `reference_images` (at least one is required) and optional<br/>
+    /// `reference_audios` using `multipart/form-data`. The prompt refers to<br/>
+    /// them by position: `@Image1`, `@Audio1`, and so on.
     /// </summary>
     public sealed partial class GenerateVideoSeedDance2ReferenceToVideoRequest
     {
         /// <summary>
-        /// A natural-language prompt describing the video to produce. Reference media is addressed by position, as in "@Image1 walks toward the camera with the motion of @Video1".<br/>
+        /// A natural-language prompt describing the video to produce. Refer to references by position, as in "@Image1 walks toward the camera".<br/>
         /// Example: @Image1 walks through the snowy forest at dawn.
         /// </summary>
         /// <example>@Image1 walks through the snowy forest at dawn.</example>
@@ -31,7 +27,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceImageAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
+        /// Reference images, in prompt order. Common formats such as JPEG, PNG, and WEBP are supported, up to 50MB each. Multipart requests only. Uploaded images are used for this request only and are not stored.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? ReferenceImages { get; set; }
@@ -43,7 +39,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceVideoAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 15 seconds; combined duration must not exceed 15 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.
+        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 15 seconds long, with a combined duration of at most 15 seconds. Requires at least one reference image. Audio is used for this request only and is not saved to your library.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_audios")]
         public global::System.Collections.Generic.IList<byte[]>? ReferenceAudios { get; set; }
@@ -119,20 +115,20 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateVideoSeedDance2ReferenceToVideoRequest" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// A natural-language prompt describing the video to produce. Reference media is addressed by position, as in "@Image1 walks toward the camera with the motion of @Video1".<br/>
+        /// A natural-language prompt describing the video to produce. Refer to references by position, as in "@Image1 walks toward the camera".<br/>
         /// Example: @Image1 walks through the snowy forest at dawn.
         /// </param>
         /// <param name="referenceImageAssetIdentifiers">
         /// Images already stored with Ideogram to use as references, by reference, in prompt order. Cannot be combined with `reference_images`. Only image assets are accepted.
         /// </param>
         /// <param name="referenceImages">
-        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
+        /// Reference images, in prompt order. Common formats such as JPEG, PNG, and WEBP are supported, up to 50MB each. Multipart requests only. Uploaded images are used for this request only and are not stored.
         /// </param>
         /// <param name="referenceVideoAssetIdentifiers">
         /// Uploaded or generated videos to use as references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Upload video files first and pass their asset identifiers.
         /// </param>
         /// <param name="referenceAudios">
-        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 15 seconds; combined duration must not exceed 15 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.
+        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 15 seconds long, with a combined duration of at most 15 seconds. Requires at least one reference image. Audio is used for this request only and is not saved to your library.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>

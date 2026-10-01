@@ -4,12 +4,10 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Request body for MiniMax H3 image-to-video generation. Supply the first<br/>
-    /// frame either as an `image_asset_identifier` reference or (multipart<br/>
-    /// requests only) as raw `image` bytes. Exactly one source is required. An<br/>
-    /// optional final frame may be supplied the same way, with<br/>
-    /// `end_image_asset_identifier` or `end_image`, to generate a transition<br/>
-    /// between the two stills.
+    /// Request body for MiniMax H3 image-to-video generation.<br/>
+    /// Upload the first frame as `image`, and optionally a final frame as<br/>
+    /// `end_image`, using `multipart/form-data`. The video takes its aspect<br/>
+    /// ratio from the first frame, so there is no `aspect_ratio` field.
     /// </summary>
     public sealed partial class GenerateVideoMinimaxH3ImageToVideoRequest
     {
@@ -20,13 +18,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.
+        /// The first-frame image to animate, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.
+        /// The first-frame image to animate, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -38,13 +36,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? EndImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.
+        /// An optional final frame, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. When supplied, the video transitions from the first frame to this one.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("end_image")]
         public byte[]? EndImage { get; set; }
 
         /// <summary>
-        /// An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.
+        /// An optional final frame, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. When supplied, the video transitions from the first frame to this one.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("end_imagename")]
         public string? EndImagename { get; set; }
@@ -122,19 +120,19 @@ namespace Ideogram
         /// A reference to an image already stored with Ideogram to use as the first frame, in place of uploading `image`. Only image assets are accepted.
         /// </param>
         /// <param name="image">
-        /// The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.
+        /// The first-frame image to animate, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </param>
         /// <param name="imagename">
-        /// The first-frame image to animate (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. The bytes are used for this request only and are not stored as an asset.
+        /// The first-frame image to animate, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </param>
         /// <param name="endImageAssetIdentifier">
         /// An optional final frame, as a reference to an image already stored with Ideogram. When supplied, the generated video transitions from the first frame to this one. Only image assets are accepted.
         /// </param>
         /// <param name="endImage">
-        /// An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.
+        /// An optional final frame, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. When supplied, the video transitions from the first frame to this one.
         /// </param>
         /// <param name="endImagename">
-        /// An optional final frame (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. When supplied, the generated video transitions from the first frame to this one. The bytes are used for this request only and are not stored as an asset.
+        /// An optional final frame, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. When supplied, the video transitions from the first frame to this one.
         /// </param>
         /// <param name="resolution">
         /// The resolution tier of the generated video, spelled the way MiniMax<br/>

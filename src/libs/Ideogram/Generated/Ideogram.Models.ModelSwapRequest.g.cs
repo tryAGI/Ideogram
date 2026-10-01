@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Provide exactly one of `source_asset_identifier` or multipart `source_image`, plus one to four ordered target-model references.
+    /// The working image (`source_image`) plus one to four ordered target-model references. Results are full-frame edits, so exact pixel preservation is not guaranteed.
     /// </summary>
     public sealed partial class ModelSwapRequest
     {
@@ -17,13 +17,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? SourceAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Raw working-image bytes. Supported formats and the 50 MB limit match the image upload API. Available only with `multipart/form-data`.
+        /// The working image whose product, pose, scene, lighting, framing, and camera are preserved. Supported formats and the 50 MB limit match the image upload API. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_image")]
         public byte[]? SourceImage { get; set; }
 
         /// <summary>
-        /// Raw working-image bytes. Supported formats and the 50 MB limit match the image upload API. Available only with `multipart/form-data`.
+        /// The working image whose product, pose, scene, lighting, framing, and camera are preserved. Supported formats and the 50 MB limit match the image upload API. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("source_imagename")]
         public string? SourceImagename { get; set; }
@@ -106,10 +106,10 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="sourceImage">
-        /// Raw working-image bytes. Supported formats and the 50 MB limit match the image upload API. Available only with `multipart/form-data`.
+        /// The working image whose product, pose, scene, lighting, framing, and camera are preserved. Supported formats and the 50 MB limit match the image upload API. Multipart requests only.
         /// </param>
         /// <param name="sourceImagename">
-        /// Raw working-image bytes. Supported formats and the 50 MB limit match the image upload API. Available only with `multipart/form-data`.
+        /// The working image whose product, pose, scene, lighting, framing, and camera are preserved. Supported formats and the 50 MB limit match the image upload API. Multipart requests only.
         /// </param>
         /// <param name="instruction">
         /// Optional identity details that are not visible in the target-model references. This cannot override the source roles described above.

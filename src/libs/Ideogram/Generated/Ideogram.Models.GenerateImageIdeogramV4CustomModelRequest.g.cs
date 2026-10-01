@@ -9,17 +9,16 @@ namespace Ideogram
     public sealed partial class GenerateImageIdeogramV4CustomModelRequest
     {
         /// <summary>
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. A structured JSON prompt is consumed<br/>
-        /// by the model directly and skips magic prompt.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>
         /// Example: model/my-custom-v4-model/version/1
         /// </summary>
         /// <example>model/my-custom-v4-model/version/1</example>
@@ -38,9 +37,8 @@ namespace Ideogram
         /// <summary>
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
         /// default) and `on` rewrite and expand the prompt before generation.<br/>
-        /// `off` keeps your wording and only converts the prompt into the<br/>
-        /// structured format the model consumes. A prompt that is already a<br/>
-        /// valid structured JSON prompt skips magic prompt entirely unless<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
         /// `magic_prompt` is `on`.<br/>
         /// Default Value: auto
         /// </summary>
@@ -65,28 +63,28 @@ namespace Ideogram
 
         /// <summary>
         /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, the server picks an aspect ratio<br/>
-        /// automatically based on the prompt.
+        /// resolution. When omitted, an aspect ratio is picked automatically<br/>
+        /// based on the prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter))]
         public global::Ideogram.ResolutionV4? Resolution { get; set; }
 
         /// <summary>
-        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// The rendering speed to use. When omitted, a speed supported by the custom model is used.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4CustomModelRequestRenderingSpeedJsonConverter))]
         public global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -129,13 +127,12 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImageIdeogramV4CustomModelRequest" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. A structured JSON prompt is consumed<br/>
-        /// by the model directly and skips magic prompt.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt.
         /// </param>
         /// <param name="customModelUri">
-        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>
         /// Example: model/my-custom-v4-model/version/1
         /// </param>
         /// <param name="stackedCustomModels">
@@ -145,9 +142,8 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
         /// default) and `on` rewrite and expand the prompt before generation.<br/>
-        /// `off` keeps your wording and only converts the prompt into the<br/>
-        /// structured format the model consumes. A prompt that is already a<br/>
-        /// valid structured JSON prompt skips magic prompt entirely unless<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
         /// `magic_prompt` is `on`.<br/>
         /// Default Value: auto
         /// </param>
@@ -161,17 +157,17 @@ namespace Ideogram
         /// </param>
         /// <param name="resolution">
         /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, the server picks an aspect ratio<br/>
-        /// automatically based on the prompt.
+        /// resolution. When omitted, an aspect ratio is picked automatically<br/>
+        /// based on the prompt.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// The rendering speed to use. When omitted, a speed supported by the custom model is used.
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

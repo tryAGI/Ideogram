@@ -4,9 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Provide exactly one of `image_asset_identifier` or `image` for the<br/>
-    /// source. Style controls are optional; when used, provide only one of<br/>
-    /// `style_preset`, `style_codes`, `style_reference_asset_identifiers`, or<br/>
+    /// Upload the source `image`. Style controls are optional; when used,<br/>
+    /// supply only one of `style_preset`, `style_codes`, or<br/>
     /// `style_reference_images`.
     /// </summary>
     public sealed partial class ReframeImageIdeogramV3Request
@@ -20,13 +19,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The JPEG, PNG, or WEBP image to reframe (max 25MB), as raw bytes. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The JPEG, PNG, or WEBP image to reframe (max 25MB). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The JPEG, PNG, or WEBP image to reframe (max 25MB), as raw bytes. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The JPEG, PNG, or WEBP image to reframe (max 25MB). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -94,7 +93,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// JPEG, PNG, or WEBP style reference images (max 10, max 25MB each), as raw bytes. Multipart requests only. Cannot be combined with a style preset, style codes, or referenced style assets.
+        /// JPEG, PNG, or WEBP style reference images (max 10, max 25MB each). Multipart requests only. Cannot be combined with `style_preset` or `style_codes`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -124,10 +123,10 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The JPEG, PNG, or WEBP image to reframe (max 25MB), as raw bytes. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The JPEG, PNG, or WEBP image to reframe (max 25MB). Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The JPEG, PNG, or WEBP image to reframe (max 25MB), as raw bytes. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The JPEG, PNG, or WEBP image to reframe (max 25MB). Multipart requests only.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -155,7 +154,7 @@ namespace Ideogram
         /// Existing upload or generated image assets to use as style references. Cannot be combined with a style preset, style codes, or uploaded style reference images.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// JPEG, PNG, or WEBP style reference images (max 10, max 25MB each), as raw bytes. Multipart requests only. Cannot be combined with a style preset, style codes, or referenced style assets.
+        /// JPEG, PNG, or WEBP style reference images (max 10, max 25MB each). Multipart requests only. Cannot be combined with `style_preset` or `style_codes`.
         /// </param>
         /// <param name="async">
         /// Return immediately instead of waiting for reframed images.<br/>

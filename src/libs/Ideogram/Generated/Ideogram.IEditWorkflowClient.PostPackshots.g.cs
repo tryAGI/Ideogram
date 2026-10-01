@@ -5,12 +5,12 @@ namespace Ideogram
     public partial interface IEditWorkflowClient
     {
         /// <summary>
-        /// Create marketplace-ready product packshots<br/>
+        /// Packshots<br/>
         /// Creates one polished product photograph from one or more ordered product<br/>
         /// references. An optional style reference may guide framing, crop,<br/>
         /// background, and lighting without changing the product's identity.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. Product fidelity is<br/>
         /// best-effort and details absent from every reference may be reconstructed.
         /// </summary>
@@ -24,12 +24,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create marketplace-ready product packshots<br/>
+        /// Packshots<br/>
         /// Creates one polished product photograph from one or more ordered product<br/>
         /// references. An optional style reference may guide framing, crop,<br/>
         /// background, and lighting without changing the product's identity.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. Product fidelity is<br/>
         /// best-effort and details absent from every reference may be reconstructed.
         /// </summary>
@@ -43,12 +43,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create marketplace-ready product packshots<br/>
+        /// Packshots<br/>
         /// Creates one polished product photograph from one or more ordered product<br/>
         /// references. An optional style reference may guide framing, crop,<br/>
         /// background, and lighting without changing the product's identity.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed. Product fidelity is<br/>
         /// best-effort and details absent from every reference may be reconstructed.
         /// </summary>

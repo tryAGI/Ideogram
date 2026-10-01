@@ -4,11 +4,9 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the product photo (`image`), the masks (`masks`), and the<br/>
-    /// material references (`materials`) as raw image bytes.<br/>
-    /// Supply up to 4 masks, with either one material for all of them or one<br/>
-    /// material per mask paired by position. A single-region edit is a<br/>
-    /// one-item `masks` list with a one-item material list.
+    /// Upload the product photo as `image`, up to 4 `masks`, and either one<br/>
+    /// entry in `materials` for all masks or one per mask, paired by<br/>
+    /// position. For a single region, send one mask and one material.
     /// </summary>
     public sealed partial class MaterialSwapRequest
     {
@@ -21,15 +19,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to edit (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to edit (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -47,13 +45,11 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? MaskAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The masks marking the regions of the product photo to change (max<br/>
-        /// 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP<br/>
-        /// formats are supported. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// change; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to change and transparent<br/>
-        /// pixels are preserved.
+        /// Masks marking the regions to change (max 4, max size 25MB each).<br/>
+        /// JPEG, PNG, and WEBP formats are supported. Every mask must have the<br/>
+        /// same pixel dimensions as the product photo. White pixels mark the<br/>
+        /// region to change and black pixels are preserved; alpha-only masks<br/>
+        /// also work (opaque = change, transparent = preserve).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("masks")]
         public global::System.Collections.Generic.IList<byte[]>? Masks { get; set; }
@@ -69,22 +65,21 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? MaterialAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The material reference images (max size 25MB each), as raw bytes;<br/>
-        /// only JPEG, PNG, and WEBP formats are supported. Only their material<br/>
-        /// — color, texture, pattern scale, and orientation — is applied to<br/>
-        /// the masked regions. Send one material, which every mask takes, or<br/>
-        /// exactly one per mask paired by position.
+        /// Material reference images (max size 25MB each). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Only their material (color, texture, pattern<br/>
+        /// scale, and orientation) is applied to the masked regions. Send one<br/>
+        /// material for every mask, or exactly one per mask, paired by<br/>
+        /// position.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("materials")]
         public global::System.Collections.Generic.IList<byte[]>? Materials { get; set; }
 
         /// <summary>
-        /// The aspect ratio of the generated image. Defaults to the aspect<br/>
-        /// ratio of the product photo when omitted, which preserves the<br/>
-        /// original framing exactly. When a different ratio is requested, the<br/>
-        /// scene is extended to fill the new shape rather than cropped, so<br/>
-        /// part of the frame is newly generated. Supported values are `1:1`,<br/>
-        /// `3:4`, `4:3`, `16:9`, and `9:16`.
+        /// Output aspect ratio. Defaults to the product photo's aspect ratio,<br/>
+        /// which keeps the original framing. A different ratio extends the<br/>
+        /// scene to fill the new shape rather than cropping, so part of the<br/>
+        /// frame is newly generated. Supported values are `1:1`, `3:4`,<br/>
+        /// `4:3`, `16:9`, and `9:16`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         public string? AspectRatio { get; set; }
@@ -139,12 +134,12 @@ namespace Ideogram
         /// `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
-        /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to edit (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="imagename">
-        /// The product photo to edit (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to edit (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="maskAssetIdentifiers">
         /// The masks marking the regions of the product photo to change, by<br/>
@@ -156,13 +151,11 @@ namespace Ideogram
         /// `masks`.
         /// </param>
         /// <param name="masks">
-        /// The masks marking the regions of the product photo to change (max<br/>
-        /// 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP<br/>
-        /// formats are supported. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// change; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to change and transparent<br/>
-        /// pixels are preserved.
+        /// Masks marking the regions to change (max 4, max size 25MB each).<br/>
+        /// JPEG, PNG, and WEBP formats are supported. Every mask must have the<br/>
+        /// same pixel dimensions as the product photo. White pixels mark the<br/>
+        /// region to change and black pixels are preserved; alpha-only masks<br/>
+        /// also work (opaque = change, transparent = preserve).
         /// </param>
         /// <param name="materialAssetIdentifiers">
         /// The material reference images, by reference. Only their material —<br/>
@@ -172,19 +165,18 @@ namespace Ideogram
         /// `material_asset_identifiers` or `materials`.
         /// </param>
         /// <param name="materials">
-        /// The material reference images (max size 25MB each), as raw bytes;<br/>
-        /// only JPEG, PNG, and WEBP formats are supported. Only their material<br/>
-        /// — color, texture, pattern scale, and orientation — is applied to<br/>
-        /// the masked regions. Send one material, which every mask takes, or<br/>
-        /// exactly one per mask paired by position.
+        /// Material reference images (max size 25MB each). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Only their material (color, texture, pattern<br/>
+        /// scale, and orientation) is applied to the masked regions. Send one<br/>
+        /// material for every mask, or exactly one per mask, paired by<br/>
+        /// position.
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio of the generated image. Defaults to the aspect<br/>
-        /// ratio of the product photo when omitted, which preserves the<br/>
-        /// original framing exactly. When a different ratio is requested, the<br/>
-        /// scene is extended to fill the new shape rather than cropped, so<br/>
-        /// part of the frame is newly generated. Supported values are `1:1`,<br/>
-        /// `3:4`, `4:3`, `16:9`, and `9:16`.
+        /// Output aspect ratio. Defaults to the product photo's aspect ratio,<br/>
+        /// which keeps the original framing. A different ratio extends the<br/>
+        /// scene to fill the new shape rather than cropping, so part of the<br/>
+        /// frame is newly generated. Supported values are `1:1`, `3:4`,<br/>
+        /// `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>

@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IAccountClient
     {
         /// <summary>
-        /// List your organization's invoices<br/>
+        /// List invoices<br/>
         /// Returns your organization's invoices with their line items — the<br/>
         /// billing record your usage reports reconcile against. Amounts are<br/>
         /// decimal strings in the invoice's currency.<br/>
@@ -19,7 +19,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List your organization's invoices<br/>
+        /// List invoices<br/>
         /// Returns your organization's invoices with their line items — the<br/>
         /// billing record your usage reports reconcile against. Amounts are<br/>
         /// decimal strings in the invoice's currency.<br/>

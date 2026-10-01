@@ -7,7 +7,7 @@ namespace Ideogram
     /// Generate images with a specific model contract. Requests are JSON<br/>
     /// (Ideogram 3.0 also accepts multipart for style reference bytes) and<br/>
     /// return a generation id that can be polled via<br/>
-    /// `GET /v1/generations/{generation_id}`.<br/>
+    /// `GET /v2/generations/{generation_id}`.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>

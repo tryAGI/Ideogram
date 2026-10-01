@@ -43,14 +43,10 @@ namespace Ideogram
 
         /// <summary>
         /// Describe with Ideogram 3.0<br/>
-        /// Generate a natural-language description of an image using Ideogram's<br/>
-        /// 3.0-generation image captioner (a fine-tune of the Qwen2-VL<br/>
-        /// vision-language model).<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.
+        /// Generate a natural-language description of an image with Ideogram's 3.0<br/>
+        /// image captioner (a fine-tune of the Qwen2-VL vision-language model).<br/>
+        /// Upload the image as `image` using `multipart/form-data`; the description<br/>
+        /// is returned directly.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -73,14 +69,10 @@ namespace Ideogram
         }
         /// <summary>
         /// Describe with Ideogram 3.0<br/>
-        /// Generate a natural-language description of an image using Ideogram's<br/>
-        /// 3.0-generation image captioner (a fine-tune of the Qwen2-VL<br/>
-        /// vision-language model).<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.
+        /// Generate a natural-language description of an image with Ideogram's 3.0<br/>
+        /// image captioner (a fine-tune of the Qwen2-VL vision-language model).<br/>
+        /// Upload the image as `image` using `multipart/form-data`; the description<br/>
+        /// is returned directly.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -769,24 +761,20 @@ namespace Ideogram
         }
         /// <summary>
         /// Describe with Ideogram 3.0<br/>
-        /// Generate a natural-language description of an image using Ideogram's<br/>
-        /// 3.0-generation image captioner (a fine-tune of the Qwen2-VL<br/>
-        /// vision-language model).<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.
+        /// Generate a natural-language description of an image with Ideogram's 3.0<br/>
+        /// image captioner (a fine-tune of the Qwen2-VL vision-language model).<br/>
+        /// Upload the image as `image` using `multipart/form-data`; the description<br/>
+        /// is returned directly.
         /// </summary>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>

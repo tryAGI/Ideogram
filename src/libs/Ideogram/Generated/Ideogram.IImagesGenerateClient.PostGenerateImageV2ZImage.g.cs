@@ -5,17 +5,10 @@ namespace Ideogram
     public partial interface IImagesGenerateClient
     {
         /// <summary>
-        /// Generate images with Z-Image from a text prompt<br/>
-        /// Generate one or more images from a text prompt with Z-Image. The base<br/>
-        /// model is pinned server-side.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with Z-Image<br/>
+        /// Generate images from a text prompt with Z-Image. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -31,17 +24,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with Z-Image from a text prompt<br/>
-        /// Generate one or more images from a text prompt with Z-Image. The base<br/>
-        /// model is pinned server-side.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with Z-Image<br/>
+        /// Generate images from a text prompt with Z-Image. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -57,17 +43,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with Z-Image from a text prompt<br/>
-        /// Generate one or more images from a text prompt with Z-Image. The base<br/>
-        /// model is pinned server-side.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with Z-Image<br/>
+        /// Generate images from a text prompt with Z-Image. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -81,8 +60,8 @@ namespace Ideogram
         /// Example: 1024x1024
         /// </param>
         /// <param name="numInferenceSteps">
-        /// Optional diffusion step count. When omitted, the server uses the<br/>
-        /// model's default. Higher values trade latency for quality.<br/>
+        /// Optional number of diffusion steps. When omitted, the model's<br/>
+        /// default is used. Higher values improve quality but take longer.<br/>
         /// Example: 8
         /// </param>
         /// <param name="seed">
@@ -94,7 +73,7 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

@@ -16,7 +16,7 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("negative_prompt")]
         public string? NegativePrompt { get; set; }
@@ -104,13 +104,13 @@ namespace Ideogram
         public global::Ideogram.IdeogramV3StylePreset? StylePreset { get; set; }
 
         /// <summary>
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
+        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_images`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
         public string? StyleReferenceCollectionId { get; set; }
 
         /// <summary>
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_version_id")]
         public string? StyleReferenceCollectionVersionId { get; set; }
@@ -122,19 +122,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max 25MB each; JPEG, PNG, or WEBP).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
 
         /// <summary>
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -180,7 +180,7 @@ namespace Ideogram
         /// The prompt to generate images from.
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -224,22 +224,22 @@ namespace Ideogram
         /// A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references.
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
+        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_images`.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
         /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max 25MB each; JPEG, PNG, or WEBP).
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

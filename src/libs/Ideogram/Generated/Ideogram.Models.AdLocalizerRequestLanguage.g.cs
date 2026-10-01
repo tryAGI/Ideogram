@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The target language the copy is rebuilt in. Arabic is rendered right-to-left.
+    /// The target language for the copy. Arabic is rendered right-to-left. Each request covers one language; send one request per language.
     /// </summary>
     public enum AdLocalizerRequestLanguage
     {

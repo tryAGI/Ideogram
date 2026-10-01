@@ -49,7 +49,7 @@ namespace Ideogram
         /// `preserve_unmasked_pixels` to keep decoded pixels outside a supplied mask<br/>
         /// unchanged in the final image.<br/>
         /// The request runs asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
         /// </summary>
         /// <param name="request"></param>
@@ -79,7 +79,7 @@ namespace Ideogram
         /// `preserve_unmasked_pixels` to keep decoded pixels outside a supplied mask<br/>
         /// unchanged in the final image.<br/>
         /// The request runs asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
         /// </summary>
         /// <param name="request"></param>
@@ -822,7 +822,7 @@ namespace Ideogram
         /// `preserve_unmasked_pixels` to keep decoded pixels outside a supplied mask<br/>
         /// unchanged in the final image.<br/>
         /// The request runs asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.
         /// </summary>
         /// <param name="model">

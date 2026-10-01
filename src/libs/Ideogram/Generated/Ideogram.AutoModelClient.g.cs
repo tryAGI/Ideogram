@@ -6,7 +6,7 @@ namespace Ideogram
     /// <summary>
     /// Model-agnostic endpoints where the server selects the model for each<br/>
     /// request. Requests are JSON and return a generation id that can be<br/>
-    /// polled via `GET /v1/generations/{generation_id}`.<br/>
+    /// polled via `GET /v2/generations/{generation_id}`.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>

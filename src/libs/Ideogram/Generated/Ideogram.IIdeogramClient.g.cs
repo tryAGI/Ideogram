@@ -51,9 +51,14 @@ namespace Ideogram
         public AccountClient Account { get; }
 
         /// <summary>
+        ///
+        /// </summary>
+        public AssetReferenceUsageClient AssetReferenceUsage { get; }
+
+        /// <summary>
         /// Model-agnostic endpoints where the server selects the model for each<br/>
         /// request. Requests are JSON and return a generation id that can be<br/>
-        /// polled via `GET /v1/generations/{generation_id}`.
+        /// polled via `GET /v2/generations/{generation_id}`.
         /// </summary>
         public AutoModelClient AutoModel { get; }
 
@@ -85,21 +90,23 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
+        public GenerationsClient Generations { get; }
+
+        /// <summary>
+        ///
+        /// </summary>
         public ImageDescribeClient ImageDescribe { get; }
 
         /// <summary>
         /// Generate images with a specific model contract. Requests are JSON<br/>
         /// (Ideogram 3.0 also accepts multipart for style reference bytes) and<br/>
         /// return a generation id that can be polled via<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         public ImagesGenerateClient ImagesGenerate { get; }
 
         /// <summary>
-        /// Repaint a masked region of an image with a specific model contract.<br/>
-        /// Requests supply the source image and mask by `AssetIdentifier`<br/>
-        /// reference or as uploaded bytes and return a generation id that can be<br/>
-        /// polled via `GET /v1/generations/{generation_id}`.
+        /// Repaint a masked region of an image with a specific model.
         /// </summary>
         public ImagesInpaintClient ImagesInpaint { get; }
 
@@ -115,10 +122,7 @@ namespace Ideogram
         public ImagesReframeClient ImagesReframe { get; }
 
         /// <summary>
-        /// Transform an existing image with a specific model contract, guided by<br/>
-        /// a prompt. Requests supply the source by `AssetIdentifier` reference or<br/>
-        /// as uploaded bytes, and return a generation id that can be polled via<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// Transform an image with a specific model, guided by a prompt.
         /// </summary>
         public ImagesRemixClient ImagesRemix { get; }
 
@@ -153,9 +157,8 @@ namespace Ideogram
         public ModelsClient Models { get; }
 
         /// <summary>
-        /// Remove unwanted objects from existing image assets. Requests use<br/>
-        /// `AssetIdentifier` references and return a generation id that can be<br/>
-        /// polled via `GET /v1/generations/{generation_id}`.
+        /// Remove unwanted objects from an image. Requests return a generation id<br/>
+        /// to poll with `GET /v2/generations/{generation_id}`.
         /// </summary>
         public ObjectRemovalClient ObjectRemoval { get; }
 

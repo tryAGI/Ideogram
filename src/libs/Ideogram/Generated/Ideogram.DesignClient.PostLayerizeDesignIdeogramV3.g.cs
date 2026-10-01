@@ -44,25 +44,13 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Layerize the text in an image<br/>
-        /// Decompose a flat image into an editable design: the text in the image<br/>
-        /// is detected, erased from the image, and returned as positioned text<br/>
-        /// blocks with matched fonts, sizes, and colors, alongside a text-free<br/>
-        /// base image.<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// A `prompt` describing the image can guide text detection; when<br/>
-        /// omitted, detection runs on the image alone.<br/>
-        /// By default the request blocks until layerization is complete and<br/>
-        /// returns the result in `data`. Set `async` to true to return<br/>
-        /// immediately after the request is accepted, then poll for completion<br/>
-        /// and results with `GET /v1/generations/{generation_id}` using the<br/>
-        /// returned `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Layerize text with Ideogram 3.0<br/>
+        /// Turn a flat image into an editable design: detected text is returned as<br/>
+        /// positioned text blocks with matched fonts, sizes, and colors, alongside<br/>
+        /// a text-free base image. Upload the image as `image` using<br/>
+        /// `multipart/form-data`. Returns results directly by default; set `async`<br/>
+        /// or supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -89,25 +77,13 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Layerize the text in an image<br/>
-        /// Decompose a flat image into an editable design: the text in the image<br/>
-        /// is detected, erased from the image, and returned as positioned text<br/>
-        /// blocks with matched fonts, sizes, and colors, alongside a text-free<br/>
-        /// base image.<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// A `prompt` describing the image can guide text detection; when<br/>
-        /// omitted, detection runs on the image alone.<br/>
-        /// By default the request blocks until layerization is complete and<br/>
-        /// returns the result in `data`. Set `async` to true to return<br/>
-        /// immediately after the request is accepted, then poll for completion<br/>
-        /// and results with `GET /v1/generations/{generation_id}` using the<br/>
-        /// returned `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Layerize text with Ideogram 3.0<br/>
+        /// Turn a flat image into an editable design: detected text is returned as<br/>
+        /// positioned text blocks with matched fonts, sizes, and colors, alongside<br/>
+        /// a text-free base image. Upload the image as `image` using<br/>
+        /// `multipart/form-data`. Returns results directly by default; set `async`<br/>
+        /// or supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -566,20 +542,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Insufficient credits or quota.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
                                 global::System.Exception? __exception_402 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_402 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -588,11 +568,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
+                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -662,20 +643,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Too many requests.
                             if ((int)__response.StatusCode == 429)
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -684,11 +669,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
+                                    responseObject: __value_429,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -855,25 +841,13 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Layerize the text in an image<br/>
-        /// Decompose a flat image into an editable design: the text in the image<br/>
-        /// is detected, erased from the image, and returned as positioned text<br/>
-        /// blocks with matched fonts, sizes, and colors, alongside a text-free<br/>
-        /// base image.<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// A `prompt` describing the image can guide text detection; when<br/>
-        /// omitted, detection runs on the image alone.<br/>
-        /// By default the request blocks until layerization is complete and<br/>
-        /// returns the result in `data`. Set `async` to true to return<br/>
-        /// immediately after the request is accepted, then poll for completion<br/>
-        /// and results with `GET /v1/generations/{generation_id}` using the<br/>
-        /// returned `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Layerize text with Ideogram 3.0<br/>
+        /// Turn a flat image into an editable design: detected text is returned as<br/>
+        /// positioned text blocks with matched fonts, sizes, and colors, alongside<br/>
+        /// a text-free base image. Upload the image as `image` using<br/>
+        /// `multipart/form-data`. Returns results directly by default; set `async`<br/>
+        /// or supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -883,10 +857,10 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source image to layerize (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to layerize (max 50MB). Common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source image to layerize (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to layerize (max 50MB). Common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="prompt">
         /// A description of the image, used to guide text detection. When omitted, detection runs on the image alone.
@@ -899,7 +873,7 @@ namespace Ideogram
         /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files). Multipart requests only.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

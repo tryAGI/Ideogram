@@ -44,39 +44,13 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Advertisement Resizer v2<br/>
-        /// Reframes the source creative to the exact requested ad resolution,<br/>
-        /// regenerating the layout so text and key elements stay legible at the<br/>
-        /// target size.<br/>
-        /// Supply `platform` to keep the whole advertisement clear of that<br/>
-        /// platform's own interface. The advertisement is generated at the largest<br/>
-        /// rectangle that fits inside the platform's published safe zone for the<br/>
-        /// requested aspect ratio, placed at that rectangle's position, and the<br/>
-        /// space around it is filled in so the returned image is still exactly the<br/>
-        /// requested resolution. Omit `platform` and the advertisement fills the<br/>
-        /// whole frame.<br/>
-        /// Each platform accepts only the resolutions for which it publishes a<br/>
-        /// safe zone:<br/>
-        /// | Platform | Accepted resolutions |<br/>
-        /// | --- | --- |<br/>
-        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
-        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
-        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
-        /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
-        /// A `platform` combined with any other `resolution` is rejected with a<br/>
-        /// 400. When `platform` is omitted, every resolution in the request schema<br/>
-        /// is accepted.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed. The completed generation<br/>
-        /// reports the exact amount billed for the request in<br/>
-        /// `usage_cost_usd_micros`.<br/>
-        /// Supply the source creative as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two forms;<br/>
-        /// supplying both, or neither, is rejected with a 400.
+        /// Ad Resizer<br/>
+        /// Reframes an ad creative to an exact ad resolution, regenerating the<br/>
+        /// layout so text and key elements stay legible at the new size. Upload<br/>
+        /// the source creative as `image` using `multipart/form-data`, and supply<br/>
+        /// `platform` to keep the ad inside that platform's safe zone.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -103,39 +77,13 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Advertisement Resizer v2<br/>
-        /// Reframes the source creative to the exact requested ad resolution,<br/>
-        /// regenerating the layout so text and key elements stay legible at the<br/>
-        /// target size.<br/>
-        /// Supply `platform` to keep the whole advertisement clear of that<br/>
-        /// platform's own interface. The advertisement is generated at the largest<br/>
-        /// rectangle that fits inside the platform's published safe zone for the<br/>
-        /// requested aspect ratio, placed at that rectangle's position, and the<br/>
-        /// space around it is filled in so the returned image is still exactly the<br/>
-        /// requested resolution. Omit `platform` and the advertisement fills the<br/>
-        /// whole frame.<br/>
-        /// Each platform accepts only the resolutions for which it publishes a<br/>
-        /// safe zone:<br/>
-        /// | Platform | Accepted resolutions |<br/>
-        /// | --- | --- |<br/>
-        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
-        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
-        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
-        /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
-        /// A `platform` combined with any other `resolution` is rejected with a<br/>
-        /// 400. When `platform` is omitted, every resolution in the request schema<br/>
-        /// is accepted.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed. The completed generation<br/>
-        /// reports the exact amount billed for the request in<br/>
-        /// `usage_cost_usd_micros`.<br/>
-        /// Supply the source creative as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two forms;<br/>
-        /// supplying both, or neither, is rejected with a 400.
+        /// Ad Resizer<br/>
+        /// Reframes an ad creative to an exact ad resolution, regenerating the<br/>
+        /// layout so text and key elements stay legible at the new size. Upload<br/>
+        /// the source creative as `image` using `multipart/form-data`, and supply<br/>
+        /// `platform` to keep the ad inside that platform's safe zone.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -855,39 +803,13 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Advertisement Resizer v2<br/>
-        /// Reframes the source creative to the exact requested ad resolution,<br/>
-        /// regenerating the layout so text and key elements stay legible at the<br/>
-        /// target size.<br/>
-        /// Supply `platform` to keep the whole advertisement clear of that<br/>
-        /// platform's own interface. The advertisement is generated at the largest<br/>
-        /// rectangle that fits inside the platform's published safe zone for the<br/>
-        /// requested aspect ratio, placed at that rectangle's position, and the<br/>
-        /// space around it is filled in so the returned image is still exactly the<br/>
-        /// requested resolution. Omit `platform` and the advertisement fills the<br/>
-        /// whole frame.<br/>
-        /// Each platform accepts only the resolutions for which it publishes a<br/>
-        /// safe zone:<br/>
-        /// | Platform | Accepted resolutions |<br/>
-        /// | --- | --- |<br/>
-        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
-        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
-        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
-        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
-        /// | `snapchat` | `1080x1920`, `2160x3840` |<br/>
-        /// A `platform` combined with any other `resolution` is rejected with a<br/>
-        /// 400. When `platform` is omitted, every resolution in the request schema<br/>
-        /// is accepted.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed. The completed generation<br/>
-        /// reports the exact amount billed for the request in<br/>
-        /// `usage_cost_usd_micros`.<br/>
-        /// Supply the source creative as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two forms;<br/>
-        /// supplying both, or neither, is rejected with a 400.
+        /// Ad Resizer<br/>
+        /// Reframes an ad creative to an exact ad resolution, regenerating the<br/>
+        /// layout so text and key elements stay legible at the new size. Upload<br/>
+        /// the source creative as `image` using `multipart/form-data`, and supply<br/>
+        /// `platform` to keep the ad inside that platform's safe zone.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -897,33 +819,40 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source creative to reframe (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to reframe (max size 25MB). JPEG, PNG, and<br/>
+        /// WEBP formats are supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source creative to reframe (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to reframe (max size 25MB). JPEG, PNG, and<br/>
+        /// WEBP formats are supported. Multipart requests only.
         /// </param>
         /// <param name="resolution">
-        /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Must be one of<br/>
-        /// the supported ad resolutions listed above; any other value is<br/>
-        /// rejected with a 400. Each returned image has exactly these pixel<br/>
-        /// dimensions, whether or not a `platform` was supplied.
+        /// Target ad resolution, formatted as `WIDTHxHEIGHT`. Any value not in<br/>
+        /// the list is rejected with a 400. Each output image has exactly these<br/>
+        /// pixel dimensions, with or without a `platform`.
         /// </param>
         /// <param name="platform">
-        /// The ad platform whose published safe zone the advertisement must<br/>
-        /// stay inside. `google` covers YouTube and Google Ads placements;<br/>
-        /// use `meta_stories` or `meta_reels` for the placement-specific Meta<br/>
-        /// generation bounds. Reels uses the largest rectangle contained by<br/>
-        /// its notched safe-zone polygon. The legacy `meta` value remains<br/>
-        /// supported for existing callers with its conservative safe zone.<br/>
-        /// When supplied, the advertisement is generated inside that<br/>
-        /// platform's safe zone for the requested aspect ratio and the<br/>
-        /// remaining space is filled in around it. When omitted, the<br/>
-        /// advertisement fills the whole frame. Any other value is rejected<br/>
-        /// with a 400.
+        /// The ad platform whose published safe zone the ad must stay inside.<br/>
+        /// The ad is generated inside the largest rectangle that fits the<br/>
+        /// platform's safe zone for the requested aspect ratio, and the space<br/>
+        /// around it is filled in so the output is still exactly the requested<br/>
+        /// `resolution`. `google` covers YouTube and Google Ads placements.<br/>
+        /// Use `meta_stories` or `meta_reels` for Meta placements; Reels uses<br/>
+        /// the largest rectangle inside its notched safe zone. The legacy<br/>
+        /// `meta` value is still supported and uses a more conservative safe<br/>
+        /// zone. When omitted, the ad fills the whole frame and every<br/>
+        /// supported `resolution` is accepted. Any other value is rejected<br/>
+        /// with a 400.<br/>
+        /// Each platform accepts only the resolutions for which it publishes a<br/>
+        /// safe zone; any other `resolution` is rejected with a 400:<br/>
+        /// | Platform | Accepted resolutions |<br/>
+        /// | --- | --- |<br/>
+        /// | `google` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `tiktok` | `1920x1080`, `3840x2160`, `1080x1080`, `2400x2400`, `2880x2880`, `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_stories` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta_reels` | `1080x1920`, `2160x3840` |<br/>
+        /// | `meta` (legacy) | `1080x1920`, `2160x3840` |<br/>
+        /// | `snapchat` | `1080x1920`, `2160x3840` |
         /// </param>
         /// <param name="prompt">
         /// Optional edit instruction to apply while reframing, for example "remove the logo" or "put the price bottom-right".

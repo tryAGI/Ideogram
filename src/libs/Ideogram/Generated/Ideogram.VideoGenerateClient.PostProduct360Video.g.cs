@@ -44,9 +44,9 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Create a looping 360-degree product video<br/>
+        /// Product 360 Video<br/>
         /// Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.<br/>
-        /// Video generation runs asynchronously. Poll `GET /v1/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
+        /// Video generation runs asynchronously. Poll `GET /v2/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -73,9 +73,9 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Create a looping 360-degree product video<br/>
+        /// Product 360 Video<br/>
         /// Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.<br/>
-        /// Video generation runs asynchronously. Poll `GET /v1/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
+        /// Video generation runs asynchronously. Poll `GET /v2/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -718,9 +718,9 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Create a looping 360-degree product video<br/>
+        /// Product 360 Video<br/>
         /// Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.<br/>
-        /// Video generation runs asynchronously. Poll `GET /v1/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
+        /// Video generation runs asynchronously. Poll `GET /v2/generations/{generation_id}` with the returned `generation_id` until the generation completes or fails.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false

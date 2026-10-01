@@ -4,16 +4,14 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Source images are optional. When supplied (as `image_asset_identifiers`<br/>
-    /// references, or as raw `images` bytes in multipart requests), the prompt<br/>
-    /// is applied to the sources as an edit; if both forms are given, the<br/>
-    /// references are used and the bytes are ignored. Without source images<br/>
-    /// the prompt alone drives the generation.
+    /// Source `images` are optional. When supplied, the prompt is applied to<br/>
+    /// them as an edit. Without source images, the output is generated from<br/>
+    /// the prompt alone.
     /// </summary>
     public sealed partial class GenerateImageGptImage25FlareRequest
     {
         /// <summary>
-        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.
+        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. It is passed to the model as written.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -26,19 +24,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ImageAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("images")]
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
-        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         public byte[]? Mask { get; set; }
 
         /// <summary>
-        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         public string? Maskname { get; set; }
@@ -92,7 +90,7 @@ namespace Ideogram
         public string? Resolution { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -135,19 +133,19 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImageGptImage25FlareRequest" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. The model consumes it directly, without rewriting.
+        /// The prompt to generate images from, or the edit instruction to apply when source images are supplied. It is passed to the model as written.
         /// </param>
         /// <param name="imageAssetIdentifiers">
         /// Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.
         /// </param>
         /// <param name="images">
-        /// The source images to edit (max 16, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="mask">
-        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask applied to the first source image, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Fully transparent mask pixels mark the areas to edit; the mask must have the same dimensions as the first source image. Requires source images uploaded as raw `images` bytes in the same request; masks cannot be combined with `image_asset_identifiers`.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
         /// </param>
         /// <param name="background">
         /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
@@ -177,7 +175,7 @@ namespace Ideogram
         /// are between 655360 and 8294400 inclusive.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

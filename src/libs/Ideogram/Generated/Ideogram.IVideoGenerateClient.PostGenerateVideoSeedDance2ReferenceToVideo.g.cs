@@ -5,35 +5,12 @@ namespace Ideogram
     public partial interface IVideoGenerateClient
     {
         /// <summary>
-        /// Produce a video from reference images and videos with Seedance 2.0<br/>
-        /// Produce a video from a text prompt and reference media with<br/>
-        /// Seedance 2.0.<br/>
-        /// The prompt addresses the references by position: the first reference<br/>
-        /// image is `@Image1`, the second<br/>
-        /// `@Image2`, the first reference video is<br/>
-        /// `@Video1`, and so on. Supply reference images<br/>
-        /// either as `reference_image_asset_identifiers` (images already stored<br/>
-        /// with Ideogram) or as raw `reference_images` bytes (multipart requests<br/>
-        /// only); supplying both is rejected, and uploaded bytes are used for this<br/>
-        /// request only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 3<br/>
-        /// reference videos are accepted, and reference videos are capped again on<br/>
-        /// clip length: each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds.<br/>
-        /// Supply up to 3 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.<br/>
-        /// Each audio clip must be 2–15 seconds, with at most 15 seconds total. Reference<br/>
-        /// them as `@Audio1`, `@Audio2`, and so on. Audio is used for this request only.<br/>
-        /// Images, videos, and audio combined must not exceed 12 references.<br/>
-        /// At least one reference image or video is required: the model<br/>
-        /// conditions every generation on the media it is given, so a request<br/>
-        /// with no references is rejected.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Reference to video with Seedance 2.0<br/>
+        /// Generate a video from a text prompt and reference media with<br/>
+        /// Seedance 2.0. Upload at least one image in `reference_images`, plus optional<br/>
+        /// `reference_audios`, using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -49,35 +26,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Produce a video from reference images and videos with Seedance 2.0<br/>
-        /// Produce a video from a text prompt and reference media with<br/>
-        /// Seedance 2.0.<br/>
-        /// The prompt addresses the references by position: the first reference<br/>
-        /// image is `@Image1`, the second<br/>
-        /// `@Image2`, the first reference video is<br/>
-        /// `@Video1`, and so on. Supply reference images<br/>
-        /// either as `reference_image_asset_identifiers` (images already stored<br/>
-        /// with Ideogram) or as raw `reference_images` bytes (multipart requests<br/>
-        /// only); supplying both is rejected, and uploaded bytes are used for this<br/>
-        /// request only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 3<br/>
-        /// reference videos are accepted, and reference videos are capped again on<br/>
-        /// clip length: each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds.<br/>
-        /// Supply up to 3 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.<br/>
-        /// Each audio clip must be 2–15 seconds, with at most 15 seconds total. Reference<br/>
-        /// them as `@Audio1`, `@Audio2`, and so on. Audio is used for this request only.<br/>
-        /// Images, videos, and audio combined must not exceed 12 references.<br/>
-        /// At least one reference image or video is required: the model<br/>
-        /// conditions every generation on the media it is given, so a request<br/>
-        /// with no references is rejected.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Reference to video with Seedance 2.0<br/>
+        /// Generate a video from a text prompt and reference media with<br/>
+        /// Seedance 2.0. Upload at least one image in `reference_images`, plus optional<br/>
+        /// `reference_audios`, using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -93,54 +47,31 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Produce a video from reference images and videos with Seedance 2.0<br/>
-        /// Produce a video from a text prompt and reference media with<br/>
-        /// Seedance 2.0.<br/>
-        /// The prompt addresses the references by position: the first reference<br/>
-        /// image is `@Image1`, the second<br/>
-        /// `@Image2`, the first reference video is<br/>
-        /// `@Video1`, and so on. Supply reference images<br/>
-        /// either as `reference_image_asset_identifiers` (images already stored<br/>
-        /// with Ideogram) or as raw `reference_images` bytes (multipart requests<br/>
-        /// only); supplying both is rejected, and uploaded bytes are used for this<br/>
-        /// request only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which can reference uploaded or generated videos. At most 9 reference images and 3<br/>
-        /// reference videos are accepted, and reference videos are capped again on<br/>
-        /// clip length: each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds.<br/>
-        /// Supply up to 3 MP3/WAV `reference_audios` as multipart files, at most 15 MB each.<br/>
-        /// Each audio clip must be 2–15 seconds, with at most 15 seconds total. Reference<br/>
-        /// them as `@Audio1`, `@Audio2`, and so on. Audio is used for this request only.<br/>
-        /// Images, videos, and audio combined must not exceed 12 references.<br/>
-        /// At least one reference image or video is required: the model<br/>
-        /// conditions every generation on the media it is given, so a request<br/>
-        /// with no references is rejected.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Reference to video with Seedance 2.0<br/>
+        /// Generate a video from a text prompt and reference media with<br/>
+        /// Seedance 2.0. Upload at least one image in `reference_images`, plus optional<br/>
+        /// `reference_audios`, using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// A natural-language prompt describing the video to produce. Reference media is addressed by position, as in "@Image1 walks toward the camera with the motion of @Video1".<br/>
+        /// A natural-language prompt describing the video to produce. Refer to references by position, as in "@Image1 walks toward the camera".<br/>
         /// Example: @Image1 walks through the snowy forest at dawn.
         /// </param>
         /// <param name="referenceImageAssetIdentifiers">
         /// Images already stored with Ideogram to use as references, by reference, in prompt order. Cannot be combined with `reference_images`. Only image assets are accepted.
         /// </param>
         /// <param name="referenceImages">
-        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
+        /// Reference images, in prompt order. Common formats such as JPEG, PNG, and WEBP are supported, up to 50MB each. Multipart requests only. Uploaded images are used for this request only and are not stored.
         /// </param>
         /// <param name="referenceVideoAssetIdentifiers">
         /// Uploaded or generated videos to use as references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Upload video files first and pass their asset identifiers.
         /// </param>
         /// <param name="referenceAudios">
-        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 15 seconds; combined duration must not exceed 15 seconds. At least one reference image or video is required. Audio is used for this generation only and is not saved to your library.
+        /// MP3 or WAV audio references, in prompt order. Multipart requests only. Each file must be at most 15 MB and between 2 and 15 seconds long, with a combined duration of at most 15 seconds. Requires at least one reference image. Audio is used for this request only and is not saved to your library.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>

@@ -4,10 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Transform an existing image with a specific model contract, guided by<br/>
-    /// a prompt. Requests supply the source by `AssetIdentifier` reference or<br/>
-    /// as uploaded bytes, and return a generation id that can be polled via<br/>
-    /// `GET /v1/generations/{generation_id}`.<br/>
+    /// Transform an image with a specific model, guided by a prompt.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>

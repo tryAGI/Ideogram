@@ -4,12 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source image and the mask each as either an<br/>
-    /// `AssetIdentifier` reference or (multipart requests only) raw image<br/>
-    /// bytes. At least one of `image_asset_identifier` / `image` is required,<br/>
-    /// and likewise at least one of `mask_asset_identifier` / `mask`; if both<br/>
-    /// a reference and bytes are given for the same input, the reference is<br/>
-    /// used and the bytes are ignored.
+    /// The source `image` and its `mask` are both required and must be<br/>
+    /// uploaded in a multipart request.
     /// </summary>
     public sealed partial class InpaintImageIdeogramV3Request
     {
@@ -29,13 +25,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source image to repaint (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to repaint (max 25MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The output matches its size, snapped to the nearest supported resolution.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source image to repaint (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to repaint (max 25MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The output matches its size, snapped to the nearest supported resolution.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -49,13 +45,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
 
         /// <summary>
-        /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the source image. Black marks the region to repaint. JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         public byte[]? Mask { get; set; }
 
         /// <summary>
-        /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the source image. Black marks the region to repaint. JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         public string? Maskname { get; set; }
@@ -117,7 +113,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
         public string? StyleReferenceCollectionId { get; set; }
@@ -135,7 +131,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied.
+        /// Images to use as style references (max 10, max 25MB each). JPEG, PNG, and WEBP are supported.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
@@ -147,7 +143,7 @@ namespace Ideogram
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the repainted images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the repainted images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -197,20 +193,20 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source image to repaint (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to repaint (max 25MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The output matches its size, snapped to the nearest supported resolution.
         /// </param>
         /// <param name="imagename">
-        /// The source image to repaint (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to repaint (max 25MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The output matches its size, snapped to the nearest supported resolution.
         /// </param>
         /// <param name="maskAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="mask">
-        /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the source image. Black marks the region to repaint. JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="maskname">
-        /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the source image. Black marks the region to repaint. JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
@@ -241,7 +237,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
         /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
@@ -250,13 +246,13 @@ namespace Ideogram
         /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied.
+        /// Images to use as style references (max 10, max 25MB each). JPEG, PNG, and WEBP are supported.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the repainted images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the repainted images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

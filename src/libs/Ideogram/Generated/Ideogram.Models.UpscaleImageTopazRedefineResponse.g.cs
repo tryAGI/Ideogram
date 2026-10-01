@@ -4,20 +4,16 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Response returned by `POST /v2/image/upscale/topaz-redefine`.<br/>
-    /// Synchronous requests (the default) include the upscaled image in<br/>
-    /// `data`. Requests with `async` set to true omit `data`; poll for<br/>
-    /// completion and results with `GET /v1/generations/{generation_id}`<br/>
-    /// using the returned `generation_id`. The seed reports the value the<br/>
-    /// request resolved to when the caller left it unset; width and height<br/>
-    /// report the output dimensions.<br/>
+    /// Synchronous requests (the default) include the upscaled image in `data`.<br/>
+    /// Async requests omit `data`; poll `GET /v2/generations/{generation_id}`<br/>
+    /// with the returned `generation_id`. `seed` is the seed actually used,<br/>
+    /// and `width` and `height` are the output dimensions.<br/>
     /// Example: {"data":[{"seed":12345,"resolution":"2048x2048","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"resolution":"2048x2048","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id","width":0,"height":6}
     /// </summary>
     public sealed partial class UpscaleImageTopazRedefineResponse
     {
         /// <summary>
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -62,8 +58,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="UpscaleImageTopazRedefineResponse" /> class.
         /// </summary>
         /// <param name="generationId">
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>

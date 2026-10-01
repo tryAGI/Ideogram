@@ -4,10 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source image either as an `image_asset_identifier`<br/>
-    /// reference or (multipart requests only) as raw `image` bytes. Provide<br/>
-    /// exactly one of the two forms; supplying both, or neither, is rejected<br/>
-    /// with a 400.
+    /// A request to layerize the text in one image. Upload the source image<br/>
+    /// as `image` using `multipart/form-data`.
     /// </summary>
     public sealed partial class LayerizeDesignIdeogramV3Request
     {
@@ -20,13 +18,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source image to layerize (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to layerize (max 50MB). Common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source image to layerize (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to layerize (max 50MB). Common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -52,7 +50,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? FontCandidateFiles { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -99,10 +97,10 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source image to layerize (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to layerize (max 50MB). Common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source image to layerize (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source image to layerize (max 50MB). Common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="prompt">
         /// A description of the image, used to guide text detection. When omitted, detection runs on the image alone.
@@ -115,7 +113,7 @@ namespace Ideogram
         /// Candidate font files to make available for text style matching. Supported formats .ttf, .otf, .woff, .woff2 (max 5MB each, maximum 5 files). Multipart requests only.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until layerization is complete and returns the result in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

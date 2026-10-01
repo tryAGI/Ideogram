@@ -4,13 +4,13 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement that the workflow was accepted.<br/>
+    /// Acknowledgement that the request was accepted.<br/>
     /// Example: {"generation_id":"generation_id"}
     /// </summary>
     public sealed partial class ReplaceBackgroundResponse
     {
         /// <summary>
-        /// URL-safe base64 ID accepted by the generation polling endpoint.
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -26,7 +26,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ReplaceBackgroundResponse" /> class.
         /// </summary>
         /// <param name="generationId">
-        /// URL-safe base64 ID accepted by the generation polling endpoint.
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

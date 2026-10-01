@@ -4,13 +4,9 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply at least one garment reference. Directional references are<br/>
-    /// nullable and accept at most one of their asset-identifier or multipart<br/>
-    /// image fields. Additional unlabeled references can use exactly one of<br/>
-    /// `garment_asset_identifiers` or multipart `garment_images`. Every<br/>
-    /// garment image must depict the same primary garment. The total number<br/>
-    /// of garment references must not exceed 15, and all raw image uploads<br/>
-    /// combined must not exceed 100 MB.
+    /// Supply at least one garment image. Every image must show the same<br/>
+    /// primary garment. At most 15 garment images are accepted in total, and all<br/>
+    /// uploads combined must not exceed 100 MB.
     /// </summary>
     public sealed partial class GhostMannequinRequest
     {
@@ -24,10 +20,9 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? GarmentAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Raw images of the same garment, up to 50 MB each. JPEG, PNG, WEBP,<br/>
-        /// HEIF, AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `garment_asset_identifiers`.
+        /// Additional photos of the same garment, up to 50 MB each. JPEG,<br/>
+        /// PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO are supported.<br/>
+        /// Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("garment_images")]
         public global::System.Collections.Generic.IList<byte[]>? GarmentImages { get; set; }
@@ -41,15 +36,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? FrontAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Optional raw front-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `front_asset_identifier`.
+        /// Optional front-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("front_image")]
         public byte[]? FrontImage { get; set; }
 
         /// <summary>
-        /// Optional raw front-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `front_asset_identifier`.
+        /// Optional front-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("front_imagename")]
         public string? FrontImagename { get; set; }
@@ -63,15 +58,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? BackAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Optional raw back-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `back_asset_identifier`.
+        /// Optional back-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("back_image")]
         public byte[]? BackImage { get; set; }
 
         /// <summary>
-        /// Optional raw back-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `back_asset_identifier`.
+        /// Optional back-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("back_imagename")]
         public string? BackImagename { get; set; }
@@ -85,15 +80,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? LeftAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Optional raw left-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `left_asset_identifier`.
+        /// Optional left-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("left_image")]
         public byte[]? LeftImage { get; set; }
 
         /// <summary>
-        /// Optional raw left-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `left_asset_identifier`.
+        /// Optional left-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("left_imagename")]
         public string? LeftImagename { get; set; }
@@ -107,15 +102,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? RightAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Optional raw right-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `right_asset_identifier`.
+        /// Optional right-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("right_image")]
         public byte[]? RightImage { get; set; }
 
         /// <summary>
-        /// Optional raw right-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `right_asset_identifier`.
+        /// Optional right-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("right_imagename")]
         public string? RightImagename { get; set; }
@@ -129,15 +124,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? TopAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Optional raw top-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `top_asset_identifier`.
+        /// Optional top-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("top_image")]
         public byte[]? TopImage { get; set; }
 
         /// <summary>
-        /// Optional raw top-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `top_asset_identifier`.
+        /// Optional top-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("top_imagename")]
         public string? TopImagename { get; set; }
@@ -151,17 +146,15 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? BottomAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Optional raw bottom-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `bottom_asset_identifier`.
+        /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
+        /// requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("bottom_image")]
         public byte[]? BottomImage { get; set; }
 
         /// <summary>
-        /// Optional raw bottom-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `bottom_asset_identifier`.
+        /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
+        /// requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("bottom_imagename")]
         public string? BottomImagename { get; set; }
@@ -176,8 +169,8 @@ namespace Ideogram
 
         /// <summary>
         /// Optional reconstruction guidance or identity-critical garment<br/>
-        /// details for the analyzer to verify. The output always uses the<br/>
-        /// workflow's clean white studio presentation.
+        /// details to check against the photos. The output always uses a clean<br/>
+        /// white studio background.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("instruction")]
         public string? Instruction { get; set; }
@@ -186,7 +179,7 @@ namespace Ideogram
         /// Optional JSON object serialized as a string containing factual<br/>
         /// product context, such as title, brand, category, color, material,<br/>
         /// item code, and exact printed text. Metadata helps disambiguate the<br/>
-        /// garment references but does not add unsupported visual features.
+        /// garment photos but does not add features they do not show.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public string? Metadata { get; set; }
@@ -258,95 +251,92 @@ namespace Ideogram
         /// `garment_images`.
         /// </param>
         /// <param name="garmentImages">
-        /// Raw images of the same garment, up to 50 MB each. JPEG, PNG, WEBP,<br/>
-        /// HEIF, AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `garment_asset_identifiers`.
+        /// Additional photos of the same garment, up to 50 MB each. JPEG,<br/>
+        /// PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO are supported.<br/>
+        /// Multipart requests only.
         /// </param>
         /// <param name="frontAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="frontImage">
-        /// Optional raw front-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `front_asset_identifier`.
+        /// Optional front-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="frontImagename">
-        /// Optional raw front-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `front_asset_identifier`.
+        /// Optional front-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="backAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="backImage">
-        /// Optional raw back-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `back_asset_identifier`.
+        /// Optional back-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="backImagename">
-        /// Optional raw back-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `back_asset_identifier`.
+        /// Optional back-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="leftAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="leftImage">
-        /// Optional raw left-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `left_asset_identifier`.
+        /// Optional left-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="leftImagename">
-        /// Optional raw left-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `left_asset_identifier`.
+        /// Optional left-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="rightAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="rightImage">
-        /// Optional raw right-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `right_asset_identifier`.
+        /// Optional right-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="rightImagename">
-        /// Optional raw right-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `right_asset_identifier`.
+        /// Optional right-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="topAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="topImage">
-        /// Optional raw top-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `top_asset_identifier`.
+        /// Optional top-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="topImagename">
-        /// Optional raw top-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `top_asset_identifier`.
+        /// Optional top-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="bottomAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="bottomImage">
-        /// Optional raw bottom-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `bottom_asset_identifier`.
+        /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="bottomImagename">
-        /// Optional raw bottom-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `bottom_asset_identifier`.
+        /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="instruction">
         /// Optional reconstruction guidance or identity-critical garment<br/>
-        /// details for the analyzer to verify. The output always uses the<br/>
-        /// workflow's clean white studio presentation.
+        /// details to check against the photos. The output always uses a clean<br/>
+        /// white studio background.
         /// </param>
         /// <param name="metadata">
         /// Optional JSON object serialized as a string containing factual<br/>
         /// product context, such as title, brand, category, color, material,<br/>
         /// item code, and exact printed text. Metadata helps disambiguate the<br/>
-        /// garment references but does not add unsupported visual features.
+        /// garment photos but does not add features they do not show.
         /// </param>
         /// <param name="aspectRatio">
         /// Output aspect ratio. Defaults to `1:1` when omitted. Supported<br/>

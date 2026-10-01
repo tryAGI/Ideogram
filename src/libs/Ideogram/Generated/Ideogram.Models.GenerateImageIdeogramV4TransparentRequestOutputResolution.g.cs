@@ -4,11 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The output resolution tier for the generated images. Tiers are<br/>
-    /// total-pixel budgets matching a square of the named size (for<br/>
-    /// example, `8k` delivers at most 8192x8192 total pixels); wide and<br/>
-    /// tall aspect ratios keep the same pixel budget, so a single<br/>
-    /// dimension may exceed the named size. Defaults to 1k.<br/>
+    /// The output resolution tier. Each tier is a total pixel budget equal<br/>
+    /// to a square of the named size (for example, `8k` delivers at most<br/>
+    /// 8192x8192 pixels in total). Wide and tall aspect ratios keep the<br/>
+    /// same budget, so one side may exceed the named size. Tiers above<br/>
+    /// 2k are produced by upscaling after generation. Defaults to 1k.<br/>
     /// Default Value: 1k
     /// </summary>
     public enum GenerateImageIdeogramV4TransparentRequestOutputResolution

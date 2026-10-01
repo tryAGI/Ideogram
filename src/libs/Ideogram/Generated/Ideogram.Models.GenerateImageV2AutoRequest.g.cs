@@ -4,17 +4,14 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Source images are optional. When supplied (as `image_asset_identifiers`<br/>
-    /// references, or as raw `images` bytes in multipart requests), the server<br/>
-    /// picks a model that can transform them and the prompt describes the<br/>
-    /// change; if both forms are given, the references are used and the bytes<br/>
-    /// are ignored. `negative_prompt` and `style_reference_asset_identifiers`<br/>
-    /// cannot be combined with source images.
+    /// Source `images` are optional. When supplied, Ideogram picks a model<br/>
+    /// that can edit them and the prompt describes the change.<br/>
+    /// `negative_prompt` cannot be combined with source images.
     /// </summary>
     public sealed partial class GenerateImageV2AutoRequest
     {
         /// <summary>
-        /// The prompt to generate images from, or the instruction describing how to transform the source images when sources are supplied.
+        /// The prompt to generate images from or, when source images are supplied, the change to make to them.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -27,13 +24,13 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ImageAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The source images to transform (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// Optional source images to edit (max 10, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("images")]
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt. Not every model consults it. Cannot be combined with source images.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt. Not every model uses it. Cannot be combined with source images.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("negative_prompt")]
         public string? NegativePrompt { get; set; }
@@ -45,7 +42,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// The output aspect ratio. `auto` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`auto` value.<br/>
+        /// The output aspect ratio. `auto` (the default) picks the most suitable ratio for the request. Without source images the value must be a supported ratio (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" value is accepted and the output uses the closest supported shape. Omit `resolution` when supplying a non-`auto` value.<br/>
         /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
@@ -58,7 +55,7 @@ namespace Ideogram
         public string? Resolution { get; set; }
 
         /// <summary>
-        /// The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.
+        /// The output resolution tier. Affects which model serves the request, since not every model offers every tier. When omitted, the selected model's default tier is used.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution_tier")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageV2AutoRequestResolutionTierJsonConverter))]
@@ -106,7 +103,7 @@ namespace Ideogram
         public string? CategoryId { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -122,29 +119,29 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImageV2AutoRequest" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to generate images from, or the instruction describing how to transform the source images when sources are supplied.
+        /// The prompt to generate images from or, when source images are supplied, the change to make to them.
         /// </param>
         /// <param name="imageAssetIdentifiers">
         /// Existing upload or generated image assets to transform, by reference. Takes priority over `images` if both are supplied. Supplying sources turns the request into a transform.
         /// </param>
         /// <param name="images">
-        /// The source images to transform (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifiers` is also supplied.
+        /// Optional source images to edit (max 10, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt. Not every model consults it. Cannot be combined with source images.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt. Not every model uses it. Cannot be combined with source images.
         /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
         /// Existing upload or generated image assets whose style should guide the generation, by reference. Cannot be combined with source images.
         /// </param>
         /// <param name="aspectRatio">
-        /// The output aspect ratio. `auto` (the default) picks the most suitable ratio from the request. Without source images the value must be one of the supported ratio buckets (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" shape hint is accepted and the selected model serves the closest shape it supports. Omit `resolution` when supplying a non-`auto` value.<br/>
+        /// The output aspect ratio. `auto` (the default) picks the most suitable ratio for the request. Without source images the value must be a supported ratio (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" value is accepted and the output uses the closest supported shape. Omit `resolution` when supplying a non-`auto` value.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="resolution">
         /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports. Omit `aspect_ratio` (or leave it `auto`) when supplying a resolution.
         /// </param>
         /// <param name="resolutionTier">
-        /// The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.
+        /// The output resolution tier. Affects which model serves the request, since not every model offers every tier. When omitted, the selected model's default tier is used.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
@@ -168,7 +165,7 @@ namespace Ideogram
         /// The internal generation category to attribute to the output, as a URL-safe base64 UUID without padding. Only applies when source images are supplied.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
 #if NET7_0_OR_GREATER

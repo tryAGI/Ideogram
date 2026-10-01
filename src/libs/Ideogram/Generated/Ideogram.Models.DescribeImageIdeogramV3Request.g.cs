@@ -4,10 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source image either as an `image_asset_identifier`<br/>
-    /// reference or (multipart requests only) as raw `image` bytes. Provide<br/>
-    /// exactly one of the two forms; supplying both, or neither, is rejected<br/>
-    /// with a 400.
+    /// A request to describe one image. Upload the image as `image` using<br/>
+    /// `multipart/form-data`.
     /// </summary>
     public sealed partial class DescribeImageIdeogramV3Request
     {
@@ -20,13 +18,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -45,10 +43,10 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

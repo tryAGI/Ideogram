@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IAccountClient
     {
         /// <summary>
-        /// List your organization's API keys<br/>
+        /// List API keys<br/>
         /// Lists the API keys in your organization. Key material is redacted —<br/>
         /// the full key is only shown once, when it is created. Disabled and<br/>
         /// archived keys are included (see each key's `status`) so historical<br/>
@@ -20,7 +20,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// List your organization's API keys<br/>
+        /// List API keys<br/>
         /// Lists the API keys in your organization. Key material is redacted —<br/>
         /// the full key is only shown once, when it is created. Disabled and<br/>
         /// archived keys are included (see each key's `status`) so historical<br/>

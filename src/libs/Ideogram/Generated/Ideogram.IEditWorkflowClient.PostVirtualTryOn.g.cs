@@ -10,7 +10,7 @@ namespace Ideogram
         /// wearing the supplied garments, preserving their face, body, and<br/>
         /// background.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.<br/>
         /// Supply the person as either an `AssetIdentifier` reference<br/>
         /// (`person_asset_identifier`) or the raw image bytes directly<br/>
@@ -34,7 +34,7 @@ namespace Ideogram
         /// wearing the supplied garments, preserving their face, body, and<br/>
         /// background.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.<br/>
         /// Supply the person as either an `AssetIdentifier` reference<br/>
         /// (`person_asset_identifier`) or the raw image bytes directly<br/>
@@ -58,7 +58,7 @@ namespace Ideogram
         /// wearing the supplied garments, preserving their face, body, and<br/>
         /// background.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
         /// until the generation is completed or failed.<br/>
         /// Supply the person as either an `AssetIdentifier` reference<br/>
         /// (`person_asset_identifier`) or the raw image bytes directly<br/>

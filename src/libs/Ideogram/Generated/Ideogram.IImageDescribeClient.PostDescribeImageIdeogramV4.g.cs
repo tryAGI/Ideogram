@@ -6,17 +6,11 @@ namespace Ideogram
     {
         /// <summary>
         /// Describe with Ideogram 4.0<br/>
-        /// Describe an image using Ideogram's 4.0-generation image captioner (a<br/>
-        /// fine-tune of the Qwen3-VL vision-language model) and return a<br/>
-        /// structured `V4JsonPrompt`. The<br/>
-        /// returned `json_prompt` is a working JSON prompt that can be passed<br/>
-        /// directly as `json_prompt` to the `/v1/ideogram-v4/generate` family of<br/>
-        /// endpoints.<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.
+        /// Describe an image as a structured `V4JsonPrompt` with Ideogram's 4.0<br/>
+        /// image captioner (a fine-tune of the Qwen3-VL vision-language model).<br/>
+        /// Upload the image as `image` using `multipart/form-data`; the<br/>
+        /// `json_prompt` is returned directly and can be passed to the<br/>
+        /// `/v1/ideogram-v4/generate` endpoints.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -29,17 +23,11 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Describe with Ideogram 4.0<br/>
-        /// Describe an image using Ideogram's 4.0-generation image captioner (a<br/>
-        /// fine-tune of the Qwen3-VL vision-language model) and return a<br/>
-        /// structured `V4JsonPrompt`. The<br/>
-        /// returned `json_prompt` is a working JSON prompt that can be passed<br/>
-        /// directly as `json_prompt` to the `/v1/ideogram-v4/generate` family of<br/>
-        /// endpoints.<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.
+        /// Describe an image as a structured `V4JsonPrompt` with Ideogram's 4.0<br/>
+        /// image captioner (a fine-tune of the Qwen3-VL vision-language model).<br/>
+        /// Upload the image as `image` using `multipart/form-data`; the<br/>
+        /// `json_prompt` is returned directly and can be passed to the<br/>
+        /// `/v1/ideogram-v4/generate` endpoints.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -52,38 +40,32 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Describe with Ideogram 4.0<br/>
-        /// Describe an image using Ideogram's 4.0-generation image captioner (a<br/>
-        /// fine-tune of the Qwen3-VL vision-language model) and return a<br/>
-        /// structured `V4JsonPrompt`. The<br/>
-        /// returned `json_prompt` is a working JSON prompt that can be passed<br/>
-        /// directly as `json_prompt` to the `/v1/ideogram-v4/generate` family of<br/>
-        /// endpoints.<br/>
-        /// Supply the source either as an `image_asset_identifier` reference (an<br/>
-        /// image already stored with Ideogram) or as raw `image` bytes (multipart<br/>
-        /// requests only). Provide exactly one of the two forms; supplying both,<br/>
-        /// or neither, is rejected with a 400.<br/>
-        /// Supported image formats include JPEG, PNG, and WebP.
+        /// Describe an image as a structured `V4JsonPrompt` with Ideogram's 4.0<br/>
+        /// image captioner (a fine-tune of the Qwen3-VL vision-language model).<br/>
+        /// Upload the image as `image` using `multipart/form-data`; the<br/>
+        /// `json_prompt` is returned directly and can be passed to the<br/>
+        /// `/v1/ideogram-v4/generate` endpoints.
         /// </summary>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The image to describe (max size 10MB), as raw bytes; only JPEG, PNG, and WebP formats are supported. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The image to describe (max 10MB). JPEG, PNG, and WebP are supported. Multipart requests only.
         /// </param>
         /// <param name="includeBbox">
-        /// Whether to include bounding boxes on the subjects and texts of the returned `json_prompt`. Defaults to true so the prompt preserves the spatial layout of the described image.<br/>
+        /// Whether to include bounding boxes for the subjects and text in the returned `json_prompt`. Defaults to true, so the prompt preserves the layout of the described image.<br/>
         /// Default Value: true
         /// </param>
         /// <param name="includeStyleDescriptions">
-        /// Whether to include a free-form style description on the returned `json_prompt`. Defaults to false.<br/>
+        /// Whether to include a free-form style description in the returned `json_prompt`. Defaults to false.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="includeTags">
-        /// Whether to include the captioner's free-form tags on the returned `json_prompt`. Defaults to false.<br/>
+        /// Whether to include free-form tags in the returned `json_prompt`. Defaults to false.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>

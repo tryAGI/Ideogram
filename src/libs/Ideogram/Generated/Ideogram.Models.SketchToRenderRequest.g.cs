@@ -4,9 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply exactly one of `sketch_asset_identifier` or multipart<br/>
-    /// `sketch_image` bytes. The entire source is transformed from an<br/>
-    /// illustration into a photograph; masks are not accepted.
+    /// The whole sketch is transformed from an illustration into a<br/>
+    /// photograph; masks are not accepted.
     /// </summary>
     public sealed partial class SketchToRenderRequest
     {
@@ -19,24 +18,24 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? SketchAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Raw fashion-sketch bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.<br/>
-        /// Mutually exclusive with `sketch_asset_identifier`.
+        /// The fashion sketch to render, up to 50 MB. JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sketch_image")]
         public byte[]? SketchImage { get; set; }
 
         /// <summary>
-        /// Raw fashion-sketch bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.<br/>
-        /// Mutually exclusive with `sketch_asset_identifier`.
+        /// The fashion sketch to render, up to 50 MB. JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart requests<br/>
+        /// only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("sketch_imagename")]
         public string? SketchImagename { get; set; }
 
         /// <summary>
-        /// Required material and rendering direction, plus any construction<br/>
-        /// or design details that are not legible in the sketch.
+        /// Material and rendering direction, plus any construction or design<br/>
+        /// details that are not legible in the sketch.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("instruction")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -100,22 +99,22 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="SketchToRenderRequest" /> class.
         /// </summary>
         /// <param name="instruction">
-        /// Required material and rendering direction, plus any construction<br/>
-        /// or design details that are not legible in the sketch.
+        /// Material and rendering direction, plus any construction or design<br/>
+        /// details that are not legible in the sketch.
         /// </param>
         /// <param name="sketchAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="sketchImage">
-        /// Raw fashion-sketch bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.<br/>
-        /// Mutually exclusive with `sketch_asset_identifier`.
+        /// The fashion sketch to render, up to 50 MB. JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="sketchImagename">
-        /// Raw fashion-sketch bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.<br/>
-        /// Mutually exclusive with `sketch_asset_identifier`.
+        /// The fashion sketch to render, up to 50 MB. JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="aspectRatio">
         /// Aspect ratio of each output image. Defaults to `1:1` when omitted.

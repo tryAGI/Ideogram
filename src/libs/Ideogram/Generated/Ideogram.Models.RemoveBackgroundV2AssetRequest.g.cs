@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// JSON request shape for processing an existing upload or generated image. Raw image bytes are accepted only through multipart form data.
+    /// JSON request body. To upload an image, use `multipart/form-data`.
     /// </summary>
     public sealed partial class RemoveBackgroundV2AssetRequest
     {
@@ -30,7 +30,7 @@ namespace Ideogram
         public bool? Private { get; set; }
 
         /// <summary>
-        /// Return after acceptance and poll by generation ID when true.<br/>
+        /// When true, return as soon as the request is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -56,7 +56,7 @@ namespace Ideogram
         /// Whether to keep the result out of the public gallery. Enterprise generations are always private.
         /// </param>
         /// <param name="async">
-        /// Return after acceptance and poll by generation ID when true.<br/>
+        /// When true, return as soon as the request is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </param>
 #if NET7_0_OR_GREATER

@@ -5,21 +5,11 @@ namespace Ideogram
     public partial interface IImagesGenerateClient
     {
         /// <summary>
-        /// Generate images with a custom Ideogram 4.0 model<br/>
-        /// Generate one or more images with a custom Ideogram 4.0 model that the<br/>
-        /// authenticated user or organization can access. The model registry<br/>
-        /// controls the model's supported rendering speeds.<br/>
-        /// The `prompt` accepts either natural language or a structured Ideogram<br/>
-        /// 4.0 JSON prompt; the server detects which was supplied. A structured<br/>
-        /// JSON prompt is consumed by the model directly and skips magic prompt.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with a custom Ideogram 4.0 model<br/>
+        /// Generate images with a custom Ideogram 4.0 model that you or your<br/>
+        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -35,21 +25,11 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with a custom Ideogram 4.0 model<br/>
-        /// Generate one or more images with a custom Ideogram 4.0 model that the<br/>
-        /// authenticated user or organization can access. The model registry<br/>
-        /// controls the model's supported rendering speeds.<br/>
-        /// The `prompt` accepts either natural language or a structured Ideogram<br/>
-        /// 4.0 JSON prompt; the server detects which was supplied. A structured<br/>
-        /// JSON prompt is consumed by the model directly and skips magic prompt.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with a custom Ideogram 4.0 model<br/>
+        /// Generate images with a custom Ideogram 4.0 model that you or your<br/>
+        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -65,33 +45,22 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with a custom Ideogram 4.0 model<br/>
-        /// Generate one or more images with a custom Ideogram 4.0 model that the<br/>
-        /// authenticated user or organization can access. The model registry<br/>
-        /// controls the model's supported rendering speeds.<br/>
-        /// The `prompt` accepts either natural language or a structured Ideogram<br/>
-        /// 4.0 JSON prompt; the server detects which was supplied. A structured<br/>
-        /// JSON prompt is consumed by the model directly and skips magic prompt.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with a custom Ideogram 4.0 model<br/>
+        /// Generate images with a custom Ideogram 4.0 model that you or your<br/>
+        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. A structured JSON prompt is consumed<br/>
-        /// by the model directly and skips magic prompt.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt.
         /// </param>
         /// <param name="customModelUri">
-        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>
         /// Example: model/my-custom-v4-model/version/1
         /// </param>
         /// <param name="stackedCustomModels">
@@ -101,9 +70,8 @@ namespace Ideogram
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
         /// default) and `on` rewrite and expand the prompt before generation.<br/>
-        /// `off` keeps your wording and only converts the prompt into the<br/>
-        /// structured format the model consumes. A prompt that is already a<br/>
-        /// valid structured JSON prompt skips magic prompt entirely unless<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
         /// `magic_prompt` is `on`.<br/>
         /// Default Value: auto
         /// </param>
@@ -117,17 +85,17 @@ namespace Ideogram
         /// </param>
         /// <param name="resolution">
         /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, the server picks an aspect ratio<br/>
-        /// automatically based on the prompt.
+        /// resolution. When omitted, an aspect ratio is picked automatically<br/>
+        /// based on the prompt.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// The rendering speed to use. When omitted, a speed supported by the custom model is used.
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

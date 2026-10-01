@@ -5,16 +5,13 @@ namespace Ideogram
     public partial interface IEditWorkflowClient
     {
         /// <summary>
-        /// Render a fashion sketch as product photography<br/>
-        /// Converts one fashion sketch into photorealistic garment or product<br/>
-        /// imagery while preserving its silhouette, construction, colors, and<br/>
-        /// visible design details.<br/>
-        /// The request runs asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply exactly one sketch transport: an existing `AssetIdentifier` in<br/>
-        /// `sketch_asset_identifier`, or raw `sketch_image` bytes in a multipart<br/>
-        /// request. Supplying both or neither is rejected with a 400.
+        /// Sketch to Render<br/>
+        /// Turns a fashion sketch into photorealistic garment or product imagery,<br/>
+        /// preserving its silhouette, construction, colors, and design details.<br/>
+        /// Upload the `sketch_image` using `multipart/form-data` and describe<br/>
+        /// materials and rendering in `instruction`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -26,16 +23,13 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Render a fashion sketch as product photography<br/>
-        /// Converts one fashion sketch into photorealistic garment or product<br/>
-        /// imagery while preserving its silhouette, construction, colors, and<br/>
-        /// visible design details.<br/>
-        /// The request runs asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply exactly one sketch transport: an existing `AssetIdentifier` in<br/>
-        /// `sketch_asset_identifier`, or raw `sketch_image` bytes in a multipart<br/>
-        /// request. Supplying both or neither is rejected with a 400.
+        /// Sketch to Render<br/>
+        /// Turns a fashion sketch into photorealistic garment or product imagery,<br/>
+        /// preserving its silhouette, construction, colors, and design details.<br/>
+        /// Upload the `sketch_image` using `multipart/form-data` and describe<br/>
+        /// materials and rendering in `instruction`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -47,34 +41,31 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Render a fashion sketch as product photography<br/>
-        /// Converts one fashion sketch into photorealistic garment or product<br/>
-        /// imagery while preserving its silhouette, construction, colors, and<br/>
-        /// visible design details.<br/>
-        /// The request runs asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply exactly one sketch transport: an existing `AssetIdentifier` in<br/>
-        /// `sketch_asset_identifier`, or raw `sketch_image` bytes in a multipart<br/>
-        /// request. Supplying both or neither is rejected with a 400.
+        /// Sketch to Render<br/>
+        /// Turns a fashion sketch into photorealistic garment or product imagery,<br/>
+        /// preserving its silhouette, construction, colors, and design details.<br/>
+        /// Upload the `sketch_image` using `multipart/form-data` and describe<br/>
+        /// materials and rendering in `instruction`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="sketchAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="sketchImage">
-        /// Raw fashion-sketch bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.<br/>
-        /// Mutually exclusive with `sketch_asset_identifier`.
+        /// The fashion sketch to render, up to 50 MB. JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="sketchImagename">
-        /// Raw fashion-sketch bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.<br/>
-        /// Mutually exclusive with `sketch_asset_identifier`.
+        /// The fashion sketch to render, up to 50 MB. JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="instruction">
-        /// Required material and rendering direction, plus any construction<br/>
-        /// or design details that are not legible in the sketch.
+        /// Material and rendering direction, plus any construction or design<br/>
+        /// details that are not legible in the sketch.
         /// </param>
         /// <param name="aspectRatio">
         /// Aspect ratio of each output image. Defaults to `1:1` when omitted.

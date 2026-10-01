@@ -44,40 +44,14 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Repaint a masked region with a consistent character with Ideogram 3.0<br/>
-        /// Repaint the masked region of a source image so it features a<br/>
-        /// consistent character, with Ideogram 3.0. For each of the source image<br/>
-        /// and the mask, supply either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier` / `mask_asset_identifier`) or the raw image<br/>
-        /// bytes directly (`image` / `mask`, multipart requests only). If both a<br/>
-        /// reference and bytes are supplied for the same input, the reference<br/>
-        /// wins and the bytes are ignored.<br/>
-        /// Supply the character as a saved character<br/>
-        /// (`character_reference_collection_id`), as<br/>
-        /// `character_reference_asset_identifiers` references (an image already<br/>
-        /// stored with Ideogram), or as raw `character_reference_images` bytes<br/>
-        /// (multipart requests only, with an optional<br/>
-        /// `character_reference_mask` marking where the character is in the<br/>
-        /// reference). If more than one form is supplied, the collection wins<br/>
-        /// over the identifiers, and the identifiers win over the bytes.<br/>
-        /// Optional style controls may be combined with the character when<br/>
-        /// `style_type` is `auto`. Supply either style codes or style references.<br/>
-        /// Supply style references as a saved style<br/>
-        /// (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references, or as raw<br/>
-        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
-        /// one reference form is supplied, the collection wins over the<br/>
-        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
-        /// also need access to the style-with-character API rollout.<br/>
-        /// The output matches the size of the source image (snapped to the<br/>
-        /// nearest resolution the model renders). By default the request blocks<br/>
-        /// until the images are ready and returns them in `data`. Set `async` to<br/>
-        /// true to return immediately after the request is accepted, then poll<br/>
-        /// for completion and results with `GET /v1/generations/{generation_id}`<br/>
-        /// using the returned `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Inpaint a consistent character with Ideogram 3.0<br/>
+        /// Repaint the masked region of a source image with Ideogram 3.0 so it<br/>
+        /// features a consistent character. Upload the source `image`, its<br/>
+        /// `mask`, and a `character_reference_images` image (or use a saved<br/>
+        /// character) using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -104,40 +78,14 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Repaint a masked region with a consistent character with Ideogram 3.0<br/>
-        /// Repaint the masked region of a source image so it features a<br/>
-        /// consistent character, with Ideogram 3.0. For each of the source image<br/>
-        /// and the mask, supply either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier` / `mask_asset_identifier`) or the raw image<br/>
-        /// bytes directly (`image` / `mask`, multipart requests only). If both a<br/>
-        /// reference and bytes are supplied for the same input, the reference<br/>
-        /// wins and the bytes are ignored.<br/>
-        /// Supply the character as a saved character<br/>
-        /// (`character_reference_collection_id`), as<br/>
-        /// `character_reference_asset_identifiers` references (an image already<br/>
-        /// stored with Ideogram), or as raw `character_reference_images` bytes<br/>
-        /// (multipart requests only, with an optional<br/>
-        /// `character_reference_mask` marking where the character is in the<br/>
-        /// reference). If more than one form is supplied, the collection wins<br/>
-        /// over the identifiers, and the identifiers win over the bytes.<br/>
-        /// Optional style controls may be combined with the character when<br/>
-        /// `style_type` is `auto`. Supply either style codes or style references.<br/>
-        /// Supply style references as a saved style<br/>
-        /// (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references, or as raw<br/>
-        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
-        /// one reference form is supplied, the collection wins over the<br/>
-        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
-        /// also need access to the style-with-character API rollout.<br/>
-        /// The output matches the size of the source image (snapped to the<br/>
-        /// nearest resolution the model renders). By default the request blocks<br/>
-        /// until the images are ready and returns them in `data`. Set `async` to<br/>
-        /// true to return immediately after the request is accepted, then poll<br/>
-        /// for completion and results with `GET /v1/generations/{generation_id}`<br/>
-        /// using the returned `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Inpaint a consistent character with Ideogram 3.0<br/>
+        /// Repaint the masked region of a source image with Ideogram 3.0 so it<br/>
+        /// features a consistent character. Upload the source `image`, its<br/>
+        /// `mask`, and a `character_reference_images` image (or use a saved<br/>
+        /// character) using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -1097,40 +1045,14 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Repaint a masked region with a consistent character with Ideogram 3.0<br/>
-        /// Repaint the masked region of a source image so it features a<br/>
-        /// consistent character, with Ideogram 3.0. For each of the source image<br/>
-        /// and the mask, supply either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier` / `mask_asset_identifier`) or the raw image<br/>
-        /// bytes directly (`image` / `mask`, multipart requests only). If both a<br/>
-        /// reference and bytes are supplied for the same input, the reference<br/>
-        /// wins and the bytes are ignored.<br/>
-        /// Supply the character as a saved character<br/>
-        /// (`character_reference_collection_id`), as<br/>
-        /// `character_reference_asset_identifiers` references (an image already<br/>
-        /// stored with Ideogram), or as raw `character_reference_images` bytes<br/>
-        /// (multipart requests only, with an optional<br/>
-        /// `character_reference_mask` marking where the character is in the<br/>
-        /// reference). If more than one form is supplied, the collection wins<br/>
-        /// over the identifiers, and the identifiers win over the bytes.<br/>
-        /// Optional style controls may be combined with the character when<br/>
-        /// `style_type` is `auto`. Supply either style codes or style references.<br/>
-        /// Supply style references as a saved style<br/>
-        /// (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references, or as raw<br/>
-        /// `style_reference_images` bytes (multipart requests only). If more than<br/>
-        /// one reference form is supplied, the collection wins over the<br/>
-        /// identifiers, and the identifiers win over the bytes. API-key callers<br/>
-        /// also need access to the style-with-character API rollout.<br/>
-        /// The output matches the size of the source image (snapped to the<br/>
-        /// nearest resolution the model renders). By default the request blocks<br/>
-        /// until the images are ready and returns them in `data`. Set `async` to<br/>
-        /// true to return immediately after the request is accepted, then poll<br/>
-        /// for completion and results with `GET /v1/generations/{generation_id}`<br/>
-        /// using the returned `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Inpaint a consistent character with Ideogram 3.0<br/>
+        /// Repaint the masked region of a source image with Ideogram 3.0 so it<br/>
+        /// features a consistent character. Upload the source `image`, its<br/>
+        /// `mask`, and a `character_reference_images` image (or use a saved<br/>
+        /// character) using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -1143,23 +1065,23 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source image to repaint (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to repaint (max 25MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The output matches its size, snapped to the nearest supported resolution.
         /// </param>
         /// <param name="imagename">
-        /// The source image to repaint (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied.
+        /// The source image to repaint (max 25MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The output matches its size, snapped to the nearest supported resolution.
         /// </param>
         /// <param name="maskAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="mask">
-        /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the source image. Black marks the region to repaint. JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="maskname">
-        /// A black-and-white mask the same size as the source image, as raw bytes. Black marks the region to repaint; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if `mask_asset_identifier` is also supplied.
+        /// A black-and-white mask the same size as the source image. Black marks the region to repaint. JPEG, PNG, and WEBP are supported. Multipart requests only.
         /// </param>
         /// <param name="characterReferenceCollectionId">
-        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_asset_identifiers` and `character_reference_images` if more than one is supplied.
+        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_images` if both are supplied.
         /// </param>
         /// <param name="characterReferenceCollectionVersionId">
         /// Optional URL-safe base64 version id pinning a specific version of the `character_reference_collection_id` collection. Ignored without it.
@@ -1168,7 +1090,7 @@ namespace Ideogram
         /// An existing upload or generated image asset to use as the character reference, by reference. Takes priority over `character_reference_images` if both are supplied.
         /// </param>
         /// <param name="characterReferenceImages">
-        /// An image to use as the character reference (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a character collection or asset identifier is also supplied.
+        /// An image to use as the character reference (max 25MB). JPEG, PNG, and WEBP are supported.
         /// </param>
         /// <param name="characterReferenceMask">
         /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
@@ -1193,7 +1115,7 @@ namespace Ideogram
         /// Default Value: default
         /// </param>
         /// <param name="styleType">
-        /// The style type to repaint the character with. Defaults to `auto`. `realistic` and `fiction` are supported for character-only requests; style codes or style references require `auto`.<br/>
+        /// The style type to repaint the character with. Defaults to `auto`. `realistic` and `fiction` are supported for character-only requests; style codes or style references (not both) require `auto`. For API-key callers, combining a style with a character requires that feature to be enabled for their account.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="styleCodes">
@@ -1201,7 +1123,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied. Cannot be combined with `style_codes`.
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied. Cannot be combined with `style_codes`.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
         /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
@@ -1210,13 +1132,13 @@ namespace Ideogram
         /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied. Cannot be combined with `style_codes`.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied. Cannot be combined with `style_codes`.
+        /// Images to use as style references (max 10, max 25MB each). JPEG, PNG, and WEBP are supported. Cannot be combined with `style_codes`.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the repainted images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the repainted images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

@@ -8,7 +8,7 @@ namespace Ideogram
     /// `POST /v2/image/inpaint/ideogram-3-custom-model`. Synchronous<br/>
     /// requests include the repainted images in `data`; asynchronous requests<br/>
     /// omit `data` and can be polled with<br/>
-    /// `GET /v1/generations/{generation_id}`.<br/>
+    /// `GET /v2/generations/{generation_id}`.<br/>
     /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id","width":0,"height":6}
     /// </summary>
     public sealed partial class InpaintImageIdeogramV3CustomModelResponse
