@@ -80,7 +80,7 @@ namespace Ideogram
         /// Example: The camera slowly pans right as the waves roll in.
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
+        /// The aspect ratio of the generated video. `auto` lets the model choose the<br/>
         /// most suitable ratio from the prompt; any other value pins the ratio.<br/>
         /// Default Value: auto
         /// </param>

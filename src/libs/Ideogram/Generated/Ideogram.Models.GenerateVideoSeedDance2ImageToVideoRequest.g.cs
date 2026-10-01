@@ -56,7 +56,7 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
+        /// The aspect ratio of the generated video. `auto` lets the model choose the<br/>
         /// most suitable ratio from the prompt; any other value pins the ratio.<br/>
         /// Default Value: auto
         /// </summary>
@@ -148,7 +148,7 @@ namespace Ideogram
         /// An optional final frame, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. When supplied, the video transitions from the first frame to this one.
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio of the generated video. `AUTO` lets the model choose the<br/>
+        /// The aspect ratio of the generated video. `auto` lets the model choose the<br/>
         /// most suitable ratio from the prompt; any other value pins the ratio.<br/>
         /// Default Value: auto
         /// </param>

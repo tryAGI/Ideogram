@@ -734,7 +734,7 @@ namespace Ideogram
         /// <param name="prompt">
         /// The prompt to generate images from, in natural language or as a<br/>
         /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
-        /// used as is and skips magic prompt.
+        /// used as is and skips magic prompt unless `magic_prompt` is `on`.
         /// </param>
         /// <param name="customModelUri">
         /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>

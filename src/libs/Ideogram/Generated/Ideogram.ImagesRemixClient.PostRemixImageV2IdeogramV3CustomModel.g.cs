@@ -1011,7 +1011,7 @@ namespace Ideogram
         /// Example: 1280x800
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio to use for image generation, which determines the image's resolution. Cannot be used in conjunction with resolution. Defaults to 1x1.
+        /// Output aspect ratio. Cannot be combined with resolution. Generation defaults to 1x1; remix keeps the source ratio when both fields are omitted.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.

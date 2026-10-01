@@ -28,6 +28,13 @@ namespace Ideogram.JsonConverters
                                throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.ImageObjectWithoutPromptOrSeed)}");
                 imageWithoutPromptOrSeed = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
+            global::Ideogram.SvgGenerationObject? svgGeneration = default;
+            if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.SvgGeneration)
+            {
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.SvgGenerationObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.SvgGenerationObject> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.SvgGenerationObject)}");
+                svgGeneration = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
+            }
             global::Ideogram.ImageGenerationObject? imageGeneration = default;
             if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration)
             {
@@ -54,6 +61,8 @@ namespace Ideogram.JsonConverters
                 discriminator?.ObjectType,
                 imageWithoutPromptOrSeed,
 
+                svgGeneration,
+
                 imageGeneration,
 
                 videoGeneration,
@@ -78,6 +87,12 @@ namespace Ideogram.JsonConverters
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageObjectWithoutPromptOrSeed?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickImageWithoutPromptOrSeed(), typeInfo);
+            }
+            else if (value.IsSvgGeneration)
+            {
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.SvgGenerationObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.SvgGenerationObject?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.SvgGenerationObject).Name}");
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickSvgGeneration(), typeInfo);
             }
             else if (value.IsImageGeneration)
             {

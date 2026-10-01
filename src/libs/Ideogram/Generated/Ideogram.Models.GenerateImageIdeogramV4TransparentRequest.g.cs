@@ -46,10 +46,8 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The aspect ratio for an Ideogram 4.0 magic prompt. `auto` lets the<br/>
-        /// model select the most suitable ratio from the prompt; any other value<br/>
-        /// pins the ratio. The non-auto values are the buckets the 4.0 model<br/>
-        /// supports.<br/>
+        /// Supported output aspect ratios. The operation defines whether `auto`<br/>
+        /// preserves the source shape or selects a shape from the prompt.<br/>
         /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
@@ -148,10 +146,8 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio for an Ideogram 4.0 magic prompt. `auto` lets the<br/>
-        /// model select the most suitable ratio from the prompt; any other value<br/>
-        /// pins the ratio. The non-auto values are the buckets the 4.0 model<br/>
-        /// supports.<br/>
+        /// Supported output aspect ratios. The operation defines whether `auto`<br/>
+        /// preserves the source shape or selects a shape from the prompt.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="outputResolution">
