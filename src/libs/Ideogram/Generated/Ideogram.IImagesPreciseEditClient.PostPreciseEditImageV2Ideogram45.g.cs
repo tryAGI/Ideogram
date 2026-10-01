@@ -5,44 +5,13 @@ namespace Ideogram
     public partial interface IImagesPreciseEditClient
     {
         /// <summary>
-        /// Edit an image with Ideogram 4.5, keeping the source's exact geometry<br/>
-        /// Edit an image with Ideogram 4.5, returning output at that image's exact<br/>
-        /// width and height. An image too large for the model is scaled down to<br/>
-        /// fit while keeping its exact proportion, and one whose aspect ratio is<br/>
-        /// outside 1:6 to 6:1 is rejected — this endpoint never reshapes, so there<br/>
-        /// is no size to reshape it to. Unlike<br/>
-        /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
-        /// the output always matches the image being edited, so the edit drops<br/>
-        /// back into whatever it came from without reframing.<br/>
-        /// When the output is delivered at the image's own size (every image the<br/>
-        /// model can hold), pixels the edit did not meaningfully change are<br/>
-        /// restored exactly from the image being edited, with the edited region<br/>
-        /// blended smoothly into its surroundings — untouched areas stay<br/>
-        /// identical across repeated edits. An image too large for the model is<br/>
-        /// delivered at the scaled-down size, where every pixel is resampled, so<br/>
-        /// it is returned as rendered.<br/>
-        /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
-        /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
-        /// reference wins and the bytes are ignored. Add up to four more images<br/>
-        /// via `reference_image_asset_identifiers` or `reference_images` to guide<br/>
-        /// the edit — those are never edited themselves.<br/>
-        /// Supply a `mask` to confine the edit to part of the image being edited.<br/>
-        /// The mask is optional — without one the prompt is applied to the whole<br/>
-        /// image. Masks are read as an additional reference image, so a masked<br/>
-        /// request may carry at most three `reference_images`.<br/>
-        /// The `prompt` is the edit instruction. It accepts either natural<br/>
-        /// language or a structured JSON prompt; the server detects which was<br/>
-        /// supplied. A natural-language instruction is automatically rewritten<br/>
-        /// into the model's structured edit contract, while a prompt that is<br/>
-        /// already valid structured JSON is consumed directly.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Precise edit with Ideogram 4.5<br/>
+        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
+        /// exact width and height. Upload the image as `image` using<br/>
+        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -58,44 +27,13 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Edit an image with Ideogram 4.5, keeping the source's exact geometry<br/>
-        /// Edit an image with Ideogram 4.5, returning output at that image's exact<br/>
-        /// width and height. An image too large for the model is scaled down to<br/>
-        /// fit while keeping its exact proportion, and one whose aspect ratio is<br/>
-        /// outside 1:6 to 6:1 is rejected — this endpoint never reshapes, so there<br/>
-        /// is no size to reshape it to. Unlike<br/>
-        /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
-        /// the output always matches the image being edited, so the edit drops<br/>
-        /// back into whatever it came from without reframing.<br/>
-        /// When the output is delivered at the image's own size (every image the<br/>
-        /// model can hold), pixels the edit did not meaningfully change are<br/>
-        /// restored exactly from the image being edited, with the edited region<br/>
-        /// blended smoothly into its surroundings — untouched areas stay<br/>
-        /// identical across repeated edits. An image too large for the model is<br/>
-        /// delivered at the scaled-down size, where every pixel is resampled, so<br/>
-        /// it is returned as rendered.<br/>
-        /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
-        /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
-        /// reference wins and the bytes are ignored. Add up to four more images<br/>
-        /// via `reference_image_asset_identifiers` or `reference_images` to guide<br/>
-        /// the edit — those are never edited themselves.<br/>
-        /// Supply a `mask` to confine the edit to part of the image being edited.<br/>
-        /// The mask is optional — without one the prompt is applied to the whole<br/>
-        /// image. Masks are read as an additional reference image, so a masked<br/>
-        /// request may carry at most three `reference_images`.<br/>
-        /// The `prompt` is the edit instruction. It accepts either natural<br/>
-        /// language or a structured JSON prompt; the server detects which was<br/>
-        /// supplied. A natural-language instruction is automatically rewritten<br/>
-        /// into the model's structured edit contract, while a prompt that is<br/>
-        /// already valid structured JSON is consumed directly.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Precise edit with Ideogram 4.5<br/>
+        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
+        /// exact width and height. Upload the image as `image` using<br/>
+        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -111,75 +49,42 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Edit an image with Ideogram 4.5, keeping the source's exact geometry<br/>
-        /// Edit an image with Ideogram 4.5, returning output at that image's exact<br/>
-        /// width and height. An image too large for the model is scaled down to<br/>
-        /// fit while keeping its exact proportion, and one whose aspect ratio is<br/>
-        /// outside 1:6 to 6:1 is rejected — this endpoint never reshapes, so there<br/>
-        /// is no size to reshape it to. Unlike<br/>
-        /// `POST /v2/image/generate/ideogram-4-5`, this endpoint takes no `size`:<br/>
-        /// the output always matches the image being edited, so the edit drops<br/>
-        /// back into whatever it came from without reframing.<br/>
-        /// When the output is delivered at the image's own size (every image the<br/>
-        /// model can hold), pixels the edit did not meaningfully change are<br/>
-        /// restored exactly from the image being edited, with the edited region<br/>
-        /// blended smoothly into its surroundings — untouched areas stay<br/>
-        /// identical across repeated edits. An image too large for the model is<br/>
-        /// delivered at the scaled-down size, where every pixel is resampled, so<br/>
-        /// it is returned as rendered.<br/>
-        /// Supply the image to edit as an `image_asset_identifier` reference or as<br/>
-        /// raw `image` bytes (multipart requests only); if both are supplied, the<br/>
-        /// reference wins and the bytes are ignored. Add up to four more images<br/>
-        /// via `reference_image_asset_identifiers` or `reference_images` to guide<br/>
-        /// the edit — those are never edited themselves.<br/>
-        /// Supply a `mask` to confine the edit to part of the image being edited.<br/>
-        /// The mask is optional — without one the prompt is applied to the whole<br/>
-        /// image. Masks are read as an additional reference image, so a masked<br/>
-        /// request may carry at most three `reference_images`.<br/>
-        /// The `prompt` is the edit instruction. It accepts either natural<br/>
-        /// language or a structured JSON prompt; the server detects which was<br/>
-        /// supplied. A natural-language instruction is automatically rewritten<br/>
-        /// into the model's structured edit contract, while a prompt that is<br/>
-        /// already valid structured JSON is consumed directly.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Precise edit with Ideogram 4.5<br/>
+        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
+        /// exact width and height. Upload the image as `image` using<br/>
+        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// The edit instruction to apply to the sources. Accepts either<br/>
-        /// natural language or a structured JSON prompt; the server detects<br/>
-        /// which was supplied. Natural language is automatically rewritten<br/>
-        /// into the model's structured edit contract, while structured JSON<br/>
-        /// is consumed directly.
+        /// The edit instruction, in natural language or as a structured JSON<br/>
+        /// prompt. Natural language is automatically converted into a<br/>
+        /// structured prompt; valid structured JSON is used as is.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.
         /// </param>
         /// <param name="image">
-        /// The image to edit, as raw bytes (max size 25MB; JPEG, PNG, or WEBP only). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask`.
+        /// The image to edit (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Images too large for the model are scaled down, keeping their proportions, and returned as rendered. Images with an aspect ratio outside 1:6 to 6:1 are rejected.
         /// </param>
         /// <param name="imagename">
-        /// The image to edit, as raw bytes (max size 25MB; JPEG, PNG, or WEBP only). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask`.
+        /// The image to edit (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Images too large for the model are scaled down, keeping their proportions, and returned as rendered. Images with an aspect ratio outside 1:6 to 6:1 are rejected.
         /// </param>
         /// <param name="referenceImageAssetIdentifiers">
         /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.
         /// </param>
         /// <param name="referenceImages">
-        /// Optional additional images to guide the edit (max 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP formats are supported. These are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A masked request may carry at most three, because the mask occupies one of the model's reference slots.
+        /// Optional images to guide the edit (max 4, max 25MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only. A request with a `mask` can include at most three, because the mask takes up one reference slot.
         /// </param>
         /// <param name="mask">
-        /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. A masked request can include at most three `reference_images`.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. A masked request can include at most three `reference_images`.
         /// </param>
         /// <param name="quality">
         /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
@@ -194,10 +99,10 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

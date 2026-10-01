@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The rendering quality to use. Higher quality renders take longer. With source images it defaults to `medium`, and `high` takes longer and is priced higher; `very_low` requires source images and is the fastest and cheapest. Without source images it defaults to `high`.
+    /// The rendering quality to use. Higher quality takes longer and costs more. Defaults to `medium` with source images and `high` without. `very_low`, the fastest and cheapest, requires source images.
     /// </summary>
     public enum GenerateImageIdeogram45RequestQuality
     {

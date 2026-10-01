@@ -44,7 +44,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit video with Seedance 2.0<br/>
         /// Edit a video you already have stored with Ideogram by replacing part of<br/>
         /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
         /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
@@ -68,7 +68,7 @@ namespace Ideogram
         /// Video generation always runs asynchronously: the response returns as<br/>
         /// soon as the request is accepted and carries only a `generation_id`.<br/>
         /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `GET /v2/generations/{generation_id}` using that id, or supply a<br/>
         /// `webhook_url` to have the finished result POSTed to your server<br/>
         /// instead.<br/>
         /// Video links are available for a limited period of time; download the<br/>
@@ -99,7 +99,7 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit video with Seedance 2.0<br/>
         /// Edit a video you already have stored with Ideogram by replacing part of<br/>
         /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
         /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
@@ -123,7 +123,7 @@ namespace Ideogram
         /// Video generation always runs asynchronously: the response returns as<br/>
         /// soon as the request is accepted and carries only a `generation_id`.<br/>
         /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `GET /v2/generations/{generation_id}` using that id, or supply a<br/>
         /// `webhook_url` to have the finished result POSTed to your server<br/>
         /// instead.<br/>
         /// Video links are available for a limited period of time; download the<br/>
@@ -471,20 +471,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Insufficient credits or quota.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
                                 global::System.Exception? __exception_402 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_402 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_402 = global::Ideogram.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -493,11 +497,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
+                                    responseObject: __value_402,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -599,20 +604,24 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            //
+                            // Too many requests.
                             if ((int)__response.StatusCode == 429)
                             {
                                 string? __content_429 = null;
                                 global::System.Exception? __exception_429 = null;
+                                global::Ideogram.GenerationErrorResponse? __value_429 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+
+                                        __value_429 = global::Ideogram.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -621,11 +630,12 @@ namespace Ideogram
                                 }
 
 
-                                throw global::Ideogram.ApiException.Create(
+                                throw global::Ideogram.ApiException<global::Ideogram.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
                                     message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
+                                    responseObject: __value_429,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -792,7 +802,7 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Edit a video with Seedance 2.0 by regenerating from frames of it<br/>
+        /// Edit video with Seedance 2.0<br/>
         /// Edit a video you already have stored with Ideogram by replacing part of<br/>
         /// it. Reference the source video with `video_asset_identifier` and mark the<br/>
         /// span to replace with `start_frame_time` and `end_frame_time`, in seconds.<br/>
@@ -816,7 +826,7 @@ namespace Ideogram
         /// Video generation always runs asynchronously: the response returns as<br/>
         /// soon as the request is accepted and carries only a `generation_id`.<br/>
         /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
+        /// `GET /v2/generations/{generation_id}` using that id, or supply a<br/>
         /// `webhook_url` to have the finished result POSTed to your server<br/>
         /// instead.<br/>
         /// Video links are available for a limited period of time; download the<br/>

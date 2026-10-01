@@ -4,18 +4,17 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement returned by the Seedance 2.0 video endpoints. Video<br/>
-    /// generation always runs asynchronously, so the<br/>
-    /// generated videos are never part of this response: poll for them with<br/>
-    /// `GET /v1/generations/{generation_id}` using the returned<br/>
-    /// `generation_id`, or receive them at the `webhook_url` you supplied.<br/>
+    /// Acknowledgement that the request was accepted. The generated video is not<br/>
+    /// part of this response: poll `GET /v2/generations/{generation_id}` with<br/>
+    /// the returned `generation_id`, or receive it at your `webhook_url`.<br/>
+    /// Video links expire after a limited time, so download any video you<br/>
+    /// want to keep.<br/>
     /// Example: {"generation_id":"generation_id","created":"2000-01-23T04:56:07\u002B00:00"}
     /// </summary>
     public sealed partial class GenerateVideoSeedDance2Response
     {
         /// <summary>
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -38,8 +37,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateVideoSeedDance2Response" /> class.
         /// </summary>
         /// <param name="generationId">
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
         /// </param>
         /// <param name="created">
         /// The time the request was accepted.

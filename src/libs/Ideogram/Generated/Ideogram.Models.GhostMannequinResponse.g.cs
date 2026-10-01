@@ -4,8 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement that the ghost-mannequin workflow was accepted. Poll<br/>
-    /// `GET /v1/generations/{generation_id}` for status and results.<br/>
+    /// Acknowledgement that the ghost-mannequin request was accepted. Poll<br/>
+    /// `GET /v2/generations/{generation_id}` for status and results.<br/>
     /// Example: {"generation_id":"generation_id"}
     /// </summary>
     public sealed partial class GhostMannequinResponse

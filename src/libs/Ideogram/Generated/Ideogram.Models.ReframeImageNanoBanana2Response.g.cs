@@ -5,7 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// Acknowledges an accepted asynchronous Reframe request. Poll<br/>
-    /// `GET /v1/generations/{generation_id}` for completion and output<br/>
+    /// `GET /v2/generations/{generation_id}` for completion and output<br/>
     /// images. The seed, width, and height report the values the request<br/>
     /// resolved to when the caller left them unset.<br/>
     /// Example: {"seed":12345,"generation_id":"generation_id","width":0,"height":6}
@@ -14,7 +14,7 @@ namespace Ideogram
     {
         /// <summary>
         /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// `GET /v2/generations/{generation_id}` polling endpoint.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -54,7 +54,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="generationId">
         /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// `GET /v2/generations/{generation_id}` polling endpoint.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>

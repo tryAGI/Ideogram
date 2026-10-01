@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Where enhancements apply. Omit to let Topaz choose per image.
+    /// Where enhancements apply. Omit to let the model choose per image.
     /// </summary>
     public enum UpscaleImageTopazTextRefineRequestSubjectDetection
     {

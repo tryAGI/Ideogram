@@ -5,32 +5,12 @@ namespace Ideogram
     public partial interface IVideoEditClient
     {
         /// <summary>
-        /// Produce a video from reference media with MiniMax H3<br/>
-        /// Produce a video from a text prompt and reference media with MiniMax H3.<br/>
-        /// The prompt addresses the references by position: the first reference<br/>
-        /// image is `Image 1`, the second `Image 2`, the first reference video is<br/>
-        /// `Video 1`, and the first reference audio is `Audio 1`. Supply reference<br/>
-        /// images either as<br/>
-        /// `reference_image_asset_identifiers` (images already stored with<br/>
-        /// Ideogram) or as raw `reference_images` bytes (multipart requests only);<br/>
-        /// supplying both is rejected, and uploaded bytes are used for this request<br/>
-        /// only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated or uploaded with Ideogram. At most 9 reference images and 3 reference<br/>
-        /// videos are accepted, and reference videos are capped again on clip<br/>
-        /// length. Optional `reference_audios` accepts MP3/WAV uploads alongside<br/>
-        /// an image or video. Audio and video references must total at most 15<br/>
-        /// seconds; at most 12 references are accepted across all media.<br/>
-        /// References are optional. With none, the video is produced from the<br/>
-        /// prompt alone.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Reference to video with MiniMax H3<br/>
+        /// Produce a video from a text prompt and optional reference media with<br/>
+        /// MiniMax H3. Upload `reference_images` and `reference_audios` using<br/>
+        /// `multipart/form-data`, and address them in the prompt by position<br/>
+        /// (`Image 1`, `Audio 1`, …). Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -46,32 +26,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Produce a video from reference media with MiniMax H3<br/>
-        /// Produce a video from a text prompt and reference media with MiniMax H3.<br/>
-        /// The prompt addresses the references by position: the first reference<br/>
-        /// image is `Image 1`, the second `Image 2`, the first reference video is<br/>
-        /// `Video 1`, and the first reference audio is `Audio 1`. Supply reference<br/>
-        /// images either as<br/>
-        /// `reference_image_asset_identifiers` (images already stored with<br/>
-        /// Ideogram) or as raw `reference_images` bytes (multipart requests only);<br/>
-        /// supplying both is rejected, and uploaded bytes are used for this request<br/>
-        /// only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated or uploaded with Ideogram. At most 9 reference images and 3 reference<br/>
-        /// videos are accepted, and reference videos are capped again on clip<br/>
-        /// length. Optional `reference_audios` accepts MP3/WAV uploads alongside<br/>
-        /// an image or video. Audio and video references must total at most 15<br/>
-        /// seconds; at most 12 references are accepted across all media.<br/>
-        /// References are optional. With none, the video is produced from the<br/>
-        /// prompt alone.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Reference to video with MiniMax H3<br/>
+        /// Produce a video from a text prompt and optional reference media with<br/>
+        /// MiniMax H3. Upload `reference_images` and `reference_audios` using<br/>
+        /// `multipart/form-data`, and address them in the prompt by position<br/>
+        /// (`Image 1`, `Audio 1`, …). Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -87,32 +47,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Produce a video from reference media with MiniMax H3<br/>
-        /// Produce a video from a text prompt and reference media with MiniMax H3.<br/>
-        /// The prompt addresses the references by position: the first reference<br/>
-        /// image is `Image 1`, the second `Image 2`, the first reference video is<br/>
-        /// `Video 1`, and the first reference audio is `Audio 1`. Supply reference<br/>
-        /// images either as<br/>
-        /// `reference_image_asset_identifiers` (images already stored with<br/>
-        /// Ideogram) or as raw `reference_images` bytes (multipart requests only);<br/>
-        /// supplying both is rejected, and uploaded bytes are used for this request<br/>
-        /// only and are not stored as an asset. Supply reference videos as<br/>
-        /// `reference_video_asset_identifiers`, which must reference videos<br/>
-        /// generated or uploaded with Ideogram. At most 9 reference images and 3 reference<br/>
-        /// videos are accepted, and reference videos are capped again on clip<br/>
-        /// length. Optional `reference_audios` accepts MP3/WAV uploads alongside<br/>
-        /// an image or video. Audio and video references must total at most 15<br/>
-        /// seconds; at most 12 references are accepted across all media.<br/>
-        /// References are optional. With none, the video is produced from the<br/>
-        /// prompt alone.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Reference to video with MiniMax H3<br/>
+        /// Produce a video from a text prompt and optional reference media with<br/>
+        /// MiniMax H3. Upload `reference_images` and `reference_audios` using<br/>
+        /// `multipart/form-data`, and address them in the prompt by position<br/>
+        /// (`Image 1`, `Audio 1`, …). Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -125,7 +65,7 @@ namespace Ideogram
         /// Images already stored with Ideogram to use as references, by reference, in prompt order. Cannot be combined with `reference_images`. Only image assets are accepted.
         /// </param>
         /// <param name="referenceImages">
-        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only. Cannot be combined with `reference_image_asset_identifiers`. The bytes are used for this request only and are not stored as an asset.
+        /// Images to use as references (max size 50MB each), as raw bytes, in prompt order; only common image formats such as JPEG, PNG, and WEBP are supported. Uploaded images are used for this request only and are not stored.
         /// </param>
         /// <param name="referenceVideoAssetIdentifiers">
         /// Videos generated or uploaded with Ideogram to use as motion references, by reference, in prompt order. Each clip must be between 2 and 15 seconds long, and the clips must total no more than 15 seconds. Raw video uploads are not accepted.

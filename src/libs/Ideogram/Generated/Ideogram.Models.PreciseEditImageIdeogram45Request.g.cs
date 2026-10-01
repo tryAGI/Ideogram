@@ -4,19 +4,16 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The image being edited is required, as an `image_asset_identifier`<br/>
-    /// reference or as raw `image` bytes. The output is always returned at<br/>
-    /// that image's exact width and height, so this request takes no output<br/>
-    /// size.
+    /// A request to edit one image. The `image` to edit is required. The<br/>
+    /// output is always returned at that image's exact width and height, so<br/>
+    /// this request takes no output size.
     /// </summary>
     public sealed partial class PreciseEditImageIdeogram45Request
     {
         /// <summary>
-        /// The edit instruction to apply to the sources. Accepts either<br/>
-        /// natural language or a structured JSON prompt; the server detects<br/>
-        /// which was supplied. Natural language is automatically rewritten<br/>
-        /// into the model's structured edit contract, while structured JSON<br/>
-        /// is consumed directly.
+        /// The edit instruction, in natural language or as a structured JSON<br/>
+        /// prompt. Natural language is automatically converted into a<br/>
+        /// structured prompt; valid structured JSON is used as is.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -29,13 +26,13 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The image to edit, as raw bytes (max size 25MB; JPEG, PNG, or WEBP only). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask`.
+        /// The image to edit (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Images too large for the model are scaled down, keeping their proportions, and returned as rendered. Images with an aspect ratio outside 1:6 to 6:1 are rejected.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The image to edit, as raw bytes (max size 25MB; JPEG, PNG, or WEBP only). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask`.
+        /// The image to edit (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Images too large for the model are scaled down, keeping their proportions, and returned as rendered. Images with an aspect ratio outside 1:6 to 6:1 are rejected.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
@@ -47,19 +44,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceImageAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Optional additional images to guide the edit (max 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP formats are supported. These are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A masked request may carry at most three, because the mask occupies one of the model's reference slots.
+        /// Optional images to guide the edit (max 4, max 25MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only. A request with a `mask` can include at most three, because the mask takes up one reference slot.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? ReferenceImages { get; set; }
 
         /// <summary>
-        /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. A masked request can include at most three `reference_images`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         public byte[]? Mask { get; set; }
 
         /// <summary>
-        /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. A masked request can include at most three `reference_images`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         public string? Maskname { get; set; }
@@ -88,13 +85,13 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -137,32 +134,30 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="PreciseEditImageIdeogram45Request" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The edit instruction to apply to the sources. Accepts either<br/>
-        /// natural language or a structured JSON prompt; the server detects<br/>
-        /// which was supplied. Natural language is automatically rewritten<br/>
-        /// into the model's structured edit contract, while structured JSON<br/>
-        /// is consumed directly.
+        /// The edit instruction, in natural language or as a structured JSON<br/>
+        /// prompt. Natural language is automatically converted into a<br/>
+        /// structured prompt; valid structured JSON is used as is.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.
         /// </param>
         /// <param name="image">
-        /// The image to edit, as raw bytes (max size 25MB; JPEG, PNG, or WEBP only). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask`.
+        /// The image to edit (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Images too large for the model are scaled down, keeping their proportions, and returned as rendered. Images with an aspect ratio outside 1:6 to 6:1 are rejected.
         /// </param>
         /// <param name="imagename">
-        /// The image to edit, as raw bytes (max size 25MB; JPEG, PNG, or WEBP only). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask`.
+        /// The image to edit (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Images too large for the model are scaled down, keeping their proportions, and returned as rendered. Images with an aspect ratio outside 1:6 to 6:1 are rejected.
         /// </param>
         /// <param name="referenceImageAssetIdentifiers">
         /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.
         /// </param>
         /// <param name="referenceImages">
-        /// Optional additional images to guide the edit (max 4, max size 25MB each), as raw bytes; only JPEG, PNG, and WEBP formats are supported. These are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A masked request may carry at most three, because the mask occupies one of the model's reference slots.
+        /// Optional images to guide the edit (max 4, max 25MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only. A request with a `mask` can include at most three, because the mask takes up one reference slot.
         /// </param>
         /// <param name="mask">
-        /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. A masked request can include at most three `reference_images`.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask confining the edit to part of `image`, as raw bytes (multipart requests only; JPEG, PNG, or WEBP, max 25MB). Black marks the area to edit and white the area to preserve; values in between are rounded to whichever is nearer. The mask must have the same width and height as `image`, and must contain both black and white areas. Requires the image being edited to be uploaded as raw `image` bytes in the same request; masks cannot be combined with asset references. The mask is supplied to the model as an additional reference image, so a masked request may carry at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. A masked request can include at most three `reference_images`.
         /// </param>
         /// <param name="quality">
         /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
@@ -177,10 +172,10 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

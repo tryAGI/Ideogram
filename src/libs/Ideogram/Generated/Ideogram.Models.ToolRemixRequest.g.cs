@@ -22,31 +22,31 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are staged for this generation request and are not added to your account's image assets.
+        /// The image to remix (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. The image is used only for this request and is not saved to your account.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are staged for this generation request and are not added to your account's image assets.
+        /// The image to remix (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. The image is used only for this request and is not saved to your account.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the selected model chooses its usual strength. Combining a weight with a `resolution` or `aspect_ratio` that changes the source's aspect ratio requires the 1K tier.
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the selected model chooses its usual strength. Combining a weight with a `resolution` or `aspect_ratio` that changes the source's aspect ratio crops the source to the new shape; this is only available at the 1K tier and is rejected at 2K.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_weight")]
         public int? ImageWeight { get; set; }
 
         /// <summary>
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt. Not every model consults it.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt. Not every model uses it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("negative_prompt")]
         public string? NegativePrompt { get; set; }
 
         /// <summary>
-        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports in the corresponding 1K or 2K tier. Omit `aspect_ratio` when supplying a resolution. If `resolution_tier` is also supplied, it must match the tier implied by these dimensions. Combining a shape-changing value with `image_weight` requires the 1K tier.
+        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output uses the closest supported resolution in the matching 1K or 2K tier. Omit `aspect_ratio` when supplying a resolution. If `resolution_tier` is also supplied, it must match the tier these dimensions fall in. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         public string? Resolution { get; set; }
@@ -59,7 +59,7 @@ namespace Ideogram
         public global::Ideogram.IdeogramV4AspectRatio? AspectRatio { get; set; }
 
         /// <summary>
-        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1k when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`auto` style type) currently support only 1K AUTO remixes.
+        /// The output resolution tier. When omitted, the tier is inferred from `resolution`, or defaults to 1k. A color palette, style codes, style preset, or non-`auto` style type are only supported at 1k.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution_tier")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ToolRemixRequestResolutionTierJsonConverter))]
@@ -74,7 +74,7 @@ namespace Ideogram
         public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
-        /// Optional. Honored when the server selects the model that supports deterministic remixes; the default model synthesizes its own prompt, so results are not reproducible there. The response reports the seed used.<br/>
+        /// Optional. Only honored when the request uses a model that supports reproducible remixes; results from the default model are not reproducible. The response reports the seed used.<br/>
         /// Example: 12345
         /// </summary>
         /// <example>12345</example>
@@ -88,26 +88,26 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers`. Restricts the server to a model that supports style references and requires the 1K resolution tier.
+        /// A saved style to apply, by its URL-safe base64 collection id. Limits the request to a model that supports style references and requires the 1K resolution tier.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
         public string? StyleReferenceCollectionId { get; set; }
 
         /// <summary>
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_version_id")]
         public string? StyleReferenceCollectionVersionId { get; set; }
 
         /// <summary>
-        /// A predefined style preset to apply. Restricts the server to a model that supports it and requires the 1K resolution tier. Cannot be combined with style codes or style references.
+        /// A predefined style preset to apply. Limits the request to a model that supports it and requires the 1K resolution tier. Cannot be combined with style codes.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_preset")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter))]
         public global::Ideogram.IdeogramV3StylePreset? StylePreset { get; set; }
 
         /// <summary>
-        /// A color palette to apply. Restricts the server to a model that supports palettes and requires the 1K resolution tier.
+        /// A color palette to apply. Limits the request to a model that supports palettes and requires the 1K resolution tier.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramColorPaletteJsonConverter))]
@@ -122,7 +122,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<string>? StyleCodes { get; set; }
 
         /// <summary>
-        /// The style type to generate with. A value other than `auto` restricts the server to a model that supports it and requires the 1K resolution tier.
+        /// The style type to generate with. A value other than `auto` limits the request to a model that supports it and requires the 1K resolution tier.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV3StyleTypeJsonConverter))]
@@ -136,13 +136,13 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -191,65 +191,65 @@ namespace Ideogram
         /// The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` and `aspect_ratio` to keep its shape.
         /// </param>
         /// <param name="image">
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are staged for this generation request and are not added to your account's image assets.
+        /// The image to remix (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. The image is used only for this request and is not saved to your account.
         /// </param>
         /// <param name="imagename">
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are staged for this generation request and are not added to your account's image assets.
+        /// The image to remix (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. The image is used only for this request and is not saved to your account.
         /// </param>
         /// <param name="imageWeight">
-        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the selected model chooses its usual strength. Combining a weight with a `resolution` or `aspect_ratio` that changes the source's aspect ratio requires the 1K tier.
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the selected model chooses its usual strength. Combining a weight with a `resolution` or `aspect_ratio` that changes the source's aspect ratio crops the source to the new shape; this is only available at the 1K tier and is rejected at 2K.
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt. Not every model consults it.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt. Not every model uses it.
         /// </param>
         /// <param name="resolution">
-        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output is served at the closest resolution the selected model supports in the corresponding 1K or 2K tier. Omit `aspect_ratio` when supplying a resolution. If `resolution_tier` is also supplied, it must match the tier implied by these dimensions. Combining a shape-changing value with `image_weight` requires the 1K tier.
+        /// The requested output resolution, formatted as "WIDTHxHEIGHT" (for example "1280x800"). The output uses the closest supported resolution in the matching 1K or 2K tier. Omit `aspect_ratio` when supplying a resolution. If `resolution_tier` is also supplied, it must match the tier these dimensions fall in. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </param>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio. Omit it to keep the source image's shape. `auto` also keeps the source shape. Omit `resolution` when supplying a concrete value. Combining a shape-changing value with `image_weight` requires the 1K tier.
         /// </param>
         /// <param name="resolutionTier">
-        /// The output resolution tier. Influences which model serves the request. When omitted, the tier is inferred from `resolution`, or defaults to 1k when no exact resolution is supplied. Inputs that restrict the server's model choice (style references, saved styles, a color palette, style codes, a style preset, or a non-`auto` style type) currently support only 1K AUTO remixes.
+        /// The output resolution tier. When omitted, the tier is inferred from `resolution`, or defaults to 1k. A color palette, style codes, style preset, or non-`auto` style type are only supported at 1k.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`. The selected model decides how to interpret it.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="seed">
-        /// Optional. Honored when the server selects the model that supports deterministic remixes; the default model synthesizes its own prompt, so results are not reproducible there. The response reports the seed used.<br/>
+        /// Optional. Only honored when the request uses a model that supports reproducible remixes; results from the default model are not reproducible. The response reports the seed used.<br/>
         /// Example: 12345
         /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
         /// Existing upload or generated image assets whose style should guide the remix, by reference. Supplying style references restricts the server to a model that supports them and requires the 1K resolution tier. Ignored if `style_reference_collection_id` is also supplied.
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers`. Restricts the server to a model that supports style references and requires the 1K resolution tier.
+        /// A saved style to apply, by its URL-safe base64 collection id. Limits the request to a model that supports style references and requires the 1K resolution tier.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </param>
         /// <param name="stylePreset">
-        /// A predefined style preset to apply. Restricts the server to a model that supports it and requires the 1K resolution tier. Cannot be combined with style codes or style references.
+        /// A predefined style preset to apply. Limits the request to a model that supports it and requires the 1K resolution tier. Cannot be combined with style codes.
         /// </param>
         /// <param name="colorPalette">
-        /// A color palette to apply. Restricts the server to a model that supports palettes and requires the 1K resolution tier.
+        /// A color palette to apply. Limits the request to a model that supports palettes and requires the 1K resolution tier.
         /// </param>
         /// <param name="styleCodes">
         /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.<br/>
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate with. A value other than `auto` restricts the server to a model that supports it and requires the 1K resolution tier.
+        /// The style type to generate with. A value other than `auto` limits the request to a model that supports it and requires the 1K resolution tier.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

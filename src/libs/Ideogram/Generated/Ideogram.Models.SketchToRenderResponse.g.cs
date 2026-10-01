@@ -4,7 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement that the workflow was accepted.<br/>
+    /// Acknowledgement that the sketch rendering was accepted. Poll<br/>
+    /// `GET /v2/generations/{generation_id}` for status and results.<br/>
     /// Example: {"generation_id":"generation_id"}
     /// </summary>
     public sealed partial class SketchToRenderResponse

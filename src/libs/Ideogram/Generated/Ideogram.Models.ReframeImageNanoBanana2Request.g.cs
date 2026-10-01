@@ -4,9 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply exactly one source: `image_asset_identifier` for an existing<br/>
-    /// Ideogram asset, or `image` for a raw upload. Supplying both or neither<br/>
-    /// is rejected with a 400.
+    /// Upload the source `image`. Requests without a source image are<br/>
+    /// rejected with a 400.
     /// </summary>
     public sealed partial class ReframeImageNanoBanana2Request
     {

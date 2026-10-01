@@ -42,23 +42,13 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Advertisement Variations<br/>
-        /// Generates a brand-locked creative variation of the source ad along the<br/>
-        /// requested variation axis: different people, a different setting, a<br/>
-        /// different group size, or a different scene. Logos, brand colors, the<br/>
-        /// product, and all on-image text are preserved; only the requested axis<br/>
-        /// changes.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed. The completed generation<br/>
-        /// reports the exact amount billed for the request in<br/>
-        /// `usage_cost_usd_micros`.<br/>
-        /// Each returned image is generated at the source creative's own aspect<br/>
-        /// ratio (the long side to short side ratio is capped at 3:1).<br/>
-        /// Supply the source creative as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two forms;<br/>
-        /// supplying both, or neither, is rejected with a 400.
+        /// Ad Variations<br/>
+        /// Creates on-brand variations of an ad along one axis, preserving logos,<br/>
+        /// brand colors, the product, and all on-image text. Upload the source<br/>
+        /// creative as `image` using `multipart/form-data` and choose a<br/>
+        /// `variation_type`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -80,23 +70,13 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Advertisement Variations<br/>
-        /// Generates a brand-locked creative variation of the source ad along the<br/>
-        /// requested variation axis: different people, a different setting, a<br/>
-        /// different group size, or a different scene. Logos, brand colors, the<br/>
-        /// product, and all on-image text are preserved; only the requested axis<br/>
-        /// changes.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed. The completed generation<br/>
-        /// reports the exact amount billed for the request in<br/>
-        /// `usage_cost_usd_micros`.<br/>
-        /// Each returned image is generated at the source creative's own aspect<br/>
-        /// ratio (the long side to short side ratio is capped at 3:1).<br/>
-        /// Supply the source creative as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two forms;<br/>
-        /// supplying both, or neither, is rejected with a 400.
+        /// Ad Variations<br/>
+        /// Creates on-brand variations of an ad along one axis, preserving logos,<br/>
+        /// brand colors, the product, and all on-image text. Upload the source<br/>
+        /// creative as `image` using `multipart/form-data` and choose a<br/>
+        /// `variation_type`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -791,47 +771,39 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Advertisement Variations<br/>
-        /// Generates a brand-locked creative variation of the source ad along the<br/>
-        /// requested variation axis: different people, a different setting, a<br/>
-        /// different group size, or a different scene. Logos, brand colors, the<br/>
-        /// product, and all on-image text are preserved; only the requested axis<br/>
-        /// changes.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed. The completed generation<br/>
-        /// reports the exact amount billed for the request in<br/>
-        /// `usage_cost_usd_micros`.<br/>
-        /// Each returned image is generated at the source creative's own aspect<br/>
-        /// ratio (the long side to short side ratio is capped at 3:1).<br/>
-        /// Supply the source creative as either an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or the raw image bytes directly (`image`,<br/>
-        /// multipart requests only). Provide exactly one of the two forms;<br/>
-        /// supplying both, or neither, is rejected with a 400.
+        /// Ad Variations<br/>
+        /// Creates on-brand variations of an ad along one axis, preserving logos,<br/>
+        /// brand colors, the product, and all on-image text. Upload the source<br/>
+        /// creative as `image` using `multipart/form-data` and choose a<br/>
+        /// `variation_type`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source creative to vary (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to vary (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Multipart requests only. Each output keeps<br/>
+        /// the source's aspect ratio, capped at 3:1 between the long and short<br/>
+        /// sides.
         /// </param>
         /// <param name="imagename">
-        /// The source creative to vary (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported. Multipart requests only.<br/>
-        /// Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source creative to vary (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported. Multipart requests only. Each output keeps<br/>
+        /// the source's aspect ratio, capped at 3:1 between the long and short<br/>
+        /// sides.
         /// </param>
         /// <param name="variationType">
-        /// The axis to vary while everything else stays on-brand. `people`<br/>
+        /// The axis to vary. `people`<br/>
         /// replaces the people in the ad with different talent. `setting`<br/>
         /// moves the same subject and product to a different environment.<br/>
         /// `group_size` changes how many people appear. `scene` shifts the<br/>
         /// moment or occasion (time of day, season, or activity).
         /// </param>
         /// <param name="prompt">
-        /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Takes priority over the default preservation rules for anything it explicitly asks to change.
+        /// Optional direction to steer the variation, for example "set it on a beach" or "make the models older". Anything it explicitly asks to change takes priority over the default preservation rules.
         /// </param>
         /// <param name="quality">
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>

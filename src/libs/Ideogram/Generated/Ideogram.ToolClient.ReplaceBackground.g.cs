@@ -44,16 +44,12 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Replace an image background<br/>
-        /// Replaces the background of one image from a text prompt while preserving<br/>
-        /// the foreground subject. The foreground mask is detected automatically;<br/>
-        /// callers do not provide a mask.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply exactly one source transport: an existing `AssetIdentifier` in<br/>
-        /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
-        /// Supplying both or neither is rejected with a 400.
+        /// Replace background with GPT Image 2<br/>
+        /// Replace the background of an image from a text prompt while keeping the<br/>
+        /// automatically detected foreground subject; no mask is needed. Upload<br/>
+        /// the source `image` using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -80,16 +76,12 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Replace an image background<br/>
-        /// Replaces the background of one image from a text prompt while preserving<br/>
-        /// the foreground subject. The foreground mask is detected automatically;<br/>
-        /// callers do not provide a mask.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply exactly one source transport: an existing `AssetIdentifier` in<br/>
-        /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
-        /// Supplying both or neither is rejected with a 400.
+        /// Replace background with GPT Image 2<br/>
+        /// Replace the background of an image from a text prompt while keeping the<br/>
+        /// automatically detected foreground subject; no mask is needed. Upload<br/>
+        /// the source `image` using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -817,16 +809,12 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Replace an image background<br/>
-        /// Replaces the background of one image from a text prompt while preserving<br/>
-        /// the foreground subject. The foreground mask is detected automatically;<br/>
-        /// callers do not provide a mask.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply exactly one source transport: an existing `AssetIdentifier` in<br/>
-        /// `image_asset_identifier`, or raw `image` bytes in a multipart request.<br/>
-        /// Supplying both or neither is rejected with a 400.
+        /// Replace background with GPT Image 2<br/>
+        /// Replace the background of an image from a text prompt while keeping the<br/>
+        /// automatically detected foreground subject; no mask is needed. Upload<br/>
+        /// the source `image` using `multipart/form-data`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -836,12 +824,12 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// Raw source-image bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// Raw source-image bytes. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP,<br/>
-        /// TIFF, and MPO are supported, up to 50 MB. Multipart requests only.
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Multipart requests only.
         /// </param>
         /// <param name="prompt">
         /// Plain-language description of the desired new background.
@@ -855,9 +843,8 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="private">
-        /// If true, the user is requesting private generation. If omitted,<br/>
-        /// this defaults to the user's plan entitlement. Enterprise<br/>
-        /// generations are always private.
+        /// Whether to keep the result private. When omitted, defaults to your<br/>
+        /// plan's setting. Enterprise generations are always private.
         /// </param>
         /// <param name="webhookUrl">
         /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>

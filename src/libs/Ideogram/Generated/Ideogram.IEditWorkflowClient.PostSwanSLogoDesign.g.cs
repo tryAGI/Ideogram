@@ -6,7 +6,7 @@ namespace Ideogram
     {
         /// <summary>
         /// Design one Swan S logo candidate<br/>
-        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v2/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -19,7 +19,7 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Design one Swan S logo candidate<br/>
-        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v2/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -32,7 +32,7 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Design one Swan S logo candidate<br/>
-        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Creates one isolated logo candidate using either a shoe swatch or a supplied style reference. For 3D reference designs, choose split or full coverage with design_variant. Send a separate request for each candidate; each request completes and is billed independently. Processing is asynchronous. Poll GET /v2/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="logoStyle"></param>
         /// <param name="sourceMode">

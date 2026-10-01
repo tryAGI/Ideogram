@@ -26,8 +26,8 @@ namespace Ideogram
         public string? Resolution { get; set; }
 
         /// <summary>
-        /// Optional diffusion step count. When omitted, the server uses the<br/>
-        /// model's default. Higher values trade latency for quality.<br/>
+        /// Optional number of diffusion steps. When omitted, the model's<br/>
+        /// default is used. Higher values improve quality but take longer.<br/>
         /// Example: 8
         /// </summary>
         /// <example>8</example>
@@ -50,7 +50,7 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -101,8 +101,8 @@ namespace Ideogram
         /// Example: 1024x1024
         /// </param>
         /// <param name="numInferenceSteps">
-        /// Optional diffusion step count. When omitted, the server uses the<br/>
-        /// model's default. Higher values trade latency for quality.<br/>
+        /// Optional number of diffusion steps. When omitted, the model's<br/>
+        /// default is used. Higher values improve quality but take longer.<br/>
         /// Example: 8
         /// </param>
         /// <param name="seed">
@@ -114,7 +114,7 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

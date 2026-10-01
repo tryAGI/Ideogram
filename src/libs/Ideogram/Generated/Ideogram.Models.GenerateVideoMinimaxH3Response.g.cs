@@ -4,18 +4,18 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement returned by the MiniMax H3 video generation endpoints.<br/>
-    /// Video generation always runs asynchronously, so the generated video is<br/>
-    /// never part of this response: poll for it with<br/>
-    /// `GET /v1/generations/{generation_id}` using the returned<br/>
-    /// `generation_id`, or receive it at the `webhook_url` you supplied.<br/>
+    /// Acknowledgement that the video request was accepted. The video is not<br/>
+    /// included in this response: poll `GET /v2/generations/{generation_id}`<br/>
+    /// with the returned `generation_id`, or receive it at the `webhook_url`<br/>
+    /// you supplied. Video links expire after a limited time, so download any<br/>
+    /// video you want to keep.<br/>
     /// Example: {"generation_id":"generation_id","created":"2000-01-23T04:56:07\u002B00:00"}
     /// </summary>
     public sealed partial class GenerateVideoMinimaxH3Response
     {
         /// <summary>
         /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// `GET /v2/generations/{generation_id}` polling endpoint.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -39,7 +39,7 @@ namespace Ideogram
         /// </summary>
         /// <param name="generationId">
         /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// `GET /v2/generations/{generation_id}` polling endpoint.
         /// </param>
         /// <param name="created">
         /// The time the request was accepted.

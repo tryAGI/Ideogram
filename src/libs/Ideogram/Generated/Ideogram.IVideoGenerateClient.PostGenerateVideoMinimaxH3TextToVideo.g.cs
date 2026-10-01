@@ -5,16 +5,10 @@ namespace Ideogram
     public partial interface IVideoGenerateClient
     {
         /// <summary>
-        /// Generate a video from a text prompt with MiniMax H3<br/>
+        /// Text to video with MiniMax H3<br/>
         /// Generate a video from a text prompt with MiniMax H3.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -30,16 +24,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate a video from a text prompt with MiniMax H3<br/>
+        /// Text to video with MiniMax H3<br/>
         /// Generate a video from a text prompt with MiniMax H3.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -55,16 +43,10 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate a video from a text prompt with MiniMax H3<br/>
+        /// Text to video with MiniMax H3<br/>
         /// Generate a video from a text prompt with MiniMax H3.<br/>
-        /// Video generation always runs asynchronously: the response returns as<br/>
-        /// soon as the request is accepted and carries only a `generation_id`.<br/>
-        /// Poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using that id, or supply a<br/>
-        /// `webhook_url` to have the finished result POSTed to your server<br/>
-        /// instead.<br/>
-        /// Video links are available for a limited period of time; download the<br/>
-        /// video if you want to keep it.
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
+        /// or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false

@@ -42,11 +42,11 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Transfer a shoe upper onto a preserved sole<br/>
+        /// Sole Swap<br/>
         /// Uses the sole-donor shoe as the output canvas, preserving its sole, camera,<br/>
         /// background, and lighting while transferring the upper from ordered references.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned<br/>
         /// `generation_id` until the generation is completed or failed.
         /// </summary>
         /// <param name="request"></param>
@@ -69,11 +69,11 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Transfer a shoe upper onto a preserved sole<br/>
+        /// Sole Swap<br/>
         /// Uses the sole-donor shoe as the output canvas, preserving its sole, camera,<br/>
         /// background, and lighting while transferring the upper from ordered references.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned<br/>
         /// `generation_id` until the generation is completed or failed.
         /// </summary>
         /// <param name="request"></param>
@@ -676,11 +676,11 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Transfer a shoe upper onto a preserved sole<br/>
+        /// Sole Swap<br/>
         /// Uses the sole-donor shoe as the output canvas, preserving its sole, camera,<br/>
         /// background, and lighting while transferring the upper from ordered references.<br/>
         /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned<br/>
+        /// `GET /v2/generations/{generation_id}` with the returned<br/>
         /// `generation_id` until the generation is completed or failed.
         /// </summary>
         /// <param name="baseAssetIdentifier">

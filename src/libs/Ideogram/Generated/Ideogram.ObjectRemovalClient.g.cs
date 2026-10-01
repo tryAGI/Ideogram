@@ -4,9 +4,8 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Remove unwanted objects from existing image assets. Requests use<br/>
-    /// `AssetIdentifier` references and return a generation id that can be<br/>
-    /// polled via `GET /v1/generations/{generation_id}`.<br/>
+    /// Remove unwanted objects from an image. Requests return a generation id<br/>
+    /// to poll with `GET /v2/generations/{generation_id}`.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>

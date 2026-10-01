@@ -40,7 +40,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// List your organization's API keys<br/>
+        /// List API keys<br/>
         /// Lists the API keys in your organization. Key material is redacted —<br/>
         /// the full key is only shown once, when it is created. Disabled and<br/>
         /// archived keys are included (see each key's `status`) so historical<br/>
@@ -63,7 +63,7 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// List your organization's API keys<br/>
+        /// List API keys<br/>
         /// Lists the API keys in your organization. Key material is redacted —<br/>
         /// the full key is only shown once, when it is created. Disabled and<br/>
         /// archived keys are included (see each key's `status`) so historical<br/>

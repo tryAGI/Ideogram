@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The output resolution tier. Influences which model serves the request; not every model offers every tier. When omitted the server uses the selected model's default tier.
+    /// The output resolution tier. Affects which model serves the request, since not every model offers every tier. When omitted, the selected model's default tier is used.
     /// </summary>
     public enum GenerateImageV2AutoRequestResolutionTier
     {

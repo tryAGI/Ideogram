@@ -5,22 +5,12 @@ namespace Ideogram
     public partial interface IImagesGenerateClient
     {
         /// <summary>
-        /// Generate images with Ideogram 3.0 from a text prompt<br/>
-        /// Generate one or more images from a text prompt with Ideogram 3.0,<br/>
-        /// with optional style controls: style codes, a style preset, a color<br/>
-        /// palette, or style references. Supply style references as a saved style<br/>
-        /// (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references (images already stored<br/>
-        /// with Ideogram), or as raw `style_reference_images` bytes (multipart<br/>
-        /// requests only). These three style reference forms cannot be combined.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with Ideogram 3.0<br/>
+        /// Generate images from a text prompt with Ideogram 3.0. Optional style<br/>
+        /// controls include style codes, a style preset, a color palette, and style<br/>
+        /// references (uploaded `style_reference_images`). Returns<br/>
+        /// results directly by default; set `async` or supply a `webhook_url` to<br/>
+        /// get a `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -36,22 +26,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with Ideogram 3.0 from a text prompt<br/>
-        /// Generate one or more images from a text prompt with Ideogram 3.0,<br/>
-        /// with optional style controls: style codes, a style preset, a color<br/>
-        /// palette, or style references. Supply style references as a saved style<br/>
-        /// (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references (images already stored<br/>
-        /// with Ideogram), or as raw `style_reference_images` bytes (multipart<br/>
-        /// requests only). These three style reference forms cannot be combined.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with Ideogram 3.0<br/>
+        /// Generate images from a text prompt with Ideogram 3.0. Optional style<br/>
+        /// controls include style codes, a style preset, a color palette, and style<br/>
+        /// references (uploaded `style_reference_images`). Returns<br/>
+        /// results directly by default; set `async` or supply a `webhook_url` to<br/>
+        /// get a `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -67,22 +47,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with Ideogram 3.0 from a text prompt<br/>
-        /// Generate one or more images from a text prompt with Ideogram 3.0,<br/>
-        /// with optional style controls: style codes, a style preset, a color<br/>
-        /// palette, or style references. Supply style references as a saved style<br/>
-        /// (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references (images already stored<br/>
-        /// with Ideogram), or as raw `style_reference_images` bytes (multipart<br/>
-        /// requests only). These three style reference forms cannot be combined.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with Ideogram 3.0<br/>
+        /// Generate images from a text prompt with Ideogram 3.0. Optional style<br/>
+        /// controls include style codes, a style preset, a color palette, and style<br/>
+        /// references (uploaded `style_reference_images`). Returns<br/>
+        /// results directly by default; set `async` or supply a `webhook_url` to<br/>
+        /// get a `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -91,7 +61,7 @@ namespace Ideogram
         /// The prompt to generate images from.
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -135,22 +105,22 @@ namespace Ideogram
         /// A predefined style preset to apply to the generated images. Cannot be combined with style codes or style references.
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_asset_identifiers` or `style_reference_images`.
+        /// A saved style to apply, by its URL-safe base64 collection id. Cannot be combined with `style_reference_images`.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
         /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_collection_id` or `style_reference_images`.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `style_reference_collection_id` or `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max 25MB each; JPEG, PNG, or WEBP).
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

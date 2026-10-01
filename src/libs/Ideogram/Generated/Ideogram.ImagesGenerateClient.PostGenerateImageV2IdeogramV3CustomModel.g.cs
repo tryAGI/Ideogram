@@ -44,19 +44,11 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Generate images with a custom Ideogram 3.0 model<br/>
-        /// Generate one or more images with a custom Ideogram 3.0 model that the<br/>
-        /// authenticated user or organization can access. The model registry<br/>
-        /// controls the model's supported rendering speeds and whether it removes<br/>
-        /// backgrounds automatically.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with a custom Ideogram 3.0 model<br/>
+        /// Generate images with a custom Ideogram 3.0 model that you or your<br/>
+        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -83,19 +75,11 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Generate images with a custom Ideogram 3.0 model<br/>
-        /// Generate one or more images with a custom Ideogram 3.0 model that the<br/>
-        /// authenticated user or organization can access. The model registry<br/>
-        /// controls the model's supported rendering speeds and whether it removes<br/>
-        /// backgrounds automatically.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with a custom Ideogram 3.0 model<br/>
+        /// Generate images with a custom Ideogram 3.0 model that you or your<br/>
+        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -923,19 +907,11 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Generate images with a custom Ideogram 3.0 model<br/>
-        /// Generate one or more images with a custom Ideogram 3.0 model that the<br/>
-        /// authenticated user or organization can access. The model registry<br/>
-        /// controls the model's supported rendering speeds and whether it removes<br/>
-        /// backgrounds automatically.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with a custom Ideogram 3.0 model<br/>
+        /// Generate images with a custom Ideogram 3.0 model that you or your<br/>
+        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
+        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
+        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -944,11 +920,11 @@ namespace Ideogram
         /// The prompt to generate images from.
         /// </param>
         /// <param name="customModelUri">
-        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.<br/>
+        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported and whether backgrounds are removed automatically.<br/>
         /// Example: model/my-custom-model/version/1
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -965,7 +941,7 @@ namespace Ideogram
         /// it uses `1x1`.
         /// </param>
         /// <param name="renderingSpeed">
-        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// The rendering speed to use. When omitted, a speed supported by the custom model is used.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
@@ -989,13 +965,13 @@ namespace Ideogram
         /// Existing upload or generated image assets to use as style references, by reference. Cannot be combined with `style_reference_images`.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only. Cannot be combined with `style_reference_asset_identifiers`.
+        /// Images to use as style references (max 10, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

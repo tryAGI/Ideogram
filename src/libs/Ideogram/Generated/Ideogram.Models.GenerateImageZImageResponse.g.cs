@@ -6,17 +6,17 @@ namespace Ideogram
     /// <summary>
     /// Response returned by `POST /v2/image/generate/z-image`. Synchronous<br/>
     /// requests (the default) include the generated images in `data`.<br/>
-    /// Requests with `async` set to true omit `data`; poll for completion<br/>
-    /// and results with `GET /v1/generations/{generation_id}` using the<br/>
-    /// returned `generation_id`. The seed reports the value the request<br/>
-    /// resolved to when the caller left it unset.<br/>
+    /// Asynchronous requests omit `data`; poll<br/>
+    /// `GET /v2/generations/{generation_id}` with the returned<br/>
+    /// `generation_id`. `seed` is the seed that was used, including when you<br/>
+    /// did not set one.<br/>
     /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id"}
     /// </summary>
     public sealed partial class GenerateImageZImageResponse
     {
         /// <summary>
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -47,8 +47,8 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImageZImageResponse" /> class.
         /// </summary>
         /// <param name="generationId">
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>

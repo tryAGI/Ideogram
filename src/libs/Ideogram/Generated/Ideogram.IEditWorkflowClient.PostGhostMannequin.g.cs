@@ -5,19 +5,14 @@ namespace Ideogram
     public partial interface IEditWorkflowClient
     {
         /// <summary>
-        /// Create ghost-mannequin garment photography<br/>
-        /// Transforms one or more photographs of the same garment into a polished<br/>
-        /// ghost-mannequin product image on a clean white studio background. The<br/>
-        /// garment keeps its identity and construction while the source person,<br/>
-        /// mannequin, hanger, environment, and other clothing are removed.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply one or more garment references. Use the directional fields when<br/>
-        /// the camera direction is known; each direction accepts either an<br/>
-        /// existing `AssetIdentifier` or one raw image, but not both. Additional<br/>
-        /// unlabeled references can be supplied through exactly one transport:<br/>
-        /// `garment_asset_identifiers`, or multipart `garment_images`.
+        /// Ghost Mannequin<br/>
+        /// Turns photos of one garment into a ghost-mannequin product image on a<br/>
+        /// clean white studio background, removing the person, mannequin, hanger,<br/>
+        /// and other clothing. Upload the photos using `multipart/form-data`, in<br/>
+        /// the directional fields (such as `front_image`) when the camera<br/>
+        /// direction is known and in `garment_images` otherwise.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -33,19 +28,14 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create ghost-mannequin garment photography<br/>
-        /// Transforms one or more photographs of the same garment into a polished<br/>
-        /// ghost-mannequin product image on a clean white studio background. The<br/>
-        /// garment keeps its identity and construction while the source person,<br/>
-        /// mannequin, hanger, environment, and other clothing are removed.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply one or more garment references. Use the directional fields when<br/>
-        /// the camera direction is known; each direction accepts either an<br/>
-        /// existing `AssetIdentifier` or one raw image, but not both. Additional<br/>
-        /// unlabeled references can be supplied through exactly one transport:<br/>
-        /// `garment_asset_identifiers`, or multipart `garment_images`.
+        /// Ghost Mannequin<br/>
+        /// Turns photos of one garment into a ghost-mannequin product image on a<br/>
+        /// clean white studio background, removing the person, mannequin, hanger,<br/>
+        /// and other clothing. Upload the photos using `multipart/form-data`, in<br/>
+        /// the directional fields (such as `front_image`) when the camera<br/>
+        /// direction is known and in `garment_images` otherwise.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -61,19 +51,14 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Create ghost-mannequin garment photography<br/>
-        /// Transforms one or more photographs of the same garment into a polished<br/>
-        /// ghost-mannequin product image on a clean white studio background. The<br/>
-        /// garment keeps its identity and construction while the source person,<br/>
-        /// mannequin, hanger, environment, and other clothing are removed.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply one or more garment references. Use the directional fields when<br/>
-        /// the camera direction is known; each direction accepts either an<br/>
-        /// existing `AssetIdentifier` or one raw image, but not both. Additional<br/>
-        /// unlabeled references can be supplied through exactly one transport:<br/>
-        /// `garment_asset_identifiers`, or multipart `garment_images`.
+        /// Ghost Mannequin<br/>
+        /// Turns photos of one garment into a ghost-mannequin product image on a<br/>
+        /// clean white studio background, removing the person, mannequin, hanger,<br/>
+        /// and other clothing. Upload the photos using `multipart/form-data`, in<br/>
+        /// the directional fields (such as `front_image`) when the camera<br/>
+        /// direction is known and in `garment_images` otherwise.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -85,98 +70,95 @@ namespace Ideogram
         /// `garment_images`.
         /// </param>
         /// <param name="garmentImages">
-        /// Raw images of the same garment, up to 50 MB each. JPEG, PNG, WEBP,<br/>
-        /// HEIF, AVIF, GIF, BMP, TIFF, and MPO are supported. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `garment_asset_identifiers`.
+        /// Additional photos of the same garment, up to 50 MB each. JPEG,<br/>
+        /// PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO are supported.<br/>
+        /// Multipart requests only.
         /// </param>
         /// <param name="frontAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="frontImage">
-        /// Optional raw front-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `front_asset_identifier`.
+        /// Optional front-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="frontImagename">
-        /// Optional raw front-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `front_asset_identifier`.
+        /// Optional front-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="backAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="backImage">
-        /// Optional raw back-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `back_asset_identifier`.
+        /// Optional back-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="backImagename">
-        /// Optional raw back-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `back_asset_identifier`.
+        /// Optional back-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="leftAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="leftImage">
-        /// Optional raw left-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `left_asset_identifier`.
+        /// Optional left-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="leftImagename">
-        /// Optional raw left-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `left_asset_identifier`.
+        /// Optional left-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="rightAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="rightImage">
-        /// Optional raw right-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `right_asset_identifier`.
+        /// Optional right-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="rightImagename">
-        /// Optional raw right-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `right_asset_identifier`.
+        /// Optional right-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="topAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="topImage">
-        /// Optional raw top-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `top_asset_identifier`.
+        /// Optional top-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="topImagename">
-        /// Optional raw top-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with `top_asset_identifier`.
+        /// Optional top-view garment photo, up to 50 MB. Multipart requests<br/>
+        /// only.
         /// </param>
         /// <param name="bottomAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="bottomImage">
-        /// Optional raw bottom-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `bottom_asset_identifier`.
+        /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="bottomImagename">
-        /// Optional raw bottom-view garment reference, up to 50 MB. Multipart<br/>
-        /// requests only. Mutually exclusive with<br/>
-        /// `bottom_asset_identifier`.
+        /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="view">
         /// Camera view for the output garment.
         /// </param>
         /// <param name="instruction">
         /// Optional reconstruction guidance or identity-critical garment<br/>
-        /// details for the analyzer to verify. The output always uses the<br/>
-        /// workflow's clean white studio presentation.
+        /// details to check against the photos. The output always uses a clean<br/>
+        /// white studio background.
         /// </param>
         /// <param name="metadata">
         /// Optional JSON object serialized as a string containing factual<br/>
         /// product context, such as title, brand, category, color, material,<br/>
         /// item code, and exact printed text. Metadata helps disambiguate the<br/>
-        /// garment references but does not add unsupported visual features.
+        /// garment photos but does not add features they do not show.
         /// </param>
         /// <param name="aspectRatio">
         /// Output aspect ratio. Defaults to `1:1` when omitted. Supported<br/>

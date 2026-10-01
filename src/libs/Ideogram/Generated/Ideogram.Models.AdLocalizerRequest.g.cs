@@ -4,9 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the source advertisement as either an `AssetIdentifier` reference<br/>
-    /// or (multipart requests only) raw image bytes; provide exactly one of the<br/>
-    /// two forms. Supplying both, or neither, is rejected with a 400.
+    /// Upload the source ad as `image` and choose a target `language`.
     /// </summary>
     public sealed partial class AdLocalizerRequest
     {
@@ -19,23 +17,25 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The source advertisement to localize (max size 25MB), as raw bytes;<br/>
-        /// only JPEG, PNG, and WEBP formats are supported. Multipart requests<br/>
-        /// only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source ad to localize (max size 25MB). Its layout, logos, brand<br/>
+        /// type, and product are preserved, and the output keeps its shape, so<br/>
+        /// no size or aspect ratio is needed. JPEG, PNG, and WEBP formats are<br/>
+        /// supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The source advertisement to localize (max size 25MB), as raw bytes;<br/>
-        /// only JPEG, PNG, and WEBP formats are supported. Multipart requests<br/>
-        /// only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source ad to localize (max size 25MB). Its layout, logos, brand<br/>
+        /// type, and product are preserved, and the output keeps its shape, so<br/>
+        /// no size or aspect ratio is needed. JPEG, PNG, and WEBP formats are<br/>
+        /// supported. Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// The target language the copy is rebuilt in. Arabic is rendered right-to-left.
+        /// The target language for the copy. Arabic is rendered right-to-left. Each request covers one language; send one request per language.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("language")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AdLocalizerRequestLanguageJsonConverter))]
@@ -49,7 +49,7 @@ namespace Ideogram
         public string? ExactCopy { get; set; }
 
         /// <summary>
-        /// Optional additional direction for the localization, for example "keep the badge in English". It takes priority over the preservation rules for anything it explicitly asks to change.
+        /// Optional additional direction for the localization, for example "keep the badge in English". Anything it explicitly asks to change takes priority over the preservation rules.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         public string? Prompt { get; set; }
@@ -114,27 +114,29 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="AdLocalizerRequest" /> class.
         /// </summary>
         /// <param name="language">
-        /// The target language the copy is rebuilt in. Arabic is rendered right-to-left.
+        /// The target language for the copy. Arabic is rendered right-to-left. Each request covers one language; send one request per language.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source advertisement to localize (max size 25MB), as raw bytes;<br/>
-        /// only JPEG, PNG, and WEBP formats are supported. Multipart requests<br/>
-        /// only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source ad to localize (max size 25MB). Its layout, logos, brand<br/>
+        /// type, and product are preserved, and the output keeps its shape, so<br/>
+        /// no size or aspect ratio is needed. JPEG, PNG, and WEBP formats are<br/>
+        /// supported. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source advertisement to localize (max size 25MB), as raw bytes;<br/>
-        /// only JPEG, PNG, and WEBP formats are supported. Multipart requests<br/>
-        /// only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The source ad to localize (max size 25MB). Its layout, logos, brand<br/>
+        /// type, and product are preserved, and the output keeps its shape, so<br/>
+        /// no size or aspect ratio is needed. JPEG, PNG, and WEBP formats are<br/>
+        /// supported. Multipart requests only.
         /// </param>
         /// <param name="exactCopy">
         /// Pre-approved wording, one `original =&gt; replacement` mapping per line. Each mapping names the text element showing `original` and sets it to `replacement`, placed character for character rather than translated. Any text element not listed is left as it is in the source. When omitted, all visible marketing copy is translated.
         /// </param>
         /// <param name="prompt">
-        /// Optional additional direction for the localization, for example "keep the badge in English". It takes priority over the preservation rules for anything it explicitly asks to change.
+        /// Optional additional direction for the localization, for example "keep the badge in English". Anything it explicitly asks to change takes priority over the preservation rules.
         /// </param>
         /// <param name="quality">
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>

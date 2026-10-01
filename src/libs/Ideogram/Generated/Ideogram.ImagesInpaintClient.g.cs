@@ -4,10 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Repaint a masked region of an image with a specific model contract.<br/>
-    /// Requests supply the source image and mask by `AssetIdentifier`<br/>
-    /// reference or as uploaded bytes and return a generation id that can be<br/>
-    /// polled via `GET /v1/generations/{generation_id}`.<br/>
+    /// Repaint a masked region of an image with a specific model.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>

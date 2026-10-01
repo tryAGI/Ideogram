@@ -6,18 +6,16 @@ namespace Ideogram
     /// <summary>
     /// Response returned by `POST /v2/image/remix/auto`. Synchronous<br/>
     /// requests (the default) include the remixed images in `data`.<br/>
-    /// Requests with `async` set to true omit `data`; poll for completion<br/>
-    /// and results with `GET /v1/generations/{generation_id}` using the<br/>
-    /// returned `generation_id`. The seed reports the server-assigned value<br/>
-    /// attached to the request; AUTO remixes are not reproducible because the<br/>
-    /// selected model may synthesize an unseeded instruction prompt.<br/>
+    /// Asynchronous requests omit `data`; poll<br/>
+    /// `GET /v2/generations/{generation_id}` with the returned<br/>
+    /// `generation_id`.<br/>
     /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":"","generation_id":"generation_id"}
     /// </summary>
     public sealed partial class ToolRemixResponse
     {
         /// <summary>
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -30,7 +28,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>? Data { get; set; }
 
         /// <summary>
-        /// Server-assigned value attached to the request for tracing. This value does not make AUTO remixes reproducible because the selected model may synthesize an unseeded instruction prompt.
+        /// The seed attached to the request. Reusing it does not guarantee a reproducible result, because the selected model may not honor seeds.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -46,11 +44,11 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ToolRemixResponse" /> class.
         /// </summary>
         /// <param name="generationId">
-        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
-        /// `GET /v1/generations/{generation_id}` polling endpoint.
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </param>
         /// <param name="seed">
-        /// Server-assigned value attached to the request for tracing. This value does not make AUTO remixes reproducible because the selected model may synthesize an unseeded instruction prompt.
+        /// The seed attached to the request. Reusing it does not guarantee a reproducible result, because the selected model may not honor seeds.
         /// </param>
         /// <param name="data">
         /// The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).

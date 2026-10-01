@@ -4,11 +4,10 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Supply the character as a saved character collection, as asset<br/>
-    /// identifiers, or (multipart requests only) as raw image bytes. Exactly<br/>
-    /// one character is supported per request; if more than one form is<br/>
-    /// given, the collection is used over the identifiers, and the<br/>
-    /// identifiers over the bytes.
+    /// Upload one character reference per request as<br/>
+    /// `character_reference_images`. Style references can be<br/>
+    /// added only on accounts with access; otherwise combining them with a<br/>
+    /// character returns a 400.
     /// </summary>
     public sealed partial class GenerateImageIdeogramV3CharacterRequest
     {
@@ -20,19 +19,19 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("negative_prompt")]
         public string? NegativePrompt { get; set; }
 
         /// <summary>
-        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_asset_identifiers` and `character_reference_images` if more than one is supplied.
+        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_images` if both are supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_collection_id")]
         public string? CharacterReferenceCollectionId { get; set; }
 
         /// <summary>
-        /// Optional URL-safe base64 version id pinning a specific version of the `character_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved character in `character_reference_collection_id`. Ignored without it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_collection_version_id")]
         public string? CharacterReferenceCollectionVersionId { get; set; }
@@ -44,19 +43,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? CharacterReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// An image to use as the character reference (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a character collection or asset identifier is also supplied.
+        /// An image of the character to feature (max 25MB; JPEG, PNG, or WEBP).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
 
         /// <summary>
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_mask")]
         public byte[]? CharacterReferenceMask { get; set; }
 
         /// <summary>
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_maskname")]
         public string? CharacterReferenceMaskname { get; set; }
@@ -120,13 +119,13 @@ namespace Ideogram
         public global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType? StyleType { get; set; }
 
         /// <summary>
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_id")]
         public string? StyleReferenceCollectionId { get; set; }
 
         /// <summary>
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_collection_version_id")]
         public string? StyleReferenceCollectionVersionId { get; set; }
@@ -138,19 +137,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? StyleReferenceAssetIdentifiers { get; set; }
 
         /// <summary>
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied.
+        /// Images to use as style references (max 10, max 25MB each; JPEG, PNG, or WEBP).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? StyleReferenceImages { get; set; }
 
         /// <summary>
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -196,25 +195,25 @@ namespace Ideogram
         /// The prompt to generate images from.
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
         /// <param name="characterReferenceCollectionId">
-        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_asset_identifiers` and `character_reference_images` if more than one is supplied.
+        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_images` if both are supplied.
         /// </param>
         /// <param name="characterReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `character_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved character in `character_reference_collection_id`. Ignored without it.
         /// </param>
         /// <param name="characterReferenceAssetIdentifiers">
         /// An existing upload or generated image asset to use as the character reference, by reference. Takes priority over `character_reference_images` if both are supplied.
         /// </param>
         /// <param name="characterReferenceImages">
-        /// An image to use as the character reference (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a character collection or asset identifier is also supplied.
+        /// An image of the character to feature (max 25MB; JPEG, PNG, or WEBP).
         /// </param>
         /// <param name="characterReferenceMask">
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="characterReferenceMaskname">
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -247,22 +246,22 @@ namespace Ideogram
         /// Default Value: auto
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
         /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied.
+        /// Images to use as style references (max 10, max 25MB each; JPEG, PNG, or WEBP).
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

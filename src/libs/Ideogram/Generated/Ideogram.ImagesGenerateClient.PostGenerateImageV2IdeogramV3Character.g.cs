@@ -44,30 +44,12 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Generate images of a consistent character with Ideogram 3.0<br/>
-        /// Generate one or more images featuring a consistent character with<br/>
-        /// Ideogram 3.0. Supply the character as a saved character<br/>
-        /// (`character_reference_collection_id`), as<br/>
-        /// `character_reference_asset_identifiers` references (an image already<br/>
-        /// stored with Ideogram), or as raw `character_reference_images` bytes<br/>
-        /// (multipart requests only, with an optional<br/>
-        /// `character_reference_mask` marking where the character is in the<br/>
-        /// reference). If more than one form is supplied, the collection wins<br/>
-        /// over the identifiers, and the identifiers win over the bytes.<br/>
-        /// Style references may be combined with the character on accounts with<br/>
-        /// access; otherwise the combination returns a 400. Supply them as a<br/>
-        /// saved style (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references, or as raw<br/>
-        /// `style_reference_images` bytes, with the same precedence as the<br/>
-        /// character forms.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate a consistent character with Ideogram 3.0<br/>
+        /// Generate images featuring a consistent character with Ideogram 3.0.<br/>
+        /// Upload the character as `character_reference_images` using<br/>
+        /// `multipart/form-data`. Returns<br/>
+        /// results directly by default; set `async` or supply a `webhook_url` to<br/>
+        /// get a `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -94,30 +76,12 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Generate images of a consistent character with Ideogram 3.0<br/>
-        /// Generate one or more images featuring a consistent character with<br/>
-        /// Ideogram 3.0. Supply the character as a saved character<br/>
-        /// (`character_reference_collection_id`), as<br/>
-        /// `character_reference_asset_identifiers` references (an image already<br/>
-        /// stored with Ideogram), or as raw `character_reference_images` bytes<br/>
-        /// (multipart requests only, with an optional<br/>
-        /// `character_reference_mask` marking where the character is in the<br/>
-        /// reference). If more than one form is supplied, the collection wins<br/>
-        /// over the identifiers, and the identifiers win over the bytes.<br/>
-        /// Style references may be combined with the character on accounts with<br/>
-        /// access; otherwise the combination returns a 400. Supply them as a<br/>
-        /// saved style (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references, or as raw<br/>
-        /// `style_reference_images` bytes, with the same precedence as the<br/>
-        /// character forms.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate a consistent character with Ideogram 3.0<br/>
+        /// Generate images featuring a consistent character with Ideogram 3.0.<br/>
+        /// Upload the character as `character_reference_images` using<br/>
+        /// `multipart/form-data`. Returns<br/>
+        /// results directly by default; set `async` or supply a `webhook_url` to<br/>
+        /// get a `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -993,30 +957,12 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Generate images of a consistent character with Ideogram 3.0<br/>
-        /// Generate one or more images featuring a consistent character with<br/>
-        /// Ideogram 3.0. Supply the character as a saved character<br/>
-        /// (`character_reference_collection_id`), as<br/>
-        /// `character_reference_asset_identifiers` references (an image already<br/>
-        /// stored with Ideogram), or as raw `character_reference_images` bytes<br/>
-        /// (multipart requests only, with an optional<br/>
-        /// `character_reference_mask` marking where the character is in the<br/>
-        /// reference). If more than one form is supplied, the collection wins<br/>
-        /// over the identifiers, and the identifiers win over the bytes.<br/>
-        /// Style references may be combined with the character on accounts with<br/>
-        /// access; otherwise the combination returns a 400. Supply them as a<br/>
-        /// saved style (`style_reference_collection_id`), as<br/>
-        /// `style_reference_asset_identifiers` references, or as raw<br/>
-        /// `style_reference_images` bytes, with the same precedence as the<br/>
-        /// character forms.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate a consistent character with Ideogram 3.0<br/>
+        /// Generate images featuring a consistent character with Ideogram 3.0.<br/>
+        /// Upload the character as `character_reference_images` using<br/>
+        /// `multipart/form-data`. Returns<br/>
+        /// results directly by default; set `async` or supply a `webhook_url` to<br/>
+        /// get a `generation_id` and poll `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -1025,25 +971,25 @@ namespace Ideogram
         /// The prompt to generate images from.
         /// </param>
         /// <param name="negativePrompt">
-        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
         /// <param name="characterReferenceCollectionId">
-        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_asset_identifiers` and `character_reference_images` if more than one is supplied.
+        /// A saved character to feature, by its URL-safe base64 collection id. Takes priority over `character_reference_images` if both are supplied.
         /// </param>
         /// <param name="characterReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `character_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved character in `character_reference_collection_id`. Ignored without it.
         /// </param>
         /// <param name="characterReferenceAssetIdentifiers">
         /// An existing upload or generated image asset to use as the character reference, by reference. Takes priority over `character_reference_images` if both are supplied.
         /// </param>
         /// <param name="characterReferenceImages">
-        /// An image to use as the character reference (max size 25MB), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a character collection or asset identifier is also supplied.
+        /// An image of the character to feature (max 25MB; JPEG, PNG, or WEBP).
         /// </param>
         /// <param name="characterReferenceMask">
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="characterReferenceMaskname">
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -1076,22 +1022,22 @@ namespace Ideogram
         /// Default Value: auto
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_asset_identifiers` and `style_reference_images` if more than one is supplied.
+        /// A saved style to apply, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
-        /// Optional URL-safe base64 version id pinning a specific version of the `style_reference_collection_id` collection. Ignored without it.
+        /// Optional URL-safe base64 version id of the saved style in `style_reference_collection_id`. Ignored without it.
         /// </param>
         /// <param name="styleReferenceAssetIdentifiers">
         /// Existing upload or generated image assets to use as style references, by reference. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB per image), as raw bytes; only JPEG, PNG, and WEBP formats are supported. Multipart requests only; ignored if a style reference collection or asset identifiers are also supplied.
+        /// Images to use as style references (max 10, max 25MB each; JPEG, PNG, or WEBP).
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

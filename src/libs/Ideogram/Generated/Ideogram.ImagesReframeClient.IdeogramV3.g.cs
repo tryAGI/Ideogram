@@ -44,19 +44,12 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Reframe an image with Ideogram 3.0, by asset id or by uploaded bytes<br/>
-        /// Expand an image to a new Ideogram 3.0 resolution. The source pixels<br/>
-        /// are preserved in the center and Ideogram fills the new area. Supply<br/>
-        /// exactly one source: an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or raw image bytes (`image`, multipart<br/>
-        /// requests only). Supplying both forms, or neither, is rejected.<br/>
-        /// Optional style controls are mutually exclusive. Supply at most one of<br/>
-        /// `style_preset`, `style_codes`, `style_reference_asset_identifiers`, or<br/>
-        /// raw `style_reference_images` (multipart requests only). Each style<br/>
-        /// reference transport accepts at most 10 images.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately, then poll<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// Reframe with Ideogram 3.0<br/>
+        /// Expand an image to a new Ideogram 3.0 resolution, keeping the source<br/>
+        /// pixels in the center and filling the new area. Upload the source<br/>
+        /// `image` using `multipart/form-data`. Returns results directly by<br/>
+        /// default; set `async` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -83,19 +76,12 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Reframe an image with Ideogram 3.0, by asset id or by uploaded bytes<br/>
-        /// Expand an image to a new Ideogram 3.0 resolution. The source pixels<br/>
-        /// are preserved in the center and Ideogram fills the new area. Supply<br/>
-        /// exactly one source: an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or raw image bytes (`image`, multipart<br/>
-        /// requests only). Supplying both forms, or neither, is rejected.<br/>
-        /// Optional style controls are mutually exclusive. Supply at most one of<br/>
-        /// `style_preset`, `style_codes`, `style_reference_asset_identifiers`, or<br/>
-        /// raw `style_reference_images` (multipart requests only). Each style<br/>
-        /// reference transport accepts at most 10 images.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately, then poll<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// Reframe with Ideogram 3.0<br/>
+        /// Expand an image to a new Ideogram 3.0 resolution, keeping the source<br/>
+        /// pixels in the center and filling the new area. Upload the source<br/>
+        /// `image` using `multipart/form-data`. Returns results directly by<br/>
+        /// default; set `async` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -841,19 +827,12 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Reframe an image with Ideogram 3.0, by asset id or by uploaded bytes<br/>
-        /// Expand an image to a new Ideogram 3.0 resolution. The source pixels<br/>
-        /// are preserved in the center and Ideogram fills the new area. Supply<br/>
-        /// exactly one source: an `AssetIdentifier` reference<br/>
-        /// (`image_asset_identifier`) or raw image bytes (`image`, multipart<br/>
-        /// requests only). Supplying both forms, or neither, is rejected.<br/>
-        /// Optional style controls are mutually exclusive. Supply at most one of<br/>
-        /// `style_preset`, `style_codes`, `style_reference_asset_identifiers`, or<br/>
-        /// raw `style_reference_images` (multipart requests only). Each style<br/>
-        /// reference transport accepts at most 10 images.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately, then poll<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// Reframe with Ideogram 3.0<br/>
+        /// Expand an image to a new Ideogram 3.0 resolution, keeping the source<br/>
+        /// pixels in the center and filling the new area. Upload the source<br/>
+        /// `image` using `multipart/form-data`. Returns results directly by<br/>
+        /// default; set `async` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -863,10 +842,10 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The JPEG, PNG, or WEBP image to reframe (max 25MB), as raw bytes. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The JPEG, PNG, or WEBP image to reframe (max 25MB). Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The JPEG, PNG, or WEBP image to reframe (max 25MB), as raw bytes. Multipart requests only. Provide exactly one of `image_asset_identifier` or `image`.
+        /// The JPEG, PNG, or WEBP image to reframe (max 25MB). Multipart requests only.
         /// </param>
         /// <param name="resolution">
         /// The resolutions supported for Ideogram 3.0.<br/>
@@ -898,7 +877,7 @@ namespace Ideogram
         /// Existing upload or generated image assets to use as style references. Cannot be combined with a style preset, style codes, or uploaded style reference images.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// JPEG, PNG, or WEBP style reference images (max 10, max 25MB each), as raw bytes. Multipart requests only. Cannot be combined with a style preset, style codes, or referenced style assets.
+        /// JPEG, PNG, or WEBP style reference images (max 10, max 25MB each). Multipart requests only. Cannot be combined with `style_preset` or `style_codes`.
         /// </param>
         /// <param name="async">
         /// Return immediately instead of waiting for reframed images.<br/>

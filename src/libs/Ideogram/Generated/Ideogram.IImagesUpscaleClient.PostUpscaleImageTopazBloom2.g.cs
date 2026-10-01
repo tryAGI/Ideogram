@@ -5,26 +5,13 @@ namespace Ideogram
     public partial interface IImagesUpscaleClient
     {
         /// <summary>
-        /// Upscale an image with Topaz Bloom 2, by asset id or by uploaded bytes<br/>
-        /// Creatively upscale one image to 2x, 4x, or 8x its original resolution,<br/>
-        /// up to a maximum output of 8192px per side. Supply the source either as<br/>
-        /// an `image_asset_identifier` reference (an image already stored with<br/>
-        /// Ideogram) or as raw `image` bytes (multipart requests only) — callers<br/>
-        /// are never required to upload the asset first. If both are supplied,<br/>
-        /// the reference wins and the bytes are ignored. Uploaded bytes are used<br/>
-        /// for this request only and are not stored as an asset; upscales of a<br/>
-        /// referenced asset keep a visible link to their source image.<br/>
-        /// An optional `prompt` guides the regenerated detail, and `creativity`<br/>
-        /// controls how strongly the model reinterprets the source while<br/>
-        /// enlarging it.<br/>
-        /// By default the request blocks until the upscaled image is ready and<br/>
-        /// returns it in `data`. Set `async` to true to return immediately after<br/>
-        /// the request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Upscale with Topaz Bloom 2<br/>
+        /// Creatively upscale an image to 2x, 4x, or 8x its original resolution,<br/>
+        /// optionally guided by a `prompt`. Upload the source `image` using<br/>
+        /// `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -40,26 +27,13 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Upscale an image with Topaz Bloom 2, by asset id or by uploaded bytes<br/>
-        /// Creatively upscale one image to 2x, 4x, or 8x its original resolution,<br/>
-        /// up to a maximum output of 8192px per side. Supply the source either as<br/>
-        /// an `image_asset_identifier` reference (an image already stored with<br/>
-        /// Ideogram) or as raw `image` bytes (multipart requests only) — callers<br/>
-        /// are never required to upload the asset first. If both are supplied,<br/>
-        /// the reference wins and the bytes are ignored. Uploaded bytes are used<br/>
-        /// for this request only and are not stored as an asset; upscales of a<br/>
-        /// referenced asset keep a visible link to their source image.<br/>
-        /// An optional `prompt` guides the regenerated detail, and `creativity`<br/>
-        /// controls how strongly the model reinterprets the source while<br/>
-        /// enlarging it.<br/>
-        /// By default the request blocks until the upscaled image is ready and<br/>
-        /// returns it in `data`. Set `async` to true to return immediately after<br/>
-        /// the request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Upscale with Topaz Bloom 2<br/>
+        /// Creatively upscale an image to 2x, 4x, or 8x its original resolution,<br/>
+        /// optionally guided by a `prompt`. Upload the source `image` using<br/>
+        /// `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -75,26 +49,13 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Upscale an image with Topaz Bloom 2, by asset id or by uploaded bytes<br/>
-        /// Creatively upscale one image to 2x, 4x, or 8x its original resolution,<br/>
-        /// up to a maximum output of 8192px per side. Supply the source either as<br/>
-        /// an `image_asset_identifier` reference (an image already stored with<br/>
-        /// Ideogram) or as raw `image` bytes (multipart requests only) — callers<br/>
-        /// are never required to upload the asset first. If both are supplied,<br/>
-        /// the reference wins and the bytes are ignored. Uploaded bytes are used<br/>
-        /// for this request only and are not stored as an asset; upscales of a<br/>
-        /// referenced asset keep a visible link to their source image.<br/>
-        /// An optional `prompt` guides the regenerated detail, and `creativity`<br/>
-        /// controls how strongly the model reinterprets the source while<br/>
-        /// enlarging it.<br/>
-        /// By default the request blocks until the upscaled image is ready and<br/>
-        /// returns it in `data`. Set `async` to true to return immediately after<br/>
-        /// the request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Upscale with Topaz Bloom 2<br/>
+        /// Creatively upscale an image to 2x, 4x, or 8x its original resolution,<br/>
+        /// optionally guided by a `prompt`. Upload the source `image` using<br/>
+        /// `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -104,10 +65,10 @@ namespace Ideogram
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The source image to upscale (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied. The bytes are used for this request only and are not stored as an asset.
+        /// The source image to upscale, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </param>
         /// <param name="imagename">
-        /// The source image to upscale (max size 50MB), as raw bytes; only common image formats such as JPEG, PNG, and WEBP are supported. Multipart requests only; ignored if `image_asset_identifier` is also supplied. The bytes are used for this request only and are not stored as an asset.
+        /// The source image to upscale, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored.
         /// </param>
         /// <param name="upscaleFactor">
         /// How much to enlarge the source image: 2x, 4x, or 8x its original width and height. Rejected when the output would exceed 8192px on either side.<br/>
@@ -129,7 +90,7 @@ namespace Ideogram
         /// Example: 12345
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

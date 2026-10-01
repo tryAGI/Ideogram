@@ -5,18 +5,13 @@ namespace Ideogram
     public partial interface IEditWorkflowClient
     {
         /// <summary>
-        /// Generate pose variants of a fashion image<br/>
-        /// Changes the model's pose or camera presentation while preserving the<br/>
-        /// source model, garment, styling, and scene. An optional pose-reference<br/>
-        /// image supplies body pose and gaze only; it does not supply identity,<br/>
-        /// clothing, or styling.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the source as either an `AssetIdentifier` reference<br/>
-        /// (`source_asset_identifier`) or raw image bytes (`source_image`,<br/>
-        /// multipart requests only). Provide exactly one source form; supplying<br/>
-        /// both, or neither, is rejected with a 400.
+        /// Model Pose Variants<br/>
+        /// Changes the model's pose or camera angle in a fashion image while<br/>
+        /// preserving the model, garment, styling, and scene. Upload the<br/>
+        /// `source_image` using `multipart/form-data` and describe the new pose in<br/>
+        /// `instruction`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -28,18 +23,13 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate pose variants of a fashion image<br/>
-        /// Changes the model's pose or camera presentation while preserving the<br/>
-        /// source model, garment, styling, and scene. An optional pose-reference<br/>
-        /// image supplies body pose and gaze only; it does not supply identity,<br/>
-        /// clothing, or styling.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the source as either an `AssetIdentifier` reference<br/>
-        /// (`source_asset_identifier`) or raw image bytes (`source_image`,<br/>
-        /// multipart requests only). Provide exactly one source form; supplying<br/>
-        /// both, or neither, is rejected with a 400.
+        /// Model Pose Variants<br/>
+        /// Changes the model's pose or camera angle in a fashion image while<br/>
+        /// preserving the model, garment, styling, and scene. Upload the<br/>
+        /// `source_image` using `multipart/form-data` and describe the new pose in<br/>
+        /// `instruction`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -51,42 +41,35 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate pose variants of a fashion image<br/>
-        /// Changes the model's pose or camera presentation while preserving the<br/>
-        /// source model, garment, styling, and scene. An optional pose-reference<br/>
-        /// image supplies body pose and gaze only; it does not supply identity,<br/>
-        /// clothing, or styling.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the source as either an `AssetIdentifier` reference<br/>
-        /// (`source_asset_identifier`) or raw image bytes (`source_image`,<br/>
-        /// multipart requests only). Provide exactly one source form; supplying<br/>
-        /// both, or neither, is rejected with a 400.
+        /// Model Pose Variants<br/>
+        /// Changes the model's pose or camera angle in a fashion image while<br/>
+        /// preserving the model, garment, styling, and scene. Upload the<br/>
+        /// `source_image` using `multipart/form-data` and describe the new pose in<br/>
+        /// `instruction`.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="sourceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="sourceImage">
-        /// Fashion image to edit (max size 50MB), as raw bytes. JPEG, PNG,<br/>
-        /// WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO formats are supported.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `source_asset_identifier` or `source_image`.
+        /// Fashion image to edit (max size 50MB). JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO formats are supported. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="sourceImagename">
-        /// Fashion image to edit (max size 50MB), as raw bytes. JPEG, PNG,<br/>
-        /// WEBP, HEIF, AVIF, GIF, BMP, TIFF, and MPO formats are supported.<br/>
-        /// Multipart requests only. Provide exactly one of<br/>
-        /// `source_asset_identifier` or `source_image`.
+        /// Fashion image to edit (max size 50MB). JPEG, PNG, WEBP, HEIF,<br/>
+        /// AVIF, GIF, BMP, TIFF, and MPO formats are supported. Multipart<br/>
+        /// requests only.
         /// </param>
         /// <param name="poseReferenceAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="instruction">
-        /// Required plain-language pose or camera direction, such as a<br/>
-        /// front-facing catalog stance or right-facing walking profile.
+        /// Plain-language pose or camera direction, such as a front-facing<br/>
+        /// catalog stance or right-facing walking profile.
         /// </param>
         /// <param name="aspectRatio">
         /// Output aspect ratio. When omitted, the nearest supported ratio is<br/>

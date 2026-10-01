@@ -5,22 +5,12 @@ namespace Ideogram
     public partial interface IImagesInpaintClient
     {
         /// <summary>
-        /// Repaint a masked region with a custom Ideogram 3.0 model<br/>
+        /// Inpaint with a custom Ideogram 3.0 model<br/>
         /// Repaint the masked region of a source image with a custom Ideogram 3.0<br/>
-        /// model the authenticated user or organization can access. Supply the<br/>
-        /// model URI returned by the custom-model API as `custom_model_uri`.<br/>
-        /// For each of the source image and mask, supply either an<br/>
-        /// `AssetIdentifier` reference (`image_asset_identifier` /<br/>
-        /// `mask_asset_identifier`) or raw bytes (`image` / `mask`, multipart<br/>
-        /// requests only). A reference wins if both forms are supplied.<br/>
-        /// Optional style controls are style codes, a style preset, or style<br/>
-        /// reference images. Supply style references as a saved style, existing<br/>
-        /// asset identifiers, or raw image bytes. Only one style control may be<br/>
-        /// used; when multiple reference forms are supplied, the collection wins<br/>
-        /// over identifiers, and identifiers win over bytes.<br/>
-        /// By default the request blocks until the images are ready. Set `async`<br/>
-        /// to true to return after dispatch and poll<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// model, passed as `custom_model_uri`. Upload the source `image` and its<br/>
+        /// `mask` using `multipart/form-data`. Returns results directly by<br/>
+        /// default; set `async` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -36,22 +26,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Repaint a masked region with a custom Ideogram 3.0 model<br/>
+        /// Inpaint with a custom Ideogram 3.0 model<br/>
         /// Repaint the masked region of a source image with a custom Ideogram 3.0<br/>
-        /// model the authenticated user or organization can access. Supply the<br/>
-        /// model URI returned by the custom-model API as `custom_model_uri`.<br/>
-        /// For each of the source image and mask, supply either an<br/>
-        /// `AssetIdentifier` reference (`image_asset_identifier` /<br/>
-        /// `mask_asset_identifier`) or raw bytes (`image` / `mask`, multipart<br/>
-        /// requests only). A reference wins if both forms are supplied.<br/>
-        /// Optional style controls are style codes, a style preset, or style<br/>
-        /// reference images. Supply style references as a saved style, existing<br/>
-        /// asset identifiers, or raw image bytes. Only one style control may be<br/>
-        /// used; when multiple reference forms are supplied, the collection wins<br/>
-        /// over identifiers, and identifiers win over bytes.<br/>
-        /// By default the request blocks until the images are ready. Set `async`<br/>
-        /// to true to return after dispatch and poll<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// model, passed as `custom_model_uri`. Upload the source `image` and its<br/>
+        /// `mask` using `multipart/form-data`. Returns results directly by<br/>
+        /// default; set `async` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -67,22 +47,12 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Repaint a masked region with a custom Ideogram 3.0 model<br/>
+        /// Inpaint with a custom Ideogram 3.0 model<br/>
         /// Repaint the masked region of a source image with a custom Ideogram 3.0<br/>
-        /// model the authenticated user or organization can access. Supply the<br/>
-        /// model URI returned by the custom-model API as `custom_model_uri`.<br/>
-        /// For each of the source image and mask, supply either an<br/>
-        /// `AssetIdentifier` reference (`image_asset_identifier` /<br/>
-        /// `mask_asset_identifier`) or raw bytes (`image` / `mask`, multipart<br/>
-        /// requests only). A reference wins if both forms are supplied.<br/>
-        /// Optional style controls are style codes, a style preset, or style<br/>
-        /// reference images. Supply style references as a saved style, existing<br/>
-        /// asset identifiers, or raw image bytes. Only one style control may be<br/>
-        /// used; when multiple reference forms are supplied, the collection wins<br/>
-        /// over identifiers, and identifiers win over bytes.<br/>
-        /// By default the request blocks until the images are ready. Set `async`<br/>
-        /// to true to return after dispatch and poll<br/>
-        /// `GET /v1/generations/{generation_id}`.
+        /// model, passed as `custom_model_uri`. Upload the source `image` and its<br/>
+        /// `mask` using `multipart/form-data`. Returns results directly by<br/>
+        /// default; set `async` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -98,19 +68,19 @@ namespace Ideogram
         /// The source image asset to repaint. Takes priority over `image`.
         /// </param>
         /// <param name="image">
-        /// The source image to repaint (max size 25MB), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored when `image_asset_identifier` is supplied.
+        /// The source image to repaint (max 25MB), as JPEG, PNG, or WEBP. Multipart requests only.
         /// </param>
         /// <param name="imagename">
-        /// The source image to repaint (max size 25MB), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored when `image_asset_identifier` is supplied.
+        /// The source image to repaint (max 25MB), as JPEG, PNG, or WEBP. Multipart requests only.
         /// </param>
         /// <param name="maskAssetIdentifier">
         /// A black-and-white mask asset the same size as the source image. Black marks the region to repaint. Takes priority over `mask`.
         /// </param>
         /// <param name="mask">
-        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
+        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP. Black marks the region to repaint. Multipart requests only.
         /// </param>
         /// <param name="maskname">
-        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP bytes. Black marks the region to repaint. Multipart requests only; ignored when `mask_asset_identifier` is supplied.
+        /// A black-and-white mask the same size as the source image, as JPEG, PNG, or WEBP. Black marks the region to repaint. Multipart requests only.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
@@ -135,7 +105,7 @@ namespace Ideogram
         /// Example: [AAFF5733, 0133FF57, DE3357FF]
         /// </param>
         /// <param name="styleReferenceCollectionId">
-        /// A saved style, by its URL-safe base64 collection id. Takes priority over asset identifiers and raw style reference images.
+        /// A saved style, by its URL-safe base64 collection id. Takes priority over `style_reference_images` if both are supplied.
         /// </param>
         /// <param name="styleReferenceCollectionVersionId">
         /// Optional URL-safe base64 version id for the saved style. Ignored without `style_reference_collection_id`.
@@ -144,13 +114,13 @@ namespace Ideogram
         /// Existing upload or generated image assets to use as style references. Takes priority over raw style reference images.
         /// </param>
         /// <param name="styleReferenceImages">
-        /// Images to use as style references (max 10, max size 25MB each), as JPEG, PNG, or WEBP bytes. Multipart requests only; ignored if a collection or asset identifiers are supplied.
+        /// Images to use as style references (max 10, max 25MB each), as JPEG, PNG, or WEBP.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images return `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false, block until the images are ready. When true, return after dispatch and poll `GET /v1/generations/{generation_id}`.<br/>
+        /// When false, wait until the images are ready. When true, return as soon as the request is accepted and poll `GET /v2/generations/{generation_id}`.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="private">

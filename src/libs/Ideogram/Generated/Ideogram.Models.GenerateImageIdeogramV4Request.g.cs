@@ -9,10 +9,9 @@ namespace Ideogram
     public sealed partial class GenerateImageIdeogramV4Request
     {
         /// <summary>
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. A structured JSON prompt is consumed<br/>
-        /// by the model directly and skips magic prompt.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -20,11 +19,10 @@ namespace Ideogram
 
         /// <summary>
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
-        /// default) and `on` rewrite and expand the prompt before<br/>
-        /// generation. `off` keeps your wording and only converts the prompt<br/>
-        /// into the structured format the model consumes. A prompt that is<br/>
-        /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
+        /// `magic_prompt` is `on`.<br/>
         /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
@@ -48,8 +46,8 @@ namespace Ideogram
 
         /// <summary>
         /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, the server picks an aspect ratio<br/>
-        /// automatically based on the prompt.
+        /// resolution. When omitted, an aspect ratio is picked automatically<br/>
+        /// based on the prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter))]
@@ -64,13 +62,13 @@ namespace Ideogram
         public global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed? RenderingSpeed { get; set; }
 
         /// <summary>
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -113,18 +111,16 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateImageIdeogramV4Request" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied. A structured JSON prompt is consumed<br/>
-        /// by the model directly and skips magic prompt.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
-        /// default) and `on` rewrite and expand the prompt before<br/>
-        /// generation. `off` keeps your wording and only converts the prompt<br/>
-        /// into the structured format the model consumes. A prompt that is<br/>
-        /// already a valid structured JSON prompt skips magic prompt<br/>
-        /// entirely unless `magic_prompt` is `on`.<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
+        /// `magic_prompt` is `on`.<br/>
         /// Default Value: auto
         /// </param>
         /// <param name="seed">
@@ -137,18 +133,18 @@ namespace Ideogram
         /// </param>
         /// <param name="resolution">
         /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, the server picks an aspect ratio<br/>
-        /// automatically based on the prompt.
+        /// resolution. When omitted, an aspect ratio is picked automatically<br/>
+        /// based on the prompt.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
         /// Default Value: default
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

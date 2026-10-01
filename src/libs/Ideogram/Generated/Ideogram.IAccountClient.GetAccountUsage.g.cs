@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IAccountClient
     {
         /// <summary>
-        /// Retrieve your organization's API usage and spend over time<br/>
+        /// Get usage and spend<br/>
         /// Returns your organization's billed API usage as dense time buckets of<br/>
         /// line items. Every line item carries the billed dollar amount; products<br/>
         /// billed per item also carry `billed_units` (unit, quantity, and unit<br/>
@@ -44,7 +44,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Retrieve your organization's API usage and spend over time<br/>
+        /// Get usage and spend<br/>
         /// Returns your organization's billed API usage as dense time buckets of<br/>
         /// line items. Every line item carries the billed dollar amount; products<br/>
         /// billed per item also carry `billed_units` (unit, quantity, and unit<br/>

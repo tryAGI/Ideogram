@@ -10,7 +10,7 @@ namespace Ideogram
         /// change. Image 1 is the base; reference images are numbered from image 2<br/>
         /// in the supplied order. Resolve image mentions to these numbers before<br/>
         /// submitting. Descriptions identify the selected view or reference.<br/>
-        /// Poll GET /v1/generations/{generation_id} with the returned generation_id<br/>
+        /// Poll GET /v2/generations/{generation_id} with the returned generation_id<br/>
         /// until the workflow completes or fails.
         /// </summary>
         /// <param name="request"></param>
@@ -28,7 +28,7 @@ namespace Ideogram
         /// change. Image 1 is the base; reference images are numbered from image 2<br/>
         /// in the supplied order. Resolve image mentions to these numbers before<br/>
         /// submitting. Descriptions identify the selected view or reference.<br/>
-        /// Poll GET /v1/generations/{generation_id} with the returned generation_id<br/>
+        /// Poll GET /v2/generations/{generation_id} with the returned generation_id<br/>
         /// until the workflow completes or fails.
         /// </summary>
         /// <param name="request"></param>
@@ -46,7 +46,7 @@ namespace Ideogram
         /// change. Image 1 is the base; reference images are numbered from image 2<br/>
         /// in the supplied order. Resolve image mentions to these numbers before<br/>
         /// submitting. Descriptions identify the selected view or reference.<br/>
-        /// Poll GET /v1/generations/{generation_id} with the returned generation_id<br/>
+        /// Poll GET /v2/generations/{generation_id} with the returned generation_id<br/>
         /// until the workflow completes or fails.
         /// </summary>
         /// <param name="baseAssetIdentifier">

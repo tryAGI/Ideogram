@@ -5,19 +5,11 @@ namespace Ideogram
     public partial interface IImagesGenerateClient
     {
         /// <summary>
-        /// Generate images with P-Image Ideogram from a text or structured prompt<br/>
-        /// Generate one or more images with P-Image Ideogram, a fast model with<br/>
-        /// selectable quality and resolution tiers. The `prompt` accepts either<br/>
-        /// natural language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with P-Image Ideogram<br/>
+        /// Generate images with P-Image Ideogram, a fast model with selectable<br/>
+        /// quality and resolution tiers. Returns results directly by default; set<br/>
+        /// `async` or supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -33,19 +25,11 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with P-Image Ideogram from a text or structured prompt<br/>
-        /// Generate one or more images with P-Image Ideogram, a fast model with<br/>
-        /// selectable quality and resolution tiers. The `prompt` accepts either<br/>
-        /// natural language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with P-Image Ideogram<br/>
+        /// Generate images with P-Image Ideogram, a fast model with selectable<br/>
+        /// quality and resolution tiers. Returns results directly by default; set<br/>
+        /// `async` or supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -61,27 +45,18 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Generate images with P-Image Ideogram from a text or structured prompt<br/>
-        /// Generate one or more images with P-Image Ideogram, a fast model with<br/>
-        /// selectable quality and resolution tiers. The `prompt` accepts either<br/>
-        /// natural language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.<br/>
-        /// By default the request blocks until the images are ready and returns<br/>
-        /// them in `data`. Set `async` to true to return immediately after the<br/>
-        /// request is accepted, then poll for completion and results with<br/>
-        /// `GET /v1/generations/{generation_id}` using the returned<br/>
-        /// `generation_id`.<br/>
-        /// Supplying a `webhook_url` makes the request asynchronous whatever<br/>
-        /// `async` says: the response returns as soon as the request is accepted,<br/>
-        /// and the finished result is POSTed to that URL.
+        /// Generate with P-Image Ideogram<br/>
+        /// Generate images with P-Image Ideogram, a fast model with selectable<br/>
+        /// quality and resolution tiers. Returns results directly by default; set<br/>
+        /// `async` or supply a `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
         /// <param name="prompt">
-        /// The prompt to generate images from. Accepts either natural<br/>
-        /// language or a structured Ideogram 4.0 JSON prompt; the server<br/>
-        /// detects which was supplied.
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt.
         /// </param>
         /// <param name="magicPrompt">
         /// Controls magic prompt (automatic prompt rewriting). `off` disables magic prompt entirely. Defaults to `auto`.<br/>
@@ -100,7 +75,7 @@ namespace Ideogram
         /// Default Value: medium
         /// </param>
         /// <param name="resolution">
-        /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+        /// The output size tier. Defaults to `1k`. Cannot be combined with `custom_width`/`custom_height`.
         /// </param>
         /// <param name="aspectRatio">
         /// The output aspect ratio. Defaults to `1x1`.<br/>
@@ -121,10 +96,10 @@ namespace Ideogram
         /// billing behavior.
         /// </param>
         /// <param name="enableCopyrightDetection">
-        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

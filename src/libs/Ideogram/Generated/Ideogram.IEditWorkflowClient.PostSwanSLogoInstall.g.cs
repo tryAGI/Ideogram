@@ -6,7 +6,7 @@ namespace Ideogram
     {
         /// <summary>
         /// Install a Swan S logo on a shoe<br/>
-        /// Installs the selected logo onto the ordered shoe views, preserving the shoe and chosen camera framing. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Installs the selected logo onto the ordered shoe views, preserving the shoe and chosen camera framing. Processing is asynchronous. Poll GET /v2/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -19,7 +19,7 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Install a Swan S logo on a shoe<br/>
-        /// Installs the selected logo onto the ordered shoe views, preserving the shoe and chosen camera framing. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Installs the selected logo onto the ordered shoe views, preserving the shoe and chosen camera framing. Processing is asynchronous. Poll GET /v2/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
@@ -32,7 +32,7 @@ namespace Ideogram
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
         /// Install a Swan S logo on a shoe<br/>
-        /// Installs the selected logo onto the ordered shoe views, preserving the shoe and chosen camera framing. Processing is asynchronous. Poll GET /v1/generations/{generation_id} until completed or failed.
+        /// Installs the selected logo onto the ordered shoe views, preserving the shoe and chosen camera framing. Processing is asynchronous. Poll GET /v2/generations/{generation_id} until completed or failed.
         /// </summary>
         /// <param name="logoStyle"></param>
         /// <param name="shoeAssetIdentifiers">

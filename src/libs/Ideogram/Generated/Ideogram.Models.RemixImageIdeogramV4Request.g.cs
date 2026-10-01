@@ -4,12 +4,13 @@
 namespace Ideogram
 {
     /// <summary>
-    ///
+    /// Remixes are not reproducible, so no `seed` is accepted; the response<br/>
+    /// reports the seed that was used.
     /// </summary>
     public sealed partial class RemixImageIdeogramV4Request
     {
         /// <summary>
-        /// The prompt that guides the remix.
+        /// The prompt that guides the remix. It is always read as an editing instruction, so there is no `magic_prompt` option.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -22,19 +23,19 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` to keep its shape.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` to keep its shape.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining image_weight with a resolution whose aspect ratio differs from the source's is rejected with a 400.
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining `image_weight` with a `resolution` whose aspect ratio differs from the source's is rejected with a 400.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_weight")]
         public int? ImageWeight { get; set; }
@@ -50,7 +51,7 @@ namespace Ideogram
         /// Optional. When supplied, the images are generated at this<br/>
         /// resolution. When omitted, the source image's shape is kept. A<br/>
         /// resolution whose aspect ratio differs from the source's cannot<br/>
-        /// be combined with image_weight.
+        /// be combined with `image_weight`.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter))]
@@ -71,7 +72,7 @@ namespace Ideogram
         public bool? EnableCopyrightDetection { get; set; }
 
         /// <summary>
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("async")]
@@ -114,19 +115,19 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="RemixImageIdeogramV4Request" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// The prompt that guides the remix.
+        /// The prompt that guides the remix. It is always read as an editing instruction, so there is no `magic_prompt` option.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// The existing upload or generated image to transform. Supply this or `image`, never both. Omit `resolution` to keep its shape.
         /// </param>
         /// <param name="image">
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` to keep its shape.
         /// </param>
         /// <param name="imagename">
-        /// The image to transform (max size 50MB), as raw bytes; only JPEG, PNG and WEBP are supported. Multipart requests only. Supply this or `image_asset_identifier`, never both. The bytes are stored as a new image asset in your account, since the remix keeps a durable link to its source image.
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` to keep its shape.
         /// </param>
         /// <param name="imageWeight">
-        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining image_weight with a resolution whose aspect ratio differs from the source's is rejected with a 400.
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case. Only accepted when the output keeps the source image's shape: combining `image_weight` with a `resolution` whose aspect ratio differs from the source's is rejected with a 400.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -136,7 +137,7 @@ namespace Ideogram
         /// Optional. When supplied, the images are generated at this<br/>
         /// resolution. When omitted, the source image's shape is kept. A<br/>
         /// resolution whose aspect ratio differs from the source's cannot<br/>
-        /// be combined with image_weight.
+        /// be combined with `image_weight`.
         /// </param>
         /// <param name="renderingSpeed">
         /// The rendering speed to use.<br/>
@@ -146,7 +147,7 @@ namespace Ideogram
         /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
         /// </param>
         /// <param name="async">
-        /// When false (the default), the request blocks until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v1/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
         /// Default Value: false
         /// </param>
         /// <param name="webhookUrl">

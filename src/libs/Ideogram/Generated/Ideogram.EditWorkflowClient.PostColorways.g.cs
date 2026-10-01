@@ -44,23 +44,13 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Product Color Change<br/>
-        /// Recolors the masked regions of the product photo, each to its own<br/>
-        /// target color, while preserving the product's geometry, materials,<br/>
-        /// prints, logos, and shading, and keeping every region outside the<br/>
-        /// masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo as raw `image` bytes via<br/>
-        /// `multipart/form-data`.<br/>
-        /// Supply the masks marking the regions to recolor as raw `masks` bytes,<br/>
-        /// paired by position with `colors` — up to 4 regions; a single-region<br/>
-        /// edit is a one-item list. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// recolor; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to recolor and transparent<br/>
-        /// pixels are preserved.
+        /// Colorways<br/>
+        /// Recolors masked regions of a product photo, each to its own target<br/>
+        /// color, preserving the product's geometry, materials, prints, logos, and<br/>
+        /// everything outside the masks. Upload the `image` and up to 4 `masks`<br/>
+        /// using `multipart/form-data`, with one entry in `colors` per mask.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -87,23 +77,13 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Product Color Change<br/>
-        /// Recolors the masked regions of the product photo, each to its own<br/>
-        /// target color, while preserving the product's geometry, materials,<br/>
-        /// prints, logos, and shading, and keeping every region outside the<br/>
-        /// masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo as raw `image` bytes via<br/>
-        /// `multipart/form-data`.<br/>
-        /// Supply the masks marking the regions to recolor as raw `masks` bytes,<br/>
-        /// paired by position with `colors` — up to 4 regions; a single-region<br/>
-        /// edit is a one-item list. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// recolor; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to recolor and transparent<br/>
-        /// pixels are preserved.
+        /// Colorways<br/>
+        /// Recolors masked regions of a product photo, each to its own target<br/>
+        /// color, preserving the product's geometry, materials, prints, logos, and<br/>
+        /// everything outside the masks. Upload the `image` and up to 4 `masks`<br/>
+        /// using `multipart/form-data`, with one entry in `colors` per mask.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -769,23 +749,13 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Product Color Change<br/>
-        /// Recolors the masked regions of the product photo, each to its own<br/>
-        /// target color, while preserving the product's geometry, materials,<br/>
-        /// prints, logos, and shading, and keeping every region outside the<br/>
-        /// masks unchanged.<br/>
-        /// The request is processed asynchronously. Poll<br/>
-        /// `GET /v1/generations/{generation_id}` with the returned `generation_id`<br/>
-        /// until the generation is completed or failed.<br/>
-        /// Supply the product photo as raw `image` bytes via<br/>
-        /// `multipart/form-data`.<br/>
-        /// Supply the masks marking the regions to recolor as raw `masks` bytes,<br/>
-        /// paired by position with `colors` — up to 4 regions; a single-region<br/>
-        /// edit is a one-item list. Every mask must have the same pixel<br/>
-        /// dimensions as the product photo. White pixels mark the region to<br/>
-        /// recolor; black pixels are preserved. Alpha-only masks are also<br/>
-        /// supported: opaque pixels mark the region to recolor and transparent<br/>
-        /// pixels are preserved.
+        /// Colorways<br/>
+        /// Recolors masked regions of a product photo, each to its own target<br/>
+        /// color, preserving the product's geometry, materials, prints, logos, and<br/>
+        /// everything outside the masks. Upload the `image` and up to 4 `masks`<br/>
+        /// using `multipart/form-data`, with one entry in `colors` per mask.<br/>
+        /// Returns a `generation_id`; poll `GET /v2/generations/{generation_id}` or<br/>
+        /// supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -796,12 +766,12 @@ namespace Ideogram
         /// `image_asset_identifier` or `image`.
         /// </param>
         /// <param name="image">
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to recolor (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="imagename">
-        /// The product photo to recolor (max size 25MB), as raw bytes; only<br/>
-        /// JPEG, PNG, and WEBP formats are supported.
+        /// The product photo to recolor (max size 25MB). JPEG, PNG, and WEBP<br/>
+        /// formats are supported.
         /// </param>
         /// <param name="maskAssetIdentifiers">
         /// The masks marking the regions of the product photo to recolor, by<br/>
@@ -813,13 +783,12 @@ namespace Ideogram
         /// exactly one of `mask_asset_identifiers` or `masks`.
         /// </param>
         /// <param name="masks">
-        /// The masks marking the regions of the product photo to recolor<br/>
-        /// (max 4, max size 25MB each), as raw bytes, paired by position with<br/>
-        /// `colors`; only JPEG, PNG, and WEBP formats are supported. Every<br/>
-        /// mask must have the same pixel dimensions as the product photo.<br/>
-        /// White pixels mark the region to recolor; black pixels are<br/>
-        /// preserved. Alpha-only masks are also supported: opaque pixels<br/>
-        /// mark the region to recolor and transparent pixels are preserved.
+        /// Masks marking the regions to recolor (max 4, max size 25MB each),<br/>
+        /// paired by position with `colors`. JPEG, PNG, and WEBP formats are<br/>
+        /// supported. Every mask must have the same pixel dimensions as the<br/>
+        /// product photo. White pixels mark the region to recolor and black<br/>
+        /// pixels are preserved; alpha-only masks also work (opaque =<br/>
+        /// recolor, transparent = preserve).
         /// </param>
         /// <param name="colors">
         /// One target color per mask in `masks`, as six-digit hex codes like<br/>
@@ -827,12 +796,11 @@ namespace Ideogram
         /// materials, prints, and logos are always preserved.
         /// </param>
         /// <param name="aspectRatio">
-        /// The aspect ratio of the generated image. Defaults to the aspect<br/>
-        /// ratio of the product photo when omitted, which preserves the<br/>
-        /// original framing exactly. When a different ratio is requested, the<br/>
-        /// scene is extended to fill the new shape rather than cropped, so<br/>
-        /// part of the frame is newly generated. Supported values are `1:1`,<br/>
-        /// `3:4`, `4:3`, `16:9`, and `9:16`.
+        /// Output aspect ratio. Defaults to the product photo's aspect ratio,<br/>
+        /// which keeps the original framing. A different ratio extends the<br/>
+        /// scene to fill the new shape rather than cropping, so part of the<br/>
+        /// frame is newly generated. Supported values are `1:1`, `3:4`,<br/>
+        /// `4:3`, `16:9`, and `9:16`.
         /// </param>
         /// <param name="quality">
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>

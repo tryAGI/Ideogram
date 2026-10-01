@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The output-size tier; the server defaults to `1k` when omitted. Cannot be combined with `custom_width`/`custom_height`.
+    /// The output size tier. Defaults to `1k`. Cannot be combined with `custom_width`/`custom_height`.
     /// </summary>
     public enum GenerateImagePImageIdeogramRequestResolution
     {
