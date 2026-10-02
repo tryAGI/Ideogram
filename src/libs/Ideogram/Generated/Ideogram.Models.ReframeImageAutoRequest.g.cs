@@ -4,10 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Upload the source `image`. Requests without a source image are<br/>
-    /// rejected with a 400.
+    /// Supply exactly one source: `image_asset_identifier` for an existing<br/>
+    /// Ideogram asset, or `image` for a raw upload. Supplying both or neither<br/>
+    /// is rejected with a 400.
     /// </summary>
-    public sealed partial class ReframeImageNanoBanana2Request
+    public sealed partial class ReframeImageAutoRequest
     {
         /// <summary>
         /// An identifier for an ideogram asset.<br/>
@@ -69,7 +70,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageAutoRequest" /> class.
         /// </summary>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, as `width:height`.<br/>
@@ -102,7 +103,7 @@ namespace Ideogram
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ReframeImageNanoBanana2Request(
+        public ReframeImageAutoRequest(
             string aspectRatio,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
@@ -121,9 +122,9 @@ namespace Ideogram
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageAutoRequest" /> class.
         /// </summary>
-        public ReframeImageNanoBanana2Request()
+        public ReframeImageAutoRequest()
         {
         }
 
