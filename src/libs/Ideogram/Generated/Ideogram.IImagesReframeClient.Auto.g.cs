@@ -5,11 +5,15 @@ namespace Ideogram
     public partial interface IImagesReframeClient
     {
         /// <summary>
-        /// Reframe with Nano Banana 2<br/>
-        /// Expand an image to a new aspect ratio with Nano Banana 2. Upload the<br/>
-        /// source `image` using `multipart/form-data`. Always asynchronous:<br/>
-        /// returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
-        /// for results.
+        /// Reframe an image, letting Ideogram pick the model<br/>
+        /// Reframe one image to a new aspect ratio without choosing a model.<br/>
+        /// Ideogram selects the model best suited to the source and may route<br/>
+        /// different requests to different models; the request is billed at the<br/>
+        /// chosen model's price. Supply either an existing Ideogram image asset<br/>
+        /// or raw image bytes, but not both.<br/>
+        /// This operation is asynchronous. It returns as soon as the request is<br/>
+        /// accepted; poll `GET /v2/generations/{generation_id}` for completion<br/>
+        /// and results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -18,18 +22,22 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageNanoBanana2Response> NanoBanana2Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageAutoResponse> AutoAsync(
 
-            global::Ideogram.ReframeImageNanoBanana2Request request,
+            global::Ideogram.ReframeImageAutoRequest request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Reframe with Nano Banana 2<br/>
-        /// Expand an image to a new aspect ratio with Nano Banana 2. Upload the<br/>
-        /// source `image` using `multipart/form-data`. Always asynchronous:<br/>
-        /// returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
-        /// for results.
+        /// Reframe an image, letting Ideogram pick the model<br/>
+        /// Reframe one image to a new aspect ratio without choosing a model.<br/>
+        /// Ideogram selects the model best suited to the source and may route<br/>
+        /// different requests to different models; the request is billed at the<br/>
+        /// chosen model's price. Supply either an existing Ideogram image asset<br/>
+        /// or raw image bytes, but not both.<br/>
+        /// This operation is asynchronous. It returns as soon as the request is<br/>
+        /// accepted; poll `GET /v2/generations/{generation_id}` for completion<br/>
+        /// and results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -38,18 +46,22 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageNanoBanana2Response>> NanoBanana2AsResponseAsync(
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageAutoResponse>> AutoAsResponseAsync(
 
-            global::Ideogram.ReframeImageNanoBanana2Request request,
+            global::Ideogram.ReframeImageAutoRequest request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Reframe with Nano Banana 2<br/>
-        /// Expand an image to a new aspect ratio with Nano Banana 2. Upload the<br/>
-        /// source `image` using `multipart/form-data`. Always asynchronous:<br/>
-        /// returns a `generation_id`; poll `GET /v2/generations/{generation_id}`<br/>
-        /// for results.
+        /// Reframe an image, letting Ideogram pick the model<br/>
+        /// Reframe one image to a new aspect ratio without choosing a model.<br/>
+        /// Ideogram selects the model best suited to the source and may route<br/>
+        /// different requests to different models; the request is billed at the<br/>
+        /// chosen model's price. Supply either an existing Ideogram image asset<br/>
+        /// or raw image bytes, but not both.<br/>
+        /// This operation is asynchronous. It returns as soon as the request is<br/>
+        /// accepted; poll `GET /v2/generations/{generation_id}` for completion<br/>
+        /// and results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -85,7 +97,7 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageNanoBanana2Response> NanoBanana2Async(
+        global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageAutoResponse> AutoAsync(
             string aspectRatio,
             bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,

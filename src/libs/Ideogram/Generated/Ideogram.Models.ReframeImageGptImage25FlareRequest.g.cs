@@ -4,10 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Upload the source `image`. Requests without a source image are<br/>
-    /// rejected with a 400.
+    /// Supply exactly one source: `image_asset_identifier` for an existing<br/>
+    /// Ideogram asset, or `image` for a raw upload. Supplying both or neither<br/>
+    /// is rejected with a 400.
     /// </summary>
-    public sealed partial class ReframeImageNanoBanana2Request
+    public sealed partial class ReframeImageGptImage25FlareRequest
     {
         /// <summary>
         /// An identifier for an ideogram asset.<br/>
@@ -37,6 +38,14 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string AspectRatio { get; set; }
+
+        /// <summary>
+        /// How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose.<br/>
+        /// Default Value: auto
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ReframeImageGptImage25FlareRequestQualityJsonConverter))]
+        public global::Ideogram.ReframeImageGptImage25FlareRequestQuality? Quality { get; set; }
 
         /// <summary>
         /// API-key requests are always private. For bearer-authenticated<br/>
@@ -69,7 +78,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageGptImage25FlareRequest" /> class.
         /// </summary>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, as `width:height`.<br/>
@@ -84,6 +93,10 @@ namespace Ideogram
         /// </param>
         /// <param name="imagename">
         /// The JPEG, PNG, or WEBP image to reframe (max 50MB).
+        /// </param>
+        /// <param name="quality">
+        /// How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="private">
         /// API-key requests are always private. For bearer-authenticated<br/>
@@ -102,11 +115,12 @@ namespace Ideogram
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ReframeImageNanoBanana2Request(
+        public ReframeImageGptImage25FlareRequest(
             string aspectRatio,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
+            global::Ideogram.ReframeImageGptImage25FlareRequestQuality? quality,
             bool? @private,
             int? numImages,
             int? seed)
@@ -115,15 +129,16 @@ namespace Ideogram
             this.Image = image;
             this.Imagename = imagename;
             this.AspectRatio = aspectRatio ?? throw new global::System.ArgumentNullException(nameof(aspectRatio));
+            this.Quality = quality;
             this.Private = @private;
             this.NumImages = numImages;
             this.Seed = seed;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageGptImage25FlareRequest" /> class.
         /// </summary>
-        public ReframeImageNanoBanana2Request()
+        public ReframeImageGptImage25FlareRequest()
         {
         }
 

@@ -4,10 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Upload the source `image`. Requests without a source image are<br/>
-    /// rejected with a 400.
+    /// Supply exactly one source: `image_asset_identifier` for an existing<br/>
+    /// Ideogram asset, or `image` for a raw upload. Supplying both or neither<br/>
+    /// is rejected with a 400.
     /// </summary>
-    public sealed partial class ReframeImageNanoBanana2Request
+    public sealed partial class ReframeImageBriaExpandRequest
     {
         /// <summary>
         /// An identifier for an ideogram asset.<br/>
@@ -48,13 +49,6 @@ namespace Ideogram
         public bool? Private { get; set; }
 
         /// <summary>
-        /// The number of output images to generate.<br/>
-        /// Default Value: 1
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
-        public int? NumImages { get; set; }
-
-        /// <summary>
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </summary>
@@ -69,7 +63,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageBriaExpandRequest" /> class.
         /// </summary>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, as `width:height`.<br/>
@@ -91,10 +85,6 @@ namespace Ideogram
         /// omitted, it follows the caller's plan entitlement. Enterprise<br/>
         /// generations are always private.
         /// </param>
-        /// <param name="numImages">
-        /// The number of output images to generate.<br/>
-        /// Default Value: 1
-        /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
@@ -102,13 +92,12 @@ namespace Ideogram
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ReframeImageNanoBanana2Request(
+        public ReframeImageBriaExpandRequest(
             string aspectRatio,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
             bool? @private,
-            int? numImages,
             int? seed)
         {
             this.ImageAssetIdentifier = imageAssetIdentifier;
@@ -116,14 +105,13 @@ namespace Ideogram
             this.Imagename = imagename;
             this.AspectRatio = aspectRatio ?? throw new global::System.ArgumentNullException(nameof(aspectRatio));
             this.Private = @private;
-            this.NumImages = numImages;
             this.Seed = seed;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageBriaExpandRequest" /> class.
         /// </summary>
-        public ReframeImageNanoBanana2Request()
+        public ReframeImageBriaExpandRequest()
         {
         }
 

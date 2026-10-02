@@ -4,10 +4,11 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Upload the source `image`. Requests without a source image are<br/>
-    /// rejected with a 400.
+    /// Supply exactly one source: `image_asset_identifier` for an existing<br/>
+    /// Ideogram asset, or `image` for a raw upload. Supplying both or neither<br/>
+    /// is rejected with a 400.
     /// </summary>
-    public sealed partial class ReframeImageNanoBanana2Request
+    public sealed partial class ReframeImageNanoBananaProRequest
     {
         /// <summary>
         /// An identifier for an ideogram asset.<br/>
@@ -37,6 +38,14 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string AspectRatio { get; set; }
+
+        /// <summary>
+        /// The output resolution tier. The model sizes its output by tier at the requested aspect ratio; exact pixel dimensions cannot be requested.<br/>
+        /// Default Value: 1K
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("resolution_tier")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.ReframeImageNanoBananaProRequestResolutionTierJsonConverter))]
+        public global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier? ResolutionTier { get; set; }
 
         /// <summary>
         /// API-key requests are always private. For bearer-authenticated<br/>
@@ -69,7 +78,7 @@ namespace Ideogram
         public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageNanoBananaProRequest" /> class.
         /// </summary>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, as `width:height`.<br/>
@@ -84,6 +93,10 @@ namespace Ideogram
         /// </param>
         /// <param name="imagename">
         /// The JPEG, PNG, or WEBP image to reframe (max 50MB).
+        /// </param>
+        /// <param name="resolutionTier">
+        /// The output resolution tier. The model sizes its output by tier at the requested aspect ratio; exact pixel dimensions cannot be requested.<br/>
+        /// Default Value: 1K
         /// </param>
         /// <param name="private">
         /// API-key requests are always private. For bearer-authenticated<br/>
@@ -102,11 +115,12 @@ namespace Ideogram
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-        public ReframeImageNanoBanana2Request(
+        public ReframeImageNanoBananaProRequest(
             string aspectRatio,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
+            global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier? resolutionTier,
             bool? @private,
             int? numImages,
             int? seed)
@@ -115,15 +129,16 @@ namespace Ideogram
             this.Image = image;
             this.Imagename = imagename;
             this.AspectRatio = aspectRatio ?? throw new global::System.ArgumentNullException(nameof(aspectRatio));
+            this.ResolutionTier = resolutionTier;
             this.Private = @private;
             this.NumImages = numImages;
             this.Seed = seed;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
+        /// Initializes a new instance of the <see cref="ReframeImageNanoBananaProRequest" /> class.
         /// </summary>
-        public ReframeImageNanoBanana2Request()
+        public ReframeImageNanoBananaProRequest()
         {
         }
 

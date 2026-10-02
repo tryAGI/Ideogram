@@ -787,7 +787,7 @@ namespace Ideogram
         /// The JPEG, PNG, or WEBP image to reframe (max 50MB).
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio. It resolves to the closest dimensions the model supports at the 1K output tier.<br/>
+        /// The requested output aspect ratio, as `width:height`.<br/>
         /// Example: 969
         /// </param>
         /// <param name="private">

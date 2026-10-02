@@ -3,11 +3,11 @@
 
 namespace Ideogram
 {
-    public partial class ImagesPreciseEditClient
+    public partial class ImagesReframeClient
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostPreciseEditImageV2Ideogram45SecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_BriaExpandSecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,40 +21,38 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostPreciseEditImageV2Ideogram45SecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_BriaExpandSecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostPreciseEditImageV2Ideogram45SecurityRequirement0,
+            {                s_BriaExpandSecurityRequirement0,
             };
-        partial void PreparePostPreciseEditImageV2Ideogram45Arguments(
+        partial void PrepareBriaExpandArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref bool? dryRun,
-            global::Ideogram.PreciseEditImageIdeogram45Request request);
-        partial void PreparePostPreciseEditImageV2Ideogram45Request(
+            global::Ideogram.ReframeImageBriaExpandRequest request);
+        partial void PrepareBriaExpandRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             bool? dryRun,
-            global::Ideogram.PreciseEditImageIdeogram45Request request);
-        partial void ProcessPostPreciseEditImageV2Ideogram45Response(
+            global::Ideogram.ReframeImageBriaExpandRequest request);
+        partial void ProcessBriaExpandResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostPreciseEditImageV2Ideogram45ResponseContent(
+        partial void ProcessBriaExpandResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Precise edit with Ideogram 4.5<br/>
-        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
-        /// exact width and height. Upload the image as `image` using<br/>
-        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
-        /// Returns results directly by default; set `async` or supply a<br/>
-        /// `webhook_url` to get a `generation_id` and poll<br/>
-        /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` narrows the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `x,y,width,height`, or `auto`<br/>
-        /// together with a `mask`. The result always keeps the image's own width<br/>
-        /// and height.
+        /// Reframe an image with Bria Expand<br/>
+        /// Extend one image to a new aspect ratio with Bria Expand. The source<br/>
+        /// pixels are kept exactly as they are, centered on the new canvas, and<br/>
+        /// the model paints only the added area. Supply either an existing<br/>
+        /// Ideogram image asset or raw image bytes, but not both. The canvas is<br/>
+        /// sized from the source so that the whole source fits.<br/>
+        /// This operation is asynchronous. It returns as soon as the request is<br/>
+        /// accepted; poll `GET /v2/generations/{generation_id}` for completion<br/>
+        /// and results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -63,14 +61,14 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.PreciseEditImageIdeogram45Response> PostPreciseEditImageV2Ideogram45Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageBriaExpandResponse> BriaExpandAsync(
 
-            global::Ideogram.PreciseEditImageIdeogram45Request request,
+            global::Ideogram.ReframeImageBriaExpandRequest request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await PostPreciseEditImageV2Ideogram45AsResponseAsync(
+            var __response = await BriaExpandAsResponseAsync(
 
                 request: request,
                 dryRun: dryRun,
@@ -81,17 +79,15 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Precise edit with Ideogram 4.5<br/>
-        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
-        /// exact width and height. Upload the image as `image` using<br/>
-        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
-        /// Returns results directly by default; set `async` or supply a<br/>
-        /// `webhook_url` to get a `generation_id` and poll<br/>
-        /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` narrows the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `x,y,width,height`, or `auto`<br/>
-        /// together with a `mask`. The result always keeps the image's own width<br/>
-        /// and height.
+        /// Reframe an image with Bria Expand<br/>
+        /// Extend one image to a new aspect ratio with Bria Expand. The source<br/>
+        /// pixels are kept exactly as they are, centered on the new canvas, and<br/>
+        /// the model paints only the added area. Supply either an existing<br/>
+        /// Ideogram image asset or raw image bytes, but not both. The canvas is<br/>
+        /// sized from the source so that the whole source fits.<br/>
+        /// This operation is asynchronous. It returns as soon as the request is<br/>
+        /// accepted; poll `GET /v2/generations/{generation_id}` for completion<br/>
+        /// and results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -100,9 +96,9 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PreciseEditImageIdeogram45Response>> PostPreciseEditImageV2Ideogram45AsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageBriaExpandResponse>> BriaExpandAsResponseAsync(
 
-            global::Ideogram.PreciseEditImageIdeogram45Request request,
+            global::Ideogram.ReframeImageBriaExpandRequest request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -111,7 +107,7 @@ namespace Ideogram
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostPreciseEditImageV2Ideogram45Arguments(
+            PrepareBriaExpandArguments(
                 httpClient: HttpClient,
                 dryRun: ref dryRun,
                 request: request);
@@ -119,8 +115,8 @@ namespace Ideogram
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostPreciseEditImageV2Ideogram45SecurityRequirements,
-                operationName: "PostPreciseEditImageV2Ideogram45Async");
+                securityRequirements: s_BriaExpandSecurityRequirements,
+                operationName: "BriaExpandAsync");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -140,7 +136,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/precise-edit/ideogram-4-5",
+                                path: "/v2/image/reframe/bria-expand",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -176,10 +172,6 @@ namespace Ideogram
             }
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
-                                name: "\"prompt\"");
-
                             if (request.ImageAssetIdentifier != default)
                             {
 
@@ -230,130 +222,10 @@ namespace Ideogram
                                 }
 
                             }
-                            if (request.ReferenceImageAssetIdentifiers != default)
-                            {
+                            __httpRequestContent.Add(
+                                content: new global::System.Net.Http.StringContent(request.AspectRatio ?? string.Empty),
+                                name: "\"aspect_ratio\"");
 
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.ReferenceImageAssetIdentifiers!, x => x.ToJson(JsonSerializerContext)))}]"),
-                                    name: "\"reference_image_asset_identifiers\"");
-
-                            }
-                            if (request.ReferenceImages != default)
-                            {
-
-                                for (var __iReferenceImages = 0; __iReferenceImages < request.ReferenceImages.Count; __iReferenceImages++)
-                                {
-                                    var __contentReferenceImages = new global::System.Net.Http.ByteArrayContent(request.ReferenceImages[__iReferenceImages]);
-                                __contentReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-                                    __httpRequestContent.Add(
-                                        content: __contentReferenceImages,
-                                        name: "\"reference_images\"",
-                                        fileName: $"\"file{__iReferenceImages}.bin\"");
-                                    if (__contentReferenceImages.Headers.ContentDisposition != null)
-                                    {
-                                        __contentReferenceImages.Headers.ContentDisposition.FileNameStar = null;
-                                    }
-                                }
-
-                            }
-                            if (request.Mask != default)
-                            {
-
-                                var __contentMask = new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>());
-                                __contentMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
-                                    request.Maskname is null
-                                        ? "application/octet-stream"
-                                        : (global::System.IO.Path.GetExtension(request.Maskname) ?? string.Empty).ToLowerInvariant() switch
-                                        {
-                                            ".aac" => "audio/aac",
-                                            ".flac" => "audio/flac",
-                                            ".gif" => "image/gif",
-                                            ".jpeg" => "image/jpeg",
-                                            ".jpg" => "image/jpeg",
-                                            ".json" => "application/json",
-                                            ".m4a" => "audio/mp4",
-                                            ".mp3" => "audio/mpeg",
-                                            ".mp4" => "video/mp4",
-                                            ".mpeg" => "audio/mpeg",
-                                            ".mpga" => "audio/mpeg",
-                                            ".oga" => "audio/ogg",
-                                            ".ogg" => "audio/ogg",
-                                            ".opus" => "audio/ogg",
-                                            ".pdf" => "application/pdf",
-                                            ".png" => "image/png",
-                                            ".txt" => "text/plain",
-                                            ".wav" => "audio/wav",
-                                            ".weba" => "audio/webm",
-                                            ".webm" => "video/webm",
-                                            ".webp" => "image/webp",
-                                            _ => "application/octet-stream",
-                                        });
-                                __httpRequestContent.Add(
-                                    content: __contentMask,
-                                    name: "\"mask\"",
-                                    fileName: request.Maskname != null ? $"\"{request.Maskname}\"" : string.Empty);
-                                if (__contentMask.Headers.ContentDisposition != null)
-                                {
-                                    __contentMask.Headers.ContentDisposition.FileNameStar = null;
-                                }
-
-                            }
-                            if (request.ContextWindow != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.ContextWindow ?? string.Empty),
-                                    name: "\"context_window\"");
-
-                            }
-                            if (request.Quality != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"quality\"");
-
-                            }
-                            if (request.Seed != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
-                                    name: "\"seed\"");
-
-                            }
-                            if (request.NumImages != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
-                                    name: "\"num_images\"");
-
-                            }
-                            if (request.EnableCopyrightDetection != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.EnableCopyrightDetection, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
-                                    name: "\"enable_copyright_detection\"");
-
-                            }
-                            if (request.Async != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Async, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
-                                    name: "\"async\"");
-
-                            }
-                            if (request.WebhookUrl != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.WebhookUrl ?? string.Empty),
-                                    name: "\"webhook_url\"");
-
-                            }
                             if (request.Private != default)
                             {
 
@@ -362,12 +234,12 @@ namespace Ideogram
                                     name: "\"private\"");
 
                             }
-                            if (request.TargetCollectionId != default)
+                            if (request.Seed != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.TargetCollectionId ?? string.Empty),
-                                    name: "\"target_collection_id\"");
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"seed\"");
 
                             }
 
@@ -381,7 +253,7 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostPreciseEditImageV2Ideogram45Request(
+                PrepareBriaExpandRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     dryRun: dryRun,
@@ -402,9 +274,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "BriaExpand",
+                                methodName: "BriaExpandAsync",
+                                pathTemplate: "\"/v2/image/reframe/bria-expand\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -436,9 +308,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "BriaExpand",
+                                methodName: "BriaExpandAsync",
+                                pathTemplate: "\"/v2/image/reframe/bria-expand\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -477,9 +349,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "BriaExpand",
+                                methodName: "BriaExpandAsync",
+                                pathTemplate: "\"/v2/image/reframe/bria-expand\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -517,7 +389,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostPreciseEditImageV2Ideogram45Response(
+                ProcessBriaExpandResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -525,9 +397,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "BriaExpand",
+                                methodName: "BriaExpandAsync",
+                                pathTemplate: "\"/v2/image/reframe/bria-expand\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -547,9 +419,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "BriaExpand",
+                                methodName: "BriaExpandAsync",
+                                pathTemplate: "\"/v2/image/reframe/bria-expand\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -666,32 +538,32 @@ namespace Ideogram
                                         h => h.Value));
                             }
                             //
-                            if ((int)__response.StatusCode == 422)
+                            if ((int)__response.StatusCode == 404)
                             {
-                                string? __content_422 = null;
-                                global::System.Exception? __exception_422 = null;
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
                                     }
                                     else
                                     {
-                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_422 = __ex;
+                                    __exception_404 = __ex;
                                 }
 
 
                                 throw global::Ideogram.ApiException.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_422,
-                                    responseBody: __content_422,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -811,7 +683,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostPreciseEditImageV2Ideogram45ResponseContent(
+                                ProcessBriaExpandResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -820,9 +692,9 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Ideogram.PreciseEditImageIdeogram45Response.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.ReframeImageBriaExpandResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PreciseEditImageIdeogram45Response>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageBriaExpandResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -852,9 +724,9 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Ideogram.PreciseEditImageIdeogram45Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.ReframeImageBriaExpandResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PreciseEditImageIdeogram45Response>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReframeImageBriaExpandResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -895,138 +767,68 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Precise edit with Ideogram 4.5<br/>
-        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
-        /// exact width and height. Upload the image as `image` using<br/>
-        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
-        /// Returns results directly by default; set `async` or supply a<br/>
-        /// `webhook_url` to get a `generation_id` and poll<br/>
-        /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` narrows the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `x,y,width,height`, or `auto`<br/>
-        /// together with a `mask`. The result always keeps the image's own width<br/>
-        /// and height.
+        /// Reframe an image with Bria Expand<br/>
+        /// Extend one image to a new aspect ratio with Bria Expand. The source<br/>
+        /// pixels are kept exactly as they are, centered on the new canvas, and<br/>
+        /// the model paints only the added area. Supply either an existing<br/>
+        /// Ideogram image asset or raw image bytes, but not both. The canvas is<br/>
+        /// sized from the source so that the whole source fits.<br/>
+        /// This operation is asynchronous. It returns as soon as the request is<br/>
+        /// accepted; poll `GET /v2/generations/{generation_id}` for completion<br/>
+        /// and results.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
-        /// <param name="prompt">
-        /// The edit instruction, in natural language or as a structured JSON<br/>
-        /// prompt. Natural language is automatically converted into a<br/>
-        /// structured prompt; valid structured JSON is used as is.
-        /// </param>
         /// <param name="imageAssetIdentifier">
-        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
         /// <param name="image">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The JPEG, PNG, or WEBP image to reframe (max 50MB).
         /// </param>
         /// <param name="imagename">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The JPEG, PNG, or WEBP image to reframe (max 50MB).
         /// </param>
-        /// <param name="referenceImageAssetIdentifiers">
-        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.
+        /// <param name="aspectRatio">
+        /// The requested output aspect ratio, as `width:height`.<br/>
+        /// Example: 969
         /// </param>
-        /// <param name="referenceImages">
-        /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A request with a `mask` can include at most three, because the mask takes up one reference slot.
-        /// </param>
-        /// <param name="mask">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
-        /// </param>
-        /// <param name="maskname">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
-        /// </param>
-        /// <param name="contextWindow">
-        /// How much of the image being edited the model may see and change.<br/>
-        /// `none`, the default, edits the whole image. A large image may come back smaller than it was sent.<br/>
-        /// `auto` fits a region around what the `mask` selects and edits only that region, so its detail is kept. It requires a `mask`. A small enough image has no region to fit and is edited as it is.<br/>
-        /// `x,y,width,height` names the region explicitly, in the edited image's own pixels with the origin at its top-left corner — for example `1024,512,2048,1536`. The region must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.<br/>
-        /// With `auto` or an explicit region, every pixel outside the region is returned exactly as supplied and the output keeps the image's own width and height.<br/>
-        /// Default Value: none
-        /// </param>
-        /// <param name="quality">
-        /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
-        /// Default Value: medium
+        /// <param name="private">
+        /// API-key requests are always private. For bearer-authenticated<br/>
+        /// requests, this controls whether the result is private; when<br/>
+        /// omitted, it follows the caller's plan entitlement. Enterprise<br/>
+        /// generations are always private.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
-        /// <param name="numImages">
-        /// The number of images to generate.<br/>
-        /// Default Value: 1
-        /// </param>
-        /// <param name="enableCopyrightDetection">
-        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
-        /// </param>
-        /// <param name="async">
-        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
-        /// Default Value: false
-        /// </param>
-        /// <param name="webhookUrl">
-        /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
-        /// JSON POST to this URL once all images for the request have finished<br/>
-        /// generating. The body mirrors the synchronous generate response:<br/>
-        /// `request_id`, `created`, and a `data` array<br/>
-        /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
-        /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
-        /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
-        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
-        /// Example: https://api.example.com/webhooks/ideogram
-        /// </param>
-        /// <param name="private">
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </param>
-        /// <param name="targetCollectionId">
-        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
-        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.PreciseEditImageIdeogram45Response> PostPreciseEditImageV2Ideogram45Async(
-            string prompt,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageBriaExpandResponse> BriaExpandAsync(
+            string aspectRatio,
             bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
-            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers = default,
-            global::System.Collections.Generic.IList<byte[]>? referenceImages = default,
-            byte[]? mask = default,
-            string? maskname = default,
-            string? contextWindow = default,
-            global::Ideogram.PreciseEditImageIdeogram45RequestQuality? quality = default,
-            int? seed = default,
-            int? numImages = default,
-            bool? enableCopyrightDetection = default,
-            bool? async = default,
-            string? webhookUrl = default,
             bool? @private = default,
-            string? targetCollectionId = default,
+            int? seed = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.PreciseEditImageIdeogram45Request
+            var __request = new global::Ideogram.ReframeImageBriaExpandRequest
             {
-                Prompt = prompt,
                 ImageAssetIdentifier = imageAssetIdentifier,
                 Image = image,
                 Imagename = imagename,
-                ReferenceImageAssetIdentifiers = referenceImageAssetIdentifiers,
-                ReferenceImages = referenceImages,
-                Mask = mask,
-                Maskname = maskname,
-                ContextWindow = contextWindow,
-                Quality = quality,
-                Seed = seed,
-                NumImages = numImages,
-                EnableCopyrightDetection = enableCopyrightDetection,
-                Async = async,
-                WebhookUrl = webhookUrl,
+                AspectRatio = aspectRatio,
                 Private = @private,
-                TargetCollectionId = targetCollectionId,
+                Seed = seed,
             };
 
-            return await PostPreciseEditImageV2Ideogram45Async(
+            return await BriaExpandAsync(
                 dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
