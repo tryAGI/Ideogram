@@ -27,12 +27,14 @@ namespace Ideogram
             };
         partial void PrepareGetAssetReferenceUsageArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref bool? includeCollections,
             ref global::System.DateTime startDate,
             ref global::System.DateTime endDate,
             ref string? cursor);
         partial void PrepareGetAssetReferenceUsageRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            bool? includeCollections,
             global::System.DateTime startDate,
             global::System.DateTime endDate,
             string? cursor);
@@ -49,6 +51,9 @@ namespace Ideogram
         /// Rank edit reference assets used by organization requests<br/>
         /// Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.
         /// </summary>
+        /// <param name="includeCollections">
+        /// Default Value: false
+        /// </param>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <param name="cursor"></param>
@@ -58,6 +63,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AssetReferenceUsageResponse> GetAssetReferenceUsageAsync(
             global::System.DateTime startDate,
             global::System.DateTime endDate,
+            bool? includeCollections = default,
             string? cursor = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -65,6 +71,7 @@ namespace Ideogram
             var __response = await GetAssetReferenceUsageAsResponseAsync(
                 startDate: startDate,
                 endDate: endDate,
+                includeCollections: includeCollections,
                 cursor: cursor,
                 requestOptions: requestOptions,
                 cancellationToken: cancellationToken
@@ -76,6 +83,9 @@ namespace Ideogram
         /// Rank edit reference assets used by organization requests<br/>
         /// Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.
         /// </summary>
+        /// <param name="includeCollections">
+        /// Default Value: false
+        /// </param>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <param name="cursor"></param>
@@ -85,6 +95,7 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.AssetReferenceUsageResponse>> GetAssetReferenceUsageAsResponseAsync(
             global::System.DateTime startDate,
             global::System.DateTime endDate,
+            bool? includeCollections = default,
             string? cursor = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -93,6 +104,7 @@ namespace Ideogram
                 client: HttpClient);
             PrepareGetAssetReferenceUsageArguments(
                 httpClient: HttpClient,
+                includeCollections: ref includeCollections,
                 startDate: ref startDate,
                 endDate: ref endDate,
                 cursor: ref cursor);
@@ -124,6 +136,7 @@ namespace Ideogram
                                 path: "/v2/assets/reference-usage",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
+                                .AddOptionalParameter("include_collections", includeCollections?.ToString().ToLowerInvariant())
                                 .AddRequiredParameter("start_date", startDate.ToString("yyyy-MM-dd"))
                                 .AddRequiredParameter("end_date", endDate.ToString("yyyy-MM-dd"))
                                 .AddOptionalParameter("cursor", cursor)
@@ -168,6 +181,7 @@ namespace Ideogram
                 PrepareGetAssetReferenceUsageRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    includeCollections: includeCollections,
                     startDate: startDate,
                     endDate: endDate,
                     cursor: cursor);

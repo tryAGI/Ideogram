@@ -1568,7 +1568,7 @@
         "operationId": "demote_organization_admins",
         "parameters": [
           {
-            "description": "Base64 encoded organization ID. Must be a TEAM_API or ENTERPRISE_API workspace.",
+            "description": "Base64 encoded organization ID. Must be an ENTERPRISE_PREPAID or ENTERPRISE_API workspace.",
             "in": "query",
             "name": "organization_id",
             "required": true,
@@ -1585,7 +1585,7 @@
               }
             }
           },
-          "description": "A request to demote admins back to MEMBER role in a TEAM_API or ENTERPRISE_API organization. Caller must be OWNER — admins cannot demote other admins.",
+          "description": "A request to demote admins back to MEMBER role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization. Caller must be OWNER — admins cannot demote other admins.",
           "required": true,
           "x-body-name": "demote_organization_admins_request"
         },
@@ -1618,7 +1618,7 @@
             "BearerAuth": []
           }
         ],
-        "summary": "Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization",
+        "summary": "Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization",
         "tags": [
           "manage"
         ],
@@ -1766,7 +1766,7 @@
         "operationId": "promote_organization_admins",
         "parameters": [
           {
-            "description": "Base64 encoded organization ID. Must be a TEAM_API or ENTERPRISE_API workspace.",
+            "description": "Base64 encoded organization ID. Must be an ENTERPRISE_PREPAID or ENTERPRISE_API workspace.",
             "in": "query",
             "name": "organization_id",
             "required": true,
@@ -1783,7 +1783,7 @@
               }
             }
           },
-          "description": "A request to promote members to ADMIN role in a TEAM_API or ENTERPRISE_API organization. Caller must be OWNER or ADMIN.",
+          "description": "A request to promote members to ADMIN role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization. Caller must be OWNER or ADMIN.",
           "required": true,
           "x-body-name": "promote_organization_admins_request"
         },
@@ -1816,7 +1816,7 @@
             "BearerAuth": []
           }
         ],
-        "summary": "Promote members to ADMIN role in a TEAM_API or ENTERPRISE_API organization",
+        "summary": "Promote members to ADMIN role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization",
         "tags": [
           "manage"
         ],
@@ -2275,7 +2275,7 @@
         "operationId": "get_api_subscription",
         "parameters": [
           {
-            "description": "Workspace to load the subscription for. The caller must be OWNER, ADMIN, or MEMBER of the org. The response shape branches on the org's type (PRIVATE / TEAM_API get recharge settings; ENTERPRISE_API does not).",
+            "description": "Workspace to load the subscription for. The caller must be OWNER, ADMIN, or MEMBER of the org. The response shape branches on the org's type (PRIVATE / ENTERPRISE_PREPAID get recharge settings; ENTERPRISE_API does not).",
             "in": "query",
             "name": "organization_id",
             "required": true,
@@ -7352,6 +7352,15 @@
         "description": "Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.",
         "operationId": "get_asset_reference_usage",
         "parameters": [
+          {
+            "description": "Return one entry per accessible image collection membership, with current filenames. Counts remain asset-wide. Pages may be short or empty; follow next_cursor until null.",
+            "in": "query",
+            "name": "include_collections",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
           {
             "description": "Inclusive UTC usage date.",
             "in": "query",
@@ -19864,17 +19873,27 @@
           "next_cursor": "next_cursor",
           "assets": [
             {
+              "collection_id": "collection_id",
+              "collection_path": "collection_path",
               "asset_identifier": {
                 "asset_type": "RESPONSE",
                 "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
               },
+              "file_name": "file_name",
+              "download_url": "download_url",
+              "collection_name": "collection_name",
               "request_count": 1
             },
             {
+              "collection_id": "collection_id",
+              "collection_path": "collection_path",
               "asset_identifier": {
                 "asset_type": "RESPONSE",
                 "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
               },
+              "file_name": "file_name",
+              "download_url": "download_url",
+              "collection_name": "collection_name",
               "request_count": 1
             }
           ]
@@ -19902,15 +19921,48 @@
       },
       "AssetReferenceUsageItem": {
         "example": {
+          "collection_id": "collection_id",
+          "collection_path": "collection_path",
           "asset_identifier": {
             "asset_type": "RESPONSE",
             "asset_id": "7uS_VESkRI6O3-sVgHQp_A"
           },
+          "file_name": "file_name",
+          "download_url": "download_url",
+          "collection_name": "collection_name",
           "request_count": 1
         },
         "properties": {
           "asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "collection_id": {
+            "description": "Present when include_collections is true.",
+            "nullable": true,
+            "title": "collection_id",
+            "type": "string"
+          },
+          "collection_name": {
+            "nullable": true,
+            "title": "collection_name",
+            "type": "string"
+          },
+          "collection_path": {
+            "description": "Readable collection names from accessible ancestors through this collection, separated by \" / \".",
+            "nullable": true,
+            "title": "collection_path",
+            "type": "string"
+          },
+          "file_name": {
+            "nullable": true,
+            "title": "file_name",
+            "type": "string"
+          },
+          "download_url": {
+            "description": "Signed image URL valid for 24 hours, issued only when the caller can read the asset. Refresh the listing to obtain a fresh URL.",
+            "nullable": true,
+            "title": "download_url",
+            "type": "string"
           },
           "request_count": {
             "description": "Completed organization requests using the asset as an edit input within the requested range.",
@@ -33278,7 +33330,7 @@
         "enum": [
           "INDIVIDUAL",
           "ENTERPRISE",
-          "TEAM_API",
+          "ENTERPRISE_PREPAID",
           "TEAM"
         ],
         "example": "INDIVIDUAL",
@@ -33286,7 +33338,7 @@
         "type": "string"
       },
       "ApiProfileRole": {
-        "description": "Role within an organization profile. ADMIN only exists for TEAM_API organizations.",
+        "description": "Role within an organization profile. ADMIN only exists for ENTERPRISE_PREPAID organizations.",
         "enum": [
           "OWNER",
           "ADMIN",

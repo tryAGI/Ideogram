@@ -45,7 +45,7 @@ namespace Ideogram
         public required string OrganizationId { get; set; }
 
         /// <summary>
-        /// Role within an organization profile. ADMIN only exists for TEAM_API organizations.<br/>
+        /// Role within an organization profile. ADMIN only exists for ENTERPRISE_PREPAID organizations.<br/>
         /// Example: OWNER
         /// </summary>
         /// <example>OWNER</example>
@@ -106,7 +106,7 @@ namespace Ideogram
         /// Example: b3JnYW5pemF0aW9uXzEyMw
         /// </param>
         /// <param name="role">
-        /// Role within an organization profile. ADMIN only exists for TEAM_API organizations.<br/>
+        /// Role within an organization profile. ADMIN only exists for ENTERPRISE_PREPAID organizations.<br/>
         /// Example: OWNER
         /// </param>
         /// <param name="apiKeys">
