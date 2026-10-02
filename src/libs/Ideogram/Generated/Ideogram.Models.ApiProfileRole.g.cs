@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Role within an organization profile. ADMIN only exists for TEAM_API organizations.<br/>
+    /// Role within an organization profile. ADMIN only exists for ENTERPRISE_PREPAID organizations.<br/>
     /// Example: OWNER
     /// </summary>
     public enum ApiProfileRole

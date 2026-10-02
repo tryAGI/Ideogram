@@ -39,7 +39,7 @@
       "Slug": "get-asset-reference-usage",
       "Description": "Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.",
       "Language": "http",
-      "Code": "### Rank edit reference assets used by organization requests\n# @name get_asset_reference_usage\nGET {{host}}/v2/assets/reference-usage?start_date={{start_date}}\u0026end_date={{end_date}}\u0026cursor={{cursor}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Ranked edit reference assets\n# Content-Type: application/json\n# 400\n# Description: Invalid date range or cursor, or missing organization context\n# 401\n# Description: Unauthorized\n# 503\n# Description: Usage data temporarily unavailable",
+      "Code": "### Rank edit reference assets used by organization requests\n# @name get_asset_reference_usage\nGET {{host}}/v2/assets/reference-usage?include_collections=false\u0026start_date={{start_date}}\u0026end_date={{end_date}}\u0026cursor={{cursor}}\nAuthorization: Bearer {{token}}\nAccept: application/json\n\n## Responses\n# 200\n# Description: Ranked edit reference assets\n# Content-Type: application/json\n# 400\n# Description: Invalid date range or cursor, or missing organization context\n# 401\n# Description: Unauthorized\n# 503\n# Description: Usage data temporarily unavailable",
       "Format": "http",
       "OperationId": "get_asset_reference_usage",
       "Setup": null
@@ -1443,11 +1443,11 @@
     },
     {
       "Order": 132,
-      "Title": "Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization",
+      "Title": "Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization",
       "Slug": "demote-organization-admins",
       "Description": "Generated from OpenAPI examples.",
       "Language": "http",
-      "Code": "### Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization\n# @name demote_organization_admins\nPOST {{host}}/manage/api/organization/demote_admins?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022members\u0022: [\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    },\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    }\n  ]\n}\n\n## Responses\n# 200\n# Description: Results of demoting admins\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner\n# 404\n# Description: Organization not found",
+      "Code": "### Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization\n# @name demote_organization_admins\nPOST {{host}}/manage/api/organization/demote_admins?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022members\u0022: [\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    },\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    }\n  ]\n}\n\n## Responses\n# 200\n# Description: Results of demoting admins\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner\n# 404\n# Description: Organization not found",
       "Format": "http",
       "OperationId": "demote_organization_admins",
       "Setup": null
@@ -1641,11 +1641,11 @@
     },
     {
       "Order": 150,
-      "Title": "Promote members to ADMIN role in a TEAM_API or ENTERPRISE_API organization",
+      "Title": "Promote members to ADMIN role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization",
       "Slug": "promote-organization-admins",
       "Description": "Generated from OpenAPI examples.",
       "Language": "http",
-      "Code": "### Promote members to ADMIN role in a TEAM_API or ENTERPRISE_API organization\n# @name promote_organization_admins\nPOST {{host}}/manage/api/organization/promote_admins?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022members\u0022: [\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    },\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    }\n  ]\n}\n\n## Responses\n# 200\n# Description: Results of promoting members to admin\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner or admin\n# 404\n# Description: Organization not found",
+      "Code": "### Promote members to ADMIN role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization\n# @name promote_organization_admins\nPOST {{host}}/manage/api/organization/promote_admins?organization_id={{organization_id}}\nAuthorization: Bearer {{token}}\nContent-Type: application/json\nAccept: application/json\n\n{\n  \u0022members\u0022: [\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    },\n    {\n      \u0022display_handle\u0022: \u0022john_doe\u0022,\n      \u0022email_address\u0022: \u0022john.doe@example.com\u0022,\n      \u0022user_id\u0022: \u0022dXNlcl8xMjM\u0022\n    }\n  ]\n}\n\n## Responses\n# 200\n# Description: Results of promoting members to admin\n# Content-Type: application/json\n# 400\n# Description: Bad Request\n# 401\n# Description: Not authorized\n# 403\n# Description: Not authorized - must be an organization owner or admin\n# 404\n# Description: Organization not found",
       "Format": "http",
       "OperationId": "promote_organization_admins",
       "Setup": null

@@ -44,7 +44,7 @@ namespace Ideogram
             ref string content);
 
         /// <summary>
-        /// Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization
+        /// Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="request"></param>
@@ -69,7 +69,7 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization
+        /// Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="request"></param>
@@ -572,7 +572,7 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization
+        /// Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="members">

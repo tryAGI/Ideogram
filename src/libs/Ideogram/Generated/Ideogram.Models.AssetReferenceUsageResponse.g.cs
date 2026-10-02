@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"next_cursor":"next_cursor","assets":[{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"request_count":1},{"asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"request_count":1}]}
+    /// Example: {"next_cursor":"next_cursor","assets":[{"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","collection_name":"collection_name","request_count":1},{"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","collection_name":"collection_name","request_count":1}]}
     /// </summary>
     public sealed partial class AssetReferenceUsageResponse
     {

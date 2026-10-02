@@ -16,15 +16,15 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
+        EnterprisePrepaid,
+        /// <summary>
+        ///
+        /// </summary>
         Individual,
         /// <summary>
         ///
         /// </summary>
         Team,
-        /// <summary>
-        ///
-        /// </summary>
-        TeamApi,
     }
 
     /// <summary>
@@ -40,9 +40,9 @@ namespace Ideogram
             return value switch
             {
                 ApiProfileType.Enterprise => "ENTERPRISE",
+                ApiProfileType.EnterprisePrepaid => "ENTERPRISE_PREPAID",
                 ApiProfileType.Individual => "INDIVIDUAL",
                 ApiProfileType.Team => "TEAM",
-                ApiProfileType.TeamApi => "TEAM_API",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -54,9 +54,9 @@ namespace Ideogram
             return value switch
             {
                 "ENTERPRISE" => ApiProfileType.Enterprise,
+                "ENTERPRISE_PREPAID" => ApiProfileType.EnterprisePrepaid,
                 "INDIVIDUAL" => ApiProfileType.Individual,
                 "TEAM" => ApiProfileType.Team,
-                "TEAM_API" => ApiProfileType.TeamApi,
                 _ => null,
             };
         }

@@ -5,7 +5,7 @@ namespace Ideogram
     public partial interface IManageClient
     {
         /// <summary>
-        /// Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization
+        /// Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="request"></param>
@@ -19,7 +19,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization
+        /// Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="request"></param>
@@ -33,7 +33,7 @@ namespace Ideogram
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
-        /// Demote admins back to member role in a TEAM_API or ENTERPRISE_API organization
+        /// Demote admins back to member role in an ENTERPRISE_PREPAID or ENTERPRISE_API organization
         /// </summary>
         /// <param name="organizationId"></param>
         /// <param name="members">
