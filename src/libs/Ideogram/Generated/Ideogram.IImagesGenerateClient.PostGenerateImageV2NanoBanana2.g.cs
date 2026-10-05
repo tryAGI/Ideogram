@@ -67,7 +67,8 @@ namespace Ideogram
         /// Optional source images to edit (max 10, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to "1:1".
+        /// Output aspect ratios Nano Banana 2 serves. `auto` lets the model choose the shape; an edit keeps its source image's shape.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="resolutionTier">
         /// The output resolution tier.<br/>
@@ -110,7 +111,7 @@ namespace Ideogram
             bool? dryRun = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
-            string? aspectRatio = default,
+            global::Ideogram.NanoBanana2AspectRatio? aspectRatio = default,
             global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier? resolutionTier = default,
             int? numImages = default,
             int? seed = default,

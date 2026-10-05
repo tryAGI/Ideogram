@@ -35,8 +35,10 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "ReframeImageIdeogramV3RequestRenderingSpeed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBanana2Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBanana2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2ReframeAspectRatio), TypeInfoPropertyName = "NanoBanana2ReframeAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProReframeAspectRatio), TypeInfoPropertyName = "NanoBananaProReframeAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier), TypeInfoPropertyName = "ReframeImageNanoBananaProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareRequest))]
@@ -60,6 +62,8 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3StylePreset?), TypeInfoPropertyName = "NullableIdeogramV3StylePreset2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableReframeImageIdeogramV3RequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?), TypeInfoPropertyName = "NullableNanoBanana2ReframeAspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProReframeAspectRatio?), TypeInfoPropertyName = "NullableNanoBananaProReframeAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier?), TypeInfoPropertyName = "NullableReframeImageNanoBananaProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality?), TypeInfoPropertyName = "NullableReframeImageGptImage25FlareRequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType?), TypeInfoPropertyName = "NullableAssetType2")]
@@ -173,7 +177,15 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset)
 
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset?);
+                    || typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset?)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio?);
             }
 
             public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
@@ -268,6 +280,26 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset?))
                 {
                     return new global::Ideogram.JsonConverters.IdeogramV3StylePresetNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBananaProReframeAspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBananaProReframeAspectRatioNullableJsonConverter();
                 }
                 throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
             }

@@ -11,23 +11,23 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        x184,
+        x16_9,
         /// <summary>
         ///
         /// </summary>
-        x243,
+        x1_1,
         /// <summary>
         ///
         /// </summary>
-        x556,
+        x3_4,
         /// <summary>
         ///
         /// </summary>
-        x61,
+        x4_3,
         /// <summary>
         ///
         /// </summary>
-        x969,
+        x9_16,
     }
 
     /// <summary>
@@ -42,11 +42,11 @@ namespace Ideogram
         {
             return value switch
             {
-                SkechersStyleEditRequestAspectRatio.x184 => "184",
-                SkechersStyleEditRequestAspectRatio.x243 => "243",
-                SkechersStyleEditRequestAspectRatio.x556 => "556",
-                SkechersStyleEditRequestAspectRatio.x61 => "61",
-                SkechersStyleEditRequestAspectRatio.x969 => "969",
+                SkechersStyleEditRequestAspectRatio.x16_9 => "16:9",
+                SkechersStyleEditRequestAspectRatio.x1_1 => "1:1",
+                SkechersStyleEditRequestAspectRatio.x3_4 => "3:4",
+                SkechersStyleEditRequestAspectRatio.x4_3 => "4:3",
+                SkechersStyleEditRequestAspectRatio.x9_16 => "9:16",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
         }
@@ -57,11 +57,11 @@ namespace Ideogram
         {
             return value switch
             {
-                "184" => SkechersStyleEditRequestAspectRatio.x184,
-                "243" => SkechersStyleEditRequestAspectRatio.x243,
-                "556" => SkechersStyleEditRequestAspectRatio.x556,
-                "61" => SkechersStyleEditRequestAspectRatio.x61,
-                "969" => SkechersStyleEditRequestAspectRatio.x969,
+                "16:9" => SkechersStyleEditRequestAspectRatio.x16_9,
+                "1:1" => SkechersStyleEditRequestAspectRatio.x1_1,
+                "3:4" => SkechersStyleEditRequestAspectRatio.x3_4,
+                "4:3" => SkechersStyleEditRequestAspectRatio.x4_3,
+                "9:16" => SkechersStyleEditRequestAspectRatio.x9_16,
                 _ => null,
             };
         }

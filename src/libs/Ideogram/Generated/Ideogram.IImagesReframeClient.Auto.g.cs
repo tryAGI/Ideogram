@@ -78,7 +78,7 @@ namespace Ideogram
         /// </param>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, as `width:height`.<br/>
-        /// Example: 969
+        /// Example: 16:9
         /// </param>
         /// <param name="private">
         /// API-key requests are always private. For bearer-authenticated<br/>

@@ -805,7 +805,7 @@ namespace Ideogram
         /// </param>
         /// <param name="aspectRatio">
         /// The requested output aspect ratio, as `width:height`.<br/>
-        /// Example: 969
+        /// Example: 16:9
         /// </param>
         /// <param name="quality">
         /// How much rendering effort the model spends. Lower tiers return sooner and cost less; `auto` lets the model choose.<br/>

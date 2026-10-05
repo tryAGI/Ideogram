@@ -30,13 +30,12 @@ namespace Ideogram
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// The requested output aspect ratio, as `width:height`.<br/>
-        /// Example: 969
+        /// Aspect ratios Nano Banana 2 can reframe an image to.
         /// </summary>
-        /// <example>969</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string AspectRatio { get; set; }
+        public required global::Ideogram.NanoBanana2ReframeAspectRatio AspectRatio { get; set; }
 
         /// <summary>
         /// API-key requests are always private. For bearer-authenticated<br/>
@@ -72,8 +71,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ReframeImageNanoBanana2Request" /> class.
         /// </summary>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, as `width:height`.<br/>
-        /// Example: 969
+        /// Aspect ratios Nano Banana 2 can reframe an image to.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -103,7 +101,7 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ReframeImageNanoBanana2Request(
-            string aspectRatio,
+            global::Ideogram.NanoBanana2ReframeAspectRatio aspectRatio,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
@@ -114,7 +112,7 @@ namespace Ideogram
             this.ImageAssetIdentifier = imageAssetIdentifier;
             this.Image = image;
             this.Imagename = imagename;
-            this.AspectRatio = aspectRatio ?? throw new global::System.ArgumentNullException(nameof(aspectRatio));
+            this.AspectRatio = aspectRatio;
             this.Private = @private;
             this.NumImages = numImages;
             this.Seed = seed;

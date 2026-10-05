@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"base_description":"base_description","aspect_ratio":61,"private":true,"reference_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2k","base_asset_identifier":"","reference_descriptions":["reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions"],"resolved_instruction":"resolved_instruction","num_images":0,"quality":null}
+    /// Example: {"base_description":"base_description","aspect_ratio":"1:1","private":true,"reference_asset_identifiers":[{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}],"webhook_url":"https://api.example.com/webhooks/ideogram","base_generation_size":"2k","base_asset_identifier":"","reference_descriptions":["reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions","reference_descriptions"],"resolved_instruction":"resolved_instruction","num_images":0,"quality":null}
     /// </summary>
     public sealed partial class SkechersStyleEditRequest
     {
