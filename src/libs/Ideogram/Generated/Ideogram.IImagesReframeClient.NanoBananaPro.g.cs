@@ -74,8 +74,7 @@ namespace Ideogram
         /// The JPEG, PNG, or WEBP image to reframe (max 50MB).
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, as `width:height`.<br/>
-        /// Example: 969
+        /// Aspect ratios Nano Banana Pro can reframe an image to.
         /// </param>
         /// <param name="resolutionTier">
         /// The output resolution tier. The model sizes its output by tier at the requested aspect ratio; exact pixel dimensions cannot be requested.<br/>
@@ -99,7 +98,7 @@ namespace Ideogram
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
         global::System.Threading.Tasks.Task<global::Ideogram.ReframeImageNanoBananaProResponse> NanoBananaProAsync(
-            string aspectRatio,
+            global::Ideogram.NanoBananaProReframeAspectRatio aspectRatio,
             bool? dryRun = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,

@@ -1,0 +1,60 @@
+#nullable enable
+
+namespace Ideogram.JsonConverters
+{
+    /// <inheritdoc />
+    public sealed class NanoBanana2ReframeAspectRatioNullableJsonConverter : global::System.Text.Json.Serialization.JsonConverter<global::Ideogram.NanoBanana2ReframeAspectRatio?>
+    {
+        /// <inheritdoc />
+        public override global::Ideogram.NanoBanana2ReframeAspectRatio? Read(
+            ref global::System.Text.Json.Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            switch (reader.TokenType)
+            {
+                case global::System.Text.Json.JsonTokenType.String:
+                {
+                    var stringValue = reader.GetString();
+                    if (stringValue != null)
+                    {
+                        return global::Ideogram.NanoBanana2ReframeAspectRatioExtensions.ToEnum(stringValue);
+                    }
+
+                    break;
+                }
+                case global::System.Text.Json.JsonTokenType.Number:
+                {
+                    var numValue = reader.GetInt32();
+                    return (global::Ideogram.NanoBanana2ReframeAspectRatio)numValue;
+                }
+                case global::System.Text.Json.JsonTokenType.Null:
+                {
+                    return default(global::Ideogram.NanoBanana2ReframeAspectRatio?);
+                }
+                default:
+                    throw new global::System.ArgumentOutOfRangeException(nameof(reader));
+            }
+
+            return default;
+        }
+
+        /// <inheritdoc />
+        public override void Write(
+            global::System.Text.Json.Utf8JsonWriter writer,
+            global::Ideogram.NanoBanana2ReframeAspectRatio? value,
+            global::System.Text.Json.JsonSerializerOptions options)
+        {
+            writer = writer ?? throw new global::System.ArgumentNullException(nameof(writer));
+
+            if (value == null)
+            {
+                writer.WriteNullValue();
+            }
+            else
+            {
+                writer.WriteStringValue(global::Ideogram.NanoBanana2ReframeAspectRatioExtensions.ToValueString(value.Value));
+            }
+        }
+    }
+}

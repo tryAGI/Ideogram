@@ -31,13 +31,12 @@ namespace Ideogram
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// The requested output aspect ratio, as `width:height`.<br/>
-        /// Example: 969
+        /// Aspect ratios Nano Banana Pro can reframe an image to.
         /// </summary>
-        /// <example>969</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.NanoBananaProReframeAspectRatioJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required string AspectRatio { get; set; }
+        public required global::Ideogram.NanoBananaProReframeAspectRatio AspectRatio { get; set; }
 
         /// <summary>
         /// The output resolution tier. The model sizes its output by tier at the requested aspect ratio; exact pixel dimensions cannot be requested.<br/>
@@ -81,8 +80,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ReframeImageNanoBananaProRequest" /> class.
         /// </summary>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, as `width:height`.<br/>
-        /// Example: 969
+        /// Aspect ratios Nano Banana Pro can reframe an image to.
         /// </param>
         /// <param name="imageAssetIdentifier">
         /// An identifier for an ideogram asset.<br/>
@@ -116,7 +114,7 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public ReframeImageNanoBananaProRequest(
-            string aspectRatio,
+            global::Ideogram.NanoBananaProReframeAspectRatio aspectRatio,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
             byte[]? image,
             string? imagename,
@@ -128,7 +126,7 @@ namespace Ideogram
             this.ImageAssetIdentifier = imageAssetIdentifier;
             this.Image = image;
             this.Imagename = imagename;
-            this.AspectRatio = aspectRatio ?? throw new global::System.ArgumentNullException(nameof(aspectRatio));
+            this.AspectRatio = aspectRatio;
             this.ResolutionTier = resolutionTier;
             this.Private = @private;
             this.NumImages = numImages;

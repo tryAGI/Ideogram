@@ -417,9 +417,11 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality), TypeInfoPropertyName = "PreciseEditImageIdeogram45RequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2AspectRatio), TypeInfoPropertyName = "NanoBanana2AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier), TypeInfoPropertyName = "GenerateImageNanoBanana2RequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProAspectRatio), TypeInfoPropertyName = "NanoBananaProAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier), TypeInfoPropertyName = "GenerateImageNanoBananaProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage2Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage2Request))]
@@ -451,8 +453,10 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "ReframeImageIdeogramV3RequestRenderingSpeed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBanana2Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBanana2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2ReframeAspectRatio), TypeInfoPropertyName = "NanoBanana2ReframeAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProReframeAspectRatio), TypeInfoPropertyName = "NanoBananaProReframeAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier), TypeInfoPropertyName = "ReframeImageNanoBananaProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareRequest))]
@@ -505,10 +509,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PatchApiKeyRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiStripeSubscriptionResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiPaymentResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiTermsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiTerms))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiTermsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostAddCreditsResponse))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -519,6 +519,10 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
     )]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiTermsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiTerms))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiTermsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostAddCreditsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostAddCreditsError))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostAddCreditsRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetUserCreditsResponse))]
@@ -798,7 +802,9 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImagePImageIdeogramRequestResolution?), TypeInfoPropertyName = "NullableGenerateImagePImageIdeogramRequestResolution2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality?), TypeInfoPropertyName = "NullableGenerateImageIdeogram45RequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?), TypeInfoPropertyName = "NullablePreciseEditImageIdeogram45RequestQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2AspectRatio?), TypeInfoPropertyName = "NullableNanoBanana2AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBanana2RequestResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProAspectRatio?), TypeInfoPropertyName = "NullableNanoBananaProAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBananaProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground?), TypeInfoPropertyName = "NullableGenerateImageGptImage25FlareRequestBackground2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequestQuality?), TypeInfoPropertyName = "NullableGenerateImageGptImage25FlareRequestQuality2")]
@@ -810,6 +816,8 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableInpaintImageIdeogramV3RequestRenderingSpeed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed?), TypeInfoPropertyName = "NullableInpaintImageIdeogramV3CustomModelRequestRenderingSpeed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableReframeImageIdeogramV3RequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?), TypeInfoPropertyName = "NullableNanoBanana2ReframeAspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProReframeAspectRatio?), TypeInfoPropertyName = "NullableNanoBananaProReframeAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier?), TypeInfoPropertyName = "NullableReframeImageNanoBananaProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality?), TypeInfoPropertyName = "NullableReframeImageGptImage25FlareRequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV3CharacterRequestRenderingSpeed2")]
@@ -1701,9 +1709,25 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.GenerationQuality?)
 
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio?)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio?)
+
                     || typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType)
 
                     || typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType?)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio?)
 
                     || typeToConvert == typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType)
 
@@ -3504,6 +3528,26 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.GenerationQualityNullableJsonConverter();
                 }
 
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana2AspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana2AspectRatioNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBananaProAspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBananaProAspectRatioNullableJsonConverter();
+                }
+
                 if (typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType))
                 {
                     return new global::Ideogram.JsonConverters.IdeogramV2StyleTypeJsonConverter();
@@ -3512,6 +3556,26 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType?))
                 {
                     return new global::Ideogram.JsonConverters.IdeogramV2StyleTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBananaProReframeAspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBananaProReframeAspectRatioNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType))

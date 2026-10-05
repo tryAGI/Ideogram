@@ -41,9 +41,9 @@ namespace Ideogram
 
         /// <summary>
         /// The actual aspect ratio of the produced video, formatted as "{width}:{height}".<br/>
-        /// Example: 969
+        /// Example: 16:9
         /// </summary>
-        /// <example>969</example>
+        /// <example>16:9</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string AspectRatio { get; set; }
@@ -75,7 +75,7 @@ namespace Ideogram
         /// </param>
         /// <param name="aspectRatio">
         /// The actual aspect ratio of the produced video, formatted as "{width}:{height}".<br/>
-        /// Example: 969
+        /// Example: 16:9
         /// </param>
         /// <param name="duration">
         /// The actual measured length of the produced video in seconds.<br/>

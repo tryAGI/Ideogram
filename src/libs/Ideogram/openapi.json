@@ -8855,6 +8855,7 @@
         "tags": [
           "images-generate"
         ],
+        "x-tool-description": "Generate from text, or edit and recompose supplied image assets with Ideogram 4.5, optionally guided by reference images.",
         "x-playground-endpoint": {
           "id": "generate-v45",
           "label": "Generate 4.5",
@@ -9793,6 +9794,7 @@
         "tags": [
           "images-precise-edit"
         ],
+        "x-tool-description": "Targeted edit of one image with Ideogram 4.5; everything the instruction does not mention is kept, and the output keeps the source's exact width and height.",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_precise_edit_controller"
       }
     },
@@ -9885,6 +9887,7 @@
         "tags": [
           "images-reframe"
         ],
+        "x-tool-description": "Change one image's aspect ratio while keeping its content, extending the scene to fill the new frame. For several ratios, make one call per ratio.",
         "x-fern-sdk-group-name": [
           "image",
           "reframe"
@@ -17404,7 +17407,7 @@
             "minimum": 1,
             "title": "NumImages",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "resolution": {
             "$ref": "#/components/schemas/Resolution"
@@ -17493,7 +17496,7 @@
             "minimum": 1,
             "title": "NumImages",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -19586,7 +19589,7 @@
             "minimum": 1,
             "title": "NumImages",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "resolution": {
             "$ref": "#/components/schemas/ResolutionV3"
@@ -21890,7 +21893,7 @@
             "minimum": 1,
             "title": "NumImages",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "private": {
             "description": "Whether to keep the result private. When omitted, defaults to your\nplan's setting. Enterprise generations are always private.\n",
@@ -21957,7 +21960,7 @@
             "minimum": 1,
             "title": "NumImages",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "private": {
             "description": "Whether to keep the result private. When omitted, defaults to your\nplan's setting. Enterprise generations are always private.\n",
@@ -24222,7 +24225,8 @@
           "image_asset_identifier"
         ],
         "title": "Product360VideoRequest",
-        "type": "object"
+        "type": "object",
+        "x-tool-description": "image_asset_identifier is the product image to spin; it works best on one product on a plain background."
       },
       "Product360VideoDirection": {
         "description": "Direction the product rotates around its vertical axis.",
@@ -25380,7 +25384,7 @@
       "SkechersStyleEditRequest": {
         "example": {
           "base_description": "base_description",
-          "aspect_ratio": 61,
+          "aspect_ratio": "1:1",
           "private": true,
           "reference_asset_identifiers": [
             {
@@ -25464,11 +25468,11 @@
           "aspect_ratio": {
             "description": "Output ratio. When omitted, derive the nearest supported ratio from the base.",
             "enum": [
-              61,
-              243,
-              969,
-              184,
-              556
+              "1:1",
+              "4:3",
+              "16:9",
+              "3:4",
+              "9:16"
             ],
             "title": "aspect_ratio",
             "type": "string"
@@ -26795,7 +26799,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "color_palette": {
             "$ref": "#/components/schemas/IdeogramColorPalette"
@@ -27007,7 +27011,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "color_palette": {
             "$ref": "#/components/schemas/IdeogramColorPalette"
@@ -27202,7 +27206,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "resolution": {
             "allOf": [
@@ -27434,7 +27438,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "resolution": {
             "allOf": [
@@ -27710,7 +27714,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "color_palette": {
             "$ref": "#/components/schemas/IdeogramColorPalette"
@@ -27944,7 +27948,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "color_palette": {
             "$ref": "#/components/schemas/IdeogramColorPalette"
@@ -28144,7 +28148,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "resolution": {
             "allOf": [
@@ -28387,7 +28391,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "style_type": {
             "default": "auto",
@@ -28603,7 +28607,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "enable_copyright_detection": {
             "description": "Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.",
@@ -28750,7 +28754,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "aspect_ratio": {
             "$ref": "#/components/schemas/IdeogramV4AspectRatio"
@@ -28925,7 +28929,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "quality": {
             "allOf": [
@@ -29118,7 +29122,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "async": {
             "default": false,
@@ -29217,6 +29221,7 @@
             "maxLength": 10000,
             "minLength": 1,
             "type": "string",
+            "x-tool-description": "Generation prompt, or the edit instruction when image_asset_identifiers are supplied.",
             "x-playground-field": {
               "label": "Prompt",
               "control": "textarea",
@@ -29241,7 +29246,8 @@
             },
             "maxItems": 5,
             "minItems": 1,
-            "type": "array"
+            "type": "array",
+            "x-tool-description": "Up to 5 image assets. The first is the image being edited; any others are references (e.g. a product, logo, or style to bring in)."
           },
           "images": {
             "description": "Optional source images to edit (max 5, max 25MB each; JPEG, PNG, or WEBP). The first image is the one being edited; any others are extra references. Multipart requests only.",
@@ -29250,12 +29256,14 @@
               "type": "string"
             },
             "maxItems": 5,
-            "type": "array"
+            "type": "array",
+            "x-tool-description": "File upload only; tools cannot send it. Use image_asset_identifiers."
           },
           "mask": {
             "description": "An optional mask that limits the edit to part of the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the first source image and contain both black and white areas. A masked request can include at most three other source images. With a mask, the output is always the first source image's own size, so `size` cannot be set.",
             "format": "binary",
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "File upload only; tools cannot send it. Use precise_edit_ideogram_4_5 for targeted edits."
           },
           "size": {
             "default": "auto",
@@ -29263,6 +29271,7 @@
             "example": "2048x2048",
             "nullable": true,
             "type": "string",
+            "x-tool-description": "Omit for auto. Without image_asset_identifiers, an exact size must be one of: 2048x2048, 1440x2880, 2880x1440, 1664x2496, 2496x1664, 1792x2240, 2240x1792, 1440x2560, 2560x1440, 1600x2560, 2560x1600, 1728x2304, 2304x1728, 1296x3168, 3168x1296, 1152x2944, 2944x1152, 1248x3328, 3328x1248, 1280x3072, 3072x1280, 1024x3072, 3072x1024, 1024x1024, 896x1120, 1120x896, 864x1152, 1152x864, 832x1248, 1248x832, 800x1280, 1280x800, 720x1280, 1280x720, 720x1440, 1440x720; pick the one closest to the requested aspect ratio. With image_asset_identifiers, \"source\" keeps the first image's size, and an exact WIDTHxHEIGHT (sides multiples of 32 and at least 256px, at most 2048x2048 total pixels, ratio up to 6:1) reshapes it.",
             "x-playground-field": {
               "label": "Size",
               "control": "select",
@@ -29322,7 +29331,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "enable_copyright_detection": {
             "description": "Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.",
@@ -29365,7 +29374,8 @@
         "required": [
           "prompt"
         ],
-        "type": "object"
+        "type": "object",
+        "x-tool-description": "Supply image_asset_identifiers to edit existing images; omit them to generate from text. Never send images or mask."
       },
       "PreciseEditImageIdeogram45Response": {
         "description": "Response returned by `POST /v2/image/precise-edit/ideogram-4-5`.\nSynchronous requests (the default) include the edited images in `data`.\nAsynchronous requests omit `data`; poll\n`GET /v2/generations/{generation_id}` with the returned\n`generation_id`.\n",
@@ -29419,7 +29429,8 @@
             "description": "The edit instruction, in natural language or as a structured JSON\nprompt. Natural language is automatically converted into a\nstructured prompt; valid structured JSON is used as is.\n",
             "maxLength": 10000,
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "Edit instruction naming only what changes; say what must stay unchanged if it matters."
           },
           "image_asset_identifier": {
             "allOf": [
@@ -29427,12 +29438,14 @@
                 "$ref": "#/components/schemas/AssetIdentifier"
               }
             ],
-            "description": "The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`."
+            "description": "The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.",
+            "x-tool-description": "Required. The image asset to edit; copy asset_id and asset_type from the result or upload."
           },
           "image": {
             "description": "The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.",
             "format": "binary",
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "File upload only; tools cannot send it. Use image_asset_identifier."
           },
           "reference_image_asset_identifiers": {
             "description": "Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.",
@@ -29441,7 +29454,8 @@
             },
             "maxItems": 4,
             "minItems": 1,
-            "type": "array"
+            "type": "array",
+            "x-tool-description": "Up to 4 image assets that guide the edit (e.g. an object or logo to insert). Never edited themselves."
           },
           "reference_images": {
             "description": "Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A request with a `mask` can include at most three, because the mask takes up one reference slot.",
@@ -29450,18 +29464,21 @@
               "type": "string"
             },
             "maxItems": 4,
-            "type": "array"
+            "type": "array",
+            "x-tool-description": "File upload only; tools cannot send it. Use reference_image_asset_identifiers."
           },
           "mask": {
             "description": "An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.",
             "format": "binary",
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "File upload only; tools cannot send it. Describe the region in the prompt instead."
           },
           "context_window": {
             "default": "none",
             "description": "How much of the image being edited the model may see and change.\n`none`, the default, edits the whole image. A large image may come back smaller than it was sent.\n`auto` fits a region around what the `mask` selects and edits only that region, so its detail is kept. It requires a `mask`. A small enough image has no region to fit and is edited as it is.\n`x,y,width,height` names the region explicitly, in the edited image's own pixels with the origin at its top-left corner — for example `1024,512,2048,1536`. The region must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, every pixel outside the region is returned exactly as supplied and the output keeps the image's own width and height.",
             "pattern": "^(none|auto|[0-9]+,[0-9]+,[0-9]+,[0-9]+)$",
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "Omit. Only usable with a file-uploaded image."
           },
           "quality": {
             "default": "medium",
@@ -29498,7 +29515,8 @@
           "async": {
             "default": false,
             "description": "When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.",
-            "type": "boolean"
+            "type": "boolean",
+            "x-tool-description": "Always overridden to true; tools run asynchronously."
           },
           "webhook_url": {
             "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
@@ -29512,17 +29530,20 @@
           "private": {
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
-            "type": "boolean"
+            "type": "boolean",
+            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "Destination collection ID (URL-safe base64); must be writable."
           }
         },
         "required": [
           "prompt"
         ],
-        "type": "object"
+        "type": "object",
+        "x-tool-description": "Send prompt and image_asset_identifier, plus optional reference_image_asset_identifiers. Never send image, reference_images, mask, or context_window."
       },
       "GenerateImageNanoBanana2Response": {
         "description": "Response returned by `POST /v2/image/generate/nano-banana-2`.\nSynchronous requests (the default) include the generated images in\n`data`. Asynchronous requests omit `data`; poll\n`GET /v2/generations/{generation_id}` with the returned\n`generation_id`. `seed` is the seed that was used, including when you\ndid not set one.\n",
@@ -29608,9 +29629,7 @@
             "x-tool-description": "Images to edit (max 10; JPEG/PNG/WEBP, max 25MB each). Multipart only."
           },
           "aspect_ratio": {
-            "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to \"1:1\".",
-            "type": "string",
-            "x-tool-description": "Ratio (e.g. 16:9); uses the closest supported ratio at the requested resolution tier. Default 1:1."
+            "$ref": "#/components/schemas/NanoBanana2AspectRatio"
           },
           "resolution_tier": {
             "default": "1K",
@@ -29628,7 +29647,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -29756,9 +29775,7 @@
             "x-tool-description": "Images to edit (max 10; JPEG/PNG/WEBP, max 25MB each). Multipart only."
           },
           "aspect_ratio": {
-            "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to \"1:1\".",
-            "type": "string",
-            "x-tool-description": "Ratio (e.g. 16:9); uses the closest supported ratio at the requested resolution tier. Default 1:1."
+            "$ref": "#/components/schemas/NanoBananaProAspectRatio"
           },
           "resolution_tier": {
             "default": "1K",
@@ -29776,7 +29793,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -29908,7 +29925,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -30074,7 +30091,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -30238,7 +30255,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -30414,7 +30431,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "style_type": {
             "$ref": "#/components/schemas/IdeogramV2StyleType"
@@ -30579,7 +30596,7 @@
             "minimum": 1,
             "title": "num_images",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "style_type": {
             "$ref": "#/components/schemas/IdeogramV2StyleType"
@@ -31183,7 +31200,7 @@
             "minimum": 1,
             "title": "NumImages",
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -31310,12 +31327,7 @@
             "type": "string"
           },
           "aspect_ratio": {
-            "description": "The requested output aspect ratio, as `width:height`.",
-            "example": 969,
-            "maxLength": 21,
-            "minLength": 3,
-            "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
-            "type": "string"
+            "$ref": "#/components/schemas/NanoBanana2ReframeAspectRatio"
           },
           "private": {
             "description": "API-key requests are always private. For bearer-authenticated\nrequests, this controls whether the result is private; when\nomitted, it follows the caller's plan entitlement. Enterprise\ngenerations are always private.\n",
@@ -31343,14 +31355,6 @@
         ],
         "type": "object",
         "x-tool-description": "Requires image_asset_identifier for the source image."
-      },
-      "ReframeAspectRatio": {
-        "description": "The requested output aspect ratio, as `width:height`.",
-        "example": 969,
-        "maxLength": 21,
-        "minLength": 3,
-        "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
-        "type": "string"
       },
       "ReframeImageNanoBananaProResponse": {
         "description": "Acknowledges an accepted asynchronous Reframe request. Poll\n`GET /v2/generations/{generation_id}` for completion and output\nimages. The seed, width, and height report the values the request resolved to when the caller left them unset.\n",
@@ -31408,12 +31412,7 @@
             "type": "string"
           },
           "aspect_ratio": {
-            "description": "The requested output aspect ratio, as `width:height`.",
-            "example": 969,
-            "maxLength": 21,
-            "minLength": 3,
-            "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
-            "type": "string"
+            "$ref": "#/components/schemas/NanoBananaProReframeAspectRatio"
           },
           "resolution_tier": {
             "default": "1K",
@@ -31508,7 +31507,7 @@
           },
           "aspect_ratio": {
             "description": "The requested output aspect ratio, as `width:height`.",
-            "example": 969,
+            "example": "16:9",
             "maxLength": 21,
             "minLength": 3,
             "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
@@ -31550,6 +31549,14 @@
           "aspect_ratio"
         ],
         "type": "object"
+      },
+      "ReframeAspectRatio": {
+        "description": "The requested output aspect ratio, as `width:height`.",
+        "example": "16:9",
+        "maxLength": 21,
+        "minLength": 3,
+        "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
+        "type": "string"
       },
       "ReframeImageBriaExpandResponse": {
         "description": "Acknowledges an accepted asynchronous Reframe request. Poll\n`GET /v2/generations/{generation_id}` for completion and output\nimages. The width and height are the canvas the source was placed on.\n",
@@ -31608,7 +31615,7 @@
           },
           "aspect_ratio": {
             "description": "The requested output aspect ratio, as `width:height`.",
-            "example": 969,
+            "example": "16:9",
             "maxLength": 21,
             "minLength": 3,
             "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
@@ -31686,11 +31693,12 @@
           "image": {
             "description": "The JPEG, PNG, or WEBP image to reframe (max 50MB).",
             "format": "binary",
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "File upload only; tools cannot send it. Use image_asset_identifier."
           },
           "aspect_ratio": {
             "description": "The requested output aspect ratio, as `width:height`.",
-            "example": 969,
+            "example": "16:9",
             "maxLength": 21,
             "minLength": 3,
             "pattern": "^[1-9][0-9]*:[1-9][0-9]*$",
@@ -31720,7 +31728,8 @@
         "required": [
           "aspect_ratio"
         ],
-        "type": "object"
+        "type": "object",
+        "x-tool-description": "Send image_asset_identifier and aspect_ratio. Never send image."
       },
       "GenerateImageIdeogramV3CharacterResponse": {
         "description": "Response returned by `POST /v2/image/generate/ideogram-3-character`.\nSynchronous requests (the default) include the generated images in\n`data`. Asynchronous requests omit `data`; poll\n`GET /v2/generations/{generation_id}` with the returned\n`generation_id`. `seed` is the seed that was used, including when you\ndid not set one.\n",
@@ -31862,7 +31871,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "style_type": {
             "default": "auto",
@@ -32313,7 +32322,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -32539,7 +32548,7 @@
             "maximum": 8,
             "minimum": 1,
             "type": "integer",
-            "x-tool-description": "Image count."
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
           },
           "enable_copyright_detection": {
             "description": "Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.",
@@ -37239,7 +37248,7 @@
         "minimum": 1,
         "title": "NumImages",
         "type": "integer",
-        "x-tool-description": "Image count."
+        "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
       },
       "StyleType": {
         "description": "The style type to generate with; this is only applicable for models V_2 and above and should not be specified for model versions V_1.",
@@ -37860,7 +37869,7 @@
           },
           "aspect_ratio": {
             "description": "The actual aspect ratio of the produced video, formatted as \"{width}:{height}\".",
-            "example": 969,
+            "example": "16:9",
             "title": "aspect_ratio",
             "type": "string"
           },
@@ -38449,6 +38458,48 @@
         "title": "GenerationQuality",
         "type": "string"
       },
+      "NanoBanana2AspectRatio": {
+        "default": "auto",
+        "description": "Output aspect ratios Nano Banana 2 serves. `auto` lets the model choose the shape; an edit keeps its source image's shape.",
+        "enum": [
+          "auto",
+          "1:1",
+          "3:2",
+          "2:3",
+          "4:3",
+          "3:4",
+          "5:4",
+          "4:5",
+          "16:9",
+          "9:16",
+          "21:9",
+          "4:1",
+          "1:4",
+          "8:1",
+          "1:8"
+        ],
+        "title": "NanoBanana2AspectRatio",
+        "type": "string"
+      },
+      "NanoBananaProAspectRatio": {
+        "default": "auto",
+        "description": "Output aspect ratios Nano Banana Pro serves. `auto` lets the model choose the shape; an edit keeps its source image's shape.",
+        "enum": [
+          "auto",
+          "1:1",
+          "3:2",
+          "2:3",
+          "4:3",
+          "3:4",
+          "5:4",
+          "4:5",
+          "16:9",
+          "9:16",
+          "21:9"
+        ],
+        "title": "NanoBananaProAspectRatio",
+        "type": "string"
+      },
       "IdeogramV2StyleType": {
         "description": "The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.",
         "enum": [
@@ -38461,6 +38512,44 @@
         ],
         "example": "realistic",
         "title": "IdeogramV2StyleType",
+        "type": "string"
+      },
+      "NanoBanana2ReframeAspectRatio": {
+        "description": "Aspect ratios Nano Banana 2 can reframe an image to.",
+        "enum": [
+          "1:1",
+          "3:2",
+          "2:3",
+          "4:3",
+          "3:4",
+          "5:4",
+          "4:5",
+          "16:9",
+          "9:16",
+          "21:9",
+          "4:1",
+          "1:4",
+          "8:1",
+          "1:8"
+        ],
+        "title": "NanoBanana2ReframeAspectRatio",
+        "type": "string"
+      },
+      "NanoBananaProReframeAspectRatio": {
+        "description": "Aspect ratios Nano Banana Pro can reframe an image to.",
+        "enum": [
+          "1:1",
+          "3:2",
+          "2:3",
+          "4:3",
+          "3:4",
+          "5:4",
+          "4:5",
+          "16:9",
+          "9:16",
+          "21:9"
+        ],
+        "title": "NanoBananaProReframeAspectRatio",
         "type": "string"
       },
       "Price": {

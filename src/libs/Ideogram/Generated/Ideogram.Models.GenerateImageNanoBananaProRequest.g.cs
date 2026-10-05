@@ -30,10 +30,12 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to "1:1".
+        /// Output aspect ratios Nano Banana Pro serves. `auto` lets the model choose the shape; an edit keeps its source image's shape.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
-        public string? AspectRatio { get; set; }
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.NanoBananaProAspectRatioJsonConverter))]
+        public global::Ideogram.NanoBananaProAspectRatio? AspectRatio { get; set; }
 
         /// <summary>
         /// The output resolution tier.<br/>
@@ -111,7 +113,8 @@ namespace Ideogram
         /// Optional source images to edit (max 10, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". The output is served at the closest aspect ratio the model supports, at the requested resolution tier. Defaults to "1:1".
+        /// Output aspect ratios Nano Banana Pro serves. `auto` lets the model choose the shape; an edit keeps its source image's shape.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="resolutionTier">
         /// The output resolution tier.<br/>
@@ -153,7 +156,7 @@ namespace Ideogram
             string prompt,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? images,
-            string? aspectRatio,
+            global::Ideogram.NanoBananaProAspectRatio? aspectRatio,
             global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier? resolutionTier,
             int? numImages,
             int? seed,
