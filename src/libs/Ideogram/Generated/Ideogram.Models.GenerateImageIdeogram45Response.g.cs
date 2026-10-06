@@ -10,10 +10,18 @@ namespace Ideogram
     /// `GET /v2/generations/{generation_id}` with the returned<br/>
     /// `generation_id`. `seed` is the seed that was used, including when you<br/>
     /// did not set one.<br/>
-    /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id"}
+    /// Example: {"generation_kind":null,"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id"}
     /// </summary>
     public sealed partial class GenerateImageIdeogram45Response
     {
+        /// <summary>
+        /// The kind of generation identified by generation_id. Both kinds can be polled through GET /v2/generations/{generation_id}.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("generation_kind")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerationKindJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Ideogram.GenerationKind GenerationKind { get; set; }
+
         /// <summary>
         /// URL-safe base64 ID of the generation. Use it to poll<br/>
         /// `GET /v2/generations/{generation_id}`.
@@ -46,6 +54,9 @@ namespace Ideogram
         /// <summary>
         /// Initializes a new instance of the <see cref="GenerateImageIdeogram45Response" /> class.
         /// </summary>
+        /// <param name="generationKind">
+        /// The kind of generation identified by generation_id. Both kinds can be polled through GET /v2/generations/{generation_id}.
+        /// </param>
         /// <param name="generationId">
         /// URL-safe base64 ID of the generation. Use it to poll<br/>
         /// `GET /v2/generations/{generation_id}`.
@@ -61,10 +72,12 @@ namespace Ideogram
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GenerateImageIdeogram45Response(
+            global::Ideogram.GenerationKind generationKind,
             string generationId,
             int seed,
             global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>? data)
         {
+            this.GenerationKind = generationKind;
             this.GenerationId = generationId ?? throw new global::System.ArgumentNullException(nameof(generationId));
             this.Data = data;
             this.Seed = seed;

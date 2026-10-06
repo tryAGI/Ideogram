@@ -25,6 +25,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GeneratedImageObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationKind), TypeInfoPropertyName = "GenerationKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality), TypeInfoPropertyName = "PreciseEditImageIdeogram45RequestQuality2")]
@@ -33,6 +34,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason?), TypeInfoPropertyName = "NullableGenerationRejectReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?), TypeInfoPropertyName = "NullableGenerationErrorResponseTaskCompletionSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationKind?), TypeInfoPropertyName = "NullableGenerationKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?), TypeInfoPropertyName = "NullablePreciseEditImageIdeogram45RequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType?), TypeInfoPropertyName = "NullableAssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<byte[]>))]
@@ -121,7 +123,11 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.AssetType)
 
-                    || typeToConvert == typeof(global::Ideogram.AssetType?);
+                    || typeToConvert == typeof(global::Ideogram.AssetType?)
+
+                    || typeToConvert == typeof(global::Ideogram.GenerationKind)
+
+                    || typeToConvert == typeof(global::Ideogram.GenerationKind?);
             }
 
             public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
@@ -166,6 +172,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.AssetType?))
                 {
                     return new global::Ideogram.JsonConverters.AssetTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.GenerationKind))
+                {
+                    return new global::Ideogram.JsonConverters.GenerationKindJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.GenerationKind?))
+                {
+                    return new global::Ideogram.JsonConverters.GenerationKindNullableJsonConverter();
                 }
                 throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
             }

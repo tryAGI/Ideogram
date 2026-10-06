@@ -11006,7 +11006,7 @@
           "label": "Remove background",
           "order": 3
         },
-        "x-tool-description": "Remove an image asset’s background and return a foreground PNG with transparency.",
+        "x-tool-description": "Remove an image asset’s background and return a foreground PNG with transparency, at the source's size. Use it for logos, stickers and merch that need a transparent file.",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tool_controller"
       }
     },
@@ -11400,7 +11400,7 @@
         "tags": [
           "tools"
         ],
-        "x-tool-description": "Upscale an image asset with a server-selected model. No prompt; output is limited to 8192 pixels per side.",
+        "x-tool-description": "Upscale an image asset with a server-selected model; the default choice for upscaling. No prompt; output is limited to 8192 pixels per side.",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.tools_controller"
       }
     },
@@ -11594,7 +11594,7 @@
         "tags": [
           "images-upscale"
         ],
-        "x-tool-description": "Creatively upscale an image asset with Topaz Bloom 2. An optional prompt guides detail; creativity controls reinterpretation. Output is limited to 8192 pixels per side.",
+        "x-tool-description": "Creatively upscale an image asset with Topaz Bloom 2, which may reinterpret detail; use it only when the user wants added detail rather than a faithful enlargement. An optional prompt guides detail; creativity controls reinterpretation. Output is limited to 8192 pixels per side.",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
       }
     },
@@ -11878,7 +11878,7 @@
         "tags": [
           "images-upscale"
         ],
-        "x-tool-description": "Upscale an image asset with Topaz Text Refine. No prompt; output is limited to 8192 pixels per side.",
+        "x-tool-description": "Upscale an image asset with Topaz Text Refine; prefer it for images where text or fine lettering must stay crisp. No prompt; output is limited to 8192 pixels per side.",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_upscale_controller"
       }
     },
@@ -12292,7 +12292,7 @@
         "tags": [
           "edit-workflow"
         ],
-        "x-tool-description": "Reframe an ad creative image asset to an exact ad resolution, regenerating the layout so text and key elements stay legible; set `platform` to keep it inside that platform's safe zone. Returns a generation reference.",
+        "x-tool-description": "Adapt an ad or social creative to an exact placement size (feed, story, banner, display), relaying out text and key elements so they stay legible instead of cropping; set `platform` to keep it inside that platform's safe zone. One call per size.",
         "x-fern-examples": [
           {
             "request": {
@@ -20467,7 +20467,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -20612,7 +20612,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -20710,7 +20710,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
@@ -20819,7 +20819,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
@@ -20883,7 +20883,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
@@ -20990,7 +20990,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.",
@@ -21106,7 +21106,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -21209,7 +21209,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -21309,7 +21309,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -21409,7 +21409,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -21505,7 +21505,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -21622,7 +21622,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output videos are added to it when the request completes.",
@@ -22927,7 +22927,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -23064,7 +23064,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -23238,7 +23238,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -23383,7 +23383,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -23588,7 +23588,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -23718,7 +23718,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -26100,7 +26100,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -26883,7 +26883,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -27082,7 +27082,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -27288,7 +27288,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -27488,7 +27488,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -27798,7 +27798,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -28019,7 +28019,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -28214,7 +28214,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -28457,7 +28457,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -28637,7 +28637,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -28810,7 +28810,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -29001,7 +29001,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -29145,7 +29145,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -29163,6 +29163,7 @@
       "GenerateImageIdeogram45Response": {
         "description": "Response returned by `POST /v2/image/generate/ideogram-4-5`.\nSynchronous requests (the default) include the generated images in\n`data`. Asynchronous requests omit `data`; poll\n`GET /v2/generations/{generation_id}` with the returned\n`generation_id`. `seed` is the seed that was used, including when you\ndid not set one.\n",
         "example": {
+          "generation_kind": null,
           "data": [
             {
               "seed": 12345,
@@ -29183,6 +29184,9 @@
           "generation_id": "generation_id"
         },
         "properties": {
+          "generation_kind": {
+            "$ref": "#/components/schemas/GenerationKind"
+          },
           "generation_id": {
             "description": "URL-safe base64 ID of the generation. Use it to poll\n`GET /v2/generations/{generation_id}`.\n",
             "title": "generation_id",
@@ -29208,6 +29212,7 @@
         },
         "required": [
           "generation_id",
+          "generation_kind",
           "seed"
         ],
         "title": "GenerateImageIdeogram45Response",
@@ -29271,7 +29276,7 @@
             "example": "2048x2048",
             "nullable": true,
             "type": "string",
-            "x-tool-description": "Omit for auto. Without image_asset_identifiers, an exact size must be one of: 2048x2048, 1440x2880, 2880x1440, 1664x2496, 2496x1664, 1792x2240, 2240x1792, 1440x2560, 2560x1440, 1600x2560, 2560x1600, 1728x2304, 2304x1728, 1296x3168, 3168x1296, 1152x2944, 2944x1152, 1248x3328, 3328x1248, 1280x3072, 3072x1280, 1024x3072, 3072x1024, 1024x1024, 896x1120, 1120x896, 864x1152, 1152x864, 832x1248, 1248x832, 800x1280, 1280x800, 720x1280, 1280x720, 720x1440, 1440x720; pick the one closest to the requested aspect ratio. With image_asset_identifiers, \"source\" keeps the first image's size, and an exact WIDTHxHEIGHT (sides multiples of 32 and at least 256px, at most 2048x2048 total pixels, ratio up to 6:1) reshapes it.",
+            "x-tool-description": "The output shape; this operation has no resolution or aspect_ratio field. Omit for auto. Without image_asset_identifiers, an exact size must be one of: 2048x2048, 1440x2880, 2880x1440, 1664x2496, 2496x1664, 1792x2240, 2240x1792, 1440x2560, 2560x1440, 1600x2560, 2560x1600, 1728x2304, 2304x1728, 1296x3168, 3168x1296, 1152x2944, 2944x1152, 1248x3328, 3328x1248, 1280x3072, 3072x1280, 1024x3072, 3072x1024, 1024x1024, 896x1120, 1120x896, 864x1152, 1152x864, 832x1248, 1248x832, 800x1280, 1280x800, 720x1280, 1280x720, 720x1440, 1440x720; pick the one closest to the requested aspect ratio. With image_asset_identifiers, \"source\" keeps the first image's size, and an exact WIDTHxHEIGHT (sides multiples of 32 and at least 256px, at most 2048x2048 total pixels, ratio up to 6:1) reshapes it.",
             "x-playground-field": {
               "label": "Size",
               "control": "select",
@@ -29300,6 +29305,7 @@
               "high"
             ],
             "type": "string",
+            "x-tool-description": "Omit to use the default (medium with source images, high without). Choose high for an edit only when the user asks for top quality or final print output.",
             "x-playground-field": {
               "label": "Quality",
               "order": 3,
@@ -29363,7 +29369,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -29375,11 +29381,32 @@
           "prompt"
         ],
         "type": "object",
+        "x-tool-constraints": {
+          "anyOf": [
+            {
+              "properties": {
+                "quality": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                }
+              }
+            },
+            {
+              "required": [
+                "image_asset_identifiers"
+              ]
+            }
+          ]
+        },
         "x-tool-description": "Supply image_asset_identifiers to edit existing images; omit them to generate from text. Never send images or mask."
       },
       "PreciseEditImageIdeogram45Response": {
         "description": "Response returned by `POST /v2/image/precise-edit/ideogram-4-5`.\nSynchronous requests (the default) include the edited images in `data`.\nAsynchronous requests omit `data`; poll\n`GET /v2/generations/{generation_id}` with the returned\n`generation_id`.\n",
         "example": {
+          "generation_kind": null,
           "data": [
             {
               "seed": 12345,
@@ -29400,6 +29427,9 @@
           "generation_id": "generation_id"
         },
         "properties": {
+          "generation_kind": {
+            "$ref": "#/components/schemas/GenerationKind"
+          },
           "generation_id": {
             "description": "URL-safe base64 ID of the generation. Use it to poll\n`GET /v2/generations/{generation_id}`.\n",
             "title": "generation_id",
@@ -29419,6 +29449,9 @@
             "type": "integer"
           }
         },
+        "required": [
+          "generation_kind"
+        ],
         "title": "PreciseEditImageIdeogram45Response",
         "type": "object"
       },
@@ -29475,7 +29508,7 @@
           },
           "context_window": {
             "default": "none",
-            "description": "How much of the image being edited the model may see and change.\n`none`, the default, edits the whole image. A large image may come back smaller than it was sent.\n`auto` fits a region around what the `mask` selects and edits only that region, so its detail is kept. It requires a `mask`. A small enough image has no region to fit and is edited as it is.\n`x,y,width,height` names the region explicitly, in the edited image's own pixels with the origin at its top-left corner — for example `1024,512,2048,1536`. The region must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, every pixel outside the region is returned exactly as supplied and the output keeps the image's own width and height.",
+            "description": "How much of the image being edited the model may see and change.\n`none`, the default, edits the whole image. A large image may come back smaller than it was sent.\n`auto` requires a `mask` and automatically selects an appropriate context region around the masked area.\n`x,y,width,height` names the region explicitly, in the edited image's own pixels with the origin at its top-left corner — for example `1024,512,2048,1536`. The region must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, every pixel outside the region is returned exactly as supplied and the output keeps the image's own width and height.",
             "pattern": "^(none|auto|[0-9]+,[0-9]+,[0-9]+,[0-9]+)$",
             "type": "string",
             "x-tool-description": "Omit. Only usable with a file-uploaded image."
@@ -29489,7 +29522,8 @@
               "medium",
               "high"
             ],
-            "type": "string"
+            "type": "string",
+            "x-tool-description": "Omit to use the default, medium. Choose high only when the user asks for top quality or final print output."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -29531,7 +29565,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -29677,7 +29711,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -29823,7 +29857,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -29964,7 +29998,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -30129,7 +30163,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -30293,7 +30327,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -30464,7 +30498,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -30629,7 +30663,7 @@
             "nullable": true,
             "title": "private",
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -31935,7 +31969,7 @@
             "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
             "nullable": true,
             "type": "boolean",
-            "x-tool-description": "Omit/true: private; false: public. Enterprise: always private."
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
           },
           "target_collection_id": {
             "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
@@ -33941,7 +33975,7 @@
         "example": "V_0_3",
         "title": "ModelVersion",
         "type": "string",
-        "x-tool-description": "Model to use: V_0_3 (1.0), V_1_1 (1.1), V_1_5 (2.0), V_2_1 (2a), V_3_0 or V_3_1 (3.0), V_4_0 (4.0), V_4_D (layered design), V_4_LAYOUT2IMAGE (layout to image), or AUTO (server-selected). Experimental models require account access."
+        "x-tool-description": "Model to use: V_1_1 (1.1), V_1_5 (2.0), V_2_1 (2a), V_3_1 (3.0), V_4_0 (4.0), V_4_D (layered design), V_4_LAYOUT2IMAGE (layout to image), or AUTO (server-selected). Experimental models require account access. V_0_3 and V_3_0 are retired and rejected."
       },
       "GetApiProfilesResponse": {
         "example": {
@@ -38456,6 +38490,15 @@
           "very_high"
         ],
         "title": "GenerationQuality",
+        "type": "string"
+      },
+      "GenerationKind": {
+        "description": "The kind of generation identified by generation_id. Both kinds can be polled through GET /v2/generations/{generation_id}.",
+        "enum": [
+          "sampling",
+          "workflow"
+        ],
+        "title": "GenerationKind",
         "type": "string"
       },
       "NanoBanana2AspectRatio": {
