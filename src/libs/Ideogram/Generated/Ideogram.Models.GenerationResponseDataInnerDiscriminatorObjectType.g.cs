@@ -19,6 +19,10 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
+        LayerizedDesignGeneration,
+        /// <summary>
+        ///
+        /// </summary>
         LayerizedImage,
         /// <summary>
         ///
@@ -44,6 +48,7 @@ namespace Ideogram
             {
                 GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration => "image.generation",
                 GenerationResponseDataInnerDiscriminatorObjectType.ImageWithoutPromptOrSeed => "image.without-prompt-or-seed",
+                GenerationResponseDataInnerDiscriminatorObjectType.LayerizedDesignGeneration => "layerized_design.generation",
                 GenerationResponseDataInnerDiscriminatorObjectType.LayerizedImage => "layerized_image",
                 GenerationResponseDataInnerDiscriminatorObjectType.SvgGeneration => "svg.generation",
                 GenerationResponseDataInnerDiscriminatorObjectType.VideoGeneration => "video.generation",
@@ -59,6 +64,7 @@ namespace Ideogram
             {
                 "image.generation" => GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration,
                 "image.without-prompt-or-seed" => GenerationResponseDataInnerDiscriminatorObjectType.ImageWithoutPromptOrSeed,
+                "layerized_design.generation" => GenerationResponseDataInnerDiscriminatorObjectType.LayerizedDesignGeneration,
                 "layerized_image" => GenerationResponseDataInnerDiscriminatorObjectType.LayerizedImage,
                 "svg.generation" => GenerationResponseDataInnerDiscriminatorObjectType.SvgGeneration,
                 "video.generation" => GenerationResponseDataInnerDiscriminatorObjectType.VideoGeneration,

@@ -12,8 +12,8 @@ namespace Ideogram
         /// Returns results directly by default; set `async` or supply a<br/>
         /// `webhook_url` to get a `generation_id` and poll<br/>
         /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` narrows the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `x,y,width,height`, or `auto`<br/>
+        /// `context_window` confines the edit to one region of the image, so a<br/>
+        /// large image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`<br/>
         /// together with a `mask`. The result always keeps the image's own width<br/>
         /// and height.
         /// </summary>
@@ -38,8 +38,8 @@ namespace Ideogram
         /// Returns results directly by default; set `async` or supply a<br/>
         /// `webhook_url` to get a `generation_id` and poll<br/>
         /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` narrows the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `x,y,width,height`, or `auto`<br/>
+        /// `context_window` confines the edit to one region of the image, so a<br/>
+        /// large image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`<br/>
         /// together with a `mask`. The result always keeps the image's own width<br/>
         /// and height.
         /// </summary>
@@ -64,8 +64,8 @@ namespace Ideogram
         /// Returns results directly by default; set `async` or supply a<br/>
         /// `webhook_url` to get a `generation_id` and poll<br/>
         /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` narrows the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `x,y,width,height`, or `auto`<br/>
+        /// `context_window` confines the edit to one region of the image, so a<br/>
+        /// large image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`<br/>
         /// together with a `mask`. The result always keeps the image's own width<br/>
         /// and height.
         /// </summary>
@@ -99,11 +99,11 @@ namespace Ideogram
         /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
         /// </param>
         /// <param name="contextWindow">
-        /// How much of the image being edited the model may see and change.<br/>
+        /// Which region of the image to edit.<br/>
         /// `none`, the default, edits the whole image. A large image may come back smaller than it was sent.<br/>
         /// `auto` requires a `mask` and automatically selects an appropriate context region around the masked area.<br/>
-        /// `x,y,width,height` names the region explicitly, in the edited image's own pixels with the origin at its top-left corner — for example `1024,512,2048,1536`. The region must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.<br/>
-        /// With `auto` or an explicit region, every pixel outside the region is returned exactly as supplied and the output keeps the image's own width and height.<br/>
+        /// `y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.<br/>
+        /// With `auto` or an explicit region, only that region changes and the output keeps the image's own width and height.<br/>
         /// Default Value: none
         /// </param>
         /// <param name="quality">

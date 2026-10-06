@@ -16,7 +16,11 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlock), TypeInfoPropertyName = "LayerizedTextBlock2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlock))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlockVariant2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TextColorSpan>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextColorSpan))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
@@ -38,6 +42,9 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectMimeType), TypeInfoPropertyName = "SvgGenerationObjectMimeType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObject))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObjectObjectType), TypeInfoPropertyName = "VideoObjectObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResultObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResultObjectObjectType), TypeInfoPropertyName = "TextLayerizerResultObjectObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayerizedTextBlock>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockAlignment), TypeInfoPropertyName = "DetectedTextBlockAlignment2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockFormattingItem), TypeInfoPropertyName = "DetectedTextBlockFormattingItem2")]
@@ -46,6 +53,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerDiscriminatorObjectType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlock?), TypeInfoPropertyName = "NullableLayerizedTextBlock2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(float?))]
@@ -58,13 +66,16 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectObjectType?), TypeInfoPropertyName = "NullableSvgGenerationObjectObjectType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectMimeType?), TypeInfoPropertyName = "NullableSvgGenerationObjectMimeType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObjectObjectType?), TypeInfoPropertyName = "NullableVideoObjectObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResultObjectObjectType?), TypeInfoPropertyName = "NullableTextLayerizerResultObjectObjectType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockAlignment?), TypeInfoPropertyName = "NullableDetectedTextBlockAlignment2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockFormattingItem?), TypeInfoPropertyName = "NullableDetectedTextBlockFormattingItem2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockRole?), TypeInfoPropertyName = "NullableDetectedTextBlockRole2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType?), TypeInfoPropertyName = "NullableGenerationResponseDataInnerDiscriminatorObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TextColorSpan>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GenerationResponseDataInner>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlock>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LayerizedTextBlock>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlockFormattingItem>))]
     internal sealed partial class GenerationsSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
@@ -113,6 +124,7 @@ namespace Ideogram
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public static void AddConverters(global::System.Text.Json.JsonSerializerOptions options)
         {
+            options.Converters.Add(new global::Ideogram.JsonConverters.LayerizedTextBlockJsonConverter());
             options.Converters.Add(new global::Ideogram.JsonConverters.GenerationResponseDataInnerJsonConverter());
             options.Converters.Add(new global::Ideogram.JsonConverters.UnixTimestampJsonConverter());
             options.Converters.Add(new LazyEnumJsonConverterFactory());
@@ -167,6 +179,10 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.VideoObjectObjectType)
 
                     || typeToConvert == typeof(global::Ideogram.VideoObjectObjectType?)
+
+                    || typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType)
+
+                    || typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType?)
 
                     || typeToConvert == typeof(global::Ideogram.DetectedTextBlockAlignment)
 
@@ -267,6 +283,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.VideoObjectObjectType?))
                 {
                     return new global::Ideogram.JsonConverters.VideoObjectObjectTypeNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType))
+                {
+                    return new global::Ideogram.JsonConverters.TextLayerizerResultObjectObjectTypeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType?))
+                {
+                    return new global::Ideogram.JsonConverters.TextLayerizerResultObjectObjectTypeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.DetectedTextBlockAlignment))

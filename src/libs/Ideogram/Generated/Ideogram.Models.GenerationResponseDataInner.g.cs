@@ -201,6 +201,44 @@ namespace Ideogram
         public global::Ideogram.LayerizedImageObject PickLayerizedImage() => LayerizedImage is { } value
             ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'LayerizedImage' but the value was {ToString()}.");
+
+        /// <summary>
+        /// One layerized design. Links are available for a limited period of time;<br/>
+        /// if you would like to keep a file, you must download it.
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public global::Ideogram.TextLayerizerResultObject? LayerizedDesignGeneration { get; init; }
+#else
+        public global::Ideogram.TextLayerizerResultObject? LayerizedDesignGeneration { get; }
+#endif
+
+        /// <summary>
+        ///
+        /// </summary>
+#if NET6_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(LayerizedDesignGeneration))]
+#endif
+        public bool IsLayerizedDesignGeneration => LayerizedDesignGeneration != null;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool TryPickLayerizedDesignGeneration(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Ideogram.TextLayerizerResultObject? value)
+        {
+            value = LayerizedDesignGeneration;
+            return IsLayerizedDesignGeneration;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.TextLayerizerResultObject PickLayerizedDesignGeneration() => LayerizedDesignGeneration is { } value
+            ? value
+            : throw new global::System.InvalidOperationException($"Expected union variant 'LayerizedDesignGeneration' but the value was {ToString()}.");
         /// <summary>
         ///
         /// </summary>
@@ -319,13 +357,37 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
+        public static implicit operator GenerationResponseDataInner(global::Ideogram.TextLayerizerResultObject value) => new GenerationResponseDataInner((global::Ideogram.TextLayerizerResultObject?)value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator global::Ideogram.TextLayerizerResultObject?(GenerationResponseDataInner @this) => @this.LayerizedDesignGeneration;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public GenerationResponseDataInner(global::Ideogram.TextLayerizerResultObject? value)
+        {
+            LayerizedDesignGeneration = value;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static GenerationResponseDataInner FromLayerizedDesignGeneration(global::Ideogram.TextLayerizerResultObject? value) => new GenerationResponseDataInner(value);
+
+        /// <summary>
+        ///
+        /// </summary>
         public GenerationResponseDataInner(
             global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType? objectType,
             global::Ideogram.ImageObjectWithoutPromptOrSeed? imageWithoutPromptOrSeed,
             global::Ideogram.SvgGenerationObject? svgGeneration,
             global::Ideogram.ImageGenerationObject? imageGeneration,
             global::Ideogram.VideoObject? videoGeneration,
-            global::Ideogram.LayerizedImageObject? layerizedImage
+            global::Ideogram.LayerizedImageObject? layerizedImage,
+            global::Ideogram.TextLayerizerResultObject? layerizedDesignGeneration
             )
         {
             ObjectType = objectType;
@@ -335,12 +397,14 @@ namespace Ideogram
             ImageGeneration = imageGeneration;
             VideoGeneration = videoGeneration;
             LayerizedImage = layerizedImage;
+            LayerizedDesignGeneration = layerizedDesignGeneration;
         }
 
         /// <summary>
         ///
         /// </summary>
         public object? Object =>
+            LayerizedDesignGeneration as object ??
             LayerizedImage as object ??
             VideoGeneration as object ??
             ImageGeneration as object ??
@@ -356,7 +420,8 @@ namespace Ideogram
             SvgGeneration?.ToString() ??
             ImageGeneration?.ToString() ??
             VideoGeneration?.ToString() ??
-            LayerizedImage?.ToString()
+            LayerizedImage?.ToString() ??
+            LayerizedDesignGeneration?.ToString()
             ;
 
         /// <summary>
@@ -364,7 +429,7 @@ namespace Ideogram
         /// </summary>
         public bool Validate()
         {
-            return IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage || !IsImageWithoutPromptOrSeed && IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && IsVideoGeneration && !IsLayerizedImage || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && IsLayerizedImage;
+            return IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && IsLayerizedDesignGeneration;
         }
 
         /// <summary>
@@ -376,6 +441,7 @@ namespace Ideogram
             global::System.Func<global::Ideogram.ImageGenerationObject, TResult>? imageGeneration = null,
             global::System.Func<global::Ideogram.VideoObject, TResult>? videoGeneration = null,
             global::System.Func<global::Ideogram.LayerizedImageObject, TResult>? layerizedImage = null,
+            global::System.Func<global::Ideogram.TextLayerizerResultObject, TResult>? layerizedDesignGeneration = null,
             bool validate = true)
         {
             if (validate)
@@ -403,6 +469,10 @@ namespace Ideogram
             {
                 return layerizedImage(__value4);
             }
+            else if (LayerizedDesignGeneration is { } __value5 && layerizedDesignGeneration != null)
+            {
+                return layerizedDesignGeneration(__value5);
+            }
 
             return default(TResult);
         }
@@ -420,6 +490,8 @@ namespace Ideogram
             global::System.Action<global::Ideogram.VideoObject>? videoGeneration = null,
 
             global::System.Action<global::Ideogram.LayerizedImageObject>? layerizedImage = null,
+
+            global::System.Action<global::Ideogram.TextLayerizerResultObject>? layerizedDesignGeneration = null,
             bool validate = true)
         {
             if (validate)
@@ -446,6 +518,10 @@ namespace Ideogram
             else if (LayerizedImage is { } __value4)
             {
                 layerizedImage?.Invoke(__value4);
+            }
+            else if (LayerizedDesignGeneration is { } __value5)
+            {
+                layerizedDesignGeneration?.Invoke(__value5);
             }
         }
 
@@ -458,6 +534,7 @@ namespace Ideogram
             global::System.Action<global::Ideogram.ImageGenerationObject>? imageGeneration = null,
             global::System.Action<global::Ideogram.VideoObject>? videoGeneration = null,
             global::System.Action<global::Ideogram.LayerizedImageObject>? layerizedImage = null,
+            global::System.Action<global::Ideogram.TextLayerizerResultObject>? layerizedDesignGeneration = null,
             bool validate = true)
         {
             if (validate)
@@ -484,6 +561,10 @@ namespace Ideogram
             else if (LayerizedImage is { } __value4)
             {
                 layerizedImage?.Invoke(__value4);
+            }
+            else if (LayerizedDesignGeneration is { } __value5)
+            {
+                layerizedDesignGeneration?.Invoke(__value5);
             }
         }
 
@@ -504,6 +585,8 @@ namespace Ideogram
                 typeof(global::Ideogram.VideoObject),
                 LayerizedImage,
                 typeof(global::Ideogram.LayerizedImageObject),
+                LayerizedDesignGeneration,
+                typeof(global::Ideogram.TextLayerizerResultObject),
             };
             const int offset = unchecked((int)2166136261);
             const int prime = 16777619;
@@ -524,7 +607,8 @@ namespace Ideogram
                 global::System.Collections.Generic.EqualityComparer<global::Ideogram.SvgGenerationObject?>.Default.Equals(SvgGeneration, other.SvgGeneration) &&
                 global::System.Collections.Generic.EqualityComparer<global::Ideogram.ImageGenerationObject?>.Default.Equals(ImageGeneration, other.ImageGeneration) &&
                 global::System.Collections.Generic.EqualityComparer<global::Ideogram.VideoObject?>.Default.Equals(VideoGeneration, other.VideoGeneration) &&
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.LayerizedImageObject?>.Default.Equals(LayerizedImage, other.LayerizedImage)
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.LayerizedImageObject?>.Default.Equals(LayerizedImage, other.LayerizedImage) &&
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.TextLayerizerResultObject?>.Default.Equals(LayerizedDesignGeneration, other.LayerizedDesignGeneration)
                 ;
         }
 

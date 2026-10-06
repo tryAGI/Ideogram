@@ -3,11 +3,11 @@
 
 namespace Ideogram
 {
-    public partial class ImagesPreciseEditClient
+    public partial class EditWorkflowClient
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostPreciseEditImageV2Ideogram45SecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostTextLayerizerSecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,40 +21,35 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostPreciseEditImageV2Ideogram45SecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostTextLayerizerSecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostPreciseEditImageV2Ideogram45SecurityRequirement0,
+            {                s_PostTextLayerizerSecurityRequirement0,
             };
-        partial void PreparePostPreciseEditImageV2Ideogram45Arguments(
+        partial void PreparePostTextLayerizerArguments(
             global::System.Net.Http.HttpClient httpClient,
             ref bool? dryRun,
-            global::Ideogram.PreciseEditImageIdeogram45Request request);
-        partial void PreparePostPreciseEditImageV2Ideogram45Request(
+            global::Ideogram.TextLayerizerRequest request);
+        partial void PreparePostTextLayerizerRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             bool? dryRun,
-            global::Ideogram.PreciseEditImageIdeogram45Request request);
-        partial void ProcessPostPreciseEditImageV2Ideogram45Response(
+            global::Ideogram.TextLayerizerRequest request);
+        partial void ProcessPostTextLayerizerResponse(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostPreciseEditImageV2Ideogram45ResponseContent(
+        partial void ProcessPostTextLayerizerResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Precise edit with Ideogram 4.5<br/>
-        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
-        /// exact width and height. Upload the image as `image` using<br/>
-        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
-        /// Returns results directly by default; set `async` or supply a<br/>
-        /// `webhook_url` to get a `generation_id` and poll<br/>
-        /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` confines the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`<br/>
-        /// together with a `mask`. The result always keeps the image's own width<br/>
-        /// and height.
+        /// Text Layerizer<br/>
+        /// Turns a flat image into an editable design asynchronously: detected text<br/>
+        /// is returned as positioned text blocks with matched fonts, sizes, and<br/>
+        /// colors, alongside a text-free base image and a standalone HTML page of<br/>
+        /// the editable design. Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -63,14 +58,14 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.PreciseEditImageIdeogram45Response> PostPreciseEditImageV2Ideogram45Async(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.TextLayerizerResponse> PostTextLayerizerAsync(
 
-            global::Ideogram.PreciseEditImageIdeogram45Request request,
+            global::Ideogram.TextLayerizerRequest request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await PostPreciseEditImageV2Ideogram45AsResponseAsync(
+            var __response = await PostTextLayerizerAsResponseAsync(
 
                 request: request,
                 dryRun: dryRun,
@@ -81,17 +76,12 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Precise edit with Ideogram 4.5<br/>
-        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
-        /// exact width and height. Upload the image as `image` using<br/>
-        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
-        /// Returns results directly by default; set `async` or supply a<br/>
-        /// `webhook_url` to get a `generation_id` and poll<br/>
-        /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` confines the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`<br/>
-        /// together with a `mask`. The result always keeps the image's own width<br/>
-        /// and height.
+        /// Text Layerizer<br/>
+        /// Turns a flat image into an editable design asynchronously: detected text<br/>
+        /// is returned as positioned text blocks with matched fonts, sizes, and<br/>
+        /// colors, alongside a text-free base image and a standalone HTML page of<br/>
+        /// the editable design. Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -100,9 +90,9 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PreciseEditImageIdeogram45Response>> PostPreciseEditImageV2Ideogram45AsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.TextLayerizerResponse>> PostTextLayerizerAsResponseAsync(
 
-            global::Ideogram.PreciseEditImageIdeogram45Request request,
+            global::Ideogram.TextLayerizerRequest request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -111,7 +101,7 @@ namespace Ideogram
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostPreciseEditImageV2Ideogram45Arguments(
+            PreparePostTextLayerizerArguments(
                 httpClient: HttpClient,
                 dryRun: ref dryRun,
                 request: request);
@@ -119,8 +109,8 @@ namespace Ideogram
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostPreciseEditImageV2Ideogram45SecurityRequirements,
-                operationName: "PostPreciseEditImageV2Ideogram45Async");
+                securityRequirements: s_PostTextLayerizerSecurityRequirements,
+                operationName: "PostTextLayerizerAsync");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -140,7 +130,7 @@ namespace Ideogram
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/precise-edit/ideogram-4-5",
+                                path: "/v2/tool/text-layerizer",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -176,18 +166,6 @@ namespace Ideogram
             }
 
                             var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
-                            __httpRequestContent.Add(
-                                content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
-                                name: "\"prompt\"");
-
-                            if (request.ImageAssetIdentifier != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.ImageAssetIdentifier.ToJson(JsonSerializerContext)),
-                                    name: "\"image_asset_identifier\"");
-
-                            }
                             if (request.Image != default)
                             {
 
@@ -230,88 +208,20 @@ namespace Ideogram
                                 }
 
                             }
-                            if (request.ReferenceImageAssetIdentifiers != default)
+                            if (request.ImageAssetIdentifier != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent($"[{string.Join(",", global::System.Linq.Enumerable.Select(request.ReferenceImageAssetIdentifiers!, x => x.ToJson(JsonSerializerContext)))}]"),
-                                    name: "\"reference_image_asset_identifiers\"");
+                                    content: new global::System.Net.Http.StringContent(request.ImageAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"image_asset_identifier\"");
 
                             }
-                            if (request.ReferenceImages != default)
-                            {
-
-                                for (var __iReferenceImages = 0; __iReferenceImages < request.ReferenceImages.Count; __iReferenceImages++)
-                                {
-                                    var __contentReferenceImages = new global::System.Net.Http.ByteArrayContent(request.ReferenceImages[__iReferenceImages]);
-                                __contentReferenceImages.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
-                                    __httpRequestContent.Add(
-                                        content: __contentReferenceImages,
-                                        name: "\"reference_images\"",
-                                        fileName: $"\"file{__iReferenceImages}.bin\"");
-                                    if (__contentReferenceImages.Headers.ContentDisposition != null)
-                                    {
-                                        __contentReferenceImages.Headers.ContentDisposition.FileNameStar = null;
-                                    }
-                                }
-
-                            }
-                            if (request.Mask != default)
-                            {
-
-                                var __contentMask = new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>());
-                                __contentMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
-                                    request.Maskname is null
-                                        ? "application/octet-stream"
-                                        : (global::System.IO.Path.GetExtension(request.Maskname) ?? string.Empty).ToLowerInvariant() switch
-                                        {
-                                            ".aac" => "audio/aac",
-                                            ".flac" => "audio/flac",
-                                            ".gif" => "image/gif",
-                                            ".jpeg" => "image/jpeg",
-                                            ".jpg" => "image/jpeg",
-                                            ".json" => "application/json",
-                                            ".m4a" => "audio/mp4",
-                                            ".mp3" => "audio/mpeg",
-                                            ".mp4" => "video/mp4",
-                                            ".mpeg" => "audio/mpeg",
-                                            ".mpga" => "audio/mpeg",
-                                            ".oga" => "audio/ogg",
-                                            ".ogg" => "audio/ogg",
-                                            ".opus" => "audio/ogg",
-                                            ".pdf" => "application/pdf",
-                                            ".png" => "image/png",
-                                            ".txt" => "text/plain",
-                                            ".wav" => "audio/wav",
-                                            ".weba" => "audio/webm",
-                                            ".webm" => "video/webm",
-                                            ".webp" => "image/webp",
-                                            _ => "application/octet-stream",
-                                        });
-                                __httpRequestContent.Add(
-                                    content: __contentMask,
-                                    name: "\"mask\"",
-                                    fileName: request.Maskname != null ? $"\"{request.Maskname}\"" : string.Empty);
-                                if (__contentMask.Headers.ContentDisposition != null)
-                                {
-                                    __contentMask.Headers.ContentDisposition.FileNameStar = null;
-                                }
-
-                            }
-                            if (request.ContextWindow != default)
+                            if (request.Prompt != default)
                             {
 
                                 __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.ContextWindow ?? string.Empty),
-                                    name: "\"context_window\"");
-
-                            }
-                            if (request.Quality != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
-                                    name: "\"quality\"");
+                                    content: new global::System.Net.Http.StringContent(request.Prompt ?? string.Empty),
+                                    name: "\"prompt\"");
 
                             }
                             if (request.Seed != default)
@@ -322,36 +232,22 @@ namespace Ideogram
                                     name: "\"seed\"");
 
                             }
-                            if (request.NumImages != default)
+                            if (request.FontCandidateFiles != default)
                             {
 
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
-                                    name: "\"num_images\"");
-
-                            }
-                            if (request.EnableCopyrightDetection != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.EnableCopyrightDetection, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
-                                    name: "\"enable_copyright_detection\"");
-
-                            }
-                            if (request.Async != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Async, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
-                                    name: "\"async\"");
-
-                            }
-                            if (request.WebhookUrl != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(request.WebhookUrl ?? string.Empty),
-                                    name: "\"webhook_url\"");
+                                for (var __iFontCandidateFiles = 0; __iFontCandidateFiles < request.FontCandidateFiles.Count; __iFontCandidateFiles++)
+                                {
+                                    var __contentFontCandidateFiles = new global::System.Net.Http.ByteArrayContent(request.FontCandidateFiles[__iFontCandidateFiles]);
+                                __contentFontCandidateFiles.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+                                    __httpRequestContent.Add(
+                                        content: __contentFontCandidateFiles,
+                                        name: "\"font_candidate_files\"",
+                                        fileName: $"\"file{__iFontCandidateFiles}.bin\"");
+                                    if (__contentFontCandidateFiles.Headers.ContentDisposition != null)
+                                    {
+                                        __contentFontCandidateFiles.Headers.ContentDisposition.FileNameStar = null;
+                                    }
+                                }
 
                             }
                             if (request.Private != default)
@@ -370,6 +266,14 @@ namespace Ideogram
                                     name: "\"target_collection_id\"");
 
                             }
+                            if (request.WebhookUrl != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.WebhookUrl ?? string.Empty),
+                                    name: "\"webhook_url\"");
+
+                            }
 
                             __httpRequest.Content = __httpRequestContent;
 
@@ -381,7 +285,7 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostPreciseEditImageV2Ideogram45Request(
+                PreparePostTextLayerizerRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     dryRun: dryRun,
@@ -402,9 +306,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "PostTextLayerizer",
+                                methodName: "PostTextLayerizerAsync",
+                                pathTemplate: "\"/v2/tool/text-layerizer\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -436,9 +340,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "PostTextLayerizer",
+                                methodName: "PostTextLayerizerAsync",
+                                pathTemplate: "\"/v2/tool/text-layerizer\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -477,9 +381,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "PostTextLayerizer",
+                                methodName: "PostTextLayerizerAsync",
+                                pathTemplate: "\"/v2/tool/text-layerizer\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -517,7 +421,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostPreciseEditImageV2Ideogram45Response(
+                ProcessPostTextLayerizerResponse(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -525,9 +429,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "PostTextLayerizer",
+                                methodName: "PostTextLayerizerAsync",
+                                pathTemplate: "\"/v2/tool/text-layerizer\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -547,9 +451,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostPreciseEditImageV2Ideogram45",
-                                methodName: "PostPreciseEditImageV2Ideogram45Async",
-                                pathTemplate: "\"/v2/image/precise-edit/ideogram-4-5\"",
+                                operationId: "PostTextLayerizer",
+                                methodName: "PostTextLayerizerAsync",
+                                pathTemplate: "\"/v2/tool/text-layerizer\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -628,7 +532,7 @@ namespace Ideogram
                                         h => h.Key,
                                         h => h.Value));
                             }
-                            // Insufficient credits or quota.
+                            // Insufficient credits.
                             if ((int)__response.StatusCode == 402)
                             {
                                 string? __content_402 = null;
@@ -666,32 +570,64 @@ namespace Ideogram
                                         h => h.Value));
                             }
                             //
-                            if ((int)__response.StatusCode == 422)
+                            if ((int)__response.StatusCode == 403)
                             {
-                                string? __content_422 = null;
-                                global::System.Exception? __exception_422 = null;
+                                string? __content_403 = null;
+                                global::System.Exception? __exception_403 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
                                     }
                                     else
                                     {
-                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_403 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_422 = __ex;
+                                    __exception_403 = __ex;
                                 }
 
 
                                 throw global::Ideogram.ApiException.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_422,
-                                    responseBody: __content_422,
+                                    message: __content_403 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_403,
+                                    responseBody: __content_403,
+                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
+                                        __response.Headers,
+                                        h => h.Key,
+                                        h => h.Value));
+                            }
+                            //
+                            if ((int)__response.StatusCode == 404)
+                            {
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
+                                try
+                                {
+                                    if (__effectiveReadResponseAsString)
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                    else
+                                    {
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                    }
+                                }
+                                catch (global::System.Exception __ex)
+                                {
+                                    __exception_404 = __ex;
+                                }
+
+
+                                throw global::Ideogram.ApiException.Create(
+                                    statusCode: __response.StatusCode,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -729,38 +665,6 @@ namespace Ideogram
                                     innerException: __exception_429,
                                     responseBody: __content_429,
                                     responseObject: __value_429,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            //
-                            if ((int)__response.StatusCode == 500)
-                            {
-                                string? __content_500 = null;
-                                global::System.Exception? __exception_500 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                    }
-                                    else
-                                    {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_500 = __ex;
-                                }
-
-
-                                throw global::Ideogram.ApiException.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_500,
-                                    responseBody: __content_500,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -811,7 +715,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostPreciseEditImageV2Ideogram45ResponseContent(
+                                ProcessPostTextLayerizerResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -820,9 +724,9 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Ideogram.PreciseEditImageIdeogram45Response.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.TextLayerizerResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PreciseEditImageIdeogram45Response>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.TextLayerizerResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -852,9 +756,9 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Ideogram.PreciseEditImageIdeogram45Response.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.TextLayerizerResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.PreciseEditImageIdeogram45Response>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.TextLayerizerResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -895,73 +799,41 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Precise edit with Ideogram 4.5<br/>
-        /// Edit an image with Ideogram 4.5 and get the result back at that image's<br/>
-        /// exact width and height. Upload the image as `image` using<br/>
-        /// `multipart/form-data`, with optional `reference_images` and a `mask`.<br/>
-        /// Returns results directly by default; set `async` or supply a<br/>
-        /// `webhook_url` to get a `generation_id` and poll<br/>
-        /// `GET /v2/generations/{generation_id}`.<br/>
-        /// `context_window` confines the edit to one region of the image, so a<br/>
-        /// large image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`<br/>
-        /// together with a `mask`. The result always keeps the image's own width<br/>
-        /// and height.
+        /// Text Layerizer<br/>
+        /// Turns a flat image into an editable design asynchronously: detected text<br/>
+        /// is returned as positioned text blocks with matched fonts, sizes, and<br/>
+        /// colors, alongside a text-free base image and a standalone HTML page of<br/>
+        /// the editable design. Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
-        /// <param name="prompt">
-        /// The edit instruction, in natural language or as a structured JSON<br/>
-        /// prompt. Natural language is automatically converted into a<br/>
-        /// structured prompt; valid structured JSON is used as is.
-        /// </param>
-        /// <param name="imageAssetIdentifier">
-        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.
-        /// </param>
         /// <param name="image">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// JPEG, PNG or WEBP source; at most 50 MB. Multipart only.
         /// </param>
         /// <param name="imagename">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// JPEG, PNG or WEBP source; at most 50 MB. Multipart only.
         /// </param>
-        /// <param name="referenceImageAssetIdentifiers">
-        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.
+        /// <param name="imageAssetIdentifier">
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
-        /// <param name="referenceImages">
-        /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A request with a `mask` can include at most three, because the mask takes up one reference slot.
-        /// </param>
-        /// <param name="mask">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
-        /// </param>
-        /// <param name="maskname">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
-        /// </param>
-        /// <param name="contextWindow">
-        /// Which region of the image to edit.<br/>
-        /// `none`, the default, edits the whole image. A large image may come back smaller than it was sent.<br/>
-        /// `auto` requires a `mask` and automatically selects an appropriate context region around the masked area.<br/>
-        /// `y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.<br/>
-        /// With `auto` or an explicit region, only that region changes and the output keeps the image's own width and height.<br/>
-        /// Default Value: none
-        /// </param>
-        /// <param name="quality">
-        /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
-        /// Default Value: medium
+        /// <param name="prompt">
+        /// A description of the image, used to guide text detection. When omitted, detection runs on the image alone.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
         /// Example: 12345
         /// </param>
-        /// <param name="numImages">
-        /// The number of images to generate.<br/>
-        /// Default Value: 1
+        /// <param name="fontCandidateFiles">
+        /// Candidate font files to make available for text style matching and to embed in the standalone HTML page. Supported formats .ttf, .otf, .woff, .woff2 (max 5 MB each, at most 5 files). Multipart only. You are responsible for holding the rights to embed and redistribute the fonts you upload.
         /// </param>
-        /// <param name="enableCopyrightDetection">
-        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
+        /// <param name="private">
+        /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
-        /// <param name="async">
-        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
-        /// Default Value: false
+        /// <param name="targetCollectionId">
+        /// URL-safe base64 ID of a writable destination collection.
         /// </param>
         /// <param name="webhookUrl">
         /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
@@ -974,59 +846,37 @@ namespace Ideogram
         /// private and loopback hosts and the cloud metadata service are rejected.<br/>
         /// Example: https://api.example.com/webhooks/ideogram
         /// </param>
-        /// <param name="private">
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </param>
-        /// <param name="targetCollectionId">
-        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
-        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.PreciseEditImageIdeogram45Response> PostPreciseEditImageV2Ideogram45Async(
-            string prompt,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.TextLayerizerResponse> PostTextLayerizerAsync(
             bool? dryRun = default,
-            global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
             byte[]? image = default,
             string? imagename = default,
-            global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers = default,
-            global::System.Collections.Generic.IList<byte[]>? referenceImages = default,
-            byte[]? mask = default,
-            string? maskname = default,
-            string? contextWindow = default,
-            global::Ideogram.PreciseEditImageIdeogram45RequestQuality? quality = default,
+            global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
+            string? prompt = default,
             int? seed = default,
-            int? numImages = default,
-            bool? enableCopyrightDetection = default,
-            bool? async = default,
-            string? webhookUrl = default,
+            global::System.Collections.Generic.IList<byte[]>? fontCandidateFiles = default,
             bool? @private = default,
             string? targetCollectionId = default,
+            string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.PreciseEditImageIdeogram45Request
+            var __request = new global::Ideogram.TextLayerizerRequest
             {
-                Prompt = prompt,
-                ImageAssetIdentifier = imageAssetIdentifier,
                 Image = image,
                 Imagename = imagename,
-                ReferenceImageAssetIdentifiers = referenceImageAssetIdentifiers,
-                ReferenceImages = referenceImages,
-                Mask = mask,
-                Maskname = maskname,
-                ContextWindow = contextWindow,
-                Quality = quality,
+                ImageAssetIdentifier = imageAssetIdentifier,
+                Prompt = prompt,
                 Seed = seed,
-                NumImages = numImages,
-                EnableCopyrightDetection = enableCopyrightDetection,
-                Async = async,
-                WebhookUrl = webhookUrl,
+                FontCandidateFiles = fontCandidateFiles,
                 Private = @private,
                 TargetCollectionId = targetCollectionId,
+                WebhookUrl = webhookUrl,
             };
 
-            return await PostPreciseEditImageV2Ideogram45Async(
+            return await PostTextLayerizerAsync(
                 dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,
