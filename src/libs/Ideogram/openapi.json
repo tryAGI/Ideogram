@@ -15078,6 +15078,26 @@
         "title": "PriceQualifier",
         "type": "string"
       },
+      "LayerizedTextBlock": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/DetectedTextBlock"
+          },
+          {
+            "properties": {
+              "spans": {
+                "description": "The block's colour runs in reading order. Present, with at least one\nrun, whenever `color` is set; concatenating the runs' `text` reproduces\nthe block's `text`. `color` reports the dominant colour.\n",
+                "items": {
+                  "$ref": "#/components/schemas/TextColorSpan"
+                },
+                "nullable": true,
+                "type": "array"
+              }
+            },
+            "type": "object"
+          }
+        ]
+      },
       "GenerateImageRequestV4": {
         "description": "Request body for Ideogram 4.0 image generation. Supply exactly one of\n`text_prompt` or `json_prompt`. When `text_prompt` is supplied,\nmagic-prompt is applied automatically. When `json_prompt` is supplied,\nmagic-prompt is skipped and the structured prompt is consumed\ndirectly.\n",
         "properties": {
@@ -29276,7 +29296,7 @@
             "example": "2048x2048",
             "nullable": true,
             "type": "string",
-            "x-tool-description": "The output shape; this operation has no resolution or aspect_ratio field. Omit for auto. Without image_asset_identifiers, an exact size must be one of: 2048x2048, 1440x2880, 2880x1440, 1664x2496, 2496x1664, 1792x2240, 2240x1792, 1440x2560, 2560x1440, 1600x2560, 2560x1600, 1728x2304, 2304x1728, 1296x3168, 3168x1296, 1152x2944, 2944x1152, 1248x3328, 3328x1248, 1280x3072, 3072x1280, 1024x3072, 3072x1024, 1024x1024, 896x1120, 1120x896, 864x1152, 1152x864, 832x1248, 1248x832, 800x1280, 1280x800, 720x1280, 1280x720, 720x1440, 1440x720; pick the one closest to the requested aspect ratio. With image_asset_identifiers, \"source\" keeps the first image's size, and an exact WIDTHxHEIGHT (sides multiples of 32 and at least 256px, at most 2048x2048 total pixels, ratio up to 6:1) reshapes it.",
+            "x-tool-description": "The output shape; this operation has no resolution or aspect_ratio field. Omit for auto, which renders at 2K. Without image_asset_identifiers, use the 2K size closest to the requested aspect ratio: 2048x2048 (1:1), 1792x2240 (4:5), 2240x1792 (5:4), 1728x2304 (3:4), 2304x1728 (4:3), 1664x2496 (2:3), 2496x1664 (3:2), 1440x2560 (9:16), 2560x1440 (16:9), 1600x2560 (5:8), 2560x1600 (8:5), 1440x2880 (1:2), 2880x1440 (2:1), 1280x3072 (5:12), 3072x1280 (12:5), 1248x3328 (3:8), 3328x1248 (8:3), 1152x2944 (9:23), 2944x1152 (23:9), 1296x3168 (9:22), 3168x1296 (22:9), 1024x3072 (1:3), 3072x1024 (3:1). Use a 1K size (1024x1024, 896x1120, 1120x896, 864x1152, 1152x864, 832x1248, 1248x832, 800x1280, 1280x800, 720x1280, 1280x720, 720x1440, 1440x720) only when the user asks for a smaller image. With image_asset_identifiers, \"source\" keeps the first image's size, and an exact WIDTHxHEIGHT (sides multiples of 32 and at least 256px, at most 2048x2048 total pixels, ratio up to 6:1) reshapes it.",
             "x-playground-field": {
               "label": "Size",
               "control": "select",
@@ -29305,7 +29325,7 @@
               "high"
             ],
             "type": "string",
-            "x-tool-description": "Omit to use the default (medium with source images, high without). Choose high for an edit only when the user asks for top quality or final print output.",
+            "x-tool-description": "Always set to medium. Do not choose high, low, or very_low, even for final or print output.",
             "x-playground-field": {
               "label": "Quality",
               "order": 3,
@@ -29523,7 +29543,7 @@
               "high"
             ],
             "type": "string",
-            "x-tool-description": "Omit to use the default, medium. Choose high only when the user asks for top quality or final print output."
+            "x-tool-description": "Always set to medium. Do not choose high, low, or very_low, even for final or print output."
           },
           "seed": {
             "description": "Random seed. Set for reproducible generation.",
@@ -38645,6 +38665,30 @@
           }
         },
         "title": "MiniAppArtwork",
+        "type": "object"
+      },
+      "TextColorSpan": {
+        "description": "One run of characters within a text block that shares a single colour. A block\nwhose letters are individually coloured returns one span per letter; a block in a\nsingle colour returns one span covering all of it. Concatenating `text` across a\nblock's spans in order reproduces the block's full text.\n",
+        "properties": {
+          "text": {
+            "description": "The characters in this run.",
+            "example": "T",
+            "title": "text",
+            "type": "string"
+          },
+          "color": {
+            "description": "Hex colour for this run.",
+            "example": "#F4ACC4",
+            "pattern": "^#[0-9A-Fa-f]{6}([0-9A-Fa-f]{2})?$",
+            "title": "color",
+            "type": "string"
+          }
+        },
+        "required": [
+          "color",
+          "text"
+        ],
+        "title": "TextColorSpan",
         "type": "object"
       },
       "postGenerateDesignV4_200_response": {
