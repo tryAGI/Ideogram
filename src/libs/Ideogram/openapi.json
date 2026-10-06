@@ -9703,7 +9703,7 @@
     },
     "/v2/image/precise-edit/ideogram-4-5": {
       "post": {
-        "description": "Edit an image with Ideogram 4.5 and get the result back at that image's\nexact width and height. Upload the image as `image` using\n`multipart/form-data`, with optional `reference_images` and a `mask`.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n\n`context_window` narrows the edit to one region of the image, so a\nlarge image keeps its detail: pass `x,y,width,height`, or `auto`\ntogether with a `mask`. The result always keeps the image's own width\nand height.\n",
+        "description": "Edit an image with Ideogram 4.5 and get the result back at that image's\nexact width and height. Upload the image as `image` using\n`multipart/form-data`, with optional `reference_images` and a `mask`.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n\n`context_window` confines the edit to one region of the image, so a\nlarge image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`\ntogether with a `mask`. The result always keeps the image's own width\nand height.\n",
         "operationId": "post_precise_edit_image_v2_ideogram45",
         "parameters": [
           {
@@ -13519,6 +13519,98 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
+    "/v2/tool/text-layerizer": {
+      "post": {
+        "description": "Turns a flat image into an editable design asynchronously: detected text\nis returned as positioned text blocks with matched fonts, sizes, and\ncolors, alongside a text-free base image and a standalone HTML page of\nthe editable design. Returns a `generation_id`; poll\n`GET /v2/generations/{generation_id}` or supply a `webhook_url`.",
+        "operationId": "post_text_layerizer",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-tool-description": "Validate and quote only; no generation, storage, billing, or safety review."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/TextLayerizerRequest"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextLayerizerRequest"
+              }
+            }
+          },
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextLayerizerResponse"
+                }
+              }
+            },
+            "description": "Layerization accepted; dry runs return the shared PriceQuote response."
+          },
+          "400": {
+            "description": "Invalid source image, font file, or input combination."
+          },
+          "401": {
+            "description": "Authentication required."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits."
+          },
+          "403": {
+            "description": "Access denied."
+          },
+          "404": {
+            "description": "Source not found."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "503": {
+            "description": "Layerization is unavailable."
+          }
+        },
+        "summary": "Text Layerizer",
+        "tags": [
+          "edit-workflow"
+        ],
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
+      }
+    },
     "/v2/tool/vectorizer": {
       "post": {
         "description": "Converts an image to SVG asynchronously.",
@@ -15085,6 +15177,11 @@
           },
           {
             "properties": {
+              "layer_id": {
+                "description": "Identifier of this block's layer in the page at `html_url`; pass it to the page's editing API.",
+                "example": "text-0",
+                "type": "string"
+              },
               "spans": {
                 "description": "The block's colour runs in reading order. Present, with at least one\nrun, whenever `color` is set; concatenating the runs' `text` reproduces\nthe block's `text`. `color` reports the dominant colour.\n",
                 "items": {
@@ -15094,9 +15191,13 @@
                 "type": "array"
               }
             },
+            "required": [
+              "layer_id"
+            ],
             "type": "object"
           }
-        ]
+        ],
+        "title": "LayerizedTextBlock"
       },
       "GenerateImageRequestV4": {
         "description": "Request body for Ideogram 4.0 image generation. Supply exactly one of\n`text_prompt` or `json_prompt`. When `text_prompt` is supplied,\nmagic-prompt is applied automatically. When `json_prompt` is supplied,\nmagic-prompt is skipped and the structured prompt is consumed\ndirectly.\n",
@@ -24803,6 +24904,78 @@
         },
         "type": "object"
       },
+      "TextLayerizerResponse": {
+        "example": {
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 generation ID.",
+            "title": "generation_id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "generation_id"
+        ],
+        "title": "TextLayerizerResponse",
+        "type": "object"
+      },
+      "TextLayerizerRequest": {
+        "description": "A request to layerize the text in one image. Provide exactly one of\n`image` or `image_asset_identifier`.\n",
+        "properties": {
+          "image": {
+            "description": "JPEG, PNG or WEBP source; at most 50 MB. Multipart only.",
+            "format": "binary",
+            "type": "string"
+          },
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "prompt": {
+            "description": "A description of the image, used to guide text detection. When omitted, detection runs on the image alone.",
+            "maxLength": 10000,
+            "nullable": true,
+            "type": "string"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer",
+            "x-tool-description": "Set for reproducible generation."
+          },
+          "font_candidate_files": {
+            "description": "Candidate font files to make available for text style matching and to embed in the standalone HTML page. Supported formats .ttf, .otf, .woff, .woff2 (max 5 MB each, at most 5 files). Multipart only. You are responsible for holding the rights to embed and redistribute the fonts you upload.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 5,
+            "type": "array"
+          },
+          "private": {
+            "description": "Outputs are private by default. Enterprise outputs are always private.",
+            "type": "boolean"
+          },
+          "target_collection_id": {
+            "description": "URL-safe base64 ID of a writable destination collection.",
+            "type": "string"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string",
+            "x-tool-description": "Signed completion callback; public HTTPS only (no private/internal hosts)."
+          }
+        },
+        "type": "object"
+      },
       "AdResizerResponse": {
         "description": "Acknowledgement that the ad resize was accepted. Poll\n`GET /v2/generations/{generation_id}` for status and results.\n",
         "example": {
@@ -29528,7 +29701,7 @@
           },
           "context_window": {
             "default": "none",
-            "description": "How much of the image being edited the model may see and change.\n`none`, the default, edits the whole image. A large image may come back smaller than it was sent.\n`auto` requires a `mask` and automatically selects an appropriate context region around the masked area.\n`x,y,width,height` names the region explicitly, in the edited image's own pixels with the origin at its top-left corner — for example `1024,512,2048,1536`. The region must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, every pixel outside the region is returned exactly as supplied and the output keeps the image's own width and height.",
+            "description": "Which region of the image to edit.\n`none`, the default, edits the whole image. A large image may come back smaller than it was sent.\n`auto` requires a `mask` and automatically selects an appropriate context region around the masked area.\n`y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, only that region changes and the output keeps the image's own width and height.",
             "pattern": "^(none|auto|[0-9]+,[0-9]+,[0-9]+,[0-9]+)$",
             "type": "string",
             "x-tool-description": "Omit. Only usable with a file-uploaded image."
@@ -37943,6 +38116,76 @@
         "title": "VideoObject",
         "type": "object"
       },
+      "TextLayerizerResultObject": {
+        "description": "One layerized design. Links are available for a limited period of time;\nif you would like to keep a file, you must download it.\n",
+        "properties": {
+          "object_type": {
+            "enum": [
+              "layerized_design.generation"
+            ],
+            "title": "object_type",
+            "type": "string"
+          },
+          "url": {
+            "description": "Signed link to the design image with its text intact. Empty when the image did not pass safety checks.",
+            "format": "uri",
+            "nullable": true,
+            "title": "url",
+            "type": "string"
+          },
+          "base_image_url": {
+            "description": "Signed link to the base image with all detected text removed. Empty when the image did not pass safety checks.",
+            "format": "uri",
+            "nullable": true,
+            "title": "base_image_url",
+            "type": "string"
+          },
+          "resolution": {
+            "description": "The resolution of the design, formatted as \"WIDTHxHEIGHT\".",
+            "example": "1024x1024",
+            "title": "resolution",
+            "type": "string"
+          },
+          "is_image_safe": {
+            "description": "Whether the image passed safety checks. If false, the links are empty.",
+            "title": "is_image_safe",
+            "type": "boolean"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer",
+            "x-tool-description": "Set for reproducible generation."
+          },
+          "text_blocks": {
+            "description": "Flat list of detected text regions in the design.",
+            "items": {
+              "$ref": "#/components/schemas/LayerizedTextBlock"
+            },
+            "title": "text_blocks",
+            "type": "array"
+          },
+          "html_url": {
+            "description": "Signed link to a self-contained HTML page displaying the editable\ndesign, including curved text, gradients, outlines, and shadows. The\nrenderer, images, and fonts are embedded in the page, so it keeps\nworking offline once downloaded; the link itself expires after 24\nhours. Uploaded `font_candidate_files` are embedded as supplied, so\nredistributing the page is subject to those fonts' licenses. Empty\nwhen the image did not pass safety checks or the page could not be\nbuilt.\n\nThe page exposes one editing API for every text layer, whether it\nis drawn as HTML or on a canvas. Each layer is addressed by its\n`text_blocks[].layer_id`. Scripts in the page can call\n`window.layerize` (`ready`, `getTextLayers()`, `setText(id, text)`,\n`update(id, patch)`, `toJSON()`, `toPNG()`); a parent page that\nembeds it in an iframe sends `postMessage` requests such as\n`{\"type\": \"layerize:set-text\", \"id\": \"text-0\", \"text\": \"Hello\"}`\nand receives `layerize:ready`, `layerize:updated`, and\n`layerize:error` replies. The page is served sandboxed with an\nopaque origin, so it cannot read cookies or storage of the site\nthat embeds it.\n",
+            "format": "uri",
+            "nullable": true,
+            "title": "html_url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "is_image_safe",
+          "object_type",
+          "resolution",
+          "seed",
+          "text_blocks"
+        ],
+        "title": "TextLayerizerResultObject",
+        "type": "object"
+      },
       "LayeredAssetTextShadow": {
         "description": "Single CSS shadow for V4 vector text. Used by text_shadows and box_shadow. offset_x, offset_y, and blur are in px.",
         "example": {
@@ -38729,7 +38972,8 @@
             "svg.generation": "#/components/schemas/SvgGenerationObject",
             "image.generation": "#/components/schemas/ImageGenerationObject",
             "video.generation": "#/components/schemas/VideoObject",
-            "layerized_image": "#/components/schemas/LayerizedImageObject"
+            "layerized_image": "#/components/schemas/LayerizedImageObject",
+            "layerized_design.generation": "#/components/schemas/TextLayerizerResultObject"
           },
           "propertyName": "object_type"
         },
@@ -38748,6 +38992,9 @@
           },
           {
             "$ref": "#/components/schemas/LayerizedImageObject"
+          },
+          {
+            "$ref": "#/components/schemas/TextLayerizerResultObject"
           }
         ],
         "title": "GenerationResponse_data_inner"

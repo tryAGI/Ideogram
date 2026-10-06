@@ -56,6 +56,13 @@ namespace Ideogram.JsonConverters
                                throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.LayerizedImageObject)}");
                 layerizedImage = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
+            global::Ideogram.TextLayerizerResultObject? layerizedDesignGeneration = default;
+            if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.LayerizedDesignGeneration)
+            {
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.TextLayerizerResultObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.TextLayerizerResultObject> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.TextLayerizerResultObject)}");
+                layerizedDesignGeneration = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
+            }
 
             var __value = new global::Ideogram.GenerationResponseDataInner(
                 discriminator?.ObjectType,
@@ -67,7 +74,9 @@ namespace Ideogram.JsonConverters
 
                 videoGeneration,
 
-                layerizedImage
+                layerizedImage,
+
+                layerizedDesignGeneration
                 );
 
             return __value;
@@ -111,6 +120,12 @@ namespace Ideogram.JsonConverters
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.LayerizedImageObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.LayerizedImageObject?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.LayerizedImageObject).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickLayerizedImage(), typeInfo);
+            }
+            else if (value.IsLayerizedDesignGeneration)
+            {
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.TextLayerizerResultObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.TextLayerizerResultObject?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.TextLayerizerResultObject).Name}");
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickLayerizedDesignGeneration(), typeInfo);
             }
         }
     }
