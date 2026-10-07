@@ -9157,6 +9157,100 @@
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
+    "/v2/image/generate/nano-banana-2-1": {
+      "post": {
+        "description": "Generate images with Nano Banana 2.1. Optionally upload source images as\n`images` using `multipart/form-data` to edit them with the prompt.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n",
+        "operationId": "post_generate_image_v2_nano_banana21",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-tool-description": "Validate and quote only; no generation, storage, billing, or safety review."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifiers": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageNanoBanana21Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateImageNanoBanana21Request"
+              }
+            }
+          },
+          "description": "A request to generate images with Nano Banana 2.1. Send it as `application/json`, or as `multipart/form-data` to include source `images`.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateImageNanoBanana21Response"
+                }
+              }
+            },
+            "description": "The generated images (synchronous requests), or an acknowledgement to poll with `GET /v2/generations/{generation_id}` (`async` requests)."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "500": {
+            "description": "Internal server error."
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable."
+          }
+        },
+        "summary": "Generate with Nano Banana 2.1",
+        "tags": [
+          "images-generate"
+        ],
+        "x-tool-description": "Generate from text or edit supplied image assets with Nano Banana 2.1. The prompt is used without rewriting.",
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
+      }
+    },
     "/v2/image/generate/nano-banana-pro": {
       "post": {
         "description": "Generate images with Nano Banana Pro. Optionally upload source images as\n`images` using `multipart/form-data` to edit them with the prompt.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n",
@@ -29547,7 +29641,7 @@
             "example": "2048x2048",
             "nullable": true,
             "type": "string",
-            "x-tool-description": "The output shape; this operation has no resolution or aspect_ratio field. Omit for auto, which renders at 2K. Without image_asset_identifiers, use the 2K size closest to the requested aspect ratio: 2048x2048 (1:1), 1792x2240 (4:5), 2240x1792 (5:4), 1728x2304 (3:4), 2304x1728 (4:3), 1664x2496 (2:3), 2496x1664 (3:2), 1440x2560 (9:16), 2560x1440 (16:9), 1600x2560 (5:8), 2560x1600 (8:5), 1440x2880 (1:2), 2880x1440 (2:1), 1280x3072 (5:12), 3072x1280 (12:5), 1248x3328 (3:8), 3328x1248 (8:3), 1152x2944 (9:23), 2944x1152 (23:9), 1296x3168 (9:22), 3168x1296 (22:9), 1024x3072 (1:3), 3072x1024 (3:1). Use a 1K size (1024x1024, 896x1120, 1120x896, 864x1152, 1152x864, 832x1248, 1248x832, 800x1280, 1280x800, 720x1280, 1280x720, 720x1440, 1440x720) only when the user asks for a smaller image. With image_asset_identifiers, \"source\" keeps the first image's size, and an exact WIDTHxHEIGHT (sides multiples of 32 and at least 256px, at most 2048x2048 total pixels, ratio up to 6:1) reshapes it.",
+            "x-tool-description": "The output shape; this operation has no resolution or aspect_ratio field. Omit for auto, which renders at 2K. Without image_asset_identifiers, use the 2K size closest to the requested aspect ratio: 2048x2048 (1:1), 1792x2240 (4:5), 2240x1792 (5:4), 1728x2304 (3:4), 2304x1728 (4:3), 1664x2496 (2:3), 2496x1664 (3:2), 1440x2560 (9:16), 2560x1440 (16:9), 1600x2560 (5:8), 2560x1600 (8:5), 1440x2880 (1:2), 2880x1440 (2:1), 1280x3072 (5:12), 3072x1280 (12:5), 1248x3328 (3:8), 3328x1248 (8:3), 1152x2944 (9:23), 2944x1152 (23:9), 1296x3168 (9:22), 3168x1296 (22:9), 1024x3072 (1:3), 3072x1024 (3:1). Use a 1K size (1024x1024, 896x1120, 1120x896, 864x1152, 1152x864, 832x1248, 1248x832, 800x1280, 1280x800, 720x1280, 1280x720, 720x1440, 1440x720) only when the user asks for a smaller image. With image_asset_identifiers, \"source\" keeps the first image's size, and an exact WIDTHxHEIGHT (sides multiples of 32 and at least 256px, at most 2048x2048 total pixels, ratio up to 6:1) reshapes it; the 720-pixel 1K sizes are not multiples of 32, so use 1344x768 or 768x1344 for 16:9 or 9:16 edits.",
             "x-playground-field": {
               "label": "Size",
               "control": "select",
@@ -29935,6 +30029,152 @@
           },
           "aspect_ratio": {
             "$ref": "#/components/schemas/NanoBanana2AspectRatio"
+          },
+          "resolution_tier": {
+            "default": "1K",
+            "description": "The output resolution tier.",
+            "enum": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "type": "string"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 8,
+            "minimum": 1,
+            "type": "integer",
+            "x-tool-description": "Number of variations of this one prompt. For different subjects, make separate calls instead of listing them in one prompt."
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer",
+            "x-tool-description": "Set for reproducible generation."
+          },
+          "async": {
+            "default": false,
+            "description": "When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.",
+            "type": "boolean",
+            "x-tool-description": "Always overridden to true; tools run asynchronously."
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string",
+            "x-tool-description": "Signed completion callback; public HTTPS only (no private/internal hosts)."
+          },
+          "private": {
+            "description": "When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.",
+            "nullable": true,
+            "type": "boolean",
+            "x-tool-description": "true keeps the output private; false publishes it. Enterprise output is always private."
+          },
+          "target_collection_id": {
+            "description": "A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.",
+            "type": "string",
+            "x-tool-description": "Destination collection ID (URL-safe base64); must be writable."
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "type": "object",
+        "x-tool-description": "Supply image_asset_identifiers to edit existing images; omit them to generate from text."
+      },
+      "GenerateImageNanoBanana21Response": {
+        "description": "Response returned by `POST /v2/image/generate/nano-banana-2-1`.\nSynchronous requests (the default) include the generated images in\n`data`. Asynchronous requests omit `data`; poll\n`GET /v2/generations/{generation_id}` with the returned\n`generation_id`. `seed` is the seed that was used, including when you\ndid not set one.\n",
+        "example": {
+          "data": [
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            },
+            {
+              "seed": 12345,
+              "prompt": "prompt",
+              "resolution": "1024x1024",
+              "url": "https://openapi-generator.tech",
+              "is_image_safe": true
+            }
+          ],
+          "seed": 12345,
+          "generation_id": "generation_id"
+        },
+        "properties": {
+          "generation_id": {
+            "description": "URL-safe base64 ID of the generation. Use it to poll\n`GET /v2/generations/{generation_id}`.\n",
+            "title": "generation_id",
+            "type": "string"
+          },
+          "data": {
+            "description": "The generated images, in generation order. Present only for synchronous requests (`async` omitted or false).",
+            "items": {
+              "$ref": "#/components/schemas/GeneratedImageObject"
+            },
+            "title": "data",
+            "type": "array"
+          },
+          "seed": {
+            "description": "Random seed. Set for reproducible generation.",
+            "example": 12345,
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Seed",
+            "type": "integer",
+            "x-tool-description": "Set for reproducible generation."
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "title": "GenerateImageNanoBanana21Response",
+        "type": "object"
+      },
+      "GenerateImageNanoBanana21Request": {
+        "description": "Source `images` are optional. When supplied, the prompt is applied to\nthem as an edit. Without source images, the output is generated from\nthe prompt alone.\n",
+        "properties": {
+          "prompt": {
+            "description": "The prompt to generate images from, or the edit instruction to apply when source images are supplied. It is passed to the model as written.",
+            "maxLength": 10000,
+            "minLength": 1,
+            "type": "string",
+            "x-tool-description": "Generation prompt or edit instruction, passed to the model unchanged."
+          },
+          "image_asset_identifiers": {
+            "description": "Existing upload or generated image assets to edit, by reference. Takes priority over `images` if both are supplied.",
+            "items": {
+              "$ref": "#/components/schemas/AssetIdentifier"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "type": "array",
+            "x-tool-description": "Image assets to edit."
+          },
+          "images": {
+            "description": "Optional source images to edit (max 10, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.",
+            "items": {
+              "format": "binary",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "type": "array",
+            "x-tool-description": "Images to edit (max 10; JPEG/PNG/WEBP, max 25MB each). Multipart only."
+          },
+          "aspect_ratio": {
+            "$ref": "#/components/schemas/NanoBanana21AspectRatio"
           },
           "resolution_tier": {
             "default": "1K",
@@ -37855,7 +38095,8 @@
         ],
         "example": "GENERAL",
         "title": "StyleTypeV3",
-        "type": "string"
+        "type": "string",
+        "x-tool-description": "The style type to generate with. With a style reference, saved style or style_preset, use auto; any type other than auto or general is rejected."
       },
       "StylePresetV3": {
         "description": "A predefined style preset that applies a specific artistic style to the generated image.",
@@ -38768,7 +39009,8 @@
         ],
         "example": "general",
         "title": "IdeogramV3StyleType",
-        "type": "string"
+        "type": "string",
+        "x-tool-description": "The style type to generate with. With a style reference, saved style or style_preset, use auto; any type other than auto or general is rejected."
       },
       "IdeogramV3StylePreset": {
         "description": "A predefined style preset that applies a specific artistic style to the generated image.",
@@ -38909,6 +39151,29 @@
           "1:8"
         ],
         "title": "NanoBanana2AspectRatio",
+        "type": "string"
+      },
+      "NanoBanana21AspectRatio": {
+        "default": "auto",
+        "description": "Output aspect ratios Nano Banana 2.1 serves. `auto` lets the model choose the shape; an edit keeps its source image's shape.",
+        "enum": [
+          "auto",
+          "1:1",
+          "3:2",
+          "2:3",
+          "4:3",
+          "3:4",
+          "5:4",
+          "4:5",
+          "16:9",
+          "9:16",
+          "21:9",
+          "4:1",
+          "1:4",
+          "8:1",
+          "1:8"
+        ],
+        "title": "NanoBanana21AspectRatio",
         "type": "string"
       },
       "NanoBananaProAspectRatio": {
