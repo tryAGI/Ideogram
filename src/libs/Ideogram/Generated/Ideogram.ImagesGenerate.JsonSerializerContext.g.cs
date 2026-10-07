@@ -72,6 +72,10 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2AspectRatio), TypeInfoPropertyName = "NanoBanana2AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier), TypeInfoPropertyName = "GenerateImageNanoBanana2RequestResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana21AspectRatio), TypeInfoPropertyName = "NanoBanana21AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier), TypeInfoPropertyName = "GenerateImageNanoBanana21RequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProAspectRatio), TypeInfoPropertyName = "NanoBananaProAspectRatio2")]
@@ -131,6 +135,8 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality?), TypeInfoPropertyName = "NullableGenerateImageIdeogram45RequestQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2AspectRatio?), TypeInfoPropertyName = "NullableNanoBanana2AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBanana2RequestResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana21AspectRatio?), TypeInfoPropertyName = "NullableNanoBanana21AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBanana21RequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProAspectRatio?), TypeInfoPropertyName = "NullableNanoBananaProAspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBananaProRequestResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground?), TypeInfoPropertyName = "NullableGenerateImageGptImage25FlareRequestBackground2")]
@@ -272,6 +278,10 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?)
 
+                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier)
+
+                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier?)
+
                     || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier)
 
                     || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier?)
@@ -359,6 +369,10 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio)
 
                     || typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio?)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio?)
 
                     || typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio)
 
@@ -501,6 +515,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?))
                 {
                     return new global::Ideogram.JsonConverters.GenerateImageNanoBanana2RequestResolutionTierNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier))
+                {
+                    return new global::Ideogram.JsonConverters.GenerateImageNanoBanana21RequestResolutionTierJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier?))
+                {
+                    return new global::Ideogram.JsonConverters.GenerateImageNanoBanana21RequestResolutionTierNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier))
@@ -721,6 +745,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio?))
                 {
                     return new global::Ideogram.JsonConverters.NanoBanana2AspectRatioNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana21AspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.NanoBanana21AspectRatioNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio))
