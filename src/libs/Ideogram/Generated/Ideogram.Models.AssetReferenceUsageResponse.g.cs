@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"next_cursor":"next_cursor","assets":[{"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","collection_name":"collection_name","request_count":1},{"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","collection_name":"collection_name","request_count":1}]}
+    /// Example: {"next_cursor":"next_cursor","assets":[{"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","attributes":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","value_type":null,"attribute_key":"attribute_key","value":"value"},{"creation_time":"2000-01-23T04:56:07\u002B00:00","value_type":null,"attribute_key":"attribute_key","value":"value"}],"collection_name":"collection_name","request_count":1},{"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","attributes":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","value_type":null,"attribute_key":"attribute_key","value":"value"},{"creation_time":"2000-01-23T04:56:07\u002B00:00","value_type":null,"attribute_key":"attribute_key","value":"value"}],"collection_name":"collection_name","request_count":1}]}
     /// </summary>
     public sealed partial class AssetReferenceUsageResponse
     {

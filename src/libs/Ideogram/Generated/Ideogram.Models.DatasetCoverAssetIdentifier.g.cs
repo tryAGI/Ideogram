@@ -6,7 +6,7 @@ namespace Ideogram
 {
     /// <summary>
     /// Cover asset of the dataset, null if not set.<br/>
-    /// Example: {"asset_type":null,"asset_id":"asset_id"}
+    /// Example: {"collection_id":"collection_id","asset_type":null,"asset_id":"asset_id"}
     /// </summary>
     public readonly partial struct DatasetCoverAssetIdentifier : global::System.IEquatable<DatasetCoverAssetIdentifier>
     {

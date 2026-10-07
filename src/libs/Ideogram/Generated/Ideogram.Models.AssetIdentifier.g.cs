@@ -25,6 +25,12 @@ namespace Ideogram
         public required string AssetId { get; set; }
 
         /// <summary>
+        /// Optional collection from which this asset was selected as a generation reference. Records usage attribution; does not grant access to the asset.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("collection_id")]
+        public string? CollectionId { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -35,15 +41,20 @@ namespace Ideogram
         /// </summary>
         /// <param name="assetType"></param>
         /// <param name="assetId"></param>
+        /// <param name="collectionId">
+        /// Optional collection from which this asset was selected as a generation reference. Records usage attribution; does not grant access to the asset.
+        /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public AssetIdentifier(
             global::Ideogram.AssetType assetType,
-            string assetId)
+            string assetId,
+            string? collectionId)
         {
             this.AssetType = assetType;
             this.AssetId = assetId ?? throw new global::System.ArgumentNullException(nameof(assetId));
+            this.CollectionId = collectionId;
         }
 
         /// <summary>
