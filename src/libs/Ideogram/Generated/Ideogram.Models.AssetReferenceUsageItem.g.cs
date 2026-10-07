@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","collection_name":"collection_name","request_count":1}
+    /// Example: {"collection_id":"collection_id","collection_path":"collection_path","asset_identifier":{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"},"file_name":"file_name","download_url":"download_url","attributes":[{"creation_time":"2000-01-23T04:56:07\u002B00:00","value_type":null,"attribute_key":"attribute_key","value":"value"},{"creation_time":"2000-01-23T04:56:07\u002B00:00","value_type":null,"attribute_key":"attribute_key","value":"value"}],"collection_name":"collection_name","request_count":1}
     /// </summary>
     public sealed partial class AssetReferenceUsageItem
     {
@@ -40,6 +40,12 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("file_name")]
         public string? FileName { get; set; }
+
+        /// <summary>
+        /// Current attributes of this collection asset, present when include_collections is true.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("attributes")]
+        public global::System.Collections.Generic.IList<global::Ideogram.AttributeInfo>? Attributes { get; set; }
 
         /// <summary>
         /// Signed image URL valid for 24 hours, issued only when the caller can read the asset. Refresh the listing to obtain a fresh URL.
@@ -78,6 +84,9 @@ namespace Ideogram
         /// Readable collection names from accessible ancestors through this collection, separated by " / ".
         /// </param>
         /// <param name="fileName"></param>
+        /// <param name="attributes">
+        /// Current attributes of this collection asset, present when include_collections is true.
+        /// </param>
         /// <param name="downloadUrl">
         /// Signed image URL valid for 24 hours, issued only when the caller can read the asset. Refresh the listing to obtain a fresh URL.
         /// </param>
@@ -91,6 +100,7 @@ namespace Ideogram
             string? collectionName,
             string? collectionPath,
             string? fileName,
+            global::System.Collections.Generic.IList<global::Ideogram.AttributeInfo>? attributes,
             string? downloadUrl)
         {
             this.AssetIdentifier = assetIdentifier ?? throw new global::System.ArgumentNullException(nameof(assetIdentifier));
@@ -98,6 +108,7 @@ namespace Ideogram
             this.CollectionName = collectionName;
             this.CollectionPath = collectionPath;
             this.FileName = fileName;
+            this.Attributes = attributes;
             this.DownloadUrl = downloadUrl;
             this.RequestCount = requestCount;
         }

@@ -7349,11 +7349,39 @@
     },
     "/v2/assets/reference-usage": {
       "get": {
-        "description": "Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.",
+        "description": "Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page by default, up to 100 with limit. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.",
         "operationId": "get_asset_reference_usage",
         "parameters": [
           {
-            "description": "Return one entry per accessible image collection membership, with current filenames. Counts remain asset-wide. Pages may be short or empty; follow next_cursor until null.",
+            "description": "Maximum number of returned entries per page.",
+            "in": "query",
+            "name": "limit",
+            "schema": {
+              "default": 50,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Exact collections to rank within; requires include_collections=true. Includes direct members only, not descendants. Every collection must be accessible. Counts include only completed requests that explicitly selected the asset from that collection. Keep the same selection on every cursor page.",
+            "explode": true,
+            "in": "query",
+            "name": "collection_ids",
+            "schema": {
+              "items": {
+                "maxLength": 22,
+                "minLength": 22,
+                "type": "string"
+              },
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            },
+            "style": "form"
+          },
+          {
+            "description": "Return one entry per explicitly referenced collection asset, with its collection-specific usage count and current filename and attributes. Only currently accessible members are returned. Pages may be short or empty; follow next_cursor until null.",
             "in": "query",
             "name": "include_collections",
             "schema": {
@@ -20397,6 +20425,20 @@
               },
               "file_name": "file_name",
               "download_url": "download_url",
+              "attributes": [
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "value_type": null,
+                  "attribute_key": "attribute_key",
+                  "value": "value"
+                },
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "value_type": null,
+                  "attribute_key": "attribute_key",
+                  "value": "value"
+                }
+              ],
               "collection_name": "collection_name",
               "request_count": 1
             },
@@ -20409,6 +20451,20 @@
               },
               "file_name": "file_name",
               "download_url": "download_url",
+              "attributes": [
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "value_type": null,
+                  "attribute_key": "attribute_key",
+                  "value": "value"
+                },
+                {
+                  "creation_time": "2000-01-23T04:56:07+00:00",
+                  "value_type": null,
+                  "attribute_key": "attribute_key",
+                  "value": "value"
+                }
+              ],
               "collection_name": "collection_name",
               "request_count": 1
             }
@@ -20445,6 +20501,20 @@
           },
           "file_name": "file_name",
           "download_url": "download_url",
+          "attributes": [
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "value_type": null,
+              "attribute_key": "attribute_key",
+              "value": "value"
+            },
+            {
+              "creation_time": "2000-01-23T04:56:07+00:00",
+              "value_type": null,
+              "attribute_key": "attribute_key",
+              "value": "value"
+            }
+          ],
           "collection_name": "collection_name",
           "request_count": 1
         },
@@ -20473,6 +20543,14 @@
             "nullable": true,
             "title": "file_name",
             "type": "string"
+          },
+          "attributes": {
+            "description": "Current attributes of this collection asset, present when include_collections is true.",
+            "items": {
+              "$ref": "#/components/schemas/AttributeInfo"
+            },
+            "title": "attributes",
+            "type": "array"
           },
           "download_url": {
             "description": "Signed image URL valid for 24 hours, issued only when the caller can read the asset. Refresh the listing to obtain a fresh URL.",
@@ -35211,6 +35289,7 @@
               "dataset_id": "dataset_id",
               "name": "name",
               "cover_asset_identifier": {
+                "collection_id": "collection_id",
                 "asset_type": null,
                 "asset_id": "asset_id"
               }
@@ -35221,6 +35300,7 @@
               "dataset_id": "dataset_id",
               "name": "name",
               "cover_asset_identifier": {
+                "collection_id": "collection_id",
                 "asset_type": null,
                 "asset_id": "asset_id"
               }
@@ -35252,6 +35332,7 @@
           "dataset_id": "dataset_id",
           "name": "name",
           "cover_asset_identifier": {
+            "collection_id": "collection_id",
             "asset_type": null,
             "asset_id": "asset_id"
           }
@@ -35334,6 +35415,7 @@
             "dataset_id": "dataset_id",
             "name": "name",
             "cover_asset_identifier": {
+              "collection_id": "collection_id",
               "asset_type": null,
               "asset_id": "asset_id"
             }
@@ -38389,6 +38471,14 @@
           },
           "asset_id": {
             "type": "string"
+          },
+          "collection_id": {
+            "description": "Optional collection from which this asset was selected as a generation reference. Records usage attribution; does not grant access to the asset.",
+            "maxLength": 22,
+            "minLength": 22,
+            "pattern": "^[A-Za-z0-9_-]{22}$",
+            "type": "string",
+            "x-omit-if-null": true
           }
         },
         "required": [
@@ -38409,6 +38499,40 @@
         ],
         "title": "AssetType",
         "type": "string"
+      },
+      "AttributeInfo": {
+        "example": {
+          "creation_time": "2000-01-23T04:56:07+00:00",
+          "value_type": null,
+          "attribute_key": "attribute_key",
+          "value": "value"
+        },
+        "properties": {
+          "attribute_key": {
+            "title": "attribute_key",
+            "type": "string"
+          },
+          "value": {
+            "description": "The stored value. NUMBER values are returned in canonical form.",
+            "title": "value",
+            "type": "string"
+          },
+          "value_type": {
+            "$ref": "#/components/schemas/AttributeValueType"
+          },
+          "creation_time": {
+            "format": "date-time",
+            "title": "creation_time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "attribute_key",
+          "value",
+          "value_type"
+        ],
+        "title": "AttributeInfo",
+        "type": "object"
       },
       "SeedDance2AspectRatio": {
         "default": "auto",
@@ -38934,6 +39058,15 @@
         "title": "TextColorSpan",
         "type": "object"
       },
+      "AttributeValueType": {
+        "description": "How the values of an attribute key are stored and filtered.",
+        "enum": [
+          "TEXT",
+          "NUMBER"
+        ],
+        "title": "AttributeValueType",
+        "type": "string"
+      },
       "postGenerateDesignV4_200_response": {
         "discriminator": {
           "mapping": {
@@ -39055,6 +39188,7 @@
         ],
         "description": "Cover asset of the dataset, null if not set.",
         "example": {
+          "collection_id": "collection_id",
           "asset_type": null,
           "asset_id": "asset_id"
         },

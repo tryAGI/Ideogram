@@ -27,6 +27,8 @@ namespace Ideogram
             };
         partial void PrepareGetAssetReferenceUsageArguments(
             global::System.Net.Http.HttpClient httpClient,
+            ref int? limit,
+            global::System.Collections.Generic.IList<string>? collectionIds,
             ref bool? includeCollections,
             ref global::System.DateTime startDate,
             ref global::System.DateTime endDate,
@@ -34,6 +36,8 @@ namespace Ideogram
         partial void PrepareGetAssetReferenceUsageRequest(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
+            int? limit,
+            global::System.Collections.Generic.IList<string>? collectionIds,
             bool? includeCollections,
             global::System.DateTime startDate,
             global::System.DateTime endDate,
@@ -49,8 +53,12 @@ namespace Ideogram
 
         /// <summary>
         /// Rank edit reference assets used by organization requests<br/>
-        /// Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.
+        /// Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page by default, up to 100 with limit. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.
         /// </summary>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
+        /// <param name="collectionIds"></param>
         /// <param name="includeCollections">
         /// Default Value: false
         /// </param>
@@ -63,6 +71,8 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AssetReferenceUsageResponse> GetAssetReferenceUsageAsync(
             global::System.DateTime startDate,
             global::System.DateTime endDate,
+            int? limit = default,
+            global::System.Collections.Generic.IList<string>? collectionIds = default,
             bool? includeCollections = default,
             string? cursor = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
@@ -71,6 +81,8 @@ namespace Ideogram
             var __response = await GetAssetReferenceUsageAsResponseAsync(
                 startDate: startDate,
                 endDate: endDate,
+                limit: limit,
+                collectionIds: collectionIds,
                 includeCollections: includeCollections,
                 cursor: cursor,
                 requestOptions: requestOptions,
@@ -81,8 +93,12 @@ namespace Ideogram
         }
         /// <summary>
         /// Rank edit reference assets used by organization requests<br/>
-        /// Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.
+        /// Counts completed requests made by the authenticated organization that used each existing asset as an edit input during the UTC date range. Direct file uploads without saved asset identifiers are excluded. Results are independent of current asset ownership, collection membership, and sharing. Returning an identifier does not grant access to its image. Tracking begins when enabled; earlier history is not included. Returns 50 assets per page by default, up to 100 with limit. Rankings may change between pages when daily counts are updated; cursors do not pin a historical snapshot.
         /// </summary>
+        /// <param name="limit">
+        /// Default Value: 50
+        /// </param>
+        /// <param name="collectionIds"></param>
         /// <param name="includeCollections">
         /// Default Value: false
         /// </param>
@@ -95,6 +111,8 @@ namespace Ideogram
         public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.AssetReferenceUsageResponse>> GetAssetReferenceUsageAsResponseAsync(
             global::System.DateTime startDate,
             global::System.DateTime endDate,
+            int? limit = default,
+            global::System.Collections.Generic.IList<string>? collectionIds = default,
             bool? includeCollections = default,
             string? cursor = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
@@ -104,6 +122,8 @@ namespace Ideogram
                 client: HttpClient);
             PrepareGetAssetReferenceUsageArguments(
                 httpClient: HttpClient,
+                limit: ref limit,
+                collectionIds: collectionIds,
                 includeCollections: ref includeCollections,
                 startDate: ref startDate,
                 endDate: ref endDate,
@@ -136,6 +156,8 @@ namespace Ideogram
                                 path: "/v2/assets/reference-usage",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
+                                .AddOptionalParameter("limit", limit?.ToString())
+                                .AddOptionalParameter("collection_ids", collectionIds, delimiter: ",", explode: true)
                                 .AddOptionalParameter("include_collections", includeCollections?.ToString().ToLowerInvariant())
                                 .AddRequiredParameter("start_date", startDate.ToString("yyyy-MM-dd"))
                                 .AddRequiredParameter("end_date", endDate.ToString("yyyy-MM-dd"))
@@ -181,6 +203,8 @@ namespace Ideogram
                 PrepareGetAssetReferenceUsageRequest(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
+                    limit: limit,
+                    collectionIds: collectionIds,
                     includeCollections: includeCollections,
                     startDate: startDate,
                     endDate: endDate,
