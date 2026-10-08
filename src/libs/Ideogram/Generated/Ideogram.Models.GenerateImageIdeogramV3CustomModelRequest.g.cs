@@ -25,6 +25,13 @@ namespace Ideogram
         public required string CustomModelUri { get; set; }
 
         /// <summary>
+        /// Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.<br/>
+        /// Default Value: false
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("transparent_background")]
+        public bool? TransparentBackground { get; set; }
+
+        /// <summary>
         /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("negative_prompt")]
@@ -169,6 +176,10 @@ namespace Ideogram
         /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported and whether backgrounds are removed automatically.<br/>
         /// Example: model/my-custom-model/version/1
         /// </param>
+        /// <param name="transparentBackground">
+        /// Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
@@ -243,6 +254,7 @@ namespace Ideogram
         public GenerateImageIdeogramV3CustomModelRequest(
             string prompt,
             string customModelUri,
+            bool? transparentBackground,
             string? negativePrompt,
             int? seed,
             global::Ideogram.ResolutionV3? resolution,
@@ -263,6 +275,7 @@ namespace Ideogram
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.CustomModelUri = customModelUri ?? throw new global::System.ArgumentNullException(nameof(customModelUri));
+            this.TransparentBackground = transparentBackground;
             this.NegativePrompt = negativePrompt;
             this.Seed = seed;
             this.Resolution = resolution;

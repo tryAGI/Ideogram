@@ -1073,7 +1073,7 @@
       "Slug": "post-generate-image-v2-ideogram-v3-custom-model",
       "Description": "Generate images with a custom Ideogram 3.0 model that you or your\norganization can access, selected by \u0060custom_model_uri\u0060. Returns results\ndirectly by default; set \u0060async\u0060 or supply a \u0060webhook_url\u0060 to get a\n\u0060generation_id\u0060 and poll \u0060GET /v2/generations/{generation_id}\u0060.",
       "Language": "http",
-      "Code": "### Generate with a custom Ideogram 3.0 model\n# @name post_generate_image_v2_ideogram_v3_custom_model\nPOST {{host}}/v2/image/generate/ideogram-3-custom-model?dry_run=false\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data; boundary=AutoSDKBoundary\nAccept: application/json\n\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022prompt\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022custom_model_uri\u0022\n\nmodel/my-custom-model/version/1\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022negative_prompt\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022seed\u0022\n\n12345\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022resolution\u0022\n\n1280x800\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022aspect_ratio\u0022\n\nauto\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022rendering_speed\u0022\n\nturbo\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022magic_prompt\u0022\n\nauto\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022num_images\u0022\n\n1\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022color_palette\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_codes\u0022\n\nABCD1234\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_preset\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_reference_asset_identifiers\u0022\n\n{\u0022asset_type\u0022:\u0022RESPONSE\u0022,\u0022asset_id\u0022:\u00227uS_VESkRI6O3-sVgHQp_A\u0022}\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_reference_images\u0022; filename=\u0022style_reference_images.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./style_reference_images.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022enable_copyright_detection\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022async\u0022\n\nfalse\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022webhook_url\u0022\n\nhttps://api.example.com/webhooks/ideogram\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022private\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022target_collection_id\u0022\n\nstring\n--AutoSDKBoundary--\n\n## Responses\n# 200\n# Description: The generated images (synchronous requests), or an acknowledgement to poll with \u0060GET /v2/generations/{generation_id}\u0060 (\u0060async\u0060 requests).\n# Content-Type: application/json\n# 400\n# Description: Invalid input or an unsupported model option.\n# 401\n# Description: Unauthorized.\n# 402\n# Description: Insufficient credits or quota.\n# Content-Type: application/json\n# 403\n# Description: The custom model does not exist or is not accessible to this user or organization.\n# 404\n# Description: A requested resource was not found.\n# 422\n# Description: The prompt did not pass safety checks.\n# 429\n# Description: Too many requests.\n# Content-Type: application/json\n# 500\n# Description: Internal server error.\n# 503\n# Description: The endpoint is temporarily unavailable.",
+      "Code": "### Generate with a custom Ideogram 3.0 model\n# @name post_generate_image_v2_ideogram_v3_custom_model\nPOST {{host}}/v2/image/generate/ideogram-3-custom-model?dry_run=false\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data; boundary=AutoSDKBoundary\nAccept: application/json\n\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022prompt\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022custom_model_uri\u0022\n\nmodel/my-custom-model/version/1\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022transparent_background\u0022\n\nfalse\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022negative_prompt\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022seed\u0022\n\n12345\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022resolution\u0022\n\n1280x800\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022aspect_ratio\u0022\n\nauto\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022rendering_speed\u0022\n\nturbo\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022magic_prompt\u0022\n\nauto\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022num_images\u0022\n\n1\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022color_palette\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_codes\u0022\n\nABCD1234\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_preset\u0022\n\nstring\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_reference_asset_identifiers\u0022\n\n{\u0022asset_type\u0022:\u0022RESPONSE\u0022,\u0022asset_id\u0022:\u00227uS_VESkRI6O3-sVgHQp_A\u0022}\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022style_reference_images\u0022; filename=\u0022style_reference_images.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./style_reference_images.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022enable_copyright_detection\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022async\u0022\n\nfalse\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022webhook_url\u0022\n\nhttps://api.example.com/webhooks/ideogram\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022private\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022target_collection_id\u0022\n\nstring\n--AutoSDKBoundary--\n\n## Responses\n# 200\n# Description: The generated images (synchronous requests), or an acknowledgement to poll with \u0060GET /v2/generations/{generation_id}\u0060 (\u0060async\u0060 requests).\n# Content-Type: application/json\n# 400\n# Description: Invalid input or an unsupported model option.\n# 401\n# Description: Unauthorized.\n# 402\n# Description: Insufficient credits or quota.\n# Content-Type: application/json\n# 403\n# Description: The custom model does not exist or is not accessible to this user or organization.\n# 404\n# Description: A requested resource was not found.\n# 422\n# Description: The prompt did not pass safety checks.\n# 429\n# Description: Too many requests.\n# Content-Type: application/json\n# 500\n# Description: Internal server error.\n# 503\n# Description: The endpoint is temporarily unavailable.",
       "Format": "http",
       "OperationId": "post_generate_image_v2_ideogram_v3_custom_model",
       "Setup": null
@@ -1106,7 +1106,7 @@
       "Slug": "post-generate-image-v2-ideogram-v4-custom-model",
       "Description": "Generate images with a custom Ideogram 4.0 model that you or your\norganization can access, selected by \u0060custom_model_uri\u0060. Returns results\ndirectly by default; set \u0060async\u0060 or supply a \u0060webhook_url\u0060 to get a\n\u0060generation_id\u0060 and poll \u0060GET /v2/generations/{generation_id}\u0060.",
       "Language": "csharp",
-      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.GenerateImageIdeogramV4CustomModelRequest\u003E(\n    @\u0022{\n  \u0022\u0022private\u0022\u0022: true,\n  \u0022\u0022seed\u0022\u0022: 12345,\n  \u0022\u0022rendering_speed\u0022\u0022: \u0022\u0022turbo\u0022\u0022,\n  \u0022\u0022webhook_url\u0022\u0022: \u0022\u0022https://api.example.com/webhooks/ideogram\u0022\u0022,\n  \u0022\u0022target_collection_id\u0022\u0022: \u0022\u0022target_collection_id\u0022\u0022,\n  \u0022\u0022custom_model_uri\u0022\u0022: \u0022\u0022model/my-custom-v4-model/version/1\u0022\u0022,\n  \u0022\u0022resolution\u0022\u0022: \u0022\u0022\u0022\u0022,\n  \u0022\u0022num_images\u0022\u0022: 1,\n  \u0022\u0022magic_prompt\u0022\u0022: \u0022\u0022\u0022\u0022,\n  \u0022\u0022async\u0022\u0022: false,\n  \u0022\u0022enable_copyright_detection\u0022\u0022: true,\n  \u0022\u0022stacked_custom_models\u0022\u0022: [\n    {\n      \u0022\u0022custom_model_uri\u0022\u0022: \u0022\u0022model/my-base-plora/version/1\u0022\u0022,\n      \u0022\u0022weight\u0022\u0022: 0.5\n    }\n  ],\n  \u0022\u0022prompt\u0022\u0022: \u0022\u0022prompt\u0022\u0022\n}\u0022)!;\n\nvar response = await client.ImagesGenerate.PostGenerateImageV2IdeogramV4CustomModelAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022data\u0022: [\n//     {\n//       \u0022seed\u0022: 12345,\n//       \u0022prompt\u0022: \u0022prompt\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://openapi-generator.tech\u0022,\n//       \u0022is_image_safe\u0022: true\n//     },\n//     {\n//       \u0022seed\u0022: 12345,\n//       \u0022prompt\u0022: \u0022prompt\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://openapi-generator.tech\u0022,\n//       \u0022is_image_safe\u0022: true\n//     }\n//   ],\n//   \u0022seed\u0022: 12345,\n//   \u0022generation_id\u0022: \u0022generation_id\u0022\n// }",
+      "Code": "using var client = new IdeogramClient(apiKey);\n\nvar request = global::System.Text.Json.JsonSerializer.Deserialize\u003Cglobal::Ideogram.GenerateImageIdeogramV4CustomModelRequest\u003E(\n    @\u0022{\n  \u0022\u0022private\u0022\u0022: true,\n  \u0022\u0022seed\u0022\u0022: 12345,\n  \u0022\u0022rendering_speed\u0022\u0022: \u0022\u0022turbo\u0022\u0022,\n  \u0022\u0022webhook_url\u0022\u0022: \u0022\u0022https://api.example.com/webhooks/ideogram\u0022\u0022,\n  \u0022\u0022target_collection_id\u0022\u0022: \u0022\u0022target_collection_id\u0022\u0022,\n  \u0022\u0022custom_model_uri\u0022\u0022: \u0022\u0022model/my-custom-v4-model/version/1\u0022\u0022,\n  \u0022\u0022resolution\u0022\u0022: \u0022\u0022\u0022\u0022,\n  \u0022\u0022transparent_background\u0022\u0022: false,\n  \u0022\u0022num_images\u0022\u0022: 1,\n  \u0022\u0022magic_prompt\u0022\u0022: \u0022\u0022\u0022\u0022,\n  \u0022\u0022async\u0022\u0022: false,\n  \u0022\u0022enable_copyright_detection\u0022\u0022: true,\n  \u0022\u0022stacked_custom_models\u0022\u0022: [\n    {\n      \u0022\u0022custom_model_uri\u0022\u0022: \u0022\u0022model/my-base-plora/version/1\u0022\u0022,\n      \u0022\u0022weight\u0022\u0022: 0.5\n    }\n  ],\n  \u0022\u0022prompt\u0022\u0022: \u0022\u0022prompt\u0022\u0022\n}\u0022)!;\n\nvar response = await client.ImagesGenerate.PostGenerateImageV2IdeogramV4CustomModelAsync(\n    request: request\n);\n\n// Example response:\n// {\n//   \u0022data\u0022: [\n//     {\n//       \u0022seed\u0022: 12345,\n//       \u0022prompt\u0022: \u0022prompt\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://openapi-generator.tech\u0022,\n//       \u0022is_image_safe\u0022: true\n//     },\n//     {\n//       \u0022seed\u0022: 12345,\n//       \u0022prompt\u0022: \u0022prompt\u0022,\n//       \u0022resolution\u0022: \u00221024x1024\u0022,\n//       \u0022url\u0022: \u0022https://openapi-generator.tech\u0022,\n//       \u0022is_image_safe\u0022: true\n//     }\n//   ],\n//   \u0022seed\u0022: 12345,\n//   \u0022generation_id\u0022: \u0022generation_id\u0022\n// }",
       "Format": "sdk",
       "OperationId": "post_generate_image_v2_ideogram_v4_custom_model",
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
@@ -1938,6 +1938,17 @@
     },
     {
       "Order": 177,
+      "Title": "Replace background with Ideogram 4.5",
+      "Slug": "post-replace-background-ideogram45",
+      "Description": "Rebuild the background of an image as the setting shown in a\n\u0060background_reference\u0060 image, with Ideogram 4.5 at its highest\nquality. The people in the source image are kept, people in the\nreference are left out, and results keep the source image\u0027s aspect\nratio. Returns a \u0060generation_id\u0060; poll\n\u0060GET /v2/generations/{generation_id}\u0060 or supply a \u0060webhook_url\u0060.",
+      "Language": "http",
+      "Code": "### Replace background with Ideogram 4.5\n# @name post_replace_background_ideogram45\nPOST {{host}}/v2/image/replace-background/ideogram-4-5?dry_run=false\nAuthorization: Bearer {{token}}\nContent-Type: multipart/form-data; boundary=AutoSDKBoundary\nAccept: application/json\n\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022image_asset_identifier\u0022\n\n{\u0022asset_type\u0022:\u0022RESPONSE\u0022,\u0022asset_id\u0022:\u00227uS_VESkRI6O3-sVgHQp_A\u0022}\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022image\u0022; filename=\u0022image.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./image.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022background_reference_asset_identifier\u0022\n\n{\u0022asset_type\u0022:\u0022RESPONSE\u0022,\u0022asset_id\u0022:\u00227uS_VESkRI6O3-sVgHQp_A\u0022}\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022background_reference\u0022; filename=\u0022background_reference.bin\u0022\nContent-Type: application/octet-stream\n\n\u003C ./background_reference.bin\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022num_images\u0022\n\n1\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022private\u0022\n\ntrue\n--AutoSDKBoundary\nContent-Disposition: form-data; name=\u0022webhook_url\u0022\n\nhttps://api.example.com/webhooks/ideogram\n--AutoSDKBoundary--\n\n## Responses\n# 200\n# Description: Background replacement accepted for asynchronous processing.\n# Content-Type: application/json\n# 400\n# Description: Invalid input provided.\n# 401\n# Description: Unauthorized.\n# 402\n# Description: Insufficient credits or quota.\n# Content-Type: application/json\n# 403\n# Description: Not authorized to replace backgrounds.\n# 404\n# Description: An image was not found or is not readable.\n# 429\n# Description: Too many requests.\n# Content-Type: application/json\n# 503\n# Description: Background replacement is temporarily unavailable.",
+      "Format": "http",
+      "OperationId": "post_replace_background_ideogram45",
+      "Setup": null
+    },
+    {
+      "Order": 178,
       "Title": "Replace background with Ideogram 3.0",
       "Slug": "post-replace-background-ideogram-v3",
       "Description": "Replace the background of an image from a text prompt with Ideogram 3.0,\nkeeping the automatically detected foreground subject; no mask is\nneeded. Upload the source \u0060image\u0060 using \u0060multipart/form-data\u0060.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -1948,7 +1959,7 @@
       "Setup": null
     },
     {
-      "Order": 178,
+      "Order": 179,
       "Title": "Upscale with automatic model selection",
       "Slug": "post-upscale",
       "Description": "Upscale an image to 2x, 4x, or 8x its original resolution with a model\nIdeogram picks per request; the choice may change over time. Upload the\nsource \u0060image\u0060 using \u0060multipart/form-data\u0060.\nReturns results directly by default; set \u0060async\u0060 or supply a\n\u0060webhook_url\u0060 to get a \u0060generation_id\u0060 and poll\n\u0060GET /v2/generations/{generation_id}\u0060.",
@@ -1959,7 +1970,7 @@
       "Setup": null
     },
     {
-      "Order": 179,
+      "Order": 180,
       "Title": "Reference to video with MiniMax H3",
       "Slug": "post-edit-video-minimax-h3-reference-to-video",
       "Description": "Produce a video from a text prompt and optional reference media with\nMiniMax H3. Upload \u0060reference_images\u0060 and \u0060reference_audios\u0060 using\n\u0060multipart/form-data\u0060, and address them in the prompt by position\n(\u0060Image 1\u0060, \u0060Audio 1\u0060, \u2026). Returns a \u0060generation_id\u0060; poll\n\u0060GET /v2/generations/{generation_id}\u0060 or supply a \u0060webhook_url\u0060.",
@@ -1970,7 +1981,7 @@
       "Setup": null
     },
     {
-      "Order": 180,
+      "Order": 181,
       "Title": "Edit video with Seedance 2.0",
       "Slug": "post-edit-video-seed-dance2",
       "Description": "Edit a video you already have stored with Ideogram by replacing part of\nit. Reference the source video with \u0060video_asset_identifier\u0060 and mark the\nspan to replace with \u0060start_frame_time\u0060 and \u0060end_frame_time\u0060, in seconds.\nSeedance 2.0 generates a new clip for that span from your prompt, and the\nresult is the source video with the generated clip spliced in over the\nspan: everything before \u0060start_frame_time\u0060, then the generated clip, then\neverything from \u0060end_frame_time\u0060 on. That edited video is the asset the\nrequest produces.\n\n\u0060is_start_frame_included\u0060 and \u0060is_end_frame_included\u0060 anchor the generated\nclip on the span\u0027s own end frames, so it joins the surrounding footage\ninstead of cutting to something unrelated. Anchoring the start opens the\nclip on the frame already at \u0060start_frame_time\u0060; anchoring the end lands\nit on the frame at \u0060end_frame_time\u0060; anchoring both joins at each seam. At\nleast one must be anchored.\n\nThe generated clip is used at its own length, which the model rarely makes\nexactly the span\u0027s, so the edited video is usually a different length from\nthe source. Request a \u0060duration\u0060 close to the span to keep them near each\nother. The clip is scaled and cropped to fill the source\u0027s frame and\nconformed to its frame rate, so resolution and aspect ratio follow the\nsource rather than being requested.\n\nVideo generation always runs asynchronously: the response returns as\nsoon as the request is accepted and carries only a \u0060generation_id\u0060.\nPoll for completion and results with\n\u0060GET /v2/generations/{generation_id}\u0060 using that id, or supply a\n\u0060webhook_url\u0060 to have the finished result POSTed to your server\ninstead.\n\nVideo links are available for a limited period of time; download the\nvideo if you want to keep it.",
@@ -1981,7 +1992,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 181,
+      "Order": 182,
       "Title": "Image to video with Kling v3 Standard",
       "Slug": "post-generate-video-kling-v3-standard-image-to-video",
       "Description": "Generate a video from a first-frame image and a text prompt with Kling\nv3 Standard. Upload the first frame as \u0060image\u0060, and optionally a final\nframe as \u0060end_image\u0060, using \u0060multipart/form-data\u0060.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -1992,7 +2003,7 @@
       "Setup": null
     },
     {
-      "Order": 182,
+      "Order": 183,
       "Title": "Text to video with Kling v3 Standard",
       "Slug": "post-generate-video-kling-v3-standard-text-to-video",
       "Description": "Generate a video from a text prompt with Kling v3 Standard.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2003,7 +2014,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 183,
+      "Order": 184,
       "Title": "Image to video with MiniMax H3",
       "Slug": "post-generate-video-minimax-h3-image-to-video",
       "Description": "Generate a video from a first-frame image and a text prompt with\nMiniMax H3. Upload the first frame as \u0060image\u0060, and optionally a final\nframe as \u0060end_image\u0060, using \u0060multipart/form-data\u0060.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2014,7 +2025,7 @@
       "Setup": null
     },
     {
-      "Order": 184,
+      "Order": 185,
       "Title": "Text to video with MiniMax H3",
       "Slug": "post-generate-video-minimax-h3-text-to-video",
       "Description": "Generate a video from a text prompt with MiniMax H3.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2025,7 +2036,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 185,
+      "Order": 186,
       "Title": "Image to video with Seedance 2.5",
       "Slug": "post-generate-video-seed-dance25-image-to-video",
       "Description": "Generate a video from a first-frame image and a text prompt with\nSeedance 2.5. Upload the first frame as \u0060image\u0060, and optionally a final\nframe as \u0060end_image\u0060, using \u0060multipart/form-data\u0060.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2036,7 +2047,7 @@
       "Setup": null
     },
     {
-      "Order": 186,
+      "Order": 187,
       "Title": "Reference to video with Seedance 2.5",
       "Slug": "post-generate-video-seed-dance25-reference-to-video",
       "Description": "Generate a video from a text prompt and reference media with\nSeedance 2.5. Upload at least one image in \u0060reference_images\u0060, plus optional\n\u0060reference_audios\u0060, using \u0060multipart/form-data\u0060.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2047,7 +2058,7 @@
       "Setup": null
     },
     {
-      "Order": 187,
+      "Order": 188,
       "Title": "Text to video with Seedance 2.5",
       "Slug": "post-generate-video-seed-dance25-text-to-video",
       "Description": "Generate a video from a text prompt with Seedance 2.5, at up to 1080p and\n30 seconds. Returns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2058,7 +2069,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 188,
+      "Order": 189,
       "Title": "Image to video with Seedance 2.0",
       "Slug": "post-generate-video-seed-dance2-image-to-video",
       "Description": "Generate one or more videos from a first-frame image and a text prompt\nwith Seedance 2.0. Upload the first frame as \u0060image\u0060, and optionally a final\nframe as \u0060end_image\u0060, using \u0060multipart/form-data\u0060.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2069,7 +2080,7 @@
       "Setup": null
     },
     {
-      "Order": 189,
+      "Order": 190,
       "Title": "Reference to video with Seedance 2.0",
       "Slug": "post-generate-video-seed-dance2-reference-to-video",
       "Description": "Generate a video from a text prompt and reference media with\nSeedance 2.0. Upload at least one image in \u0060reference_images\u0060, plus optional\n\u0060reference_audios\u0060, using \u0060multipart/form-data\u0060.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2080,7 +2091,7 @@
       "Setup": null
     },
     {
-      "Order": 190,
+      "Order": 191,
       "Title": "Text to video with Seedance 2.0",
       "Slug": "post-generate-video-seed-dance2-text-to-video",
       "Description": "Generate one or more videos from a text prompt with Seedance 2.0.\nReturns a \u0060generation_id\u0060; poll \u0060GET /v2/generations/{generation_id}\u0060\nor supply a \u0060webhook_url\u0060.",
@@ -2091,7 +2102,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 191,
+      "Order": 192,
       "Title": "Turn a still image into a subtle looping video",
       "Slug": "post-living-image",
       "Description": "Animates one image into a short, loop-ready clip for use as a living background. The camera stays fixed and only the parts of the scene that would move in real life move: water, light, mist, particles, fabric, creatures. Ideogram inspects the image and writes the motion prompt, so the request needs only the image.\nVideo generation runs asynchronously. Poll \u0060GET /v1/generations/{generation_id}\u0060 with the returned \u0060generation_id\u0060 until the generation completes or fails.",
@@ -2102,7 +2113,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 192,
+      "Order": 193,
       "Title": "Product 360 Video",
       "Slug": "post-product360-video",
       "Description": "Animates one product image through a complete turntable revolution and returns to the starting pose so the result loops cleanly.\nVideo generation runs asynchronously. Poll \u0060GET /v2/generations/{generation_id}\u0060 with the returned \u0060generation_id\u0060 until the generation completes or fails.",
@@ -2113,7 +2124,7 @@
       "Setup": "This example assumes \u0060using Ideogram;\u0060 is in scope and \u0060apiKey\u0060 contains the required credential."
     },
     {
-      "Order": 193,
+      "Order": 194,
       "Title": "Describe",
       "Slug": "post-describe",
       "Description": "Describe an image.\n\nSupported image formats include JPEG, PNG, and WebP.",
@@ -2124,7 +2135,7 @@
       "Setup": null
     },
     {
-      "Order": 194,
+      "Order": 195,
       "Title": "Describe with Ideogram 4.0",
       "Slug": "post-describe-v4",
       "Description": "Describe an image with Ideogram 4.0 and return a structured\n\u0060V4JsonPrompt\u0060. The returned \u0060json_prompt\u0060 is a working JSON prompt\nthat can be passed directly as \u0060json_prompt\u0060 to the\n\u0060/v1/ideogram-v4/generate\u0060 family of endpoints.\n\nSupported image formats include JPEG, PNG, and WebP.",
@@ -2135,7 +2146,7 @@
       "Setup": null
     },
     {
-      "Order": 195,
+      "Order": 196,
       "Title": "Get the public keys used to verify webhook signatures",
       "Slug": "get-webhook-signing-jwks",
       "Description": "Returns the set of Ed25519 public keys Ideogram uses to sign outbound\nwebhook payloads. Customers verify incoming webhooks by recomputing the\ncanonical signed message (\u0060request_id\\nuser_id\\ntimestamp\\nsha256_hex(body)\u0060)\nand checking the \u0060X-Ideogram-Webhook-Signature\u0060 header against any key\nin this document.\n\nThe document includes the current signing key plus any keys recently\nrotated out, so signatures already in flight remain verifiable across\nrotations. Cache for up to 24 hours; refresh sooner if a signature\nfails to verify against the cached set.\n\nThis endpoint is public and unauthenticated \u2014 no API key is required.",

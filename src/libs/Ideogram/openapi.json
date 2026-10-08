@@ -8617,7 +8617,7 @@
         "tags": [
           "images-generate"
         ],
-        "x-tool-description": "Generate with an accessible custom Ideogram 3.0 model. The model controls available rendering speeds and automatic background removal.",
+        "x-tool-description": "Generate with an accessible custom Ideogram 3.0 model. The model controls available rendering speeds. Set transparent_background to remove the background after generation.",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.images_generate_controller"
       }
     },
@@ -11426,6 +11426,104 @@
         ],
         "x-fern-sdk-group-name": "tool",
         "x-fern-sdk-method-name": "replaceBackgroundIdeogramV3",
+        "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
+      }
+    },
+    "/v2/image/replace-background/ideogram-4-5": {
+      "post": {
+        "description": "Rebuild the background of an image as the setting shown in a\n`background_reference` image, with Ideogram 4.5 at its highest\nquality. The people in the source image are kept, people in the\nreference are left out, and results keep the source image's aspect\nratio. Returns a `generation_id`; poll\n`GET /v2/generations/{generation_id}` or supply a `webhook_url`.\n",
+        "operationId": "post_replace_background_ideogram45",
+        "parameters": [
+          {
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "in": "query",
+            "name": "dry_run",
+            "required": false,
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            },
+            "x-tool-description": "Validate and quote only; no generation, storage, billing, or safety review."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "encoding": {
+                "image_asset_identifier": {
+                  "contentType": "application/json"
+                },
+                "background_reference_asset_identifier": {
+                  "contentType": "application/json"
+                }
+              },
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceBackgroundIdeogram45Request"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceBackgroundIdeogram45Request"
+              }
+            }
+          },
+          "description": "The source image and the background reference.",
+          "required": true,
+          "x-body-name": "body"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplaceBackgroundResponse"
+                }
+              }
+            },
+            "description": "Background replacement accepted for asynchronous processing."
+          },
+          "400": {
+            "description": "Invalid input provided."
+          },
+          "401": {
+            "description": "Unauthorized."
+          },
+          "402": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Insufficient credits or quota."
+          },
+          "403": {
+            "description": "Not authorized to replace backgrounds."
+          },
+          "404": {
+            "description": "An image was not found or is not readable."
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            },
+            "description": "Too many requests."
+          },
+          "503": {
+            "description": "Background replacement is temporarily unavailable."
+          }
+        },
+        "summary": "Replace background with Ideogram 4.5",
+        "tags": [
+          "edit-workflow"
+        ],
+        "x-fern-sdk-group-name": "tool",
+        "x-fern-sdk-method-name": "replaceBackgroundIdeogram45",
         "x-openapi-router-controller": "external_api.generated.openapi.controllers.edit_workflow_controller"
       }
     },
@@ -22274,6 +22372,48 @@
         ],
         "type": "object"
       },
+      "ReplaceBackgroundIdeogram45Request": {
+        "description": "Upload the source `image` and a `background_reference` using\n`multipart/form-data`. The people in `image` are kept.\n",
+        "properties": {
+          "image_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "image": {
+            "description": "The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and\nMPO are supported, up to 50 MB. Its longer side may be at most the\nmodel's maximum aspect ratio times its shorter side; a more extreme\nproportion is rejected with a 400 that states the allowed range.\nMultipart requests only.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "background_reference_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "background_reference": {
+            "description": "A photo of the setting the new background should match. Its people\nare not copied. It is held to the same aspect-ratio limit as\n`image`. Multipart requests only.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "num_images": {
+            "default": 1,
+            "description": "The number of images to generate.",
+            "maximum": 4,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "private": {
+            "description": "Whether to keep the result private. When omitted, the result is\nprivate. Enterprise generations are always private.\n",
+            "type": "boolean"
+          },
+          "webhook_url": {
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n",
+            "example": "https://api.example.com/webhooks/ideogram",
+            "format": "uri",
+            "maxLength": 2048,
+            "title": "webhook_url",
+            "type": "string",
+            "x-tool-description": "Signed completion callback; public HTTPS only (no private/internal hosts)."
+          }
+        },
+        "type": "object"
+      },
       "ListAccountApiKeysResponse": {
         "example": {
           "api_keys": [
@@ -27330,6 +27470,11 @@
             "pattern": "^model/[^/]+/version/[^/]+$",
             "type": "string"
           },
+          "transparent_background": {
+            "default": false,
+            "description": "Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.",
+            "type": "boolean"
+          },
           "negative_prompt": {
             "description": "Description of what to exclude from the images. The prompt takes precedence over the negative prompt.",
             "maxLength": 10000,
@@ -27730,6 +27875,7 @@
           "target_collection_id": "target_collection_id",
           "custom_model_uri": "model/my-custom-v4-model/version/1",
           "resolution": "",
+          "transparent_background": false,
           "num_images": 1,
           "magic_prompt": "",
           "async": false,
@@ -27759,6 +27905,12 @@
             "pattern": "^model/[^/]+/version/[^/]+$",
             "title": "custom_model_uri",
             "type": "string"
+          },
+          "transparent_background": {
+            "default": false,
+            "description": "Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.",
+            "title": "transparent_background",
+            "type": "boolean"
           },
           "stacked_custom_models": {
             "description": "Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.",
@@ -35312,7 +35464,8 @@
               "paid_date": "2024-02-01T00:00:00+00:00",
               "invoice_status": "PAID"
             }
-          ]
+          ],
+          "billing_configured": true
         },
         "properties": {
           "invoices": {
@@ -35323,9 +35476,15 @@
             },
             "title": "invoices",
             "type": "array"
+          },
+          "billing_configured": {
+            "description": "Whether the organization has a billing account that invoices can be issued against. When false, the list is empty because nothing is billed yet, not because nothing was used.",
+            "title": "billing_configured",
+            "type": "boolean"
           }
         },
         "required": [
+          "billing_configured",
           "invoices"
         ],
         "title": "ListOrganizationInvoicesResponse",

@@ -232,6 +232,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundQuality), TypeInfoPropertyName = "ReplaceBackgroundQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundIdeogramV3Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "ReplaceBackgroundIdeogramV3RequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundIdeogram45Request))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountApiKeysResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountApiKey>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKey))]
@@ -508,7 +509,6 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RechargeSettings))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiSubscriptionResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiSubscriptionError))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiSubscriptionRequest))]
     internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -519,6 +519,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
         DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
     )]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiSubscriptionRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiCreditSummaryResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.CreditGrant>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreditGrant))]
