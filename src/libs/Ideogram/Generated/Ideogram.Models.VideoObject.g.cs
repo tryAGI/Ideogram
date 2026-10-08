@@ -9,6 +9,12 @@ namespace Ideogram
     public sealed partial class VideoObject
     {
         /// <summary>
+        /// The generated video's asset ID. Use it with asset_type RESPONSE in video_asset_identifier for a follow-up video edit. This is distinct from the generation ID used for polling.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("asset_id")]
+        public string? AssetId { get; set; }
+
+        /// <summary>
         /// Discriminator marking this entry as a generated video in the polling endpoint's mixed data array.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("object_type")]
@@ -81,6 +87,9 @@ namespace Ideogram
         /// The actual measured length of the produced video in seconds.<br/>
         /// Example: 5
         /// </param>
+        /// <param name="assetId">
+        /// The generated video's asset ID. Use it with asset_type RESPONSE in video_asset_identifier for a follow-up video edit. This is distinct from the generation ID used for polling.
+        /// </param>
         /// <param name="objectType">
         /// Discriminator marking this entry as a generated video in the polling endpoint's mixed data array.
         /// </param>
@@ -96,9 +105,11 @@ namespace Ideogram
             string resolution,
             string aspectRatio,
             int duration,
+            string? assetId,
             global::Ideogram.VideoObjectObjectType? objectType,
             string? url)
         {
+            this.AssetId = assetId;
             this.ObjectType = objectType;
             this.Url = url;
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));

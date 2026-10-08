@@ -38549,6 +38549,11 @@
       "VideoObject": {
         "description": "A single generated video returned by the generation polling endpoint.",
         "properties": {
+          "asset_id": {
+            "description": "The generated video's asset ID. Use it with asset_type RESPONSE in video_asset_identifier for a follow-up video edit. This is distinct from the generation ID used for polling.",
+            "title": "asset_id",
+            "type": "string"
+          },
           "object_type": {
             "description": "Discriminator marking this entry as a generated video in the polling endpoint's mixed data array.",
             "enum": [
