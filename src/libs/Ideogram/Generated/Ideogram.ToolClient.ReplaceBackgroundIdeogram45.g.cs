@@ -3,11 +3,11 @@
 
 namespace Ideogram
 {
-    public partial class ImagesGenerateClient
+    public partial class ToolClient
     {
 
 
-        private static readonly global::Ideogram.EndPointSecurityRequirement s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirement0 =
+        private static readonly global::Ideogram.EndPointSecurityRequirement s_ReplaceBackgroundIdeogram45SecurityRequirement0 =
             new global::Ideogram.EndPointSecurityRequirement
             {
                 Authorizations = new global::Ideogram.EndPointAuthorizationRequirement[]
@@ -21,34 +21,36 @@ namespace Ideogram
                     },
                 },
             };
-        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirements =
+        private static readonly global::Ideogram.EndPointSecurityRequirement[] s_ReplaceBackgroundIdeogram45SecurityRequirements =
             new global::Ideogram.EndPointSecurityRequirement[]
-            {                s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirement0,
+            {                s_ReplaceBackgroundIdeogram45SecurityRequirement0,
             };
-        partial void PreparePostGenerateImageV2IdeogramV4CustomModelArguments(
+        partial void PrepareReplaceBackgroundIdeogram45Arguments(
             global::System.Net.Http.HttpClient httpClient,
             ref bool? dryRun,
-            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request);
-        partial void PreparePostGenerateImageV2IdeogramV4CustomModelRequest(
+            global::Ideogram.ReplaceBackgroundIdeogram45Request request);
+        partial void PrepareReplaceBackgroundIdeogram45Request(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpRequestMessage httpRequestMessage,
             bool? dryRun,
-            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request);
-        partial void ProcessPostGenerateImageV2IdeogramV4CustomModelResponse(
+            global::Ideogram.ReplaceBackgroundIdeogram45Request request);
+        partial void ProcessReplaceBackgroundIdeogram45Response(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage);
 
-        partial void ProcessPostGenerateImageV2IdeogramV4CustomModelResponseContent(
+        partial void ProcessReplaceBackgroundIdeogram45ResponseContent(
             global::System.Net.Http.HttpClient httpClient,
             global::System.Net.Http.HttpResponseMessage httpResponseMessage,
             ref string content);
 
         /// <summary>
-        /// Generate with a custom Ideogram 4.0 model<br/>
-        /// Generate images with a custom Ideogram 4.0 model that you or your<br/>
-        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
-        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
-        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
+        /// Replace background with Ideogram 4.5<br/>
+        /// Rebuild the background of an image as the setting shown in a<br/>
+        /// `background_reference` image, with Ideogram 4.5 at its highest<br/>
+        /// quality. The people in the source image are kept, people in the<br/>
+        /// reference are left out, and results keep the source image's aspect<br/>
+        /// ratio. Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -57,14 +59,14 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse> PostGenerateImageV2IdeogramV4CustomModelAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.ReplaceBackgroundResponse> ReplaceBackgroundIdeogram45Async(
 
-            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request,
+            global::Ideogram.ReplaceBackgroundIdeogram45Request request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __response = await PostGenerateImageV2IdeogramV4CustomModelAsResponseAsync(
+            var __response = await ReplaceBackgroundIdeogram45AsResponseAsync(
 
                 request: request,
                 dryRun: dryRun,
@@ -75,11 +77,13 @@ namespace Ideogram
             return __response.Body;
         }
         /// <summary>
-        /// Generate with a custom Ideogram 4.0 model<br/>
-        /// Generate images with a custom Ideogram 4.0 model that you or your<br/>
-        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
-        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
-        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
+        /// Replace background with Ideogram 4.5<br/>
+        /// Rebuild the background of an image as the setting shown in a<br/>
+        /// `background_reference` image, with Ideogram 4.5 at its highest<br/>
+        /// quality. The people in the source image are kept, people in the<br/>
+        /// reference are left out, and results keep the source image's aspect<br/>
+        /// ratio. Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
@@ -88,9 +92,9 @@ namespace Ideogram
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::Ideogram.ApiException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse>> PostGenerateImageV2IdeogramV4CustomModelAsResponseAsync(
+        public async global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReplaceBackgroundResponse>> ReplaceBackgroundIdeogram45AsResponseAsync(
 
-            global::Ideogram.GenerateImageIdeogramV4CustomModelRequest request,
+            global::Ideogram.ReplaceBackgroundIdeogram45Request request,
             bool? dryRun = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -99,7 +103,7 @@ namespace Ideogram
 
             PrepareArguments(
                 client: HttpClient);
-            PreparePostGenerateImageV2IdeogramV4CustomModelArguments(
+            PrepareReplaceBackgroundIdeogram45Arguments(
                 httpClient: HttpClient,
                 dryRun: ref dryRun,
                 request: request);
@@ -107,8 +111,8 @@ namespace Ideogram
 
             var __authorizations = global::Ideogram.EndPointSecurityResolver.ResolveAuthorizations(
                 availableAuthorizations: Authorizations,
-                securityRequirements: s_PostGenerateImageV2IdeogramV4CustomModelSecurityRequirements,
-                operationName: "PostGenerateImageV2IdeogramV4CustomModelAsync");
+                securityRequirements: s_ReplaceBackgroundIdeogram45SecurityRequirements,
+                operationName: "ReplaceBackgroundIdeogram45Async");
 
             using var __timeoutCancellationTokenSource = global::Ideogram.AutoSDKRequestOptionsSupport.CreateTimeoutCancellationTokenSource(
                 clientOptions: Options,
@@ -122,13 +126,13 @@ namespace Ideogram
             var __maxAttempts = global::Ideogram.AutoSDKRequestOptionsSupport.GetMaxAttempts(
                 clientOptions: Options,
                 requestOptions: requestOptions,
-                supportsRetry: true);
+                supportsRetry: false);
 
             global::System.Net.Http.HttpRequestMessage __CreateHttpRequest()
             {
 
                             var __pathBuilder = new global::Ideogram.PathBuilder(
-                                path: "/v2/image/generate/ideogram-4-custom-model",
+                                path: "/v2/image/replace-background/ideogram-4-5",
                                 baseUri: HttpClient.BaseAddress);
                             __pathBuilder
                                 .AddOptionalParameter("dry_run", dryRun?.ToString().ToLowerInvariant())
@@ -162,12 +166,135 @@ namespace Ideogram
                     __httpRequest.Headers.Add(__authorization.Name, __authorization.Value);
                 }
             }
-                            var __httpRequestContentBody = request.ToJson(JsonSerializerContext);
-                            var __httpRequestContent = new global::System.Net.Http.StringContent(
-                                content: __httpRequestContentBody,
-                                encoding: global::System.Text.Encoding.UTF8,
-                                mediaType: "application/json");
+
+                            var __httpRequestContent = new global::System.Net.Http.MultipartFormDataContent();
+                            if (request.ImageAssetIdentifier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ImageAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"image_asset_identifier\"");
+
+                            }
+                            if (request.Image != default)
+                            {
+
+                                var __contentImage = new global::System.Net.Http.ByteArrayContent(request.Image ?? global::System.Array.Empty<byte>());
+                                __contentImage.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.Imagename is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.Imagename) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                __httpRequestContent.Add(
+                                    content: __contentImage,
+                                    name: "\"image\"",
+                                    fileName: request.Imagename != null ? $"\"{request.Imagename}\"" : string.Empty);
+                                if (__contentImage.Headers.ContentDisposition != null)
+                                {
+                                    __contentImage.Headers.ContentDisposition.FileNameStar = null;
+                                }
+
+                            }
+                            if (request.BackgroundReferenceAssetIdentifier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.BackgroundReferenceAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"background_reference_asset_identifier\"");
+
+                            }
+                            if (request.BackgroundReference != default)
+                            {
+
+                                var __contentBackgroundReference = new global::System.Net.Http.ByteArrayContent(request.BackgroundReference ?? global::System.Array.Empty<byte>());
+                                __contentBackgroundReference.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.BackgroundReferencename is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.BackgroundReferencename) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                __httpRequestContent.Add(
+                                    content: __contentBackgroundReference,
+                                    name: "\"background_reference\"",
+                                    fileName: request.BackgroundReferencename != null ? $"\"{request.BackgroundReferencename}\"" : string.Empty);
+                                if (__contentBackgroundReference.Headers.ContentDisposition != null)
+                                {
+                                    __contentBackgroundReference.Headers.ContentDisposition.FileNameStar = null;
+                                }
+
+                            }
+                            if (request.NumImages != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.NumImages, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
+                                    name: "\"num_images\"");
+
+                            }
+                            if (request.Private != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Private, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"private\"");
+
+                            }
+                            if (request.WebhookUrl != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.WebhookUrl ?? string.Empty),
+                                    name: "\"webhook_url\"");
+
+                            }
+
                             __httpRequest.Content = __httpRequestContent;
+
                 global::Ideogram.AutoSDKRequestOptionsSupport.ApplyHeaders(
                     request: __httpRequest,
                     clientHeaders: Options.Headers,
@@ -176,7 +303,7 @@ namespace Ideogram
                 PrepareRequest(
                     client: HttpClient,
                     request: __httpRequest);
-                PreparePostGenerateImageV2IdeogramV4CustomModelRequest(
+                PrepareReplaceBackgroundIdeogram45Request(
                     httpClient: HttpClient,
                     httpRequestMessage: __httpRequest,
                     dryRun: dryRun,
@@ -197,9 +324,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnBeforeRequestAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
-                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
+                                operationId: "ReplaceBackgroundIdeogram45",
+                                methodName: "ReplaceBackgroundIdeogram45Async",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -231,9 +358,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
-                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
+                                operationId: "ReplaceBackgroundIdeogram45",
+                                methodName: "ReplaceBackgroundIdeogram45Async",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -272,9 +399,9 @@ namespace Ideogram
                         await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
-                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
+                                operationId: "ReplaceBackgroundIdeogram45",
+                                methodName: "ReplaceBackgroundIdeogram45Async",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -312,7 +439,7 @@ namespace Ideogram
                 ProcessResponse(
                     client: HttpClient,
                     response: __response);
-                ProcessPostGenerateImageV2IdeogramV4CustomModelResponse(
+                ProcessReplaceBackgroundIdeogram45Response(
                     httpClient: HttpClient,
                     httpResponseMessage: __response);
                 if (__response.IsSuccessStatusCode)
@@ -320,9 +447,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterSuccessAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
-                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
+                                operationId: "ReplaceBackgroundIdeogram45",
+                                methodName: "ReplaceBackgroundIdeogram45Async",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -342,9 +469,9 @@ namespace Ideogram
                     await global::Ideogram.AutoSDKRequestOptionsSupport.OnAfterErrorAsync(
                             clientOptions: Options,
                             context: global::Ideogram.AutoSDKRequestOptionsSupport.CreateHookContext(
-                                operationId: "PostGenerateImageV2IdeogramV4CustomModel",
-                                methodName: "PostGenerateImageV2IdeogramV4CustomModelAsync",
-                                pathTemplate: "\"/v2/image/generate/ideogram-4-custom-model\"",
+                                operationId: "ReplaceBackgroundIdeogram45",
+                                methodName: "ReplaceBackgroundIdeogram45Async",
+                                pathTemplate: "\"/v2/image/replace-background/ideogram-4-5\"",
                                 httpMethod: "POST",
                                 baseUri: BaseUri,
                                 request: __httpRequest ?? throw new global::System.InvalidOperationException("The HTTP request was not created before invoking a request hook."),
@@ -493,32 +620,32 @@ namespace Ideogram
                                         h => h.Value));
                             }
                             //
-                            if ((int)__response.StatusCode == 422)
+                            if ((int)__response.StatusCode == 404)
                             {
-                                string? __content_422 = null;
-                                global::System.Exception? __exception_422 = null;
+                                string? __content_404 = null;
+                                global::System.Exception? __exception_404 = null;
                                 try
                                 {
                                     if (__effectiveReadResponseAsString)
                                     {
-                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
                                     }
                                     else
                                     {
-                                        __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
+                                        __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
                                 {
-                                    __exception_422 = __ex;
+                                    __exception_404 = __ex;
                                 }
 
 
                                 throw global::Ideogram.ApiException.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_422,
-                                    responseBody: __content_422,
+                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    innerException: __exception_404,
+                                    responseBody: __content_404,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -556,38 +683,6 @@ namespace Ideogram
                                     innerException: __exception_429,
                                     responseBody: __content_429,
                                     responseObject: __value_429,
-                                    responseHeaders: global::System.Linq.Enumerable.ToDictionary(
-                                        __response.Headers,
-                                        h => h.Key,
-                                        h => h.Value));
-                            }
-                            //
-                            if ((int)__response.StatusCode == 500)
-                            {
-                                string? __content_500 = null;
-                                global::System.Exception? __exception_500 = null;
-                                try
-                                {
-                                    if (__effectiveReadResponseAsString)
-                                    {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                    }
-                                    else
-                                    {
-                                        __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                    }
-                                }
-                                catch (global::System.Exception __ex)
-                                {
-                                    __exception_500 = __ex;
-                                }
-
-
-                                throw global::Ideogram.ApiException.Create(
-                                    statusCode: __response.StatusCode,
-                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
-                                    innerException: __exception_500,
-                                    responseBody: __content_500,
                                     responseHeaders: global::System.Linq.Enumerable.ToDictionary(
                                         __response.Headers,
                                         h => h.Key,
@@ -638,7 +733,7 @@ namespace Ideogram
                                     client: HttpClient,
                                     response: __response,
                                     content: ref __content);
-                                ProcessPostGenerateImageV2IdeogramV4CustomModelResponseContent(
+                                ProcessReplaceBackgroundIdeogram45ResponseContent(
                                     httpClient: HttpClient,
                                     httpResponseMessage: __response,
                                     content: ref __content);
@@ -647,9 +742,9 @@ namespace Ideogram
                                 {
                                     __response.EnsureSuccessStatusCode();
 
-                                    var __value = global::Ideogram.GenerateImageIdeogramV4CustomModelResponse.FromJson(__content, JsonSerializerContext) ??
+                                    var __value = global::Ideogram.ReplaceBackgroundResponse.FromJson(__content, JsonSerializerContext) ??
                                         throw new global::System.InvalidOperationException($"Response deserialization failed for \"{__content}\" ");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReplaceBackgroundResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -679,9 +774,9 @@ namespace Ideogram
                 #endif
                                     ).ConfigureAwait(false);
 
-                                    var __value = await global::Ideogram.GenerateImageIdeogramV4CustomModelResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
+                                    var __value = await global::Ideogram.ReplaceBackgroundResponse.FromJsonStreamAsync(__content, JsonSerializerContext).ConfigureAwait(false) ??
                                         throw new global::System.InvalidOperationException("Response deserialization failed.");
-                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse>(
+                                    return new global::Ideogram.AutoSDKHttpResponse<global::Ideogram.ReplaceBackgroundResponse>(
                                         statusCode: __response.StatusCode,
                                         headers: global::Ideogram.AutoSDKHttpResponse.CreateHeaders(__response),
                                         requestUri: __response.RequestMessage?.RequestUri,
@@ -722,62 +817,56 @@ namespace Ideogram
             }
         }
         /// <summary>
-        /// Generate with a custom Ideogram 4.0 model<br/>
-        /// Generate images with a custom Ideogram 4.0 model that you or your<br/>
-        /// organization can access, selected by `custom_model_uri`. Returns results<br/>
-        /// directly by default; set `async` or supply a `webhook_url` to get a<br/>
-        /// `generation_id` and poll `GET /v2/generations/{generation_id}`.
+        /// Replace background with Ideogram 4.5<br/>
+        /// Rebuild the background of an image as the setting shown in a<br/>
+        /// `background_reference` image, with Ideogram 4.5 at its highest<br/>
+        /// quality. The people in the source image are kept, people in the<br/>
+        /// reference are left out, and results keep the source image's aspect<br/>
+        /// ratio. Returns a `generation_id`; poll<br/>
+        /// `GET /v2/generations/{generation_id}` or supply a `webhook_url`.
         /// </summary>
         /// <param name="dryRun">
         /// Default Value: false
         /// </param>
-        /// <param name="prompt">
-        /// The prompt to generate images from, in natural language or as a<br/>
-        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
-        /// used as is and skips magic prompt unless `magic_prompt` is `on`.
+        /// <param name="imageAssetIdentifier">
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
-        /// <param name="customModelUri">
-        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>
-        /// Example: model/my-custom-v4-model/version/1
+        /// <param name="image">
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Its longer side may be at most the<br/>
+        /// model's maximum aspect ratio times its shorter side; a more extreme<br/>
+        /// proportion is rejected with a 400 that states the allowed range.<br/>
+        /// Multipart requests only.
         /// </param>
-        /// <param name="transparentBackground">
-        /// Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.<br/>
-        /// Default Value: false
+        /// <param name="imagename">
+        /// The source image. JPEG, PNG, WEBP, HEIF, AVIF, GIF, BMP, TIFF, and<br/>
+        /// MPO are supported, up to 50 MB. Its longer side may be at most the<br/>
+        /// model's maximum aspect ratio times its shorter side; a more extreme<br/>
+        /// proportion is rejected with a 400 that states the allowed range.<br/>
+        /// Multipart requests only.
         /// </param>
-        /// <param name="stackedCustomModels">
-        /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
-        /// Example: [{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]
+        /// <param name="backgroundReferenceAssetIdentifier">
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
-        /// <param name="magicPrompt">
-        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
-        /// default) and `on` rewrite and expand the prompt before generation.<br/>
-        /// `off` keeps your wording and only converts it into a structured<br/>
-        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
-        /// `magic_prompt` is `on`.<br/>
-        /// Default Value: auto
+        /// <param name="backgroundReference">
+        /// A photo of the setting the new background should match. Its people<br/>
+        /// are not copied. It is held to the same aspect-ratio limit as<br/>
+        /// `image`. Multipart requests only.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// <param name="backgroundReferencename">
+        /// A photo of the setting the new background should match. Its people<br/>
+        /// are not copied. It is held to the same aspect-ratio limit as<br/>
+        /// `image`. Multipart requests only.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
-        /// <param name="resolution">
-        /// Optional. When supplied, the images are generated at this<br/>
-        /// resolution. When omitted, an aspect ratio is picked automatically<br/>
-        /// based on the prompt.
-        /// </param>
-        /// <param name="renderingSpeed">
-        /// The rendering speed to use. When omitted, a speed supported by the custom model is used.
-        /// </param>
-        /// <param name="enableCopyrightDetection">
-        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
-        /// </param>
-        /// <param name="async">
-        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
-        /// Default Value: false
+        /// <param name="private">
+        /// Whether to keep the result private. When omitted, the result is<br/>
+        /// private. Enterprise generations are always private.
         /// </param>
         /// <param name="webhookUrl">
         /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
@@ -790,53 +879,37 @@ namespace Ideogram
         /// private and loopback hosts and the cloud metadata service are rejected.<br/>
         /// Example: https://api.example.com/webhooks/ideogram
         /// </param>
-        /// <param name="private">
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </param>
-        /// <param name="targetCollectionId">
-        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
-        /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
         /// <exception cref="global::System.InvalidOperationException"></exception>
-        public async global::System.Threading.Tasks.Task<global::Ideogram.GenerateImageIdeogramV4CustomModelResponse> PostGenerateImageV2IdeogramV4CustomModelAsync(
-            string prompt,
-            string customModelUri,
+        public async global::System.Threading.Tasks.Task<global::Ideogram.ReplaceBackgroundResponse> ReplaceBackgroundIdeogram45Async(
             bool? dryRun = default,
-            bool? transparentBackground = default,
-            global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>? stackedCustomModels = default,
-            global::Ideogram.MagicPromptMode? magicPrompt = default,
-            int? seed = default,
+            global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
+            byte[]? image = default,
+            string? imagename = default,
+            global::Ideogram.AssetIdentifier? backgroundReferenceAssetIdentifier = default,
+            byte[]? backgroundReference = default,
+            string? backgroundReferencename = default,
             int? numImages = default,
-            global::Ideogram.ResolutionV4? resolution = default,
-            global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed? renderingSpeed = default,
-            bool? enableCopyrightDetection = default,
-            bool? async = default,
-            string? webhookUrl = default,
             bool? @private = default,
-            string? targetCollectionId = default,
+            string? webhookUrl = default,
             global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var __request = new global::Ideogram.GenerateImageIdeogramV4CustomModelRequest
+            var __request = new global::Ideogram.ReplaceBackgroundIdeogram45Request
             {
-                Prompt = prompt,
-                CustomModelUri = customModelUri,
-                TransparentBackground = transparentBackground,
-                StackedCustomModels = stackedCustomModels,
-                MagicPrompt = magicPrompt,
-                Seed = seed,
+                ImageAssetIdentifier = imageAssetIdentifier,
+                Image = image,
+                Imagename = imagename,
+                BackgroundReferenceAssetIdentifier = backgroundReferenceAssetIdentifier,
+                BackgroundReference = backgroundReference,
+                BackgroundReferencename = backgroundReferencename,
                 NumImages = numImages,
-                Resolution = resolution,
-                RenderingSpeed = renderingSpeed,
-                EnableCopyrightDetection = enableCopyrightDetection,
-                Async = async,
-                WebhookUrl = webhookUrl,
                 Private = @private,
-                TargetCollectionId = targetCollectionId,
+                WebhookUrl = webhookUrl,
             };
 
-            return await PostGenerateImageV2IdeogramV4CustomModelAsync(
+            return await ReplaceBackgroundIdeogram45Async(
                 dryRun: dryRun,
                 request: __request,
                 requestOptions: requestOptions,

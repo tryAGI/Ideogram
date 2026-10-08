@@ -172,6 +172,14 @@ namespace Ideogram
                                 content: new global::System.Net.Http.StringContent(request.CustomModelUri ?? string.Empty),
                                 name: "\"custom_model_uri\"");
 
+                            if (request.TransparentBackground != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.TransparentBackground, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"transparent_background\"");
+
+                            }
                             if (request.NegativePrompt != default)
                             {
 
@@ -923,6 +931,10 @@ namespace Ideogram
         /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported and whether backgrounds are removed automatically.<br/>
         /// Example: model/my-custom-model/version/1
         /// </param>
+        /// <param name="transparentBackground">
+        /// Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="negativePrompt">
         /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
@@ -998,6 +1010,7 @@ namespace Ideogram
             string prompt,
             string customModelUri,
             bool? dryRun = default,
+            bool? transparentBackground = default,
             string? negativePrompt = default,
             int? seed = default,
             global::Ideogram.ResolutionV3? resolution = default,
@@ -1022,6 +1035,7 @@ namespace Ideogram
             {
                 Prompt = prompt,
                 CustomModelUri = customModelUri,
+                TransparentBackground = transparentBackground,
                 NegativePrompt = negativePrompt,
                 Seed = seed,
                 Resolution = resolution,

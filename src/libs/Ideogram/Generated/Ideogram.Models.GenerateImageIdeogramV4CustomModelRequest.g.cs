@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"private":true,"seed":12345,"rendering_speed":"turbo","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","custom_model_uri":"model/my-custom-v4-model/version/1","resolution":"","num_images":1,"magic_prompt":"","async":false,"enable_copyright_detection":true,"stacked_custom_models":[{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}],"prompt":"prompt"}
+    /// Example: {"private":true,"seed":12345,"rendering_speed":"turbo","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","custom_model_uri":"model/my-custom-v4-model/version/1","resolution":"","transparent_background":false,"num_images":1,"magic_prompt":"","async":false,"enable_copyright_detection":true,"stacked_custom_models":[{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}],"prompt":"prompt"}
     /// </summary>
     public sealed partial class GenerateImageIdeogramV4CustomModelRequest
     {
@@ -25,6 +25,13 @@ namespace Ideogram
         [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_uri")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string CustomModelUri { get; set; }
+
+        /// <summary>
+        /// Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.<br/>
+        /// Default Value: false
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("transparent_background")]
+        public bool? TransparentBackground { get; set; }
 
         /// <summary>
         /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
@@ -135,6 +142,10 @@ namespace Ideogram
         /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>
         /// Example: model/my-custom-v4-model/version/1
         /// </param>
+        /// <param name="transparentBackground">
+        /// Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="stackedCustomModels">
         /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
         /// Example: [{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]
@@ -193,6 +204,7 @@ namespace Ideogram
         public GenerateImageIdeogramV4CustomModelRequest(
             string prompt,
             string customModelUri,
+            bool? transparentBackground,
             global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>? stackedCustomModels,
             global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
@@ -207,6 +219,7 @@ namespace Ideogram
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.CustomModelUri = customModelUri ?? throw new global::System.ArgumentNullException(nameof(customModelUri));
+            this.TransparentBackground = transparentBackground;
             this.StackedCustomModels = stackedCustomModels;
             this.MagicPrompt = magicPrompt;
             this.Seed = seed;
