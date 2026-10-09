@@ -80,6 +80,14 @@ namespace Ideogram
         public string? Size { get; set; }
 
         /// <summary>
+        /// The output background. `transparent` returns images with an alpha channel, `opaque` returns a solid one, and `auto` decides for you.<br/>
+        /// Default Value: auto
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("background")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestBackgroundJsonConverter))]
+        public global::Ideogram.GenerateImageIdeogram45RequestBackground? Background { get; set; }
+
+        /// <summary>
         /// The rendering quality to use. Higher quality takes longer and costs more. Defaults to `medium` with source images and `high` without. `very_low`, the fastest and cheapest, requires source images.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("quality")]
@@ -196,6 +204,10 @@ namespace Ideogram
         /// Default Value: auto<br/>
         /// Example: 2048x2048
         /// </param>
+        /// <param name="background">
+        /// The output background. `transparent` returns images with an alpha channel, `opaque` returns a solid one, and `auto` decides for you.<br/>
+        /// Default Value: auto
+        /// </param>
         /// <param name="quality">
         /// The rendering quality to use. Higher quality takes longer and costs more. Defaults to `medium` with source images and `high` without. `very_low`, the fastest and cheapest, requires source images.
         /// </param>
@@ -242,6 +254,7 @@ namespace Ideogram
             byte[]? mask,
             string? maskname,
             string? size,
+            global::Ideogram.GenerateImageIdeogram45RequestBackground? background,
             global::Ideogram.GenerateImageIdeogram45RequestQuality? quality,
             int? seed,
             int? numImages,
@@ -258,6 +271,7 @@ namespace Ideogram
             this.Mask = mask;
             this.Maskname = maskname;
             this.Size = size;
+            this.Background = background;
             this.Quality = quality;
             this.Seed = seed;
             this.NumImages = numImages;

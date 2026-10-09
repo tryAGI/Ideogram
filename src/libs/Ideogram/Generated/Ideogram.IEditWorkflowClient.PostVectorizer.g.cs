@@ -55,6 +55,14 @@ namespace Ideogram
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
+        /// <param name="mode">
+        /// Default draws fewer, simpler shapes; detailed preserves more fine detail.<br/>
+        /// Default Value: default
+        /// </param>
+        /// <param name="group">
+        /// Request grouping of shapes into layers. Grouping is not yet available.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -80,6 +88,8 @@ namespace Ideogram
             byte[]? image = default,
             string? imagename = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
+            global::Ideogram.VectorizerRequestMode? mode = default,
+            bool? group = default,
             bool? @private = default,
             string? targetCollectionId = default,
             string? webhookUrl = default,

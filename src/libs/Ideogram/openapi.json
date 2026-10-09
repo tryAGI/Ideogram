@@ -25196,6 +25196,20 @@
           "image_asset_identifier": {
             "$ref": "#/components/schemas/AssetIdentifier"
           },
+          "mode": {
+            "default": "default",
+            "description": "Default draws fewer, simpler shapes; detailed preserves more fine detail.",
+            "enum": [
+              "default",
+              "detailed"
+            ],
+            "type": "string"
+          },
+          "group": {
+            "default": false,
+            "description": "Request grouping of shapes into layers. Grouping is not yet available.",
+            "type": "boolean"
+          },
           "private": {
             "description": "Outputs are private by default. Enterprise outputs are always private.",
             "type": "boolean"
@@ -29810,6 +29824,27 @@
               ],
               "labels": {
                 "auto": "Auto (from the prompt)"
+              }
+            }
+          },
+          "background": {
+            "default": "auto",
+            "description": "The output background. `transparent` returns images with an alpha channel, `opaque` returns a solid one, and `auto` decides for you.",
+            "enum": [
+              "auto",
+              "transparent",
+              "opaque"
+            ],
+            "type": "string",
+            "x-tool-description": "Leave unset unless the user explicitly asks for a transparent or a solid background.",
+            "x-playground-field": {
+              "label": "Background",
+              "order": 5,
+              "default": "auto",
+              "labels": {
+                "auto": "Auto",
+                "transparent": "Transparent",
+                "opaque": "Opaque"
               }
             }
           },
