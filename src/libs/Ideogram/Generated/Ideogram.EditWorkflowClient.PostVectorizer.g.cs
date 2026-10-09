@@ -208,6 +208,22 @@ namespace Ideogram
                                     name: "\"image_asset_identifier\"");
 
                             }
+                            if (request.Mode != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.Mode).HasValue ? (request.Mode).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"mode\"");
+
+                            }
+                            if (request.Group != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Group, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"group\"");
+
+                            }
                             if (request.Private != default)
                             {
 
@@ -773,6 +789,14 @@ namespace Ideogram
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
+        /// <param name="mode">
+        /// Default draws fewer, simpler shapes; detailed preserves more fine detail.<br/>
+        /// Default Value: default
+        /// </param>
+        /// <param name="group">
+        /// Request grouping of shapes into layers. Grouping is not yet available.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -798,6 +822,8 @@ namespace Ideogram
             byte[]? image = default,
             string? imagename = default,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier = default,
+            global::Ideogram.VectorizerRequestMode? mode = default,
+            bool? group = default,
             bool? @private = default,
             string? targetCollectionId = default,
             string? webhookUrl = default,
@@ -809,6 +835,8 @@ namespace Ideogram
                 Image = image,
                 Imagename = imagename,
                 ImageAssetIdentifier = imageAssetIdentifier,
+                Mode = mode,
+                Group = group,
                 Private = @private,
                 TargetCollectionId = targetCollectionId,
                 WebhookUrl = webhookUrl,

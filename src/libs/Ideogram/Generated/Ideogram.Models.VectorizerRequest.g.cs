@@ -29,6 +29,21 @@ namespace Ideogram
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
+        /// Default draws fewer, simpler shapes; detailed preserves more fine detail.<br/>
+        /// Default Value: default
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mode")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.VectorizerRequestModeJsonConverter))]
+        public global::Ideogram.VectorizerRequestMode? Mode { get; set; }
+
+        /// <summary>
+        /// Request grouping of shapes into layers. Grouping is not yet available.<br/>
+        /// Default Value: false
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("group")]
+        public bool? Group { get; set; }
+
+        /// <summary>
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
@@ -74,6 +89,14 @@ namespace Ideogram
         /// An identifier for an ideogram asset.<br/>
         /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
         /// </param>
+        /// <param name="mode">
+        /// Default draws fewer, simpler shapes; detailed preserves more fine detail.<br/>
+        /// Default Value: default
+        /// </param>
+        /// <param name="group">
+        /// Request grouping of shapes into layers. Grouping is not yet available.<br/>
+        /// Default Value: false
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -98,6 +121,8 @@ namespace Ideogram
             byte[]? image,
             string? imagename,
             global::Ideogram.AssetIdentifier? imageAssetIdentifier,
+            global::Ideogram.VectorizerRequestMode? mode,
+            bool? group,
             bool? @private,
             string? targetCollectionId,
             string? webhookUrl)
@@ -105,6 +130,8 @@ namespace Ideogram
             this.Image = image;
             this.Imagename = imagename;
             this.ImageAssetIdentifier = imageAssetIdentifier;
+            this.Mode = mode;
+            this.Group = group;
             this.Private = @private;
             this.TargetCollectionId = targetCollectionId;
             this.WebhookUrl = webhookUrl;

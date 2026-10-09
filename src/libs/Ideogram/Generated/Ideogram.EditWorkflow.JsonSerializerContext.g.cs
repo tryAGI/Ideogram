@@ -59,6 +59,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerQuality), TypeInfoPropertyName = "AdLocalizerQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerRequestMode), TypeInfoPropertyName = "VectorizerRequestMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerResponse))]
@@ -119,6 +120,7 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysQuality?), TypeInfoPropertyName = "NullableColorwaysQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerRequestLanguage?), TypeInfoPropertyName = "NullableAdLocalizerRequestLanguage2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerQuality?), TypeInfoPropertyName = "NullableAdLocalizerQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerRequestMode?), TypeInfoPropertyName = "NullableVectorizerRequestMode2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestResolution?), TypeInfoPropertyName = "NullableAdResizerRequestResolution2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestPlatform?), TypeInfoPropertyName = "NullableAdResizerRequestPlatform2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerQuality?), TypeInfoPropertyName = "NullableAdResizerQuality2")]
@@ -271,6 +273,10 @@ namespace Ideogram
                     || typeToConvert == typeof(global::Ideogram.AdLocalizerQuality)
 
                     || typeToConvert == typeof(global::Ideogram.AdLocalizerQuality?)
+
+                    || typeToConvert == typeof(global::Ideogram.VectorizerRequestMode)
+
+                    || typeToConvert == typeof(global::Ideogram.VectorizerRequestMode?)
 
                     || typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution)
 
@@ -509,6 +515,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.AdLocalizerQuality?))
                 {
                     return new global::Ideogram.JsonConverters.AdLocalizerQualityNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.VectorizerRequestMode))
+                {
+                    return new global::Ideogram.JsonConverters.VectorizerRequestModeJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.VectorizerRequestMode?))
+                {
+                    return new global::Ideogram.JsonConverters.VectorizerRequestModeNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution))

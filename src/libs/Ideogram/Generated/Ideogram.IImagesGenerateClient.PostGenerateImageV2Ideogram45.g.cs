@@ -103,6 +103,10 @@ namespace Ideogram
         /// Default Value: auto<br/>
         /// Example: 2048x2048
         /// </param>
+        /// <param name="background">
+        /// The output background. `transparent` returns images with an alpha channel, `opaque` returns a solid one, and `auto` decides for you.<br/>
+        /// Default Value: auto
+        /// </param>
         /// <param name="quality">
         /// The rendering quality to use. Higher quality takes longer and costs more. Defaults to `medium` with source images and `high` without. `very_low`, the fastest and cheapest, requires source images.
         /// </param>
@@ -150,6 +154,7 @@ namespace Ideogram
             byte[]? mask = default,
             string? maskname = default,
             string? size = default,
+            global::Ideogram.GenerateImageIdeogram45RequestBackground? background = default,
             global::Ideogram.GenerateImageIdeogram45RequestQuality? quality = default,
             int? seed = default,
             int? numImages = default,
