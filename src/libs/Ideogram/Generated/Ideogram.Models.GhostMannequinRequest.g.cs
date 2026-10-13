@@ -5,8 +5,9 @@ namespace Ideogram
 {
     /// <summary>
     /// Supply at least one garment image. Every image must show the same<br/>
-    /// primary garment. At most 15 garment images are accepted in total, and all<br/>
-    /// uploads combined must not exceed 100 MB.
+    /// primary garment. At most 15 garment images are accepted, plus one optional<br/>
+    /// output reference for presentation only. All uploads combined must not<br/>
+    /// exceed 100 MB.
     /// </summary>
     public sealed partial class GhostMannequinRequest
     {
@@ -158,6 +159,36 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("bottom_imagename")]
         public string? BottomImagename { get; set; }
+
+        /// <summary>
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// </summary>
+        /// <example>{"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}</example>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_reference_asset_identifier")]
+        public global::Ideogram.AssetIdentifier? OutputReferenceAssetIdentifier { get; set; }
+
+        /// <summary>
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_reference_image")]
+        public byte[]? OutputReferenceImage { get; set; }
+
+        /// <summary>
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_reference_imagename")]
+        public string? OutputReferenceImagename { get; set; }
 
         /// <summary>
         /// Camera view for the output garment.
@@ -327,6 +358,26 @@ namespace Ideogram
         /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
         /// requests only.
         /// </param>
+        /// <param name="outputReferenceAssetIdentifier">
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// </param>
+        /// <param name="outputReferenceImage">
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </param>
+        /// <param name="outputReferenceImagename">
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </param>
         /// <param name="instruction">
         /// Optional reconstruction guidance or identity-critical garment<br/>
         /// details to check against the photos. The output always uses a clean<br/>
@@ -391,6 +442,9 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? bottomAssetIdentifier,
             byte[]? bottomImage,
             string? bottomImagename,
+            global::Ideogram.AssetIdentifier? outputReferenceAssetIdentifier,
+            byte[]? outputReferenceImage,
+            string? outputReferenceImagename,
             string? instruction,
             string? metadata,
             string? aspectRatio,
@@ -420,6 +474,9 @@ namespace Ideogram
             this.BottomAssetIdentifier = bottomAssetIdentifier;
             this.BottomImage = bottomImage;
             this.BottomImagename = bottomImagename;
+            this.OutputReferenceAssetIdentifier = outputReferenceAssetIdentifier;
+            this.OutputReferenceImage = outputReferenceImage;
+            this.OutputReferenceImagename = outputReferenceImagename;
             this.View = view;
             this.Instruction = instruction;
             this.Metadata = metadata;
