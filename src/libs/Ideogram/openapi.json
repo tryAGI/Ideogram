@@ -12753,6 +12753,9 @@
                 },
                 "bottom_asset_identifier": {
                   "contentType": "application/json"
+                },
+                "output_reference_asset_identifier": {
+                  "contentType": "application/json"
                 }
               },
               "schema": {
@@ -24474,7 +24477,7 @@
         "type": "object"
       },
       "GhostMannequinRequest": {
-        "description": "Supply at least one garment image. Every image must show the same\nprimary garment. At most 15 garment images are accepted in total, and all\nuploads combined must not exceed 100 MB.\n",
+        "description": "Supply at least one garment image. Every image must show the same\nprimary garment. At most 15 garment images are accepted, plus one optional\noutput reference for presentation only. All uploads combined must not\nexceed 100 MB.\n",
         "properties": {
           "garment_asset_identifiers": {
             "description": "Ordered uploaded or generated images of the same garment. Use\nmultiple angles when available so obscured construction can be\nreconstructed conservatively. Mutually exclusive with\n`garment_images`.\n",
@@ -24540,6 +24543,14 @@
           },
           "bottom_image": {
             "description": "Optional bottom-view garment photo, up to 50 MB. Multipart\nrequests only.\n",
+            "format": "binary",
+            "type": "string"
+          },
+          "output_reference_asset_identifier": {
+            "$ref": "#/components/schemas/AssetIdentifier"
+          },
+          "output_reference_image": {
+            "description": "Optional presentation example, up to 50 MB. Multipart requests only.\nGuides pose, framing, and lighting without copying its garment,\ncolors, text, or branding. Garment photos remain authoritative for\nproduct identity; view and aspect_ratio take precedence, and the\nbackground remains white. Does not replace a required garment photo.\nMutually exclusive with `output_reference_asset_identifier`.\n",
             "format": "binary",
             "type": "string"
           },

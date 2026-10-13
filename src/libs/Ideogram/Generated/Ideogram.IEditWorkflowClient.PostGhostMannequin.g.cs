@@ -146,6 +146,26 @@ namespace Ideogram
         /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
         /// requests only.
         /// </param>
+        /// <param name="outputReferenceAssetIdentifier">
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// </param>
+        /// <param name="outputReferenceImage">
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </param>
+        /// <param name="outputReferenceImagename">
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </param>
         /// <param name="view">
         /// Camera view for the output garment.
         /// </param>
@@ -214,6 +234,9 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? bottomAssetIdentifier = default,
             byte[]? bottomImage = default,
             string? bottomImagename = default,
+            global::Ideogram.AssetIdentifier? outputReferenceAssetIdentifier = default,
+            byte[]? outputReferenceImage = default,
+            string? outputReferenceImagename = default,
             string? instruction = default,
             string? metadata = default,
             string? aspectRatio = default,

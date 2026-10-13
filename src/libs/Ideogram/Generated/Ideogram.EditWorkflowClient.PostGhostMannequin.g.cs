@@ -496,6 +496,56 @@ namespace Ideogram
                                 }
 
                             }
+                            if (request.OutputReferenceAssetIdentifier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.OutputReferenceAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"output_reference_asset_identifier\"");
+
+                            }
+                            if (request.OutputReferenceImage != default)
+                            {
+
+                                var __contentOutputReferenceImage = new global::System.Net.Http.ByteArrayContent(request.OutputReferenceImage ?? global::System.Array.Empty<byte>());
+                                __contentOutputReferenceImage.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.OutputReferenceImagename is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.OutputReferenceImagename) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                __httpRequestContent.Add(
+                                    content: __contentOutputReferenceImage,
+                                    name: "\"output_reference_image\"",
+                                    fileName: request.OutputReferenceImagename != null ? $"\"{request.OutputReferenceImagename}\"" : string.Empty);
+                                if (__contentOutputReferenceImage.Headers.ContentDisposition != null)
+                                {
+                                    __contentOutputReferenceImage.Headers.ContentDisposition.FileNameStar = null;
+                                }
+
+                            }
                             __httpRequestContent.Add(
                                 content: new global::System.Net.Http.StringContent(request.View.ToValueString()),
                                 name: "\"view\"");
@@ -1216,6 +1266,26 @@ namespace Ideogram
         /// Optional bottom-view garment photo, up to 50 MB. Multipart<br/>
         /// requests only.
         /// </param>
+        /// <param name="outputReferenceAssetIdentifier">
+        /// An identifier for an ideogram asset.<br/>
+        /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+        /// </param>
+        /// <param name="outputReferenceImage">
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </param>
+        /// <param name="outputReferenceImagename">
+        /// Optional presentation example, up to 50 MB. Multipart requests only.<br/>
+        /// Guides pose, framing, and lighting without copying its garment,<br/>
+        /// colors, text, or branding. Garment photos remain authoritative for<br/>
+        /// product identity; view and aspect_ratio take precedence, and the<br/>
+        /// background remains white. Does not replace a required garment photo.<br/>
+        /// Mutually exclusive with `output_reference_asset_identifier`.
+        /// </param>
         /// <param name="view">
         /// Camera view for the output garment.
         /// </param>
@@ -1284,6 +1354,9 @@ namespace Ideogram
             global::Ideogram.AssetIdentifier? bottomAssetIdentifier = default,
             byte[]? bottomImage = default,
             string? bottomImagename = default,
+            global::Ideogram.AssetIdentifier? outputReferenceAssetIdentifier = default,
+            byte[]? outputReferenceImage = default,
+            string? outputReferenceImagename = default,
             string? instruction = default,
             string? metadata = default,
             string? aspectRatio = default,
@@ -1317,6 +1390,9 @@ namespace Ideogram
                 BottomAssetIdentifier = bottomAssetIdentifier,
                 BottomImage = bottomImage,
                 BottomImagename = bottomImagename,
+                OutputReferenceAssetIdentifier = outputReferenceAssetIdentifier,
+                OutputReferenceImage = outputReferenceImage,
+                OutputReferenceImagename = outputReferenceImagename,
                 View = view,
                 Instruction = instruction,
                 Metadata = metadata,
