@@ -20,25 +20,25 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.
+        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_asset_identifier")]
         public global::Ideogram.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         public byte[]? Image { get; set; }
 
         /// <summary>
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         public string? Imagename { get; set; }
 
         /// <summary>
-        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.
+        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too. A request with a mask can include at most three.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_image_asset_identifiers")]
         public global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? ReferenceImageAssetIdentifiers { get; set; }
@@ -50,13 +50,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? ReferenceImages { get; set; }
 
         /// <summary>
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
+        /// An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mask_asset_identifier")]
+        public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
+
+        /// <summary>
+        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         public byte[]? Mask { get; set; }
 
         /// <summary>
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         public string? Maskname { get; set; }
@@ -150,25 +156,28 @@ namespace Ideogram
         /// structured prompt; valid structured JSON is used as is.
         /// </param>
         /// <param name="imageAssetIdentifier">
-        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.
+        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied.
         /// </param>
         /// <param name="image">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
         /// </param>
         /// <param name="imagename">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
         /// </param>
         /// <param name="referenceImageAssetIdentifiers">
-        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.
+        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too. A request with a mask can include at most three.
         /// </param>
         /// <param name="referenceImages">
         /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A request with a `mask` can include at most three, because the mask takes up one reference slot.
         /// </param>
+        /// <param name="maskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.
+        /// </param>
         /// <param name="mask">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.
         /// </param>
         /// <param name="contextWindow">
         /// Which region of the image to edit.<br/>
@@ -224,6 +233,7 @@ namespace Ideogram
             string? imagename,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? referenceImages,
+            global::Ideogram.AssetIdentifier? maskAssetIdentifier,
             byte[]? mask,
             string? maskname,
             string? contextWindow,
@@ -242,6 +252,7 @@ namespace Ideogram
             this.Imagename = imagename;
             this.ReferenceImageAssetIdentifiers = referenceImageAssetIdentifiers;
             this.ReferenceImages = referenceImages;
+            this.MaskAssetIdentifier = maskAssetIdentifier;
             this.Mask = mask;
             this.Maskname = maskname;
             this.ContextWindow = contextWindow;

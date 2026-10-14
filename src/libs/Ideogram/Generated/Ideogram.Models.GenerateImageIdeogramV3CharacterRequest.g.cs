@@ -49,13 +49,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? CharacterReferenceImages { get; set; }
 
         /// <summary>
-        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
+        /// An existing upload or generated image asset to use as the character reference mask, by reference. The same rules as `character_reference_mask` apply. Takes priority over `character_reference_mask` if both are supplied.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_mask_asset_identifier")]
+        public global::Ideogram.AssetIdentifier? CharacterReferenceMaskAssetIdentifier { get; set; }
+
+        /// <summary>
+        /// Optional grayscale mask marking where the character is in the character reference image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_mask")]
         public byte[]? CharacterReferenceMask { get; set; }
 
         /// <summary>
-        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
+        /// Optional grayscale mask marking where the character is in the character reference image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("character_reference_maskname")]
         public string? CharacterReferenceMaskname { get; set; }
@@ -209,11 +215,14 @@ namespace Ideogram
         /// <param name="characterReferenceImages">
         /// An image of the character to feature (max 25MB; JPEG, PNG, or WEBP).
         /// </param>
+        /// <param name="characterReferenceMaskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the character reference mask, by reference. The same rules as `character_reference_mask` apply. Takes priority over `character_reference_mask` if both are supplied.
+        /// </param>
         /// <param name="characterReferenceMask">
-        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
+        /// Optional grayscale mask marking where the character is in the character reference image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="characterReferenceMaskname">
-        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
+        /// Optional grayscale mask marking where the character is in the character reference image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -291,6 +300,7 @@ namespace Ideogram
             string? characterReferenceCollectionVersionId,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? characterReferenceAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages,
+            global::Ideogram.AssetIdentifier? characterReferenceMaskAssetIdentifier,
             byte[]? characterReferenceMask,
             string? characterReferenceMaskname,
             int? seed,
@@ -316,6 +326,7 @@ namespace Ideogram
             this.CharacterReferenceCollectionVersionId = characterReferenceCollectionVersionId;
             this.CharacterReferenceAssetIdentifiers = characterReferenceAssetIdentifiers;
             this.CharacterReferenceImages = characterReferenceImages;
+            this.CharacterReferenceMaskAssetIdentifier = characterReferenceMaskAssetIdentifier;
             this.CharacterReferenceMask = characterReferenceMask;
             this.CharacterReferenceMaskname = characterReferenceMaskname;
             this.Seed = seed;
