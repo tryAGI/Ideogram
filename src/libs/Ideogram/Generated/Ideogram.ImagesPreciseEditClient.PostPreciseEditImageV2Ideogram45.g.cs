@@ -256,6 +256,14 @@ namespace Ideogram
                                 }
 
                             }
+                            if (request.MaskAssetIdentifier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.MaskAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"mask_asset_identifier\"");
+
+                            }
                             if (request.Mask != default)
                             {
 
@@ -916,25 +924,28 @@ namespace Ideogram
         /// structured prompt; valid structured JSON is used as is.
         /// </param>
         /// <param name="imageAssetIdentifier">
-        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.
+        /// The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied.
         /// </param>
         /// <param name="image">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
         /// </param>
         /// <param name="imagename">
-        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
+        /// The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.
         /// </param>
         /// <param name="referenceImageAssetIdentifiers">
-        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.
+        /// Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too. A request with a mask can include at most three.
         /// </param>
         /// <param name="referenceImages">
         /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A request with a `mask` can include at most three, because the mask takes up one reference slot.
         /// </param>
+        /// <param name="maskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.
+        /// </param>
         /// <param name="mask">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.
+        /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.
         /// </param>
         /// <param name="contextWindow">
         /// Which region of the image to edit.<br/>
@@ -991,6 +1002,7 @@ namespace Ideogram
             string? imagename = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? referenceImageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? referenceImages = default,
+            global::Ideogram.AssetIdentifier? maskAssetIdentifier = default,
             byte[]? mask = default,
             string? maskname = default,
             string? contextWindow = default,
@@ -1013,6 +1025,7 @@ namespace Ideogram
                 Imagename = imagename,
                 ReferenceImageAssetIdentifiers = referenceImageAssetIdentifiers,
                 ReferenceImages = referenceImages,
+                MaskAssetIdentifier = maskAssetIdentifier,
                 Mask = mask,
                 Maskname = maskname,
                 ContextWindow = contextWindow,

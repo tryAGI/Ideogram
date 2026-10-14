@@ -220,6 +220,14 @@ namespace Ideogram
                                 }
 
                             }
+                            if (request.CharacterReferenceMaskAssetIdentifier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.CharacterReferenceMaskAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"character_reference_mask_asset_identifier\"");
+
+                            }
                             if (request.CharacterReferenceMask != default)
                             {
 
@@ -985,11 +993,14 @@ namespace Ideogram
         /// <param name="characterReferenceImages">
         /// An image of the character to feature (max 25MB; JPEG, PNG, or WEBP).
         /// </param>
+        /// <param name="characterReferenceMaskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the character reference mask, by reference. The same rules as `character_reference_mask` apply. Takes priority over `character_reference_mask` if both are supplied.
+        /// </param>
         /// <param name="characterReferenceMask">
-        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
+        /// Optional grayscale mask marking where the character is in the character reference image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="characterReferenceMaskname">
-        /// Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
+        /// Optional grayscale mask marking where the character is in the character reference image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -1068,6 +1079,7 @@ namespace Ideogram
             string? characterReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? characterReferenceAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
+            global::Ideogram.AssetIdentifier? characterReferenceMaskAssetIdentifier = default,
             byte[]? characterReferenceMask = default,
             string? characterReferenceMaskname = default,
             int? seed = default,
@@ -1097,6 +1109,7 @@ namespace Ideogram
                 CharacterReferenceCollectionVersionId = characterReferenceCollectionVersionId,
                 CharacterReferenceAssetIdentifiers = characterReferenceAssetIdentifiers,
                 CharacterReferenceImages = characterReferenceImages,
+                CharacterReferenceMaskAssetIdentifier = characterReferenceMaskAssetIdentifier,
                 CharacterReferenceMask = characterReferenceMask,
                 CharacterReferenceMaskname = characterReferenceMaskname,
                 Seed = seed,

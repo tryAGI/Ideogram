@@ -7990,6 +7990,9 @@
               "encoding": {
                 "image_asset_identifiers": {
                   "contentType": "application/json"
+                },
+                "mask_asset_identifier": {
+                  "contentType": "application/json"
                 }
               },
               "schema": {
@@ -8082,6 +8085,9 @@
             "multipart/form-data": {
               "encoding": {
                 "image_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "mask_asset_identifier": {
                   "contentType": "application/json"
                 }
               },
@@ -8441,6 +8447,9 @@
             "multipart/form-data": {
               "encoding": {
                 "character_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "character_reference_mask_asset_identifier": {
                   "contentType": "application/json"
                 },
                 "style_reference_asset_identifiers": {
@@ -8815,6 +8824,9 @@
             "multipart/form-data": {
               "encoding": {
                 "image_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "mask_asset_identifier": {
                   "contentType": "application/json"
                 }
               },
@@ -9643,6 +9655,9 @@
                 "character_reference_asset_identifiers": {
                   "contentType": "application/json"
                 },
+                "character_reference_mask_asset_identifier": {
+                  "contentType": "application/json"
+                },
                 "style_reference_asset_identifiers": {
                   "contentType": "application/json"
                 }
@@ -9848,6 +9863,9 @@
                   "contentType": "application/json"
                 },
                 "reference_image_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "mask_asset_identifier": {
                   "contentType": "application/json"
                 }
               },
@@ -10743,6 +10761,9 @@
                   "contentType": "application/json"
                 },
                 "character_reference_asset_identifiers": {
+                  "contentType": "application/json"
+                },
+                "character_reference_mask_asset_identifier": {
                   "contentType": "application/json"
                 },
                 "style_reference_asset_identifiers": {
@@ -28887,8 +28908,17 @@
             "maxItems": 1,
             "type": "array"
           },
+          "character_reference_mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An existing upload or generated image asset to use as the character reference mask, by reference. The same rules as `character_reference_mask` apply. Takes priority over `character_reference_mask` if both are supplied.",
+            "x-tool-description": "Omit."
+          },
           "character_reference_mask": {
-            "description": "Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.",
+            "description": "Optional grayscale mask for the character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `character_reference_collection_id`.",
             "format": "binary",
             "type": "string"
           },
@@ -29806,6 +29836,15 @@
             "type": "array",
             "x-tool-description": "File upload only; tools cannot send it. Use image_asset_identifiers."
           },
+          "mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.",
+            "x-tool-description": "Omit. Use precise_edit_ideogram_4_5 for targeted edits."
+          },
           "mask": {
             "description": "An optional mask that limits the edit to part of the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the first source image and contain both black and white areas. A masked request can include at most three other source images. With a mask, the output is always the first source image's own size, so `size` cannot be set.",
             "format": "binary",
@@ -30034,17 +30073,17 @@
                 "$ref": "#/components/schemas/AssetIdentifier"
               }
             ],
-            "description": "The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied. Cannot be combined with `mask`.",
+            "description": "The image to edit, as an existing upload or generated image asset. Supply this or `image`, never both. Takes priority over `image` if both are supplied.",
             "x-tool-description": "Required. The image asset to edit; copy asset_id and asset_type from the result or upload."
           },
           "image": {
-            "description": "The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. Required when supplying a `mask` or a `context_window`. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.",
+            "description": "The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it.",
             "format": "binary",
             "type": "string",
             "x-tool-description": "File upload only; tools cannot send it. Use image_asset_identifier."
           },
           "reference_image_asset_identifiers": {
-            "description": "Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too, and cannot be combined with `mask`.",
+            "description": "Optional additional images to guide the edit, by reference. These are never edited themselves; only `image_asset_identifier` or `image` is. Requires the image being edited to be supplied by reference too. A request with a mask can include at most three.",
             "items": {
               "$ref": "#/components/schemas/AssetIdentifier"
             },
@@ -30063,8 +30102,17 @@
             "type": "array",
             "x-tool-description": "File upload only; tools cannot send it. Use reference_image_asset_identifiers."
           },
+          "mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.",
+            "x-tool-description": "Omit. Describe the region in the prompt instead."
+          },
           "mask": {
-            "description": "An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as `image` and contain both black and white areas. Requires `image` as raw bytes; masks cannot be combined with asset references. A masked request can include at most three `reference_images`.",
+            "description": "An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.",
             "format": "binary",
             "type": "string",
             "x-tool-description": "File upload only; tools cannot send it. Describe the region in the prompt instead."
@@ -30074,7 +30122,7 @@
             "description": "Which region of the image to edit.\n`none`, the default, edits the whole image. A large image may come back smaller than it was sent.\n`auto` requires a `mask` and automatically selects an appropriate context region around the masked area.\n`y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, only that region changes and the output keeps the image's own width and height.",
             "pattern": "^(none|auto|[0-9]+,[0-9]+,[0-9]+,[0-9]+)$",
             "type": "string",
-            "x-tool-description": "Omit. Only usable with a file-uploaded image."
+            "x-tool-description": "Omit."
           },
           "quality": {
             "default": "medium",
@@ -30140,7 +30188,7 @@
           "prompt"
         ],
         "type": "object",
-        "x-tool-description": "Send prompt and image_asset_identifier, plus optional reference_image_asset_identifiers. Never send image, reference_images, mask, or context_window."
+        "x-tool-description": "Send prompt and image_asset_identifier, plus optional reference_image_asset_identifiers. Never send image, reference_images, mask, mask_asset_identifier, or context_window."
       },
       "GenerateImageNanoBanana2Response": {
         "description": "Response returned by `POST /v2/image/generate/nano-banana-2`.\nSynchronous requests (the default) include the generated images in\n`data`. Asynchronous requests omit `data`; poll\n`GET /v2/generations/{generation_id}` with the returned\n`generation_id`. `seed` is the seed that was used, including when you\ndid not set one.\n",
@@ -30802,8 +30850,16 @@
             "maxItems": 16,
             "type": "array"
           },
+          "mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied."
+          },
           "mask": {
-            "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.",
+            "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.",
             "format": "binary",
             "type": "string"
           },
@@ -30966,8 +31022,16 @@
             "maxItems": 16,
             "type": "array"
           },
+          "mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied."
+          },
           "mask": {
-            "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.",
+            "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.",
             "format": "binary",
             "type": "string"
           },
@@ -32568,8 +32632,16 @@
             "maxItems": 1,
             "type": "array"
           },
+          "character_reference_mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An existing upload or generated image asset to use as the character reference mask, by reference. The same rules as `character_reference_mask` apply. Takes priority over `character_reference_mask` if both are supplied."
+          },
           "character_reference_mask": {
-            "description": "Optional grayscale mask marking where the character is in the `character_reference_images` image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.",
+            "description": "Optional grayscale mask marking where the character is in the character reference image, at the same size as that image (JPEG, PNG, or WEBP). Multipart requests only.",
             "format": "binary",
             "type": "string"
           },
@@ -32809,8 +32881,16 @@
             "maxItems": 1,
             "type": "array"
           },
+          "character_reference_mask_asset_identifier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AssetIdentifier"
+              }
+            ],
+            "description": "An existing upload or generated image asset to use as the character reference mask, by reference. The same rules as `character_reference_mask` apply. Takes priority over `character_reference_mask` if both are supplied."
+          },
           "character_reference_mask": {
-            "description": "Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.",
+            "description": "Optional grayscale mask for the character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `character_reference_collection_id`.",
             "format": "binary",
             "type": "string"
           },

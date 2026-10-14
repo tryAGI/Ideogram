@@ -30,13 +30,19 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
+        /// An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mask_asset_identifier")]
+        public global::Ideogram.AssetIdentifier? MaskAssetIdentifier { get; set; }
+
+        /// <summary>
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
         public byte[]? Mask { get; set; }
 
         /// <summary>
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
         public string? Maskname { get; set; }
@@ -141,11 +147,14 @@ namespace Ideogram
         /// <param name="images">
         /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
+        /// <param name="maskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.
+        /// </param>
         /// <param name="mask">
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
         /// </param>
         /// <param name="background">
         /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
@@ -202,6 +211,7 @@ namespace Ideogram
             string prompt,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers,
             global::System.Collections.Generic.IList<byte[]>? images,
+            global::Ideogram.AssetIdentifier? maskAssetIdentifier,
             byte[]? mask,
             string? maskname,
             global::Ideogram.GenerateImageGptImage25SunburstRequestBackground? background,
@@ -218,6 +228,7 @@ namespace Ideogram
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.ImageAssetIdentifiers = imageAssetIdentifiers;
             this.Images = images;
+            this.MaskAssetIdentifier = maskAssetIdentifier;
             this.Mask = mask;
             this.Maskname = maskname;
             this.Background = background;

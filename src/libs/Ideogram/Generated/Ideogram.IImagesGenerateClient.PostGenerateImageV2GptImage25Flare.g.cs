@@ -66,11 +66,14 @@ namespace Ideogram
         /// <param name="images">
         /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
+        /// <param name="maskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.
+        /// </param>
         /// <param name="mask">
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source `images` in the same request.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
         /// </param>
         /// <param name="background">
         /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>
@@ -128,6 +131,7 @@ namespace Ideogram
             bool? dryRun = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
+            global::Ideogram.AssetIdentifier? maskAssetIdentifier = default,
             byte[]? mask = default,
             string? maskname = default,
             global::Ideogram.GenerateImageGptImage25FlareRequestBackground? background = default,

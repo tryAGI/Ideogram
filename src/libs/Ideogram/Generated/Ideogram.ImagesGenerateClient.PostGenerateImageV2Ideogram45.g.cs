@@ -204,6 +204,14 @@ namespace Ideogram
                                 }
 
                             }
+                            if (request.MaskAssetIdentifier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.MaskAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"mask_asset_identifier\"");
+
+                            }
                             if (request.Mask != default)
                             {
 
@@ -881,6 +889,9 @@ namespace Ideogram
         /// <param name="images">
         /// Optional source images to edit (max 5, max 25MB each; JPEG, PNG, or WEBP). The first image is the one being edited; any others are extra references. Multipart requests only.
         /// </param>
+        /// <param name="maskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the mask, by reference. The same rules as `mask` apply. Takes priority over `mask` if both are supplied.
+        /// </param>
         /// <param name="mask">
         /// An optional mask that limits the edit to part of the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the first source image and contain both black and white areas. A masked request can include at most three other source images. With a mask, the output is always the first source image's own size, so `size` cannot be set.
         /// </param>
@@ -955,6 +966,7 @@ namespace Ideogram
             global::Ideogram.MagicPromptMode? magicPrompt = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? imageAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
+            global::Ideogram.AssetIdentifier? maskAssetIdentifier = default,
             byte[]? mask = default,
             string? maskname = default,
             string? size = default,
@@ -976,6 +988,7 @@ namespace Ideogram
                 MagicPrompt = magicPrompt,
                 ImageAssetIdentifiers = imageAssetIdentifiers,
                 Images = images,
+                MaskAssetIdentifier = maskAssetIdentifier,
                 Mask = mask,
                 Maskname = maskname,
                 Size = size,

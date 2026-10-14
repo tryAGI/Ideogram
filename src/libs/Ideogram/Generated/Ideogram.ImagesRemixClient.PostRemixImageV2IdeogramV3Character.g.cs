@@ -282,6 +282,14 @@ namespace Ideogram
                                 }
 
                             }
+                            if (request.CharacterReferenceMaskAssetIdentifier != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.CharacterReferenceMaskAssetIdentifier.ToJson(JsonSerializerContext)),
+                                    name: "\"character_reference_mask_asset_identifier\"");
+
+                            }
                             if (request.CharacterReferenceMask != default)
                             {
 
@@ -1061,11 +1069,14 @@ namespace Ideogram
         /// <param name="characterReferenceImages">
         /// An image to use as the character reference (max 25MB). JPEG, PNG, and WEBP are supported.
         /// </param>
+        /// <param name="characterReferenceMaskAssetIdentifier">
+        /// An existing upload or generated image asset to use as the character reference mask, by reference. The same rules as `character_reference_mask` apply. Takes priority over `character_reference_mask` if both are supplied.
+        /// </param>
         /// <param name="characterReferenceMask">
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask for the character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `character_reference_collection_id`.
         /// </param>
         /// <param name="characterReferenceMaskname">
-        /// Optional grayscale mask for the uploaded character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; applies only with `character_reference_images`.
+        /// Optional grayscale mask for the character reference image, the same size as that image, marking where the character is. Only JPEG, PNG, and WEBP formats are supported. Multipart requests only; cannot be combined with `character_reference_collection_id`.
         /// </param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.<br/>
@@ -1145,6 +1156,7 @@ namespace Ideogram
             string? characterReferenceCollectionVersionId = default,
             global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>? characterReferenceAssetIdentifiers = default,
             global::System.Collections.Generic.IList<byte[]>? characterReferenceImages = default,
+            global::Ideogram.AssetIdentifier? characterReferenceMaskAssetIdentifier = default,
             byte[]? characterReferenceMask = default,
             string? characterReferenceMaskname = default,
             int? seed = default,
@@ -1178,6 +1190,7 @@ namespace Ideogram
                 CharacterReferenceCollectionVersionId = characterReferenceCollectionVersionId,
                 CharacterReferenceAssetIdentifiers = characterReferenceAssetIdentifiers,
                 CharacterReferenceImages = characterReferenceImages,
+                CharacterReferenceMaskAssetIdentifier = characterReferenceMaskAssetIdentifier,
                 CharacterReferenceMask = characterReferenceMask,
                 CharacterReferenceMaskname = characterReferenceMaskname,
                 Seed = seed,
