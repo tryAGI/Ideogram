@@ -26,3 +26,12 @@ From `src/libs/Ideogram`, run `./generate.sh` to refresh v2 and regenerate both 
 Use `./generate.sh --pinned-spec --skip-tool-install` to reproduce from the checked-in specifications with the already-installed AutoSDK version. The v2 input is downloaded from the [official OpenAPI endpoint](https://api.ideogram.ai/openapi.json). Generation removes only operation tags from a temporary copy, giving v2 a flat client and a distinct serializer context without changing paths, schemas or wire fields. This avoids collisions between tag-specific serializer contexts from two API generations in one assembly.
 
 The offline contract tests cover legacy credential replacement and explicit headers, v2 form fields, binary upload filename/media type, and pending/failed asynchronous responses. The generator fixture tests cover version preservation, operation-removal guards and invalid input safety.
+
+Run the executable offline NativeAOT fixture with:
+
+```sh
+dotnet publish src/tests/ApiVersions.NativeAotSmoke/ApiVersions.NativeAotSmoke.csproj -c Release -r osx-arm64 -o artifacts/api-versions-aot
+./artifacts/api-versions-aot/ApiVersions.NativeAotSmoke
+```
+
+Select your host runtime identifier. This fixture disables reflection-based JSON and exercises both client versions against a synthetic HTTP handler; it never calls a provider endpoint. The overlapping-tag generator limitation is tracked in [AutoSDK #417](https://github.com/tryAGI/AutoSDK/issues/417).

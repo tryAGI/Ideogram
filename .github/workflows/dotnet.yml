@@ -22,3 +22,20 @@ jobs:
       additional-test-arguments: '--logger GitHubActions'
     secrets:
       nuget-key: ${{ secrets.NUGET_KEY }}
+
+  api-versions-nativeaot:
+    name: Offline API versions NativeAOT
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+      - name: Validate generation guards without network
+        run: python3 scripts/test-generation.py
+      - name: Publish offline API versions fixture
+        run: dotnet publish src/tests/ApiVersions.NativeAotSmoke/ApiVersions.NativeAotSmoke.csproj -c Release -r linux-x64 -o artifacts/api-versions-aot
+      - name: Exercise both clients without provider calls
+        run: ./artifacts/api-versions-aot/ApiVersions.NativeAotSmoke
