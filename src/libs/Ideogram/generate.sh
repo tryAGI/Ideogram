@@ -31,8 +31,7 @@ fi
 temp_spec="$(mktemp)"
 old_operations="$(mktemp)"
 new_operations="$(mktemp)"
-normalized_dir="$(mktemp -d)"
-trap 'rm -f "$temp_spec" "$old_operations" "$new_operations"; rm -rf "$normalized_dir"' EXIT
+trap 'rm -f "$temp_spec" "$old_operations" "$new_operations"' EXIT
 list_operations() {
   jq -r '.paths | to_entries[] | .key as $path | .value | keys[] |
     select(. == "get" or . == "post" or . == "put" or . == "patch" or
@@ -61,21 +60,6 @@ fi
 # Validate both inputs before deleting any generated output.
 jq -e '.paths | type == "object" and length > 0' openapi.json > /dev/null
 jq -e '.paths | type == "object" and length > 0' openapi-v2.json > /dev/null
-# v2 has one flat client and a distinct serializer context. Tags affect only
-# grouping; removing them leaves all HTTP operations, schemas and fields intact.
-python3 - openapi-v2.json "$normalized_dir/openapi-v2.json" <<'PY'
-import json
-import sys
-
-with open(sys.argv[1]) as source:
-    spec = json.load(source)
-for path in spec["paths"].values():
-    for method, operation in path.items():
-        if method.lower() in {"get", "post", "put", "patch", "delete", "head", "options", "trace"}:
-            operation.pop("tags", None)
-with open(sys.argv[2], "w") as output:
-    json.dump(spec, output)
-PY
 rm -rf Generated
 autosdk generate openapi.json \
   --namespace Ideogram \
@@ -86,8 +70,9 @@ autosdk generate openapi.json \
   --base-url https://api.ideogram.ai \
   --security-scheme Http:Header:Bearer
 
-autosdk generate "$normalized_dir/openapi-v2.json" \
+autosdk generate openapi-v2.json \
   --namespace Ideogram.V2 \
+  --group-by-tags false \
   --json-serializer-context IdeogramV2SourceGenerationContext \
   --clientClassName IdeogramV2Client \
   --targetFramework net10.0 \

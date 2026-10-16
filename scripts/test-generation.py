@@ -42,7 +42,7 @@ with (root / 'calls.jsonl').open('a') as output:
             calls = [json.loads(line) for line in (root / 'calls.jsonl').read_text().splitlines()] if (root / 'calls.jsonl').exists() else []
             return result, json.loads((root / 'openapi.json').read_text()), json.loads((root / 'openapi-v2.json').read_text()), calls, (root / 'Generated/sentinel').exists(), legacy, current
 
-    def test_additive_v2_keeps_v1_and_only_normalizes_operation_tags(self):
+    def test_additive_v2_preserves_both_specs_and_selects_flat_public_api(self):
         incoming = spec({'/v2/image': {'post': {'tags': ['Images']}, 'get': {'tags': ['Images']}}, '/v2/new': {'post': {'tags': ['Other'], 'summary': 'New'}}})
         result, legacy, current, calls, _, original, _ = self.run_fixture(incoming)
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -50,11 +50,10 @@ with (root / 'calls.jsonl').open('a') as output:
         self.assertEqual(current, incoming)
         self.assertEqual(len(calls), 2)
         self.assertEqual(calls[0]['spec'], original)
-        expected = json.loads(json.dumps(incoming))
-        for path in expected['paths'].values():
-            for operation in path.values():
-                operation.pop('tags', None)
-        self.assertEqual(calls[1]['spec'], expected)
+        self.assertEqual(calls[1]['spec'], incoming)
+        self.assertEqual(calls[1]['args'][1], 'openapi-v2.json')
+        grouping = calls[1]['args'].index('--group-by-tags')
+        self.assertEqual(calls[1]['args'][grouping + 1], 'false')
         self.assertIn('Ideogram.V2', calls[1]['args'])
         self.assertIn('IdeogramV2SourceGenerationContext', calls[1]['args'])
         self.assertIn('ApiKey:Header:Api-Key', calls[1]['args'])
