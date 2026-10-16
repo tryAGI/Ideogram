@@ -8,8 +8,7 @@ namespace Ideogram
     /// Synchronous requests (the default) include the edited images in `data`.<br/>
     /// Asynchronous requests omit `data`; poll<br/>
     /// `GET /v2/generations/{generation_id}` with the returned<br/>
-    /// `generation_id`.<br/>
-    /// Example: {"generation_kind":null,"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":0,"generation_id":"generation_id"}
+    /// `generation_id`.
     /// </summary>
     public sealed partial class PreciseEditImageIdeogram45Response
     {

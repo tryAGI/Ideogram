@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The current status and, when complete, result data for an asynchronous generation.<br/>
-    /// Example: {"generation_id":"bzue-VZtSlSMAneIbfCo2A","status":"completed","created":"2000-01-23T04:56:07\u002B00:00","response_type":"url","data":[{"prompt":"prompt","resolution":"2048x2048","seed":12345,"is_image_safe":true,"url":"https://ideogram.ai/api/images/ephemeral/xtdZiqPwRxqY1Y7NExFmzB.png?exp=1743867804\u0026sig=e13e12677633f646d8531a153d20e2d3698dca9ee7661ee5ba4f3b64e7ec3f89"}]}
+    /// The current status and, when complete, result data for an asynchronous generation.
     /// </summary>
     public sealed partial class GenerationResponse
     {
@@ -39,19 +38,15 @@ namespace Ideogram
         public global::Ideogram.GenerationResponseResponseType? ResponseType { get; set; }
 
         /// <summary>
-        /// The total variable usage-based cost charged for the completed request, in millionths of a US dollar. Present only when `status` is `completed` and the request uses variable usage-based pricing; omitted otherwise.<br/>
-        /// Example: 130000
+        /// The total variable usage-based cost charged for the completed request, in millionths of a US dollar. Present only when `status` is `completed` and the request uses variable usage-based pricing; omitted otherwise.
         /// </summary>
-        /// <example>130000</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("usage_cost_usd_micros")]
         public long? UsageCostUsdMicros { get; set; }
 
         /// <summary>
         /// A short machine-readable reason the generation failed, for example<br/>
-        /// `content_policy_violation`. Present only when `status` is `failed`.<br/>
-        /// Example: content_policy_violation
+        /// `content_policy_violation`. Present only when `status` is `failed`.
         /// </summary>
-        /// <example>content_policy_violation</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("failure_reason")]
         public string? FailureReason { get; set; }
 
@@ -86,13 +81,11 @@ namespace Ideogram
         /// Present when `status` is `completed`; always "url" for this shape.
         /// </param>
         /// <param name="usageCostUsdMicros">
-        /// The total variable usage-based cost charged for the completed request, in millionths of a US dollar. Present only when `status` is `completed` and the request uses variable usage-based pricing; omitted otherwise.<br/>
-        /// Example: 130000
+        /// The total variable usage-based cost charged for the completed request, in millionths of a US dollar. Present only when `status` is `completed` and the request uses variable usage-based pricing; omitted otherwise.
         /// </param>
         /// <param name="failureReason">
         /// A short machine-readable reason the generation failed, for example<br/>
-        /// `content_policy_violation`. Present only when `status` is `failed`.<br/>
-        /// Example: content_policy_violation
+        /// `content_policy_violation`. Present only when `status` is `failed`.
         /// </param>
         /// <param name="data">
         /// A list of generated images or videos. Present when `status` is<br/>

@@ -21,18 +21,18 @@ namespace Ideogram.JsonConverters
                             throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.V4PromptElementDiscriminator)}");
             var discriminator = global::System.Text.Json.JsonSerializer.Deserialize(ref readerCopy, discriminatorTypeInfo);
 
-            global::Ideogram.V4ObjPromptElement? obj = default;
+            global::Ideogram.V4PromptElementVariant1? obj = default;
             if (discriminator?.Type == global::Ideogram.V4PromptElementDiscriminatorType.Obj)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4ObjPromptElement), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4ObjPromptElement> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.V4ObjPromptElement)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4PromptElementVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4PromptElementVariant1> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.V4PromptElementVariant1)}");
                 obj = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
-            global::Ideogram.V4TextPromptElement? text = default;
+            global::Ideogram.V4PromptElementVariant2? text = default;
             if (discriminator?.Type == global::Ideogram.V4PromptElementDiscriminatorType.Text)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4TextPromptElement), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4TextPromptElement> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.V4TextPromptElement)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4PromptElementVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4PromptElementVariant2> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.V4PromptElementVariant2)}");
                 text = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
 
@@ -57,14 +57,14 @@ namespace Ideogram.JsonConverters
 
             if (value.IsObj)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4ObjPromptElement), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4ObjPromptElement?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V4ObjPromptElement).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4PromptElementVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4PromptElementVariant1?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V4PromptElementVariant1).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickObj(), typeInfo);
             }
             else if (value.IsText)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4TextPromptElement), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4TextPromptElement?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V4TextPromptElement).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V4PromptElementVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V4PromptElementVariant2?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V4PromptElementVariant2).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickText(), typeInfo);
             }
         }

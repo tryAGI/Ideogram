@@ -2,7 +2,7 @@
 
 namespace Ideogram
 {
-    public readonly partial struct LayerizedTextBlock
+    public sealed partial class LayerizedTextBlock
     {
         /// <summary>
         /// Serializes the current instance to a JSON string using the provided JsonSerializerContext.
@@ -54,7 +54,7 @@ namespace Ideogram
             return global::System.Text.Json.JsonSerializer.Deserialize(
                 json,
                 typeof(global::Ideogram.LayerizedTextBlock),
-                jsonSerializerContext) as global::Ideogram.LayerizedTextBlock?;
+                jsonSerializerContext) as global::Ideogram.LayerizedTextBlock;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Ideogram
             return (await global::System.Text.Json.JsonSerializer.DeserializeAsync(
                 jsonStream,
                 typeof(global::Ideogram.LayerizedTextBlock),
-                jsonSerializerContext).ConfigureAwait(false)) as global::Ideogram.LayerizedTextBlock?;
+                jsonSerializerContext).ConfigureAwait(false)) as global::Ideogram.LayerizedTextBlock;
         }
 
         /// <summary>

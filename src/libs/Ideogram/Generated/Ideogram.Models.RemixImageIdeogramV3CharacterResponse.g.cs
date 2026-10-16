@@ -9,8 +9,7 @@ namespace Ideogram
     /// `data`. Requests with `async` set to true omit `data`; poll for<br/>
     /// completion and results with `GET /v2/generations/{generation_id}`<br/>
     /// using the returned `generation_id`. The seed reports the value the<br/>
-    /// request resolved to when the caller left it unset.<br/>
-    /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id"}
+    /// request resolved to when the caller left it unset.
     /// </summary>
     public sealed partial class RemixImageIdeogramV3CharacterResponse
     {
@@ -29,10 +28,8 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.RemixedImageObject>? Data { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Seed { get; set; }
@@ -51,8 +48,7 @@ namespace Ideogram
         /// `GET /v2/generations/{generation_id}` polling endpoint.
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="data">
         /// The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).

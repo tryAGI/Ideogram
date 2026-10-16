@@ -5,8 +5,7 @@ namespace Ideogram
 {
     /// <summary>
     /// The style type to generate with.<br/>
-    /// Default Value: general<br/>
-    /// Example: general
+    /// Default Value: general
     /// </summary>
     public enum IdeogramV3StyleType
     {

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"text":"text"}
+    ///
     /// </summary>
     public sealed partial class GeneratedDescription
     {

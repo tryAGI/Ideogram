@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// An identifier for an ideogram asset.<br/>
-    /// Example: {"asset_type":"RESPONSE","asset_id":"7uS_VESkRI6O3-sVgHQp_A"}
+    /// An identifier for an ideogram asset.
     /// </summary>
     public sealed partial class AssetIdentifier
     {

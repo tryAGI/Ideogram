@@ -8,8 +8,7 @@ namespace Ideogram
     /// `POST /v2/image/inpaint/ideogram-3-custom-model`. Synchronous<br/>
     /// requests include the repainted images in `data`; asynchronous requests<br/>
     /// omit `data` and can be polled with<br/>
-    /// `GET /v2/generations/{generation_id}`.<br/>
-    /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id","width":0,"height":6}
+    /// `GET /v2/generations/{generation_id}`.
     /// </summary>
     public sealed partial class InpaintImageIdeogramV3CustomModelResponse
     {
@@ -27,10 +26,8 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.InpaintedImageObject>? Data { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Seed { get; set; }
@@ -62,8 +59,7 @@ namespace Ideogram
         /// URL-safe base64 ID accepted by the generation polling endpoint.
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="width">
         /// The output width in pixels.

@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"aspect_ratio":null,"private":true,"seed":12345,"rendering_speed":"default","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","num_images":1,"magic_prompt":"","async":false,"style_type":"realistic","negative_prompt":"negative_prompt","enable_copyright_detection":true,"prompt":"prompt"}
+    ///
     /// </summary>
     public sealed partial class GenerateImageIdeogramV2Request
     {
@@ -22,10 +22,8 @@ namespace Ideogram
         public string? NegativePrompt { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         public int? Seed { get; set; }
 
@@ -63,10 +61,8 @@ namespace Ideogram
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.<br/>
-        /// Example: realistic
+        /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.
         /// </summary>
-        /// <example>realistic</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramV2StyleTypeJsonConverter))]
         public global::Ideogram.IdeogramV2StyleType? StyleType { get; set; }
@@ -92,24 +88,10 @@ namespace Ideogram
         /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
         /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
         /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
-        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
-        /// Example: https://api.example.com/webhooks/ideogram
+        /// private and loopback hosts and the cloud metadata service are rejected.
         /// </summary>
-        /// <example>https://api.example.com/webhooks/ideogram</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("webhook_url")]
         public string? WebhookUrl { get; set; }
-
-        /// <summary>
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("private")]
-        public bool? Private { get; set; }
-
-        /// <summary>
-        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
-        public string? TargetCollectionId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -127,8 +109,7 @@ namespace Ideogram
         /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt.
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio for an Ideogram 3.x or 2.x generation. `auto` lets the<br/>
@@ -149,8 +130,7 @@ namespace Ideogram
         /// Default Value: 1
         /// </param>
         /// <param name="styleType">
-        /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.<br/>
-        /// Example: realistic
+        /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.
         /// </param>
         /// <param name="enableCopyrightDetection">
         /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
@@ -167,14 +147,7 @@ namespace Ideogram
         /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
         /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
         /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
-        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
-        /// Example: https://api.example.com/webhooks/ideogram
-        /// </param>
-        /// <param name="private">
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </param>
-        /// <param name="targetCollectionId">
-        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
+        /// private and loopback hosts and the cloud metadata service are rejected.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -190,9 +163,7 @@ namespace Ideogram
             global::Ideogram.IdeogramV2StyleType? styleType,
             bool? enableCopyrightDetection,
             bool? async,
-            string? webhookUrl,
-            bool? @private,
-            string? targetCollectionId)
+            string? webhookUrl)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.NegativePrompt = negativePrompt;
@@ -205,8 +176,6 @@ namespace Ideogram
             this.EnableCopyrightDetection = enableCopyrightDetection;
             this.Async = async;
             this.WebhookUrl = webhookUrl;
-            this.Private = @private;
-            this.TargetCollectionId = targetCollectionId;
         }
 
         /// <summary>

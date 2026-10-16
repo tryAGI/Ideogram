@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// One upscaled output image.<br/>
-    /// Example: {"seed":12345,"resolution":"2048x2048","url":"https://openapi-generator.tech","is_image_safe":true}
+    /// One upscaled output image.
     /// </summary>
     public sealed partial class UpscaleImageObject
     {
@@ -16,10 +15,8 @@ namespace Ideogram
         public string? Url { get; set; }
 
         /// <summary>
-        /// The resolution of the upscaled image, formatted as "WIDTHxHEIGHT".<br/>
-        /// Example: 2048x2048
+        /// The resolution of the upscaled image, formatted as "WIDTHxHEIGHT".
         /// </summary>
-        /// <example>2048x2048</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Resolution { get; set; }
@@ -32,10 +29,8 @@ namespace Ideogram
         public required bool IsImageSafe { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Seed { get; set; }
@@ -50,15 +45,13 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="UpscaleImageObject" /> class.
         /// </summary>
         /// <param name="resolution">
-        /// The resolution of the upscaled image, formatted as "WIDTHxHEIGHT".<br/>
-        /// Example: 2048x2048
+        /// The resolution of the upscaled image, formatted as "WIDTHxHEIGHT".
         /// </param>
         /// <param name="isImageSafe">
         /// Whether the image passed safety checks. If false, `url` is empty.
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="url">
         /// The direct link to the upscaled image. Empty when the image did not pass safety checks.

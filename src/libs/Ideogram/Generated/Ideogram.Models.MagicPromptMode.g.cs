@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Determine if MagicPrompt should be used in generating the request or not.<br/>
-    /// Example: on
+    /// Determine if MagicPrompt should be used in generating the request or not.
     /// </summary>
     public enum MagicPromptMode
     {

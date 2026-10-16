@@ -1,296 +1,226 @@
-#pragma warning disable CS0618 // Type or member is obsolete
 
 #nullable enable
 
 namespace Ideogram
 {
     /// <summary>
-    ///
+    /// A single detected text region with its position, content, font information, and styling.
     /// </summary>
-    public readonly partial struct LayerizedTextBlock : global::System.IEquatable<LayerizedTextBlock>
+    public sealed partial class LayerizedTextBlock
     {
         /// <summary>
-        /// A single detected text region with its position, content, font information, and styling.<br/>
-        /// Example: {"role":"heading","color":"#212121","font_alternatives":["font_alternatives","font_alternatives"],"font_size":2,"font_name":"font_name","line_height":7.0614014,"x":0,"width":1,"y":6,"angle":5.637377,"text":"Hello World","alignment":"left","formatting":["bold","bold"],"height":5}
+        /// X coordinate in pixels from the top-left corner.
         /// </summary>
-#if NET6_0_OR_GREATER
-        public global::Ideogram.DetectedTextBlock? DetectedTextBlock { get; init; }
-#else
-        public global::Ideogram.DetectedTextBlock? DetectedTextBlock { get; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("x")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int X { get; set; }
+
+        /// <summary>
+        /// Y coordinate in pixels from the top-left corner.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("y")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int Y { get; set; }
+
+        /// <summary>
+        /// Width of the text region in pixels.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("width")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int Width { get; set; }
+
+        /// <summary>
+        /// Height of the text region in pixels.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("height")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int Height { get; set; }
+
+        /// <summary>
+        /// The detected text content. Line breaks are represented as \n.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("text")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Text { get; set; }
+
+        /// <summary>
+        /// Detected text alignment.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("alignment")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.LayerizedTextBlockAlignmentJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Ideogram.LayerizedTextBlockAlignment Alignment { get; set; }
+
+        /// <summary>
+        /// Rotation angle in degrees (clockwise). Defaults to 0.<br/>
+        /// Default Value: 0
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("angle")]
+        public string? Angle { get; set; }
+
+        /// <summary>
+        /// Best-matching font name from the font library.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_name")]
+        public string? FontName { get; set; }
+
+        /// <summary>
+        /// Alternative font matches, ranked by similarity.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_alternatives")]
+        public global::System.Collections.Generic.IList<string>? FontAlternatives { get; set; }
+
+        /// <summary>
+        /// Detected font size in points.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("font_size")]
+        public int? FontSize { get; set; }
+
+        /// <summary>
+        /// Line height multiplier (e.g., 1.2).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("line_height")]
+        public string? LineHeight { get; set; }
+
+        /// <summary>
+        /// Detected text color in hex format.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("color")]
+        public string? Color { get; set; }
+
+        /// <summary>
+        /// Detected text formatting effects.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("formatting")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<global::Ideogram.LayerizedTextBlockFormattingItems> Formatting { get; set; }
+
+        /// <summary>
+        /// Inferred typographic role of this text block.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("role")]
+        public global::Ideogram.LayerizedTextBlockRole? Role { get; set; }
+
+        /// <summary>
+        /// Identifier of this block's layer in the page at `html_url`; pass it to the page's editing API.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("layer_id")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string LayerId { get; set; }
+
+        /// <summary>
+        /// The block's colour runs in reading order. Present, with at least one<br/>
+        /// run, whenever `color` is set; concatenating the runs' `text` reproduces<br/>
+        /// the block's `text`. `color` reports the dominant colour.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("spans")]
+        public global::System.Collections.Generic.IList<global::Ideogram.TextColorSpan>? Spans { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LayerizedTextBlock" /> class.
+        /// </summary>
+        /// <param name="x">
+        /// X coordinate in pixels from the top-left corner.
+        /// </param>
+        /// <param name="y">
+        /// Y coordinate in pixels from the top-left corner.
+        /// </param>
+        /// <param name="width">
+        /// Width of the text region in pixels.
+        /// </param>
+        /// <param name="height">
+        /// Height of the text region in pixels.
+        /// </param>
+        /// <param name="text">
+        /// The detected text content. Line breaks are represented as \n.
+        /// </param>
+        /// <param name="alignment">
+        /// Detected text alignment.
+        /// </param>
+        /// <param name="formatting">
+        /// Detected text formatting effects.
+        /// </param>
+        /// <param name="layerId">
+        /// Identifier of this block's layer in the page at `html_url`; pass it to the page's editing API.
+        /// </param>
+        /// <param name="angle">
+        /// Rotation angle in degrees (clockwise). Defaults to 0.<br/>
+        /// Default Value: 0
+        /// </param>
+        /// <param name="fontName">
+        /// Best-matching font name from the font library.
+        /// </param>
+        /// <param name="fontAlternatives">
+        /// Alternative font matches, ranked by similarity.
+        /// </param>
+        /// <param name="fontSize">
+        /// Detected font size in points.
+        /// </param>
+        /// <param name="lineHeight">
+        /// Line height multiplier (e.g., 1.2).
+        /// </param>
+        /// <param name="color">
+        /// Detected text color in hex format.
+        /// </param>
+        /// <param name="role">
+        /// Inferred typographic role of this text block.
+        /// </param>
+        /// <param name="spans">
+        /// The block's colour runs in reading order. Present, with at least one<br/>
+        /// run, whenever `color` is set; concatenating the runs' `text` reproduces<br/>
+        /// the block's `text`. `color` reports the dominant colour.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
-
-        /// <summary>
-        ///
-        /// </summary>
-#if NET6_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(DetectedTextBlock))]
-#endif
-        public bool IsDetectedTextBlock => DetectedTextBlock != null;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool TryPickDetectedTextBlock(
-#if NET6_0_OR_GREATER
-            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
-            out global::Ideogram.DetectedTextBlock? value)
-        {
-            value = DetectedTextBlock;
-            return IsDetectedTextBlock;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public global::Ideogram.DetectedTextBlock PickDetectedTextBlock() => DetectedTextBlock is { } value
-            ? value
-            : throw new global::System.InvalidOperationException($"Expected union variant 'DetectedTextBlock' but the value was {ToString()}.");
-
-        /// <summary>
-        ///
-        /// </summary>
-#if NET6_0_OR_GREATER
-        public global::Ideogram.LayerizedTextBlockVariant2? LayerizedTextBlockVariant2 { get; init; }
-#else
-        public global::Ideogram.LayerizedTextBlockVariant2? LayerizedTextBlockVariant2 { get; }
-#endif
-
-        /// <summary>
-        ///
-        /// </summary>
-#if NET6_0_OR_GREATER
-        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(LayerizedTextBlockVariant2))]
-#endif
-        public bool IsLayerizedTextBlockVariant2 => LayerizedTextBlockVariant2 != null;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool TryPickLayerizedTextBlockVariant2(
-#if NET6_0_OR_GREATER
-            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
-#endif
-            out global::Ideogram.LayerizedTextBlockVariant2? value)
-        {
-            value = LayerizedTextBlockVariant2;
-            return IsLayerizedTextBlockVariant2;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public global::Ideogram.LayerizedTextBlockVariant2 PickLayerizedTextBlockVariant2() => LayerizedTextBlockVariant2 is { } value
-            ? value
-            : throw new global::System.InvalidOperationException($"Expected union variant 'LayerizedTextBlockVariant2' but the value was {ToString()}.");
-        /// <summary>
-        ///
-        /// </summary>
-        public static implicit operator LayerizedTextBlock(global::Ideogram.DetectedTextBlock value) => new LayerizedTextBlock((global::Ideogram.DetectedTextBlock?)value);
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static implicit operator global::Ideogram.DetectedTextBlock?(LayerizedTextBlock @this) => @this.DetectedTextBlock;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public LayerizedTextBlock(global::Ideogram.DetectedTextBlock? value)
-        {
-            DetectedTextBlock = value;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static LayerizedTextBlock FromDetectedTextBlock(global::Ideogram.DetectedTextBlock? value) => new LayerizedTextBlock(value);
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static implicit operator LayerizedTextBlock(global::Ideogram.LayerizedTextBlockVariant2 value) => new LayerizedTextBlock((global::Ideogram.LayerizedTextBlockVariant2?)value);
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static implicit operator global::Ideogram.LayerizedTextBlockVariant2?(LayerizedTextBlock @this) => @this.LayerizedTextBlockVariant2;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public LayerizedTextBlock(global::Ideogram.LayerizedTextBlockVariant2? value)
-        {
-            LayerizedTextBlockVariant2 = value;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static LayerizedTextBlock FromLayerizedTextBlockVariant2(global::Ideogram.LayerizedTextBlockVariant2? value) => new LayerizedTextBlock(value);
-
-        /// <summary>
-        ///
-        /// </summary>
         public LayerizedTextBlock(
-            global::Ideogram.DetectedTextBlock? detectedTextBlock,
-            global::Ideogram.LayerizedTextBlockVariant2? layerizedTextBlockVariant2
-            )
+            int x,
+            int y,
+            int width,
+            int height,
+            string text,
+            global::Ideogram.LayerizedTextBlockAlignment alignment,
+            global::System.Collections.Generic.IList<global::Ideogram.LayerizedTextBlockFormattingItems> formatting,
+            string layerId,
+            string? angle,
+            string? fontName,
+            global::System.Collections.Generic.IList<string>? fontAlternatives,
+            int? fontSize,
+            string? lineHeight,
+            string? color,
+            global::Ideogram.LayerizedTextBlockRole? role,
+            global::System.Collections.Generic.IList<global::Ideogram.TextColorSpan>? spans)
         {
-            DetectedTextBlock = detectedTextBlock;
-            LayerizedTextBlockVariant2 = layerizedTextBlockVariant2;
+            this.X = x;
+            this.Y = y;
+            this.Width = width;
+            this.Height = height;
+            this.Text = text ?? throw new global::System.ArgumentNullException(nameof(text));
+            this.Alignment = alignment;
+            this.Angle = angle;
+            this.FontName = fontName;
+            this.FontAlternatives = fontAlternatives;
+            this.FontSize = fontSize;
+            this.LineHeight = lineHeight;
+            this.Color = color;
+            this.Formatting = formatting ?? throw new global::System.ArgumentNullException(nameof(formatting));
+            this.Role = role;
+            this.LayerId = layerId ?? throw new global::System.ArgumentNullException(nameof(layerId));
+            this.Spans = spans;
         }
 
         /// <summary>
-        ///
+        /// Initializes a new instance of the <see cref="LayerizedTextBlock" /> class.
         /// </summary>
-        public object? Object =>
-            LayerizedTextBlockVariant2 as object ??
-            DetectedTextBlock as object
-            ;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override string? ToString() =>
-            DetectedTextBlock?.ToString() ??
-            LayerizedTextBlockVariant2?.ToString()
-            ;
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool Validate()
+        public LayerizedTextBlock()
         {
-            return IsDetectedTextBlock && IsLayerizedTextBlockVariant2;
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        public TResult? Match<TResult>(
-            global::System.Func<global::Ideogram.DetectedTextBlock, TResult>? detectedTextBlock = null,
-            global::System.Func<global::Ideogram.LayerizedTextBlockVariant2, TResult>? layerizedTextBlockVariant2 = null,
-            bool validate = true)
-        {
-            if (validate)
-            {
-                Validate();
-            }
-
-            if (DetectedTextBlock is { } __value0 && detectedTextBlock != null)
-            {
-                return detectedTextBlock(__value0);
-            }
-            else if (LayerizedTextBlockVariant2 is { } __value1 && layerizedTextBlockVariant2 != null)
-            {
-                return layerizedTextBlockVariant2(__value1);
-            }
-
-            return default(TResult);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public void Match(
-            global::System.Action<global::Ideogram.DetectedTextBlock>? detectedTextBlock = null,
-
-            global::System.Action<global::Ideogram.LayerizedTextBlockVariant2>? layerizedTextBlockVariant2 = null,
-            bool validate = true)
-        {
-            if (validate)
-            {
-                Validate();
-            }
-
-            if (DetectedTextBlock is { } __value0)
-            {
-                detectedTextBlock?.Invoke(__value0);
-            }
-            else if (LayerizedTextBlockVariant2 is { } __value1)
-            {
-                layerizedTextBlockVariant2?.Invoke(__value1);
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public void Switch(
-            global::System.Action<global::Ideogram.DetectedTextBlock>? detectedTextBlock = null,
-            global::System.Action<global::Ideogram.LayerizedTextBlockVariant2>? layerizedTextBlockVariant2 = null,
-            bool validate = true)
-        {
-            if (validate)
-            {
-                Validate();
-            }
-
-            if (DetectedTextBlock is { } __value0)
-            {
-                detectedTextBlock?.Invoke(__value0);
-            }
-            else if (LayerizedTextBlockVariant2 is { } __value1)
-            {
-                layerizedTextBlockVariant2?.Invoke(__value1);
-            }
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override int GetHashCode()
-        {
-            var fields = new object?[]
-            {
-                DetectedTextBlock,
-                typeof(global::Ideogram.DetectedTextBlock),
-                LayerizedTextBlockVariant2,
-                typeof(global::Ideogram.LayerizedTextBlockVariant2),
-            };
-            const int offset = unchecked((int)2166136261);
-            const int prime = 16777619;
-            static int HashCodeAggregator(int hashCode, object? value) => value == null
-                ? (hashCode ^ 0) * prime
-                : (hashCode ^ value.GetHashCode()) * prime;
-
-            return global::System.Linq.Enumerable.Aggregate(fields, offset, HashCodeAggregator);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public bool Equals(LayerizedTextBlock other)
-        {
-            return
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.DetectedTextBlock?>.Default.Equals(DetectedTextBlock, other.DetectedTextBlock) &&
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.LayerizedTextBlockVariant2?>.Default.Equals(LayerizedTextBlockVariant2, other.LayerizedTextBlockVariant2)
-                ;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static bool operator ==(LayerizedTextBlock obj1, LayerizedTextBlock obj2)
-        {
-            return global::System.Collections.Generic.EqualityComparer<LayerizedTextBlock>.Default.Equals(obj1, obj2);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static bool operator !=(LayerizedTextBlock obj1, LayerizedTextBlock obj2)
-        {
-            return !(obj1 == obj2);
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        public override bool Equals(object? obj)
-        {
-            return obj is LayerizedTextBlock o && Equals(o);
-        }
     }
 }

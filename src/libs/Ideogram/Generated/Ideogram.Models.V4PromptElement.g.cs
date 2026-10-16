@@ -16,13 +16,12 @@ namespace Ideogram
         public global::Ideogram.V4PromptElementDiscriminatorType? Type { get; }
 
         /// <summary>
-        /// A non-text element (object, character, background detail) in the V4 prompt layout.<br/>
-        /// Example: {"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}
+        /// A non-text element (object, character, background detail) in the V4 prompt layout.
         /// </summary>
 #if NET6_0_OR_GREATER
-        public global::Ideogram.V4ObjPromptElement? Obj { get; init; }
+        public global::Ideogram.V4PromptElementVariant1? Obj { get; init; }
 #else
-        public global::Ideogram.V4ObjPromptElement? Obj { get; }
+        public global::Ideogram.V4PromptElementVariant1? Obj { get; }
 #endif
 
         /// <summary>
@@ -40,7 +39,7 @@ namespace Ideogram
 #if NET6_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-            out global::Ideogram.V4ObjPromptElement? value)
+            out global::Ideogram.V4PromptElementVariant1? value)
         {
             value = Obj;
             return IsObj;
@@ -49,7 +48,7 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4ObjPromptElement PickObj() => Obj is { } value
+        public global::Ideogram.V4PromptElementVariant1 PickObj() => Obj is { } value
             ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Obj' but the value was {ToString()}.");
 
@@ -57,9 +56,9 @@ namespace Ideogram
         /// A text element to render in the V4 prompt layout.
         /// </summary>
 #if NET6_0_OR_GREATER
-        public global::Ideogram.V4TextPromptElement? Text { get; init; }
+        public global::Ideogram.V4PromptElementVariant2? Text { get; init; }
 #else
-        public global::Ideogram.V4TextPromptElement? Text { get; }
+        public global::Ideogram.V4PromptElementVariant2? Text { get; }
 #endif
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace Ideogram
 #if NET6_0_OR_GREATER
             [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
 #endif
-            out global::Ideogram.V4TextPromptElement? value)
+            out global::Ideogram.V4PromptElementVariant2? value)
         {
             value = Text;
             return IsText;
@@ -86,23 +85,23 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public global::Ideogram.V4TextPromptElement PickText() => Text is { } value
+        public global::Ideogram.V4PromptElementVariant2 PickText() => Text is { } value
             ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'Text' but the value was {ToString()}.");
         /// <summary>
         ///
         /// </summary>
-        public static implicit operator V4PromptElement(global::Ideogram.V4ObjPromptElement value) => new V4PromptElement((global::Ideogram.V4ObjPromptElement?)value);
+        public static implicit operator V4PromptElement(global::Ideogram.V4PromptElementVariant1 value) => new V4PromptElement((global::Ideogram.V4PromptElementVariant1?)value);
 
         /// <summary>
         ///
         /// </summary>
-        public static implicit operator global::Ideogram.V4ObjPromptElement?(V4PromptElement @this) => @this.Obj;
+        public static implicit operator global::Ideogram.V4PromptElementVariant1?(V4PromptElement @this) => @this.Obj;
 
         /// <summary>
         ///
         /// </summary>
-        public V4PromptElement(global::Ideogram.V4ObjPromptElement? value)
+        public V4PromptElement(global::Ideogram.V4PromptElementVariant1? value)
         {
             Obj = value;
         }
@@ -110,22 +109,22 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public static V4PromptElement FromObj(global::Ideogram.V4ObjPromptElement? value) => new V4PromptElement(value);
+        public static V4PromptElement FromObj(global::Ideogram.V4PromptElementVariant1? value) => new V4PromptElement(value);
 
         /// <summary>
         ///
         /// </summary>
-        public static implicit operator V4PromptElement(global::Ideogram.V4TextPromptElement value) => new V4PromptElement((global::Ideogram.V4TextPromptElement?)value);
+        public static implicit operator V4PromptElement(global::Ideogram.V4PromptElementVariant2 value) => new V4PromptElement((global::Ideogram.V4PromptElementVariant2?)value);
 
         /// <summary>
         ///
         /// </summary>
-        public static implicit operator global::Ideogram.V4TextPromptElement?(V4PromptElement @this) => @this.Text;
+        public static implicit operator global::Ideogram.V4PromptElementVariant2?(V4PromptElement @this) => @this.Text;
 
         /// <summary>
         ///
         /// </summary>
-        public V4PromptElement(global::Ideogram.V4TextPromptElement? value)
+        public V4PromptElement(global::Ideogram.V4PromptElementVariant2? value)
         {
             Text = value;
         }
@@ -133,15 +132,15 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public static V4PromptElement FromText(global::Ideogram.V4TextPromptElement? value) => new V4PromptElement(value);
+        public static V4PromptElement FromText(global::Ideogram.V4PromptElementVariant2? value) => new V4PromptElement(value);
 
         /// <summary>
         ///
         /// </summary>
         public V4PromptElement(
             global::Ideogram.V4PromptElementDiscriminatorType? type,
-            global::Ideogram.V4ObjPromptElement? obj,
-            global::Ideogram.V4TextPromptElement? text
+            global::Ideogram.V4PromptElementVariant1? obj,
+            global::Ideogram.V4PromptElementVariant2? text
             )
         {
             Type = type;
@@ -178,8 +177,8 @@ namespace Ideogram
         ///
         /// </summary>
         public TResult? Match<TResult>(
-            global::System.Func<global::Ideogram.V4ObjPromptElement, TResult>? obj = null,
-            global::System.Func<global::Ideogram.V4TextPromptElement, TResult>? text = null,
+            global::System.Func<global::Ideogram.V4PromptElementVariant1, TResult>? obj = null,
+            global::System.Func<global::Ideogram.V4PromptElementVariant2, TResult>? text = null,
             bool validate = true)
         {
             if (validate)
@@ -203,9 +202,9 @@ namespace Ideogram
         ///
         /// </summary>
         public void Match(
-            global::System.Action<global::Ideogram.V4ObjPromptElement>? obj = null,
+            global::System.Action<global::Ideogram.V4PromptElementVariant1>? obj = null,
 
-            global::System.Action<global::Ideogram.V4TextPromptElement>? text = null,
+            global::System.Action<global::Ideogram.V4PromptElementVariant2>? text = null,
             bool validate = true)
         {
             if (validate)
@@ -227,8 +226,8 @@ namespace Ideogram
         ///
         /// </summary>
         public void Switch(
-            global::System.Action<global::Ideogram.V4ObjPromptElement>? obj = null,
-            global::System.Action<global::Ideogram.V4TextPromptElement>? text = null,
+            global::System.Action<global::Ideogram.V4PromptElementVariant1>? obj = null,
+            global::System.Action<global::Ideogram.V4PromptElementVariant2>? text = null,
             bool validate = true)
         {
             if (validate)
@@ -254,9 +253,9 @@ namespace Ideogram
             var fields = new object?[]
             {
                 Obj,
-                typeof(global::Ideogram.V4ObjPromptElement),
+                typeof(global::Ideogram.V4PromptElementVariant1),
                 Text,
-                typeof(global::Ideogram.V4TextPromptElement),
+                typeof(global::Ideogram.V4PromptElementVariant2),
             };
             const int offset = unchecked((int)2166136261);
             const int prime = 16777619;
@@ -273,8 +272,8 @@ namespace Ideogram
         public bool Equals(V4PromptElement other)
         {
             return
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.V4ObjPromptElement?>.Default.Equals(Obj, other.Obj) &&
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.V4TextPromptElement?>.Default.Equals(Text, other.Text)
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.V4PromptElementVariant1?>.Default.Equals(Obj, other.Obj) &&
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.V4PromptElementVariant2?>.Default.Equals(Text, other.Text)
                 ;
         }
 

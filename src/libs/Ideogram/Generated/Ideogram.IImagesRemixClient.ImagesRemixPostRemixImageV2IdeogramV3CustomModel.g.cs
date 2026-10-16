@@ -1,0 +1,376 @@
+#nullable enable
+
+namespace Ideogram
+{
+    public partial interface IImagesRemixClient
+    {
+        /// <summary>
+        /// Remix with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that your<br/>
+        /// user or organization can access, guided by a text prompt. Upload the<br/>
+        /// source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CustomModelResponse> ImagesRemixPostRemixImageV2IdeogramV3CustomModelAsync(
+
+            global::Ideogram.ImagesRemixPostRemixImageV2IdeogramV3CustomModelRequest request,
+            bool? dryRun = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remix with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that your<br/>
+        /// user or organization can access, guided by a text prompt. Upload the<br/>
+        /// source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
+        /// <param name="request"></param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3CustomModelResponse>> ImagesRemixPostRemixImageV2IdeogramV3CustomModelAsResponseAsync(
+
+            global::Ideogram.ImagesRemixPostRemixImageV2IdeogramV3CustomModelRequest request,
+            bool? dryRun = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remix with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that your<br/>
+        /// user or organization can access, guided by a text prompt. Upload the<br/>
+        /// source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt that guides the remix.
+        /// </param>
+        /// <param name="customModelUri">
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.
+        /// </param>
+        /// <param name="image">
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
+        /// </param>
+        /// <param name="imagename">
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
+        /// </param>
+        /// <param name="imageWeight">
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.
+        /// </param>
+        /// <param name="negativePrompt">
+        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.
+        /// </param>
+        /// <param name="resolution">
+        /// The resolutions supported for Ideogram 3.0.
+        /// </param>
+        /// <param name="aspectRatio">
+        /// Output aspect ratio. Cannot be combined with resolution. Generation defaults to 1x1; remix keeps the source ratio when both fields are omitted.
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="numImages">
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.
+        /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// Images to use as style references (max 10, max 25MB each). JPEG, PNG, and WEBP are supported. Multipart requests only.
+        /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// </param>
+        /// <param name="async">
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// Default Value: false
+        /// </param>
+        /// <param name="webhookUrl">
+        /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
+        /// JSON POST to this URL once all images for the request have finished<br/>
+        /// generating. The body mirrors the synchronous generate response:<br/>
+        /// `request_id`, `created`, and a `data` array<br/>
+        /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
+        /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
+        /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
+        /// private and loopback hosts and the cloud metadata service are rejected.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::System.InvalidOperationException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CustomModelResponse> ImagesRemixPostRemixImageV2IdeogramV3CustomModelAsync(
+            string prompt,
+            string customModelUri,
+            byte[] image,
+            string imagename,
+            bool? dryRun = default,
+            int? imageWeight = default,
+            string? negativePrompt = default,
+            int? seed = default,
+            global::Ideogram.ResolutionV3? resolution = default,
+            global::Ideogram.AspectRatioV3? aspectRatio = default,
+            global::Ideogram.V2ImageRemixIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed? renderingSpeed = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
+            int? numImages = default,
+            global::Ideogram.IdeogramColorPalette? colorPalette = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
+            global::System.Collections.Generic.IList<byte[]>? styleReferenceImages = default,
+            bool? enableCopyrightDetection = default,
+            bool? async = default,
+            string? webhookUrl = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Remix with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that your<br/>
+        /// user or organization can access, guided by a text prompt. Upload the<br/>
+        /// source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt that guides the remix.
+        /// </param>
+        /// <param name="customModelUri">
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.
+        /// </param>
+        /// <param name="image">
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
+        /// </param>
+        /// <param name="imagename">
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
+        /// </param>
+        /// <param name="imageWeight">
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.
+        /// </param>
+        /// <param name="negativePrompt">
+        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.
+        /// </param>
+        /// <param name="resolution">
+        /// The resolutions supported for Ideogram 3.0.
+        /// </param>
+        /// <param name="aspectRatio">
+        /// Output aspect ratio. Cannot be combined with resolution. Generation defaults to 1x1; remix keeps the source ratio when both fields are omitted.
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="numImages">
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.
+        /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// Images to use as style references (max 10, max 25MB each). JPEG, PNG, and WEBP are supported. Multipart requests only.
+        /// </param>
+        /// <param name="styleReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'style_reference_images' file parts.
+        /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// </param>
+        /// <param name="async">
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// Default Value: false
+        /// </param>
+        /// <param name="webhookUrl">
+        /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
+        /// JSON POST to this URL once all images for the request have finished<br/>
+        /// generating. The body mirrors the synchronous generate response:<br/>
+        /// `request_id`, `created`, and a `data` array<br/>
+        /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
+        /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
+        /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
+        /// private and loopback hosts and the cloud metadata service are rejected.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.RemixImageIdeogramV3CustomModelResponse> ImagesRemixPostRemixImageV2IdeogramV3CustomModelAsync(
+            string prompt,
+            string customModelUri,
+            global::System.IO.Stream image,
+            string imagename,
+            bool? dryRun = default,
+            int? imageWeight = default,
+            string? negativePrompt = default,
+            int? seed = default,
+            global::Ideogram.ResolutionV3? resolution = default,
+            global::Ideogram.AspectRatioV3? aspectRatio = default,
+            global::Ideogram.V2ImageRemixIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed? renderingSpeed = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
+            int? numImages = default,
+            global::Ideogram.IdeogramColorPalette? colorPalette = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? styleReferenceImages = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? styleReferenceImagesFileNames = default,
+            bool? enableCopyrightDetection = default,
+            bool? async = default,
+            string? webhookUrl = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+        /// <summary>
+        /// Remix with a custom Ideogram 3.0 model<br/>
+        /// Transform an existing image with a custom Ideogram 3.0 model that your<br/>
+        /// user or organization can access, guided by a text prompt. Upload the<br/>
+        /// source `image` using `multipart/form-data`.<br/>
+        /// Returns results directly by default; set `async` or supply a<br/>
+        /// `webhook_url` to get a `generation_id` and poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        /// <param name="dryRun">
+        /// Default Value: false
+        /// </param>
+        /// <param name="prompt">
+        /// The prompt that guides the remix.
+        /// </param>
+        /// <param name="customModelUri">
+        /// The custom model URI returned by the custom-model API, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. The authenticated user or organization must have access to the model.
+        /// </param>
+        /// <param name="image">
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
+        /// </param>
+        /// <param name="imagename">
+        /// The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `resolution` and `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first.
+        /// </param>
+        /// <param name="imageWeight">
+        /// Optional. How closely the result should follow the source image, from 1 to 100. When omitted the server chooses a value from your prompt, which is the usual case.
+        /// </param>
+        /// <param name="negativePrompt">
+        /// Description of what to exclude from the images. Descriptions in the prompt take precedence over descriptions in the negative prompt.
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.
+        /// </param>
+        /// <param name="resolution">
+        /// The resolutions supported for Ideogram 3.0.
+        /// </param>
+        /// <param name="aspectRatio">
+        /// Output aspect ratio. Cannot be combined with resolution. Generation defaults to 1x1; remix keeps the source ratio when both fields are omitted.
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use. When omitted, the server chooses a speed supported by the selected custom model.
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Controls magic prompt (automatic prompt rewriting). Defaults to `auto`.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="numImages">
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette for generation, must EITHER be specified via one of the presets (name) or explicitly via hexadecimal representations of the color with optional weights (members).
+        /// </param>
+        /// <param name="styleCodes">
+        /// A list of 8-character hexadecimal codes representing the style of the image. Refer to each endpoint for supported combinations with style types, presets, and reference images.
+        /// </param>
+        /// <param name="stylePreset">
+        /// A predefined style preset to apply to the remixed images. Cannot be combined with style codes or style references.
+        /// </param>
+        /// <param name="styleReferenceImages">
+        /// Images to use as style references (max 10, max 25MB each). JPEG, PNG, and WEBP are supported. Multipart requests only.
+        /// </param>
+        /// <param name="styleReferenceImagesFileNames">
+        /// Optional file names to use for the multipart 'style_reference_images' file parts.
+        /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`.
+        /// </param>
+        /// <param name="async">
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`.<br/>
+        /// Default Value: false
+        /// </param>
+        /// <param name="webhookUrl">
+        /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
+        /// JSON POST to this URL once all images for the request have finished<br/>
+        /// generating. The body mirrors the synchronous generate response:<br/>
+        /// `request_id`, `created`, and a `data` array<br/>
+        /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
+        /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
+        /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
+        /// private and loopback hosts and the cloud metadata service are rejected.
+        /// </param>
+        /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
+        /// <param name="cancellationToken">The token to cancel the operation with</param>
+        /// <exception cref="global::Ideogram.ApiException"></exception>
+        global::System.Threading.Tasks.Task<global::Ideogram.AutoSDKHttpResponse<global::Ideogram.RemixImageIdeogramV3CustomModelResponse>> ImagesRemixPostRemixImageV2IdeogramV3CustomModelAsResponseAsync(
+            string prompt,
+            string customModelUri,
+            global::System.IO.Stream image,
+            string imagename,
+            bool? dryRun = default,
+            int? imageWeight = default,
+            string? negativePrompt = default,
+            int? seed = default,
+            global::Ideogram.ResolutionV3? resolution = default,
+            global::Ideogram.AspectRatioV3? aspectRatio = default,
+            global::Ideogram.V2ImageRemixIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed? renderingSpeed = default,
+            global::Ideogram.MagicPromptMode? magicPrompt = default,
+            int? numImages = default,
+            global::Ideogram.IdeogramColorPalette? colorPalette = default,
+            global::System.Collections.Generic.IList<string>? styleCodes = default,
+            global::Ideogram.IdeogramV3StylePreset? stylePreset = default,
+            global::System.Collections.Generic.IReadOnlyList<global::System.IO.Stream>? styleReferenceImages = default,
+            global::System.Collections.Generic.IReadOnlyList<string>? styleReferenceImagesFileNames = default,
+            bool? enableCopyrightDetection = default,
+            bool? async = default,
+            string? webhookUrl = default,
+            global::Ideogram.AutoSDKRequestOptions? requestOptions = default,
+            global::System.Threading.CancellationToken cancellationToken = default);
+    }
+}

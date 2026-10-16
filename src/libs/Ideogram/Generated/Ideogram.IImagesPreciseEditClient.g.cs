@@ -4,7 +4,6 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Edit source images at the source's own width and height. These endpoints never reframe: the output always matches the image you sent.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>

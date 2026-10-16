@@ -7,8 +7,7 @@ namespace Ideogram
     /// Acknowledges an accepted asynchronous Reframe request. Poll<br/>
     /// `GET /v2/generations/{generation_id}` for completion and output<br/>
     /// images. The seed, width, and height report the values the request<br/>
-    /// resolved to when the caller left them unset.<br/>
-    /// Example: {"seed":12345,"generation_id":"generation_id","width":0,"height":6}
+    /// resolved to when the caller left them unset.
     /// </summary>
     public sealed partial class ReframeImageNanoBanana2Response
     {
@@ -21,10 +20,8 @@ namespace Ideogram
         public required string GenerationId { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Seed { get; set; }
@@ -57,8 +54,7 @@ namespace Ideogram
         /// `GET /v2/generations/{generation_id}` polling endpoint.
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="width">
         /// The resolved 1K output width in pixels.

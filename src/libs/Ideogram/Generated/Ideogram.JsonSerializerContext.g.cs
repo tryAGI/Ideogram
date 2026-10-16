@@ -6,3816 +6,802 @@ namespace Ideogram
     /// <summary>
     ///
     /// </summary>
+    #pragma warning disable CS3016 // Converter type array in this attribute is not CLS-compliant.
     [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
-        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
-    )]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, string>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, object>))]
+        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
+        Converters = new global::System.Type[]
+        {
+            typeof(global::Ideogram.JsonConverters.V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationKindJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationKindNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationRejectReasonJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationRejectReasonNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTierJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTierNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MagicPromptModeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MagicPromptModeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaBackgroundJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaBackgroundNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ResolutionV4JsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ResolutionV4NullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4RequestRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4RequestRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4CustomModelRequestRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4CustomModelRequestRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV4AspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV4AspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestOutputResolutionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestOutputResolutionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ResolutionV3JsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ResolutionV3NullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV3AspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV3AspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramColorPalettePresetNameJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramColorPalettePresetNameNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV3StyleTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV3StyleTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV3StylePresetNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestUpscaleFactorJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestUpscaleFactorNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV2ARequestRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV2ARequestRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV2StyleTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramV2StyleTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV2RequestRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImageIdeogramV2RequestRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaBackgroundJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaBackgroundNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaBackgroundJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaBackgroundNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBanana2AspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBanana2AspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateNanoBanana2PostRequestBodyContentMultipartFormDataSchemaResolutionTierJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateNanoBanana2PostRequestBodyContentMultipartFormDataSchemaResolutionTierNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBanana21AspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBanana21AspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateNanoBanana21PostRequestBodyContentMultipartFormDataSchemaResolutionTierJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateNanoBanana21PostRequestBodyContentMultipartFormDataSchemaResolutionTierNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBananaProAspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBananaProAspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTierJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageGenerateNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTierNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImagePImageIdeogramRequestResolutionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerateImagePImageIdeogramRequestResolutionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AspectRatioV3JsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AspectRatioV3NullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTierJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTierNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram4PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram4PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageRemixIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageInpaintIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageReframeIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageReframeIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleAutoPostRequestBodyContentMultipartFormDataSchemaUpscaleFactorJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleAutoPostRequestBodyContentMultipartFormDataSchemaUpscaleFactorNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTierJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTierNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazBloom2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactorJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazBloom2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactorNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactorJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactorNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetectionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetectionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactorJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactorNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaSubjectDetectionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaSubjectDetectionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactorJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactorNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetectionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetectionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaUpscaleFactorJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaUpscaleFactorNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaEnhancementStrengthJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaEnhancementStrengthNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageReplaceBackgroundIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ImageReplaceBackgroundIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeedNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ReplaceBackgroundQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ReplaceBackgroundQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V4ObjPromptElementTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V4ObjPromptElementTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V4TextPromptElementTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V4TextPromptElementTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V4PromptElementDiscriminatorTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V4PromptElementDiscriminatorTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DetectedTextBlockAlignmentJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DetectedTextBlockAlignmentNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DetectedTextBlockFormattingItemsJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DetectedTextBlockFormattingItemsNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DetectedTextBlockRoleJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.DetectedTextBlockRoleNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.KlingV3ShotTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.KlingV3ShotTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.KlingV3AspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.KlingV3AspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MinimaxH3ResolutionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MinimaxH3ResolutionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MinimaxH3AspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MinimaxH3AspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MinimaxH3PromptExpansionModeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MinimaxH3PromptExpansionModeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SeedDance25ResolutionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SeedDance25ResolutionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SeedDance2AspectRatioJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SeedDance2AspectRatioNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SeedDance2ResolutionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SeedDance2ResolutionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdLocalizerPostRequestBodyContentMultipartFormDataSchemaLanguageJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdLocalizerPostRequestBodyContentMultipartFormDataSchemaLanguageNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AdLocalizerQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AdLocalizerQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaResolutionJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaResolutionNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaPlatformJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaPlatformNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AdResizerQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AdResizerQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdVariationsPostRequestBodyContentMultipartFormDataSchemaVariationTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolAdVariationsPostRequestBodyContentMultipartFormDataSchemaVariationTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AdVariationsQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AdVariationsQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ColorwaysQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ColorwaysQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AssetTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AssetTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolGhostMannequinPostRequestBodyContentMultipartFormDataSchemaViewJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2ToolGhostMannequinPostRequestBodyContentMultipartFormDataSchemaViewNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GhostMannequinQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GhostMannequinQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MaterialSwapQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.MaterialSwapQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ModelPoseVariantsQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.ModelPoseVariantsQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SketchToRenderQualityJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.SketchToRenderQualityNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseStatusJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseStatusNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseResponseTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseResponseTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerDiscriminatorMappingSvgGenerationMimeTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerDiscriminatorMappingSvgGenerationMimeTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.LayerizedTextBlockAlignmentJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.LayerizedTextBlockAlignmentNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.LayerizedTextBlockFormattingItemsJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.LayerizedTextBlockFormattingItemsNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.LayerizedTextBlockRoleJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.LayerizedTextBlockRoleNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant1ObjectTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant1ObjectTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant2ObjectTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant2ObjectTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant3ObjectTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant3ObjectTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant4ObjectTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant4ObjectTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant5ObjectTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant5ObjectTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant6ObjectTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerVariant6ObjectTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerDiscriminatorObjectTypeJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerDiscriminatorObjectTypeNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AccountApiKeyStatusJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AccountApiKeyStatusNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AccountInvoiceStatusJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AccountInvoiceStatusNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2AccountUsageGetParametersBucketWidthJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2AccountUsageGetParametersBucketWidthNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2AccountUsageGetParametersSourcesSchemaItemsJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V2AccountUsageGetParametersSourcesSchemaItemsNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AccountUsageLineItemSourceJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.AccountUsageLineItemSourceNullableJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.IdeogramColorPaletteJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.V4PromptElementJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.GenerationResponseDataInnerJsonConverter),
+
+            typeof(global::Ideogram.JsonConverters.UnixTimestampJsonConverter),
+        })]
+    #pragma warning restore CS3016
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.JsonSerializerContextTypes))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Text.Json.JsonElement?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PriceQuote))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PriceQuoteObject), TypeInfoPropertyName = "PriceQuoteObject2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality), TypeInfoPropertyName = "V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationKind), TypeInfoPropertyName = "GenerationKind2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GeneratedImageObject))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PriceQualifier), TypeInfoPropertyName = "PriceQualifier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlock), TypeInfoPropertyName = "LayerizedTextBlock2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlock))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlockVariant2))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TextColorSpan>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextColorSpan))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4JsonPrompt))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4), TypeInfoPropertyName = "ResolutionV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeed), TypeInfoPropertyName = "RenderingSpeed2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OutputResolution), TypeInfoPropertyName = "OutputResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeedV4), TypeInfoPropertyName = "RenderingSpeedV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateTransparentImageRequestV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV4), TypeInfoPropertyName = "AspectRatioV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4Fp8))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4CfgDistilled))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestPImage))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptOption), TypeInfoPropertyName = "MagicPromptOption2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PImageResolution), TypeInfoPropertyName = "PImageResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestPImageIdeogram))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Quality), TypeInfoPropertyName = "Quality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV3), TypeInfoPropertyName = "AspectRatioV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4Stable))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4StableVersion), TypeInfoPropertyName = "GenerateImageRequestV4StableVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestZImage))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestFlux2Klein))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestFlux2KleinBase))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestErnie))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4Im2Im))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<byte[]>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4ImageToImage), TypeInfoPropertyName = "ResolutionV4ImageToImage2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageRequestV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4Layout), TypeInfoPropertyName = "ResolutionV4Layout2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel), TypeInfoPropertyName = "GenerateDesignRequestV4InspirationReferenceModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel), TypeInfoPropertyName = "GenerateDesignRequestV4ArtifactGenerationModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant), TypeInfoPropertyName = "GenerateDesignRequestV4Layout2imageVariant2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ResponseType), TypeInfoPropertyName = "GenerateDesignRequestV4ResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.Description>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Description))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeModelVersion), TypeInfoPropertyName = "DescribeModelVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeRequestV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeResponseV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelEnum), TypeInfoPropertyName = "ModelEnum2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StyleType), TypeInfoPropertyName = "StyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV3), TypeInfoPropertyName = "ResolutionV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteWithPresetNameOrMembers), TypeInfoPropertyName = "ColorPaletteWithPresetNameOrMembers2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StyleTypeV3), TypeInfoPropertyName = "StyleTypeV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StylePresetV3), TypeInfoPropertyName = "StylePresetV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateGraphicRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeDesignRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateTransparentImageRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleFactor), TypeInfoPropertyName = "UpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditImageRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V1EditImagesRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TransparencyOption), TypeInfoPropertyName = "TransparencyOption2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioEditLite), TypeInfoPropertyName = "AspectRatioEditLite2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V1EditLiteImagesRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TryOnRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundRequestV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.RemoveBackgroundImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(float))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SnapMaskRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.RemoveObjectImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalTestingRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalTestingNestedObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalTestingNestedObjectRequiredFields))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.InternalTestingNestedObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalTestingEnumField), TypeInfoPropertyName = "InternalTestingEnumField2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InitialImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Resolution), TypeInfoPropertyName = "Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleInitialImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatio), TypeInfoPropertyName = "AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptVersionEnum), TypeInfoPropertyName = "MagicPromptVersionEnum2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationObjectV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V1EditImagesResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.V1EditImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V1EditImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4ResponseType), TypeInfoPropertyName = "ImageGenerationResponseV4ResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationObjectV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AsyncImageGenerationResponseV4))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseStatus), TypeInfoPropertyName = "GenerationResponseStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseResponseType), TypeInfoPropertyName = "GenerationResponseResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GenerationResponseDataInner>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInner), TypeInfoPropertyName = "GenerationResponseDataInner2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType), TypeInfoPropertyName = "ImageObjectWithoutPromptOrSeedObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationObjectObjectType), TypeInfoPropertyName = "ImageGenerationObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4ImageToImage))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType), TypeInfoPropertyName = "ImageGenerationResponseV4ImageToImageResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4ImageToImage>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationObjectV4ImageToImage))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4Layout))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4LayoutResponseType), TypeInfoPropertyName = "ImageGenerationResponseV4LayoutResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ImageGenerationObjectV4Layout>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationObjectV4Layout))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayeredImageGenerationObjectV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TextContainerV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextContainerV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ImageLayerV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageLayerV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayeredImageGenerationResponseV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayeredImageGenerationResponseV3ResponseType), TypeInfoPropertyName = "LayeredImageGenerationResponseV3ResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayeredImageGenerationObjectV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageSafetyError))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.MagicPromptRequestMessagesInner>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptRequestMessagesInner))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptV4Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptV4Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalBatchRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SamplingRequestParams))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalBatchResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextSpanV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TextSpanV3FontFxItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextSpanV3FontFxItem), TypeInfoPropertyName = "TextSpanV3FontFxItem2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3Alignment), TypeInfoPropertyName = "TextItemV3Alignment2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3StyleClass), TypeInfoPropertyName = "TextItemV3StyleClass2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3GlyphType), TypeInfoPropertyName = "TextItemV3GlyphType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3TextTransform), TypeInfoPropertyName = "TextItemV3TextTransform2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3VerticalAlignment), TypeInfoPropertyName = "TextItemV3VerticalAlignment2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayeredAssetTextShadow>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayeredAssetTextShadow))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TextSpanV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TextItemV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeLogosRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeLogosResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeTextRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeTextResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlock>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalBatchResultsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.InternalBatchResultsResponseResultsInner>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalBatchResultsResponseResultsInner))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetReferenceUsageResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AssetReferenceUsageItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetReferenceUsageItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetIdentifier))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AttributeInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AttributeInfo))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2AspectRatio), TypeInfoPropertyName = "SeedDance2AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2Resolution), TypeInfoPropertyName = "SeedDance2Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason), TypeInfoPropertyName = "GenerationRejectReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed), TypeInfoPropertyName = "GenerationErrorResponseTaskCompletionSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2ImageToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25TextToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance25Resolution), TypeInfoPropertyName = "SeedDance25Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25ImageToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoMinimaxH3TextToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3AspectRatio), TypeInfoPropertyName = "MinimaxH3AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3Resolution), TypeInfoPropertyName = "MinimaxH3Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoMinimaxH3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoMinimaxH3ImageToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoKlingV3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoKlingV3StandardTextToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3AspectRatio), TypeInfoPropertyName = "KlingV3AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3ShotType), TypeInfoPropertyName = "KlingV3ShotType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoKlingV3StandardImageToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2ReferenceToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25ReferenceToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3PromptExpansionMode), TypeInfoPropertyName = "MinimaxH3PromptExpansionMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditVideoSeedDance2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectFromV2AssetsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectFromV2AssetsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundV2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.BackgroundRemovedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.BackgroundRemovedImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundV2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundV2AssetRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundQuality), TypeInfoPropertyName = "ReplaceBackgroundQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundIdeogramV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "ReplaceBackgroundIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundIdeogram45Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountApiKeysResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKey))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus), TypeInfoPropertyName = "AccountApiKeyStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageBucket>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBucket))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource), TypeInfoPropertyName = "AccountUsageLineItemSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageApiKey))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBilledUnits))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountInvoicesResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoice>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoice))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus), TypeInfoPropertyName = "AccountInvoiceStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceLineItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.UpscaleImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazTextRefineRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection), TypeInfoPropertyName = "UpscaleImageTopazTextRefineRequestSubjectDetection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazWonder35RequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength), TypeInfoPropertyName = "UpscaleImageTopazWonder35RequestEnhancementStrength2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazStandardV2RequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection), TypeInfoPropertyName = "UpscaleImageTopazStandardV2RequestSubjectDetection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazBloom2RequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor), TypeInfoPropertyName = "UpscaleImageTopazRedefineRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection), TypeInfoPropertyName = "UpscaleImageTopazRedefineRequestSubjectDetection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageNanoBananaProResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageNanoBananaProRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageNanoBananaProRequestResolutionTier), TypeInfoPropertyName = "UpscaleImageNanoBananaProRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LookbookResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LookbookRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LookbookRequestCategory), TypeInfoPropertyName = "LookbookRequestCategory2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelPoseVariantsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelPoseVariantsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelPoseVariantsQuality), TypeInfoPropertyName = "ModelPoseVariantsQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotView), TypeInfoPropertyName = "PackshotView2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotsQuality), TypeInfoPropertyName = "PackshotsQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinRequestView), TypeInfoPropertyName = "GhostMannequinRequestView2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinQuality), TypeInfoPropertyName = "GhostMannequinQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Product360VideoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Product360VideoDirection), TypeInfoPropertyName = "Product360VideoDirection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageQuality), TypeInfoPropertyName = "LivingImageQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseMaskedEditResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseMaskedEditRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseMaskedEditModel), TypeInfoPropertyName = "PreciseMaskedEditModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseMaskedEditQuality), TypeInfoPropertyName = "PreciseMaskedEditQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VirtualTryOnResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VirtualTryOnRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysQuality), TypeInfoPropertyName = "ColorwaysQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerRequestLanguage), TypeInfoPropertyName = "AdLocalizerRequestLanguage2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerQuality), TypeInfoPropertyName = "AdLocalizerQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerRequestMode), TypeInfoPropertyName = "VectorizerRequestMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestResolution), TypeInfoPropertyName = "AdResizerRequestResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestPlatform), TypeInfoPropertyName = "AdResizerRequestPlatform2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerQuality), TypeInfoPropertyName = "AdResizerQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsRequestVariationType), TypeInfoPropertyName = "AdVariationsRequestVariationType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsQuality), TypeInfoPropertyName = "AdVariationsQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SketchToRenderResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SketchToRenderRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SketchToRenderQuality), TypeInfoPropertyName = "SketchToRenderQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SoleSwapResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SoleSwapRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SoleSwapRequestBaseGenerationSize), TypeInfoPropertyName = "SoleSwapRequestBaseGenerationSize2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SoleSwapQuality), TypeInfoPropertyName = "SoleSwapQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwapProductResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwapProductRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwapProductMode), TypeInfoPropertyName = "SwapProductMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwapProductQuality), TypeInfoPropertyName = "SwapProductQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditRequestAspectRatio), TypeInfoPropertyName = "SkechersStyleEditRequestAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditRequestBaseGenerationSize), TypeInfoPropertyName = "SkechersStyleEditRequestBaseGenerationSize2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditQuality), TypeInfoPropertyName = "SkechersStyleEditQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignRequestLogoStyle), TypeInfoPropertyName = "SwanSLogoDesignRequestLogoStyle2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignRequestSourceMode), TypeInfoPropertyName = "SwanSLogoDesignRequestSourceMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignRequestDesignVariant), TypeInfoPropertyName = "SwanSLogoDesignRequestDesignVariant2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoQuality), TypeInfoPropertyName = "SwanSLogoQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoInstallResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoInstallRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoInstallRequestLogoStyle), TypeInfoPropertyName = "SwanSLogoInstallRequestLogoStyle2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelSwapResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelSwapRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelSwapQuality), TypeInfoPropertyName = "ModelSwapQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MaterialSwapResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MaterialSwapRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MaterialSwapQuality), TypeInfoPropertyName = "MaterialSwapQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleToolResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleToolRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleToolRequestUpscaleFactor), TypeInfoPropertyName = "UpscaleToolRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeDesignIdeogramV3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayerizedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedImageObjectObjectType), TypeInfoPropertyName = "LayerizedImageObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeDesignIdeogramV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeImageIdeogramV3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GeneratedDescription>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GeneratedDescription))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeImageIdeogramV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageSafetyError))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeImageIdeogramV4Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeImageIdeogramV4Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GeneratedImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3AspectRatio), TypeInfoPropertyName = "IdeogramV3AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV3RequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTier), TypeInfoPropertyName = "V2ImageGenerateAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTier2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptMode), TypeInfoPropertyName = "MagicPromptMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPalette), TypeInfoPropertyName = "IdeogramColorPalette2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3StyleType), TypeInfoPropertyName = "IdeogramV3StyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3StylePreset), TypeInfoPropertyName = "IdeogramV3StylePreset2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV3CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaBackground), TypeInfoPropertyName = "V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaBackground2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality), TypeInfoPropertyName = "V2ImageGenerateIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4), TypeInfoPropertyName = "ResolutionV42")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV4RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StackedCustomModel))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV4CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.RemixedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixedImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "RemixImageIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CustomModelResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CustomModelRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed), TypeInfoPropertyName = "RemixImageIdeogramV3CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV4Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV4Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed), TypeInfoPropertyName = "RemixImageIdeogramV4RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CharacterResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed), TypeInfoPropertyName = "RemixImageIdeogramV3CharacterRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType), TypeInfoPropertyName = "RemixImageIdeogramV3CharacterRequestStyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor), TypeInfoPropertyName = "GenerateImageIdeogramV3TransparentRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV3TransparentRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV4AspectRatio), TypeInfoPropertyName = "IdeogramV4AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution), TypeInfoPropertyName = "GenerateImageIdeogramV4TransparentRequestOutputResolution2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV4TransparentRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImagePImageIdeogramResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImagePImageIdeogramRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV3), TypeInfoPropertyName = "ResolutionV32")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3AspectRatio), TypeInfoPropertyName = "IdeogramV3AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageGenerateIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPalettePresetName), TypeInfoPropertyName = "IdeogramColorPalettePresetName2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPaletteWithPresetName))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteMember))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteWithMembers))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPalette), TypeInfoPropertyName = "IdeogramColorPalette2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3StyleType), TypeInfoPropertyName = "IdeogramV3StyleType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3StylePreset), TypeInfoPropertyName = "IdeogramV3StylePreset2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleType), TypeInfoPropertyName = "V2ImageGenerateIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageGenerateIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor), TypeInfoPropertyName = "GenerateImageIdeogramV3TransparentRequestUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV3TransparentRequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV2ARequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV2StyleType), TypeInfoPropertyName = "IdeogramV2StyleType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2ARequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2AResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV2RequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaBackground), TypeInfoPropertyName = "V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaBackground2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaQuality), TypeInfoPropertyName = "V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaBackground), TypeInfoPropertyName = "V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaBackground2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaQuality), TypeInfoPropertyName = "V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25SunburstResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2AspectRatio), TypeInfoPropertyName = "NanoBanana2AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateNanoBanana2PostRequestBodyContentMultipartFormDataSchemaResolutionTier), TypeInfoPropertyName = "V2ImageGenerateNanoBanana2PostRequestBodyContentMultipartFormDataSchemaResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana21AspectRatio), TypeInfoPropertyName = "NanoBanana21AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateNanoBanana21PostRequestBodyContentMultipartFormDataSchemaResolutionTier), TypeInfoPropertyName = "V2ImageGenerateNanoBanana21PostRequestBodyContentMultipartFormDataSchemaResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProAspectRatio), TypeInfoPropertyName = "NanoBananaProAspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageGenerateNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier), TypeInfoPropertyName = "V2ImageGenerateNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationQuality), TypeInfoPropertyName = "GenerationQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImagePImageIdeogramRequestResolution), TypeInfoPropertyName = "GenerateImagePImageIdeogramRequestResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageZImageResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV3), TypeInfoPropertyName = "AspectRatioV32")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImagePImageIdeogramRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImagePImageIdeogramResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageZImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationKind), TypeInfoPropertyName = "GenerationKind2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45RequestBackground), TypeInfoPropertyName = "GenerateImageIdeogram45RequestBackground2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality), TypeInfoPropertyName = "GenerateImageIdeogram45RequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality), TypeInfoPropertyName = "PreciseEditImageIdeogram45RequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2AspectRatio), TypeInfoPropertyName = "NanoBanana2AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier), TypeInfoPropertyName = "GenerateImageNanoBanana2RequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana21AspectRatio), TypeInfoPropertyName = "NanoBanana21AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier), TypeInfoPropertyName = "GenerateImageNanoBanana21RequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProAspectRatio), TypeInfoPropertyName = "NanoBananaProAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier), TypeInfoPropertyName = "GenerateImageNanoBananaProRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground), TypeInfoPropertyName = "GenerateImageGptImage25FlareRequestBackground2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequestQuality), TypeInfoPropertyName = "GenerateImageGptImage25FlareRequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25SunburstResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25SunburstRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestBackground), TypeInfoPropertyName = "GenerateImageGptImage25SunburstRequestBackground2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestQuality), TypeInfoPropertyName = "GenerateImageGptImage25SunburstRequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV2RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV2StyleType), TypeInfoPropertyName = "IdeogramV2StyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2AResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2ARequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV2ARequestRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageZImageResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageRemixAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTier), TypeInfoPropertyName = "V2ImageRemixAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageRemixIdeogram4PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageRemixIdeogram4PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixedImageObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV4Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.RemixedImageObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageRemixIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageRemixIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleType), TypeInfoPropertyName = "V2ImageRemixIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CharacterResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageRemixIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageRemixIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CustomModelResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageInpaintIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageInpaintIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintedImageObject))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3Response))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.InpaintedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintedImageObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "InpaintImageIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed), TypeInfoPropertyName = "InpaintImageIdeogramV3CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed), TypeInfoPropertyName = "ReframeImageIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBanana2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBanana2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2ReframeAspectRatio), TypeInfoPropertyName = "NanoBanana2ReframeAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProReframeAspectRatio), TypeInfoPropertyName = "NanoBananaProReframeAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier), TypeInfoPropertyName = "ReframeImageNanoBananaProRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality), TypeInfoPropertyName = "ReframeImageGptImage25FlareRequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageBriaExpandResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageBriaExpandRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageAutoResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageAutoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed), TypeInfoPropertyName = "GenerateImageIdeogramV3CharacterRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType), TypeInfoPropertyName = "GenerateImageIdeogramV3CharacterRequestStyleType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleType), TypeInfoPropertyName = "V2ImageInpaintIdeogram3CharacterPostRequestBodyContentMultipartFormDataSchemaStyleType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CharacterResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed), TypeInfoPropertyName = "InpaintImageIdeogramV3CharacterRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType), TypeInfoPropertyName = "InpaintImageIdeogramV3CharacterRequestStyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier), TypeInfoPropertyName = "GenerateImageV2AutoRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixRequestResolutionTier), TypeInfoPropertyName = "ToolRemixRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResizeAdImageRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResizeAdImageRequestResolution), TypeInfoPropertyName = "ResizeAdImageRequestResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResizeAdImageQuality), TypeInfoPropertyName = "ResizeAdImageQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.WebhookSigningJwks))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.WebhookSigningJwk>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.WebhookSigningJwk))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ProvenanceVerifyResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ProvenanceVerifyResponseValidationState), TypeInfoPropertyName = "ProvenanceVerifyResponseValidationState2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ProvenanceVerifyRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiSubscriptionResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MetronomeLinks))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RechargeSettingsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Price))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RechargeSettings))]
-    internal sealed partial class SourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
-    {
-    }
-
-    /// <summary>
-    ///
-    /// </summary>
-    [global::System.Text.Json.Serialization.JsonSourceGenerationOptions(
-        DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
-    )]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiSubscriptionResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiSubscriptionError))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiSubscriptionRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiCreditSummaryResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.CreditGrant>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreditGrant))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiKeysResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.RedactedApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RedactedApiKey))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiKeyResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreateApiKeyRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileApiKey))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiKeyStatus), TypeInfoPropertyName = "ApiKeyStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PatchApiKeyRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiStripeSubscriptionResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ManageApiPaymentResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiTermsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiTerms))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostApiTermsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostAddCreditsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostAddCreditsError))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostAddCreditsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetUserCreditsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SpendCommitInfoResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.SpendCommitInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SpendCommitInfo))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetUsageInfoResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.UsageSegment>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UsageSegment))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ToolUsage>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolUsage))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolType), TypeInfoPropertyName = "ToolType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelVersion), TypeInfoPropertyName = "ModelVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SegmentBy), TypeInfoPropertyName = "SegmentBy2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UsageSource), TypeInfoPropertyName = "UsageSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiProfilesResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ApiProfile>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfile))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileType), TypeInfoPropertyName = "ApiProfileType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileRole), TypeInfoPropertyName = "ApiProfileRole2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ApiProfileApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpdateOrganizationApiPropertiesResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpdateOrganizationApiPropertiesRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiOrganizationUserSuggestionsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ApiOrganizationUserSuggestion>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiOrganizationUserSuggestion))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetOrganizationMembersResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.OrganizationMember>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OrganizationMember))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreateApiKeyResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetApiKeysV2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OrganizationMemberOperationResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.OrganizationMemberOperationResult>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OrganizationMemberOperationResult))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AddOrganizationMembersRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LiteOrganizationMember>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LiteOrganizationMember))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveOrganizationMembersRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PromoteOrganizationAdminsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DemoteOrganizationAdminsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CancelOrganizationInviteRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResendOrganizationInviteRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListOrganizationInvoicesResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.Invoice>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Invoice))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InvoiceStatus), TypeInfoPropertyName = "InvoiceStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.InvoiceLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InvoiceLineItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetOrganizationBillingPortalResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListDatasetsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.Dataset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Dataset))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CreateDatasetRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetDatasetResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DatasetFile>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetFile))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UploadDatasetAssetsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DatasetUploadSucceededAsset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetUploadSucceededAsset))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DatasetUploadFailedAsset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetUploadFailedAsset))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetAssetFailureReason), TypeInfoPropertyName = "DatasetAssetFailureReason2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UploadDatasetAssetsRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainDatasetModelRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListModelsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.CustomModel>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.CustomModel))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelStatus), TypeInfoPropertyName = "ModelStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TrainingRun>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainingRun))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainingRunStatus), TypeInfoPropertyName = "TrainingRunStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetModelResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainModelV3Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainModelV3AdvancedRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainModelV4Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainModelV4AdvancedRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppRequestEmbed), TypeInfoPropertyName = "PublishMiniAppRequestEmbed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MiniAppArtwork))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppPreviewResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppPreviewRequest))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppPreviewRequestEmbed), TypeInfoPropertyName = "PublishMiniAppPreviewRequestEmbed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UnpublishMiniAppPreviewResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetStaleMiniAppPreviewsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.MiniAppMarketingProjectionEntry>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MiniAppMarketingProjectionEntry))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed), TypeInfoPropertyName = "MiniAppMarketingProjectionEntryEmbed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetIntegrationsResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.IntegrationType>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationType), TypeInfoPropertyName = "IntegrationType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationErrorResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationErrorResponseError), TypeInfoPropertyName = "IntegrationErrorResponseError2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAssetSearchResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.IntegrationAsset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAsset))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAssetDelivery))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationAssetSearchRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageInpaintIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageInpaintIdeogram3CustomModelPostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageReframeIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageReframeIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2ReframeAspectRatio), TypeInfoPropertyName = "NanoBanana2ReframeAspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBanana2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleAutoPostRequestBodyContentMultipartFormDataSchemaUpscaleFactor), TypeInfoPropertyName = "V2ImageUpscaleAutoPostRequestBodyContentMultipartFormDataSchemaUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleToolResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.UpscaleImageObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier), TypeInfoPropertyName = "V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageNanoBananaProResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazBloom2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor), TypeInfoPropertyName = "V2ImageUpscaleTopazBloom2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactor), TypeInfoPropertyName = "V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection), TypeInfoPropertyName = "V2ImageUpscaleTopazRedefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor), TypeInfoPropertyName = "V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaSubjectDetection), TypeInfoPropertyName = "V2ImageUpscaleTopazStandard2PostRequestBodyContentMultipartFormDataSchemaSubjectDetection2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactor), TypeInfoPropertyName = "V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection), TypeInfoPropertyName = "V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor), TypeInfoPropertyName = "V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaEnhancementStrength), TypeInfoPropertyName = "V2ImageUpscaleTopazWonder35PostRequestBodyContentMultipartFormDataSchemaEnhancementStrength2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ImageReplaceBackgroundIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed), TypeInfoPropertyName = "V2ImageReplaceBackgroundIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundQuality), TypeInfoPropertyName = "ReplaceBackgroundQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.BackgroundRemovedImageObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveBackgroundV2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.BackgroundRemovedImageObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemoveObjectFromV2AssetsResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4StyleDescription))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4CompositionalDeconstruction))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.V4PromptElement>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4ObjPromptElementType), TypeInfoPropertyName = "V4ObjPromptElementType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4TextPromptElementType), TypeInfoPropertyName = "V4TextPromptElementType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElement), TypeInfoPropertyName = "V4PromptElement2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4ObjPromptElement))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4TextPromptElement))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElementVariant1))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<int>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElementVariant2))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElementDiscriminator))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElementDiscriminatorType), TypeInfoPropertyName = "V4PromptElementDiscriminatorType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4ObjPromptElementType), TypeInfoPropertyName = "V4ObjPromptElementType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<int>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4TextPromptElementType), TypeInfoPropertyName = "V4TextPromptElementType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteWithPresetName))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteWithMembers))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPalettePresetName), TypeInfoPropertyName = "ColorPalettePresetName2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ColorPaletteMember>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteMember))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectObjectType), TypeInfoPropertyName = "SvgGenerationObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectMimeType), TypeInfoPropertyName = "SvgGenerationObjectMimeType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObjectObjectType), TypeInfoPropertyName = "VideoObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResultObject))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResultObjectObjectType), TypeInfoPropertyName = "TextLayerizerResultObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayerizedTextBlock>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4CompositionalDeconstruction))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.V4PromptElement>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4JsonPrompt))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeImageIdeogramV4Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageSafetyError))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GeneratedDescription))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeImageIdeogramV3Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GeneratedDescription>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockAlignment), TypeInfoPropertyName = "DetectedTextBlockAlignment2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockFormattingItem), TypeInfoPropertyName = "DetectedTextBlockFormattingItem2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockFormattingItems), TypeInfoPropertyName = "DetectedTextBlockFormattingItems2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockRole), TypeInfoPropertyName = "DetectedTextBlockRole2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlock))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedImageObject))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlock>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizeDesignIdeogramV3Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayerizedImageObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3ShotType), TypeInfoPropertyName = "KlingV3ShotType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoKlingV3Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3AspectRatio), TypeInfoPropertyName = "KlingV3AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoKlingV3StandardTextToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3Resolution), TypeInfoPropertyName = "MinimaxH3Resolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoMinimaxH3Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3AspectRatio), TypeInfoPropertyName = "MinimaxH3AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3PromptExpansionMode), TypeInfoPropertyName = "MinimaxH3PromptExpansionMode2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoMinimaxH3TextToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance25Resolution), TypeInfoPropertyName = "SeedDance25Resolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2AspectRatio), TypeInfoPropertyName = "SeedDance2AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance25TextToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2Resolution), TypeInfoPropertyName = "SeedDance2Resolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2TextToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ToolAdLocalizerPostRequestBodyContentMultipartFormDataSchemaLanguage), TypeInfoPropertyName = "V2ToolAdLocalizerPostRequestBodyContentMultipartFormDataSchemaLanguage2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerQuality), TypeInfoPropertyName = "AdLocalizerQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaResolution), TypeInfoPropertyName = "V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaResolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaPlatform), TypeInfoPropertyName = "V2ToolAdResizerPostRequestBodyContentMultipartFormDataSchemaPlatform2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerQuality), TypeInfoPropertyName = "AdResizerQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ToolAdVariationsPostRequestBodyContentMultipartFormDataSchemaVariationType), TypeInfoPropertyName = "V2ToolAdVariationsPostRequestBodyContentMultipartFormDataSchemaVariationType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsQuality), TypeInfoPropertyName = "AdVariationsQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysQuality), TypeInfoPropertyName = "ColorwaysQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType), TypeInfoPropertyName = "AssetType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AttributeValueType), TypeInfoPropertyName = "AttributeValueType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPaletteWithPresetName))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPalettePresetName), TypeInfoPropertyName = "IdeogramColorPalettePresetName2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostGenerateDesignV4200Response), TypeInfoPropertyName = "PostGenerateDesignV4200Response2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminator))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType), TypeInfoPropertyName = "PostGenerateDesignV4200ResponseDiscriminatorResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostInternalTesting200Response))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetIdentifier))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2ToolGhostMannequinPostRequestBodyContentMultipartFormDataSchemaView), TypeInfoPropertyName = "V2ToolGhostMannequinPostRequestBodyContentMultipartFormDataSchemaView2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinQuality), TypeInfoPropertyName = "GhostMannequinQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MaterialSwapQuality), TypeInfoPropertyName = "MaterialSwapQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MaterialSwapResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelPoseVariantsQuality), TypeInfoPropertyName = "ModelPoseVariantsQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelPoseVariantsResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SketchToRenderQuality), TypeInfoPropertyName = "SketchToRenderQuality2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SketchToRenderResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseStatus), TypeInfoPropertyName = "GenerationResponseStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseResponseType), TypeInfoPropertyName = "GenerationResponseResponseType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorMappingSvgGenerationMimeType), TypeInfoPropertyName = "GenerationResponseDataInnerDiscriminatorMappingSvgGenerationMimeType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlockAlignment), TypeInfoPropertyName = "LayerizedTextBlockAlignment2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlockFormattingItems), TypeInfoPropertyName = "LayerizedTextBlockFormattingItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlockRole), TypeInfoPropertyName = "LayerizedTextBlockRole2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextColorSpan))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlock))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayerizedTextBlockFormattingItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.TextColorSpan>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInner), TypeInfoPropertyName = "GenerationResponseDataInner2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant1))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant1ObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerVariant1ObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant2))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant2ObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerVariant2ObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant3))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant3ObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerVariant3ObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant4))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant4ObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerVariant4ObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant5))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant5ObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerVariant5ObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant6))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerVariant6ObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerVariant6ObjectType2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.LayerizedTextBlock>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminator))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType), TypeInfoPropertyName = "GenerationResponseDataInnerDiscriminatorObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole), TypeInfoPropertyName = "MagicPromptRequestMessagesInnerRole2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetCoverAssetIdentifier), TypeInfoPropertyName = "DatasetCoverAssetIdentifier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ModelVersion>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ToolType>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListCustomModelsScope), TypeInfoPropertyName = "ListCustomModelsScope2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.ModelStatus>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageBucketWidth), TypeInfoPropertyName = "GetAccountUsageBucketWidth2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GetAccountUsageSource>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageSource), TypeInfoPropertyName = "GetAccountUsageSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PriceQuoteObject?), TypeInfoPropertyName = "NullablePriceQuoteObject2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PriceQualifier?), TypeInfoPropertyName = "NullablePriceQualifier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedTextBlock?), TypeInfoPropertyName = "NullableLayerizedTextBlock2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4?), TypeInfoPropertyName = "NullableResolutionV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeed?), TypeInfoPropertyName = "NullableRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.OutputResolution?), TypeInfoPropertyName = "NullableOutputResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RenderingSpeedV4?), TypeInfoPropertyName = "NullableRenderingSpeedV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV4?), TypeInfoPropertyName = "NullableAspectRatioV42")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptOption?), TypeInfoPropertyName = "NullableMagicPromptOption2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PImageResolution?), TypeInfoPropertyName = "NullablePImageResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Quality?), TypeInfoPropertyName = "NullableQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioV3?), TypeInfoPropertyName = "NullableAspectRatioV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageRequestV4StableVersion?), TypeInfoPropertyName = "NullableGenerateImageRequestV4StableVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4ImageToImage?), TypeInfoPropertyName = "NullableResolutionV4ImageToImage2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV4Layout?), TypeInfoPropertyName = "NullableResolutionV4Layout2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4InspirationReferenceModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ArtifactGenerationModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4Layout2imageVariant2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateDesignRequestV4ResponseType?), TypeInfoPropertyName = "NullableGenerateDesignRequestV4ResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DescribeModelVersion?), TypeInfoPropertyName = "NullableDescribeModelVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelEnum?), TypeInfoPropertyName = "NullableModelEnum2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StyleType?), TypeInfoPropertyName = "NullableStyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResolutionV3?), TypeInfoPropertyName = "NullableResolutionV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPaletteWithPresetNameOrMembers?), TypeInfoPropertyName = "NullableColorPaletteWithPresetNameOrMembers2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StyleTypeV3?), TypeInfoPropertyName = "NullableStyleTypeV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.StylePresetV3?), TypeInfoPropertyName = "NullableStylePresetV32")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TransparencyOption?), TypeInfoPropertyName = "NullableTransparencyOption2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatioEditLite?), TypeInfoPropertyName = "NullableAspectRatioEditLite2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(float?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InternalTestingEnumField?), TypeInfoPropertyName = "NullableInternalTestingEnumField2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Resolution?), TypeInfoPropertyName = "NullableResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AspectRatio?), TypeInfoPropertyName = "NullableAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptVersionEnum?), TypeInfoPropertyName = "NullableMagicPromptVersionEnum2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4ResponseType?), TypeInfoPropertyName = "NullableImageGenerationResponseV4ResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseStatus?), TypeInfoPropertyName = "NullableGenerationResponseStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseResponseType?), TypeInfoPropertyName = "NullableGenerationResponseResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInner?), TypeInfoPropertyName = "NullableGenerationResponseDataInner2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType?), TypeInfoPropertyName = "NullableImageObjectWithoutPromptOrSeedObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationObjectObjectType?), TypeInfoPropertyName = "NullableImageGenerationObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType?), TypeInfoPropertyName = "NullableImageGenerationResponseV4ImageToImageResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageGenerationResponseV4LayoutResponseType?), TypeInfoPropertyName = "NullableImageGenerationResponseV4LayoutResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayeredImageGenerationResponseV3ResponseType?), TypeInfoPropertyName = "NullableLayeredImageGenerationResponseV3ResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextSpanV3FontFxItem?), TypeInfoPropertyName = "NullableTextSpanV3FontFxItem2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3Alignment?), TypeInfoPropertyName = "NullableTextItemV3Alignment2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3StyleClass?), TypeInfoPropertyName = "NullableTextItemV3StyleClass2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3GlyphType?), TypeInfoPropertyName = "NullableTextItemV3GlyphType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3TextTransform?), TypeInfoPropertyName = "NullableTextItemV3TextTransform2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextItemV3VerticalAlignment?), TypeInfoPropertyName = "NullableTextItemV3VerticalAlignment2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2AspectRatio?), TypeInfoPropertyName = "NullableSeedDance2AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2Resolution?), TypeInfoPropertyName = "NullableSeedDance2Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason?), TypeInfoPropertyName = "NullableGenerationRejectReason2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?), TypeInfoPropertyName = "NullableGenerationErrorResponseTaskCompletionSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance25Resolution?), TypeInfoPropertyName = "NullableSeedDance25Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3AspectRatio?), TypeInfoPropertyName = "NullableMinimaxH3AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3Resolution?), TypeInfoPropertyName = "NullableMinimaxH3Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3AspectRatio?), TypeInfoPropertyName = "NullableKlingV3AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.KlingV3ShotType?), TypeInfoPropertyName = "NullableKlingV3ShotType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3PromptExpansionMode?), TypeInfoPropertyName = "NullableMinimaxH3PromptExpansionMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundQuality?), TypeInfoPropertyName = "NullableReplaceBackgroundQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableReplaceBackgroundIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus?), TypeInfoPropertyName = "NullableAccountApiKeyStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource?), TypeInfoPropertyName = "NullableAccountUsageLineItemSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus?), TypeInfoPropertyName = "NullableAccountInvoiceStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazTextRefineRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection?), TypeInfoPropertyName = "NullableUpscaleImageTopazTextRefineRequestSubjectDetection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazWonder35RequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength?), TypeInfoPropertyName = "NullableUpscaleImageTopazWonder35RequestEnhancementStrength2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazStandardV2RequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection?), TypeInfoPropertyName = "NullableUpscaleImageTopazStandardV2RequestSubjectDetection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazBloom2RequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleImageTopazRedefineRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection?), TypeInfoPropertyName = "NullableUpscaleImageTopazRedefineRequestSubjectDetection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleImageNanoBananaProRequestResolutionTier?), TypeInfoPropertyName = "NullableUpscaleImageNanoBananaProRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LookbookRequestCategory?), TypeInfoPropertyName = "NullableLookbookRequestCategory2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelPoseVariantsQuality?), TypeInfoPropertyName = "NullableModelPoseVariantsQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotView?), TypeInfoPropertyName = "NullablePackshotView2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PackshotsQuality?), TypeInfoPropertyName = "NullablePackshotsQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinRequestView?), TypeInfoPropertyName = "NullableGhostMannequinRequestView2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GhostMannequinQuality?), TypeInfoPropertyName = "NullableGhostMannequinQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.Product360VideoDirection?), TypeInfoPropertyName = "NullableProduct360VideoDirection2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LivingImageQuality?), TypeInfoPropertyName = "NullableLivingImageQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseMaskedEditModel?), TypeInfoPropertyName = "NullablePreciseMaskedEditModel2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseMaskedEditQuality?), TypeInfoPropertyName = "NullablePreciseMaskedEditQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorwaysQuality?), TypeInfoPropertyName = "NullableColorwaysQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerRequestLanguage?), TypeInfoPropertyName = "NullableAdLocalizerRequestLanguage2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdLocalizerQuality?), TypeInfoPropertyName = "NullableAdLocalizerQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VectorizerRequestMode?), TypeInfoPropertyName = "NullableVectorizerRequestMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestResolution?), TypeInfoPropertyName = "NullableAdResizerRequestResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerRequestPlatform?), TypeInfoPropertyName = "NullableAdResizerRequestPlatform2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdResizerQuality?), TypeInfoPropertyName = "NullableAdResizerQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsRequestVariationType?), TypeInfoPropertyName = "NullableAdVariationsRequestVariationType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AdVariationsQuality?), TypeInfoPropertyName = "NullableAdVariationsQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SketchToRenderQuality?), TypeInfoPropertyName = "NullableSketchToRenderQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SoleSwapRequestBaseGenerationSize?), TypeInfoPropertyName = "NullableSoleSwapRequestBaseGenerationSize2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SoleSwapQuality?), TypeInfoPropertyName = "NullableSoleSwapQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwapProductMode?), TypeInfoPropertyName = "NullableSwapProductMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwapProductQuality?), TypeInfoPropertyName = "NullableSwapProductQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditRequestAspectRatio?), TypeInfoPropertyName = "NullableSkechersStyleEditRequestAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditRequestBaseGenerationSize?), TypeInfoPropertyName = "NullableSkechersStyleEditRequestBaseGenerationSize2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SkechersStyleEditQuality?), TypeInfoPropertyName = "NullableSkechersStyleEditQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignRequestLogoStyle?), TypeInfoPropertyName = "NullableSwanSLogoDesignRequestLogoStyle2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignRequestSourceMode?), TypeInfoPropertyName = "NullableSwanSLogoDesignRequestSourceMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoDesignRequestDesignVariant?), TypeInfoPropertyName = "NullableSwanSLogoDesignRequestDesignVariant2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoQuality?), TypeInfoPropertyName = "NullableSwanSLogoQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SwanSLogoInstallRequestLogoStyle?), TypeInfoPropertyName = "NullableSwanSLogoInstallRequestLogoStyle2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelSwapQuality?), TypeInfoPropertyName = "NullableModelSwapQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MaterialSwapQuality?), TypeInfoPropertyName = "NullableMaterialSwapQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UpscaleToolRequestUpscaleFactor?), TypeInfoPropertyName = "NullableUpscaleToolRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.LayerizedImageObjectObjectType?), TypeInfoPropertyName = "NullableLayerizedImageObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3AspectRatio?), TypeInfoPropertyName = "NullableIdeogramV3AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptMode?), TypeInfoPropertyName = "NullableMagicPromptMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPalette?), TypeInfoPropertyName = "NullableIdeogramColorPalette2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3StyleType?), TypeInfoPropertyName = "NullableIdeogramV3StyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV3StylePreset?), TypeInfoPropertyName = "NullableIdeogramV3StylePreset2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV3CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV4RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV4CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(double?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableRemixImageIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed?), TypeInfoPropertyName = "NullableRemixImageIdeogramV3CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed?), TypeInfoPropertyName = "NullableRemixImageIdeogramV4RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed?), TypeInfoPropertyName = "NullableRemixImageIdeogramV3CharacterRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType?), TypeInfoPropertyName = "NullableRemixImageIdeogramV3CharacterRequestStyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV3TransparentRequestUpscaleFactor2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV3TransparentRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV4AspectRatio?), TypeInfoPropertyName = "NullableIdeogramV4AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV4TransparentRequestOutputResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV4TransparentRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationQuality?), TypeInfoPropertyName = "NullableGenerationQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImagePImageIdeogramRequestResolution?), TypeInfoPropertyName = "NullableGenerateImagePImageIdeogramRequestResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationKind?), TypeInfoPropertyName = "NullableGenerationKind2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45RequestBackground?), TypeInfoPropertyName = "NullableGenerateImageIdeogram45RequestBackground2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality?), TypeInfoPropertyName = "NullableGenerateImageIdeogram45RequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?), TypeInfoPropertyName = "NullablePreciseEditImageIdeogram45RequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2AspectRatio?), TypeInfoPropertyName = "NullableNanoBanana2AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBanana2RequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana21AspectRatio?), TypeInfoPropertyName = "NullableNanoBanana21AspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBanana21RequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProAspectRatio?), TypeInfoPropertyName = "NullableNanoBananaProAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageNanoBananaProRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground?), TypeInfoPropertyName = "NullableGenerateImageGptImage25FlareRequestBackground2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25FlareRequestQuality?), TypeInfoPropertyName = "NullableGenerateImageGptImage25FlareRequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestBackground?), TypeInfoPropertyName = "NullableGenerateImageGptImage25SunburstRequestBackground2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestQuality?), TypeInfoPropertyName = "NullableGenerateImageGptImage25SunburstRequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV2RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramV2StyleType?), TypeInfoPropertyName = "NullableIdeogramV2StyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV2ARequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableInpaintImageIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed?), TypeInfoPropertyName = "NullableInpaintImageIdeogramV3CustomModelRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed?), TypeInfoPropertyName = "NullableReframeImageIdeogramV3RequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?), TypeInfoPropertyName = "NullableNanoBanana2ReframeAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.NanoBananaProReframeAspectRatio?), TypeInfoPropertyName = "NullableNanoBananaProReframeAspectRatio2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier?), TypeInfoPropertyName = "NullableReframeImageNanoBananaProRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality?), TypeInfoPropertyName = "NullableReframeImageGptImage25FlareRequestQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV3CharacterRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType?), TypeInfoPropertyName = "NullableGenerateImageIdeogramV3CharacterRequestStyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed?), TypeInfoPropertyName = "NullableInpaintImageIdeogramV3CharacterRequestRenderingSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType?), TypeInfoPropertyName = "NullableInpaintImageIdeogramV3CharacterRequestStyleType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier?), TypeInfoPropertyName = "NullableGenerateImageV2AutoRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemixRequestResolutionTier?), TypeInfoPropertyName = "NullableToolRemixRequestResolutionTier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResizeAdImageRequestResolution?), TypeInfoPropertyName = "NullableResizeAdImageRequestResolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ResizeAdImageQuality?), TypeInfoPropertyName = "NullableResizeAdImageQuality2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ProvenanceVerifyResponseValidationState?), TypeInfoPropertyName = "NullableProvenanceVerifyResponseValidationState2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiKeyStatus?), TypeInfoPropertyName = "NullableApiKeyStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolType?), TypeInfoPropertyName = "NullableToolType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelVersion?), TypeInfoPropertyName = "NullableModelVersion2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SegmentBy?), TypeInfoPropertyName = "NullableSegmentBy2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.UsageSource?), TypeInfoPropertyName = "NullableUsageSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileType?), TypeInfoPropertyName = "NullableApiProfileType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ApiProfileRole?), TypeInfoPropertyName = "NullableApiProfileRole2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.InvoiceStatus?), TypeInfoPropertyName = "NullableInvoiceStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetAssetFailureReason?), TypeInfoPropertyName = "NullableDatasetAssetFailureReason2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ModelStatus?), TypeInfoPropertyName = "NullableModelStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TrainingRunStatus?), TypeInfoPropertyName = "NullableTrainingRunStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppRequestEmbed?), TypeInfoPropertyName = "NullablePublishMiniAppRequestEmbed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PublishMiniAppPreviewRequestEmbed?), TypeInfoPropertyName = "NullablePublishMiniAppPreviewRequestEmbed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed?), TypeInfoPropertyName = "NullableMiniAppMarketingProjectionEntryEmbed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationType?), TypeInfoPropertyName = "NullableIntegrationType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IntegrationErrorResponseError?), TypeInfoPropertyName = "NullableIntegrationErrorResponseError2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElement?), TypeInfoPropertyName = "NullableV4PromptElement2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4PromptElementDiscriminatorType?), TypeInfoPropertyName = "NullableV4PromptElementDiscriminatorType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4ObjPromptElementType?), TypeInfoPropertyName = "NullableV4ObjPromptElementType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V4TextPromptElementType?), TypeInfoPropertyName = "NullableV4TextPromptElementType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ColorPalettePresetName?), TypeInfoPropertyName = "NullableColorPalettePresetName2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectObjectType?), TypeInfoPropertyName = "NullableSvgGenerationObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SvgGenerationObjectMimeType?), TypeInfoPropertyName = "NullableSvgGenerationObjectMimeType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoObjectObjectType?), TypeInfoPropertyName = "NullableVideoObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.TextLayerizerResultObjectObjectType?), TypeInfoPropertyName = "NullableTextLayerizerResultObjectObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockAlignment?), TypeInfoPropertyName = "NullableDetectedTextBlockAlignment2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockFormattingItem?), TypeInfoPropertyName = "NullableDetectedTextBlockFormattingItem2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DetectedTextBlockRole?), TypeInfoPropertyName = "NullableDetectedTextBlockRole2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType?), TypeInfoPropertyName = "NullableAssetType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AttributeValueType?), TypeInfoPropertyName = "NullableAttributeValueType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.IdeogramColorPalettePresetName?), TypeInfoPropertyName = "NullableIdeogramColorPalettePresetName2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostGenerateDesignV4200Response?), TypeInfoPropertyName = "NullablePostGenerateDesignV4200Response2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType?), TypeInfoPropertyName = "NullablePostGenerateDesignV4200ResponseDiscriminatorResponseType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType?), TypeInfoPropertyName = "NullableGenerationResponseDataInnerDiscriminatorObjectType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole?), TypeInfoPropertyName = "NullableMagicPromptRequestMessagesInnerRole2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DatasetCoverAssetIdentifier?), TypeInfoPropertyName = "NullableDatasetCoverAssetIdentifier2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListCustomModelsScope?), TypeInfoPropertyName = "NullableListCustomModelsScope2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageBucketWidth?), TypeInfoPropertyName = "NullableGetAccountUsageBucketWidth2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageSource?), TypeInfoPropertyName = "NullableGetAccountUsageSource2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TextColorSpan>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<byte[]>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.Description>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.RemoveBackgroundImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.RemoveObjectImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.InternalTestingNestedObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ImageGenerationObjectV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.V1EditImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ImageGenerationObjectV4>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GenerationResponseDataInner>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ImageGenerationObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ImageGenerationObjectV4ImageToImage>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ImageGenerationObjectV4Layout>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TextContainerV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ImageLayerV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LayeredImageGenerationObjectV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.MagicPromptRequestMessagesInner>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TextSpanV3FontFxItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LayeredAssetTextShadow>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TextSpanV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TextItemV3>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlock>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.InternalBatchResultsResponseResultsInner>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AssetReferenceUsageItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AttributeInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AssetIdentifier>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.BackgroundRemovedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageBucket>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoice>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoiceLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.UpscaleImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LayerizedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GeneratedDescription>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(long))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GenerationResponseDataInner>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus), TypeInfoPropertyName = "AccountApiKeyStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountApiKeysResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountApiKey>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus), TypeInfoPropertyName = "AccountInvoiceStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageApiKey))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceLineItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoice))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountInvoicesResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2AccountUsageGetParametersBucketWidth), TypeInfoPropertyName = "V2AccountUsageGetParametersBucketWidth2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems), TypeInfoPropertyName = "V2AccountUsageGetParametersSourcesSchemaItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource), TypeInfoPropertyName = "AccountUsageLineItemSource2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBilledUnits))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.Dictionary<string, string>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBucket))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageLineItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageBucket>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesPreciseEditPostPreciseEditImageV2Ideogram45Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<byte[]>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AutoModelPostGenerateImageV2AutoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2Ideogram45Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2IdeogramV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2IdeogramV3CharacterRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2IdeogramV3CustomModelRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2GptImage25FlareRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2GptImage25SunburstRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2GptImage2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2NanoBanana2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2NanoBanana21Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesGeneratePostGenerateImageV2NanoBananaProRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AutoModelPostToolRemixRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesRemixPostRemixImageV2IdeogramV4Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesRemixPostRemixImageV2IdeogramV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesRemixPostRemixImageV2IdeogramV3CharacterRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesRemixPostRemixImageV2IdeogramV3CustomModelRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesInpaintPostInpaintImageV2IdeogramV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesInpaintPostInpaintImageV2IdeogramV3CharacterRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesInpaintPostInpaintImageV2IdeogramV3CustomModelRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeIdeogramV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ReframeNanoBanana2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolsPostUpscaleRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesUpscalePostUpscaleImageNanoBananaProRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesUpscalePostUpscaleImageTopazBloom2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesUpscalePostUpscaleImageTopazRedefineRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesUpscalePostUpscaleImageTopazStandardV2Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesUpscalePostUpscaleImageTopazTextRefineRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImagesUpscalePostUpscaleImageTopazWonder35Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolReplaceBackgroundIdeogramV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolReplaceBackgroundRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolRemoveBackgroundRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ObjectRemovalPostRemoveObjectFromV2AssetsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageDescribePostDescribeImageIdeogramV4Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ImageDescribePostDescribeImageIdeogramV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.DesignPostLayerizeDesignIdeogramV3Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoGeneratePostGenerateVideoKlingV3StandardImageToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoGeneratePostGenerateVideoMinimaxH3ImageToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoEditPostEditVideoMinimaxH3ReferenceToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoGeneratePostGenerateVideoSeedDance25ImageToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoGeneratePostGenerateVideoSeedDance25ReferenceToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoGeneratePostGenerateVideoSeedDance2ImageToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoGeneratePostGenerateVideoSeedDance2ReferenceToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostAdLocalizerRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostAdResizerRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostAdVariationsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostColorwaysRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostGhostMannequinRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostMaterialSwapRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostModelPoseVariantsRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditWorkflowPostSketchToRenderRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ToolReplaceBackgroundIdeogram45Request))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GeneratedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.StackedCustomModel>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ColorPaletteMember>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.RemixedImageObject>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.InpaintedImageObject>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.WebhookSigningJwk>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.CreditGrant>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.RedactedApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.SpendCommitInfo>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.UsageSegment>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ToolUsage>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ApiProfile>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ApiProfileApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ApiOrganizationUserSuggestion>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.OrganizationMember>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.OrganizationMemberOperationResult>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LiteOrganizationMember>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.Invoice>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.InvoiceLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.Dataset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DatasetFile>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DatasetUploadSucceededAsset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DatasetUploadFailedAsset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.CustomModel>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TrainingRun>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.MiniAppMarketingProjectionEntry>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.IntegrationType>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.IntegrationAsset>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.V4PromptElement>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.UpscaleImageObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.BackgroundRemovedImageObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<string>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<int>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ColorPaletteMember>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.V4PromptElement>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GeneratedDescription>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlockFormattingItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlock>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LayerizedImageObject>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LayerizedTextBlockFormattingItems>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.TextColorSpan>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.LayerizedTextBlock>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.DetectedTextBlockFormattingItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ModelVersion>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ToolType>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.ModelStatus>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GetAccountUsageSource>))]
-    internal sealed partial class SourceGenerationContextChunk1 : global::System.Text.Json.Serialization.JsonSerializerContext
-    {
-    }
-    /// <summary>
-    ///
-    /// </summary>
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GenerationResponseDataInner>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountApiKey>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoiceLineItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageLineItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageBucket>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<byte[]>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems>))]
     public sealed partial class SourceGenerationContext : global::System.Text.Json.Serialization.JsonSerializerContext
     {
-        private static readonly global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver Resolver = new LazyChunkResolver();
-
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        internal static global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver TypeInfoResolver => Resolver;
-
-
-        private static readonly global::System.Text.Json.JsonSerializerOptions DefaultOptions = CreateDefaultOptions();
-
-        /// <summary>
-        ///
-        /// </summary>
-        public static SourceGenerationContext Default { get; } = new(DefaultOptions);
-
-        private SourceGenerationContext(global::System.Text.Json.JsonSerializerOptions options)
-            : base(options)
-        {
-        }
-
-        /// <inheritdoc />
-        protected override global::System.Text.Json.JsonSerializerOptions? GeneratedSerializerOptions => DefaultOptions;
-
-        /// <inheritdoc />
-        public override global::System.Text.Json.Serialization.Metadata.JsonTypeInfo? GetTypeInfo(global::System.Type type)
-        {
-            return Resolver.GetTypeInfo(type, Options);
-        }
-
-                internal static void AddConverters(global::System.Text.Json.JsonSerializerOptions options)
-        {
-            options.Converters.Add(new global::Ideogram.JsonConverters.LayerizedTextBlockJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.V4PromptElementJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.ColorPaletteWithPresetNameOrMembersJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.IdeogramColorPaletteJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.PostGenerateDesignV4200ResponseJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.GenerationResponseDataInnerJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.DatasetCoverAssetIdentifierJsonConverter());
-            options.Converters.Add(new global::Ideogram.JsonConverters.UnixTimestampJsonConverter());
-            options.Converters.Add(new LazyEnumJsonConverterFactory());
-        }
-
-        private static global::System.Text.Json.JsonSerializerOptions CreateDefaultOptions()
-        {
-            var options = new global::System.Text.Json.JsonSerializerOptions
-            {
-                DefaultIgnoreCondition = global::System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull,
-                TypeInfoResolver = Resolver,
-            };
-            AddConverters(options);
-
-            return options;
-        }
-
-
-        private sealed class LazyEnumJsonConverterFactory : global::System.Text.Json.Serialization.JsonConverterFactory
-        {
-            public override bool CanConvert(global::System.Type typeToConvert)
-            {
-                return
-                    typeToConvert == typeof(global::Ideogram.PriceQuoteObject)
-
-                    || typeToConvert == typeof(global::Ideogram.PriceQuoteObject?)
-
-                    || typeToConvert == typeof(global::Ideogram.PriceQualifier)
-
-                    || typeToConvert == typeof(global::Ideogram.PriceQualifier?)
-
-                    || typeToConvert == typeof(global::Ideogram.OutputResolution)
-
-                    || typeToConvert == typeof(global::Ideogram.OutputResolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.RenderingSpeedV4)
-
-                    || typeToConvert == typeof(global::Ideogram.RenderingSpeedV4?)
-
-                    || typeToConvert == typeof(global::Ideogram.PImageResolution)
-
-                    || typeToConvert == typeof(global::Ideogram.PImageResolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageRequestV4StableVersion)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageRequestV4StableVersion?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ResponseType)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ResponseType?)
-
-                    || typeToConvert == typeof(global::Ideogram.TransparencyOption)
-
-                    || typeToConvert == typeof(global::Ideogram.TransparencyOption?)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatioEditLite)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatioEditLite?)
-
-                    || typeToConvert == typeof(global::Ideogram.InternalTestingEnumField)
-
-                    || typeToConvert == typeof(global::Ideogram.InternalTestingEnumField?)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ResponseType)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ResponseType?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationResponseStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationResponseStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationResponseResponseType)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationResponseResponseType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationObjectObjectType)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationObjectObjectType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4LayoutResponseType)
-
-                    || typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4LayoutResponseType?)
-
-                    || typeToConvert == typeof(global::Ideogram.LayeredImageGenerationResponseV3ResponseType)
-
-                    || typeToConvert == typeof(global::Ideogram.LayeredImageGenerationResponseV3ResponseType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelEnum)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelEnum?)
-
-                    || typeToConvert == typeof(global::Ideogram.TextSpanV3FontFxItem)
-
-                    || typeToConvert == typeof(global::Ideogram.TextSpanV3FontFxItem?)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3Alignment)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3Alignment?)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3StyleClass)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3StyleClass?)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3GlyphType)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3GlyphType?)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3TextTransform)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3TextTransform?)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3VerticalAlignment)
-
-                    || typeToConvert == typeof(global::Ideogram.TextItemV3VerticalAlignment?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationRejectReason)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationRejectReason?)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance25Resolution)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance25Resolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.ReplaceBackgroundQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.ReplaceBackgroundQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource)
-
-                    || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource?)
-
-                    || typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageNanoBananaProRequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleImageNanoBananaProRequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.LookbookRequestCategory)
-
-                    || typeToConvert == typeof(global::Ideogram.LookbookRequestCategory?)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelPoseVariantsQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelPoseVariantsQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.PackshotView)
-
-                    || typeToConvert == typeof(global::Ideogram.PackshotView?)
-
-                    || typeToConvert == typeof(global::Ideogram.PackshotsQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.PackshotsQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.GhostMannequinRequestView)
-
-                    || typeToConvert == typeof(global::Ideogram.GhostMannequinRequestView?)
-
-                    || typeToConvert == typeof(global::Ideogram.GhostMannequinQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.GhostMannequinQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.Product360VideoDirection)
-
-                    || typeToConvert == typeof(global::Ideogram.Product360VideoDirection?)
-
-                    || typeToConvert == typeof(global::Ideogram.LivingImageQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.LivingImageQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.PreciseMaskedEditModel)
-
-                    || typeToConvert == typeof(global::Ideogram.PreciseMaskedEditModel?)
-
-                    || typeToConvert == typeof(global::Ideogram.PreciseMaskedEditQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.PreciseMaskedEditQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.ColorwaysQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.ColorwaysQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage)
-
-                    || typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage?)
-
-                    || typeToConvert == typeof(global::Ideogram.AdLocalizerQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.AdLocalizerQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.VectorizerRequestMode)
-
-                    || typeToConvert == typeof(global::Ideogram.VectorizerRequestMode?)
-
-                    || typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution)
-
-                    || typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform)
-
-                    || typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform?)
-
-                    || typeToConvert == typeof(global::Ideogram.AdResizerQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.AdResizerQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.AdVariationsRequestVariationType)
-
-                    || typeToConvert == typeof(global::Ideogram.AdVariationsRequestVariationType?)
-
-                    || typeToConvert == typeof(global::Ideogram.AdVariationsQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.AdVariationsQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.SketchToRenderQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.SketchToRenderQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.SoleSwapRequestBaseGenerationSize)
-
-                    || typeToConvert == typeof(global::Ideogram.SoleSwapRequestBaseGenerationSize?)
-
-                    || typeToConvert == typeof(global::Ideogram.SoleSwapQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.SoleSwapQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.SwapProductMode)
-
-                    || typeToConvert == typeof(global::Ideogram.SwapProductMode?)
-
-                    || typeToConvert == typeof(global::Ideogram.SwapProductQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.SwapProductQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestAspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestAspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestBaseGenerationSize)
-
-                    || typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestBaseGenerationSize?)
-
-                    || typeToConvert == typeof(global::Ideogram.SkechersStyleEditQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.SkechersStyleEditQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestLogoStyle)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestLogoStyle?)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestSourceMode)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestSourceMode?)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestDesignVariant)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestDesignVariant?)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoInstallRequestLogoStyle)
-
-                    || typeToConvert == typeof(global::Ideogram.SwanSLogoInstallRequestLogoStyle?)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelSwapQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelSwapQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.MaterialSwapQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.MaterialSwapQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleToolRequestUpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleToolRequestUpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.LayerizedImageObjectObjectType)
-
-                    || typeToConvert == typeof(global::Ideogram.LayerizedImageObjectObjectType?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType)
-
-                    || typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImagePImageIdeogramRequestResolution)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImagePImageIdeogramRequestResolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestBackground)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestBackground?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestBackground)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestBackground?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType?)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType)
-
-                    || typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.ToolRemixRequestResolutionTier)
-
-                    || typeToConvert == typeof(global::Ideogram.ToolRemixRequestResolutionTier?)
-
-                    || typeToConvert == typeof(global::Ideogram.ResizeAdImageRequestResolution)
-
-                    || typeToConvert == typeof(global::Ideogram.ResizeAdImageRequestResolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.ResizeAdImageQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.ResizeAdImageQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.ProvenanceVerifyResponseValidationState)
-
-                    || typeToConvert == typeof(global::Ideogram.ProvenanceVerifyResponseValidationState?)
-
-                    || typeToConvert == typeof(global::Ideogram.ApiKeyStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.ApiKeyStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.ToolType)
-
-                    || typeToConvert == typeof(global::Ideogram.ToolType?)
-
-                    || typeToConvert == typeof(global::Ideogram.SegmentBy)
-
-                    || typeToConvert == typeof(global::Ideogram.SegmentBy?)
-
-                    || typeToConvert == typeof(global::Ideogram.UsageSource)
-
-                    || typeToConvert == typeof(global::Ideogram.UsageSource?)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelVersion)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelVersion?)
-
-                    || typeToConvert == typeof(global::Ideogram.ApiProfileType)
-
-                    || typeToConvert == typeof(global::Ideogram.ApiProfileType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ApiProfileRole)
-
-                    || typeToConvert == typeof(global::Ideogram.ApiProfileRole?)
-
-                    || typeToConvert == typeof(global::Ideogram.InvoiceStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.InvoiceStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.DatasetAssetFailureReason)
-
-                    || typeToConvert == typeof(global::Ideogram.DatasetAssetFailureReason?)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.ModelStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.TrainingRunStatus)
-
-                    || typeToConvert == typeof(global::Ideogram.TrainingRunStatus?)
-
-                    || typeToConvert == typeof(global::Ideogram.PublishMiniAppRequestEmbed)
-
-                    || typeToConvert == typeof(global::Ideogram.PublishMiniAppRequestEmbed?)
-
-                    || typeToConvert == typeof(global::Ideogram.PublishMiniAppPreviewRequestEmbed)
-
-                    || typeToConvert == typeof(global::Ideogram.PublishMiniAppPreviewRequestEmbed?)
-
-                    || typeToConvert == typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed)
-
-                    || typeToConvert == typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed?)
-
-                    || typeToConvert == typeof(global::Ideogram.IntegrationType)
-
-                    || typeToConvert == typeof(global::Ideogram.IntegrationType?)
-
-                    || typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError)
-
-                    || typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError?)
-
-                    || typeToConvert == typeof(global::Ideogram.V4PromptElementDiscriminatorType)
-
-                    || typeToConvert == typeof(global::Ideogram.V4PromptElementDiscriminatorType?)
-
-                    || typeToConvert == typeof(global::Ideogram.V4ObjPromptElementType)
-
-                    || typeToConvert == typeof(global::Ideogram.V4ObjPromptElementType?)
-
-                    || typeToConvert == typeof(global::Ideogram.V4TextPromptElementType)
-
-                    || typeToConvert == typeof(global::Ideogram.V4TextPromptElementType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV4)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV4?)
-
-                    || typeToConvert == typeof(global::Ideogram.RenderingSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.RenderingSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatioV4)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatioV4?)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptOption)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptOption?)
-
-                    || typeToConvert == typeof(global::Ideogram.Quality)
-
-                    || typeToConvert == typeof(global::Ideogram.Quality?)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatioV3)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatioV3?)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV4ImageToImage)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV4ImageToImage?)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV4Layout)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV4Layout?)
-
-                    || typeToConvert == typeof(global::Ideogram.DescribeModelVersion)
-
-                    || typeToConvert == typeof(global::Ideogram.DescribeModelVersion?)
-
-                    || typeToConvert == typeof(global::Ideogram.StyleType)
-
-                    || typeToConvert == typeof(global::Ideogram.StyleType?)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV3)
-
-                    || typeToConvert == typeof(global::Ideogram.ResolutionV3?)
-
-                    || typeToConvert == typeof(global::Ideogram.ColorPalettePresetName)
-
-                    || typeToConvert == typeof(global::Ideogram.ColorPalettePresetName?)
-
-                    || typeToConvert == typeof(global::Ideogram.StyleTypeV3)
-
-                    || typeToConvert == typeof(global::Ideogram.StyleTypeV3?)
-
-                    || typeToConvert == typeof(global::Ideogram.StylePresetV3)
-
-                    || typeToConvert == typeof(global::Ideogram.StylePresetV3?)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleFactor)
-
-                    || typeToConvert == typeof(global::Ideogram.UpscaleFactor?)
-
-                    || typeToConvert == typeof(global::Ideogram.Resolution)
-
-                    || typeToConvert == typeof(global::Ideogram.Resolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptVersionEnum)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptVersionEnum?)
-
-                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType)
-
-                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType?)
-
-                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType)
-
-                    || typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType?)
-
-                    || typeToConvert == typeof(global::Ideogram.VideoObjectObjectType)
-
-                    || typeToConvert == typeof(global::Ideogram.VideoObjectObjectType?)
-
-                    || typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType)
-
-                    || typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType?)
-
-                    || typeToConvert == typeof(global::Ideogram.DetectedTextBlockAlignment)
-
-                    || typeToConvert == typeof(global::Ideogram.DetectedTextBlockAlignment?)
-
-                    || typeToConvert == typeof(global::Ideogram.DetectedTextBlockFormattingItem)
-
-                    || typeToConvert == typeof(global::Ideogram.DetectedTextBlockFormattingItem?)
-
-                    || typeToConvert == typeof(global::Ideogram.DetectedTextBlockRole)
-
-                    || typeToConvert == typeof(global::Ideogram.DetectedTextBlockRole?)
-
-                    || typeToConvert == typeof(global::Ideogram.AssetType)
-
-                    || typeToConvert == typeof(global::Ideogram.AssetType?)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance2AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance2AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance2Resolution)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance2Resolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.KlingV3AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.KlingV3AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.KlingV3ShotType)
-
-                    || typeToConvert == typeof(global::Ideogram.KlingV3ShotType?)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3PromptExpansionMode)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3PromptExpansionMode?)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV3AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV3AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptMode)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptMode?)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramColorPalettePresetName)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramColorPalettePresetName?)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV3StyleType)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV3StyleType?)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset?)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV4AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV4AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationQuality)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationQuality?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationKind)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationKind?)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType)
-
-                    || typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType?)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio?)
-
-                    || typeToConvert == typeof(global::Ideogram.AttributeValueType)
-
-                    || typeToConvert == typeof(global::Ideogram.AttributeValueType?)
-
-                    || typeToConvert == typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType)
-
-                    || typeToConvert == typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType?)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole)
-
-                    || typeToConvert == typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole?)
-
-                    || typeToConvert == typeof(global::Ideogram.ListCustomModelsScope)
-
-                    || typeToConvert == typeof(global::Ideogram.ListCustomModelsScope?)
-
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth)
-
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth?)
-
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageSource)
-
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageSource?);
-            }
-
-            public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
-                global::System.Type typeToConvert,
-                global::System.Text.Json.JsonSerializerOptions options)
-            {
-                if (typeToConvert == typeof(global::Ideogram.PriceQuoteObject))
-                {
-                    return new global::Ideogram.JsonConverters.PriceQuoteObjectJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PriceQuoteObject?))
-                {
-                    return new global::Ideogram.JsonConverters.PriceQuoteObjectNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PriceQualifier))
-                {
-                    return new global::Ideogram.JsonConverters.PriceQualifierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PriceQualifier?))
-                {
-                    return new global::Ideogram.JsonConverters.PriceQualifierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.OutputResolution))
-                {
-                    return new global::Ideogram.JsonConverters.OutputResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.OutputResolution?))
-                {
-                    return new global::Ideogram.JsonConverters.OutputResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RenderingSpeedV4))
-                {
-                    return new global::Ideogram.JsonConverters.RenderingSpeedV4JsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RenderingSpeedV4?))
-                {
-                    return new global::Ideogram.JsonConverters.RenderingSpeedV4NullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PImageResolution))
-                {
-                    return new global::Ideogram.JsonConverters.PImageResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PImageResolution?))
-                {
-                    return new global::Ideogram.JsonConverters.PImageResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageRequestV4StableVersion))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageRequestV4StableVersionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageRequestV4StableVersion?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageRequestV4StableVersionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4InspirationReferenceModelJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4InspirationReferenceModel?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4InspirationReferenceModelNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4ArtifactGenerationModelJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ArtifactGenerationModel?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4ArtifactGenerationModelNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4Layout2imageVariantJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4Layout2imageVariant?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4Layout2imageVariantNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ResponseType))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4ResponseTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateDesignRequestV4ResponseType?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateDesignRequestV4ResponseTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TransparencyOption))
-                {
-                    return new global::Ideogram.JsonConverters.TransparencyOptionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TransparencyOption?))
-                {
-                    return new global::Ideogram.JsonConverters.TransparencyOptionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatioEditLite))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioEditLiteJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatioEditLite?))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioEditLiteNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InternalTestingEnumField))
-                {
-                    return new global::Ideogram.JsonConverters.InternalTestingEnumFieldJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InternalTestingEnumField?))
-                {
-                    return new global::Ideogram.JsonConverters.InternalTestingEnumFieldNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ResponseType))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationResponseV4ResponseTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ResponseType?))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationResponseV4ResponseTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationResponseStatus))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationResponseStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationResponseStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationResponseStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationResponseResponseType))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationResponseResponseTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationResponseResponseType?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationResponseResponseTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType))
-                {
-                    return new global::Ideogram.JsonConverters.ImageObjectWithoutPromptOrSeedObjectTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageObjectWithoutPromptOrSeedObjectType?))
-                {
-                    return new global::Ideogram.JsonConverters.ImageObjectWithoutPromptOrSeedObjectTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationObjectObjectType))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationObjectObjectTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationObjectObjectType?))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationObjectObjectTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationResponseV4ImageToImageResponseTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4ImageToImageResponseType?))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationResponseV4ImageToImageResponseTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4LayoutResponseType))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationResponseV4LayoutResponseTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ImageGenerationResponseV4LayoutResponseType?))
-                {
-                    return new global::Ideogram.JsonConverters.ImageGenerationResponseV4LayoutResponseTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LayeredImageGenerationResponseV3ResponseType))
-                {
-                    return new global::Ideogram.JsonConverters.LayeredImageGenerationResponseV3ResponseTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LayeredImageGenerationResponseV3ResponseType?))
-                {
-                    return new global::Ideogram.JsonConverters.LayeredImageGenerationResponseV3ResponseTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelEnum))
-                {
-                    return new global::Ideogram.JsonConverters.ModelEnumJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelEnum?))
-                {
-                    return new global::Ideogram.JsonConverters.ModelEnumNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextSpanV3FontFxItem))
-                {
-                    return new global::Ideogram.JsonConverters.TextSpanV3FontFxItemJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextSpanV3FontFxItem?))
-                {
-                    return new global::Ideogram.JsonConverters.TextSpanV3FontFxItemNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3Alignment))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3AlignmentJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3Alignment?))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3AlignmentNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3StyleClass))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3StyleClassJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3StyleClass?))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3StyleClassNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3GlyphType))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3GlyphTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3GlyphType?))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3GlyphTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3TextTransform))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3TextTransformJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3TextTransform?))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3TextTransformNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3VerticalAlignment))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3VerticalAlignmentJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextItemV3VerticalAlignment?))
-                {
-                    return new global::Ideogram.JsonConverters.TextItemV3VerticalAlignmentNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationRejectReason))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationRejectReasonJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationRejectReason?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationRejectReasonNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance25Resolution))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance25ResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance25Resolution?))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance25ResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReplaceBackgroundQuality))
-                {
-                    return new global::Ideogram.JsonConverters.ReplaceBackgroundQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReplaceBackgroundQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.ReplaceBackgroundQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.ReplaceBackgroundIdeogramV3RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReplaceBackgroundIdeogramV3RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.ReplaceBackgroundIdeogramV3RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus))
-                {
-                    return new global::Ideogram.JsonConverters.AccountApiKeyStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.AccountApiKeyStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource))
-                {
-                    return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource?))
-                {
-                    return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus))
-                {
-                    return new global::Ideogram.JsonConverters.AccountInvoiceStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.AccountInvoiceStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestUpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestUpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestUpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestSubjectDetectionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazTextRefineRequestSubjectDetection?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazTextRefineRequestSubjectDetectionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazWonder35RequestUpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestUpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazWonder35RequestUpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazWonder35RequestEnhancementStrengthJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazWonder35RequestEnhancementStrength?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazWonder35RequestEnhancementStrengthNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazStandardV2RequestUpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestUpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazStandardV2RequestUpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazStandardV2RequestSubjectDetectionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazStandardV2RequestSubjectDetection?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazStandardV2RequestSubjectDetectionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazBloom2RequestUpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazBloom2RequestUpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazBloom2RequestUpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestUpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestUpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestUpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestSubjectDetectionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageTopazRedefineRequestSubjectDetection?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageTopazRedefineRequestSubjectDetectionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageNanoBananaProRequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageNanoBananaProRequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleImageNanoBananaProRequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleImageNanoBananaProRequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LookbookRequestCategory))
-                {
-                    return new global::Ideogram.JsonConverters.LookbookRequestCategoryJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LookbookRequestCategory?))
-                {
-                    return new global::Ideogram.JsonConverters.LookbookRequestCategoryNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelPoseVariantsQuality))
-                {
-                    return new global::Ideogram.JsonConverters.ModelPoseVariantsQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelPoseVariantsQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.ModelPoseVariantsQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PackshotView))
-                {
-                    return new global::Ideogram.JsonConverters.PackshotViewJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PackshotView?))
-                {
-                    return new global::Ideogram.JsonConverters.PackshotViewNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PackshotsQuality))
-                {
-                    return new global::Ideogram.JsonConverters.PackshotsQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PackshotsQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.PackshotsQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GhostMannequinRequestView))
-                {
-                    return new global::Ideogram.JsonConverters.GhostMannequinRequestViewJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GhostMannequinRequestView?))
-                {
-                    return new global::Ideogram.JsonConverters.GhostMannequinRequestViewNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GhostMannequinQuality))
-                {
-                    return new global::Ideogram.JsonConverters.GhostMannequinQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GhostMannequinQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.GhostMannequinQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.Product360VideoDirection))
-                {
-                    return new global::Ideogram.JsonConverters.Product360VideoDirectionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.Product360VideoDirection?))
-                {
-                    return new global::Ideogram.JsonConverters.Product360VideoDirectionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LivingImageQuality))
-                {
-                    return new global::Ideogram.JsonConverters.LivingImageQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LivingImageQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.LivingImageQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PreciseMaskedEditModel))
-                {
-                    return new global::Ideogram.JsonConverters.PreciseMaskedEditModelJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PreciseMaskedEditModel?))
-                {
-                    return new global::Ideogram.JsonConverters.PreciseMaskedEditModelNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PreciseMaskedEditQuality))
-                {
-                    return new global::Ideogram.JsonConverters.PreciseMaskedEditQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PreciseMaskedEditQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.PreciseMaskedEditQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ColorwaysQuality))
-                {
-                    return new global::Ideogram.JsonConverters.ColorwaysQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ColorwaysQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.ColorwaysQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage))
-                {
-                    return new global::Ideogram.JsonConverters.AdLocalizerRequestLanguageJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdLocalizerRequestLanguage?))
-                {
-                    return new global::Ideogram.JsonConverters.AdLocalizerRequestLanguageNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdLocalizerQuality))
-                {
-                    return new global::Ideogram.JsonConverters.AdLocalizerQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdLocalizerQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.AdLocalizerQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.VectorizerRequestMode))
-                {
-                    return new global::Ideogram.JsonConverters.VectorizerRequestModeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.VectorizerRequestMode?))
-                {
-                    return new global::Ideogram.JsonConverters.VectorizerRequestModeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution))
-                {
-                    return new global::Ideogram.JsonConverters.AdResizerRequestResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdResizerRequestResolution?))
-                {
-                    return new global::Ideogram.JsonConverters.AdResizerRequestResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform))
-                {
-                    return new global::Ideogram.JsonConverters.AdResizerRequestPlatformJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdResizerRequestPlatform?))
-                {
-                    return new global::Ideogram.JsonConverters.AdResizerRequestPlatformNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdResizerQuality))
-                {
-                    return new global::Ideogram.JsonConverters.AdResizerQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdResizerQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.AdResizerQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdVariationsRequestVariationType))
-                {
-                    return new global::Ideogram.JsonConverters.AdVariationsRequestVariationTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdVariationsRequestVariationType?))
-                {
-                    return new global::Ideogram.JsonConverters.AdVariationsRequestVariationTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdVariationsQuality))
-                {
-                    return new global::Ideogram.JsonConverters.AdVariationsQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AdVariationsQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.AdVariationsQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SketchToRenderQuality))
-                {
-                    return new global::Ideogram.JsonConverters.SketchToRenderQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SketchToRenderQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.SketchToRenderQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SoleSwapRequestBaseGenerationSize))
-                {
-                    return new global::Ideogram.JsonConverters.SoleSwapRequestBaseGenerationSizeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SoleSwapRequestBaseGenerationSize?))
-                {
-                    return new global::Ideogram.JsonConverters.SoleSwapRequestBaseGenerationSizeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SoleSwapQuality))
-                {
-                    return new global::Ideogram.JsonConverters.SoleSwapQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SoleSwapQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.SoleSwapQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwapProductMode))
-                {
-                    return new global::Ideogram.JsonConverters.SwapProductModeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwapProductMode?))
-                {
-                    return new global::Ideogram.JsonConverters.SwapProductModeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwapProductQuality))
-                {
-                    return new global::Ideogram.JsonConverters.SwapProductQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwapProductQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.SwapProductQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestAspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.SkechersStyleEditRequestAspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestAspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.SkechersStyleEditRequestAspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestBaseGenerationSize))
-                {
-                    return new global::Ideogram.JsonConverters.SkechersStyleEditRequestBaseGenerationSizeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SkechersStyleEditRequestBaseGenerationSize?))
-                {
-                    return new global::Ideogram.JsonConverters.SkechersStyleEditRequestBaseGenerationSizeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SkechersStyleEditQuality))
-                {
-                    return new global::Ideogram.JsonConverters.SkechersStyleEditQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SkechersStyleEditQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.SkechersStyleEditQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestLogoStyle))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoDesignRequestLogoStyleJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestLogoStyle?))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoDesignRequestLogoStyleNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestSourceMode))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoDesignRequestSourceModeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestSourceMode?))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoDesignRequestSourceModeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestDesignVariant))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoDesignRequestDesignVariantJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoDesignRequestDesignVariant?))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoDesignRequestDesignVariantNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoQuality))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoInstallRequestLogoStyle))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoInstallRequestLogoStyleJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SwanSLogoInstallRequestLogoStyle?))
-                {
-                    return new global::Ideogram.JsonConverters.SwanSLogoInstallRequestLogoStyleNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelSwapQuality))
-                {
-                    return new global::Ideogram.JsonConverters.ModelSwapQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelSwapQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.ModelSwapQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MaterialSwapQuality))
-                {
-                    return new global::Ideogram.JsonConverters.MaterialSwapQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MaterialSwapQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.MaterialSwapQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleToolRequestUpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleToolRequestUpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleToolRequestUpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleToolRequestUpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LayerizedImageObjectObjectType))
-                {
-                    return new global::Ideogram.JsonConverters.LayerizedImageObjectObjectTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.LayerizedImageObjectObjectType?))
-                {
-                    return new global::Ideogram.JsonConverters.LayerizedImageObjectObjectTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3CustomModelRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CustomModelRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3CustomModelRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4CustomModelRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4CustomModelRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3CustomModelRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CustomModelRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3CustomModelRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV4RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV4RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV4RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3CharacterRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3CharacterRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3CharacterRequestStyleTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RemixImageIdeogramV3CharacterRequestStyleType?))
-                {
-                    return new global::Ideogram.JsonConverters.RemixImageIdeogramV3CharacterRequestStyleTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestUpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestUpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestUpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3TransparentRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3TransparentRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestOutputResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestOutputResolution?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestOutputResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV4TransparentRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV4TransparentRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImagePImageIdeogramRequestResolution))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImagePImageIdeogramRequestResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImagePImageIdeogramRequestResolution?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImagePImageIdeogramRequestResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestBackground))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestBackgroundJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestBackground?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestBackgroundNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogram45RequestQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogram45RequestQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality))
-                {
-                    return new global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PreciseEditImageIdeogram45RequestQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.PreciseEditImageIdeogram45RequestQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageNanoBanana2RequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana2RequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageNanoBanana2RequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageNanoBanana21RequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBanana21RequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageNanoBanana21RequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageNanoBananaProRequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageNanoBananaProRequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageNanoBananaProRequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25FlareRequestBackgroundJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestBackground?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25FlareRequestBackgroundNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestQuality))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25FlareRequestQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25FlareRequestQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25FlareRequestQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestBackground))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25SunburstRequestBackgroundJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestBackground?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25SunburstRequestBackgroundNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestQuality))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25SunburstRequestQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageGptImage25SunburstRequestQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageGptImage25SunburstRequestQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV2RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV2RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV2ARequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV2ARequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV2ARequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3CustomModelRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CustomModelRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3CustomModelRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.ReframeImageIdeogramV3RequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReframeImageIdeogramV3RequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.ReframeImageIdeogramV3RequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.ReframeImageNanoBananaProRequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReframeImageNanoBananaProRequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.ReframeImageNanoBananaProRequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality))
-                {
-                    return new global::Ideogram.JsonConverters.ReframeImageGptImage25FlareRequestQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ReframeImageGptImage25FlareRequestQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.ReframeImageGptImage25FlareRequestQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3CharacterRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3CharacterRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3CharacterRequestStyleTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageIdeogramV3CharacterRequestStyleType?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageIdeogramV3CharacterRequestStyleTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3CharacterRequestRenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestRenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3CharacterRequestRenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3CharacterRequestStyleTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InpaintImageIdeogramV3CharacterRequestStyleType?))
-                {
-                    return new global::Ideogram.JsonConverters.InpaintImageIdeogramV3CharacterRequestStyleTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageV2AutoRequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerateImageV2AutoRequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerateImageV2AutoRequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ToolRemixRequestResolutionTier))
-                {
-                    return new global::Ideogram.JsonConverters.ToolRemixRequestResolutionTierJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ToolRemixRequestResolutionTier?))
-                {
-                    return new global::Ideogram.JsonConverters.ToolRemixRequestResolutionTierNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResizeAdImageRequestResolution))
-                {
-                    return new global::Ideogram.JsonConverters.ResizeAdImageRequestResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResizeAdImageRequestResolution?))
-                {
-                    return new global::Ideogram.JsonConverters.ResizeAdImageRequestResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResizeAdImageQuality))
-                {
-                    return new global::Ideogram.JsonConverters.ResizeAdImageQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResizeAdImageQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.ResizeAdImageQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ProvenanceVerifyResponseValidationState))
-                {
-                    return new global::Ideogram.JsonConverters.ProvenanceVerifyResponseValidationStateJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ProvenanceVerifyResponseValidationState?))
-                {
-                    return new global::Ideogram.JsonConverters.ProvenanceVerifyResponseValidationStateNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ApiKeyStatus))
-                {
-                    return new global::Ideogram.JsonConverters.ApiKeyStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ApiKeyStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.ApiKeyStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ToolType))
-                {
-                    return new global::Ideogram.JsonConverters.ToolTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ToolType?))
-                {
-                    return new global::Ideogram.JsonConverters.ToolTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SegmentBy))
-                {
-                    return new global::Ideogram.JsonConverters.SegmentByJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SegmentBy?))
-                {
-                    return new global::Ideogram.JsonConverters.SegmentByNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UsageSource))
-                {
-                    return new global::Ideogram.JsonConverters.UsageSourceJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UsageSource?))
-                {
-                    return new global::Ideogram.JsonConverters.UsageSourceNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelVersion))
-                {
-                    return new global::Ideogram.JsonConverters.ModelVersionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelVersion?))
-                {
-                    return new global::Ideogram.JsonConverters.ModelVersionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ApiProfileType))
-                {
-                    return new global::Ideogram.JsonConverters.ApiProfileTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ApiProfileType?))
-                {
-                    return new global::Ideogram.JsonConverters.ApiProfileTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ApiProfileRole))
-                {
-                    return new global::Ideogram.JsonConverters.ApiProfileRoleJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ApiProfileRole?))
-                {
-                    return new global::Ideogram.JsonConverters.ApiProfileRoleNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InvoiceStatus))
-                {
-                    return new global::Ideogram.JsonConverters.InvoiceStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.InvoiceStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.InvoiceStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DatasetAssetFailureReason))
-                {
-                    return new global::Ideogram.JsonConverters.DatasetAssetFailureReasonJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DatasetAssetFailureReason?))
-                {
-                    return new global::Ideogram.JsonConverters.DatasetAssetFailureReasonNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelStatus))
-                {
-                    return new global::Ideogram.JsonConverters.ModelStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ModelStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.ModelStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TrainingRunStatus))
-                {
-                    return new global::Ideogram.JsonConverters.TrainingRunStatusJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TrainingRunStatus?))
-                {
-                    return new global::Ideogram.JsonConverters.TrainingRunStatusNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PublishMiniAppRequestEmbed))
-                {
-                    return new global::Ideogram.JsonConverters.PublishMiniAppRequestEmbedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PublishMiniAppRequestEmbed?))
-                {
-                    return new global::Ideogram.JsonConverters.PublishMiniAppRequestEmbedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PublishMiniAppPreviewRequestEmbed))
-                {
-                    return new global::Ideogram.JsonConverters.PublishMiniAppPreviewRequestEmbedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PublishMiniAppPreviewRequestEmbed?))
-                {
-                    return new global::Ideogram.JsonConverters.PublishMiniAppPreviewRequestEmbedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed))
-                {
-                    return new global::Ideogram.JsonConverters.MiniAppMarketingProjectionEntryEmbedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MiniAppMarketingProjectionEntryEmbed?))
-                {
-                    return new global::Ideogram.JsonConverters.MiniAppMarketingProjectionEntryEmbedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IntegrationType))
-                {
-                    return new global::Ideogram.JsonConverters.IntegrationTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IntegrationType?))
-                {
-                    return new global::Ideogram.JsonConverters.IntegrationTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError))
-                {
-                    return new global::Ideogram.JsonConverters.IntegrationErrorResponseErrorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IntegrationErrorResponseError?))
-                {
-                    return new global::Ideogram.JsonConverters.IntegrationErrorResponseErrorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.V4PromptElementDiscriminatorType))
-                {
-                    return new global::Ideogram.JsonConverters.V4PromptElementDiscriminatorTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.V4PromptElementDiscriminatorType?))
-                {
-                    return new global::Ideogram.JsonConverters.V4PromptElementDiscriminatorTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.V4ObjPromptElementType))
-                {
-                    return new global::Ideogram.JsonConverters.V4ObjPromptElementTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.V4ObjPromptElementType?))
-                {
-                    return new global::Ideogram.JsonConverters.V4ObjPromptElementTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.V4TextPromptElementType))
-                {
-                    return new global::Ideogram.JsonConverters.V4TextPromptElementTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.V4TextPromptElementType?))
-                {
-                    return new global::Ideogram.JsonConverters.V4TextPromptElementTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV4))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV4JsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV4?))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV4NullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RenderingSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.RenderingSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.RenderingSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.RenderingSpeedNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatioV4))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioV4JsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatioV4?))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioV4NullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptOption))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptOptionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptOption?))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptOptionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.Quality))
-                {
-                    return new global::Ideogram.JsonConverters.QualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.Quality?))
-                {
-                    return new global::Ideogram.JsonConverters.QualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatioV3))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioV3JsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatioV3?))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioV3NullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV4ImageToImage))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV4ImageToImageJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV4ImageToImage?))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV4ImageToImageNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV4Layout))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV4LayoutJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV4Layout?))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV4LayoutNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DescribeModelVersion))
-                {
-                    return new global::Ideogram.JsonConverters.DescribeModelVersionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DescribeModelVersion?))
-                {
-                    return new global::Ideogram.JsonConverters.DescribeModelVersionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.StyleType))
-                {
-                    return new global::Ideogram.JsonConverters.StyleTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.StyleType?))
-                {
-                    return new global::Ideogram.JsonConverters.StyleTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV3))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV3JsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ResolutionV3?))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionV3NullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ColorPalettePresetName))
-                {
-                    return new global::Ideogram.JsonConverters.ColorPalettePresetNameJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ColorPalettePresetName?))
-                {
-                    return new global::Ideogram.JsonConverters.ColorPalettePresetNameNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.StyleTypeV3))
-                {
-                    return new global::Ideogram.JsonConverters.StyleTypeV3JsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.StyleTypeV3?))
-                {
-                    return new global::Ideogram.JsonConverters.StyleTypeV3NullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.StylePresetV3))
-                {
-                    return new global::Ideogram.JsonConverters.StylePresetV3JsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.StylePresetV3?))
-                {
-                    return new global::Ideogram.JsonConverters.StylePresetV3NullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleFactor))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleFactorJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.UpscaleFactor?))
-                {
-                    return new global::Ideogram.JsonConverters.UpscaleFactorNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.Resolution))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.Resolution?))
-                {
-                    return new global::Ideogram.JsonConverters.ResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptVersionEnum))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptVersionEnumJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptVersionEnum?))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptVersionEnumNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType))
-                {
-                    return new global::Ideogram.JsonConverters.SvgGenerationObjectObjectTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectObjectType?))
-                {
-                    return new global::Ideogram.JsonConverters.SvgGenerationObjectObjectTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType))
-                {
-                    return new global::Ideogram.JsonConverters.SvgGenerationObjectMimeTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SvgGenerationObjectMimeType?))
-                {
-                    return new global::Ideogram.JsonConverters.SvgGenerationObjectMimeTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.VideoObjectObjectType))
-                {
-                    return new global::Ideogram.JsonConverters.VideoObjectObjectTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.VideoObjectObjectType?))
-                {
-                    return new global::Ideogram.JsonConverters.VideoObjectObjectTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType))
-                {
-                    return new global::Ideogram.JsonConverters.TextLayerizerResultObjectObjectTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.TextLayerizerResultObjectObjectType?))
-                {
-                    return new global::Ideogram.JsonConverters.TextLayerizerResultObjectObjectTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DetectedTextBlockAlignment))
-                {
-                    return new global::Ideogram.JsonConverters.DetectedTextBlockAlignmentJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DetectedTextBlockAlignment?))
-                {
-                    return new global::Ideogram.JsonConverters.DetectedTextBlockAlignmentNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DetectedTextBlockFormattingItem))
-                {
-                    return new global::Ideogram.JsonConverters.DetectedTextBlockFormattingItemJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DetectedTextBlockFormattingItem?))
-                {
-                    return new global::Ideogram.JsonConverters.DetectedTextBlockFormattingItemNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DetectedTextBlockRole))
-                {
-                    return new global::Ideogram.JsonConverters.DetectedTextBlockRoleJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.DetectedTextBlockRole?))
-                {
-                    return new global::Ideogram.JsonConverters.DetectedTextBlockRoleNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AssetType))
-                {
-                    return new global::Ideogram.JsonConverters.AssetTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AssetType?))
-                {
-                    return new global::Ideogram.JsonConverters.AssetTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance2AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance2AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance2AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance2AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance2Resolution))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance2ResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance2Resolution?))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance2ResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3ResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution?))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3ResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.KlingV3AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.KlingV3AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.KlingV3AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.KlingV3AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.KlingV3ShotType))
-                {
-                    return new global::Ideogram.JsonConverters.KlingV3ShotTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.KlingV3ShotType?))
-                {
-                    return new global::Ideogram.JsonConverters.KlingV3ShotTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3PromptExpansionMode))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3PromptExpansionModeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3PromptExpansionMode?))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3PromptExpansionModeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV3AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV3AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV3AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV3AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptMode))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptModeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptMode?))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptModeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramColorPalettePresetName))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramColorPalettePresetNameJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramColorPalettePresetName?))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramColorPalettePresetNameNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV3StyleType))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV3StyleTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV3StyleType?))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV3StyleTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV3StylePresetJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV3StylePreset?))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV3StylePresetNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV4AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV4AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV4AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV4AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationQuality))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationQualityJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationQuality?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationQualityNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationKind))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationKindJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationKind?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationKindNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBanana2AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBanana2AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBanana2AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBanana21AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBanana21AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBanana21AspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBananaProAspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBananaProAspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBananaProAspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV2StyleTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.IdeogramV2StyleType?))
-                {
-                    return new global::Ideogram.JsonConverters.IdeogramV2StyleTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBanana2ReframeAspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBanana2ReframeAspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBananaProReframeAspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.NanoBananaProReframeAspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.NanoBananaProReframeAspectRatioNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AttributeValueType))
-                {
-                    return new global::Ideogram.JsonConverters.AttributeValueTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AttributeValueType?))
-                {
-                    return new global::Ideogram.JsonConverters.AttributeValueTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType))
-                {
-                    return new global::Ideogram.JsonConverters.PostGenerateDesignV4200ResponseDiscriminatorResponseTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.PostGenerateDesignV4200ResponseDiscriminatorResponseType?))
-                {
-                    return new global::Ideogram.JsonConverters.PostGenerateDesignV4200ResponseDiscriminatorResponseTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationResponseDataInnerDiscriminatorObjectTypeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationResponseDataInnerDiscriminatorObjectTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptRequestMessagesInnerRoleJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MagicPromptRequestMessagesInnerRole?))
-                {
-                    return new global::Ideogram.JsonConverters.MagicPromptRequestMessagesInnerRoleNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ListCustomModelsScope))
-                {
-                    return new global::Ideogram.JsonConverters.ListCustomModelsScopeJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.ListCustomModelsScope?))
-                {
-                    return new global::Ideogram.JsonConverters.ListCustomModelsScopeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth))
-                {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageBucketWidthJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth?))
-                {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageBucketWidthNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageSource))
-                {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageSourceJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageSource?))
-                {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageSourceNullableJsonConverter();
-                }
-                throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
-            }
-        }
-
-        private sealed class LazyChunkResolver : global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver
-        {
-            private readonly object _gate = new();
-            private readonly global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver?[] _resolvers = new global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver?[2];
-
-            public global::System.Text.Json.Serialization.Metadata.JsonTypeInfo? GetTypeInfo(
-                global::System.Type type,
-                global::System.Text.Json.JsonSerializerOptions options)
-            {
-                for (var index = 0; index < _resolvers.Length; index++)
-                {
-                    var typeInfo = GetResolver(index).GetTypeInfo(type, options);
-                    if (typeInfo is not null)
-                    {
-                        return typeInfo;
-                    }
-                }
-
-                return null;
-            }
-
-            private global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver GetResolver(int index)
-            {
-                var resolver = global::System.Threading.Volatile.Read(ref _resolvers[index]);
-                if (resolver is not null)
-                {
-                    return resolver;
-                }
-
-                lock (_gate)
-                {
-                    return _resolvers[index] ??= CreateResolver(index);
-                }
-            }
-
-            private static global::System.Text.Json.Serialization.Metadata.IJsonTypeInfoResolver CreateResolver(int index)
-            {
-                return index switch
-                {
-                    0 => new SourceGenerationContextChunk0(new global::System.Text.Json.JsonSerializerOptions()),
-
-                    1 => new SourceGenerationContextChunk1(new global::System.Text.Json.JsonSerializerOptions()),
-                    _ => throw new global::System.ArgumentOutOfRangeException(nameof(index)),
-                };
-            }
-        }
     }
 }

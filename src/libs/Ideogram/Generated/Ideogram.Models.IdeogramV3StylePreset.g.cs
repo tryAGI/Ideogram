@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A predefined style preset that applies a specific artistic style to the generated image.<br/>
-    /// Example: bright_art
+    /// A predefined style preset that applies a specific artistic style to the generated image.
     /// </summary>
     public enum IdeogramV3StylePreset
     {

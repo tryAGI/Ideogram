@@ -14,39 +14,29 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Text.Json.JsonElement?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<byte[]>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(float))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetIdentifier))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoSeedDance2Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2Resolution), TypeInfoPropertyName = "SeedDance2Resolution2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason), TypeInfoPropertyName = "GenerationRejectReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed), TypeInfoPropertyName = "GenerationErrorResponseTaskCompletionSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3AspectRatio), TypeInfoPropertyName = "MinimaxH3AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3Resolution), TypeInfoPropertyName = "MinimaxH3Resolution2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerateVideoMinimaxH3Response))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AssetIdentifier>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditVideoMinimaxH3ReferenceToVideoRequest))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3AspectRatio), TypeInfoPropertyName = "MinimaxH3AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3PromptExpansionMode), TypeInfoPropertyName = "MinimaxH3PromptExpansionMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.EditVideoSeedDance2Request))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType), TypeInfoPropertyName = "AssetType2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(byte[]))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<byte[]>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.VideoEditPostEditVideoMinimaxH3ReferenceToVideoRequest))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(bool?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(float?))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.SeedDance2Resolution?), TypeInfoPropertyName = "NullableSeedDance2Resolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(int?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationRejectReason?), TypeInfoPropertyName = "NullableGenerationRejectReason2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?), TypeInfoPropertyName = "NullableGenerationErrorResponseTaskCompletionSpeed2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3AspectRatio?), TypeInfoPropertyName = "NullableMinimaxH3AspectRatio2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3Resolution?), TypeInfoPropertyName = "NullableMinimaxH3Resolution2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3AspectRatio?), TypeInfoPropertyName = "NullableMinimaxH3AspectRatio2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.MinimaxH3PromptExpansionMode?), TypeInfoPropertyName = "NullableMinimaxH3PromptExpansionMode2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AssetType?), TypeInfoPropertyName = "NullableAssetType2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<byte[]>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AssetIdentifier>))]
     internal sealed partial class VideoEditSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -116,29 +106,21 @@ namespace Ideogram
             public override bool CanConvert(global::System.Type typeToConvert)
             {
                 return
-                    typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?)
-
-                    || typeToConvert == typeof(global::Ideogram.GenerationRejectReason)
+                    typeToConvert == typeof(global::Ideogram.GenerationRejectReason)
 
                     || typeToConvert == typeof(global::Ideogram.GenerationRejectReason?)
 
-                    || typeToConvert == typeof(global::Ideogram.AssetType)
+                    || typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed)
 
-                    || typeToConvert == typeof(global::Ideogram.AssetType?)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance2Resolution)
-
-                    || typeToConvert == typeof(global::Ideogram.SeedDance2Resolution?)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio)
-
-                    || typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio?)
+                    || typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?)
 
                     || typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution)
 
                     || typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution?)
+
+                    || typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio)
+
+                    || typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio?)
 
                     || typeToConvert == typeof(global::Ideogram.MinimaxH3PromptExpansionMode)
 
@@ -149,16 +131,6 @@ namespace Ideogram
                 global::System.Type typeToConvert,
                 global::System.Text.Json.JsonSerializerOptions options)
             {
-                if (typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?))
-                {
-                    return new global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedNullableJsonConverter();
-                }
-
                 if (typeToConvert == typeof(global::Ideogram.GenerationRejectReason))
                 {
                     return new global::Ideogram.JsonConverters.GenerationRejectReasonJsonConverter();
@@ -169,34 +141,14 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.GenerationRejectReasonNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.AssetType))
+                if (typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed))
                 {
-                    return new global::Ideogram.JsonConverters.AssetTypeJsonConverter();
+                    return new global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.AssetType?))
+                if (typeToConvert == typeof(global::Ideogram.GenerationErrorResponseTaskCompletionSpeed?))
                 {
-                    return new global::Ideogram.JsonConverters.AssetTypeNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance2Resolution))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance2ResolutionJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.SeedDance2Resolution?))
-                {
-                    return new global::Ideogram.JsonConverters.SeedDance2ResolutionNullableJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3AspectRatioJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio?))
-                {
-                    return new global::Ideogram.JsonConverters.MinimaxH3AspectRatioNullableJsonConverter();
+                    return new global::Ideogram.JsonConverters.GenerationErrorResponseTaskCompletionSpeedNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution))
@@ -207,6 +159,16 @@ namespace Ideogram
                 if (typeToConvert == typeof(global::Ideogram.MinimaxH3Resolution?))
                 {
                     return new global::Ideogram.JsonConverters.MinimaxH3ResolutionNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio))
+                {
+                    return new global::Ideogram.JsonConverters.MinimaxH3AspectRatioJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.MinimaxH3AspectRatio?))
+                {
+                    return new global::Ideogram.JsonConverters.MinimaxH3AspectRatioNullableJsonConverter();
                 }
 
                 if (typeToConvert == typeof(global::Ideogram.MinimaxH3PromptExpansionMode))

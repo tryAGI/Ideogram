@@ -7,8 +7,7 @@ namespace Ideogram
     /// Structured prompt for Ideogram 4.0 generation. When `json_prompt` is<br/>
     /// supplied, magic-prompt is disabled and the diffusion model consumes<br/>
     /// the JSON contract directly. Mutually exclusive with `text_prompt`<br/>
-    /// and the legacy `prompt` field.<br/>
-    /// Example: {"high_level_description":"high_level_description","style_description":{"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]},"compositional_deconstruction":{"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]},"tags":["tags","tags"]}
+    /// and the legacy `prompt` field.
     /// </summary>
     public sealed partial class V4JsonPrompt
     {
@@ -20,28 +19,17 @@ namespace Ideogram
         public required string HighLevelDescription { get; set; }
 
         /// <summary>
-        /// Optional style description supplied alongside a V4 JSON prompt.<br/>
-        /// Example: {"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]}
+        /// Optional style description supplied alongside a V4 JSON prompt.
         /// </summary>
-        /// <example>{"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("style_description")]
         public global::Ideogram.V4StyleDescription? StyleDescription { get; set; }
 
         /// <summary>
-        /// The compositional breakdown of a V4 prompt — background plus an ordered list of elements.<br/>
-        /// Example: {"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]}
+        /// The compositional breakdown of a V4 prompt — background plus an ordered list of elements.
         /// </summary>
-        /// <example>{"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("compositional_deconstruction")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.V4CompositionalDeconstruction CompositionalDeconstruction { get; set; }
-
-        /// <summary>
-        /// Round-trip metadata surfaced by the describe endpoint when<br/>
-        /// `strip_tags=false`. Ignored by the v4 sampler on generate input.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("tags")]
-        public global::System.Collections.Generic.IList<string>? Tags { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -56,16 +44,10 @@ namespace Ideogram
         /// One- or two-sentence overall description of the desired image.
         /// </param>
         /// <param name="compositionalDeconstruction">
-        /// The compositional breakdown of a V4 prompt — background plus an ordered list of elements.<br/>
-        /// Example: {"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]}
+        /// The compositional breakdown of a V4 prompt — background plus an ordered list of elements.
         /// </param>
         /// <param name="styleDescription">
-        /// Optional style description supplied alongside a V4 JSON prompt.<br/>
-        /// Example: {"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]}
-        /// </param>
-        /// <param name="tags">
-        /// Round-trip metadata surfaced by the describe endpoint when<br/>
-        /// `strip_tags=false`. Ignored by the v4 sampler on generate input.
+        /// Optional style description supplied alongside a V4 JSON prompt.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -73,13 +55,11 @@ namespace Ideogram
         public V4JsonPrompt(
             string highLevelDescription,
             global::Ideogram.V4CompositionalDeconstruction compositionalDeconstruction,
-            global::Ideogram.V4StyleDescription? styleDescription,
-            global::System.Collections.Generic.IList<string>? tags)
+            global::Ideogram.V4StyleDescription? styleDescription)
         {
             this.HighLevelDescription = highLevelDescription ?? throw new global::System.ArgumentNullException(nameof(highLevelDescription));
             this.StyleDescription = styleDescription;
             this.CompositionalDeconstruction = compositionalDeconstruction ?? throw new global::System.ArgumentNullException(nameof(compositionalDeconstruction));
-            this.Tags = tags;
         }
 
         /// <summary>

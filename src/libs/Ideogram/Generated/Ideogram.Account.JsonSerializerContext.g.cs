@@ -14,40 +14,41 @@ namespace Ideogram
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Text.Json.JsonElement?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(string))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(object))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus), TypeInfoPropertyName = "AccountApiKeyStatus2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKey))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountApiKeysResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKey))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus), TypeInfoPropertyName = "AccountApiKeyStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageResponse))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageBucket>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBucket))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource), TypeInfoPropertyName = "AccountUsageLineItemSource2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus), TypeInfoPropertyName = "AccountInvoiceStatus2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageApiKey))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBilledUnits))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceLineItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoice))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.ListAccountInvoicesResponse))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoice>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoice))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus), TypeInfoPropertyName = "AccountInvoiceStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountInvoiceLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceLineItem))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageBucketWidth), TypeInfoPropertyName = "GetAccountUsageBucketWidth2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.GetAccountUsageSource>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageSource), TypeInfoPropertyName = "GetAccountUsageSource2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2AccountUsageGetParametersBucketWidth), TypeInfoPropertyName = "V2AccountUsageGetParametersBucketWidth2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems), TypeInfoPropertyName = "V2AccountUsageGetParametersSourcesSchemaItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource), TypeInfoPropertyName = "AccountUsageLineItemSource2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBilledUnits))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItem))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageBucket))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageLineItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageResponse))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.AccountUsageBucket>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.DateTime?))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountApiKeyStatus?), TypeInfoPropertyName = "NullableAccountApiKeyStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource?), TypeInfoPropertyName = "NullableAccountUsageLineItemSource2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountInvoiceStatus?), TypeInfoPropertyName = "NullableAccountInvoiceStatus2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageBucketWidth?), TypeInfoPropertyName = "NullableGetAccountUsageBucketWidth2")]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.GetAccountUsageSource?), TypeInfoPropertyName = "NullableGetAccountUsageSource2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2AccountUsageGetParametersBucketWidth?), TypeInfoPropertyName = "NullableV2AccountUsageGetParametersBucketWidth2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems?), TypeInfoPropertyName = "NullableV2AccountUsageGetParametersSourcesSchemaItems2")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.AccountUsageLineItemSource?), TypeInfoPropertyName = "NullableAccountUsageLineItemSource2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountApiKey>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageBucket>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoice>))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoiceLineItem>))]
-    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.GetAccountUsageSource>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountInvoice>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageLineItem>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.AccountUsageBucket>))]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems>))]
     internal sealed partial class AccountSourceGenerationContextChunk0 : global::System.Text.Json.Serialization.JsonSerializerContext
     {
     }
@@ -121,21 +122,21 @@ namespace Ideogram
 
                     || typeToConvert == typeof(global::Ideogram.AccountApiKeyStatus?)
 
-                    || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource)
-
-                    || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource?)
-
                     || typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus)
 
                     || typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus?)
 
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth)
+                    || typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersBucketWidth)
 
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth?)
+                    || typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersBucketWidth?)
 
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageSource)
+                    || typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems)
 
-                    || typeToConvert == typeof(global::Ideogram.GetAccountUsageSource?);
+                    || typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems?)
+
+                    || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource)
+
+                    || typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource?);
             }
 
             public override global::System.Text.Json.Serialization.JsonConverter CreateConverter(
@@ -152,16 +153,6 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.AccountApiKeyStatusNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource))
-                {
-                    return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceJsonConverter();
-                }
-
-                if (typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource?))
-                {
-                    return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceNullableJsonConverter();
-                }
-
                 if (typeToConvert == typeof(global::Ideogram.AccountInvoiceStatus))
                 {
                     return new global::Ideogram.JsonConverters.AccountInvoiceStatusJsonConverter();
@@ -172,24 +163,34 @@ namespace Ideogram
                     return new global::Ideogram.JsonConverters.AccountInvoiceStatusNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth))
+                if (typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersBucketWidth))
                 {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageBucketWidthJsonConverter();
+                    return new global::Ideogram.JsonConverters.V2AccountUsageGetParametersBucketWidthJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageBucketWidth?))
+                if (typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersBucketWidth?))
                 {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageBucketWidthNullableJsonConverter();
+                    return new global::Ideogram.JsonConverters.V2AccountUsageGetParametersBucketWidthNullableJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageSource))
+                if (typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems))
                 {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageSourceJsonConverter();
+                    return new global::Ideogram.JsonConverters.V2AccountUsageGetParametersSourcesSchemaItemsJsonConverter();
                 }
 
-                if (typeToConvert == typeof(global::Ideogram.GetAccountUsageSource?))
+                if (typeToConvert == typeof(global::Ideogram.V2AccountUsageGetParametersSourcesSchemaItems?))
                 {
-                    return new global::Ideogram.JsonConverters.GetAccountUsageSourceNullableJsonConverter();
+                    return new global::Ideogram.JsonConverters.V2AccountUsageGetParametersSourcesSchemaItemsNullableJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource))
+                {
+                    return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceJsonConverter();
+                }
+
+                if (typeToConvert == typeof(global::Ideogram.AccountUsageLineItemSource?))
+                {
+                    return new global::Ideogram.JsonConverters.AccountUsageLineItemSourceNullableJsonConverter();
                 }
                 throw new global::System.NotSupportedException($"No generated enum converter is registered for '{typeToConvert}'.");
             }

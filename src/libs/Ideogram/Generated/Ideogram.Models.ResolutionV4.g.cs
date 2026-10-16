@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The 1K and 2K resolutions supported for Ideogram 4.0 image generation.<br/>
-    /// Example: 2048x2048
+    /// The 1K and 2K resolutions supported for Ideogram 4.0 image generation.
     /// </summary>
     public enum ResolutionV4
     {

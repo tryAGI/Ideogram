@@ -21,46 +21,46 @@ namespace Ideogram.JsonConverters
                             throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.GenerationResponseDataInnerDiscriminator)}");
             var discriminator = global::System.Text.Json.JsonSerializer.Deserialize(ref readerCopy, discriminatorTypeInfo);
 
-            global::Ideogram.ImageObjectWithoutPromptOrSeed? imageWithoutPromptOrSeed = default;
+            global::Ideogram.GenerationResponseDataInnerVariant1? imageWithoutPromptOrSeed = default;
             if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.ImageWithoutPromptOrSeed)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageObjectWithoutPromptOrSeed> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.ImageObjectWithoutPromptOrSeed)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant1> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.GenerationResponseDataInnerVariant1)}");
                 imageWithoutPromptOrSeed = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
-            global::Ideogram.SvgGenerationObject? svgGeneration = default;
+            global::Ideogram.GenerationResponseDataInnerVariant2? svgGeneration = default;
             if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.SvgGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.SvgGenerationObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.SvgGenerationObject> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.SvgGenerationObject)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant2> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.GenerationResponseDataInnerVariant2)}");
                 svgGeneration = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
-            global::Ideogram.ImageGenerationObject? imageGeneration = default;
+            global::Ideogram.GenerationResponseDataInnerVariant3? imageGeneration = default;
             if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageGenerationObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageGenerationObject> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.ImageGenerationObject)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant3), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant3> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.GenerationResponseDataInnerVariant3)}");
                 imageGeneration = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
-            global::Ideogram.VideoObject? videoGeneration = default;
+            global::Ideogram.GenerationResponseDataInnerVariant4? videoGeneration = default;
             if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.VideoGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.VideoObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.VideoObject> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.VideoObject)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant4), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant4> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.GenerationResponseDataInnerVariant4)}");
                 videoGeneration = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
-            global::Ideogram.LayerizedImageObject? layerizedImage = default;
+            global::Ideogram.GenerationResponseDataInnerVariant5? layerizedImage = default;
             if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.LayerizedImage)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.LayerizedImageObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.LayerizedImageObject> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.LayerizedImageObject)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant5), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant5> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.GenerationResponseDataInnerVariant5)}");
                 layerizedImage = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
-            global::Ideogram.TextLayerizerResultObject? layerizedDesignGeneration = default;
+            global::Ideogram.GenerationResponseDataInnerVariant6? layerizedDesignGeneration = default;
             if (discriminator?.ObjectType == global::Ideogram.GenerationResponseDataInnerDiscriminatorObjectType.LayerizedDesignGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.TextLayerizerResultObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.TextLayerizerResultObject> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.TextLayerizerResultObject)}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant6), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant6> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.GenerationResponseDataInnerVariant6)}");
                 layerizedDesignGeneration = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
 
@@ -93,38 +93,38 @@ namespace Ideogram.JsonConverters
 
             if (value.IsImageWithoutPromptOrSeed)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageObjectWithoutPromptOrSeed?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ImageObjectWithoutPromptOrSeed).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant1), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant1?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.GenerationResponseDataInnerVariant1).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickImageWithoutPromptOrSeed(), typeInfo);
             }
             else if (value.IsSvgGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.SvgGenerationObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.SvgGenerationObject?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.SvgGenerationObject).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant2), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant2?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.GenerationResponseDataInnerVariant2).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickSvgGeneration(), typeInfo);
             }
             else if (value.IsImageGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.ImageGenerationObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.ImageGenerationObject?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.ImageGenerationObject).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant3), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant3?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.GenerationResponseDataInnerVariant3).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickImageGeneration(), typeInfo);
             }
             else if (value.IsVideoGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.VideoObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.VideoObject?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.VideoObject).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant4), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant4?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.GenerationResponseDataInnerVariant4).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickVideoGeneration(), typeInfo);
             }
             else if (value.IsLayerizedImage)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.LayerizedImageObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.LayerizedImageObject?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.LayerizedImageObject).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant5), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant5?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.GenerationResponseDataInnerVariant5).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickLayerizedImage(), typeInfo);
             }
             else if (value.IsLayerizedDesignGeneration)
             {
-                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.TextLayerizerResultObject), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.TextLayerizerResultObject?> ??
-                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.TextLayerizerResultObject).Name}");
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.GenerationResponseDataInnerVariant6), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.GenerationResponseDataInnerVariant6?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.GenerationResponseDataInnerVariant6).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickLayerizedDesignGeneration(), typeInfo);
             }
         }

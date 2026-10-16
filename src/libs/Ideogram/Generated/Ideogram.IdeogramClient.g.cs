@@ -4,7 +4,6 @@
 namespace Ideogram
 {
     /// <summary>
-    /// This is the API definition for Ideogram AI.<br/>
     /// If no httpClient is provided, a new one will be created.<br/>
     /// If no baseUri is provided, the default baseUri from OpenAPI spec will be used.
     /// </summary>
@@ -59,36 +58,7 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public AssetReferenceUsageClient AssetReferenceUsage => new AssetReferenceUsageClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Model-agnostic endpoints where the server selects the model for each<br/>
-        /// request. Requests are JSON and return a generation id that can be<br/>
-        /// polled via `GET /v2/generations/{generation_id}`.
-        /// </summary>
         public AutoModelClient AutoModel => new AutoModelClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        ///
-        /// </summary>
-        public BatchClient Batch => new BatchClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Operations related to managing datasets.
-        /// </summary>
-        public DatasetsClient Datasets => new DatasetsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContextProvider = JsonSerializerContextProvider,
@@ -104,18 +74,9 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Asynchronous image-editing workflows that return results through generation polling.
+        ///
         /// </summary>
         public EditWorkflowClient EditWorkflow => new EditWorkflowClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// All things related to generating content.
-        /// </summary>
-        public GenerateClient Generate => new GenerateClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContextProvider = JsonSerializerContextProvider,
@@ -140,10 +101,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Generate images with a specific model contract. Requests are JSON<br/>
-        /// (Ideogram 3.0 also accepts multipart for style reference bytes) and<br/>
-        /// return a generation id that can be polled via<br/>
-        /// `GET /v2/generations/{generation_id}`.
+        ///
         /// </summary>
         public ImagesGenerateClient ImagesGenerate => new ImagesGenerateClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -152,7 +110,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Repaint a masked region of an image with a specific model.
+        ///
         /// </summary>
         public ImagesInpaintClient ImagesInpaint => new ImagesInpaintClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -161,7 +119,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Edit source images at the source's own width and height. These endpoints never reframe: the output always matches the image you sent.
+        ///
         /// </summary>
         public ImagesPreciseEditClient ImagesPreciseEdit => new ImagesPreciseEditClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -170,17 +128,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Expand an existing image to a new model-specific output shape while<br/>
-        /// preserving the source content and filling the new area.
-        /// </summary>
-        public ImagesReframeClient ImagesReframe => new ImagesReframeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Transform an image with a specific model, guided by a prompt.
+        ///
         /// </summary>
         public ImagesRemixClient ImagesRemix => new ImagesRemixClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -198,53 +146,7 @@ namespace Ideogram
         };
 
         /// <summary>
-        /// Organization-scoped external asset integrations.
-        /// </summary>
-        public IntegrationsClient Integrations => new IntegrationsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Operations and endpoints designed for doing internal testing. Not intended to be called outside a test environment.
-        /// </summary>
-        public InternalTestingClient InternalTesting => new InternalTestingClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Content related to managing API account and API access.
-        /// </summary>
-        public ManageClient Manage => new ManageClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Operations related to publishing mini-apps into the catalog.
-        /// </summary>
-        public MiniAppsClient MiniApps => new MiniAppsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Operations related to managing custom models.
-        /// </summary>
-        public ModelsClient Models => new ModelsClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Remove unwanted objects from an image. Requests return a generation id<br/>
-        /// to poll with `GET /v2/generations/{generation_id}`.
+        ///
         /// </summary>
         public ObjectRemovalClient ObjectRemoval => new ObjectRemovalClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -255,7 +157,7 @@ namespace Ideogram
         /// <summary>
         ///
         /// </summary>
-        public PromptClient Prompt => new PromptClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
+        public ReframeClient Reframe => new ReframeClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContextProvider = JsonSerializerContextProvider,
@@ -263,15 +165,6 @@ namespace Ideogram
 
         /// <summary>
         ///
-        /// </summary>
-        public ProvenanceClient Provenance => new ProvenanceClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Outcome-focused image tools with implementation details managed by Ideogram.
         /// </summary>
         public ToolClient Tool => new ToolClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
@@ -301,26 +194,6 @@ namespace Ideogram
         ///
         /// </summary>
         public VideoGenerateClient VideoGenerate => new VideoGenerateClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Operations related to understanding visual content.
-        /// </summary>
-        public VisionClient Vision => new VisionClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
-        {
-            ReadResponseAsString = ReadResponseAsString,
-            JsonSerializerContextProvider = JsonSerializerContextProvider,
-        };
-
-        /// <summary>
-        /// Endpoints related to webhook delivery and verification. The JWKS<br/>
-        /// endpoint publishes the Ed25519 public keys customers use to verify<br/>
-        /// that an inbound webhook genuinely originated from Ideogram.
-        /// </summary>
-        public WebhooksClient Webhooks => new WebhooksClient(HttpClient, baseUri: null, authorizations: Authorizations, options: Options)
         {
             ReadResponseAsString = ReadResponseAsString,
             JsonSerializerContextProvider = JsonSerializerContextProvider,

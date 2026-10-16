@@ -4,34 +4,27 @@
 namespace Ideogram
 {
     /// <summary>
-    /// One billed rate for one billing actor within one time bucket.<br/>
-    /// Example: {"product":"ideogram_v4_generation","endpoint":"/v2/image/generate/ideogram-4","cost_total":"84.00","user_email":"user_email","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","billed_units":{"unit":"image","quantity":"2100","unit_price":"0.04"},"source":"api","currency_code":"USD","dimensions":{"key":"dimensions"}}
+    /// One billed rate for one billing actor within one time bucket.
     /// </summary>
     public sealed partial class AccountUsageLineItem
     {
         /// <summary>
-        /// Stable identifier of the public pricing catalog entry this charge was billed under, at the granularity the pricing page prices it (for example one entry per quality and resolution). `unknown` when a historical charge can no longer be attributed; its cost is still included.<br/>
-        /// Example: ideogram_v4_generation
+        /// Stable identifier of the public pricing catalog entry this charge was billed under, at the granularity the pricing page prices it (for example one entry per quality and resolution). `unknown` when a historical charge can no longer be attributed; its cost is still included.
         /// </summary>
-        /// <example>ideogram_v4_generation</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("product")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Product { get; set; }
 
         /// <summary>
-        /// The API endpoint path this product belongs to.<br/>
-        /// Example: /v2/image/generate/ideogram-4
+        /// The API endpoint path this product belongs to.
         /// </summary>
-        /// <example>/v2/image/generate/ideogram-4</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("endpoint")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Endpoint { get; set; }
 
         /// <summary>
-        /// Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.<br/>
-        /// Example: Ideogram v4 Generation
+        /// Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.
         /// </summary>
-        /// <example>Ideogram v4 Generation</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("description")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Description { get; set; }
@@ -43,19 +36,15 @@ namespace Ideogram
         public global::System.Collections.Generic.Dictionary<string, string>? Dimensions { get; set; }
 
         /// <summary>
-        /// Total billed amount in `currency_code`, as a decimal string.<br/>
-        /// Example: 84.00
+        /// Total billed amount in `currency_code`, as a decimal string.
         /// </summary>
-        /// <example>84.00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("cost_total")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string CostTotal { get; set; }
 
         /// <summary>
-        /// ISO 4217 currency code of the amounts on this line item.<br/>
-        /// Example: USD
+        /// ISO 4217 currency code of the amounts on this line item.
         /// </summary>
-        /// <example>USD</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("currency_code")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string CurrencyCode { get; set; }
@@ -69,10 +58,8 @@ namespace Ideogram
         public required global::Ideogram.AccountUsageLineItemSource Source { get; set; }
 
         /// <summary>
-        /// The API key the usage was billed to, in redacted form.<br/>
-        /// Example: {"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"}
+        /// The API key the usage was billed to, in redacted form.
         /// </summary>
-        /// <example>{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("api_key")]
         public global::Ideogram.AccountUsageApiKey? ApiKey { get; set; }
 
@@ -83,10 +70,8 @@ namespace Ideogram
         public string? UserEmail { get; set; }
 
         /// <summary>
-        /// Per-unit detail for products billed per item. `quantity × unit_price` always equals the line item's `cost_total`.<br/>
-        /// Example: {"unit":"image","quantity":"2100","unit_price":"0.04"}
+        /// Per-unit detail for products billed per item. `quantity × unit_price` always equals the line item's `cost_total`.
         /// </summary>
-        /// <example>{"unit":"image","quantity":"2100","unit_price":"0.04"}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("billed_units")]
         public global::Ideogram.AccountUsageBilledUnits? BilledUnits { get; set; }
 
@@ -100,24 +85,19 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="AccountUsageLineItem" /> class.
         /// </summary>
         /// <param name="product">
-        /// Stable identifier of the public pricing catalog entry this charge was billed under, at the granularity the pricing page prices it (for example one entry per quality and resolution). `unknown` when a historical charge can no longer be attributed; its cost is still included.<br/>
-        /// Example: ideogram_v4_generation
+        /// Stable identifier of the public pricing catalog entry this charge was billed under, at the granularity the pricing page prices it (for example one entry per quality and resolution). `unknown` when a historical charge can no longer be attributed; its cost is still included.
         /// </param>
         /// <param name="endpoint">
-        /// The API endpoint path this product belongs to.<br/>
-        /// Example: /v2/image/generate/ideogram-4
+        /// The API endpoint path this product belongs to.
         /// </param>
         /// <param name="description">
-        /// Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.<br/>
-        /// Example: Ideogram v4 Generation
+        /// Name of the public pricing catalog entry, as shown on the pricing page. Not an identifier.
         /// </param>
         /// <param name="costTotal">
-        /// Total billed amount in `currency_code`, as a decimal string.<br/>
-        /// Example: 84.00
+        /// Total billed amount in `currency_code`, as a decimal string.
         /// </param>
         /// <param name="currencyCode">
-        /// ISO 4217 currency code of the amounts on this line item.<br/>
-        /// Example: USD
+        /// ISO 4217 currency code of the amounts on this line item.
         /// </param>
         /// <param name="source">
         /// Which billing surface the usage came through. `api` usage is attributed to an API key when one was used; `app` usage is attributed to the member who generated it.
@@ -126,15 +106,13 @@ namespace Ideogram
         /// Pricing dimensions this line item was billed under, for products priced per dimension (for example rendering speed).
         /// </param>
         /// <param name="apiKey">
-        /// The API key the usage was billed to, in redacted form.<br/>
-        /// Example: {"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"}
+        /// The API key the usage was billed to, in redacted form.
         /// </param>
         /// <param name="userEmail">
         /// Email address of the member who generated the usage. Only present on `app` usage.
         /// </param>
         /// <param name="billedUnits">
-        /// Per-unit detail for products billed per item. `quantity × unit_price` always equals the line item's `cost_total`.<br/>
-        /// Example: {"unit":"image","quantity":"2100","unit_price":"0.04"}
+        /// Per-unit detail for products billed per item. `quantity × unit_price` always equals the line item's `cost_total`.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

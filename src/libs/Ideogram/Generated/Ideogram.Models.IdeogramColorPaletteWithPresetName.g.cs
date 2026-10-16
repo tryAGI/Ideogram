@@ -9,10 +9,8 @@ namespace Ideogram
     public sealed partial class IdeogramColorPaletteWithPresetName
     {
         /// <summary>
-        /// A color palette preset value.<br/>
-        /// Example: pastel
+        /// A color palette preset value.
         /// </summary>
-        /// <example>pastel</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("name")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.IdeogramColorPalettePresetNameJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -28,8 +26,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="IdeogramColorPaletteWithPresetName" /> class.
         /// </summary>
         /// <param name="name">
-        /// A color palette preset value.<br/>
-        /// Example: pastel
+        /// A color palette preset value.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

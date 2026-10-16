@@ -4,33 +4,26 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The API key the usage was billed to, in redacted form.<br/>
-    /// Example: {"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"}
+    /// The API key the usage was billed to, in redacted form.
     /// </summary>
     public sealed partial class AccountUsageApiKey
     {
         /// <summary>
-        /// The API key's id, as listed by `GET /v2/account/api-keys`.<br/>
-        /// Example: JRPVD7jWR1aTBYiJ0UFVOg
+        /// The API key's id, as listed by `GET /v2/account/api-keys`.
         /// </summary>
-        /// <example>JRPVD7jWR1aTBYiJ0UFVOg</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("id")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Id { get; set; }
 
         /// <summary>
-        /// The first characters of the key followed by bullets.<br/>
-        /// Example: ATG5•••••••••••••
+        /// The first characters of the key followed by bullets.
         /// </summary>
-        /// <example>ATG5•••••••••••••</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("redacted_key")]
         public string? RedactedKey { get; set; }
 
         /// <summary>
-        /// The key's user-supplied label, when one is set.<br/>
-        /// Example: Live production environment
+        /// The key's user-supplied label, when one is set.
         /// </summary>
-        /// <example>Live production environment</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("label")]
         public string? Label { get; set; }
 
@@ -44,16 +37,13 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="AccountUsageApiKey" /> class.
         /// </summary>
         /// <param name="id">
-        /// The API key's id, as listed by `GET /v2/account/api-keys`.<br/>
-        /// Example: JRPVD7jWR1aTBYiJ0UFVOg
+        /// The API key's id, as listed by `GET /v2/account/api-keys`.
         /// </param>
         /// <param name="redactedKey">
-        /// The first characters of the key followed by bullets.<br/>
-        /// Example: ATG5•••••••••••••
+        /// The first characters of the key followed by bullets.
         /// </param>
         /// <param name="label">
-        /// The key's user-supplied label, when one is set.<br/>
-        /// Example: Live production environment
+        /// The key's user-supplied label, when one is set.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

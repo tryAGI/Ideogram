@@ -9,19 +9,15 @@ namespace Ideogram
     public sealed partial class ColorPaletteMember
     {
         /// <summary>
-        /// The hexadecimal representation of the color with an optional chosen weight.<br/>
-        /// Example: #FFFFFF
+        /// The hexadecimal representation of the color with an optional chosen weight.
         /// </summary>
-        /// <example>#FFFFFF</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_hex")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string ColorHex { get; set; }
 
         /// <summary>
-        /// The weight of the color in the color palette.<br/>
-        /// Example: 0.25F
+        /// The weight of the color in the color palette.
         /// </summary>
-        /// <example>0.25F</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("color_weight")]
         public double? ColorWeight { get; set; }
 
@@ -35,12 +31,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="ColorPaletteMember" /> class.
         /// </summary>
         /// <param name="colorHex">
-        /// The hexadecimal representation of the color with an optional chosen weight.<br/>
-        /// Example: #FFFFFF
+        /// The hexadecimal representation of the color with an optional chosen weight.
         /// </param>
         /// <param name="colorWeight">
-        /// The weight of the color in the color palette.<br/>
-        /// Example: 0.25F
+        /// The weight of the color in the color palette.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

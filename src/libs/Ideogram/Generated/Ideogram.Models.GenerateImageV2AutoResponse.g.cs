@@ -9,8 +9,7 @@ namespace Ideogram
     /// Asynchronous requests omit `data`; poll<br/>
     /// `GET /v2/generations/{generation_id}` with the returned<br/>
     /// `generation_id`. `seed` is the seed that was used, including when you<br/>
-    /// did not set one.<br/>
-    /// Example: {"data":[{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"prompt":"prompt","resolution":"1024x1024","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id"}
+    /// did not set one.
     /// </summary>
     public sealed partial class GenerateImageV2AutoResponse
     {
@@ -29,10 +28,8 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.GeneratedImageObject>? Data { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Seed { get; set; }
@@ -51,8 +48,7 @@ namespace Ideogram
         /// `GET /v2/generations/{generation_id}`.
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="data">
         /// The generated images, in generation order. Present only for synchronous requests (`async` omitted or false).

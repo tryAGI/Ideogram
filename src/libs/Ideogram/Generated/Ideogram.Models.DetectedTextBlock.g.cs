@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A single detected text region with its position, content, font information, and styling.<br/>
-    /// Example: {"role":"heading","color":"#212121","font_alternatives":["font_alternatives","font_alternatives"],"font_size":2,"font_name":"font_name","line_height":7.0614014,"x":0,"width":1,"y":6,"angle":5.637377,"text":"Hello World","alignment":"left","formatting":["bold","bold"],"height":5}
+    /// A single detected text region with its position, content, font information, and styling.
     /// </summary>
     public sealed partial class DetectedTextBlock
     {
@@ -38,10 +37,8 @@ namespace Ideogram
         public required int Height { get; set; }
 
         /// <summary>
-        /// The detected text content. Line breaks are represented as \n.<br/>
-        /// Example: Hello World
+        /// The detected text content. Line breaks are represented as \n.
         /// </summary>
-        /// <example>Hello World</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("text")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Text { get; set; }
@@ -59,7 +56,7 @@ namespace Ideogram
         /// Default Value: 0
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("angle")]
-        public float? Angle { get; set; }
+        public string? Angle { get; set; }
 
         /// <summary>
         /// Best-matching font name from the font library.
@@ -83,13 +80,11 @@ namespace Ideogram
         /// Line height multiplier (e.g., 1.2).
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("line_height")]
-        public float? LineHeight { get; set; }
+        public string? LineHeight { get; set; }
 
         /// <summary>
-        /// Detected text color in hex format.<br/>
-        /// Example: #212121
+        /// Detected text color in hex format.
         /// </summary>
-        /// <example>#212121</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("color")]
         public string? Color { get; set; }
 
@@ -98,13 +93,12 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("formatting")]
         [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItem> Formatting { get; set; }
+        public required global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItems> Formatting { get; set; }
 
         /// <summary>
         /// Inferred typographic role of this text block.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("role")]
-        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.DetectedTextBlockRoleJsonConverter))]
         public global::Ideogram.DetectedTextBlockRole? Role { get; set; }
 
         /// <summary>
@@ -129,8 +123,7 @@ namespace Ideogram
         /// Height of the text region in pixels.
         /// </param>
         /// <param name="text">
-        /// The detected text content. Line breaks are represented as \n.<br/>
-        /// Example: Hello World
+        /// The detected text content. Line breaks are represented as \n.
         /// </param>
         /// <param name="alignment">
         /// Detected text alignment.
@@ -155,8 +148,7 @@ namespace Ideogram
         /// Line height multiplier (e.g., 1.2).
         /// </param>
         /// <param name="color">
-        /// Detected text color in hex format.<br/>
-        /// Example: #212121
+        /// Detected text color in hex format.
         /// </param>
         /// <param name="role">
         /// Inferred typographic role of this text block.
@@ -171,12 +163,12 @@ namespace Ideogram
             int height,
             string text,
             global::Ideogram.DetectedTextBlockAlignment alignment,
-            global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItem> formatting,
-            float? angle,
+            global::System.Collections.Generic.IList<global::Ideogram.DetectedTextBlockFormattingItems> formatting,
+            string? angle,
             string? fontName,
             global::System.Collections.Generic.IList<string>? fontAlternatives,
             int? fontSize,
-            float? lineHeight,
+            string? lineHeight,
             string? color,
             global::Ideogram.DetectedTextBlockRole? role)
         {

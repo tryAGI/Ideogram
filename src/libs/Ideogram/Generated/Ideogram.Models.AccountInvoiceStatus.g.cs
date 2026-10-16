@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Status of the invoice<br/>
-    /// Example: paid
+    /// Status of the invoice
     /// </summary>
     public enum AccountInvoiceStatus
     {

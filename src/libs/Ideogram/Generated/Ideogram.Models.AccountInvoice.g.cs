@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"start_time":"2000-01-23T04:56:07\u002B00:00","total":"150.00","paid_time":"2000-01-23T04:56:07\u002B00:00","end_time":"2000-01-23T04:56:07\u002B00:00","line_items":[{"cost_total":"84.00","quantity":"2100","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","unit_price":"0.04","currency_code":"USD"},{"cost_total":"84.00","quantity":"2100","api_key":{"redacted_key":"ATG5\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022","id":"JRPVD7jWR1aTBYiJ0UFVOg","label":"Live production environment"},"description":"Ideogram v4 Generation","unit_price":"0.04","currency_code":"USD"}],"issued_time":"2000-01-23T04:56:07\u002B00:00","currency_code":"USD","status":"paid"}
+    ///
     /// </summary>
     public sealed partial class AccountInvoice
     {
@@ -35,29 +35,23 @@ namespace Ideogram
         public global::System.DateTime? PaidTime { get; set; }
 
         /// <summary>
-        /// Status of the invoice<br/>
-        /// Example: paid
+        /// Status of the invoice
         /// </summary>
-        /// <example>paid</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("status")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.JsonConverters.AccountInvoiceStatusJsonConverter))]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.AccountInvoiceStatus Status { get; set; }
 
         /// <summary>
-        /// Invoice total in `currency_code`, as a decimal string.<br/>
-        /// Example: 150.00
+        /// Invoice total in `currency_code`, as a decimal string.
         /// </summary>
-        /// <example>150.00</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("total")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Total { get; set; }
 
         /// <summary>
-        /// ISO 4217 currency code of the amounts on this invoice.<br/>
-        /// Example: USD
+        /// ISO 4217 currency code of the amounts on this invoice.
         /// </summary>
-        /// <example>USD</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("currency_code")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string CurrencyCode { get; set; }
@@ -85,16 +79,13 @@ namespace Ideogram
         /// End of the invoice period.
         /// </param>
         /// <param name="status">
-        /// Status of the invoice<br/>
-        /// Example: paid
+        /// Status of the invoice
         /// </param>
         /// <param name="total">
-        /// Invoice total in `currency_code`, as a decimal string.<br/>
-        /// Example: 150.00
+        /// Invoice total in `currency_code`, as a decimal string.
         /// </param>
         /// <param name="currencyCode">
-        /// ISO 4217 currency code of the amounts on this invoice.<br/>
-        /// Example: USD
+        /// ISO 4217 currency code of the amounts on this invoice.
         /// </param>
         /// <param name="lineItems">
         /// The invoice's charges.

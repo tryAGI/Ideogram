@@ -6,8 +6,7 @@ namespace Ideogram
     /// <summary>
     /// Acknowledgement that the request was accepted. Poll<br/>
     /// `GET /v2/generations/{generation_id}` with the returned `generation_id`<br/>
-    /// for the result.<br/>
-    /// Example: {"generation_id":"generation_id"}
+    /// for the result.
     /// </summary>
     public sealed partial class RemoveObjectFromV2AssetsResponse
     {

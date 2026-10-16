@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A color palette preset value.<br/>
-    /// Example: pastel
+    /// A color palette preset value.
     /// </summary>
     public enum IdeogramColorPalettePresetName
     {

@@ -8,8 +8,7 @@ namespace Ideogram
     /// included in this response: poll `GET /v2/generations/{generation_id}`<br/>
     /// with the returned `generation_id`, or receive it at the `webhook_url`<br/>
     /// you supplied. Video links expire after a limited time, so download any<br/>
-    /// video you want to keep.<br/>
-    /// Example: {"generation_id":"generation_id","created":"2000-01-23T04:56:07\u002B00:00"}
+    /// video you want to keep.
     /// </summary>
     public sealed partial class GenerateVideoMinimaxH3Response
     {

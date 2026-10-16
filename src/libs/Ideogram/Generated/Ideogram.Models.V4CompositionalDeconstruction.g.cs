@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The compositional breakdown of a V4 prompt — background plus an ordered list of elements.<br/>
-    /// Example: {"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]}
+    /// The compositional breakdown of a V4 prompt — background plus an ordered list of elements.
     /// </summary>
     public sealed partial class V4CompositionalDeconstruction
     {

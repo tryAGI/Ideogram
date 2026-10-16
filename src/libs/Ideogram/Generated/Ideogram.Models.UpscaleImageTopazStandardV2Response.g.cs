@@ -7,8 +7,7 @@ namespace Ideogram
     /// Synchronous requests (the default) include the upscaled image in `data`.<br/>
     /// Async requests omit `data`; poll `GET /v2/generations/{generation_id}`<br/>
     /// with the returned `generation_id`. `seed` is the seed actually used,<br/>
-    /// and `width` and `height` are the output dimensions.<br/>
-    /// Example: {"data":[{"seed":12345,"resolution":"2048x2048","url":"https://openapi-generator.tech","is_image_safe":true},{"seed":12345,"resolution":"2048x2048","url":"https://openapi-generator.tech","is_image_safe":true}],"seed":12345,"generation_id":"generation_id","width":0,"height":6}
+    /// and `width` and `height` are the output dimensions.
     /// </summary>
     public sealed partial class UpscaleImageTopazStandardV2Response
     {
@@ -26,10 +25,8 @@ namespace Ideogram
         public global::System.Collections.Generic.IList<global::Ideogram.UpscaleImageObject>? Data { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required int Seed { get; set; }
@@ -61,8 +58,7 @@ namespace Ideogram
         /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="width">
         /// The output width in pixels.

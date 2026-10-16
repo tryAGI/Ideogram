@@ -4,16 +4,13 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Request body for Seedance 2.5 text-to-video generation.<br/>
-    /// Example: {"duration":5,"aspect_ratio":null,"private":true,"webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","generate_audio":false,"prompt":"A red fox running through a snowy forest at dawn.","resolution":null}
+    /// Request body for Seedance 2.5 text-to-video generation.
     /// </summary>
     public sealed partial class GenerateVideoSeedDance25TextToVideoRequest
     {
         /// <summary>
-        /// A natural-language prompt describing the video to generate.<br/>
-        /// Example: A red fox running through a snowy forest at dawn.
+        /// A natural-language prompt describing the video to generate.
         /// </summary>
-        /// <example>A red fox running through a snowy forest at dawn.</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Prompt { get; set; }
@@ -37,10 +34,8 @@ namespace Ideogram
 
         /// <summary>
         /// The length of the generated video in seconds. When omitted, the model<br/>
-        /// picks the best duration for the prompt ("auto").<br/>
-        /// Example: 5
+        /// picks the best duration for the prompt ("auto").
         /// </summary>
-        /// <example>5</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("duration")]
         public int? Duration { get; set; }
 
@@ -60,24 +55,10 @@ namespace Ideogram
         /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
         /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
         /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
-        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
-        /// Example: https://api.example.com/webhooks/ideogram
+        /// private and loopback hosts and the cloud metadata service are rejected.
         /// </summary>
-        /// <example>https://api.example.com/webhooks/ideogram</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("webhook_url")]
         public string? WebhookUrl { get; set; }
-
-        /// <summary>
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("private")]
-        public bool? Private { get; set; }
-
-        /// <summary>
-        /// A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
-        public string? TargetCollectionId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -89,8 +70,7 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="GenerateVideoSeedDance25TextToVideoRequest" /> class.
         /// </summary>
         /// <param name="prompt">
-        /// A natural-language prompt describing the video to generate.<br/>
-        /// Example: A red fox running through a snowy forest at dawn.
+        /// A natural-language prompt describing the video to generate.
         /// </param>
         /// <param name="aspectRatio">
         /// The aspect ratio of the generated video. `auto` lets the model choose the<br/>
@@ -103,8 +83,7 @@ namespace Ideogram
         /// </param>
         /// <param name="duration">
         /// The length of the generated video in seconds. When omitted, the model<br/>
-        /// picks the best duration for the prompt ("auto").<br/>
-        /// Example: 5
+        /// picks the best duration for the prompt ("auto").
         /// </param>
         /// <param name="generateAudio">
         /// Whether to generate an audio track for the video. Audio roughly<br/>
@@ -119,14 +98,7 @@ namespace Ideogram
         /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
         /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
         /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
-        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
-        /// Example: https://api.example.com/webhooks/ideogram
-        /// </param>
-        /// <param name="private">
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </param>
-        /// <param name="targetCollectionId">
-        /// A collection you can write to, by its URL-safe base64 collection id. The output video is added to it when the request completes.
+        /// private and loopback hosts and the cloud metadata service are rejected.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -137,9 +109,7 @@ namespace Ideogram
             global::Ideogram.SeedDance25Resolution? resolution,
             int? duration,
             bool? generateAudio,
-            string? webhookUrl,
-            bool? @private,
-            string? targetCollectionId)
+            string? webhookUrl)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.AspectRatio = aspectRatio;
@@ -147,8 +117,6 @@ namespace Ideogram
             this.Duration = duration;
             this.GenerateAudio = generateAudio;
             this.WebhookUrl = webhookUrl;
-            this.Private = @private;
-            this.TargetCollectionId = targetCollectionId;
         }
 
         /// <summary>

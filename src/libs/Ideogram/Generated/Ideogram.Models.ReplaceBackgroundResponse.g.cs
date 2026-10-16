@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Acknowledgement that the request was accepted.<br/>
-    /// Example: {"generation_id":"generation_id"}
+    /// Acknowledgement that the request was accepted.
     /// </summary>
     public sealed partial class ReplaceBackgroundResponse
     {

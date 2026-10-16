@@ -12,19 +12,15 @@ namespace Ideogram
     public sealed partial class TextColorSpan
     {
         /// <summary>
-        /// The characters in this run.<br/>
-        /// Example: T
+        /// The characters in this run.
         /// </summary>
-        /// <example>T</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("text")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Text { get; set; }
 
         /// <summary>
-        /// Hex colour for this run.<br/>
-        /// Example: #F4ACC4
+        /// Hex colour for this run.
         /// </summary>
-        /// <example>#F4ACC4</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("color")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Color { get; set; }
@@ -39,12 +35,10 @@ namespace Ideogram
         /// Initializes a new instance of the <see cref="TextColorSpan" /> class.
         /// </summary>
         /// <param name="text">
-        /// The characters in this run.<br/>
-        /// Example: T
+        /// The characters in this run.
         /// </param>
         /// <param name="color">
-        /// Hex colour for this run.<br/>
-        /// Example: #F4ACC4
+        /// Hex colour for this run.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]

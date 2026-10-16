@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// A generation request rejected by an account or usage limit.<br/>
-    /// Example: {"max_inflight_requests":8,"task_completion_speed":"fast","reject_reason":null,"error":"error"}
+    /// A generation request rejected by an account or usage limit.
     /// </summary>
     public sealed partial class GenerationErrorResponse
     {
@@ -27,10 +26,8 @@ namespace Ideogram
         /// <summary>
         /// How many generations the account may have in progress at once on<br/>
         /// the queue this request resolved to. Present when `reject_reason`<br/>
-        /// is `inflight_limit`.<br/>
-        /// Example: 8
+        /// is `inflight_limit`.
         /// </summary>
-        /// <example>8</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("max_inflight_requests")]
         public int? MaxInflightRequests { get; set; }
 
@@ -60,8 +57,7 @@ namespace Ideogram
         /// <param name="maxInflightRequests">
         /// How many generations the account may have in progress at once on<br/>
         /// the queue this request resolved to. Present when `reject_reason`<br/>
-        /// is `inflight_limit`.<br/>
-        /// Example: 8
+        /// is `inflight_limit`.
         /// </param>
         /// <param name="taskCompletionSpeed">
         /// The queue this request resolved to. Present when `reject_reason`<br/>

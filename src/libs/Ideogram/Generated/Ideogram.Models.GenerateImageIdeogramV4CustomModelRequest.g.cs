@@ -4,7 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Example: {"private":true,"seed":12345,"rendering_speed":"turbo","webhook_url":"https://api.example.com/webhooks/ideogram","target_collection_id":"target_collection_id","custom_model_uri":"model/my-custom-v4-model/version/1","resolution":"","transparent_background":false,"num_images":1,"magic_prompt":"","async":false,"enable_copyright_detection":true,"stacked_custom_models":[{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}],"prompt":"prompt"}
+    ///
     /// </summary>
     public sealed partial class GenerateImageIdeogramV4CustomModelRequest
     {
@@ -18,10 +18,8 @@ namespace Ideogram
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>
-        /// Example: model/my-custom-v4-model/version/1
+        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.
         /// </summary>
-        /// <example>model/my-custom-v4-model/version/1</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("custom_model_uri")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string CustomModelUri { get; set; }
@@ -32,14 +30,6 @@ namespace Ideogram
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("transparent_background")]
         public bool? TransparentBackground { get; set; }
-
-        /// <summary>
-        /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
-        /// Example: [{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]
-        /// </summary>
-        /// <example>[{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]</example>
-        [global::System.Text.Json.Serialization.JsonPropertyName("stacked_custom_models")]
-        public global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>? StackedCustomModels { get; set; }
 
         /// <summary>
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
@@ -54,10 +44,8 @@ namespace Ideogram
         public global::Ideogram.MagicPromptMode? MagicPrompt { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </summary>
-        /// <example>12345</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
         public int? Seed { get; set; }
 
@@ -105,24 +93,10 @@ namespace Ideogram
         /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
         /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
         /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
-        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
-        /// Example: https://api.example.com/webhooks/ideogram
+        /// private and loopback hosts and the cloud metadata service are rejected.
         /// </summary>
-        /// <example>https://api.example.com/webhooks/ideogram</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("webhook_url")]
         public string? WebhookUrl { get; set; }
-
-        /// <summary>
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("private")]
-        public bool? Private { get; set; }
-
-        /// <summary>
-        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("target_collection_id")]
-        public string? TargetCollectionId { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -139,16 +113,11 @@ namespace Ideogram
         /// used as is and skips magic prompt unless `magic_prompt` is `on`.
         /// </param>
         /// <param name="customModelUri">
-        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.<br/>
-        /// Example: model/my-custom-v4-model/version/1
+        /// The custom model URI, in the form `model/&lt;model_name&gt;/version/&lt;version_name&gt;`. You or your organization must have access to the model. The model determines which rendering speeds are supported.
         /// </param>
         /// <param name="transparentBackground">
         /// Remove the background after generation and return transparent PNG images. Included in the custom model generation price at no extra charge. When false, the model's automatic background removal behavior still applies.<br/>
         /// Default Value: false
-        /// </param>
-        /// <param name="stackedCustomModels">
-        /// Custom models whose pLoRA checkpoints are fused beneath the `custom_model_uri` model, in list order: the first entry is applied first and `custom_model_uri` last. Every entry must be an accessible Ideogram 4.0 LoRA with a registered checkpoint and must not repeat `custom_model_uri`.<br/>
-        /// Example: [{"custom_model_uri":"model/my-base-plora/version/1","weight":0.5}]
         /// </param>
         /// <param name="magicPrompt">
         /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
@@ -159,8 +128,7 @@ namespace Ideogram
         /// Default Value: auto
         /// </param>
         /// <param name="seed">
-        /// Random seed. Set for reproducible generation.<br/>
-        /// Example: 12345
+        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
@@ -189,14 +157,7 @@ namespace Ideogram
         /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
         /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
         /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
-        /// private and loopback hosts and the cloud metadata service are rejected.<br/>
-        /// Example: https://api.example.com/webhooks/ideogram
-        /// </param>
-        /// <param name="private">
-        /// When true or omitted, the output is kept private to your account. Set to false to publish the output to the public feed. Enterprise accounts always generate privately.
-        /// </param>
-        /// <param name="targetCollectionId">
-        /// A collection you can write to, by its URL-safe base64 collection id. The output images are added to it when the request completes.
+        /// private and loopback hosts and the cloud metadata service are rejected.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -205,7 +166,6 @@ namespace Ideogram
             string prompt,
             string customModelUri,
             bool? transparentBackground,
-            global::System.Collections.Generic.IList<global::Ideogram.StackedCustomModel>? stackedCustomModels,
             global::Ideogram.MagicPromptMode? magicPrompt,
             int? seed,
             int? numImages,
@@ -213,14 +173,11 @@ namespace Ideogram
             global::Ideogram.GenerateImageIdeogramV4CustomModelRequestRenderingSpeed? renderingSpeed,
             bool? enableCopyrightDetection,
             bool? async,
-            string? webhookUrl,
-            bool? @private,
-            string? targetCollectionId)
+            string? webhookUrl)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.CustomModelUri = customModelUri ?? throw new global::System.ArgumentNullException(nameof(customModelUri));
             this.TransparentBackground = transparentBackground;
-            this.StackedCustomModels = stackedCustomModels;
             this.MagicPrompt = magicPrompt;
             this.Seed = seed;
             this.NumImages = numImages;
@@ -229,8 +186,6 @@ namespace Ideogram
             this.EnableCopyrightDetection = enableCopyrightDetection;
             this.Async = async;
             this.WebhookUrl = webhookUrl;
-            this.Private = @private;
-            this.TargetCollectionId = targetCollectionId;
         }
 
         /// <summary>

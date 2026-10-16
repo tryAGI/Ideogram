@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Optional style description supplied alongside a V4 JSON prompt.<br/>
-    /// Example: {"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]}
+    /// Optional style description supplied alongside a V4 JSON prompt.
     /// </summary>
     public sealed partial class V4StyleDescription
     {

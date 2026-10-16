@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.<br/>
-    /// Example: realistic
+    /// The style type to generate with. When omitted, the model's default styling is used; pass `auto` to have a style selected automatically from the prompt.
     /// </summary>
     public enum IdeogramV2StyleType
     {

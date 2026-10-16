@@ -4,8 +4,7 @@
 namespace Ideogram
 {
     /// <summary>
-    /// Response returned by `POST /v2/image/describe/ideogram-3`.<br/>
-    /// Example: {"description_id":"description_id","created":"2000-01-23T04:56:07\u002B00:00","descriptions":[{"text":"text"},{"text":"text"}]}
+    /// Response returned by `POST /v2/image/describe/ideogram-3`.
     /// </summary>
     public sealed partial class DescribeImageIdeogramV3Response
     {

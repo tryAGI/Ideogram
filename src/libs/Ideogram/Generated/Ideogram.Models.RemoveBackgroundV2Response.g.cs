@@ -8,8 +8,7 @@ namespace Ideogram
     /// Async requests omit `data`; poll with `generation_id` for the result.<br/>
     /// If a synchronous request fails after the response has started<br/>
     /// streaming, the body contains `error` and `status_code` instead of<br/>
-    /// `generation_id`.<br/>
-    /// Example: {"generation_id":"zm6IqQd4RPGnwA8gQYEL5Q","data":[{"url":"https://ideogram.ai/assets/foreground.png","is_image_safe":true}]}
+    /// `generation_id`.
     /// </summary>
     public sealed partial class RemoveBackgroundV2Response
     {

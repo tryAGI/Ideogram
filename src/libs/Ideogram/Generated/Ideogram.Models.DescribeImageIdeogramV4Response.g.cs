@@ -7,8 +7,7 @@ namespace Ideogram
     /// Response returned by `POST /v2/image/describe/ideogram-4`.<br/>
     /// The `json_prompt` field is a structured `V4JsonPrompt` that can be<br/>
     /// passed back as `json_prompt` to the `/v1/ideogram-v4/generate` family<br/>
-    /// of endpoints.<br/>
-    /// Example: {"description_id":"description_id","created":"2000-01-23T04:56:07\u002B00:00","json_prompt":{"high_level_description":"high_level_description","style_description":{"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]},"compositional_deconstruction":{"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]},"tags":["tags","tags"]}}
+    /// of endpoints.
     /// </summary>
     public sealed partial class DescribeImageIdeogramV4Response
     {
@@ -30,10 +29,8 @@ namespace Ideogram
         /// Structured prompt for Ideogram 4.0 generation. When `json_prompt` is<br/>
         /// supplied, magic-prompt is disabled and the diffusion model consumes<br/>
         /// the JSON contract directly. Mutually exclusive with `text_prompt`<br/>
-        /// and the legacy `prompt` field.<br/>
-        /// Example: {"high_level_description":"high_level_description","style_description":{"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]},"compositional_deconstruction":{"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]},"tags":["tags","tags"]}
+        /// and the legacy `prompt` field.
         /// </summary>
-        /// <example>{"high_level_description":"high_level_description","style_description":{"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]},"compositional_deconstruction":{"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]},"tags":["tags","tags"]}</example>
         [global::System.Text.Json.Serialization.JsonPropertyName("json_prompt")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required global::Ideogram.V4JsonPrompt JsonPrompt { get; set; }
@@ -57,8 +54,7 @@ namespace Ideogram
         /// Structured prompt for Ideogram 4.0 generation. When `json_prompt` is<br/>
         /// supplied, magic-prompt is disabled and the diffusion model consumes<br/>
         /// the JSON contract directly. Mutually exclusive with `text_prompt`<br/>
-        /// and the legacy `prompt` field.<br/>
-        /// Example: {"high_level_description":"high_level_description","style_description":{"photo":"photo","art_style":"art_style","medium":"medium","aesthetics":"aesthetics","lighting":"lighting","color_palette":["#FFD700","#FFD700"]},"compositional_deconstruction":{"background":"background","elements":[{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]},{"bbox":[0,0,1000,1000],"type":"obj","desc":"desc","color_palette":["#FFD700","#FFD700"]}]},"tags":["tags","tags"]}
+        /// and the legacy `prompt` field.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
