@@ -36,14 +36,16 @@ public partial class Tests
                 ImageFilename = "input.png",
             });
 
-        Console.WriteLine($"Upscaled images count: {response.Data.Count}");
+        var images = response.Data;
+        Assert.IsNotNull(images, "Synchronous upscaling should return image data.");
+        images.Should().NotBeEmpty();
+        Console.WriteLine($"Upscaled images count: {images.Count}");
 
-        foreach (var image in response.Data)
+        foreach (var image in images)
         {
             Console.WriteLine($"Image URL: {image.Url}");
         }
 
-        response.Data.Should().NotBeNullOrEmpty();
-        response.Data[0].Url.Should().NotBeNullOrEmpty();
+        images[0].Url.Should().NotBeNullOrEmpty();
     }
 }

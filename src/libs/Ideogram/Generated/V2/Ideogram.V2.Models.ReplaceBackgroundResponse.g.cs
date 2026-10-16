@@ -1,0 +1,47 @@
+
+#nullable enable
+
+namespace Ideogram.V2
+{
+    /// <summary>
+    /// Acknowledgement that the request was accepted.
+    /// </summary>
+    public sealed partial class ReplaceBackgroundResponse
+    {
+        /// <summary>
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string GenerationId { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReplaceBackgroundResponse" /> class.
+        /// </summary>
+        /// <param name="generationId">
+        /// The generation ID to poll with `GET /v2/generations/{generation_id}`.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public ReplaceBackgroundResponse(
+            string generationId)
+        {
+            this.GenerationId = generationId ?? throw new global::System.ArgumentNullException(nameof(generationId));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReplaceBackgroundResponse" /> class.
+        /// </summary>
+        public ReplaceBackgroundResponse()
+        {
+        }
+
+    }
+}

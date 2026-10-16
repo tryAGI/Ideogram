@@ -1,0 +1,87 @@
+
+#nullable enable
+
+namespace Ideogram.V2
+{
+    /// <summary>
+    /// Response returned by `POST /v2/image/precise-edit/ideogram-4-5`.<br/>
+    /// Synchronous requests (the default) include the edited images in `data`.<br/>
+    /// Asynchronous requests omit `data`; poll<br/>
+    /// `GET /v2/generations/{generation_id}` with the returned<br/>
+    /// `generation_id`.
+    /// </summary>
+    public sealed partial class PreciseEditImageIdeogram45Response
+    {
+        /// <summary>
+        /// The kind of generation identified by generation_id. Both kinds can be polled through GET /v2/generations/{generation_id}.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("generation_kind")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.GenerationKindJsonConverter))]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::Ideogram.V2.GenerationKind GenerationKind { get; set; }
+
+        /// <summary>
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
+        public string? GenerationId { get; set; }
+
+        /// <summary>
+        /// The edited images, in generation order. Present only for synchronous requests (`async` omitted or false).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("data")]
+        public global::System.Collections.Generic.IList<global::Ideogram.V2.GeneratedImageObject>? Data { get; set; }
+
+        /// <summary>
+        /// The seed that was used, including when you did not set one.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
+        public int? Seed { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreciseEditImageIdeogram45Response" /> class.
+        /// </summary>
+        /// <param name="generationKind">
+        /// The kind of generation identified by generation_id. Both kinds can be polled through GET /v2/generations/{generation_id}.
+        /// </param>
+        /// <param name="generationId">
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </param>
+        /// <param name="data">
+        /// The edited images, in generation order. Present only for synchronous requests (`async` omitted or false).
+        /// </param>
+        /// <param name="seed">
+        /// The seed that was used, including when you did not set one.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public PreciseEditImageIdeogram45Response(
+            global::Ideogram.V2.GenerationKind generationKind,
+            string? generationId,
+            global::System.Collections.Generic.IList<global::Ideogram.V2.GeneratedImageObject>? data,
+            int? seed)
+        {
+            this.GenerationKind = generationKind;
+            this.GenerationId = generationId;
+            this.Data = data;
+            this.Seed = seed;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PreciseEditImageIdeogram45Response" /> class.
+        /// </summary>
+        public PreciseEditImageIdeogram45Response()
+        {
+        }
+
+    }
+}

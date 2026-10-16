@@ -22,8 +22,11 @@ public partial class Tests
             Resolution = Resolution.x1024768,
         });
         
-        Console.WriteLine($"Generated image: {image.Data[0].Url}");
+        var images = image.Data;
+        Assert.IsNotNull(images, "Synchronous generation should return image data.");
+        images.Should().NotBeEmpty();
+        Console.WriteLine($"Generated image: {images[0].Url}");
         
-        image.Data[0].Url.Should().NotBeNullOrEmpty();
+        images[0].Url.Should().NotBeNullOrEmpty();
     }
 }

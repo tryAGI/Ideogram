@@ -1,0 +1,77 @@
+
+#nullable enable
+
+namespace Ideogram.V2
+{
+    /// <summary>
+    /// Response returned by `POST /v2/image/remix/ideogram-3-custom-model`.<br/>
+    /// Synchronous requests (the default) include the remixed images in<br/>
+    /// `data`. Requests with `async` set to true omit `data`; poll for<br/>
+    /// completion and results with `GET /v2/generations/{generation_id}`<br/>
+    /// using the returned `generation_id`. The seed reports the value the<br/>
+    /// request resolved to when the caller left it unset.
+    /// </summary>
+    public sealed partial class RemixImageIdeogramV3CustomModelResponse
+    {
+        /// <summary>
+        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
+        /// `GET /v2/generations/{generation_id}` polling endpoint.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string GenerationId { get; set; }
+
+        /// <summary>
+        /// The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("data")]
+        public global::System.Collections.Generic.IList<global::Ideogram.V2.RemixedImageObject>? Data { get; set; }
+
+        /// <summary>
+        /// Random seed. Set for reproducible generation.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int Seed { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemixImageIdeogramV3CustomModelResponse" /> class.
+        /// </summary>
+        /// <param name="generationId">
+        /// URL-safe base64 ID of the accepted generation. Accepted by the<br/>
+        /// `GET /v2/generations/{generation_id}` polling endpoint.
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.
+        /// </param>
+        /// <param name="data">
+        /// The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public RemixImageIdeogramV3CustomModelResponse(
+            string generationId,
+            int seed,
+            global::System.Collections.Generic.IList<global::Ideogram.V2.RemixedImageObject>? data)
+        {
+            this.GenerationId = generationId ?? throw new global::System.ArgumentNullException(nameof(generationId));
+            this.Data = data;
+            this.Seed = seed;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemixImageIdeogramV3CustomModelResponse" /> class.
+        /// </summary>
+        public RemixImageIdeogramV3CustomModelResponse()
+        {
+        }
+
+    }
+}

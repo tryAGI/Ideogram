@@ -10,26 +10,26 @@
 - Same day update to support new features
 - Updated and supported automatically if there are no breaking changes
 - All modern .NET features - nullability, trimming, NativeAOT, etc.
-- Support .Net Framework/.Net Standard 2.0
+- Targets .NET 10 with separate v1 and v2 clients
 
 ### Usage
+
+New integrations can use the v2 client. The existing `IdeogramClient` and its
+v1 types remain available in the same package. See [migration and compatibility](MIGRATION.md).
+
 ```csharp
-using Ideogram;
+using Ideogram.V2;
 
-using var api = new IdeogramClient(apiKey);
-GenerateImageResponse image = await api.Generate.PostGenerateImageAsync(new ImageRequest
+using var api = new IdeogramV2Client(apiKey);
+var result = await api.CreateImageGenerateIdeogram45Async(prompt: "A beautiful sunset");
+foreach (var image in result.Data ?? [])
 {
-    Prompt = "A beautiful sunset",
-    AspectRatio = AspectRatio.ASPECT169,
-    Seed = Random.Shared.Next(),
-    StyleType = StyleType.REALISTIC,
-    Resolution = Resolution.x1024768,
-});
-
-Console.WriteLine($"Generated image: {image.Data[0].Url}");
-
-image.Data[0].Url.Should().NotBeNullOrEmpty();
+    Console.WriteLine(image.Url);
+}
 ```
+
+Generation requests use your provider account and may incur charges. This example
+is synchronous; asynchronous requests return a generation ID and may omit `Data`.
 
 <!-- AUTOSDK:ECOSYSTEM-MAINTENANCE:START -->
 ## Ecosystem maintenance

@@ -1,0 +1,71 @@
+
+#nullable enable
+
+namespace Ideogram.V2
+{
+    /// <summary>
+    ///
+    /// </summary>
+    public sealed partial class AccountUsageBucket
+    {
+        /// <summary>
+        /// Start of the bucket window (inclusive, UTC).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("start_time")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.DateTime StartTime { get; set; }
+
+        /// <summary>
+        /// End of the bucket window (exclusive, UTC).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("end_time")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.DateTime EndTime { get; set; }
+
+        /// <summary>
+        /// Usage billed in this window. Empty when nothing was billed.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("line_items")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required global::System.Collections.Generic.IList<global::Ideogram.V2.AccountUsageLineItem> LineItems { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountUsageBucket" /> class.
+        /// </summary>
+        /// <param name="startTime">
+        /// Start of the bucket window (inclusive, UTC).
+        /// </param>
+        /// <param name="endTime">
+        /// End of the bucket window (exclusive, UTC).
+        /// </param>
+        /// <param name="lineItems">
+        /// Usage billed in this window. Empty when nothing was billed.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public AccountUsageBucket(
+            global::System.DateTime startTime,
+            global::System.DateTime endTime,
+            global::System.Collections.Generic.IList<global::Ideogram.V2.AccountUsageLineItem> lineItems)
+        {
+            this.StartTime = startTime;
+            this.EndTime = endTime;
+            this.LineItems = lineItems ?? throw new global::System.ArgumentNullException(nameof(lineItems));
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountUsageBucket" /> class.
+        /// </summary>
+        public AccountUsageBucket()
+        {
+        }
+
+    }
+}

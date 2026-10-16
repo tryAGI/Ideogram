@@ -1,0 +1,76 @@
+
+#nullable enable
+
+namespace Ideogram.V2
+{
+    /// <summary>
+    /// Response returned by `POST /v2/image/remix/auto`. Synchronous<br/>
+    /// requests (the default) include the remixed images in `data`.<br/>
+    /// Asynchronous requests omit `data`; poll<br/>
+    /// `GET /v2/generations/{generation_id}` with the returned<br/>
+    /// `generation_id`.
+    /// </summary>
+    public sealed partial class ToolRemixResponse
+    {
+        /// <summary>
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("generation_id")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string GenerationId { get; set; }
+
+        /// <summary>
+        /// The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("data")]
+        public global::System.Collections.Generic.IList<global::Ideogram.V2.GeneratedImageObject>? Data { get; set; }
+
+        /// <summary>
+        /// The seed attached to the request. Reusing it does not guarantee a reproducible result, because the selected model may not honor seeds.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required int Seed { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToolRemixResponse" /> class.
+        /// </summary>
+        /// <param name="generationId">
+        /// URL-safe base64 ID of the generation. Use it to poll<br/>
+        /// `GET /v2/generations/{generation_id}`.
+        /// </param>
+        /// <param name="seed">
+        /// The seed attached to the request. Reusing it does not guarantee a reproducible result, because the selected model may not honor seeds.
+        /// </param>
+        /// <param name="data">
+        /// The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false).
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public ToolRemixResponse(
+            string generationId,
+            int seed,
+            global::System.Collections.Generic.IList<global::Ideogram.V2.GeneratedImageObject>? data)
+        {
+            this.GenerationId = generationId ?? throw new global::System.ArgumentNullException(nameof(generationId));
+            this.Data = data;
+            this.Seed = seed;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToolRemixResponse" /> class.
+        /// </summary>
+        public ToolRemixResponse()
+        {
+        }
+
+    }
+}

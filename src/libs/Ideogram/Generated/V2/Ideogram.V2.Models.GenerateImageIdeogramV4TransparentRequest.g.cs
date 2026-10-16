@@ -1,0 +1,200 @@
+
+#nullable enable
+
+namespace Ideogram.V2
+{
+    /// <summary>
+    ///
+    /// </summary>
+    public sealed partial class GenerateImageIdeogramV4TransparentRequest
+    {
+        /// <summary>
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt, except that its background<br/>
+        /// description is replaced with a transparent background.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("prompt")]
+        [global::System.Text.Json.Serialization.JsonRequired]
+        public required string Prompt { get; set; }
+
+        /// <summary>
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
+        /// `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("magic_prompt")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.MagicPromptModeJsonConverter))]
+        public global::Ideogram.V2.MagicPromptMode? MagicPrompt { get; set; }
+
+        /// <summary>
+        /// Random seed. Set for reproducible generation.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
+        public int? Seed { get; set; }
+
+        /// <summary>
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
+        public int? NumImages { get; set; }
+
+        /// <summary>
+        /// Supported output aspect ratios. The operation defines whether `auto`<br/>
+        /// preserves the source shape or selects a shape from the prompt.<br/>
+        /// Default Value: auto
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.IdeogramV4AspectRatioJsonConverter))]
+        public global::Ideogram.V2.IdeogramV4AspectRatio? AspectRatio { get; set; }
+
+        /// <summary>
+        /// The output resolution tier. Each tier is a total pixel budget equal<br/>
+        /// to a square of the named size (for example, `8k` delivers at most<br/>
+        /// 8192x8192 pixels in total). Wide and tall aspect ratios keep the<br/>
+        /// same budget, so one side may exceed the named size. Tiers above<br/>
+        /// 2k are produced by upscaling after generation. Defaults to 1k.<br/>
+        /// Default Value: 1k
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("output_resolution")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.GenerateImageIdeogramV4TransparentRequestOutputResolutionJsonConverter))]
+        public global::Ideogram.V2.GenerateImageIdeogramV4TransparentRequestOutputResolution? OutputResolution { get; set; }
+
+        /// <summary>
+        /// The rendering speed to use.<br/>
+        /// Default Value: default
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("rendering_speed")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.GenerateImageIdeogramV4TransparentRequestRenderingSpeedJsonConverter))]
+        public global::Ideogram.V2.GenerateImageIdeogramV4TransparentRequestRenderingSpeed? RenderingSpeed { get; set; }
+
+        /// <summary>
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("enable_copyright_detection")]
+        public bool? EnableCopyrightDetection { get; set; }
+
+        /// <summary>
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
+        /// Default Value: false
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("async")]
+        public bool? Async { get; set; }
+
+        /// <summary>
+        /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
+        /// JSON POST to this URL once all images for the request have finished<br/>
+        /// generating. The body mirrors the synchronous generate response:<br/>
+        /// `request_id`, `created`, and a `data` array<br/>
+        /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
+        /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
+        /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
+        /// private and loopback hosts and the cloud metadata service are rejected.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("webhook_url")]
+        public string? WebhookUrl { get; set; }
+
+        /// <summary>
+        /// Additional properties that are not explicitly defined in the schema
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonExtensionData]
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalProperties { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateImageIdeogramV4TransparentRequest" /> class.
+        /// </summary>
+        /// <param name="prompt">
+        /// The prompt to generate images from, in natural language or as a<br/>
+        /// structured Ideogram 4.0 JSON prompt. A structured JSON prompt is<br/>
+        /// used as is and skips magic prompt, except that its background<br/>
+        /// description is replaced with a transparent background.
+        /// </param>
+        /// <param name="magicPrompt">
+        /// Controls how a natural-language prompt is prepared. `auto` (the<br/>
+        /// default) and `on` rewrite and expand the prompt before generation.<br/>
+        /// `off` keeps your wording and only converts it into a structured<br/>
+        /// prompt. A valid structured JSON prompt skips magic prompt unless<br/>
+        /// `magic_prompt` is `on`.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="seed">
+        /// Random seed. Set for reproducible generation.
+        /// </param>
+        /// <param name="numImages">
+        /// The number of images to generate.<br/>
+        /// Default Value: 1
+        /// </param>
+        /// <param name="aspectRatio">
+        /// Supported output aspect ratios. The operation defines whether `auto`<br/>
+        /// preserves the source shape or selects a shape from the prompt.<br/>
+        /// Default Value: auto
+        /// </param>
+        /// <param name="outputResolution">
+        /// The output resolution tier. Each tier is a total pixel budget equal<br/>
+        /// to a square of the named size (for example, `8k` delivers at most<br/>
+        /// 8192x8192 pixels in total). Wide and tall aspect ratios keep the<br/>
+        /// same budget, so one side may exceed the named size. Tiers above<br/>
+        /// 2k are produced by upscaling after generation. Defaults to 1k.<br/>
+        /// Default Value: 1k
+        /// </param>
+        /// <param name="renderingSpeed">
+        /// The rendering speed to use.<br/>
+        /// Default Value: default
+        /// </param>
+        /// <param name="enableCopyrightDetection">
+        /// Optional. Run copyright detection on the generated images. Adds latency; flagged images are returned with `is_image_safe: false`.
+        /// </param>
+        /// <param name="async">
+        /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
+        /// Default Value: false
+        /// </param>
+        /// <param name="webhookUrl">
+        /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
+        /// JSON POST to this URL once all images for the request have finished<br/>
+        /// generating. The body mirrors the synchronous generate response:<br/>
+        /// `request_id`, `created`, and a `data` array<br/>
+        /// containing every generated image (`url`, `prompt`, `resolution`, `seed`,<br/>
+        /// `is_image_safe`). Each delivery is signed with Ed25519 and verifiable<br/>
+        /// against the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;<br/>
+        /// private and loopback hosts and the cloud metadata service are rejected.
+        /// </param>
+#if NET7_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
+#endif
+        public GenerateImageIdeogramV4TransparentRequest(
+            string prompt,
+            global::Ideogram.V2.MagicPromptMode? magicPrompt,
+            int? seed,
+            int? numImages,
+            global::Ideogram.V2.IdeogramV4AspectRatio? aspectRatio,
+            global::Ideogram.V2.GenerateImageIdeogramV4TransparentRequestOutputResolution? outputResolution,
+            global::Ideogram.V2.GenerateImageIdeogramV4TransparentRequestRenderingSpeed? renderingSpeed,
+            bool? enableCopyrightDetection,
+            bool? async,
+            string? webhookUrl)
+        {
+            this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
+            this.MagicPrompt = magicPrompt;
+            this.Seed = seed;
+            this.NumImages = numImages;
+            this.AspectRatio = aspectRatio;
+            this.OutputResolution = outputResolution;
+            this.RenderingSpeed = renderingSpeed;
+            this.EnableCopyrightDetection = enableCopyrightDetection;
+            this.Async = async;
+            this.WebhookUrl = webhookUrl;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GenerateImageIdeogramV4TransparentRequest" /> class.
+        /// </summary>
+        public GenerateImageIdeogramV4TransparentRequest()
+        {
+        }
+
+    }
+}
