@@ -57,6 +57,15 @@ namespace Ideogram.V2
         public required global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedTextBlock> TextBlocks { get; set; }
 
         /// <summary>
+        /// Transparent image layers stacked above the base image and below the<br/>
+        /// text blocks, back to front. Design Layerizer fills this with the<br/>
+        /// design's separated artwork, including any text it could not rebuild;<br/>
+        /// Text Layerizer leaves it empty.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("image_layers")]
+        public global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedImageLayer>? ImageLayers { get; set; }
+
+        /// <summary>
         /// Signed link to a self-contained HTML page displaying the editable<br/>
         /// design, including curved text, gradients, outlines, and shadows. The<br/>
         /// renderer, images, and fonts are embedded in the page, so it keeps<br/>
@@ -110,6 +119,12 @@ namespace Ideogram.V2
         /// <param name="baseImageUrl">
         /// Signed link to the base image with all detected text removed. Empty when the image did not pass safety checks.
         /// </param>
+        /// <param name="imageLayers">
+        /// Transparent image layers stacked above the base image and below the<br/>
+        /// text blocks, back to front. Design Layerizer fills this with the<br/>
+        /// design's separated artwork, including any text it could not rebuild;<br/>
+        /// Text Layerizer leaves it empty.
+        /// </param>
         /// <param name="htmlUrl">
         /// Signed link to a self-contained HTML page displaying the editable<br/>
         /// design, including curved text, gradients, outlines, and shadows. The<br/>
@@ -142,6 +157,7 @@ namespace Ideogram.V2
             global::Ideogram.V2.GenerationResponseDataInnerVariant6ObjectType objectType,
             string? url,
             string? baseImageUrl,
+            global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedImageLayer>? imageLayers,
             string? htmlUrl)
         {
             this.ObjectType = objectType;
@@ -151,6 +167,7 @@ namespace Ideogram.V2
             this.IsImageSafe = isImageSafe;
             this.Seed = seed;
             this.TextBlocks = textBlocks ?? throw new global::System.ArgumentNullException(nameof(textBlocks));
+            this.ImageLayers = imageLayers;
             this.HtmlUrl = htmlUrl;
         }
 

@@ -4,17 +4,17 @@
 namespace Ideogram.V2
 {
     /// <summary>
-    /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.<br/>
+    /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher. This is the only field that affects the price: the size of the image you send does not change it, and neither does `context_window`.<br/>
     /// Default Value: medium
     /// </summary>
     public enum V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality
     {
         /// <summary>
-        ///
+        /// the size of the image you send does not change it, and neither does `context_window`.
         /// </summary>
         High,
         /// <summary>
-        ///
+        /// the size of the image you send does not change it, and neither does `context_window`.
         /// </summary>
         Low,
         /// <summary>
@@ -22,7 +22,7 @@ namespace Ideogram.V2
         /// </summary>
         Medium,
         /// <summary>
-        ///
+        /// the size of the image you send does not change it, and neither does `context_window`.
         /// </summary>
         VeryLow,
     }

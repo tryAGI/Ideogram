@@ -188,6 +188,48 @@ namespace Ideogram.V2
                                 }
 
                             }
+                            if (request.Mask != default)
+                            {
+
+                                var __contentMask = new global::System.Net.Http.ByteArrayContent(request.Mask ?? global::System.Array.Empty<byte>());
+                                __contentMask.Headers.ContentType = new global::System.Net.Http.Headers.MediaTypeHeaderValue(
+                                    request.Maskname is null
+                                        ? "application/octet-stream"
+                                        : (global::System.IO.Path.GetExtension(request.Maskname) ?? string.Empty).ToLowerInvariant() switch
+                                        {
+                                            ".aac" => "audio/aac",
+                                            ".flac" => "audio/flac",
+                                            ".gif" => "image/gif",
+                                            ".jpeg" => "image/jpeg",
+                                            ".jpg" => "image/jpeg",
+                                            ".json" => "application/json",
+                                            ".m4a" => "audio/mp4",
+                                            ".mp3" => "audio/mpeg",
+                                            ".mp4" => "video/mp4",
+                                            ".mpeg" => "audio/mpeg",
+                                            ".mpga" => "audio/mpeg",
+                                            ".oga" => "audio/ogg",
+                                            ".ogg" => "audio/ogg",
+                                            ".opus" => "audio/ogg",
+                                            ".pdf" => "application/pdf",
+                                            ".png" => "image/png",
+                                            ".txt" => "text/plain",
+                                            ".wav" => "audio/wav",
+                                            ".weba" => "audio/webm",
+                                            ".webm" => "video/webm",
+                                            ".webp" => "image/webp",
+                                            _ => "application/octet-stream",
+                                        });
+                                __httpRequestContent.Add(
+                                    content: __contentMask,
+                                    name: "\"mask\"",
+                                    fileName: request.Maskname != null ? $"\"{request.Maskname}\"" : string.Empty);
+                                if (__contentMask.Headers.ContentDisposition != null)
+                                {
+                                    __contentMask.Headers.ContentDisposition.FileNameStar = null;
+                                }
+
+                            }
                             if (request.NumImages != default)
                             {
 
@@ -802,6 +844,12 @@ namespace Ideogram.V2
         /// <param name="images">
         /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
+        /// <param name="mask">
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
+        /// </param>
+        /// <param name="maskname">
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
+        /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
@@ -841,6 +889,8 @@ namespace Ideogram.V2
             string prompt,
             bool? dryRun = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
+            byte[]? mask = default,
+            string? maskname = default,
             int? numImages = default,
             int? seed = default,
             string? aspectRatio = default,
@@ -854,6 +904,8 @@ namespace Ideogram.V2
             {
                 Prompt = prompt,
                 Images = images,
+                Mask = mask,
+                Maskname = maskname,
                 NumImages = numImages,
                 Seed = seed,
                 AspectRatio = aspectRatio,
