@@ -861,10 +861,10 @@ namespace Ideogram.V2
         /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
         /// <param name="mask">
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
         /// </param>
         /// <param name="maskname">
-        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request.
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
         /// </param>
         /// <param name="background">
         /// The output background. `transparent` returns images with an alpha channel, `opaque` forces a solid background, and `auto` lets the model decide from the prompt.<br/>

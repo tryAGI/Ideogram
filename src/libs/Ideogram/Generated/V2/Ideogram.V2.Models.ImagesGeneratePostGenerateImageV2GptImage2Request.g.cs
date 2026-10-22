@@ -22,6 +22,18 @@ namespace Ideogram.V2
         public global::System.Collections.Generic.IList<byte[]>? Images { get; set; }
 
         /// <summary>
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("mask")]
+        public byte[]? Mask { get; set; }
+
+        /// <summary>
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("maskname")]
+        public string? Maskname { get; set; }
+
+        /// <summary>
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </summary>
@@ -86,6 +98,12 @@ namespace Ideogram.V2
         /// <param name="images">
         /// Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only.
         /// </param>
+        /// <param name="mask">
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
+        /// </param>
+        /// <param name="maskname">
+        /// An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request.
+        /// </param>
         /// <param name="numImages">
         /// The number of images to generate.<br/>
         /// Default Value: 1
@@ -124,6 +142,8 @@ namespace Ideogram.V2
         public ImagesGeneratePostGenerateImageV2GptImage2Request(
             string prompt,
             global::System.Collections.Generic.IList<byte[]>? images,
+            byte[]? mask,
+            string? maskname,
             int? numImages,
             int? seed,
             string? aspectRatio,
@@ -133,6 +153,8 @@ namespace Ideogram.V2
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Images = images;
+            this.Mask = mask;
+            this.Maskname = maskname;
             this.NumImages = numImages;
             this.Seed = seed;
             this.AspectRatio = aspectRatio;

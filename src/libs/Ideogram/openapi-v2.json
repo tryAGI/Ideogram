@@ -9,7 +9,7 @@
       "post": {
         "operationId": "imagesPreciseEdit_post_precise_edit_image_v2_ideogram45",
         "summary": "Precise edit with Ideogram 4.5",
-        "description": "Edit an image with Ideogram 4.5 and get the result back at that image's\nexact width and height. Upload the image as `image` using\n`multipart/form-data`, with optional `reference_images` and a `mask`.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n\n`context_window` confines the edit to one region of the image, so a\nlarge image keeps its detail: pass `y_min,x_min,y_max,x_max`, or `auto`\ntogether with a `mask`. The result always keeps the image's own width\nand height.\n",
+        "description": "Edit an image with Ideogram 4.5 and get the result back at that image's\nexact width and height. Upload the image as `image` using\n`multipart/form-data`, with optional `reference_images` and a `mask`.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n\nEditing the whole image is bounded by 4194304 pixels (the area of a\n2048x2048 square), so a larger image comes back scaled down to fit: an\n8192x8192 image returns as 2048x2048.\n\nTo edit a 4K or 8K image at its full resolution, set `context_window`\nto confine the edit to one region, either `auto` together with a\n`mask`, or `y_min,x_min,y_max,x_max` to name the region yourself. Only\nthat region changes, the rest of the image comes back unchanged, and\nthe result keeps the image's own width and height at any input size.\n\n```bash\ncurl -X POST https://api.ideogram.ai/v2/image/precise-edit/ideogram-4-5 \\\n  -H \"Api-Key: $IDEOGRAM_API_KEY\" \\\n  -F image=@photo_8k.png \\\n  -F mask=@mask_8k.png \\\n  -F context_window=auto \\\n  -F prompt=\"Add round black sunglasses.\"\n```\n",
         "tags": [
           "images-precise-edit"
         ],
@@ -123,7 +123,7 @@
                   "image": {
                     "type": "string",
                     "format": "binary",
-                    "description": "The image to edit, as raw bytes (max 50MB; JPEG, PNG, or WEBP). Multipart requests only; ignored if `image_asset_identifier` is also supplied. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it."
+                    "description": "The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only, and ignored when the same image is also supplied by reference. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels."
                   },
                   "reference_images": {
                     "type": "array",
@@ -131,7 +131,7 @@
                       "type": "string",
                       "format": "binary"
                     },
-                    "description": "Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only; ignored if `reference_image_asset_identifiers` is also supplied. A request with a `mask` can include at most three, because the mask takes up one reference slot."
+                    "description": "Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only, and ignored when the same references are also supplied by reference. A request with a `mask` can include at most three, because the mask takes up one reference slot."
                   },
                   "mask": {
                     "type": "string",
@@ -142,12 +142,12 @@
                     "type": "string",
                     "pattern": "^(none|auto|[0-9]+,[0-9]+,[0-9]+,[0-9]+)$",
                     "default": "none",
-                    "description": "Which region of the image to edit.\n`none`, the default, edits the whole image. A large image may come back smaller than it was sent.\n`auto` requires a `mask` and automatically selects an appropriate context region around the masked area.\n`y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, only that region changes and the output keeps the image's own width and height."
+                    "description": "Which region of the image to edit. Set this to keep the full resolution of an image larger than 4194304 pixels.\n`none`, the default, edits the whole image, which is bounded by 4194304 pixels (the area of a 2048x2048 square); a larger image comes back scaled down to fit. For example, an 8192x8192 image returns as 2048x2048.\n`auto` requires a `mask` and fits a region around the masked area. If the mask selects more than 4194304 pixels no region fits it, and the request falls back to editing the whole image, scaled down as above.\n`y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, only that region changes, the rest of the image comes back unchanged, and the output keeps the image's own width and height at any input size."
                   },
                   "quality": {
                     "$ref": "#/components/schemas/V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality",
                     "default": "medium",
-                    "description": "The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher."
+                    "description": "The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher. This is the only field that affects the price: the size of the image you send does not change it, and neither does `context_window`."
                   },
                   "seed": {
                     "type": "integer",
@@ -2110,7 +2110,7 @@
                   "mask": {
                     "type": "string",
                     "format": "binary",
-                    "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request."
+                    "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request."
                   },
                   "background": {
                     "$ref": "#/components/schemas/V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaBackground",
@@ -2295,7 +2295,7 @@
                   "mask": {
                     "type": "string",
                     "format": "binary",
-                    "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. Fully transparent pixels mark the areas to edit. The mask must have the same dimensions as the first source image, and requires source images in the same request."
+                    "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request."
                   },
                   "background": {
                     "$ref": "#/components/schemas/V2ImageGenerateGptImage25SunburstPostRequestBodyContentMultipartFormDataSchemaBackground",
@@ -2476,6 +2476,11 @@
                       "format": "binary"
                     },
                     "description": "Optional source images to edit (max 16, max 25MB each; JPEG, PNG, or WEBP). Multipart requests only."
+                  },
+                  "mask": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "An optional mask for the first source image (max 25MB; JPEG, PNG, or WEBP). Multipart requests only. White pixels mark the area to edit and black pixels mark the area to keep. The mask must have the same dimensions as the first source image and requires source images in the same request."
                   },
                   "num_images": {
                     "type": "integer",
@@ -8677,7 +8682,7 @@
                   "prompt": {
                     "type": "string",
                     "minLength": 1,
-                    "maxLength": 2000,
+                    "maxLength": 30000,
                     "description": "A natural-language prompt describing how the first frame should animate."
                   },
                   "resolution": {
@@ -8849,7 +8854,7 @@
                   "prompt": {
                     "type": "string",
                     "minLength": 1,
-                    "maxLength": 2000,
+                    "maxLength": 30000,
                     "description": "A natural-language prompt describing the video to produce. Refer to references by position, as in \"[Image1] walks toward the camera\"."
                   },
                   "reference_images": {
@@ -9532,6 +9537,324 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/GenerateVideoSeedDance2TextToVideoRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/svg/generate/ideogram-vector-1": {
+      "post": {
+        "operationId": "svgGenerate_post_generate_svg",
+        "summary": "Generate SVG",
+        "description": "Generates SVG artwork from a prompt and optional image references.",
+        "tags": [
+          "svg-generate"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Generation accepted. Dry runs return a PriceQuote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateSvgResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid prompt, references, or settings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reference not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Generation is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 9500
+                  },
+                  "image_asset_identifiers": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AssetIdentifier"
+                    },
+                    "description": "Existing uploaded or generated image references. Takes priority over images when both are supplied. The first image is the primary source; any others are additional references."
+                  },
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "description": "Source images to transform, supplied as multipart file uploads. The first image is the primary source; any others are additional references."
+                  },
+                  "aspect_ratio": {
+                    "$ref": "#/components/schemas/IdeogramV4AspectRatio",
+                    "default": "auto"
+                  },
+                  "quality": {
+                    "$ref": "#/components/schemas/V2SvgGenerateIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaQuality",
+                    "default": "medium"
+                  },
+                  "num_images": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 8,
+                    "default": 1
+                  },
+                  "seed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2147483647
+                  },
+                  "private": {
+                    "type": "boolean",
+                    "description": "Outputs are private by default. Enterprise outputs are always private."
+                  },
+                  "target_collection_id": {
+                    "type": "string",
+                    "description": "URL-safe base64 ID of a writable destination collection."
+                  },
+                  "webhook_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 2048,
+                    "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/svg/vectorize/ideogram-vector-1": {
+      "post": {
+        "operationId": "svgGenerate_post_vectorizer",
+        "summary": "Vectorizer",
+        "description": "Converts an image to SVG asynchronously.",
+        "tags": [
+          "svg-generate"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Conversion accepted; dry runs return the shared PriceQuote response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VectorizerResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid source image or input combination.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Insufficient credits.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Source not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Conversion is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "JPEG, PNG or WEBP source; at most 50 MB. Multipart only."
+                  },
+                  "image_asset_identifier": {
+                    "$ref": "#/components/schemas/AssetIdentifier"
+                  },
+                  "mode": {
+                    "$ref": "#/components/schemas/V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode",
+                    "default": "default",
+                    "description": "Simple draws fewer, simpler shapes; default preserves more fine detail."
+                  },
+                  "group": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Request grouping of shapes into layers. Grouping is not yet available."
+                  },
+                  "private": {
+                    "type": "boolean",
+                    "description": "Outputs are private by default. Enterprise outputs are always private."
+                  },
+                  "target_collection_id": {
+                    "type": "string",
+                    "description": "URL-safe base64 ID of a writable destination collection."
+                  },
+                  "webhook_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 2048,
+                    "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+                  }
+                }
               }
             }
           }
@@ -11288,6 +11611,9 @@
       "name": "video-edit"
     },
     {
+      "name": "svg-generate"
+    },
+    {
       "name": "edit-workflow"
     },
     {
@@ -11314,7 +11640,7 @@
           "high"
         ],
         "default": "medium",
-        "description": "The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher.",
+        "description": "The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher. This is the only field that affects the price: the size of the image you send does not change it, and neither does `context_window`.",
         "title": "V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality"
       },
       "GenerationKind": {
@@ -14984,7 +15310,7 @@
           "prompt": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 2000,
+            "maxLength": 30000,
             "description": "A natural-language prompt describing the video to generate."
           },
           "aspect_ratio": {
@@ -15089,6 +15415,87 @@
         ],
         "description": "Request body for Seedance 2.0 text-to-video generation.",
         "title": "GenerateVideoSeedDance2TextToVideoRequest"
+      },
+      "AssetType": {
+        "type": "string",
+        "enum": [
+          "ASSET",
+          "CANVAS_ASSET",
+          "LAYERED_ASSET",
+          "RESPONSE",
+          "UPLOAD"
+        ],
+        "title": "AssetType"
+      },
+      "AssetIdentifier": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "$ref": "#/components/schemas/AssetType"
+          },
+          "asset_id": {
+            "type": "string"
+          },
+          "collection_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_-]{22}$",
+            "minLength": 22,
+            "maxLength": 22,
+            "description": "Optional collection from which this asset was selected as a generation reference. Records usage attribution; does not grant access to the asset."
+          }
+        },
+        "required": [
+          "asset_type",
+          "asset_id"
+        ],
+        "description": "An identifier for an ideogram asset.",
+        "title": "AssetIdentifier"
+      },
+      "V2SvgGenerateIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaQuality": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "medium",
+        "title": "V2SvgGenerateIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaQuality"
+      },
+      "GenerateSvgResponse": {
+        "type": "object",
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "description": "URL-safe base64 generation ID. Poll the shared generations endpoint for SVG results."
+          }
+        },
+        "required": [
+          "generation_id"
+        ],
+        "title": "GenerateSvgResponse"
+      },
+      "V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode": {
+        "type": "string",
+        "enum": [
+          "simple",
+          "default"
+        ],
+        "default": "default",
+        "description": "Simple draws fewer, simpler shapes; default preserves more fine detail.",
+        "title": "V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode"
+      },
+      "VectorizerResponse": {
+        "type": "object",
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "description": "URL-safe base64 generation ID."
+          }
+        },
+        "required": [
+          "generation_id"
+        ],
+        "title": "VectorizerResponse"
       },
       "V2ToolAdLocalizerPostRequestBodyContentMultipartFormDataSchemaLanguage": {
         "type": "string",
@@ -15271,41 +15678,6 @@
         ],
         "description": "Acknowledgement that the colorway was accepted. Poll\n`GET /v2/generations/{generation_id}` for status and results.\n",
         "title": "ColorwaysResponse"
-      },
-      "AssetType": {
-        "type": "string",
-        "enum": [
-          "ASSET",
-          "CANVAS_ASSET",
-          "LAYERED_ASSET",
-          "RESPONSE",
-          "UPLOAD"
-        ],
-        "title": "AssetType"
-      },
-      "AssetIdentifier": {
-        "type": "object",
-        "properties": {
-          "asset_type": {
-            "$ref": "#/components/schemas/AssetType"
-          },
-          "asset_id": {
-            "type": "string"
-          },
-          "collection_id": {
-            "type": "string",
-            "pattern": "^[A-Za-z0-9_-]{22}$",
-            "minLength": 22,
-            "maxLength": 22,
-            "description": "Optional collection from which this asset was selected as a generation reference. Records usage attribution; does not grant access to the asset."
-          }
-        },
-        "required": [
-          "asset_type",
-          "asset_id"
-        ],
-        "description": "An identifier for an ideogram asset.",
-        "title": "AssetIdentifier"
       },
       "V2ToolGhostMannequinPostRequestBodyContentMultipartFormDataSchemaView": {
         "type": "string",
@@ -15612,6 +15984,41 @@
         "description": "A single detected text region with its position, content, font information, and styling.",
         "title": "LayerizedTextBlock"
       },
+      "LayerizedImageLayer": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Signed link to the layer as a transparent PNG, cropped to its visible pixels. Links are available for a limited period of time."
+          },
+          "x": {
+            "type": "integer",
+            "description": "Left edge of the layer on the design's canvas, in pixels."
+          },
+          "y": {
+            "type": "integer",
+            "description": "Top edge of the layer on the design's canvas, in pixels."
+          },
+          "width": {
+            "type": "integer",
+            "description": "Width of the layer, in pixels."
+          },
+          "height": {
+            "type": "integer",
+            "description": "Height of the layer, in pixels."
+          }
+        },
+        "required": [
+          "url",
+          "x",
+          "y",
+          "width",
+          "height"
+        ],
+        "description": "One transparent image layer of a layerized design, placed at its\nposition on the design's canvas.\n",
+        "title": "LayerizedImageLayer"
+      },
       "GenerationResponse_data_inner": {
         "oneOf": [
           {
@@ -15888,6 +16295,13 @@
                   "$ref": "#/components/schemas/LayerizedTextBlock"
                 },
                 "description": "Flat list of detected text regions in the design."
+              },
+              "image_layers": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizedImageLayer"
+                },
+                "description": "Transparent image layers stacked above the base image and below the\ntext blocks, back to front. Design Layerizer fills this with the\ndesign's separated artwork, including any text it could not rebuild;\nText Layerizer leaves it empty.\n"
               },
               "html_url": {
                 "type": [
