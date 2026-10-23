@@ -9832,13 +9832,8 @@
                   },
                   "mode": {
                     "$ref": "#/components/schemas/V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode",
-                    "default": "default",
-                    "description": "Simple draws fewer, simpler shapes; default preserves more fine detail."
-                  },
-                  "group": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Request grouping of shapes into layers. Grouping is not yet available."
+                    "default": "auto",
+                    "description": "Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image."
                   },
                   "private": {
                     "type": "boolean",
@@ -15478,10 +15473,11 @@
         "type": "string",
         "enum": [
           "simple",
-          "default"
+          "detailed",
+          "auto"
         ],
-        "default": "default",
-        "description": "Simple draws fewer, simpler shapes; default preserves more fine detail.",
+        "default": "auto",
+        "description": "Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image.",
         "title": "V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode"
       },
       "VectorizerResponse": {

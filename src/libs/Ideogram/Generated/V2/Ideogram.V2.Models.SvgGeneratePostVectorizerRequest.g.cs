@@ -27,19 +27,12 @@ namespace Ideogram.V2
         public global::Ideogram.V2.AssetIdentifier? ImageAssetIdentifier { get; set; }
 
         /// <summary>
-        /// Simple draws fewer, simpler shapes; default preserves more fine detail.<br/>
-        /// Default Value: default
+        /// Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("mode")]
         [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaModeJsonConverter))]
         public global::Ideogram.V2.V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode? Mode { get; set; }
-
-        /// <summary>
-        /// Request grouping of shapes into layers. Grouping is not yet available.<br/>
-        /// Default Value: false
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("group")]
-        public bool? Group { get; set; }
 
         /// <summary>
         /// Outputs are private by default. Enterprise outputs are always private.
@@ -85,12 +78,8 @@ namespace Ideogram.V2
         /// An identifier for an ideogram asset.
         /// </param>
         /// <param name="mode">
-        /// Simple draws fewer, simpler shapes; default preserves more fine detail.<br/>
-        /// Default Value: default
-        /// </param>
-        /// <param name="group">
-        /// Request grouping of shapes into layers. Grouping is not yet available.<br/>
-        /// Default Value: false
+        /// Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
@@ -116,7 +105,6 @@ namespace Ideogram.V2
             string? imagename,
             global::Ideogram.V2.AssetIdentifier? imageAssetIdentifier,
             global::Ideogram.V2.V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode? mode,
-            bool? group,
             bool? @private,
             string? targetCollectionId,
             string? webhookUrl)
@@ -125,7 +113,6 @@ namespace Ideogram.V2
             this.Imagename = imagename;
             this.ImageAssetIdentifier = imageAssetIdentifier;
             this.Mode = mode;
-            this.Group = group;
             this.Private = @private;
             this.TargetCollectionId = targetCollectionId;
             this.WebhookUrl = webhookUrl;
