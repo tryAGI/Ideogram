@@ -4,15 +4,19 @@
 namespace Ideogram.V2
 {
     /// <summary>
-    /// Simple draws fewer, simpler shapes; default preserves more fine detail.<br/>
-    /// Default Value: default
+    /// Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image.<br/>
+    /// Default Value: auto
     /// </summary>
     public enum V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode
     {
         /// <summary>
         ///
         /// </summary>
-        Default,
+        Auto,
+        /// <summary>
+        ///
+        /// </summary>
+        Detailed,
         /// <summary>
         ///
         /// </summary>
@@ -31,7 +35,8 @@ namespace Ideogram.V2
         {
             return value switch
             {
-                V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Default => "default",
+                V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Auto => "auto",
+                V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Detailed => "detailed",
                 V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Simple => "simple",
                 _ => throw new global::System.ArgumentOutOfRangeException(nameof(value), value, null),
             };
@@ -43,7 +48,8 @@ namespace Ideogram.V2
         {
             return value switch
             {
-                "default" => V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Default,
+                "auto" => V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Auto,
+                "detailed" => V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Detailed,
                 "simple" => V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode.Simple,
                 _ => null,
             };

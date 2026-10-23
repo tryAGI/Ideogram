@@ -55,12 +55,8 @@ namespace Ideogram.V2
         /// An identifier for an ideogram asset.
         /// </param>
         /// <param name="mode">
-        /// Simple draws fewer, simpler shapes; default preserves more fine detail.<br/>
-        /// Default Value: default
-        /// </param>
-        /// <param name="group">
-        /// Request grouping of shapes into layers. Grouping is not yet available.<br/>
-        /// Default Value: false
+        /// Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
@@ -87,7 +83,6 @@ namespace Ideogram.V2
             string? imagename = default,
             global::Ideogram.V2.AssetIdentifier? imageAssetIdentifier = default,
             global::Ideogram.V2.V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode? mode = default,
-            bool? group = default,
             bool? @private = default,
             string? targetCollectionId = default,
             string? webhookUrl = default,
