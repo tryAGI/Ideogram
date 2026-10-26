@@ -478,6 +478,7 @@ namespace Ideogram.V2
     #pragma warning restore CS3016
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2.IdeogramV2SourceGenerationContextTypes))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::System.Collections.Generic.List<object>), TypeInfoPropertyName = "SystemCollectionsGeneric_ObjectList")]
+    [global::System.Text.Json.Serialization.JsonSerializable(typeof(string[]))]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2.V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality), TypeInfoPropertyName = "V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2.GenerationKind), TypeInfoPropertyName = "GenerationKind2")]
     [global::System.Text.Json.Serialization.JsonSerializable(typeof(global::Ideogram.V2.GeneratedImageObject))]
