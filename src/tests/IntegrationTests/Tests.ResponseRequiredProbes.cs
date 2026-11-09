@@ -31,6 +31,17 @@ public partial class Tests
     }
 
     [TestMethod]
+    public async Task CustomModelsResponseDeserializes()
+    {
+        var client = GetAuthenticatedClient();
+
+        // ListModelsResponse.models
+        var response = await client.Models.ListCustomModelsAsync();
+
+        response.Should().NotBeNull();
+    }
+
+    [TestMethod]
     public async Task DatasetsResponseDeserializes()
     {
         var client = GetAuthenticatedClient();
