@@ -85,9 +85,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="numImages">
         /// Number of localized variations to create for this language.<br/>
         /// Default Value: 1
@@ -113,7 +110,6 @@ namespace Ideogram.V2
             string? exactCopy = default,
             string? prompt = default,
             global::Ideogram.V2.AdLocalizerQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -156,9 +152,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="numImages">
         /// Number of localized variations to create for this language.<br/>
         /// Default Value: 1
@@ -184,7 +177,6 @@ namespace Ideogram.V2
             string? exactCopy = default,
             string? prompt = default,
             global::Ideogram.V2.AdLocalizerQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -226,9 +218,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="numImages">
         /// Number of localized variations to create for this language.<br/>
         /// Default Value: 1
@@ -254,7 +243,6 @@ namespace Ideogram.V2
             string? exactCopy = default,
             string? prompt = default,
             global::Ideogram.V2.AdLocalizerQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,

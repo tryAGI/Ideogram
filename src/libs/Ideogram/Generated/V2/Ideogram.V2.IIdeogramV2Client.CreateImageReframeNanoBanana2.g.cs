@@ -63,18 +63,9 @@ namespace Ideogram.V2
         /// <param name="aspectRatio">
         /// Aspect ratios Nano Banana 2 can reframe an image to.
         /// </param>
-        /// <param name="private">
-        /// API-key requests are always private. For bearer-authenticated<br/>
-        /// requests, this controls whether the result is private; when<br/>
-        /// omitted, it follows the caller's plan entitlement. Enterprise<br/>
-        /// generations are always private.
-        /// </param>
         /// <param name="numImages">
         /// The number of output images to generate.<br/>
         /// Default Value: 1
-        /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -84,9 +75,7 @@ namespace Ideogram.V2
             string imagename,
             global::Ideogram.V2.NanoBanana2ReframeAspectRatio aspectRatio,
             bool? dryRun = default,
-            bool? @private = default,
             int? numImages = default,
-            int? seed = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
 
@@ -109,18 +98,9 @@ namespace Ideogram.V2
         /// <param name="aspectRatio">
         /// Aspect ratios Nano Banana 2 can reframe an image to.
         /// </param>
-        /// <param name="private">
-        /// API-key requests are always private. For bearer-authenticated<br/>
-        /// requests, this controls whether the result is private; when<br/>
-        /// omitted, it follows the caller's plan entitlement. Enterprise<br/>
-        /// generations are always private.
-        /// </param>
         /// <param name="numImages">
         /// The number of output images to generate.<br/>
         /// Default Value: 1
-        /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -130,9 +110,7 @@ namespace Ideogram.V2
             string imagename,
             global::Ideogram.V2.NanoBanana2ReframeAspectRatio aspectRatio,
             bool? dryRun = default,
-            bool? @private = default,
             int? numImages = default,
-            int? seed = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
         /// <summary>
@@ -154,18 +132,9 @@ namespace Ideogram.V2
         /// <param name="aspectRatio">
         /// Aspect ratios Nano Banana 2 can reframe an image to.
         /// </param>
-        /// <param name="private">
-        /// API-key requests are always private. For bearer-authenticated<br/>
-        /// requests, this controls whether the result is private; when<br/>
-        /// omitted, it follows the caller's plan entitlement. Enterprise<br/>
-        /// generations are always private.
-        /// </param>
         /// <param name="numImages">
         /// The number of output images to generate.<br/>
         /// Default Value: 1
-        /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
         /// </param>
         /// <param name="requestOptions">Per-request overrides such as headers, query parameters, timeout, retries, and response buffering.</param>
         /// <param name="cancellationToken">The token to cancel the operation with</param>
@@ -175,9 +144,7 @@ namespace Ideogram.V2
             string imagename,
             global::Ideogram.V2.NanoBanana2ReframeAspectRatio aspectRatio,
             bool? dryRun = default,
-            bool? @private = default,
             int? numImages = default,
-            int? seed = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);
     }

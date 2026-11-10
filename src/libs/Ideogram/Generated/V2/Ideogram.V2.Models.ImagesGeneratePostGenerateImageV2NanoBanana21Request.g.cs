@@ -45,12 +45,6 @@ namespace Ideogram.V2
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int? Seed { get; set; }
-
-        /// <summary>
         /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
@@ -97,9 +91,6 @@ namespace Ideogram.V2
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
@@ -123,7 +114,6 @@ namespace Ideogram.V2
             global::Ideogram.V2.NanoBanana21AspectRatio? aspectRatio,
             global::Ideogram.V2.V2ImageGenerateNanoBanana21PostRequestBodyContentMultipartFormDataSchemaResolutionTier? resolutionTier,
             int? numImages,
-            int? seed,
             bool? async,
             string? webhookUrl)
         {
@@ -132,7 +122,6 @@ namespace Ideogram.V2
             this.AspectRatio = aspectRatio;
             this.ResolutionTier = resolutionTier;
             this.NumImages = numImages;
-            this.Seed = seed;
             this.Async = async;
             this.WebhookUrl = webhookUrl;
         }

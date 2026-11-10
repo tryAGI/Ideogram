@@ -51,11 +51,11 @@ namespace Ideogram.V2
 
         /// <summary>
         /// Which region of the image to edit. Set this to keep the full resolution of an image larger than 4194304 pixels.<br/>
-        /// `none`, the default, edits the whole image, which is bounded by 4194304 pixels (the area of a 2048x2048 square); a larger image comes back scaled down to fit. For example, an 8192x8192 image returns as 2048x2048.<br/>
-        /// `auto` requires a `mask` and fits a region around the masked area. If the mask selects more than 4194304 pixels no region fits it, and the request falls back to editing the whole image, scaled down as above.<br/>
+        /// `none` edits the whole image, which is bounded by 4194304 pixels (the area of a 2048x2048 square); a larger image comes back scaled down to fit. For example, an 8192x8192 image returns as 2048x2048.<br/>
+        /// `auto`, the default, fits a region around the masked area when a `mask` or `mask_asset_identifier` is supplied. Without a mask, it behaves the same as `none`. If the mask selects more than 4194304 pixels no region fits it, and the request falls back to editing the whole image, scaled down as above.<br/>
         /// `y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.<br/>
-        /// With `auto` or an explicit region, only that region changes, the rest of the image comes back unchanged, and the output keeps the image's own width and height at any input size.<br/>
-        /// Default Value: none
+        /// When `auto` finds a region, or with an explicit region, only that region changes, the rest of the image comes back unchanged, and the output keeps the image's own width and height at any input size.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("context_window")]
         public string? ContextWindow { get; set; }
@@ -138,11 +138,11 @@ namespace Ideogram.V2
         /// </param>
         /// <param name="contextWindow">
         /// Which region of the image to edit. Set this to keep the full resolution of an image larger than 4194304 pixels.<br/>
-        /// `none`, the default, edits the whole image, which is bounded by 4194304 pixels (the area of a 2048x2048 square); a larger image comes back scaled down to fit. For example, an 8192x8192 image returns as 2048x2048.<br/>
-        /// `auto` requires a `mask` and fits a region around the masked area. If the mask selects more than 4194304 pixels no region fits it, and the request falls back to editing the whole image, scaled down as above.<br/>
+        /// `none` edits the whole image, which is bounded by 4194304 pixels (the area of a 2048x2048 square); a larger image comes back scaled down to fit. For example, an 8192x8192 image returns as 2048x2048.<br/>
+        /// `auto`, the default, fits a region around the masked area when a `mask` or `mask_asset_identifier` is supplied. Without a mask, it behaves the same as `none`. If the mask selects more than 4194304 pixels no region fits it, and the request falls back to editing the whole image, scaled down as above.<br/>
         /// `y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.<br/>
-        /// With `auto` or an explicit region, only that region changes, the rest of the image comes back unchanged, and the output keeps the image's own width and height at any input size.<br/>
-        /// Default Value: none
+        /// When `auto` finds a region, or with an explicit region, only that region changes, the rest of the image comes back unchanged, and the output keeps the image's own width and height at any input size.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="quality">
         /// The rendering quality to use. `very_low` is the fastest and cheapest, and `high` takes longer and is priced higher. This is the only field that affects the price: the size of the image you send does not change it, and neither does `context_window`.<br/>

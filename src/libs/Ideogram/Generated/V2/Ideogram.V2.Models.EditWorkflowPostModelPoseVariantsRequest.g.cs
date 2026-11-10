@@ -51,12 +51,6 @@ namespace Ideogram.V2
         public global::Ideogram.V2.ModelPoseVariantsQuality? Quality { get; set; }
 
         /// <summary>
-        /// Optional seed for repeatable results.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int? Seed { get; set; }
-
-        /// <summary>
         /// Number of pose variants to create.<br/>
         /// Default Value: 1
         /// </summary>
@@ -108,9 +102,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="numImages">
         /// Number of pose variants to create.<br/>
         /// Default Value: 1
@@ -134,7 +125,6 @@ namespace Ideogram.V2
             string instruction,
             string? aspectRatio,
             global::Ideogram.V2.ModelPoseVariantsQuality? quality,
-            int? seed,
             int? numImages,
             string? webhookUrl)
         {
@@ -143,7 +133,6 @@ namespace Ideogram.V2
             this.Instruction = instruction ?? throw new global::System.ArgumentNullException(nameof(instruction));
             this.AspectRatio = aspectRatio;
             this.Quality = quality;
-            this.Seed = seed;
             this.NumImages = numImages;
             this.WebhookUrl = webhookUrl;
         }

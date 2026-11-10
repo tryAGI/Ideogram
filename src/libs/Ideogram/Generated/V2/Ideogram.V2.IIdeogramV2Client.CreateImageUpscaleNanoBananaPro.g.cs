@@ -73,9 +73,6 @@ namespace Ideogram.V2
         /// The output resolution tier. The model sizes its output by tier at the source image's aspect ratio; exact pixel dimensions cannot be requested. Rejected when the source is already at or above the requested tier. Defaults to "2K".<br/>
         /// Default Value: 2K
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -99,7 +96,6 @@ namespace Ideogram.V2
             bool? dryRun = default,
             string? prompt = default,
             global::Ideogram.V2.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier? resolutionTier = default,
-            int? seed = default,
             bool? async = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -130,9 +126,6 @@ namespace Ideogram.V2
         /// The output resolution tier. The model sizes its output by tier at the source image's aspect ratio; exact pixel dimensions cannot be requested. Rejected when the source is already at or above the requested tier. Defaults to "2K".<br/>
         /// Default Value: 2K
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -156,7 +149,6 @@ namespace Ideogram.V2
             bool? dryRun = default,
             string? prompt = default,
             global::Ideogram.V2.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier? resolutionTier = default,
-            int? seed = default,
             bool? async = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -186,9 +178,6 @@ namespace Ideogram.V2
         /// The output resolution tier. The model sizes its output by tier at the source image's aspect ratio; exact pixel dimensions cannot be requested. Rejected when the source is already at or above the requested tier. Defaults to "2K".<br/>
         /// Default Value: 2K
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -212,7 +201,6 @@ namespace Ideogram.V2
             bool? dryRun = default,
             string? prompt = default,
             global::Ideogram.V2.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier? resolutionTier = default,
-            int? seed = default,
             bool? async = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,

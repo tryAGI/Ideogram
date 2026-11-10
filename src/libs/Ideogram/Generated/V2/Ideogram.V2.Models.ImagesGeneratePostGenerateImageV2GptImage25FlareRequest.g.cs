@@ -57,13 +57,8 @@ namespace Ideogram.V2
         public int? NumImages { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int? Seed { get; set; }
-
-        /// <summary>
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". Ignored when `resolution` is provided. Defaults to "1:1".
+        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". "auto" (the default) lets the model choose the size: a generation picks a shape that suits the prompt, and an edit follows its first source image. Ignored when `resolution` is provided.<br/>
+        /// Default Value: auto
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("aspect_ratio")]
         public string? AspectRatio { get; set; }
@@ -132,11 +127,9 @@ namespace Ideogram.V2
         /// The number of images to generate.<br/>
         /// Default Value: 1
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="aspectRatio">
-        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". Ignored when `resolution` is provided. Defaults to "1:1".
+        /// The requested output aspect ratio, for example "1:1", "16:9", or "9:16". "auto" (the default) lets the model choose the size: a generation picks a shape that suits the prompt, and an edit follows its first source image. Ignored when `resolution` is provided.<br/>
+        /// Default Value: auto
         /// </param>
         /// <param name="resolution">
         /// Exact output resolution, formatted as "WIDTHxHEIGHT", for example<br/>
@@ -171,7 +164,6 @@ namespace Ideogram.V2
             global::Ideogram.V2.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaBackground? background,
             global::Ideogram.V2.V2ImageGenerateGptImage25FlarePostRequestBodyContentMultipartFormDataSchemaQuality? quality,
             int? numImages,
-            int? seed,
             string? aspectRatio,
             string? resolution,
             bool? async,
@@ -184,7 +176,6 @@ namespace Ideogram.V2
             this.Background = background;
             this.Quality = quality;
             this.NumImages = numImages;
-            this.Seed = seed;
             this.AspectRatio = aspectRatio;
             this.Resolution = resolution;
             this.Async = async;

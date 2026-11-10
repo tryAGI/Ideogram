@@ -80,12 +80,6 @@ namespace Ideogram.V2
         public global::Ideogram.V2.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection? SubjectDetection { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int? Seed { get; set; }
-
-        /// <summary>
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </summary>
@@ -148,9 +142,6 @@ namespace Ideogram.V2
         /// <param name="subjectDetection">
         /// Where enhancements apply. Omit to let the model choose per image.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -180,7 +171,6 @@ namespace Ideogram.V2
             string? faceEnhancementStrength,
             string? faceEnhancementCreativity,
             global::Ideogram.V2.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection? subjectDetection,
-            int? seed,
             bool? async,
             string? webhookUrl)
         {
@@ -195,7 +185,6 @@ namespace Ideogram.V2
             this.FaceEnhancementStrength = faceEnhancementStrength;
             this.FaceEnhancementCreativity = faceEnhancementCreativity;
             this.SubjectDetection = subjectDetection;
-            this.Seed = seed;
             this.Async = async;
             this.WebhookUrl = webhookUrl;
         }

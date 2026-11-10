@@ -57,12 +57,6 @@ namespace Ideogram.V2
         public global::Ideogram.V2.AdLocalizerQuality? Quality { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int? Seed { get; set; }
-
-        /// <summary>
         /// Number of localized variations to create for this language.<br/>
         /// Default Value: 1
         /// </summary>
@@ -116,9 +110,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="numImages">
         /// Number of localized variations to create for this language.<br/>
         /// Default Value: 1
@@ -143,7 +134,6 @@ namespace Ideogram.V2
             string? exactCopy,
             string? prompt,
             global::Ideogram.V2.AdLocalizerQuality? quality,
-            int? seed,
             int? numImages,
             string? webhookUrl)
         {
@@ -153,7 +143,6 @@ namespace Ideogram.V2
             this.ExactCopy = exactCopy;
             this.Prompt = prompt;
             this.Quality = quality;
-            this.Seed = seed;
             this.NumImages = numImages;
             this.WebhookUrl = webhookUrl;
         }

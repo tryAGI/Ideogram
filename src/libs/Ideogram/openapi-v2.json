@@ -141,8 +141,8 @@
                   "context_window": {
                     "type": "string",
                     "pattern": "^(none|auto|[0-9]+,[0-9]+,[0-9]+,[0-9]+)$",
-                    "default": "none",
-                    "description": "Which region of the image to edit. Set this to keep the full resolution of an image larger than 4194304 pixels.\n`none`, the default, edits the whole image, which is bounded by 4194304 pixels (the area of a 2048x2048 square); a larger image comes back scaled down to fit. For example, an 8192x8192 image returns as 2048x2048.\n`auto` requires a `mask` and fits a region around the masked area. If the mask selects more than 4194304 pixels no region fits it, and the request falls back to editing the whole image, scaled down as above.\n`y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWith `auto` or an explicit region, only that region changes, the rest of the image comes back unchanged, and the output keeps the image's own width and height at any input size."
+                    "default": "auto",
+                    "description": "Which region of the image to edit. Set this to keep the full resolution of an image larger than 4194304 pixels.\n`none` edits the whole image, which is bounded by 4194304 pixels (the area of a 2048x2048 square); a larger image comes back scaled down to fit. For example, an 8192x8192 image returns as 2048x2048.\n`auto`, the default, fits a region around the masked area when a `mask` or `mask_asset_identifier` is supplied. Without a mask, it behaves the same as `none`. If the mask selects more than 4194304 pixels no region fits it, and the request falls back to editing the whole image, scaled down as above.\n`y_min,x_min,y_max,x_max` names the region explicitly, by its corners. Rows come first, matching the `bbox` ordering used elsewhere in this API, and the values are the edited image's own pixels with the origin at its top-left corner. For example `512,1024,2048,3072` is the region 2048 pixels wide and 1536 tall whose top-left corner is 1024 across and 512 down. The maximum edges are exclusive, so the region measures `x_max - x_min` by `y_max - y_min`. It must lie inside the image, measure at least 256px on each side, have an aspect ratio between 1:6 and 6:1, and cover no more than 4194304 pixels. A `mask` may select only pixels inside it.\nWhen `auto` finds a region, or with an explicit region, only that region changes, the rest of the image comes back unchanged, and the output keeps the image's own width and height at any input size."
                   },
                   "quality": {
                     "$ref": "#/components/schemas/V2ImagePreciseEditIdeogram45PostRequestBodyContentMultipartFormDataSchemaQuality",
@@ -366,10 +366,6 @@
                     "minimum": 0,
                     "maximum": 2147483647,
                     "description": "Random seed. Set for reproducible generation."
-                  },
-                  "private": {
-                    "type": "boolean",
-                    "description": "Whether the generated images should be kept private. When omitted, the default follows the caller's plan; some plans always generate privately."
                   },
                   "async": {
                     "type": "boolean",
@@ -2129,15 +2125,10 @@
                     "default": 1,
                     "description": "The number of images to generate."
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
-                  },
                   "aspect_ratio": {
                     "type": "string",
-                    "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". Ignored when `resolution` is provided. Defaults to \"1:1\"."
+                    "default": "auto",
+                    "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". \"auto\" (the default) lets the model choose the size: a generation picks a shape that suits the prompt, and an edit follows its first source image. Ignored when `resolution` is provided."
                   },
                   "resolution": {
                     "type": "string",
@@ -2314,15 +2305,10 @@
                     "default": 1,
                     "description": "The number of images to generate."
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
-                  },
                   "aspect_ratio": {
                     "type": "string",
-                    "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". Ignored when `resolution` is provided. Defaults to \"1:1\"."
+                    "default": "auto",
+                    "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". \"auto\" (the default) lets the model choose the size: a generation picks a shape that suits the prompt, and an edit follows its first source image. Ignored when `resolution` is provided."
                   },
                   "resolution": {
                     "type": "string",
@@ -2489,15 +2475,10 @@
                     "default": 1,
                     "description": "The number of images to generate."
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
-                  },
                   "aspect_ratio": {
                     "type": "string",
-                    "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". Ignored when `resolution` is provided. Defaults to \"1:1\"."
+                    "default": "auto",
+                    "description": "The requested output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". \"auto\" (the default) lets the model choose the size: a generation picks a shape that suits the prompt, and an edit follows its first source image. Ignored when `resolution` is provided."
                   },
                   "resolution": {
                     "type": "string",
@@ -2668,12 +2649,6 @@
                     "default": 1,
                     "description": "The number of images to generate."
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
-                  },
                   "async": {
                     "type": "boolean",
                     "default": false,
@@ -2839,12 +2814,6 @@
                     "default": 1,
                     "description": "The number of images to generate."
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
-                  },
                   "async": {
                     "type": "boolean",
                     "default": false,
@@ -3009,12 +2978,6 @@
                     "maximum": 8,
                     "default": 1,
                     "description": "The number of images to generate."
-                  },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
                   },
                   "async": {
                     "type": "boolean",
@@ -4395,6 +4358,409 @@
         ]
       }
     },
+    "/v2/image/remix/ideogram-2a": {
+      "post": {
+        "operationId": "imagesRemix_post_remix_image_v2_ideogram_v2_a",
+        "summary": "Remix with Ideogram 2a",
+        "description": "Transform an existing image with Ideogram 2a, guided by a text\nprompt. Upload the source `image` using `multipart/form-data`.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n",
+        "tags": [
+          "images-remix"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The remixed images (synchronous requests), or an acknowledgement to poll with `GET /v2/generations/{generation_id}` (`async` requests).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixImageIdeogramV2AResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Insufficient credits or quota.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A referenced resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Use `multipart/form-data` to upload the source `image`.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10000,
+                    "description": "The prompt that guides the remix."
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first."
+                  },
+                  "image_weight": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Optional. How closely the result should follow the source image, from 1 to 100."
+                  },
+                  "seed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2147483647,
+                    "description": "Random seed. Set for reproducible generation."
+                  },
+                  "aspect_ratio": {
+                    "$ref": "#/components/schemas/AspectRatioV3"
+                  },
+                  "rendering_speed": {
+                    "$ref": "#/components/schemas/V2ImageRemixIdeogram2APostRequestBodyContentMultipartFormDataSchemaRenderingSpeed",
+                    "default": "default",
+                    "description": "The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result."
+                  },
+                  "magic_prompt": {
+                    "$ref": "#/components/schemas/MagicPromptMode",
+                    "default": "auto",
+                    "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
+                  },
+                  "num_images": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 8,
+                    "default": 1,
+                    "description": "The number of images to generate."
+                  },
+                  "style_type": {
+                    "$ref": "#/components/schemas/IdeogramV2StyleType"
+                  },
+                  "enable_copyright_detection": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`."
+                  },
+                  "async": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`."
+                  },
+                  "webhook_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 2048,
+                    "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+                  }
+                },
+                "required": [
+                  "prompt",
+                  "image"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/image/remix/ideogram-2": {
+      "post": {
+        "operationId": "imagesRemix_post_remix_image_v2_ideogram_v2",
+        "summary": "Remix with Ideogram 2.0",
+        "description": "Transform an existing image with Ideogram 2.0, guided by a text\nprompt. Upload the source `image` using `multipart/form-data`.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n",
+        "tags": [
+          "images-remix"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The remixed images (synchronous requests), or an acknowledgement to poll with `GET /v2/generations/{generation_id}` (`async` requests).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemixImageIdeogramV2Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Insufficient credits or quota.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A referenced resource was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "Use `multipart/form-data` to upload the source `image`.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 10000,
+                    "description": "The prompt that guides the remix."
+                  },
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The image to transform (max 50MB). JPEG, PNG, and WEBP are supported. Multipart requests only. The uploaded image is saved to your account as the remix's source. Omit `aspect_ratio` to keep its shape; a different requested shape center-crops the source to fit first."
+                  },
+                  "image_weight": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100,
+                    "description": "Optional. How closely the result should follow the source image, from 1 to 100."
+                  },
+                  "negative_prompt": {
+                    "type": "string",
+                    "maxLength": 10000,
+                    "description": "Description of what to exclude from the images. The prompt takes precedence over the negative prompt."
+                  },
+                  "seed": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 2147483647,
+                    "description": "Random seed. Set for reproducible generation."
+                  },
+                  "aspect_ratio": {
+                    "$ref": "#/components/schemas/AspectRatioV3"
+                  },
+                  "rendering_speed": {
+                    "$ref": "#/components/schemas/V2ImageRemixIdeogram2PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed",
+                    "default": "default",
+                    "description": "The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result."
+                  },
+                  "magic_prompt": {
+                    "$ref": "#/components/schemas/MagicPromptMode",
+                    "default": "auto",
+                    "description": "Controls magic prompt (automatic prompt rewriting). Defaults to `auto`."
+                  },
+                  "num_images": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 8,
+                    "default": 1,
+                    "description": "The number of images to generate."
+                  },
+                  "style_type": {
+                    "$ref": "#/components/schemas/IdeogramV2StyleType"
+                  },
+                  "enable_copyright_detection": {
+                    "type": [
+                      "boolean",
+                      "null"
+                    ],
+                    "description": "Optional. Opt this request into post-generation copyright detection. Adds detection latency; flagged images come back with `is_image_safe: false`."
+                  },
+                  "async": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll for completion and results with `GET /v2/generations/{generation_id}` using the returned `generation_id`."
+                  },
+                  "webhook_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 2048,
+                    "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+                  }
+                },
+                "required": [
+                  "prompt",
+                  "image"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/v2/image/inpaint/ideogram-3": {
       "post": {
         "operationId": "imagesInpaint_post_inpaint_image_v2_ideogram_v3",
@@ -5353,22 +5719,12 @@
                   "aspect_ratio": {
                     "$ref": "#/components/schemas/NanoBanana2ReframeAspectRatio"
                   },
-                  "private": {
-                    "type": "boolean",
-                    "description": "API-key requests are always private. For bearer-authenticated\nrequests, this controls whether the result is private; when\nomitted, it follows the caller's plan entitlement. Enterprise\ngenerations are always private.\n"
-                  },
                   "num_images": {
                     "type": "integer",
                     "minimum": 1,
                     "maximum": 4,
                     "default": 1,
                     "description": "The number of output images to generate."
-                  },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
                   }
                 },
                 "required": [
@@ -5680,12 +6036,6 @@
                     "$ref": "#/components/schemas/V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier",
                     "default": "2K",
                     "description": "The output resolution tier. The model sizes its output by tier at the source image's aspect ratio; exact pixel dimensions cannot be requested. Rejected when the source is already at or above the requested tier. Defaults to \"2K\"."
-                  },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
                   },
                   "async": {
                     "type": "boolean",
@@ -6456,12 +6806,6 @@
                     "$ref": "#/components/schemas/V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection",
                     "description": "Where enhancements apply. Omit to let the model choose per image."
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
-                  },
                   "async": {
                     "type": "boolean",
                     "default": false,
@@ -6617,6 +6961,161 @@
                     "minimum": 0,
                     "maximum": 2147483647,
                     "description": "Random seed. Set for reproducible generation."
+                  },
+                  "async": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result."
+                  },
+                  "webhook_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 2048,
+                    "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+                  }
+                },
+                "required": [
+                  "image"
+                ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/image/upscale/topaz-wonder-4": {
+      "post": {
+        "operationId": "imagesUpscale_post_upscale_image_topaz_wonder4",
+        "summary": "Upscale with Topaz Wonder 4",
+        "description": "Upscale an image to 2x or 4x its original resolution while removing\nnoise, blur, and compression artifacts and recovering faces in one\npass; no prompt or model settings are needed. Output is limited to 100\nmegapixels. Upload the source `image` using `multipart/form-data`.\nReturns results directly by default; set `async` or supply a\n`webhook_url` to get a `generation_id` and poll\n`GET /v2/generations/{generation_id}`.\n",
+        "tags": [
+          "images-upscale"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The upscaled image (synchronous requests), or an acknowledgement to poll with `GET /v2/generations/{generation_id}` (`async` requests).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpscaleImageTopazWonder4Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input provided, or the output would exceed 100 megapixels.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Insufficient credits or quota.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The endpoint is not enabled for this account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The source image was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A request to upscale one image with Topaz Wonder 4. Upload the source `image` using `multipart/form-data`.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "The source image to upscale, in a common format such as JPEG, PNG, or WEBP, up to 50MB. Multipart requests only. The uploaded image is used for this request only and is not stored."
+                  },
+                  "upscale_factor": {
+                    "$ref": "#/components/schemas/V2ImageUpscaleTopazWonder4PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor",
+                    "default": "x2",
+                    "description": "How much to enlarge the source image: 2x or 4x its original width and height. Rejected when the output would exceed 100 megapixels."
                   },
                   "async": {
                     "type": "boolean",
@@ -8031,6 +8530,192 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/GenerateVideoKlingV3StandardTextToVideoRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/video/generate/kling-4": {
+      "post": {
+        "operationId": "videoGenerate_post_generate_video_kling4",
+        "summary": "Generate a video with Kling 4.0",
+        "description": "Generate a video from a text prompt with Kling 4.0, at up to 1080p and\n30 seconds. Every other input is optional and they combine freely:\n\n- Frames: up to 10 `frames` in timeline order. The first opens the video,\n  the last of two or more closes it, and the video passes through the\n  rest in between.\n- References: up to 10 `reference_images` and 5 reference videos the\n  prompt refers to as `[Image1]`, `[Video1]`, and so on.\n\nUpload images using `multipart/form-data`, or pass stored assets by\nidentifier. Returns a `generation_id`; poll\n`GET /v2/generations/{generation_id}` or supply a `webhook_url`.\n",
+        "tags": [
+          "video-generate"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An acknowledgement to poll with `GET /v2/generations/{generation_id}`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateVideoKling4Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input provided.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Insufficient credits or quota.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "This account does not have access to this model.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A frame or reference was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "The prompt did not pass safety checks.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The endpoint is temporarily unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "description": "A request to generate a video with Kling 4.0. Upload images using `multipart/form-data`.",
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 11000,
+                    "description": "A natural-language prompt describing the video to generate. Refer to references by position, as in \"[Image1] walks toward the camera\"."
+                  },
+                  "frames": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "description": "Images for the video to pass through, in timeline order, in a common format such as JPEG, PNG, or WEBP, up to 50MB each. The first opens the video and, with two or more, the last closes it. Multipart requests only. Uploaded images are used for this request only and are not stored."
+                  },
+                  "reference_images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "description": "Reference images, in prompt order. Common formats such as JPEG, PNG, and WEBP are supported, up to 50MB each. Multipart requests only. Uploaded images are used for this request only and are not stored."
+                  },
+                  "aspect_ratio": {
+                    "$ref": "#/components/schemas/Kling4AspectRatio"
+                  },
+                  "resolution": {
+                    "$ref": "#/components/schemas/Kling4Resolution",
+                    "default": "1080p"
+                  },
+                  "duration": {
+                    "type": "integer",
+                    "minimum": 3,
+                    "maximum": 30,
+                    "default": 10,
+                    "description": "The length of the generated video in seconds."
+                  },
+                  "webhook_url": {
+                    "type": "string",
+                    "format": "uri",
+                    "maxLength": 2048,
+                    "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ]
               }
             }
           }
@@ -9992,12 +10677,6 @@
                   "quality": {
                     "$ref": "#/components/schemas/AdLocalizerQuality"
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Random seed. Set for reproducible generation."
-                  },
                   "num_images": {
                     "type": "integer",
                     "minimum": 1,
@@ -10654,12 +11333,6 @@
                   "quality": {
                     "$ref": "#/components/schemas/GhostMannequinQuality"
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Optional seed for repeatable results."
-                  },
                   "webhook_url": {
                     "type": "string",
                     "format": "uri",
@@ -10936,12 +11609,6 @@
                   "quality": {
                     "$ref": "#/components/schemas/ModelPoseVariantsQuality"
                   },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Optional seed for repeatable results."
-                  },
                   "num_images": {
                     "type": "integer",
                     "minimum": 1,
@@ -11086,12 +11753,6 @@
                   },
                   "quality": {
                     "$ref": "#/components/schemas/SketchToRenderQuality"
-                  },
-                  "seed": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 2147483647,
-                    "description": "Optional seed for repeatable results."
                   },
                   "num_images": {
                     "type": "integer",
@@ -11409,6 +12070,85 @@
         ]
       }
     },
+    "/v2/design/html/{layerize_id}": {
+      "get": {
+        "operationId": "editWorkflow_get_layerize_html",
+        "summary": "Download Layerize HTML",
+        "description": "Return a standalone HTML document built from the current editable layers.\nImages and fonts are embedded in the response. Use `layerize_id` from a\ncompleted Layerize result. Uploaded fonts supplied through the API may\nexpire, so this request can stop succeeding after their cache lifetime.",
+        "tags": [
+          "edit-workflow"
+        ],
+        "parameters": [
+          {
+            "name": "layerize_id",
+            "in": "path",
+            "description": "URL-safe base64 Layerize ID returned by a completed result.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Standalone HTML document.",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Layerize ID.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Layerize result or one of its required assets was not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "HTML rendering is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/v2/image/replace-background/ideogram-4-5": {
       "post": {
         "operationId": "tool_replaceBackgroundIdeogram45",
@@ -11550,6 +12290,202 @@
                   "image",
                   "background_reference"
                 ]
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/svg/generate/gpt-image-2-6-flare": {
+      "post": {
+        "operationId": "svgGenerate_post_generate_svg_gpt_image26_flare",
+        "summary": "Generate SVG with GPT Image 2.6 Flare",
+        "description": "Generates SVG artwork from a prompt with GPT Image 2.6 Flare. The model renders an image and writes it out as SVG markup. Text prompts only: reference images are not supported.",
+        "tags": [
+          "svg-generate"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Generation accepted. Dry runs return a PriceQuote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateSvgResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid prompt or settings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Generation is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateSvgGptImage26FlareRequest"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v2/svg/generate/gpt-image-2-6-sunburst": {
+      "post": {
+        "operationId": "svgGenerate_post_generate_svg_gpt_image26_sunburst",
+        "summary": "Generate SVG with GPT Image 2.6 Sunburst",
+        "description": "Generates SVG artwork from a prompt with GPT Image 2.6 Sunburst. The model renders an image and writes it out as SVG markup. Text prompts only: reference images are not supported.",
+        "tags": [
+          "svg-generate"
+        ],
+        "parameters": [
+          {
+            "name": "dry_run",
+            "in": "query",
+            "description": "When true, the request is validated and priced but not run: nothing is\ngenerated, stored, or billed, and no safety review is performed. The\nresponse is a `PriceQuote` object instead of the usual response for this\nendpoint. Send exactly the request you would send to generate, so the\nquote reflects the same options.\n",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Generation accepted. Dry runs return a PriceQuote.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerateSvgResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid prompt or settings.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Authentication required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access denied.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GenerationErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Generation is unavailable.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Any type"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateSvgGptImage26SunburstRequest"
               }
             }
           }
@@ -11722,7 +12658,8 @@
           "daily_limit",
           "priority_credit_required",
           "inflight_limit",
-          "feature_limit"
+          "feature_limit",
+          "app_user_limit"
         ],
         "description": "The account or usage limit that rejected a generation request.",
         "title": "GenerationRejectReason"
@@ -13794,6 +14731,84 @@
         "description": "Response returned by `POST /v2/image/remix/ideogram-3-custom-model`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v2/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to when the caller left it unset.\n",
         "title": "RemixImageIdeogramV3CustomModelResponse"
       },
+      "V2ImageRemixIdeogram2APostRequestBodyContentMultipartFormDataSchemaRenderingSpeed": {
+        "type": "string",
+        "enum": [
+          "turbo",
+          "default",
+          "quality"
+        ],
+        "default": "default",
+        "description": "The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result.",
+        "title": "V2ImageRemixIdeogram2APostRequestBodyContentMultipartFormDataSchemaRenderingSpeed"
+      },
+      "RemixImageIdeogramV2AResponse": {
+        "type": "object",
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v2/generations/{generation_id}` polling endpoint.\n"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemixedImageObject"
+            },
+            "description": "The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false)."
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "description": "Random seed. Set for reproducible generation."
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "description": "Response returned by `POST /v2/image/remix/ideogram-2a`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v2/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to.\n",
+        "title": "RemixImageIdeogramV2AResponse"
+      },
+      "V2ImageRemixIdeogram2PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed": {
+        "type": "string",
+        "enum": [
+          "turbo",
+          "default",
+          "quality"
+        ],
+        "default": "default",
+        "description": "The rendering speed to use. `turbo` generates faster at a lower cost, while `quality` prioritizes the highest-quality result.",
+        "title": "V2ImageRemixIdeogram2PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed"
+      },
+      "RemixImageIdeogramV2Response": {
+        "type": "object",
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "description": "URL-safe base64 ID of the accepted generation. Accepted by the\n`GET /v2/generations/{generation_id}` polling endpoint.\n"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RemixedImageObject"
+            },
+            "description": "The remixed images, in generation order. Present only for synchronous requests (`async` omitted or false)."
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "description": "Random seed. Set for reproducible generation."
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed"
+        ],
+        "description": "Response returned by `POST /v2/image/remix/ideogram-2`.\nSynchronous requests (the default) include the remixed images in\n`data`. Requests with `async` set to true omit `data`; poll for\ncompletion and results with `GET /v2/generations/{generation_id}`\nusing the returned `generation_id`. The seed reports the value the\nrequest resolved to.\n",
+        "title": "RemixImageIdeogramV2Response"
+      },
       "V2ImageInpaintIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed": {
         "type": "string",
         "enum": [
@@ -14498,6 +15513,54 @@
         "description": "Synchronous requests (the default) include the upscaled image in `data`.\nAsync requests omit `data`; poll `GET /v2/generations/{generation_id}`\nwith the returned `generation_id`. `seed` is the seed actually used,\nand `width` and `height` are the output dimensions.\n",
         "title": "UpscaleImageTopazWonder35Response"
       },
+      "V2ImageUpscaleTopazWonder4PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor": {
+        "type": "string",
+        "enum": [
+          "x2",
+          "x4"
+        ],
+        "default": "x2",
+        "description": "How much to enlarge the source image: 2x or 4x its original width and height. Rejected when the output would exceed 100 megapixels.",
+        "title": "V2ImageUpscaleTopazWonder4PostRequestBodyContentMultipartFormDataSchemaUpscaleFactor"
+      },
+      "UpscaleImageTopazWonder4Response": {
+        "type": "object",
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "description": "The generation ID to poll with `GET /v2/generations/{generation_id}`.\n"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpscaleImageObject"
+            },
+            "description": "The upscaled image. Present only for synchronous requests (`async` omitted or false)."
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "description": "Random seed. Set for reproducible generation."
+          },
+          "width": {
+            "type": "integer",
+            "description": "The output width in pixels."
+          },
+          "height": {
+            "type": "integer",
+            "description": "The output height in pixels."
+          }
+        },
+        "required": [
+          "generation_id",
+          "seed",
+          "width",
+          "height"
+        ],
+        "description": "Synchronous requests (the default) include the upscaled image in `data`.\nAsync requests omit `data`; poll `GET /v2/generations/{generation_id}`\nwith the returned `generation_id`. `width` and `height` are the output\ndimensions.\n",
+        "title": "UpscaleImageTopazWonder4Response"
+      },
       "V2ImageReplaceBackgroundIdeogram3PostRequestBodyContentMultipartFormDataSchemaRenderingSpeed": {
         "type": "string",
         "enum": [
@@ -15157,6 +16220,47 @@
         ],
         "description": "Request body for Kling v3 Standard text-to-video generation.",
         "title": "GenerateVideoKlingV3StandardTextToVideoRequest"
+      },
+      "Kling4AspectRatio": {
+        "type": "string",
+        "enum": [
+          "16x9",
+          "9x16",
+          "1x1",
+          "21x9"
+        ],
+        "description": "The aspect ratio of the generated video. Defaults to the ratio nearest the first frame's shape, or 16x9 without a first frame.",
+        "title": "Kling4AspectRatio"
+      },
+      "Kling4Resolution": {
+        "type": "string",
+        "enum": [
+          "720p",
+          "1080p"
+        ],
+        "default": "1080p",
+        "description": "The resolution tier of the generated video.",
+        "title": "Kling4Resolution"
+      },
+      "GenerateVideoKling4Response": {
+        "type": "object",
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "description": "The generation ID to poll with `GET /v2/generations/{generation_id}`.\n"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The time the request was accepted."
+          }
+        },
+        "required": [
+          "generation_id",
+          "created"
+        ],
+        "description": "Acknowledgement that the request was accepted. The generated video is not\npart of this response: poll `GET /v2/generations/{generation_id}` with\nthe returned `generation_id`, or receive it at your `webhook_url`.\nVideo links expire after a limited time, so download any video you\nwant to keep.\n",
+        "title": "GenerateVideoKling4Response"
       },
       "MinimaxH3Resolution": {
         "type": "string",
@@ -15985,24 +17089,19 @@
         "properties": {
           "url": {
             "type": "string",
-            "format": "uri",
-            "description": "Signed link to the layer as a transparent PNG, cropped to its visible pixels. Links are available for a limited period of time."
+            "format": "uri"
           },
           "x": {
-            "type": "integer",
-            "description": "Left edge of the layer on the design's canvas, in pixels."
+            "type": "integer"
           },
           "y": {
-            "type": "integer",
-            "description": "Top edge of the layer on the design's canvas, in pixels."
+            "type": "integer"
           },
           "width": {
-            "type": "integer",
-            "description": "Width of the layer, in pixels."
+            "type": "integer"
           },
           "height": {
-            "type": "integer",
-            "description": "Height of the layer, in pixels."
+            "type": "integer"
           }
         },
         "required": [
@@ -16012,8 +17111,748 @@
           "width",
           "height"
         ],
-        "description": "One transparent image layer of a layerized design, placed at its\nposition on the design's canvas.\n",
         "title": "LayerizedImageLayer"
+      },
+      "LayerizeDocumentSchemaVersion": {
+        "type": "string",
+        "enum": [
+          "1"
+        ],
+        "title": "LayerizeDocumentSchemaVersion"
+      },
+      "LayerizeCanvas": {
+        "type": "object",
+        "properties": {
+          "width": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "width",
+          "height"
+        ],
+        "title": "LayerizeCanvas"
+      },
+      "LayerizeBox": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "format": "double"
+          },
+          "y": {
+            "type": "number",
+            "format": "double"
+          },
+          "width": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0
+          },
+          "height": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "x",
+          "y",
+          "width",
+          "height"
+        ],
+        "title": "LayerizeBox"
+      },
+      "LayerizeAssetIdentifierAssetType": {
+        "type": "string",
+        "enum": [
+          "RESPONSE",
+          "UPLOAD"
+        ],
+        "title": "LayerizeAssetIdentifierAssetType"
+      },
+      "LayerizeAssetIdentifier": {
+        "type": "object",
+        "properties": {
+          "asset_type": {
+            "$ref": "#/components/schemas/LayerizeAssetIdentifierAssetType"
+          },
+          "asset_id": {
+            "type": "string",
+            "description": "URL-safe base64 asset ID."
+          }
+        },
+        "required": [
+          "asset_type",
+          "asset_id"
+        ],
+        "title": "LayerizeAssetIdentifier"
+      },
+      "LayerizeImageSource": {
+        "type": "object",
+        "properties": {
+          "asset_identifier": {
+            "$ref": "#/components/schemas/LayerizeAssetIdentifier"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Expiring URL added when the response is served."
+          }
+        },
+        "required": [
+          "asset_identifier"
+        ],
+        "title": "LayerizeImageSource"
+      },
+      "LayerizeTextSpanFormattingItems": {
+        "type": "string",
+        "enum": [
+          "bold",
+          "italic",
+          "underline",
+          "strikethrough",
+          "all_caps",
+          "small_caps",
+          "superscript",
+          "subscript"
+        ],
+        "title": "LayerizeTextSpanFormattingItems"
+      },
+      "LayerizeTextSpan": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "formatting": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LayerizeTextSpanFormattingItems"
+            }
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "LayerizeTextSpan"
+      },
+      "LayerizeFontStyle": {
+        "type": "string",
+        "enum": [
+          "normal",
+          "italic",
+          "oblique"
+        ],
+        "title": "LayerizeFontStyle"
+      },
+      "LayerizeFont": {
+        "type": "object",
+        "properties": {
+          "family": {
+            "type": "string"
+          },
+          "file_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "Font URL added when served; never stored."
+          },
+          "size_px": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 100,
+            "maximum": 900
+          },
+          "style": {
+            "$ref": "#/components/schemas/LayerizeFontStyle"
+          },
+          "horizontal_scale": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0,
+            "default": 1
+          }
+        },
+        "required": [
+          "family",
+          "size_px",
+          "weight",
+          "style"
+        ],
+        "title": "LayerizeFont"
+      },
+      "LayerizeTextLayoutAlignment": {
+        "type": "string",
+        "enum": [
+          "left",
+          "center",
+          "right",
+          "justify"
+        ],
+        "title": "LayerizeTextLayoutAlignment"
+      },
+      "LayerizeTextLayoutVerticalAlignment": {
+        "type": "string",
+        "enum": [
+          "top",
+          "middle",
+          "bottom"
+        ],
+        "title": "LayerizeTextLayoutVerticalAlignment"
+      },
+      "LayerizeTextLayoutTextTransform": {
+        "type": "string",
+        "enum": [
+          "none",
+          "uppercase",
+          "lowercase"
+        ],
+        "title": "LayerizeTextLayoutTextTransform"
+      },
+      "LayerizeTextLayoutResizeMode": {
+        "type": "string",
+        "enum": [
+          "auto_width",
+          "auto_height",
+          "fixed"
+        ],
+        "title": "LayerizeTextLayoutResizeMode"
+      },
+      "LayerizeTextLayout": {
+        "type": "object",
+        "properties": {
+          "alignment": {
+            "$ref": "#/components/schemas/LayerizeTextLayoutAlignment"
+          },
+          "vertical_alignment": {
+            "$ref": "#/components/schemas/LayerizeTextLayoutVerticalAlignment"
+          },
+          "line_height": {
+            "type": "number",
+            "format": "double"
+          },
+          "letter_spacing_em": {
+            "type": "number",
+            "format": "double"
+          },
+          "text_transform": {
+            "$ref": "#/components/schemas/LayerizeTextLayoutTextTransform"
+          },
+          "text_indent_px": {
+            "type": "number",
+            "format": "double"
+          },
+          "resize_mode": {
+            "$ref": "#/components/schemas/LayerizeTextLayoutResizeMode"
+          }
+        },
+        "required": [
+          "alignment"
+        ],
+        "title": "LayerizeTextLayout"
+      },
+      "LayerizePoint": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "format": "double"
+          },
+          "y": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "required": [
+          "x",
+          "y"
+        ],
+        "title": "LayerizePoint"
+      },
+      "LayerizeTextLayer_shape": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "arc"
+                ],
+                "description": "Discriminator value: arc"
+              },
+              "center_x": {
+                "type": "number",
+                "format": "double"
+              },
+              "center_y": {
+                "type": "number",
+                "format": "double"
+              },
+              "radius": {
+                "type": "number",
+                "format": "double",
+                "minimum": 0
+              },
+              "middle_angle": {
+                "type": "number",
+                "format": "double"
+              },
+              "inward": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "type",
+              "center_x",
+              "center_y",
+              "radius",
+              "middle_angle",
+              "inward"
+            ],
+            "description": "LayerizeTextArc variant"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "path"
+                ],
+                "description": "Discriminator value: path"
+              },
+              "points": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizePoint"
+                }
+              },
+              "lean": {
+                "type": "number",
+                "format": "double",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "type",
+              "points",
+              "lean"
+            ],
+            "description": "LayerizeTextPath variant"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "envelope"
+                ],
+                "description": "Discriminator value: envelope"
+              },
+              "top": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizePoint"
+                }
+              },
+              "bottom": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizePoint"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "top",
+              "bottom"
+            ],
+            "description": "LayerizeTextEnvelope variant"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type"
+        },
+        "title": "LayerizeTextLayer_shape"
+      },
+      "LayerizeGradientStop": {
+        "type": "object",
+        "properties": {
+          "position": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "position",
+          "color"
+        ],
+        "title": "LayerizeGradientStop"
+      },
+      "LayerizeTextLayer_fill": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "solid"
+                ],
+                "description": "Discriminator value: solid"
+              },
+              "color": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "type",
+              "color"
+            ],
+            "description": "LayerizeSolidFill variant"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "gradient"
+                ],
+                "description": "Discriminator value: gradient"
+              },
+              "angle_deg": {
+                "type": "number",
+                "format": "double"
+              },
+              "stops": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizeGradientStop"
+                }
+              }
+            },
+            "required": [
+              "type",
+              "angle_deg",
+              "stops"
+            ],
+            "description": "LayerizeGradientFill variant"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type"
+        },
+        "title": "LayerizeTextLayer_fill"
+      },
+      "LayerizeStroke": {
+        "type": "object",
+        "properties": {
+          "width_px": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "width_px",
+          "color"
+        ],
+        "title": "LayerizeStroke"
+      },
+      "LayerizeShadow": {
+        "type": "object",
+        "properties": {
+          "offset_x_px": {
+            "type": "number",
+            "format": "double"
+          },
+          "offset_y_px": {
+            "type": "number",
+            "format": "double"
+          },
+          "blur_px": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "offset_x_px",
+          "offset_y_px",
+          "blur_px",
+          "color"
+        ],
+        "title": "LayerizeShadow"
+      },
+      "LayerizeDocumentLayersInnerDiscriminatorMappingTextBlendMode": {
+        "type": "string",
+        "enum": [
+          "normal",
+          "multiply",
+          "screen",
+          "overlay",
+          "darken",
+          "lighten"
+        ],
+        "title": "LayerizeDocumentLayersInnerDiscriminatorMappingTextBlendMode"
+      },
+      "LayerizeBorderSideStyle": {
+        "type": "string",
+        "enum": [
+          "solid",
+          "dashed",
+          "dotted"
+        ],
+        "title": "LayerizeBorderSideStyle"
+      },
+      "LayerizeBorderSide": {
+        "type": "object",
+        "properties": {
+          "width_px": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0
+          },
+          "style": {
+            "$ref": "#/components/schemas/LayerizeBorderSideStyle"
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "width_px",
+          "style",
+          "color"
+        ],
+        "title": "LayerizeBorderSide"
+      },
+      "LayerizeContainerStyle": {
+        "type": "object",
+        "properties": {
+          "background_color": {
+            "type": "string"
+          },
+          "opacity": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "border_radius_px": {
+            "type": "number",
+            "format": "double",
+            "minimum": 0
+          },
+          "border": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/LayerizeBorderSide"
+            }
+          },
+          "box_shadow": {
+            "$ref": "#/components/schemas/LayerizeShadow"
+          }
+        },
+        "title": "LayerizeContainerStyle"
+      },
+      "LayerizeDocument_layers_inner": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "image"
+                ],
+                "description": "Discriminator value: image"
+              },
+              "id": {
+                "type": "string"
+              },
+              "box": {
+                "$ref": "#/components/schemas/LayerizeBox"
+              },
+              "rotation": {
+                "type": "number",
+                "format": "double"
+              },
+              "image": {
+                "$ref": "#/components/schemas/LayerizeImageSource"
+              }
+            },
+            "required": [
+              "type",
+              "id",
+              "box",
+              "image"
+            ],
+            "description": "LayerizeImageLayer variant"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "text"
+                ],
+                "description": "Discriminator value: text"
+              },
+              "id": {
+                "type": "string"
+              },
+              "box": {
+                "$ref": "#/components/schemas/LayerizeBox"
+              },
+              "rotation": {
+                "type": "number",
+                "format": "double"
+              },
+              "text": {
+                "type": "string"
+              },
+              "spans": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizeTextSpan"
+                }
+              },
+              "font": {
+                "$ref": "#/components/schemas/LayerizeFont"
+              },
+              "layout": {
+                "$ref": "#/components/schemas/LayerizeTextLayout"
+              },
+              "shape": {
+                "$ref": "#/components/schemas/LayerizeTextLayer_shape"
+              },
+              "fill": {
+                "$ref": "#/components/schemas/LayerizeTextLayer_fill"
+              },
+              "strokes": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizeStroke"
+                }
+              },
+              "shadows": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/LayerizeShadow"
+                }
+              },
+              "opacity": {
+                "type": "number",
+                "format": "double",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "blend_mode": {
+                "$ref": "#/components/schemas/LayerizeDocumentLayersInnerDiscriminatorMappingTextBlendMode"
+              }
+            },
+            "required": [
+              "type",
+              "id",
+              "box",
+              "text",
+              "font",
+              "layout",
+              "fill"
+            ],
+            "description": "LayerizeTextLayer variant"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "container"
+                ],
+                "description": "Discriminator value: container"
+              },
+              "id": {
+                "type": "string"
+              },
+              "box": {
+                "$ref": "#/components/schemas/LayerizeBox"
+              },
+              "rotation": {
+                "type": "number",
+                "format": "double"
+              },
+              "style": {
+                "$ref": "#/components/schemas/LayerizeContainerStyle"
+              }
+            },
+            "required": [
+              "type",
+              "id",
+              "box",
+              "style"
+            ],
+            "description": "LayerizeContainerLayer variant"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type"
+        },
+        "title": "LayerizeDocument_layers_inner"
+      },
+      "LayerizeDocument": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "$ref": "#/components/schemas/LayerizeDocumentSchemaVersion"
+          },
+          "canvas": {
+            "$ref": "#/components/schemas/LayerizeCanvas"
+          },
+          "layers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LayerizeDocument_layers_inner"
+            },
+            "description": "Layers in back-to-front paint order."
+          }
+        },
+        "required": [
+          "schema_version",
+          "canvas",
+          "layers"
+        ],
+        "description": "Original editable document; URLs are added when served and are never stored.",
+        "title": "LayerizeDocument"
       },
       "GenerationResponse_data_inner": {
         "oneOf": [
@@ -16255,29 +18094,8 @@
                 ],
                 "description": "Discriminator value: layerized_design.generation"
               },
-              "url": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "uri",
-                "description": "Signed link to the design image with its text intact. Empty when the image did not pass safety checks."
-              },
-              "base_image_url": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "uri",
-                "description": "Signed link to the base image with all detected text removed. Empty when the image did not pass safety checks."
-              },
-              "resolution": {
-                "type": "string",
-                "description": "The resolution of the design, formatted as \"WIDTHxHEIGHT\"."
-              },
               "is_image_safe": {
-                "type": "boolean",
-                "description": "Whether the image passed safety checks. If false, the links are empty."
+                "type": "boolean"
               },
               "seed": {
                 "type": "integer",
@@ -16285,37 +18103,63 @@
                 "maximum": 2147483647,
                 "description": "Random seed. Set for reproducible generation."
               },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri",
+                "description": "Signed composite image URL on results created before schema version 1.",
+                "deprecated": true
+              },
+              "base_image_url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri",
+                "description": "Signed text-free base URL on results created before schema version 1.",
+                "deprecated": true
+              },
+              "resolution": {
+                "type": "string",
+                "description": "Canvas resolution on results created before schema version 1.",
+                "deprecated": true
+              },
               "text_blocks": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/LayerizedTextBlock"
                 },
-                "description": "Flat list of detected text regions in the design."
+                "description": "Text regions on results created before schema version 1.",
+                "deprecated": true
               },
               "image_layers": {
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/LayerizedImageLayer"
                 },
-                "description": "Transparent image layers stacked above the base image and below the\ntext blocks, back to front. Design Layerizer fills this with the\ndesign's separated artwork, including any text it could not rebuild;\nText Layerizer leaves it empty.\n"
+                "description": "Artwork layers on results created before schema version 1.",
+                "deprecated": true
               },
-              "html_url": {
-                "type": [
-                  "string",
-                  "null"
-                ],
-                "format": "uri",
-                "description": "Signed link to a self-contained HTML page displaying the editable\ndesign, including curved text, gradients, outlines, and shadows. The\nrenderer, images, and fonts are embedded in the page, so it keeps\nworking offline once downloaded; the link itself expires after 24\nhours. Uploaded `font_candidate_files` are embedded as supplied, so\nredistributing the page is subject to those fonts' licenses. Empty\nwhen the image did not pass safety checks or the page could not be\nbuilt.\n\nThe page exposes one editing API for every text layer, whether it\nis drawn as HTML or on a canvas. Each layer is addressed by its\n`text_blocks[].layer_id`. Scripts in the page can call\n`window.layerize` (`ready`, `getTextLayers()`, `setText(id, text)`,\n`update(id, patch)`, `toJSON()`, `toPNG()`); a parent page that\nembeds it in an iframe sends `postMessage` requests such as\n`{\"type\": \"layerize:set-text\", \"id\": \"text-0\", \"text\": \"Hello\"}`\nand receives `layerize:ready`, `layerize:updated`, and\n`layerize:error` replies. The page is served sandboxed with an\nopaque origin, so it cannot read cookies or storage of the site\nthat embeds it.\n"
+              "layered_asset_id": {
+                "type": "string",
+                "description": "URL-safe base64 ID of the editable layered asset."
+              },
+              "layerize_id": {
+                "type": "string",
+                "description": "URL-safe base64 ID to pass to `GET /v2/design/html/{layerize_id}`."
+              },
+              "document": {
+                "$ref": "#/components/schemas/LayerizeDocument"
               }
             },
             "required": [
               "object_type",
-              "resolution",
               "is_image_safe",
-              "seed",
-              "text_blocks"
+              "seed"
             ],
-            "description": "One layerized design. Links are available for a limited period of time;\nif you would like to keep a file, you must download it.\n"
+            "description": "TextLayerizerResultObject variant"
           }
         ],
         "discriminator": {
@@ -16358,7 +18202,7 @@
             "items": {
               "$ref": "#/components/schemas/GenerationResponse_data_inner"
             },
-            "description": "A list of generated images or videos. Present when `status` is\n`completed`. Video entries carry an `object_type` of\n`video.generation`; layerized designs carry `layerized_image`;\nentries without an `object_type` are images.\n"
+            "description": "A list of generated images or videos. Present when `status` is\n`completed`. Video entries carry an `object_type` of\n`video.generation`; layerized designs carry `layerized_image`;\nLayerize entries contain a `layered_asset_id` and editable `document`.\n"
           }
         },
         "required": [
@@ -16738,6 +18582,168 @@
           "buckets"
         ],
         "title": "GetAccountUsageResponse"
+      },
+      "GenerateSvgGptImage26FlareRequestQuality": {
+        "type": "string",
+        "enum": [
+          "auto",
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max"
+        ],
+        "default": "auto",
+        "description": "How much rendering effort GPT Image 2.6 Flare spends on the image the SVG is drawn from. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.",
+        "title": "GenerateSvgGptImage26FlareRequestQuality"
+      },
+      "GenerateSvgGptImage26FlareRequestThinkingLevel": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "high",
+        "description": "How much the model plans before it renders, separate from `quality`. Lower levels return sooner.",
+        "title": "GenerateSvgGptImage26FlareRequestThinkingLevel"
+      },
+      "GenerateSvgGptImage26FlareRequest": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 9500,
+            "description": "What the SVG should show, passed to the model as written."
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "default": "auto",
+            "description": "The output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". \"auto\" (the default) lets the model choose a shape that suits the prompt. The long:short ratio is at most 3:1."
+          },
+          "quality": {
+            "$ref": "#/components/schemas/GenerateSvgGptImage26FlareRequestQuality",
+            "default": "auto",
+            "description": "How much rendering effort GPT Image 2.6 Flare spends on the image the SVG is drawn from. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`."
+          },
+          "thinking_level": {
+            "$ref": "#/components/schemas/GenerateSvgGptImage26FlareRequestThinkingLevel",
+            "default": "high",
+            "description": "How much the model plans before it renders, separate from `quality`. Lower levels return sooner."
+          },
+          "num_images": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "default": 1
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "description": "Random seed. Set for reproducible generation."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Outputs are private by default. Enterprise outputs are always private."
+          },
+          "target_collection_id": {
+            "type": "string",
+            "description": "URL-safe base64 ID of a writable destination collection."
+          },
+          "webhook_url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 2048,
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateSvgGptImage26FlareRequest"
+      },
+      "GenerateSvgGptImage26SunburstRequestQuality": {
+        "type": "string",
+        "enum": [
+          "auto",
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max"
+        ],
+        "default": "auto",
+        "description": "How much rendering effort GPT Image 2.6 Sunburst spends on the image the SVG is drawn from. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`.",
+        "title": "GenerateSvgGptImage26SunburstRequestQuality"
+      },
+      "GenerateSvgGptImage26SunburstRequestThinkingLevel": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "default": "high",
+        "description": "How much the model plans before it renders, separate from `quality`. Lower levels return sooner.",
+        "title": "GenerateSvgGptImage26SunburstRequestThinkingLevel"
+      },
+      "GenerateSvgGptImage26SunburstRequest": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 9500,
+            "description": "What the SVG should show, passed to the model as written."
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "default": "auto",
+            "description": "The output aspect ratio, for example \"1:1\", \"16:9\", or \"9:16\". \"auto\" (the default) lets the model choose a shape that suits the prompt. The long:short ratio is at most 3:1."
+          },
+          "quality": {
+            "$ref": "#/components/schemas/GenerateSvgGptImage26SunburstRequestQuality",
+            "default": "auto",
+            "description": "How much rendering effort GPT Image 2.6 Sunburst spends on the image the SVG is drawn from. Lower tiers return sooner and cost less; `auto` lets the model choose, which it currently renders at `high`."
+          },
+          "thinking_level": {
+            "$ref": "#/components/schemas/GenerateSvgGptImage26SunburstRequestThinkingLevel",
+            "default": "high",
+            "description": "How much the model plans before it renders, separate from `quality`. Lower levels return sooner."
+          },
+          "num_images": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 8,
+            "default": 1
+          },
+          "seed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "description": "Random seed. Set for reproducible generation."
+          },
+          "private": {
+            "type": "boolean",
+            "description": "Outputs are private by default. Enterprise outputs are always private."
+          },
+          "target_collection_id": {
+            "type": "string",
+            "description": "URL-safe base64 ID of a writable destination collection."
+          },
+          "webhook_url": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 2048,
+            "description": "HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a\nJSON POST to this URL once all images for the request have finished\ngenerating. The body mirrors the synchronous generate response:\n`request_id`, `created`, and a `data` array\ncontaining every generated image (`url`, `prompt`, `resolution`, `seed`,\n`is_image_safe`). Each delivery is signed with Ed25519 and verifiable\nagainst the public keys at `https://api.ideogram.ai/v1/.well-known/jwks.json`. Must be HTTPS;\nprivate and loopback hosts and the cloud metadata service are rejected.\n"
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "title": "GenerateSvgGptImage26SunburstRequest"
       }
     },
     "securitySchemes": {

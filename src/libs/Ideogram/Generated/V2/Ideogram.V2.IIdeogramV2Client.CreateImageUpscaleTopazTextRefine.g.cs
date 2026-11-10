@@ -91,9 +91,6 @@ namespace Ideogram.V2
         /// <param name="subjectDetection">
         /// Where enhancements apply. Omit to let the model choose per image.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -124,7 +121,6 @@ namespace Ideogram.V2
             string? faceEnhancementStrength = default,
             string? faceEnhancementCreativity = default,
             global::Ideogram.V2.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection? subjectDetection = default,
-            int? seed = default,
             bool? async = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -175,9 +171,6 @@ namespace Ideogram.V2
         /// <param name="subjectDetection">
         /// Where enhancements apply. Omit to let the model choose per image.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -208,7 +201,6 @@ namespace Ideogram.V2
             string? faceEnhancementStrength = default,
             string? faceEnhancementCreativity = default,
             global::Ideogram.V2.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection? subjectDetection = default,
-            int? seed = default,
             bool? async = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -258,9 +250,6 @@ namespace Ideogram.V2
         /// <param name="subjectDetection">
         /// Where enhancements apply. Omit to let the model choose per image.
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -291,7 +280,6 @@ namespace Ideogram.V2
             string? faceEnhancementStrength = default,
             string? faceEnhancementCreativity = default,
             global::Ideogram.V2.V2ImageUpscaleTopazTextRefinePostRequestBodyContentMultipartFormDataSchemaSubjectDetection? subjectDetection = default,
-            int? seed = default,
             bool? async = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,

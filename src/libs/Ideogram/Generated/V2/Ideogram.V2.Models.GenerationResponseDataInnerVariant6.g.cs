@@ -1,11 +1,12 @@
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
 #nullable enable
 
 namespace Ideogram.V2
 {
     /// <summary>
-    /// One layerized design. Links are available for a limited period of time;<br/>
-    /// if you would like to keep a file, you must download it.
+    /// TextLayerizerResultObject variant
     /// </summary>
     public sealed partial class GenerationResponseDataInnerVariant6
     {
@@ -17,26 +18,7 @@ namespace Ideogram.V2
         public global::Ideogram.V2.GenerationResponseDataInnerVariant6ObjectType ObjectType { get; set; }
 
         /// <summary>
-        /// Signed link to the design image with its text intact. Empty when the image did not pass safety checks.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("url")]
-        public string? Url { get; set; }
-
-        /// <summary>
-        /// Signed link to the base image with all detected text removed. Empty when the image did not pass safety checks.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("base_image_url")]
-        public string? BaseImageUrl { get; set; }
-
-        /// <summary>
-        /// The resolution of the design, formatted as "WIDTHxHEIGHT".
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required string Resolution { get; set; }
-
-        /// <summary>
-        /// Whether the image passed safety checks. If false, the links are empty.
+        ///
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("is_image_safe")]
         [global::System.Text.Json.Serialization.JsonRequired]
@@ -50,44 +32,57 @@ namespace Ideogram.V2
         public required int Seed { get; set; }
 
         /// <summary>
-        /// Flat list of detected text regions in the design.
+        /// Signed composite image URL on results created before schema version 1.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("text_blocks")]
-        [global::System.Text.Json.Serialization.JsonRequired]
-        public required global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedTextBlock> TextBlocks { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("url")]
+        [global::System.Obsolete("This property marked as deprecated.")]
+        public string? Url { get; set; }
 
         /// <summary>
-        /// Transparent image layers stacked above the base image and below the<br/>
-        /// text blocks, back to front. Design Layerizer fills this with the<br/>
-        /// design's separated artwork, including any text it could not rebuild;<br/>
-        /// Text Layerizer leaves it empty.
+        /// Signed text-free base URL on results created before schema version 1.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("base_image_url")]
+        [global::System.Obsolete("This property marked as deprecated.")]
+        public string? BaseImageUrl { get; set; }
+
+        /// <summary>
+        /// Canvas resolution on results created before schema version 1.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("resolution")]
+        [global::System.Obsolete("This property marked as deprecated.")]
+        public string? Resolution { get; set; }
+
+        /// <summary>
+        /// Text regions on results created before schema version 1.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("text_blocks")]
+        [global::System.Obsolete("This property marked as deprecated.")]
+        public global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedTextBlock>? TextBlocks { get; set; }
+
+        /// <summary>
+        /// Artwork layers on results created before schema version 1.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image_layers")]
+        [global::System.Obsolete("This property marked as deprecated.")]
         public global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedImageLayer>? ImageLayers { get; set; }
 
         /// <summary>
-        /// Signed link to a self-contained HTML page displaying the editable<br/>
-        /// design, including curved text, gradients, outlines, and shadows. The<br/>
-        /// renderer, images, and fonts are embedded in the page, so it keeps<br/>
-        /// working offline once downloaded; the link itself expires after 24<br/>
-        /// hours. Uploaded `font_candidate_files` are embedded as supplied, so<br/>
-        /// redistributing the page is subject to those fonts' licenses. Empty<br/>
-        /// when the image did not pass safety checks or the page could not be<br/>
-        /// built.<br/>
-        /// The page exposes one editing API for every text layer, whether it<br/>
-        /// is drawn as HTML or on a canvas. Each layer is addressed by its<br/>
-        /// `text_blocks[].layer_id`. Scripts in the page can call<br/>
-        /// `window.layerize` (`ready`, `getTextLayers()`, `setText(id, text)`,<br/>
-        /// `update(id, patch)`, `toJSON()`, `toPNG()`); a parent page that<br/>
-        /// embeds it in an iframe sends `postMessage` requests such as<br/>
-        /// `{"type": "layerize:set-text", "id": "text-0", "text": "Hello"}`<br/>
-        /// and receives `layerize:ready`, `layerize:updated`, and<br/>
-        /// `layerize:error` replies. The page is served sandboxed with an<br/>
-        /// opaque origin, so it cannot read cookies or storage of the site<br/>
-        /// that embeds it.
+        /// URL-safe base64 ID of the editable layered asset.
         /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("html_url")]
-        public string? HtmlUrl { get; set; }
+        [global::System.Text.Json.Serialization.JsonPropertyName("layered_asset_id")]
+        public string? LayeredAssetId { get; set; }
+
+        /// <summary>
+        /// URL-safe base64 ID to pass to `GET /v2/design/html/{layerize_id}`.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("layerize_id")]
+        public string? LayerizeId { get; set; }
+
+        /// <summary>
+        /// Original editable document; URLs are added when served and are never stored.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("document")]
+        public global::Ideogram.V2.LayerizeDocument? Document { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -98,77 +93,39 @@ namespace Ideogram.V2
         /// <summary>
         /// Initializes a new instance of the <see cref="GenerationResponseDataInnerVariant6" /> class.
         /// </summary>
-        /// <param name="resolution">
-        /// The resolution of the design, formatted as "WIDTHxHEIGHT".
-        /// </param>
-        /// <param name="isImageSafe">
-        /// Whether the image passed safety checks. If false, the links are empty.
-        /// </param>
+        /// <param name="isImageSafe"></param>
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.
-        /// </param>
-        /// <param name="textBlocks">
-        /// Flat list of detected text regions in the design.
         /// </param>
         /// <param name="objectType">
         /// Discriminator value: layerized_design.generation
         /// </param>
-        /// <param name="url">
-        /// Signed link to the design image with its text intact. Empty when the image did not pass safety checks.
+        /// <param name="layeredAssetId">
+        /// URL-safe base64 ID of the editable layered asset.
         /// </param>
-        /// <param name="baseImageUrl">
-        /// Signed link to the base image with all detected text removed. Empty when the image did not pass safety checks.
+        /// <param name="layerizeId">
+        /// URL-safe base64 ID to pass to `GET /v2/design/html/{layerize_id}`.
         /// </param>
-        /// <param name="imageLayers">
-        /// Transparent image layers stacked above the base image and below the<br/>
-        /// text blocks, back to front. Design Layerizer fills this with the<br/>
-        /// design's separated artwork, including any text it could not rebuild;<br/>
-        /// Text Layerizer leaves it empty.
-        /// </param>
-        /// <param name="htmlUrl">
-        /// Signed link to a self-contained HTML page displaying the editable<br/>
-        /// design, including curved text, gradients, outlines, and shadows. The<br/>
-        /// renderer, images, and fonts are embedded in the page, so it keeps<br/>
-        /// working offline once downloaded; the link itself expires after 24<br/>
-        /// hours. Uploaded `font_candidate_files` are embedded as supplied, so<br/>
-        /// redistributing the page is subject to those fonts' licenses. Empty<br/>
-        /// when the image did not pass safety checks or the page could not be<br/>
-        /// built.<br/>
-        /// The page exposes one editing API for every text layer, whether it<br/>
-        /// is drawn as HTML or on a canvas. Each layer is addressed by its<br/>
-        /// `text_blocks[].layer_id`. Scripts in the page can call<br/>
-        /// `window.layerize` (`ready`, `getTextLayers()`, `setText(id, text)`,<br/>
-        /// `update(id, patch)`, `toJSON()`, `toPNG()`); a parent page that<br/>
-        /// embeds it in an iframe sends `postMessage` requests such as<br/>
-        /// `{"type": "layerize:set-text", "id": "text-0", "text": "Hello"}`<br/>
-        /// and receives `layerize:ready`, `layerize:updated`, and<br/>
-        /// `layerize:error` replies. The page is served sandboxed with an<br/>
-        /// opaque origin, so it cannot read cookies or storage of the site<br/>
-        /// that embeds it.
+        /// <param name="document">
+        /// Original editable document; URLs are added when served and are never stored.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
         public GenerationResponseDataInnerVariant6(
-            string resolution,
             bool isImageSafe,
             int seed,
-            global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedTextBlock> textBlocks,
             global::Ideogram.V2.GenerationResponseDataInnerVariant6ObjectType objectType,
-            string? url,
-            string? baseImageUrl,
-            global::System.Collections.Generic.IList<global::Ideogram.V2.LayerizedImageLayer>? imageLayers,
-            string? htmlUrl)
+            string? layeredAssetId,
+            string? layerizeId,
+            global::Ideogram.V2.LayerizeDocument? document)
         {
             this.ObjectType = objectType;
-            this.Url = url;
-            this.BaseImageUrl = baseImageUrl;
-            this.Resolution = resolution ?? throw new global::System.ArgumentNullException(nameof(resolution));
             this.IsImageSafe = isImageSafe;
             this.Seed = seed;
-            this.TextBlocks = textBlocks ?? throw new global::System.ArgumentNullException(nameof(textBlocks));
-            this.ImageLayers = imageLayers;
-            this.HtmlUrl = htmlUrl;
+            this.LayeredAssetId = layeredAssetId;
+            this.LayerizeId = layerizeId;
+            this.Document = document;
         }
 
         /// <summary>

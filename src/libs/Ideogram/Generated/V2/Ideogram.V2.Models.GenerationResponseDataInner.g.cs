@@ -201,8 +201,7 @@ namespace Ideogram.V2
             : throw new global::System.InvalidOperationException($"Expected union variant 'LayerizedImage' but the value was {ToString()}.");
 
         /// <summary>
-        /// One layerized design. Links are available for a limited period of time;<br/>
-        /// if you would like to keep a file, you must download it.
+        /// TextLayerizerResultObject variant
         /// </summary>
 #if NET6_0_OR_GREATER
         public global::Ideogram.V2.GenerationResponseDataInnerVariant6? LayerizedDesignGeneration { get; init; }
