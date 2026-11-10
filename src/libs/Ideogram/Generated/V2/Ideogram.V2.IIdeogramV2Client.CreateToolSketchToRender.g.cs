@@ -70,9 +70,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="numImages">
         /// Number of product renders to create.<br/>
         /// Default Value: 1
@@ -96,7 +93,6 @@ namespace Ideogram.V2
             string instruction,
             string? aspectRatio = default,
             global::Ideogram.V2.SketchToRenderQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -132,9 +128,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="numImages">
         /// Number of product renders to create.<br/>
         /// Default Value: 1
@@ -158,7 +151,6 @@ namespace Ideogram.V2
             string instruction,
             string? aspectRatio = default,
             global::Ideogram.V2.SketchToRenderQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -193,9 +185,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="numImages">
         /// Number of product renders to create.<br/>
         /// Default Value: 1
@@ -219,7 +208,6 @@ namespace Ideogram.V2
             string instruction,
             string? aspectRatio = default,
             global::Ideogram.V2.SketchToRenderQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,

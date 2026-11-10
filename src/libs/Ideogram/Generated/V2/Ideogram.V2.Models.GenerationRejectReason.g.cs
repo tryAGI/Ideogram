@@ -11,6 +11,10 @@ namespace Ideogram.V2
         /// <summary>
         ///
         /// </summary>
+        AppUserLimit,
+        /// <summary>
+        ///
+        /// </summary>
         DailyLimit,
         /// <summary>
         ///
@@ -46,6 +50,7 @@ namespace Ideogram.V2
         {
             return value switch
             {
+                GenerationRejectReason.AppUserLimit => "app_user_limit",
                 GenerationRejectReason.DailyLimit => "daily_limit",
                 GenerationRejectReason.FeatureLimit => "feature_limit",
                 GenerationRejectReason.InflightLimit => "inflight_limit",
@@ -62,6 +67,7 @@ namespace Ideogram.V2
         {
             return value switch
             {
+                "app_user_limit" => GenerationRejectReason.AppUserLimit,
                 "daily_limit" => GenerationRejectReason.DailyLimit,
                 "feature_limit" => GenerationRejectReason.FeatureLimit,
                 "inflight_limit" => GenerationRejectReason.InflightLimit,

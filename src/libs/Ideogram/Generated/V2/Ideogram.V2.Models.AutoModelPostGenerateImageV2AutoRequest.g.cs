@@ -69,12 +69,6 @@ namespace Ideogram.V2
         public int? Seed { get; set; }
 
         /// <summary>
-        /// Whether the generated images should be kept private. When omitted, the default follows the caller's plan; some plans always generate privately.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("private")]
-        public bool? Private { get; set; }
-
-        /// <summary>
         /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
         /// </summary>
@@ -120,9 +114,6 @@ namespace Ideogram.V2
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.
         /// </param>
-        /// <param name="private">
-        /// Whether the generated images should be kept private. When omitted, the default follows the caller's plan; some plans always generate privately.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
@@ -140,7 +131,6 @@ namespace Ideogram.V2
             global::Ideogram.V2.MagicPromptMode? magicPrompt,
             int? numImages,
             int? seed,
-            bool? @private,
             bool? async)
         {
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
@@ -152,7 +142,6 @@ namespace Ideogram.V2
             this.MagicPrompt = magicPrompt;
             this.NumImages = numImages;
             this.Seed = seed;
-            this.Private = @private;
             this.Async = async;
         }
 

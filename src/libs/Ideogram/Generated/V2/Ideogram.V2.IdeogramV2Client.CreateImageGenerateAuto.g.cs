@@ -244,14 +244,6 @@ namespace Ideogram.V2
                                     name: "\"seed\"");
 
                             }
-                            if (request.Private != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.Private, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
-                                    name: "\"private\"");
-
-                            }
                             if (request.Async != default)
                             {
 
@@ -887,9 +879,6 @@ namespace Ideogram.V2
         /// <param name="seed">
         /// Random seed. Set for reproducible generation.
         /// </param>
-        /// <param name="private">
-        /// Whether the generated images should be kept private. When omitted, the default follows the caller's plan; some plans always generate privately.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request waits until the images are ready and returns them in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` with the returned `generation_id` for the result.<br/>
         /// Default Value: false
@@ -908,7 +897,6 @@ namespace Ideogram.V2
             global::Ideogram.V2.MagicPromptMode? magicPrompt = default,
             int? numImages = default,
             int? seed = default,
-            bool? @private = default,
             bool? async = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default)
@@ -924,7 +912,6 @@ namespace Ideogram.V2
                 MagicPrompt = magicPrompt,
                 NumImages = numImages,
                 Seed = seed,
-                Private = @private,
                 Async = async,
             };
 

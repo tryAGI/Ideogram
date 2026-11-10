@@ -157,9 +157,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="webhookUrl">
         /// HTTPS URL that Ideogram delivers the generated result to. Ideogram sends a<br/>
         /// JSON POST to this URL once all images for the request have finished<br/>
@@ -196,7 +193,6 @@ namespace Ideogram.V2
             string? metadata = default,
             string? aspectRatio = default,
             global::Ideogram.V2.GhostMannequinQuality? quality = default,
-            int? seed = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
             global::System.Threading.CancellationToken cancellationToken = default);

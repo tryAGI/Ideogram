@@ -31,26 +31,11 @@ namespace Ideogram.V2
         public required global::Ideogram.V2.NanoBanana2ReframeAspectRatio AspectRatio { get; set; }
 
         /// <summary>
-        /// API-key requests are always private. For bearer-authenticated<br/>
-        /// requests, this controls whether the result is private; when<br/>
-        /// omitted, it follows the caller's plan entitlement. Enterprise<br/>
-        /// generations are always private.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("private")]
-        public bool? Private { get; set; }
-
-        /// <summary>
         /// The number of output images to generate.<br/>
         /// Default Value: 1
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("num_images")]
         public int? NumImages { get; set; }
-
-        /// <summary>
-        /// Random seed. Set for reproducible generation.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int? Seed { get; set; }
 
         /// <summary>
         /// Additional properties that are not explicitly defined in the schema
@@ -70,18 +55,9 @@ namespace Ideogram.V2
         /// <param name="aspectRatio">
         /// Aspect ratios Nano Banana 2 can reframe an image to.
         /// </param>
-        /// <param name="private">
-        /// API-key requests are always private. For bearer-authenticated<br/>
-        /// requests, this controls whether the result is private; when<br/>
-        /// omitted, it follows the caller's plan entitlement. Enterprise<br/>
-        /// generations are always private.
-        /// </param>
         /// <param name="numImages">
         /// The number of output images to generate.<br/>
         /// Default Value: 1
-        /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
         /// </param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
@@ -90,16 +66,12 @@ namespace Ideogram.V2
             byte[] image,
             string imagename,
             global::Ideogram.V2.NanoBanana2ReframeAspectRatio aspectRatio,
-            bool? @private,
-            int? numImages,
-            int? seed)
+            int? numImages)
         {
             this.Image = image ?? throw new global::System.ArgumentNullException(nameof(image));
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
             this.AspectRatio = aspectRatio;
-            this.Private = @private;
             this.NumImages = numImages;
-            this.Seed = seed;
         }
 
         /// <summary>

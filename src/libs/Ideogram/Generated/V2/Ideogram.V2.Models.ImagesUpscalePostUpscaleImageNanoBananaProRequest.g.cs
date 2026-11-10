@@ -37,12 +37,6 @@ namespace Ideogram.V2
         public global::Ideogram.V2.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier? ResolutionTier { get; set; }
 
         /// <summary>
-        /// Random seed. Set for reproducible generation.
-        /// </summary>
-        [global::System.Text.Json.Serialization.JsonPropertyName("seed")]
-        public int? Seed { get; set; }
-
-        /// <summary>
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
         /// </summary>
@@ -84,9 +78,6 @@ namespace Ideogram.V2
         /// The output resolution tier. The model sizes its output by tier at the source image's aspect ratio; exact pixel dimensions cannot be requested. Rejected when the source is already at or above the requested tier. Defaults to "2K".<br/>
         /// Default Value: 2K
         /// </param>
-        /// <param name="seed">
-        /// Random seed. Set for reproducible generation.
-        /// </param>
         /// <param name="async">
         /// When false (the default), the request blocks until the upscaled image is ready and returns it in `data`. When true, the request returns as soon as it is accepted; poll `GET /v2/generations/{generation_id}` for the result.<br/>
         /// Default Value: false
@@ -109,7 +100,6 @@ namespace Ideogram.V2
             string imagename,
             string? prompt,
             global::Ideogram.V2.V2ImageUpscaleNanoBananaProPostRequestBodyContentMultipartFormDataSchemaResolutionTier? resolutionTier,
-            int? seed,
             bool? async,
             string? webhookUrl)
         {
@@ -117,7 +107,6 @@ namespace Ideogram.V2
             this.Imagename = imagename ?? throw new global::System.ArgumentNullException(nameof(imagename));
             this.Prompt = prompt;
             this.ResolutionTier = resolutionTier;
-            this.Seed = seed;
             this.Async = async;
             this.WebhookUrl = webhookUrl;
         }

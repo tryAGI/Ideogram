@@ -211,14 +211,6 @@ namespace Ideogram.V2
                                     name: "\"quality\"");
 
                             }
-                            if (request.Seed != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
-                                    name: "\"seed\"");
-
-                            }
                             if (request.NumImages != default)
                             {
 
@@ -813,9 +805,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="numImages">
         /// Number of product renders to create.<br/>
         /// Default Value: 1
@@ -839,7 +828,6 @@ namespace Ideogram.V2
             string instruction,
             string? aspectRatio = default,
             global::Ideogram.V2.SketchToRenderQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -852,7 +840,6 @@ namespace Ideogram.V2
                 Instruction = instruction,
                 AspectRatio = aspectRatio,
                 Quality = quality,
-                Seed = seed,
                 NumImages = numImages,
                 WebhookUrl = webhookUrl,
             };
@@ -893,9 +880,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="numImages">
         /// Number of product renders to create.<br/>
         /// Default Value: 1
@@ -919,7 +903,6 @@ namespace Ideogram.V2
             string instruction,
             string? aspectRatio = default,
             global::Ideogram.V2.SketchToRenderQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -934,7 +917,6 @@ namespace Ideogram.V2
                 Instruction = instruction,
                 AspectRatio = aspectRatio,
                 Quality = quality,
-                Seed = seed,
                 NumImages = numImages,
                 WebhookUrl = webhookUrl,
             };
@@ -1057,14 +1039,6 @@ namespace Ideogram.V2
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"quality\"");
-
-                            }
-                            if (request.Seed != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
-                                    name: "\"seed\"");
 
                             }
                             if (request.NumImages != default)
@@ -1653,9 +1627,6 @@ namespace Ideogram.V2
         /// The quality tier for the edit. Higher tiers may improve detail and<br/>
         /// take longer to complete.
         /// </param>
-        /// <param name="seed">
-        /// Optional seed for repeatable results.
-        /// </param>
         /// <param name="numImages">
         /// Number of product renders to create.<br/>
         /// Default Value: 1
@@ -1679,7 +1650,6 @@ namespace Ideogram.V2
             string instruction,
             string? aspectRatio = default,
             global::Ideogram.V2.SketchToRenderQuality? quality = default,
-            int? seed = default,
             int? numImages = default,
             string? webhookUrl = default,
             global::Ideogram.V2.AutoSDKRequestOptions? requestOptions = default,
@@ -1694,7 +1664,6 @@ namespace Ideogram.V2
                 Instruction = instruction,
                 AspectRatio = aspectRatio,
                 Quality = quality,
-                Seed = seed,
                 NumImages = numImages,
                 WebhookUrl = webhookUrl,
             };
@@ -1817,14 +1786,6 @@ namespace Ideogram.V2
                                 __httpRequestContent.Add(
                                     content: new global::System.Net.Http.StringContent((request.Quality).HasValue ? (request.Quality).GetValueOrDefault().ToValueString() : string.Empty),
                                     name: "\"quality\"");
-
-                            }
-                            if (request.Seed != default)
-                            {
-
-                                __httpRequestContent.Add(
-                                    content: new global::System.Net.Http.StringContent(global::System.Convert.ToString(request.Seed, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty),
-                                    name: "\"seed\"");
 
                             }
                             if (request.NumImages != default)
