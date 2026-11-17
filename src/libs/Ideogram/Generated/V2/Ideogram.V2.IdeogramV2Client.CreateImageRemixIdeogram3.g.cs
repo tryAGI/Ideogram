@@ -551,13 +551,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -568,7 +568,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_400 is { Length: > 0 } ? __content_400 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_400,
                                     responseBody: __content_400,
                                     responseObject: __value_400,
@@ -588,13 +588,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_401 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
+                                        __value_401 = __content_401 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_401 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
+                                        __value_401 = __content_401 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -605,7 +605,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_401 is { Length: > 0 } ? __content_401 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
@@ -625,13 +625,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
+                                        __value_402 = __content_402 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_402 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
+                                        __value_402 = __content_402 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -642,7 +642,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<global::Ideogram.V2.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_402 is { Length: > 0 } ? __content_402 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
                                     responseObject: __value_402,
@@ -662,13 +662,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_404 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -679,7 +679,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_404 is { Length: > 0 } ? __content_404 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_404,
                                     responseBody: __content_404,
                                     responseObject: __value_404,
@@ -699,13 +699,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_422 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_422 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -716,7 +716,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_422 is { Length: > 0 } ? __content_422 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_422,
                                     responseBody: __content_422,
                                     responseObject: __value_422,
@@ -736,13 +736,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = __content_429 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_429 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = __content_429 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -753,7 +753,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<global::Ideogram.V2.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_429 is { Length: > 0 } ? __content_429 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
                                     responseObject: __value_429,
@@ -773,13 +773,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_500 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
+                                        __value_500 = __content_500 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_500 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
+                                        __value_500 = __content_500 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -790,7 +790,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_500 is { Length: > 0 } ? __content_500 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_500,
                                     responseBody: __content_500,
                                     responseObject: __value_500,
@@ -810,13 +810,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_503 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -827,7 +827,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_503,
                                     responseBody: __content_503,
                                     responseObject: __value_503,
@@ -870,7 +870,7 @@ namespace Ideogram.V2
                                 {
                                     throw global::Ideogram.V2.ApiException.Create(
                                         statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        message: __content is { Length: > 0 } ? __content : __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
                                         responseBody: __content,
                                         responseHeaders: global::System.Linq.Enumerable.ToDictionary(
@@ -915,7 +915,7 @@ namespace Ideogram.V2
 
                                     throw global::Ideogram.V2.ApiException.Create(
                                         statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        message: __content is { Length: > 0 } ? __content : __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
                                         responseBody: __content,
                                         responseHeaders: global::System.Linq.Enumerable.ToDictionary(
@@ -1688,13 +1688,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1705,7 +1705,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_400 is { Length: > 0 } ? __content_400 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_400,
                                     responseBody: __content_400,
                                     responseObject: __value_400,
@@ -1725,13 +1725,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_401 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
+                                        __value_401 = __content_401 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_401 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
+                                        __value_401 = __content_401 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1742,7 +1742,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_401 is { Length: > 0 } ? __content_401 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
@@ -1762,13 +1762,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
+                                        __value_402 = __content_402 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_402 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
+                                        __value_402 = __content_402 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1779,7 +1779,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<global::Ideogram.V2.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_402 is { Length: > 0 } ? __content_402 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
                                     responseObject: __value_402,
@@ -1799,13 +1799,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_404 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1816,7 +1816,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_404 is { Length: > 0 } ? __content_404 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_404,
                                     responseBody: __content_404,
                                     responseObject: __value_404,
@@ -1836,13 +1836,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_422 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_422 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1853,7 +1853,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_422 is { Length: > 0 } ? __content_422 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_422,
                                     responseBody: __content_422,
                                     responseObject: __value_422,
@@ -1873,13 +1873,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = __content_429 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_429 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = __content_429 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1890,7 +1890,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<global::Ideogram.V2.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_429 is { Length: > 0 } ? __content_429 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
                                     responseObject: __value_429,
@@ -1910,13 +1910,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_500 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
+                                        __value_500 = __content_500 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_500 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
+                                        __value_500 = __content_500 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1927,7 +1927,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_500 is { Length: > 0 } ? __content_500 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_500,
                                     responseBody: __content_500,
                                     responseObject: __value_500,
@@ -1947,13 +1947,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_503 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -1964,7 +1964,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_503,
                                     responseBody: __content_503,
                                     responseObject: __value_503,
@@ -2003,7 +2003,7 @@ namespace Ideogram.V2
                                 {
                                     throw global::Ideogram.V2.ApiException.Create(
                                         statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        message: __content is { Length: > 0 } ? __content : __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
                                         responseBody: __content,
                                         responseHeaders: global::System.Linq.Enumerable.ToDictionary(
@@ -2044,7 +2044,7 @@ namespace Ideogram.V2
 
                                     throw global::Ideogram.V2.ApiException.Create(
                                         statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        message: __content is { Length: > 0 } ? __content : __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
                                         responseBody: __content,
                                         responseHeaders: global::System.Linq.Enumerable.ToDictionary(
@@ -2680,13 +2680,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_400 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_400 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_400 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
+                                        __value_400 = __content_400 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_400, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2697,7 +2697,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_400 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_400 is { Length: > 0 } ? __content_400 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_400,
                                     responseBody: __content_400,
                                     responseObject: __value_400,
@@ -2717,13 +2717,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_401 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
+                                        __value_401 = __content_401 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_401 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_401 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
+                                        __value_401 = __content_401 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_401, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2734,7 +2734,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_401 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_401 is { Length: > 0 } ? __content_401 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_401,
                                     responseBody: __content_401,
                                     responseObject: __value_401,
@@ -2754,13 +2754,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_402 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
+                                        __value_402 = __content_402 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_402 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_402 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
+                                        __value_402 = __content_402 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_402, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2771,7 +2771,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<global::Ideogram.V2.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_402 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_402 is { Length: > 0 } ? __content_402 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_402,
                                     responseBody: __content_402,
                                     responseObject: __value_402,
@@ -2791,13 +2791,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_404 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_404 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_404 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
+                                        __value_404 = __content_404 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_404, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2808,7 +2808,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_404 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_404 is { Length: > 0 } ? __content_404 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_404,
                                     responseBody: __content_404,
                                     responseObject: __value_404,
@@ -2828,13 +2828,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_422 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_422 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_422 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
+                                        __value_422 = __content_422 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_422, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2845,7 +2845,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_422 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_422 is { Length: > 0 } ? __content_422 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_422,
                                     responseBody: __content_422,
                                     responseObject: __value_422,
@@ -2865,13 +2865,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_429 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = __content_429 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_429 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_429 = global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
+                                        __value_429 = __content_429 is not { Length: > 0 } ? null : global::Ideogram.V2.GenerationErrorResponse.FromJson(__content_429, JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2882,7 +2882,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<global::Ideogram.V2.GenerationErrorResponse>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_429 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_429 is { Length: > 0 } ? __content_429 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_429,
                                     responseBody: __content_429,
                                     responseObject: __value_429,
@@ -2902,13 +2902,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_500 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
+                                        __value_500 = __content_500 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_500 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_500 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
+                                        __value_500 = __content_500 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_500, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2919,7 +2919,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_500 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_500 is { Length: > 0 } ? __content_500 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_500,
                                     responseBody: __content_500,
                                     responseObject: __value_500,
@@ -2939,13 +2939,13 @@ namespace Ideogram.V2
                                     if (__effectiveReadResponseAsString)
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
-                                        __value_503 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
                                     }
                                     else
                                     {
                                         __content_503 = await __response.Content.ReadAsStringAsync(__effectiveCancellationToken).ConfigureAwait(false);
 
-                                        __value_503 = (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
+                                        __value_503 = __content_503 is not { Length: > 0 } ? null : (string?)global::System.Text.Json.JsonSerializer.Deserialize(__content_503, typeof(string), JsonSerializerContext);
                                     }
                                 }
                                 catch (global::System.Exception __ex)
@@ -2956,7 +2956,7 @@ namespace Ideogram.V2
 
                                 throw global::Ideogram.V2.ApiException<string>.Create(
                                     statusCode: __response.StatusCode,
-                                    message: __content_503 ?? __response.ReasonPhrase ?? string.Empty,
+                                    message: __content_503 is { Length: > 0 } ? __content_503 : __response.ReasonPhrase ?? string.Empty,
                                     innerException: __exception_503,
                                     responseBody: __content_503,
                                     responseObject: __value_503,
@@ -2999,7 +2999,7 @@ namespace Ideogram.V2
                                 {
                                     throw global::Ideogram.V2.ApiException.Create(
                                         statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        message: __content is { Length: > 0 } ? __content : __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
                                         responseBody: __content,
                                         responseHeaders: global::System.Linq.Enumerable.ToDictionary(
@@ -3044,7 +3044,7 @@ namespace Ideogram.V2
 
                                     throw global::Ideogram.V2.ApiException.Create(
                                         statusCode: __response.StatusCode,
-                                        message: __content ?? __response.ReasonPhrase ?? string.Empty,
+                                        message: __content is { Length: > 0 } ? __content : __response.ReasonPhrase ?? string.Empty,
                                         innerException: __ex,
                                         responseBody: __content,
                                         responseHeaders: global::System.Linq.Enumerable.ToDictionary(
