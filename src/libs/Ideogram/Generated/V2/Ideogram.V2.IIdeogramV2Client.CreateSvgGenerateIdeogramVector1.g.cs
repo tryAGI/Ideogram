@@ -64,6 +64,10 @@ namespace Ideogram.V2
         /// Default Value: 1
         /// </param>
         /// <param name="seed"></param>
+        /// <param name="useGradient">
+        /// Whether the SVG may fill shapes with gradients. When false, every shape is one flat color.<br/>
+        /// Default Value: true
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -92,6 +96,7 @@ namespace Ideogram.V2
             global::Ideogram.V2.V2SvgGenerateIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaQuality? quality = default,
             int? numImages = default,
             int? seed = default,
+            bool? useGradient = default,
             bool? @private = default,
             string? targetCollectionId = default,
             string? webhookUrl = default,

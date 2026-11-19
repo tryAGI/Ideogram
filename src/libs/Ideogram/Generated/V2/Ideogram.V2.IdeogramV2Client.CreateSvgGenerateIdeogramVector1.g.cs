@@ -220,6 +220,14 @@ namespace Ideogram.V2
                                     name: "\"seed\"");
 
                             }
+                            if (request.UseGradient != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.UseGradient, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"use_gradient\"");
+
+                            }
                             if (request.Private != default)
                             {
 
@@ -782,6 +790,10 @@ namespace Ideogram.V2
         /// Default Value: 1
         /// </param>
         /// <param name="seed"></param>
+        /// <param name="useGradient">
+        /// Whether the SVG may fill shapes with gradients. When false, every shape is one flat color.<br/>
+        /// Default Value: true
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -810,6 +822,7 @@ namespace Ideogram.V2
             global::Ideogram.V2.V2SvgGenerateIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaQuality? quality = default,
             int? numImages = default,
             int? seed = default,
+            bool? useGradient = default,
             bool? @private = default,
             string? targetCollectionId = default,
             string? webhookUrl = default,
@@ -825,6 +838,7 @@ namespace Ideogram.V2
                 Quality = quality,
                 NumImages = numImages,
                 Seed = seed,
+                UseGradient = useGradient,
                 Private = @private,
                 TargetCollectionId = targetCollectionId,
                 WebhookUrl = webhookUrl,

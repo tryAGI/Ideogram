@@ -56,6 +56,13 @@ namespace Ideogram.V2
         public int? Seed { get; set; }
 
         /// <summary>
+        /// Whether the SVG may fill shapes with gradients. When false, every shape is one flat color.<br/>
+        /// Default Value: true
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("use_gradient")]
+        public bool? UseGradient { get; set; }
+
+        /// <summary>
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
@@ -108,6 +115,10 @@ namespace Ideogram.V2
         /// Default Value: 1
         /// </param>
         /// <param name="seed"></param>
+        /// <param name="useGradient">
+        /// Whether the SVG may fill shapes with gradients. When false, every shape is one flat color.<br/>
+        /// Default Value: true
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -135,6 +146,7 @@ namespace Ideogram.V2
             global::Ideogram.V2.V2SvgGenerateIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaQuality? quality,
             int? numImages,
             int? seed,
+            bool? useGradient,
             bool? @private,
             string? targetCollectionId,
             string? webhookUrl)
@@ -146,6 +158,7 @@ namespace Ideogram.V2
             this.Quality = quality;
             this.NumImages = numImages;
             this.Seed = seed;
+            this.UseGradient = useGradient;
             this.Private = @private;
             this.TargetCollectionId = targetCollectionId;
             this.WebhookUrl = webhookUrl;

@@ -28,6 +28,21 @@ namespace Ideogram.V2
         public string? NegativePrompt { get; set; }
 
         /// <summary>
+        /// The style type to generate with. A value other than `auto` limits the request to a model that supports it. Cannot be combined with source images.<br/>
+        /// Default Value: general
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("style_type")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.IdeogramV3StyleTypeJsonConverter))]
+        public global::Ideogram.V2.IdeogramV3StyleType? StyleType { get; set; }
+
+        /// <summary>
+        /// A color palette to apply. Limits the request to a model that supports palettes. Cannot be combined with source images.
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("color_palette")]
+        [global::System.Text.Json.Serialization.JsonConverter(typeof(global::Ideogram.V2.JsonConverters.IdeogramColorPaletteJsonConverter))]
+        public global::Ideogram.V2.IdeogramColorPalette? ColorPalette { get; set; }
+
+        /// <summary>
         /// The output aspect ratio. `auto` (the default) picks the most suitable ratio for the request. Without source images the value must be a supported ratio (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" value is accepted and the output uses the closest supported shape. Omit `resolution` when supplying a non-`auto` value.<br/>
         /// Default Value: auto
         /// </summary>
@@ -93,6 +108,13 @@ namespace Ideogram.V2
         /// <param name="negativePrompt">
         /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt. Not every model uses it. Cannot be combined with source images.
         /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with. A value other than `auto` limits the request to a model that supports it. Cannot be combined with source images.<br/>
+        /// Default Value: general
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette to apply. Limits the request to a model that supports palettes. Cannot be combined with source images.
+        /// </param>
         /// <param name="aspectRatio">
         /// The output aspect ratio. `auto` (the default) picks the most suitable ratio for the request. Without source images the value must be a supported ratio (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" value is accepted and the output uses the closest supported shape. Omit `resolution` when supplying a non-`auto` value.<br/>
         /// Default Value: auto
@@ -125,6 +147,8 @@ namespace Ideogram.V2
             string prompt,
             global::System.Collections.Generic.IList<byte[]>? images,
             string? negativePrompt,
+            global::Ideogram.V2.IdeogramV3StyleType? styleType,
+            global::Ideogram.V2.IdeogramColorPalette? colorPalette,
             string? aspectRatio,
             string? resolution,
             global::Ideogram.V2.V2ImageGenerateAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTier? resolutionTier,
@@ -136,6 +160,8 @@ namespace Ideogram.V2
             this.Prompt = prompt ?? throw new global::System.ArgumentNullException(nameof(prompt));
             this.Images = images;
             this.NegativePrompt = negativePrompt;
+            this.StyleType = styleType;
+            this.ColorPalette = colorPalette;
             this.AspectRatio = aspectRatio;
             this.Resolution = resolution;
             this.ResolutionTier = resolutionTier;
