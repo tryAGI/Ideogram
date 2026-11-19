@@ -18,21 +18,21 @@ namespace Ideogram.V2
         public required string Prompt { get; set; }
 
         /// <summary>
-        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only, and ignored when the same image is also supplied by reference. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
+        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("image")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required byte[] Image { get; set; }
 
         /// <summary>
-        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only, and ignored when the same image is also supplied by reference. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
+        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("imagename")]
         [global::System.Text.Json.Serialization.JsonRequired]
         public required string Imagename { get; set; }
 
         /// <summary>
-        /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only, and ignored when the same references are also supplied by reference. A request with a `mask` can include at most three, because the mask takes up one reference slot.
+        /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only. A request with a `mask` can include at most three, because the mask takes up one reference slot.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("reference_images")]
         public global::System.Collections.Generic.IList<byte[]>? ReferenceImages { get; set; }
@@ -122,13 +122,13 @@ namespace Ideogram.V2
         /// structured prompt; valid structured JSON is used as is.
         /// </param>
         /// <param name="image">
-        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only, and ignored when the same image is also supplied by reference. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
+        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
         /// </param>
         /// <param name="imagename">
-        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only, and ignored when the same image is also supplied by reference. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
+        /// The image to edit, as raw bytes (max 50MB and 67108864 pixels, which 8192x8192 meets exactly; JPEG, PNG, or WEBP). Multipart requests only. The output always matches this image's width and height, and pixels the edit did not meaningfully change are copied exactly from it. Set `context_window` to keep the full resolution of an image over 4194304 pixels.
         /// </param>
         /// <param name="referenceImages">
-        /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only, and ignored when the same references are also supplied by reference. A request with a `mask` can include at most three, because the mask takes up one reference slot.
+        /// Optional images to guide the edit (max 4, max 50MB each; JPEG, PNG, or WEBP). They are never edited themselves; only `image` is. Multipart requests only. A request with a `mask` can include at most three, because the mask takes up one reference slot.
         /// </param>
         /// <param name="mask">
         /// An optional mask that limits the edit to part of `image` (max 50MB; JPEG, PNG, or WEBP). Multipart requests only. Black marks the area to edit and white the area to keep; values in between are rounded to the nearer of the two. The mask must have the same width and height as the image being edited and contain both black and white areas. A masked request can include at most three reference images.

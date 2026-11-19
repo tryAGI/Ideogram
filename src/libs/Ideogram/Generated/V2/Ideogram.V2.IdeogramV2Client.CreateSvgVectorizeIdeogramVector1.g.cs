@@ -216,6 +216,30 @@ namespace Ideogram.V2
                                     name: "\"mode\"");
 
                             }
+                            if (request.ShapeDensity != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ShapeDensity ?? string.Empty),
+                                    name: "\"shape_density\"");
+
+                            }
+                            if (request.ColorVariety != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ColorVariety ?? string.Empty),
+                                    name: "\"color_variety\"");
+
+                            }
+                            if (request.UseGradient != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((global::System.Convert.ToString(request.UseGradient, global::System.Globalization.CultureInfo.InvariantCulture) ?? string.Empty).ToLowerInvariant()),
+                                    name: "\"use_gradient\"");
+
+                            }
                             if (request.Private != default)
                             {
 
@@ -809,6 +833,18 @@ namespace Ideogram.V2
         /// Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image.<br/>
         /// Default Value: auto
         /// </param>
+        /// <param name="shapeDensity">
+        /// Shape detail level, from 1 (simplest, fewest shapes) to 16 (finest, most shapes). A relative level, not a shape count. Fractional values are accepted.<br/>
+        /// Default Value: 14
+        /// </param>
+        /// <param name="colorVariety">
+        /// Color variety level, from 1 (fewest colors) to 8 (most colors). A relative level, not a color count. Fractional values are accepted.<br/>
+        /// Default Value: 7
+        /// </param>
+        /// <param name="useGradient">
+        /// Whether the SVG may fill shapes with gradients. When false, every shape is one flat color.<br/>
+        /// Default Value: true
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -834,6 +870,9 @@ namespace Ideogram.V2
             string? imagename = default,
             global::Ideogram.V2.AssetIdentifier? imageAssetIdentifier = default,
             global::Ideogram.V2.V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode? mode = default,
+            string? shapeDensity = default,
+            string? colorVariety = default,
+            bool? useGradient = default,
             bool? @private = default,
             string? targetCollectionId = default,
             string? webhookUrl = default,
@@ -846,6 +885,9 @@ namespace Ideogram.V2
                 Imagename = imagename,
                 ImageAssetIdentifier = imageAssetIdentifier,
                 Mode = mode,
+                ShapeDensity = shapeDensity,
+                ColorVariety = colorVariety,
+                UseGradient = useGradient,
                 Private = @private,
                 TargetCollectionId = targetCollectionId,
                 WebhookUrl = webhookUrl,

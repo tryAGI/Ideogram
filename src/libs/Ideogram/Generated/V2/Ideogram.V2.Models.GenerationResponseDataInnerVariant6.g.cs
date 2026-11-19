@@ -85,6 +85,12 @@ namespace Ideogram.V2
         public global::Ideogram.V2.LayerizeDocument? Document { get; set; }
 
         /// <summary>
+        ///
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("asset_identifier")]
+        public global::Ideogram.V2.LayerizeAssetIdentifier? AssetIdentifier { get; set; }
+
+        /// <summary>
         /// Additional properties that are not explicitly defined in the schema
         /// </summary>
         [global::System.Text.Json.Serialization.JsonExtensionData]
@@ -109,6 +115,7 @@ namespace Ideogram.V2
         /// <param name="document">
         /// Original editable document; URLs are added when served and are never stored.
         /// </param>
+        /// <param name="assetIdentifier"></param>
 #if NET7_0_OR_GREATER
         [global::System.Diagnostics.CodeAnalysis.SetsRequiredMembers]
 #endif
@@ -118,7 +125,8 @@ namespace Ideogram.V2
             global::Ideogram.V2.GenerationResponseDataInnerVariant6ObjectType objectType,
             string? layeredAssetId,
             string? layerizeId,
-            global::Ideogram.V2.LayerizeDocument? document)
+            global::Ideogram.V2.LayerizeDocument? document,
+            global::Ideogram.V2.LayerizeAssetIdentifier? assetIdentifier)
         {
             this.ObjectType = objectType;
             this.IsImageSafe = isImageSafe;
@@ -126,6 +134,7 @@ namespace Ideogram.V2
             this.LayeredAssetId = layeredAssetId;
             this.LayerizeId = layerizeId;
             this.Document = document;
+            this.AssetIdentifier = assetIdentifier;
         }
 
         /// <summary>

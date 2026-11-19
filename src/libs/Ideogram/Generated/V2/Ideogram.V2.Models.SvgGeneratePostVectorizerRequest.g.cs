@@ -35,6 +35,27 @@ namespace Ideogram.V2
         public global::Ideogram.V2.V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode? Mode { get; set; }
 
         /// <summary>
+        /// Shape detail level, from 1 (simplest, fewest shapes) to 16 (finest, most shapes). A relative level, not a shape count. Fractional values are accepted.<br/>
+        /// Default Value: 14
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("shape_density")]
+        public string? ShapeDensity { get; set; }
+
+        /// <summary>
+        /// Color variety level, from 1 (fewest colors) to 8 (most colors). A relative level, not a color count. Fractional values are accepted.<br/>
+        /// Default Value: 7
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("color_variety")]
+        public string? ColorVariety { get; set; }
+
+        /// <summary>
+        /// Whether the SVG may fill shapes with gradients. When false, every shape is one flat color.<br/>
+        /// Default Value: true
+        /// </summary>
+        [global::System.Text.Json.Serialization.JsonPropertyName("use_gradient")]
+        public bool? UseGradient { get; set; }
+
+        /// <summary>
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </summary>
         [global::System.Text.Json.Serialization.JsonPropertyName("private")]
@@ -81,6 +102,18 @@ namespace Ideogram.V2
         /// Simple uses fewer shapes; detailed preserves fine detail; auto chooses the level of detail that best suits the image.<br/>
         /// Default Value: auto
         /// </param>
+        /// <param name="shapeDensity">
+        /// Shape detail level, from 1 (simplest, fewest shapes) to 16 (finest, most shapes). A relative level, not a shape count. Fractional values are accepted.<br/>
+        /// Default Value: 14
+        /// </param>
+        /// <param name="colorVariety">
+        /// Color variety level, from 1 (fewest colors) to 8 (most colors). A relative level, not a color count. Fractional values are accepted.<br/>
+        /// Default Value: 7
+        /// </param>
+        /// <param name="useGradient">
+        /// Whether the SVG may fill shapes with gradients. When false, every shape is one flat color.<br/>
+        /// Default Value: true
+        /// </param>
         /// <param name="private">
         /// Outputs are private by default. Enterprise outputs are always private.
         /// </param>
@@ -105,6 +138,9 @@ namespace Ideogram.V2
             string? imagename,
             global::Ideogram.V2.AssetIdentifier? imageAssetIdentifier,
             global::Ideogram.V2.V2SvgVectorizeIdeogramVector1PostRequestBodyContentMultipartFormDataSchemaMode? mode,
+            string? shapeDensity,
+            string? colorVariety,
+            bool? useGradient,
             bool? @private,
             string? targetCollectionId,
             string? webhookUrl)
@@ -113,6 +149,9 @@ namespace Ideogram.V2
             this.Imagename = imagename;
             this.ImageAssetIdentifier = imageAssetIdentifier;
             this.Mode = mode;
+            this.ShapeDensity = shapeDensity;
+            this.ColorVariety = colorVariety;
+            this.UseGradient = useGradient;
             this.Private = @private;
             this.TargetCollectionId = targetCollectionId;
             this.WebhookUrl = webhookUrl;

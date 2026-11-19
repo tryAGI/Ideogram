@@ -63,6 +63,13 @@ namespace Ideogram.V2.JsonConverters
                                throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.V2.GenerationResponseDataInnerVariant6)}");
                 layerizedDesignGeneration = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
             }
+            global::Ideogram.V2.GenerationResponseDataInnerVariant7? imageJudgmentResult = default;
+            if (discriminator?.ObjectType == global::Ideogram.V2.GenerationResponseDataInnerDiscriminatorObjectType.ImageJudgmentResult)
+            {
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant7), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V2.GenerationResponseDataInnerVariant7> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {nameof(global::Ideogram.V2.GenerationResponseDataInnerVariant7)}");
+                imageJudgmentResult = global::System.Text.Json.JsonSerializer.Deserialize(ref reader, typeInfo);
+            }
 
             var __value = new global::Ideogram.V2.GenerationResponseDataInner(
                 discriminator?.ObjectType,
@@ -76,7 +83,9 @@ namespace Ideogram.V2.JsonConverters
 
                 layerizedImage,
 
-                layerizedDesignGeneration
+                layerizedDesignGeneration,
+
+                imageJudgmentResult
                 );
 
             return __value;
@@ -126,6 +135,12 @@ namespace Ideogram.V2.JsonConverters
                 var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant6), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V2.GenerationResponseDataInnerVariant6?> ??
                                throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant6).Name}");
                 global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickLayerizedDesignGeneration(), typeInfo);
+            }
+            else if (value.IsImageJudgmentResult)
+            {
+                var typeInfo = typeInfoResolver.GetTypeInfo(typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant7), options) as global::System.Text.Json.Serialization.Metadata.JsonTypeInfo<global::Ideogram.V2.GenerationResponseDataInnerVariant7?> ??
+                               throw new global::System.InvalidOperationException($"Cannot get type info for {typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant7).Name}");
+                global::System.Text.Json.JsonSerializer.Serialize(writer, value.PickImageJudgmentResult(), typeInfo);
             }
         }
     }

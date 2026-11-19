@@ -19,6 +19,10 @@ namespace Ideogram.V2
         /// <summary>
         ///
         /// </summary>
+        ImageJudgmentResult,
+        /// <summary>
+        ///
+        /// </summary>
         LayerizedDesignGeneration,
         /// <summary>
         ///
@@ -48,6 +52,7 @@ namespace Ideogram.V2
             {
                 GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration => "image.generation",
                 GenerationResponseDataInnerDiscriminatorObjectType.ImageWithoutPromptOrSeed => "image.without-prompt-or-seed",
+                GenerationResponseDataInnerDiscriminatorObjectType.ImageJudgmentResult => "image_judgment.result",
                 GenerationResponseDataInnerDiscriminatorObjectType.LayerizedDesignGeneration => "layerized_design.generation",
                 GenerationResponseDataInnerDiscriminatorObjectType.LayerizedImage => "layerized_image",
                 GenerationResponseDataInnerDiscriminatorObjectType.SvgGeneration => "svg.generation",
@@ -64,6 +69,7 @@ namespace Ideogram.V2
             {
                 "image.generation" => GenerationResponseDataInnerDiscriminatorObjectType.ImageGeneration,
                 "image.without-prompt-or-seed" => GenerationResponseDataInnerDiscriminatorObjectType.ImageWithoutPromptOrSeed,
+                "image_judgment.result" => GenerationResponseDataInnerDiscriminatorObjectType.ImageJudgmentResult,
                 "layerized_design.generation" => GenerationResponseDataInnerDiscriminatorObjectType.LayerizedDesignGeneration,
                 "layerized_image" => GenerationResponseDataInnerDiscriminatorObjectType.LayerizedImage,
                 "svg.generation" => GenerationResponseDataInnerDiscriminatorObjectType.SvgGeneration,

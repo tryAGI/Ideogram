@@ -236,6 +236,43 @@ namespace Ideogram.V2
         public global::Ideogram.V2.GenerationResponseDataInnerVariant6 PickLayerizedDesignGeneration() => LayerizedDesignGeneration is { } value
             ? value
             : throw new global::System.InvalidOperationException($"Expected union variant 'LayerizedDesignGeneration' but the value was {ToString()}.");
+
+        /// <summary>
+        /// ImageJudgmentResultObject variant
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public global::Ideogram.V2.GenerationResponseDataInnerVariant7? ImageJudgmentResult { get; init; }
+#else
+        public global::Ideogram.V2.GenerationResponseDataInnerVariant7? ImageJudgmentResult { get; }
+#endif
+
+        /// <summary>
+        ///
+        /// </summary>
+#if NET6_0_OR_GREATER
+        [global::System.Diagnostics.CodeAnalysis.MemberNotNullWhen(true, nameof(ImageJudgmentResult))]
+#endif
+        public bool IsImageJudgmentResult => ImageJudgmentResult != null;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public bool TryPickImageJudgmentResult(
+#if NET6_0_OR_GREATER
+            [global::System.Diagnostics.CodeAnalysis.NotNullWhen(true)]
+#endif
+            out global::Ideogram.V2.GenerationResponseDataInnerVariant7? value)
+        {
+            value = ImageJudgmentResult;
+            return IsImageJudgmentResult;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public global::Ideogram.V2.GenerationResponseDataInnerVariant7 PickImageJudgmentResult() => ImageJudgmentResult is { } value
+            ? value
+            : throw new global::System.InvalidOperationException($"Expected union variant 'ImageJudgmentResult' but the value was {ToString()}.");
         /// <summary>
         ///
         /// </summary>
@@ -377,6 +414,29 @@ namespace Ideogram.V2
         /// <summary>
         ///
         /// </summary>
+        public static implicit operator GenerationResponseDataInner(global::Ideogram.V2.GenerationResponseDataInnerVariant7 value) => new GenerationResponseDataInner((global::Ideogram.V2.GenerationResponseDataInnerVariant7?)value);
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static implicit operator global::Ideogram.V2.GenerationResponseDataInnerVariant7?(GenerationResponseDataInner @this) => @this.ImageJudgmentResult;
+
+        /// <summary>
+        ///
+        /// </summary>
+        public GenerationResponseDataInner(global::Ideogram.V2.GenerationResponseDataInnerVariant7? value)
+        {
+            ImageJudgmentResult = value;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        public static GenerationResponseDataInner FromImageJudgmentResult(global::Ideogram.V2.GenerationResponseDataInnerVariant7? value) => new GenerationResponseDataInner(value);
+
+        /// <summary>
+        ///
+        /// </summary>
         public GenerationResponseDataInner(
             global::Ideogram.V2.GenerationResponseDataInnerDiscriminatorObjectType? objectType,
             global::Ideogram.V2.GenerationResponseDataInnerVariant1? imageWithoutPromptOrSeed,
@@ -384,7 +444,8 @@ namespace Ideogram.V2
             global::Ideogram.V2.GenerationResponseDataInnerVariant3? imageGeneration,
             global::Ideogram.V2.GenerationResponseDataInnerVariant4? videoGeneration,
             global::Ideogram.V2.GenerationResponseDataInnerVariant5? layerizedImage,
-            global::Ideogram.V2.GenerationResponseDataInnerVariant6? layerizedDesignGeneration
+            global::Ideogram.V2.GenerationResponseDataInnerVariant6? layerizedDesignGeneration,
+            global::Ideogram.V2.GenerationResponseDataInnerVariant7? imageJudgmentResult
             )
         {
             ObjectType = objectType;
@@ -395,12 +456,14 @@ namespace Ideogram.V2
             VideoGeneration = videoGeneration;
             LayerizedImage = layerizedImage;
             LayerizedDesignGeneration = layerizedDesignGeneration;
+            ImageJudgmentResult = imageJudgmentResult;
         }
 
         /// <summary>
         ///
         /// </summary>
         public object? Object =>
+            ImageJudgmentResult as object ??
             LayerizedDesignGeneration as object ??
             LayerizedImage as object ??
             VideoGeneration as object ??
@@ -418,7 +481,8 @@ namespace Ideogram.V2
             ImageGeneration?.ToString() ??
             VideoGeneration?.ToString() ??
             LayerizedImage?.ToString() ??
-            LayerizedDesignGeneration?.ToString()
+            LayerizedDesignGeneration?.ToString() ??
+            ImageJudgmentResult?.ToString()
             ;
 
         /// <summary>
@@ -426,7 +490,7 @@ namespace Ideogram.V2
         /// </summary>
         public bool Validate()
         {
-            return IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && IsLayerizedImage && !IsLayerizedDesignGeneration || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && IsLayerizedDesignGeneration;
+            return IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration && !IsImageJudgmentResult || !IsImageWithoutPromptOrSeed && IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration && !IsImageJudgmentResult || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration && !IsImageJudgmentResult || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration && !IsImageJudgmentResult || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && IsLayerizedImage && !IsLayerizedDesignGeneration && !IsImageJudgmentResult || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && IsLayerizedDesignGeneration && !IsImageJudgmentResult || !IsImageWithoutPromptOrSeed && !IsSvgGeneration && !IsImageGeneration && !IsVideoGeneration && !IsLayerizedImage && !IsLayerizedDesignGeneration && IsImageJudgmentResult;
         }
 
         /// <summary>
@@ -439,6 +503,7 @@ namespace Ideogram.V2
             global::System.Func<global::Ideogram.V2.GenerationResponseDataInnerVariant4, TResult>? videoGeneration = null,
             global::System.Func<global::Ideogram.V2.GenerationResponseDataInnerVariant5, TResult>? layerizedImage = null,
             global::System.Func<global::Ideogram.V2.GenerationResponseDataInnerVariant6, TResult>? layerizedDesignGeneration = null,
+            global::System.Func<global::Ideogram.V2.GenerationResponseDataInnerVariant7, TResult>? imageJudgmentResult = null,
             bool validate = true)
         {
             if (validate)
@@ -470,6 +535,10 @@ namespace Ideogram.V2
             {
                 return layerizedDesignGeneration(__value5);
             }
+            else if (ImageJudgmentResult is { } __value6 && imageJudgmentResult != null)
+            {
+                return imageJudgmentResult(__value6);
+            }
 
             return default(TResult);
         }
@@ -489,6 +558,8 @@ namespace Ideogram.V2
             global::System.Action<global::Ideogram.V2.GenerationResponseDataInnerVariant5>? layerizedImage = null,
 
             global::System.Action<global::Ideogram.V2.GenerationResponseDataInnerVariant6>? layerizedDesignGeneration = null,
+
+            global::System.Action<global::Ideogram.V2.GenerationResponseDataInnerVariant7>? imageJudgmentResult = null,
             bool validate = true)
         {
             if (validate)
@@ -519,6 +590,10 @@ namespace Ideogram.V2
             else if (LayerizedDesignGeneration is { } __value5)
             {
                 layerizedDesignGeneration?.Invoke(__value5);
+            }
+            else if (ImageJudgmentResult is { } __value6)
+            {
+                imageJudgmentResult?.Invoke(__value6);
             }
         }
 
@@ -532,6 +607,7 @@ namespace Ideogram.V2
             global::System.Action<global::Ideogram.V2.GenerationResponseDataInnerVariant4>? videoGeneration = null,
             global::System.Action<global::Ideogram.V2.GenerationResponseDataInnerVariant5>? layerizedImage = null,
             global::System.Action<global::Ideogram.V2.GenerationResponseDataInnerVariant6>? layerizedDesignGeneration = null,
+            global::System.Action<global::Ideogram.V2.GenerationResponseDataInnerVariant7>? imageJudgmentResult = null,
             bool validate = true)
         {
             if (validate)
@@ -562,6 +638,10 @@ namespace Ideogram.V2
             else if (LayerizedDesignGeneration is { } __value5)
             {
                 layerizedDesignGeneration?.Invoke(__value5);
+            }
+            else if (ImageJudgmentResult is { } __value6)
+            {
+                imageJudgmentResult?.Invoke(__value6);
             }
         }
 
@@ -584,6 +664,8 @@ namespace Ideogram.V2
                 typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant5),
                 LayerizedDesignGeneration,
                 typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant6),
+                ImageJudgmentResult,
+                typeof(global::Ideogram.V2.GenerationResponseDataInnerVariant7),
             };
             const int offset = unchecked((int)2166136261);
             const int prime = 16777619;
@@ -605,7 +687,8 @@ namespace Ideogram.V2
                 global::System.Collections.Generic.EqualityComparer<global::Ideogram.V2.GenerationResponseDataInnerVariant3?>.Default.Equals(ImageGeneration, other.ImageGeneration) &&
                 global::System.Collections.Generic.EqualityComparer<global::Ideogram.V2.GenerationResponseDataInnerVariant4?>.Default.Equals(VideoGeneration, other.VideoGeneration) &&
                 global::System.Collections.Generic.EqualityComparer<global::Ideogram.V2.GenerationResponseDataInnerVariant5?>.Default.Equals(LayerizedImage, other.LayerizedImage) &&
-                global::System.Collections.Generic.EqualityComparer<global::Ideogram.V2.GenerationResponseDataInnerVariant6?>.Default.Equals(LayerizedDesignGeneration, other.LayerizedDesignGeneration)
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.V2.GenerationResponseDataInnerVariant6?>.Default.Equals(LayerizedDesignGeneration, other.LayerizedDesignGeneration) &&
+                global::System.Collections.Generic.EqualityComparer<global::Ideogram.V2.GenerationResponseDataInnerVariant7?>.Default.Equals(ImageJudgmentResult, other.ImageJudgmentResult)
                 ;
         }
 

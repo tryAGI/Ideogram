@@ -196,6 +196,22 @@ namespace Ideogram.V2
                                     name: "\"negative_prompt\"");
 
                             }
+                            if (request.StyleType != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent((request.StyleType).HasValue ? (request.StyleType).GetValueOrDefault().ToValueString() : string.Empty),
+                                    name: "\"style_type\"");
+
+                            }
+                            if (request.ColorPalette != default)
+                            {
+
+                                __httpRequestContent.Add(
+                                    content: new global::System.Net.Http.StringContent(request.ColorPalette.ToString() ?? string.Empty),
+                                    name: "\"color_palette\"");
+
+                            }
                             if (request.AspectRatio != default)
                             {
 
@@ -858,6 +874,13 @@ namespace Ideogram.V2
         /// <param name="negativePrompt">
         /// Description of what to exclude from the images. The prompt takes precedence over the negative prompt. Not every model uses it. Cannot be combined with source images.
         /// </param>
+        /// <param name="styleType">
+        /// The style type to generate with. A value other than `auto` limits the request to a model that supports it. Cannot be combined with source images.<br/>
+        /// Default Value: general
+        /// </param>
+        /// <param name="colorPalette">
+        /// A color palette to apply. Limits the request to a model that supports palettes. Cannot be combined with source images.
+        /// </param>
         /// <param name="aspectRatio">
         /// The output aspect ratio. `auto` (the default) picks the most suitable ratio for the request. Without source images the value must be a supported ratio (for example "16x9" or "1x1"); with source images any "WIDTHxHEIGHT" value is accepted and the output uses the closest supported shape. Omit `resolution` when supplying a non-`auto` value.<br/>
         /// Default Value: auto
@@ -891,6 +914,8 @@ namespace Ideogram.V2
             bool? dryRun = default,
             global::System.Collections.Generic.IList<byte[]>? images = default,
             string? negativePrompt = default,
+            global::Ideogram.V2.IdeogramV3StyleType? styleType = default,
+            global::Ideogram.V2.IdeogramColorPalette? colorPalette = default,
             string? aspectRatio = default,
             string? resolution = default,
             global::Ideogram.V2.V2ImageGenerateAutoPostRequestBodyContentMultipartFormDataSchemaResolutionTier? resolutionTier = default,
@@ -906,6 +931,8 @@ namespace Ideogram.V2
                 Prompt = prompt,
                 Images = images,
                 NegativePrompt = negativePrompt,
+                StyleType = styleType,
+                ColorPalette = colorPalette,
                 AspectRatio = aspectRatio,
                 Resolution = resolution,
                 ResolutionTier = resolutionTier,
